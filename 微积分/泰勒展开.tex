@@ -1,0 +1,375 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-------------------------------------
+%	TITLE PAGE
+%-------------------------------------
+
+
+\title[Calculus]{\LARGE \bfseries 第一部分\quad 微积分} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Taylor Expansion] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 6. 泰勒展开
+}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%------------------------------------
+%	PRESENTATION SLIDES
+%------------------------------------
+
+\section{泰勒展开} 
+%\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{问题}
+单变量的时候，我们用多项式去逼近一个高阶连续可微函数。在多变量函数的时候，情况是什么样的呢？
+\end{block}
+
+\vspace{2em}
+\pause
+
+\begin{block}{研究对象}
+设$f$是定义在区域$E\subset \mathbb{R}^n$上具有直到$n+1$阶的连续偏导数的多变量实值函数。在点$\mathbf{x} = (x_1,\ldots,x_n)$处考虑自变量的增量$\mathbf{h} = (h_1,\ldots,h_n)$。假设$[\mathbf{x}, \mathbf{x} + \mathbf{h}] \subset E.$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{lem}
+考虑定义在闭区间$[0,1]$上的单变量函数$\varphi(t) = f(\mathbf{x} + t\mathbf{h}),$ 那么对所有的$k\leqslant n+1$有
+\begin{align*}
+\varphi^{(k)}(t) & = \left( h_1\partial_1 + \cdots + h_n\partial_n \right)^k f(\mathbf{x} + t\mathbf{h}) \\
+& = (\mathbf{h}\cdot\nabla)^k f(\mathbf{x} + t\mathbf{h})
+\end{align*}
+\end{lem}
+
+\pause
+
+$t=1$时，由单变量函数泰勒公式，有
+$$\varphi(1) = \varphi(0) + \dfrac{1}{1!}\varphi'(0) + \cdots + \dfrac{1}{n!}\varphi^{(n)}(0) + \text{余项}.$$
+把$\varphi^{(k)}(0)$代入上式
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{多变量实值函数的泰勒公式}
+设函数$f$在点$\mathbf{x} \in \mathbb{R}^n$的一个邻域$U(\mathbf{x}) \subset \mathbb{R}^n$上有定义，且在这个邻域上有直到$n+1$阶连续偏导。设$[\mathbf{x}, \mathbf{x} + \mathbf{h}] \subset U(\mathbf{x}),$ 那么
+$$f(\mathbf{x} + \mathbf{h}) = \sum\limits_{k=0}^n \dfrac{1}{k!} (\mathbf{h}\cdot\nabla)^k f(\mathbf{x}) + r_{n+1}(\mathbf{x}; \mathbf{h}).$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{梯度下降}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{多变量实值函数的一阶近似}
+在点$\mathbf{x} \in \mathbb{R}^n$的一个小邻域内，可以有近似式
+$$f(\mathbf{x} + \mathbf{h}) \approx f(\mathbf{x}) + \mathbf{h}\cdot\nabla f(\mathbf{x}).$$
+\end{block}
+
+\pause
+
+\begin{block}{梯度下降原理}
+在$\mathbf{h}$长度固定等于$\gamma$的情况下，把$\mathbf{h}$方向取和梯度相反的时候，即
+$$\mathbf{h} = -\dfrac{\gamma}{\left\Vert \nabla f(\mathbf{x}) \right\Vert} \nabla f(\mathbf{x})$$
+时，$f(\mathbf{x} + \mathbf{h})$相对于$f(\mathbf{x})$的减量是最大的。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{梯度下降方法}
+从一个初始值$\mathbf{x}_0$出发，归纳地令
+$$\mathbf{x}_{n+1} = \mathbf{x}_n - {\color{red}\gamma_n} \nabla f(\mathbf{x}_n),$$
+得到递减数列
+$$f(\mathbf{x}_0) \geqslant f(\mathbf{x}_1) \geqslant \cdots$$
+\end{block}
+
+\end{frame}
+
+% %------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

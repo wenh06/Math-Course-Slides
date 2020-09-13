@@ -1,0 +1,682 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Convex Optimization]{\LARGE \bfseries 第四部分\quad 凸优化} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Newton’s Method and Interior-Point Methods] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 5. 牛顿法与内点法}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{无约束优化}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{无约束优化}
+无约束凸优化问题具有以下形式
+$$\text{minimize} \quad f(\mathbf{x})$$
+由于$f$是凸函数，那么
+$$\mathbf{x}^* \text{ 是最优解 } \Longleftrightarrow \nabla f(\mathbf{x}^*) = \mathbf{0}$$
+这个方程（组）一般没有解析解，必须采用迭代算法求解，即寻找所谓的极小化点列
+$$\mathbf{x}^{(0)}, \ldots, \mathbf{x}^{(k)}, \ldots,$$
+使得当$k\to\infty$时，$f(\mathbf{x}^{(k)}) \to p^*$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{下降方法}
+极小化点列将按以下方式产生
+$$\mathbf{x}^{(k+1)} = \mathbf{x}^{(k)} + t^{(k)} \Delta \mathbf{x}^{(k)}, \text{ 且有 } f(\mathbf{x}^{(k+1)}) < f(\mathbf{x}^{(k)})$$
+其中
+\begin{itemize}
+\item $\Delta \mathbf{x}^{(k)}$被称为第$k$次迭代搜索方向，或步径
+\item $t^{(k)} > 0$被称作第$k$次迭代步长
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwRepeat{Do}{do}{while}
+
+给定初始点$\mathbf{x}$ \;
+\Do{达到停止条件}
+{
+确定下降方向$\Delta \mathbf{x}$ \;
+搜索并选择步长$t$ \;
+$ \mathbf{x} \gets \mathbf{x} + t \Delta \mathbf{x}$ \;
+}
+\Output{近似最优解$\mathbf{x}$}
+\caption{通用下降方法}
+\end{algorithm}
+
+\vspace{1em}
+\pause
+
+\begin{itemize}
+\item $\Delta \mathbf{x} = - \nabla f(\mathbf{x}) \; \rightsquigarrow \; \text{\color{red} 梯度下降法}$
+\item $\Delta \mathbf{x}_{nsd} = \argmin\limits_{\mathbf{v}} \{ \nabla f(\mathbf{x})^T \mathbf{v} \ |\ \Vert \mathbf{v} \Vert = 1 \} \; \rightsquigarrow \; \text{\color{red} 最速下降法}$
+\item $\Delta \mathbf{x}_{nt} = - H(f)(\mathbf{x})^{-1} \nabla f(\mathbf{x}) \; \rightsquigarrow \; \text{\color{red} Newton法}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Newton法}
+\begin{itemize}
+\item 函数$f$在$\mathbf{x}$处的二阶Taylor近似为
+$$f(\mathbf{x} + \mathbf{v}) = f(\mathbf{x}) + \nabla f(\mathbf{x})^T \mathbf{v} + \dfrac{1}{2} \mathbf{v}^T H(f)(\mathbf{x}) \mathbf{v}$$
+$\mathbf{x} + \Delta \mathbf{x}_{nt}$ 极小化了$f$在$\mathbf{x}$处的二阶近似
+\vspace{1em}
+\item Newton法的步径（或搜索方向）也是$\mathbf{x}$处采用正定阵$H(f)(\mathbf{x})$定义的（内积导出的）范数
+$$\Vert \mathbf{u} \Vert_{H(f)(\mathbf{x})} := (\mathbf{u}^T H(f)(\mathbf{x}) \mathbf{u})^{1/2}$$
+对应的最速下降法的步径。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Newton法}
+\begin{itemize}
+\item 定义$\mathbf{x}$处的Newton减量（Decrement）
+\begin{align*}
+\lambda(\mathbf{x}) & = (\Delta \mathbf{x}_{nt}^T H(f)(\mathbf{x}) \Delta \mathbf{x}_{nt})^{1/2} \\
+& = (\nabla f(\mathbf{x})^T H(f)(\mathbf{x})^{-1} \nabla f(\mathbf{x}))^{1/2}
+\end{align*}
+可以用于设计迭代停止准则
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwRepeat{Do}{do}{while}
+
+给定初始点$\mathbf{x}$, 以及误差阈值$\varepsilon$ \;
+\Do{1}
+{
+计算Newton步径$\Delta \mathbf{x}_{nt} = - H(f)(\mathbf{x})^{-1} \nabla f(\mathbf{x})$, 以及Newton减量平方$\lambda(\mathbf{x})^2 = \nabla f(\mathbf{x})^T H(f)(\mathbf{x})^{-1} \nabla f(\mathbf{x})$\;
+如果$\lambda(\mathbf{x})^2 \le \varepsilon$, 退出循环 \;
+搜索并选择步长$t$ \;
+$ \mathbf{x} \gets \mathbf{x} + t \Delta \mathbf{x}_{nt}$ \;
+}
+\Output{近似最优解$\mathbf{x}$}
+\caption{Newton法}
+\end{algorithm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{等式约束的Newton法}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{等式约束的Newton法}
+考虑如下等式约束的凸优化问题
+\vspace{-0.5em}
+\begin{eqnarray*}
+& \text{minimize} & f(\mathbf{x}) \\
+& \text{subject to} & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+其中目标函数$f$是二次连续可微的凸函数。
+
+\pause
+\vspace{1em}
+
+为得到其在可行点$\mathbf{x}$处的Newton步径$\Delta \mathbf{x}_{nt}$, 将目标函数$f$替换为$f$在$\mathbf{x}$附近的二阶Taylor近似，从而得到如下的关于变量$\mathbf{v}$的等式约束的二次凸问题
+\vspace{-0.5em}
+\begin{eqnarray*}
+& \text{minimize} & g(\mathbf{v}) = f(\mathbf{x}) + \nabla f(\mathbf{x})^T \mathbf{v} + \dfrac{1}{2} \mathbf{v}^T H(f)(\mathbf{x}) \mathbf{v} \\
+& \text{subject to} & A(\mathbf{x} + \mathbf{v}) = \mathbf{b} \quad (\Longrightarrow \; A\mathbf{v} = \mathbf{0})
+\end{eqnarray*}
+关键就在于Newton方向不但要是下降的方向，还要是可行的（满足约束条件）
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{等式约束的Newton法}
+以上的等式约束的二次凸问题的最优解$\mathbf{v}^* = \Delta \mathbf{x}_{nt}$由KKT矩阵决定的线性方程组决定
+\[
+\begin{pmatrix} H(f)(\mathbf{x}) & A^T \\ A & 0 \end{pmatrix} \begin{pmatrix} \Delta \mathbf{x}_{nt} \\ \boldsymbol\omega \end{pmatrix} = \begin{pmatrix} -\nabla f(\mathbf{x}) \\ \mathbf{0} \end{pmatrix}
+\]
+剩下的工作就和无约束情况下Newton法类似了。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwRepeat{Do}{do}{while}
+
+给定可行初始点$\mathbf{x}$, 以及误差阈值$\varepsilon$ \;
+\Do{1}
+{
+通过解KKT方程组计算Newton步径$\Delta \mathbf{x}_{nt}$, 以及相应的Newton减量平方$\lambda(\mathbf{x})^2 = \Delta \mathbf{x}_{nt}^T H(f)(\mathbf{x}) \Delta \mathbf{x}_{nt}$\;
+如果$\lambda(\mathbf{x})^2 \le \varepsilon$, 退出循环 \;
+搜索并选择步长$t$ \;
+$ \mathbf{x} \gets \mathbf{x} + t \Delta \mathbf{x}_{nt}$ \;
+}
+\Output{近似最优解$\mathbf{x}$}
+\caption{等式约束问题的Newton法}
+\end{algorithm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{内点法}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{不等式约束的凸优化问题}
+考虑含有不等式约束的凸优化问题
+\begin{eqnarray*}
+& \text{minimize} & f_0(\mathbf{x}) \\
+& \text{subject to} & f_i(\mathbf{x}) \le 0, \quad i = 1,\ldots,m \\
+& & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+其中
+\begin{itemize}
+\item $f_0,f_1,\ldots,f_m: \mathbb{R}^n \to \mathbb{R}$为二次连续可微的凸函数
+\item $A \in M_{p\times n}(\mathbb{R})$ 且 $r(A) = p$
+\item 最优值$p^*$有限且能取到
+\item 问题是严格可行的，即（Slater准则）
+$$\exists \; \mathbf{x} \in \operatorname{relint} \mathcal{D}, \; \text{ 使得 }\; 
+\begin{array}{l}
+f_i(\mathbf{x}) < 0, \; i = 1,\ldots,m \\
+A\mathbf{x} = \mathbf{b}
+\end{array}$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{解决问题的思路}
+将原问题近似转换为（一系列）等式约束问题，然后应用Newton法求解。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{消去不等式条件}
+我们将不等式约束隐含在目标函数中，把原问题重新表述为如下的等式约束问题
+\begin{eqnarray*}
+& \text{minimize} & f_0(\mathbf{x}) + \sum\limits_{i=1}^m I_-(f_i(\mathbf{x})) \\
+& \text{subject to} & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+其中$I_-: \mathbb{R} \to \mathbb{R}\cup\{\infty\}$是非正实数的示性函数：
+\[
+I_-(u) = \begin{cases}
+0, & u \le 0 \\
+\infty, & u > 0 
+\end{cases}
+\]
+
+\vspace{1em}
+\pause
+
+但是以上等式约束问题的目标函数不可微，不能直接用Newton法
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{对数障碍，Logarithmic Barrier}
+我们将用对数函数来近似示性函数$I_-(u)$
+$$\widehat{I}_-(u) = -\dfrac{1}{t}\ln(-u), \quad u < 0$$
+\vspace{-1em}
+\begin{itemize}
+\item $t>0$是确定近似精度的参数，$t$越大，近似精度越高
+\item $\widehat{I}_-(u)$是关于$u$的凸的可微增函数
+\item $u\to 0-$时，$\widehat{I}_-(u)\to +\infty$
+\end{itemize}
+
+\vspace{1em}
+
+令
+$$\phi(\mathbf{x}) := \sum\limits_{i=1}^m \left( -\ln(-f_i(\mathbf{x})) \right)$$
+此函数被称作是原问题的对数障碍函数，其定义域是满足原问题中严格不等式约束的点集。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{对数障碍，Logarithmic Barrier}
+于是，我们得到了如下的近似问题
+\begin{eqnarray*}
+& \text{minimize} & f_0(\mathbf{x}) + \sum\limits_{i=1}^m \left( -\dfrac{1}{t}\ln(-f_i(\mathbf{x})) \right) \\
+& \text{subject to} & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+或等价地（把下述带对数障碍的凸优化问题记作$S(t)$）
+\begin{eqnarray*}
+& \text{minimize} & tf_0(\mathbf{x}) + \phi(\mathbf{x}) \\
+& \text{subject to} & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+此时的目标函数是可微凸函数，可以用Newton法来解决问题。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{中心路径，Central Path}
+\begin{itemize}
+\item 对任意$t>0$, 令$\mathbf{x}^*(t)$为以上近似问题的最优解，被称作一个中心点
+\item $\{\mathbf{x}^*(t) \ |\ t > 0\}$被称作原问题的中心路径
+\item {\bfseries 重要结论}：每个中心点$\mathbf{x}^*(t)$（在目标函数上的取值）是和原问题的最优值$p^*$之间的偏差不超过$\dfrac{m}{t}$的次优解，即
+$$f_0(\mathbf{x}^*(t)) - p^* \le \dfrac{m}{t}$$
+也就是说，当$t\to+\infty$, $\mathbf{x}^*(t)$收敛于最优解
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwRepeat{Do}{do}{while}
+
+给定严格可行初始点$\mathbf{x}$, $t > 0$, $\mu > 1$, 以及误差阈值$\varepsilon$ \;
+\Do{1}
+{
+中心点步骤（外部迭代）：\newline
+\hspace{1em}以$\mathbf{x}$为初始值，在$A\mathbf{x} = \mathbf{b}$的约束条件下用Newton法（Newton法内的循环迭代被称为内部迭代）来解对数障碍问题$S(t)$，最终确定中心点$\mathbf{x}^*(t)$ \;
+$\mathbf{x} \gets \mathbf{x}^*(t)$ \;
+如果$m/t \le \varepsilon$, 退出循环 \;
+$t \gets \mu t$
+}
+\Output{近似最优解$\mathbf{x}$}
+\caption{内点法（障碍方法）}
+\end{algorithm}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

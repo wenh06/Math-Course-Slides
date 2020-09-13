@@ -1,0 +1,896 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+\usepackage{tabu, slashbox}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Probability \& Statistics]{\LARGE \bfseries 第三部分\quad 概率与统计} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[More on Random Variables] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 3. 随机变量进阶}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\section{随机变量的数字特征}
+
+%------------------------------------------------
+
+\subsection{期望与方差}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{期望，Expected Value}
+期望是一种加权平均值。一个随机变量的期望被定义作
+$$\mu = E(X) = \begin{cases}
+\sum\limits_{i=1}^{+\infty} x_i\cdot P(X=x_i), & \text{$X$为离散型随机变量} \\
+\int\limits_{-\infty}^{+\infty} x\cdot f(x)dx, & \text{$X$为连续型随机变量}
+\end{cases}$$
+
+\vspace{1em}
+\pause
+
+{\color{red}注意}！以上分别要求
+$$\sum\limits_{i=1}^{+\infty} \vert x_i \vert \cdot P(X=x_i) < +\infty,\quad \int\limits_{-\infty}^{+\infty} \vert x \vert \cdot f(x)dx < +\infty$$
+才称相应的期望存在。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{期望的性质}
+随机变量的期望满足如下的性质
+\begin{itemize}
+\item $E(c) = c$, $c$为任一常数
+\item $E(cX) = cE(X)$
+\item $E(X_1 + X_2) = E(X_1) + E(X_2)$
+\item $E(g_1(X) + g_2(X)) = E(g_1(X)) + E(g_2(X))$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方差，Variance (或 Deviation)}
+随机变量$X$的方差被定义作
+$$Var(X) = E((X-E(X))^2)$$
+方差衡量了一个随机变量的分散程度。
+\end{block}\pause
+\begin{align*}
+E((X-E(X))^2) & = E(X^2 - 2XE(X) + E(X)^2) \\
+& = E(X^2) - E(2XE(X)) + E(E(X)^2) \\
+& = E(X^2) - 2E(X)E(X) + E(X)^2
+\end{align*}
+于是$Var(X)$有另一个表达$Var(X) = E(X^2) - E(X)^2$
+
+\pause
+
+\begin{itemize}
+\item 标准差（Standard Deviation）：$\sigma(X) = \sqrt{Var(X)}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方差的性质}
+\begin{itemize}
+\item $Var(c) = 0$, $c$为常数
+\item $Var(cX) = c^2 Var(X)$
+\item $Var(X+c) = Var(X)$
+\end{itemize}
+
+\vspace{1em}
+\pause
+
+注意，我们一般{\color{red}没有}$Var(X+Y) = Var(X) + Var(Y).$
+\end{block}
+
+\vspace{1em}
+\pause
+
+\begin{block}{更高阶的数量特征 --- 矩，Moment}
+\begin{itemize}
+\item $n$阶（原点）矩：$E(X^n)$
+\item $n$阶中心矩：$E((X - E(X))^n)$
+\pause
+\item 归一化的矩：$\dfrac{E((X - E(X))^n)}{\sigma(X)^n}$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{其他数字特征}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{其他数字特征}
+\begin{itemize}
+\item $\alpha$-分位数（Quantile）：使得$P(X\le x_{\alpha}) = \alpha$的数$x_{\alpha}$
+\item 中位数（Median）：使得$P(X\le m) = \frac{1}{2}$的数$m$
+\item 众数（Mode）：$\argmax \{f \ |\ f\text{ 是PMF或PDF}\}$
+\item 熵（Entropy）：$H(X) := E(-\ln X)$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{多维随机变量}
+
+%------------------------------------------------
+
+\subsection{多维随机变量}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{多维随机变量}
+在一个问题的考察中，往往会涉及多个随机变量。于是，在同一样本空间$\Omega$中，我们同时考虑多个随机变量$X_1,X_2,\ldots,X_n$, 他们的取值可能相互影响。这样的情况下，
+$$\mathbf{X} = (X_1,X_2,\ldots,X_n)$$
+被称作$n$维随机变量，或称随机向量。
+\end{block}
+
+\vspace{1em}
+
+例如，在身体健康的模型中，会有血压，血糖，心率，运动量， （深、浅）睡眠时间等等多个指标（随机变量）。
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{联合分布}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{联合分布，Joint Distribution}
+对于任意$n$个实数$x_1, \ldots, x_n$, 事件$\{X_1 \le x_1\},$ $\ldots,$ $\{X_n \le x_n\}$同时发生的概率
+$$F(x_1,\ldots,x_n) = P(X_1 \le x_1, \ldots, X_n \le x_n)$$
+被称为$n$维随机变量$(X_1, \ldots, X_n)$的联合分布函数。
+\end{block}
+
+\begin{block}{联合密度，Joint Density Distribution}
+如果存在非负的$n$个变元的函数$f(x_1,\ldots,x_n)$, 使得
+$$F(x_1,\ldots,x_n) = \int_{-\infty}^{x_1} \cdots \int_{-\infty}^{x_n} f(t_1,\ldots,t_n) dt_1 \cdots dt_n$$
+则称$(X_1, \ldots, X_n)$为$n$维连续型随机变量，$f(x_1,\ldots,x_n)$被称为它的联合密度函数。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{联合质量（联合分布列）}
+对于离散型的$n$维随机变量，它的联合分布的描述更加简单一些，可以用一个$n$维数组（长度可能无穷）表示，被称作联合分布列，相应的函数被称作联合质量函数。例如一个$2$维的联合分布列：
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabu} to 0.8\textwidth { X[c] | X[c] | X[c] | X[c] | X[c] | X[c] }
+\hline
+$Y \backslash X$ & $x_1$ & $x_2$ & $\cdots$ & $x_n$ & $\cdots$ \\
+\hline
+$y_1$ & $p_{11}$ & $p_{12}$ & $\cdots$ & $p_{1n}$ & $\cdots$ \\
+\hline
+$y_2$ & $p_{21}$ & $p_{22}$ & $\cdots$ & $p_{2n}$ & $\cdots$ \\
+\hline
+$\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$ &  \\
+\hline
+$y_n$ & $p_{n1}$ & $p_{n1}$ & $\cdots$ & $p_{nn}$ & $\cdots$ \\
+\hline
+$\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$ &  \\
+\end{tabu}
+\renewcommand{\arraystretch}{1}
+\end{center}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{边缘分布}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{边缘分布，Marginal Distribution}
+设$F(x_1,\ldots,x_n)$为$n$维（连续型）随机变量$\mathbf{X} = (X_1,\ldots,X_n)$的分布。设$I = \{i_1,\ldots,i_k\}$为$\{1,\ldots,n\}$的一个真子集，记$\mathbf{X}_I = (X_i)_{i\in I}$, 那么
+$$F_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \lim\limits_{\substack{x_i\to+\infty \\ i\not\in I}} F(x_1,\ldots,x_n)$$
+给出的随机向量$\mathbf{X}_I = (X_i)_{i\in I}$的概率分布被称作这部分随机向量的边缘分布。
+
+\vspace{1em}
+
+在很多个随机变量中，当我们不考虑某些（例如与所考虑问题关系不大）随机变量的时候，就需要用到从原概率分布得到的剩下这些随机变量的边缘分布。
+
+\vspace{1em}
+
+大家可以自行写一写（$2$维）离散型随机变量的边缘分布的定义式。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{边缘密度与边缘质量，Marginal Density \& Mass}
+相应地，我们有边缘密度
+$$f_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \idotsint f(x_1,\ldots,x_n) \prod\limits_{i\not\in I}dx_i$$
+
+以及边缘质量
+
+$$P(X_{i_1}=x_{i_1},\ldots,X_{i_k}=x_{i_k}) = \sum\limits_{\substack{y_i\\i\not\in I}} P(X_1=x_1,\ldots,X_k=x_k) $$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{条件分布与条件期望}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{离散型随机变量的条件分布}
+考虑2维离散型随机变量$(X,Y)$, 设其有联合分布列
+$$P(X=x_i, Y = y_i) = p_{ij}$$
+令$Y$有边缘分布列$P(Y = y_j) = \sum\limits_{i} p_{ij} =: p_j$. 对于所有满足$p_j > 0$的$y_j$, 称
+$$P(X = x_i | Y = y_j) = \dfrac{P(X=x_i, Y = y_i)}{P(Y = y_j)} = \dfrac{p_{ij}}{p_j}$$
+为给定条件$Y=y_j$下$X$的条件分布列。相应的条件分布函数为
+$$F_{X|Y}(x|y_j) = \sum\limits_{x_i \le x} P(X = x_i | Y = y_j) = \sum\limits_{x_i \le x} \dfrac{p_{ij}}{p_j}.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{连续型随机变量的条件分布}
+考虑2维连续型随机变量$(X,Y)$, 设其有联合密度函数$f(x,y)$. 令$Y$有边缘密度$f_Y(y) = \int_{-\infty}^{+\infty} f(x,y)dx$. 对于所有满足$f_Y(y) > 0$的$y$, 给定条件$Y=y$下$X$的条件分布与条件密度分别为
+\begin{align*}
+F_{X|Y}(x|y) & = \int_{-\infty}^x \dfrac{f(t,y)}{f_Y(y)} dt \\
+f_{X|Y}(x|y) & = \dfrac{f(x,y)}{f_Y(y)}
+\end{align*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+以2维连续型随机变量$(X,Y)$为例，我们也有条件密度的乘积公式（链式法则），全概率公式以及贝叶斯公式
+\begin{itemize}
+\item 乘积公式：
+$$f(x,y) = f_Y(y) f_{X|Y}(x|y)$$
+\item 全概率公式：
+$$f_X(x) = \int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy$$
+\item 贝叶斯公式：
+$$f_{Y|X}(y|x) = \dfrac{f_Y(y)f_{X|Y}(x|y)}{\int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy}$$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{条件期望}
+$$E(X|Y=y) = \begin{cases}
+\sum\limits_i x_i P(X=x_i | Y=y), & \text{离散} \\
+\int_{-\infty}^{+\infty} x f(x,y) dx, & \text{连续} \\
+\end{cases}$$
+
+\vspace{1em}
+\pause
+
+我们有所谓的全期望公式
+$$E(X) = E(E(X | Y=y))$$
+也就是说，求$X$的期望，等于先计算$Y$在不同取值下$X$的条件期望，再用$Y$各个取值概率对这些条件期望求和或积分。
+
+大家可以将这个公式与之前的全概率公式对照来看。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{随机变量的独立性}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{随机变量的独立性}
+设$n$维随机变量$(X_1,\ldots,X_n)$的联合分布函数为$F(x_1,\ldots,x_n)$, $F_{X_i}(x_i)$为随机变量$X_i$的边缘分布函数。如果对于任意$n$个实数$x_1,\ldots,x_n$有
+$$F(x_1,\ldots,x_n) = \prod\limits_{i=1}^n F_{X_i}(x_i)$$
+则称随机变量$X_1,\ldots,X_n$是相互独立的。
+
+\vspace{2em}
+\pause
+
+我们有$X_1,\ldots,X_n$相互独立的等价的定义
+\begin{itemize}
+\item 离散型（PMF）：$P(X_1=x_1,\ldots,X_n=x_n) = \prod\limits_{i=1}^n P(X_i=x_i)$
+\item 连续型（PDF）：$f(x_1,\ldots,x_n) = \prod\limits_{i=1}^n f_{X_i}(x_i)$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{独立随机变量的期望与方差}
+如果随机变量$X,Y$是独立的，那么
+\begin{itemize}
+\item $E(XY) = E(X)\cdot E(Y)$
+\item $Var(X+Y) = Var(X) + Var(Y)$
+\end{itemize}
+
+\vspace{2em}
+\pause
+
+对于一般的$n$个相互独立随机变量的情形，有
+\begin{itemize}
+\item $E(X_1\cdots X_n) = E(X_1)\cdots E(X_n)$
+\item $Var(X_1 + \cdots + X_n) = Var(X_1) + \cdots + Var(X_n)$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{协方差与随机变量相关性}
+
+%------------------------------------------------
+
+\subsection{协方差}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{协方差，Covariance}
+设$X,Y$是两个随机变量，称
+$$Cov(X,Y) := E((X-E(X))(Y-E(Y)))$$
+为$X,Y$的协方差
+\end{block}
+
+\vspace{1em}
+\pause
+
+很容易看出，$Cov(X,Y) = E(XY) - E(X)\cdot E(Y)$. 于是若$X,Y$相互独立，那么它们的协方差为0. 协方差其他性质还包括
+\begin{itemize}
+\item $Cov(X,c) = 0$
+\item $Cov(X+Y,Z) = Cov(X,Z) + Cov(Y,Z)$
+\item $Cov(c_1X+b_1, c_2Y+b_2) = c_1c_2\cdot Cov(X,Y)$ \pause
+\item $Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
+\item $Cov(X,Y)^2 \le Var(X)\cdot Var(Y)$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{相关系数}
+
+%------------------------------------------------
+
+\begin{frame}
+
+由于$Cov(c_1X, c_2Y) = c_1c_2\cdot Cov(X,Y)$, 为了消除这种影响，更好地反映相关性的本质，需要引入线性相关系数（Correlation）。
+
+\vspace{1em}
+\pause
+
+\begin{block}{线性相关系数}
+假设随机变量$X,Y$都不是常数，那么它们的线性相关系数被定义为
+$$Corr(X,Y) = \dfrac{Cov(X, Y)}{\sigma(X)\cdot\sigma(Y)}$$
+随机变量与常数的相关系数被约定作0. $X,Y$被称作正（或负或不）相关，若$Corr(X,Y) > 0$（或$<0$或$=0$）
+
+\vspace{1em}
+\pause
+
+随机变量的相关系数满足
+\begin{itemize}
+\item $-1\le Corr(X,Y) \le 1$
+\item $Corr(c_1X+b_1, c_2Y+b_2) = sgn(c_1c_2) \cdot Corr(X,Y)$, 其中$sgn(c_1c_2)$为$c_1c_2$的符号，为$\pm1$或0
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+{\color{red}注意！}$\text{线性不相关} \not\Rightarrow \text{独立}$
+
+\vspace{1em}
+
+% 例如，设连续型随机变量$X$的PDF（概率密度函数）为
+% $$\varphi(x) = \dfrac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
+% 令$Y = X^2$. 那么$X,Y$是不独立的。但是它们是线性不相关的。可以验证如下：$X,Y$的联合密度函数为
+% $$f(x,y) = \begin{cases}
+% \varphi(x), & \text{ 当 } y = x^2 \\
+% 0, & \text{其他情况}
+% \end{cases}$$
+
+例如，独立地投掷硬币三次，令随机变量$X$为正面出现次数，$Y$为正、反面出现次数之差（的绝对值），那么有如下的联合分布列与边缘分布列
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabu} to 0.8\textwidth { X[c] | X[c] | X[c] | X[c] | X[c] | X[c] }
+$Y \backslash X$ & 0 & 1 & 2 & 3 & $P_Y(y)$ \\
+\hline
+1 & 0 {\color{red}(3/32)} & 3/8 {\color{red}(9/32)} & 3/8 {\color{red}(9/32)} & 0 {\color{red}(3/32)} & 3/4 \\
+\hline
+3 & 1/8 {\color{red}(1/32)} & 0 {\color{red}(3/32)} & 0 {\color{red}(3/32)} & 1/8 {\color{red}(1/32)} & 1/4 \\
+\hline
+$P_X(x)$ & 1/8 & 3/8 & 3/8 & 1/8 & \\
+\end{tabu}
+\renewcommand{\arraystretch}{1}
+\end{center}
+容易算得$E(XY) = E(X)E(Y) = 9/4$, 从而知$Corr(X,Y)=0$. 但是$P_X(x)P_Y(y)$的值（表格中红色括号内数值）与$P(x,y)$处处不相等，故$X,Y$不独立。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{抽样分布}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{样本的分布}
+设$X_1,\ldots,X_n$为来自总体$X$的样本。那么，
+\begin{itemize}
+\item 若总体$X$有分布函数$F(x)$, 那么$(X_1,\ldots,X_n)$的联合分布函数为
+$$F^*(x_1,\ldots,x_n) = \prod\limits_{i=1}^n F(x)$$
+\item 若总体$X$有密度函数$f(x)$, 那么$(X_1,\ldots,X_n)$的联合密度为
+$$f^*(x_1,\ldots,x_n) = \prod\limits_{i=1}^n f(x)$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{样本均值与样本方差}
+设$X_1,\ldots,X_n$是来自总体$X$的样本。对于样本均值与样本方差
+\begin{gather*}
+\overline{X} = \dfrac{X_1 + \cdots + X_n}{n} \\
+S^2 = \dfrac{(X_1-\overline{X})^2 + \cdots + (X_n-\overline{X})^2}{\color{red} n-1}
+\end{gather*}
+
+我们有如下重要的结论：设总体$X$有期望$E(X) = \mu,$ 方差$Var(X) = \sigma^2$, 那么
+\begin{itemize}
+\item $E(\overline{X}) = \mu, Var(\overline{X}) = \dfrac{\sigma^2}{n}$
+\item $E(S^2) = \sigma^2$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{顺序统计量的分布}
+
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{抽样分布}
+统计量的分布被称作抽样分布，是统计学基本问题之一。抽样分布的问题主要分为以下两类：
+\begin{itemize}
+\item 已知总体$X$的分布时，对固定样本容量$n$推出统计量的分布；
+\item 求当样本容量$n\to\infty$时，统计量的极限分布。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+对于前一个问题，有如下的一个（``初步''的）结果
+\begin{block}{定理}
+设$X_1,\ldots,X_n$是来自总体$X$, 且$X$服从正态分布$N(\mu, \sigma^2)$的样本，统计量$Y = \sum\limits_{i=1}^n a_iX_i$是样本的任一确定的线性函数，那么$Y$也服从正态分布：
+$$Y \sim N \left( \mu \sum\limits_{i=1}^n a_i, \sigma^2 \sum\limits_{i=1}^n a_i^2 \right)$$
+\end{block}
+
+\vspace{1em}
+对于后一个问题，大数定律以及中心极限定理能回答一部分。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{离散、连续型随机变量形式的统一}
+
+%------------------------------------------------
+
+\begin{frame}
+
+在叙述或是进行证明的时候，有时候为了方便，离散型随机变量与连续型随机变量可以在形式上统一起来。
+
+\vspace{1em}
+
+考虑如下定义的Dirac函数
+$$\delta_a(x) = \begin{cases}
++\infty, & \text{ 如果 } x = a \\
+0, & \text{ 其他情况 }
+\end{cases},$$
+且满足
+$$\int_{A} \delta_a(x)dx = \begin{cases}
+1, & \text{ 如果 } a \in A \\
+0, & \text{ 其他情况 }
+\end{cases}$$
+Dirac函数不是普通意义下的函数，而是所谓的广义函数（Generalized Function 或 Distribution）。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+于是，一个概率质量函数就可以形式地写作如下的``概率密度函数''
+$$f(x) = \sum\limits_k P(X=k) \cdot \delta_k(x)$$
+相应的积分（求累积分布，求期望，等等），自动就变成了求和。
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

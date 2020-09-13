@@ -1,0 +1,483 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Convex Optimization]{\LARGE \bfseries 第四部分\quad 凸优化} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Exercises] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries 习题}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+
+{\color{red} \scriptsize 带$^*$号的题目可以不做}
+
+\vspace{1em}
+
+1. 验证以下集合是凸集
+\begin{itemize}
+\item[(1)] 平板，即形如$\{\mathbf{x} \in \mathbf{R}^n \ |\ a \le \mathbf{v}^T\mathbf{x} \le b \}$的集合
+\item[(2)] 超矩形，即形如$\{\mathbf{x} \in \mathbf{R}^n \ |\ a_i \le x_i \le b_i, \; i=1,\ldots,n \}$的集合
+\item[(3)] 楔形，即形如$\{\mathbf{x} \in \mathbf{R}^n \ |\ \mathbf{v}_1^T\mathbf{x} \le b_1, \; \mathbf{v}_2^T\mathbf{x} \le b_2 \}$的集合
+\item[(4)] 距离一个集合比距离另一个集合近的点组成的集合，即
+$$\{\mathbf{x} \in \mathbf{R}^n \ |\ \operatorname{dist}(\mathbf{x}, S_1) \le \operatorname{dist}(\mathbf{x}, S_2) \}$$
+其中$S_1,S_2 \subset \mathbb{R}^n$, $\operatorname{dist}(\mathbf{x}, S) := \inf\limits_{\mathbf{y} \in S} \{ \Vert \mathbf{x} - \mathbf{y} \Vert_2 \}$
+\item[(5)] 集合$\{\mathbf{x} \in \mathbf{R}^n \ |\ \mathbf{x} + S_2 \subset S_1 \}$, 其中$S_1,S_2 \subset \mathbb{R}^n$并且$S_1$是凸集，$\mathbf{x} + S_2 := \{ \mathbf{x} + \mathbf{y} \ |\ \mathbf{y} \in S_2 \}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+2. 验证以下函数是凸函数
+\begin{itemize}
+\item[(1)] 指数和对数：$f(\mathbf{x}) = \ln(e^{x_1} + \cdots + e^{x_n})$
+\item[(2)] 几何平均：$f(\mathbf{x}) = \left( \prod\limits_{i=1}^n x_i \right)^{1/n}$
+\item[(3)] 对数行列式：$f(X) = \ln\det X$
+\item[(4)] 凸函数的滑动平均（Running Average）
+$$F(x) = \dfrac{1}{x}\int_0^{x} f(t) dt$$
+其中$f$是一个定义域包含$\mathbb{R}_{\ge 0}$的凸函数
+\end{itemize}
+
+\vspace{1em}
+
+3. 请证明，对于凸优化问题来说，局部最优解就是全局最优解。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+4. Logistic 模型的优化：设随机变量$X\in\{0,1\}$满足
+$$P(X=1) = p(\mathbf{x}) = \dfrac{e^{\mathbf{a}^T\mathbf{x} + b}}{1 + e^{\mathbf{a}^T\mathbf{x} + b}}$$
+其中$\mathbf{x} \in \mathbb{R}^n$是影响概率的向量变量，$\mathbf{a}, b$是已知参数。还假设向量变量$\mathbf{x}$受线性的不等式约束
+$$\mathbf{f}_i^T\mathbf{x} \le g_i, \; i=1,\ldots,m$$
+请将下列问题建模为凸优化问题
+\begin{itemize}
+\item[(1)] 选择$\mathbf{x}$以极大化$p(\mathbf{x})$
+\item[(2)] 假设对所有可行的（即满足约束条件）的$\mathbf{x}$都有$\mathbf{c}^T\mathbf{x} + d > 0$. 选择$\mathbf{x}$以极大化$p(\mathbf{x})\cdot (\mathbf{c}^T\mathbf{x} + d)$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+5. 考虑标准凸优化问题
+\begin{eqnarray*}
+& \text{minimize} & f_0(\mathbf{x}) \\
+& \text{subject to} & f_i(\mathbf{x}) \le 0, \quad i = 1,\ldots,m \\
+& & h_j(\mathbf{x}) = 0, \quad j = 1,\ldots,p
+\end{eqnarray*}
+设$p^*$是最优值，$g(\boldsymbol\lambda, \boldsymbol\nu)$是对偶函数，请证明
+$$p^* \ge g(\boldsymbol\lambda, \boldsymbol\nu)$$
+对任意$\boldsymbol\lambda, \boldsymbol\nu$成立。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+6. 推导最小二乘法问题
+\begin{eqnarray*}
+& \text{minimize} & \Vert \mathbf{x} \Vert_2^2 (= \mathbf{x}^T\mathbf{x}) \\
+& \text{subject to} & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+的对偶问题
+
+\vspace{1em}
+
+7. 解析中心（Analytic Centering）：考虑优化问题
+$$\text{minimize} \quad -\sum\limits_{i=1}^m \ln(b_i - \mathbf{a}_i^T\mathbf{x})$$
+推导其对偶问题
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+8$^*$. 用KKT条件求解下列凸优化问题
+\begin{eqnarray*}
+& \text{minimize} & -\sum\limits_{i=1}^n \ln(\alpha_i + x_i) \\
+& \text{subject to} & x_i \ge 0,\; i=1,\ldots,n \\
+& & x_1+\cdots+x_n = 1
+\end{eqnarray*}
+
+\vspace{1em}
+
+9. 请证明Newton减量$\lambda(\mathbf{x})$满足
+\begin{align*}
+\lambda(\mathbf{x}) & = \sup\limits_{\mathbf{v}^T H(f)(\mathbf{x}) \mathbf{v} = 1} \left( -\mathbf{v}^T \nabla f(\mathbf{x}) \right) \\
+& = \sup\limits_{\mathbf{v} \neq \mathbf{0}} \dfrac{-\mathbf{v}^T \nabla f(\mathbf{x})}{(\mathbf{v}^T H(f)(\mathbf{x}) \mathbf{v})^{1/2}}
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+10. 求对数障碍函数$\phi(\mathbf{x}) := \sum\limits_{i=1}^m \left( -\ln(-f_i(\mathbf{x})) \right)$的梯度向量与黑塞矩阵
+
+\vspace{1em}
+
+11. 考虑对数障碍的近似问题
+\begin{eqnarray*}
+& \text{minimize} & tf_0(\mathbf{x}) + \phi(\mathbf{x}) \\
+& \text{subject to} & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+令$\mathbf{x}^*(t)$为这个问题的最优解。求证
+\begin{itemize}
+\item[(1)] $\mathbf{x}^*(t)$是严格可行的，即满足
+$$f_i(\mathbf{x}^*(t)) < 0, \; i = 1,\ldots,m; \quad A\mathbf{x}^*(t) = \mathbf{b}$$
+\item[(2)] 存在$\widehat{\boldsymbol\nu} \in \mathbb{R}^p,$ 使得
+$$\mathbf{0} = t \nabla f_0(\mathbf{x}^*(t)) + \nabla \phi(\mathbf{x}^*(t)) + A^T \widehat{\boldsymbol\nu}$$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+12$^*$. 继续考虑第11题中的问题。定义
+$$\lambda_i^*(t) = - \dfrac{1}{tf_i(\mathbf{x}^*(t))}, \; i = 1,\ldots,m; \quad \boldsymbol\nu^*(t) = \widehat{\boldsymbol\nu} / t$$
+请证明
+\begin{itemize}
+\item[(1)] $(\boldsymbol\lambda^*(t), \boldsymbol\nu^*(t))$是原问题的对偶可行解
+\item[(2)] $f_0(\mathbf{x}^*(t)) - p^* \le \dfrac{m}{t}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

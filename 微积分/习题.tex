@@ -1,0 +1,442 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+
+\usepackage[ruled,linesnumbered]{algorithm2e}
+% \usepackage{listings}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-------------------------------------
+%	TITLE PAGE
+%-------------------------------------
+
+
+\title[Calculus]{\LARGE \bfseries 第一部分\quad 微积分} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Exercises] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries 习题}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%---------------------------------------
+%	PRESENTATION SLIDES
+%---------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+
+{\color{red} \scriptsize 带$^*$号的题目可以不做}
+
+\vspace{1em}
+
+1. 求下列极限
+\begin{itemize}
+\item[(1)] $\lim\limits_{x\to-\infty} \dfrac{1}{1+e^{-x}}$
+\item[(2)] $\lim\limits_{x\to+\infty} \dfrac{e^x-e^{-x}}{e^x+e^{-x}}$
+\item[(3)] $\lim\limits_{x\to 0} \dfrac{\sqrt{1+\tan x} - \sqrt{1-\tan x}}{1-e^{-x}}$
+\item[(4)] $\lim\limits_{x\to +\infty} x^{1/x}$
+\item[(5)] $\lim\limits_{x\to +\infty} x\left( \frac{1}{e} - \left(\frac{x}{x+1}\right)^x \right)$
+\item[(6)] $\lim\limits_{x\to 1-} e^{-\frac{1}{\sqrt{1-x}}}$
+\item[(7)] $\lim\limits_{n\to \infty} \dfrac{n!}{n^n}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+2$^*$. 已知$e = \lim\limits_{n\to\infty} \left(1+\frac{1}{n}\right)^n$. 令
+\begin{align*}
+e_n & = \left(1+\frac{1}{n}\right)^n \\
+s_n & = \sum\limits_{k=0}^n \frac{1}{k!} = 1 + \frac{1}{1!} + \frac{1}{2!} + \cdots + \frac{1}{n!} \\
+s_{n,k} & = 1 + 1 + \frac{1}{2!}\left( 1-\frac{1}{n} \right) + \cdots + \frac{1}{k!}\left( 1-\frac{1}{n} \right)\cdots \left( 1-\frac{k-1}{n} \right)
+\end{align*}
+\begin{itemize}
+\item[(1)] 写出$e_n$的二项展开。设$n\ge k$, 比较$e_n,s_n,s_{n,k}$三者的大小
+\item[(2)] 证明$s_k = \lim\limits_{n\to\infty} s_{n,k}$, 并由此证明$s_k\le e$对任意$k$成立
+\item[(3)] 证明$e=\lim\limits_{n\to\infty} s_n$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+3. 求下列函数$f$的导数$f'$
+\begin{itemize}
+\item[(1)] $f(x) = \dfrac{1}{1+e^{-x}}$
+\item[(2)] $f(x) = \ln\ln x$
+\item[(3)] $f(x) = x^x$
+\end{itemize}
+
+\vspace{1em}
+
+4. 若$y = \sin t^2, x = (1 + \sqrt{t})e^t$, 求$\frac{dy}{dx}$
+
+\vspace{1em}
+
+5. 求椭圆$\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$在点$(x_0,y_0)$处的切线方程
+
+\vspace{1em}
+
+6. 设$f(x) = \arctan x$, 求$f^{(n)}(0)$
+
+\vspace{1em}
+
+7. 设$y = e^t, x = \ln t$, 求$\frac{d^2y}{dx^2}$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+8. 设$a,b\in\mathbb{R}$为常数，求函数$f(x) = a \ln x + b \ln (1-x)$的极值
+
+\vspace{1em}
+
+9. 设$(a,b)$为曲线$x^4+y^4-x^2y-xy^2 = 0$上的动点，求$b$能取到的最大值与最小值
+
+\vspace{1em}
+
+10. 试写出函数$f(x) = \ln\cos x$在$x=0$处的4阶泰勒多项式
+
+\vspace{1em}
+
+11. 求函数$f(x) = \ln(1+e^{-x})$的二阶导数$f''(x)$, 并由此判断该函数的凹凸性
+
+\vspace{1em}
+
+12. 考虑函数$\displaystyle \Gamma(x) = \int_0^{+\infty} \dfrac{t^{x-1}}{e^t} dt, \; x\in\mathbb{R}$
+\begin{itemize}
+\item[(1)] 证明$\Gamma(x+1) = x\Gamma(x)$
+\item[(2)] 求$\Gamma(1)$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+13. 计算以下积分
+\begin{itemize}
+\item[(1)] $\displaystyle \int_0^1 \dfrac{x}{1+\sqrt{1+x}} dx$
+\item[(2)] $\displaystyle \int_0^1 x^3e^{-x^2} dx$
+\item[(3)] $\displaystyle \int_0^{+\infty} \dfrac{1}{1+e^x} dx$
+\item[(4)] $\displaystyle \int_0^1 \sqrt{\dfrac{x}{1-x}} dx$
+\item[($5^*$)] $\displaystyle \int_0^{+\infty} e^{-x^2} dx$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+14. 求偏导
+\begin{itemize}
+\item[(1)] $f(x,y)=y^{\ln x}$, 求$\dfrac{\partial^2 f}{\partial x \partial y}$
+\item[(2)] 设$z = \dfrac{1}{1+e^{x-2y}}, x = \cos t, y = \sqrt{1+t^2}$, 求$\dfrac{dz}{dt}$
+\item[(3)] 设$E(w,b) = \sum\limits_{i=1}^m (y_i-wx_i-b)^2,$ 求$\dfrac{\partial E}{\partial w}, \dfrac{\partial E}{\partial b}$
+\item[(4)] 设$y(w_1,\ldots,w_n,b) = \dfrac{1}{1+e^{-\sum\limits_{i=1}^n w_ix_i - b}}$, 求$\dfrac{\partial y}{\partial w_i}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+15. 设$f(x) = \ln \left(e^{-x} + \dfrac{x^2}{y} \right)$
+\begin{itemize}
+\item[(1)] 求$f(x)$的梯度向量
+\item[(2)] 令$\mathbf{v} = (1,1)$, 求$\left. \dfrac{\partial f}{\partial \mathbf{v}} \right|_{(-1,-1)}$
+\end{itemize}
+
+\vspace{1em}
+
+16. 在神经网络的反向传播算法中（见讲义\S 9），取损失函数为$L(y,\widehat{y}) = \frac{1}{2}(y-\widehat{y})^2$, 激励函数为$\sigma(x) = \dfrac{1}{1+e^{-x}}$, 学习率取作$\eta$, 求权重$w_{ij}$, $v_{ij}$在每一轮训练中更新的增量的具体表达式
+
+\end{frame}
+
+% %------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

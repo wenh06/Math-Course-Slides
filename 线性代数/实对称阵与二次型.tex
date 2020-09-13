@@ -1,0 +1,713 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Linear Algebra]{\LARGE \bfseries 第二部分\quad 线性代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Real Symmetric Matrix and Quadratic Form] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 6. 实对称阵与二次型}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\section{实对称矩阵的对角化}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{代数基本定理，Fundamental Theorem of Algebra}
+任何一个复系数的单变量$n$次多项式，在复数集中都恰好有$n$个根（记重数）。
+\end{block}
+
+\vspace{2em}
+\pause
+
+对于一个$n$阶实方阵$A$来说，它的特征多项式$f(\lambda)$是一个$n$次实系数（从而也是复系数）的单变量多项式。因此有$n$个复根。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{复矩阵}
+一个复矩阵指的是一个矩阵$(a_{ij})$, 它的系数$a_{ij}$是复数。复矩阵也有加法、乘法以及复数的数乘。
+
+\pause
+
+\begin{itemize}
+\item 复共轭转置：对于复矩阵$M = (a_{ij})$, 定义其共轭转置矩阵为$M^* = (a'_{ij})$, 其中$a'_{ij} = \overline{a}_{ji}$为$a_{ji}$的复共轭。
+\end{itemize}
+\end{block}
+
+\vspace{1em}
+\pause
+
+\begin{block}{复向量的内积}
+令$\alpha = (x_1,\ldots,x_n)^T,$ $\beta = (y_1,\ldots,y_n)^T$为两个$n$维复向量，则$\alpha$与$\beta$的内积被定义为
+$$\langle \alpha, \beta \rangle = \alpha^*\beta = \overline{x}_1y_1 + \cdots + \overline{x}_ny_n.$$
+于是，复向量$\alpha$范数（或长度）的定义为
+$$\Vert \alpha \Vert = \sqrt{\langle \alpha, \alpha \rangle} = \sqrt{\overline{x}_1x_1 + \cdots + \overline{x}_nx_n}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵的特征值}
+{\bfseries 命题}：$n$阶实对称方阵的有$n$个实的特征值。
+
+\vspace{1em}
+\pause
+
+{\bfseries 证明}：把$n$阶实对称方阵$A$视作复系数的方阵，其特征多项式$f(\lambda)$视作一个复系数的单变量多项式，因此有$n$个复根。任取其中一个复根$\lambda$, 依定义存在复系数的$n$维非零向量$\alpha$，使得
+$$A\alpha = \lambda\alpha.$$
+于是
+$$\alpha^*A\alpha = \lambda \alpha^*\alpha = \lambda \Vert \alpha \Vert^2.$$
+又有
+$$\alpha^*A\alpha = \alpha^*A^*\alpha = (A\alpha)^*\alpha = \overline{\lambda}\alpha^*\alpha = \overline{\lambda} \Vert \alpha \Vert^2.$$
+因此$\lambda = \overline{\lambda}$,即$\lambda$为一个实数。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵的特征向量}
+任取$n$阶实对称方阵$A$的一个特征值（实数），以及对应于它的一个特征向量$\alpha$. $\alpha$是如下的实系数齐次线性方程组的解
+$$(\lambda I_n - A)\mathbf{x} = \mathbf{0}$$
+于是$\alpha$是一个$n$维实向量。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵的特征向量}
+之前已经证明了，属于不相等的特征值的特征向量是线性无关的。对实对称阵，有更强的结果：
+
+\vspace{1em}
+\pause
+
+{\bfseries 命题}：实对称阵属于不相等的特征值的特征向量是正交的。
+
+\vspace{1em}
+\pause
+
+{\bfseries 证明}：设$\alpha_1, \alpha_2$为分别属于实对称阵$A$的两个不相等特征值$\lambda_1, \lambda_2$, 即
+$$A\alpha_1 = \lambda_1\alpha_1, \; A\alpha_2 = \lambda_2\alpha_2.$$
+于是，我们有
+$$\begin{cases}
+\alpha_2^T A\alpha_1 = \alpha_2^T\lambda_1\alpha_1 = \lambda_1 \langle \alpha_2, \alpha_1 \rangle \\
+\alpha_2^T A\alpha_1 = (\alpha_2^T A^T)\alpha_1 = (A\alpha_2)^T\alpha_1 = \lambda_2 \langle \alpha_2, \alpha_1 \rangle
+\end{cases}$$
+由于$\lambda_1 \neq \lambda_2$, 因此$\langle \alpha_2, \alpha_1 \rangle = 0.$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵的对角化}
+如果$n$阶实对称阵的$n$个特征值互不相等，那么它可以对角化。并且还可以进一步要求选取出来的$n$个特征向量是标准正交的（Orthonormal），即向量间相互正交，而且每个向量长度都等于1.
+
+\vspace{1em}
+\pause
+
+对于有重复特征值的情况，如果还是有$n$个线性无关的特征向量，则依然可以对角化。在每个特征子空间（即某个特征值对应的所有特征向量并上零向量）内，还可以用Gram-Schmidt正交化程序，得到标准正交基。
+
+\vspace{1em}
+\pause
+
+有$n$个特征值的方阵相似于上三角方阵，而对称的上三角方阵只能是对角阵。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Gram-Schmidt正交化程序}
+{\bfseries 目标}：从任意一组基$\alpha_1, \ldots, \alpha_n$出发构造一组标准正交基$\varepsilon_1, \ldots, \varepsilon_n$
+
+\vspace{1em}
+\pause
+
+{\bfseries 方法}：归纳地构造。
+\begin{enumerate}
+\item 令$\varepsilon_1 = \alpha_1 / \Vert \alpha_1 \Vert$.
+\item 假设已经有$k$个标准正交的向量组$\varepsilon_1, \ldots, \varepsilon_k$, 使得
+$$\operatorname{span}\{ \varepsilon_1, \ldots, \varepsilon_k \} = \operatorname{span}\{ \alpha_1, \ldots, \alpha_k \},$$
+令$\varepsilon' = \alpha_{k+1} + t_1\varepsilon_1 + \cdots + t_k\varepsilon_k,$ 从条件
+$$0 = \langle \varepsilon', \varepsilon_i \rangle = \langle \alpha_{k+1}, \varepsilon_i \rangle + t_i$$
+定出$t_i$, $i=1,\ldots,k$. 最后令
+$$\varepsilon_{k+1} = \varepsilon' / \Vert \varepsilon' \Vert.$$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵的对角化}
+
+\vspace{1em}
+
+{\bfseries 定理}：实对称阵正交相似于对角阵。
+
+\vspace{1em}
+
+也就是说，对于任意实对称阵$A$, 存在正交阵$\Omega$使得
+$$\Omega^T A \Omega = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} = \Lambda$$
+
+\begin{itemize}
+\item 正交阵：即满足$\Omega^T\Omega = I_n$的方阵$\Omega$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵正交对角化的例子}
+我们来正交对角化实对称方阵$A = \begin{pmatrix} 1 & -2 & 0 \\ -2 & 2 & -2 \\ 0 & -2 & 3 \end{pmatrix}.$
+
+\vspace{1em}
+\pause
+
+解：先求特征多项式
+\begin{equation*}
+\det(\lambda I_3 - A) = \det \begin{pmatrix} \lambda-1 & 2 & 0 \\ 2 & \lambda-2 & 2 \\ 0 & 2 & \lambda-3\end{pmatrix} =(\lambda+1)(\lambda-2)(\lambda-5)
+\end{equation*}
+因此$A$的特征值为$\lambda_1=-1,\lambda_2=2,\lambda_3=5$.
+
+\begin{itemize}
+\item 对于$\lambda_1$，由方程组$(-I_3-A) \mathbf{x} = \mathbf{0}$，解得其对应的单位特征向量为$\alpha_1 = (\frac{2}{3},\frac{2}{3},\frac{1}{3})^T$;
+\item 对于$\lambda_2$，由方程组$(2I_3-A) \mathbf{x} = \mathbf{0}$, 解得其对应的单位特征向量为$\alpha_2 = (-\frac{2}{3}, \frac{1}{3}, \frac{2}{3})^T$;
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵正交对角化的例子（续）}
+\begin{itemize}
+\item 对于$\lambda_3$，由方程组$(5I_3 - A) \mathbf{x} = \mathbf{0}$, 解得其对应的单位特征向量为$\alpha_3 = (\frac{1}{3},-\frac{2}{3},\frac{2}{3})^T$.
+\end{itemize}
+
+\vspace{2em}
+
+于是，令
+$$P = \begin{pmatrix} \frac{2}{3} & \frac{2}{3} & \frac{1}{3} \\ -\frac{2}{3} & \frac{1}{3} & \frac{2}{3} \\
+\frac{1}{3} & -\frac{2}{3} & \frac{2}{3} \end{pmatrix},$$
+那么
+$$
+P^TAP = \Lambda = \begin{pmatrix} -1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 5 \end{pmatrix}.
+$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{二次型}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{二次型的定义}
+$\mathbb{R}$上的$n$个未定元$x_1,\ldots,x_n$的二次型为函数
+$$Q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x},$$
+其中$A = (a_{ij})$为对称方阵，$\mathbf{x} = (x_1,\ldots,x_n)^T$为未定元的向量。
+
+\pause
+
+展开写即有
+\begin{align*}
+Q(\mathbf{x}) & = (x_1,\ldots,x_n) \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{21} & \cdots & a_{nn} \end{pmatrix} \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \\
+& = \sum\limits_{1\leqslant i,j \leqslant n} a_{ij}x_ix_j = \sum\limits_{i=1}^{n} a_{ii}x_i^2 + 2\sum\limits_{i\neq j} a_{ij}x_ix_j
+\end{align*}
+
+\pause
+
+\begin{itemize}
+\item 二次型 $\Longleftrightarrow$ $n$个未定元的二次齐次多项式 $\Longleftrightarrow$ 实对称阵
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{二次型的例子}
+设$n$个变量的实值函数$f$在点$\mathbf{x} = (x_1,\ldots,x_n)$的一个邻域$U(\mathbf{x})$上有直到2阶的连续偏导数，且所有1阶偏导数在点$\mathbf{x}$的值都等于0。考虑$f$在$\mathbf{x}$处的泰勒展开式，如下
+$$f(\mathbf{x} + \mathbf{h}) = f(\mathbf{x}) + \dfrac{1}{2!} \sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j + r_3(\mathbf{x}; \mathbf{h})$$
+其中的二次项
+$$\sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j = \mathbf{h}^T \underbrace{\left( \dfrac{\partial^2 f}{\partial x_i \partial x_j} \right)}_{H(f), \text{黑塞矩阵}} \mathbf{h}$$
+就是一个关于增量向量$\mathbf{h}$的的二次型。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{二次型的变量替换}
+通过变量替换$\mathbf{y} = P^{-1}\mathbf{x}$, 有
+$$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \mathbf{y}^T P^TAP \mathbf{y} = Q'(\mathbf{y})$$
+
+\pause
+
+通过这样的变量替换，能使二次型的形式尽量简单。例如：
+\begin{displaymath}
+Q(x_1,x_2) = ax_1^2 + 2bx_1x_2 + cx_2^2 = a\left( x_1 + \dfrac{b}{a}x_2 \right)^2 + \left( c - \dfrac{b^2}{a} \right) x_2^2
+\end{displaymath}
+亦即令\(\displaystyle \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = \begin{pmatrix} 1 & \frac{b}{a} \\ 0 & 1 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\), 有
+\begin{align*}
+Q(x_1,x_2) & = (y_1,y_2) \begin{pmatrix} 1 & 0 \\ -\frac{b}{a} & 1 \end{pmatrix} \begin{pmatrix} a & b \\ b & c \end{pmatrix} \begin{pmatrix} 1 & -\frac{b}{a} \\ 0 & 1 \end{pmatrix} \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} \\
+& = (y_1,y_2) {\color{red} \begin{pmatrix} a & 0 \\ 0 & c - \frac{b^2}{a} \end{pmatrix}} \begin{pmatrix} y_1 \\ y_2 \end{pmatrix}
+\end{align*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{二次型变量替换的一般结果}
+设$A$为$n$阶实对称方阵，那么存在可逆方阵$P$使得
+$$P^T A P = \begin{pmatrix} a_1 & & \\ & \ddots & \\ & & a_n \end{pmatrix}$$
+\end{block}
+
+\pause
+
+\begin{itemize}
+\item $B = P^TAP$被称作$B$与$A$相合（Cogredient或Congruent）
+\item 任意一个实对称阵都相合于形如以下的方阵
+$$\begin{pmatrix} I_p & & \\ & -I_q & \\ & & 0 \end{pmatrix}$$
+自然数$p,q$由$A$唯一决定，分别被称作其正惯性指数，负惯性指数。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{实对称阵的相似与相合}
+\begin{itemize}
+\item 一般来说，对称阵才谈论相合；而任何方阵都可以谈论相似
+\item 可对角化方阵对角化得到的对角方阵，在不计对角线元素顺序的情况下，是唯一的；实对称阵则能通过多种相合变换，得到不同的对角阵。
+\item 相似与相合都来自坐标变换（或者说变量替换），前者来自于化简线性变换的矩阵表达，后者来自于化简二次型。
+\item 当要求坐标变换的过渡矩阵$P$是正交阵的时候
+$$P^T A P = P^{-1}AP$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{正定实对称阵}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{正定实对称阵的定义}
+设$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$为一个二次型，$A$为实对称阵。如果对于任意的非零向量$\mathbf{x}$都有
+$$\mathbf{x}^T A \mathbf{x} > 0$$
+则称$A$为一个正定（Positive Definite）实对称阵。
+\end{block}
+
+\vspace{1em}
+\pause
+
+\begin{block}{正定实对称阵的判别方法}
+\begin{itemize}
+\item $A$相合于单位阵，即存在可逆方阵$P$, 使得$A = P^TP$.
+\item $A$的顺序主子式，即$\det (a_{ij})_{k\times k}$, $k = 1,2,\ldots,n$, 都大于0.
+\item $A$的所有主子式，即$A$的第$i_1,\ldots,i_k$行与第$i_1,\ldots,i_k$列交点处元素按原来顺序排列得到的方阵的行列式，都大于0.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{其他类型的实对称阵}
+\begin{itemize}
+\item 负定（Negative Definite）实对称阵：$\mathbf{x}^T A \mathbf{x} < 0$对所有非零的$\mathbf{x}$成立。\newline
+\item 半正定（Semi-Positive）实对称阵：$\mathbf{x}^T A \mathbf{x} \geqslant 0$对所有$\mathbf{x}$成立。\newline
+\item 半负定（Semi-Negative）实对称阵：$\mathbf{x}^T A \mathbf{x} \leqslant 0$对所有$\mathbf{x}$成立。\newline
+\item 不定（Indefinite）实对称阵：$\mathbf{x}^T A \mathbf{x}$对有的$\mathbf{x}$取正值，对有的$\mathbf{x}$取负值。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{在微积分中的应用}
+设$n$个变量的实值函数$f$在点$\mathbf{x} = (x_1,\ldots,x_n)$的一个邻域$U(\mathbf{x})$上有直到2阶的连续偏导数，且所有1阶偏导数在点$\mathbf{x}$的值都等于0。考虑$f$在$\mathbf{x}$处的黑塞矩阵
+$$\left( \dfrac{\partial^2 f}{\partial x_i \partial x_j} \right)_{n\times n}$$
+\begin{itemize}
+\item 正定时，$f$在点$\mathbf{x}$取得严格局部极小值。
+\item 负定时，$f$在点$\mathbf{x}$取得严格局部极大值。
+\item 不定时，$f$在点$\mathbf{x}$没有极值。
+\pause
+\item 半（正或负）定时，$f$在点$\mathbf{x}$处极值情况比较复杂。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

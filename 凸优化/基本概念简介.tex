@@ -1,0 +1,477 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Convex Optimization]{\LARGE \bfseries 第四部分\quad 凸优化} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Basic Concepts] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 1. 基本概念简介}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{数学优化问题，Mathematical Optimization Problem}
+数学优化问题，或简称优化问题，指的是求以下的量的问题
+$$\min\limits_{\mathbf{x}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le (\text{或} = ) b_i, \; i = 1,\ldots,m \right\}$$
+其中
+\begin{itemize}
+\item $\mathbf{x} = (x_1,\ldots,x_n)$ 为优化变量（Optimization Variable）
+\item $f_0: \mathbb{R}^n \to \mathbb{R}$ 被称作目标函数（Objective Function），其定义域我们一般记作$\mathcal{D}$或$\operatorname{dom}f$
+\item $f_i: \mathbb{R}^n \to \mathbb{R}, \; i = 1,\ldots,m,$ 被称作约束函数（Constraint Functions）。如果一个优化问题没有约束函数，则被称作一个无约束问题。
+\item $b_1,\ldots,b_m$ 被称作约束边界（Bounds）
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最优解，Optimal Solution}
+在一个优化问题中，满足所有约束条件
+$$f_i(\mathbf{x}) \le b_i,\; i = 1,\ldots,m,$$
+的向量$\mathbf{x}$被称作可行的（Feasible）。全体可行点组成的集合被称作可行集。
+
+\vspace{1em}
+
+如果可行集中一个向量$\mathbf{x}^*$, 在目标函数$f_0$上取值最小，即
+$$\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le b_i, \; i = 1,\ldots,m \right\}$$
+则称$\mathbf{x}^*$为这个优化问题的最优解。相应地，目标函数$f_0$在最优解$\mathbf{x}^*$处的取值$p^* = f_0(\mathbf{x}^*)$被称作最优值。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{凸优化问题，Convex Optimization Problem}
+凸优化问题是一个数学优化问题
+$$\min\limits_{\mathbf{x}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le b_i, \; i = 1,\ldots,m \right\}$$
+而且其中的目标函数$f_0$以及约束函数$f_1,\ldots,f_m$都是凸函数（Convex Functions），即
+$$f_i(\alpha x + \beta y) \le \alpha f_i(x) + \beta f_i(y)$$
+对任意实数$x,y$, 以及满足$\alpha + \beta = 1$的非负实数$\alpha, \beta$成立。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{特殊的凸优化问题}
+\begin{itemize}
+\item 最小二乘法：
+$$\min\limits_{\mathbf{x}} \Vert A\mathbf{x} - \mathbf{b} \Vert_2^2 = \sum (\mathbf{a}_i^T\mathbf{x} - b_i)^2$$
+这是一个无约束问题。
+\item 线性规划（Linear Programming）
+$$\min\limits_{\mathbf{x}} \left\{ \mathbf{c}^T\mathbf{x} \ \middle|\ \mathbf{a}_i^T\mathbf{x} \le b_i, \; i = 1,\ldots,m \right\}$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例子}
+切比雪夫逼近问题：
+$$\min\limits_{\mathbf{x}} \left\{ \max\limits_i |\mathbf{a}_i^T\mathbf{x}-b_i| = \Vert A\mathbf{x} - \mathbf{b} \Vert_{\infty} \right\}$$
+
+\vspace{1em}
+\pause
+
+很容易看出，切比雪夫逼近问题等价于以下的线性规划问题：
+$$\min\limits_{\mathbf{x},t} \left\{ t \ \middle| \begin{array}{c}
+\mathbf{a}_i^T\mathbf{x} - t \le b_i \\
+-\mathbf{a}_i^T\mathbf{x} - t \le -b_i
+\end{array}\; i = 1,\ldots,m \right\}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{复杂一些的例子}
+$m$盏灯照亮分成$n$小段（假设平整，且长度造成的影响可以忽略不计）的（折）线。我们令
+\begin{itemize}
+\item $I_k$为第$k$段的得到光照强度
+\item $p_j$为第$j$个电灯的功率
+\item $r_{kj}$为第$k$段与第$j$个电灯的距离
+\item $\theta_{kj}$为第$k$段的法向与此段和第$j$个电灯连线的夹角
+\end{itemize}
+注意，已假设取小段上哪个点造成的$r_{kj}$与$\theta_{kj}$的变化可以忽略不计。以上的$r_{kj}$与$\theta_{kj}$为定值，$p_j$为变量，且有
+$$I_k(\mathbf{p}) = \sum\limits_{j=1}^m a_{kj} p_j, \quad a_{kj} = r_{kj}^{-2} \max \{ \cos \theta_{kj}, 0 \}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{复杂一些的例子}
+目标：在电灯功率有限的情况下，达到（尽可能接近）指定的光照强度$I_{des}$. 可以把这个问题化为以下的一些形式
+$$\min\limits_{\mathbf{p}} \left\{ \max\limits_{1\le k \le n} |I_k - I_{des}| \ \middle|\ 0 \le p_j \le p_{max}, \; j = 1,\ldots,m \right\}$$
+或者
+$$\min\limits_{\mathbf{p}} \left\{ \max\limits_{1\le k \le n} h(I_k / I_{des}) \ \middle|\ 0 \le p_j \le p_{max}, \; j = 1,\ldots,m \right\}$$
+其中$h(x) = \max\{x,1/x\}$. 等等
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{为何学习凸优化}
+\begin{itemize}
+\item 有很多有效的算法求解凸优化问题，例如内点法（Interior-Point Methods）
+\item 计算时间差不多与 $\max \{ n^3, n^2m, F \}$ 成正比，其中$F$为计算目标函数$f_0$以及约束函数$f_1,\ldots,f_m$的一、二阶偏导所需的计算量
+\item 如果某个问题可以被表述为凸优化问题，那么可以认为事实上已经解决了这个问题
+\item 关键：判断是否属于凸优化问题以及表述的问题
+\end{itemize}
+
+\vspace{1em}
+
+\begin{quote}
+\footnotesize
+In fact the great watershed in optimization isn’t between linearity and nonlinearity, but convexity and nonconvexity.
+
+\begin{flushright}
+--- Rockafellar
+\end{flushright}
+\end{quote}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

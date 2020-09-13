@@ -1,0 +1,652 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+\usepackage{tabu}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Probability \& Statistics]{\LARGE \bfseries 第三部分\quad 概率与统计} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Basic Concepts] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 1. 概率与统计基本概念}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{itemize}
+\item 机器学习的问题很多时候就是一个概率统计的问题。
+\vspace{1em}
+\item 很多实际问题是带有不确定性的，需要用统计的方法找出规律，用概率的语言加以描述。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{随机事件}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{随机试验，Random Experiment}
+随机试验指的是具有以下三个特点的试验：
+\begin{itemize}
+\item 可重复性：相同条件下可重复。
+\item 可观测性：每次试验结果不止一个，并且能事先明确试验的所有可能的结果。
+\item 不确定性：一次试验之前，不能预知会出现哪个结果。
+\end{itemize}
+\end{block}
+
+\begin{block}{样本空间，Sample Space}
+每次试验的每一个结果（Outcome）被称为基本事件（Elementary Event），或者样本点（Sample Point），通常被记作$\omega$, 全部样本点构成的集合，被称作样本空间，一般记作$\Omega$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{离散样本空间与连续样本空间}
+\begin{itemize}
+\item 一枚硬币被抛两次的样本空间
+$$\Omega = \{\text{正正，正反，反正，反反}\}$$
+\item 一个骰子投一次的点数的样本空间
+$$\Omega = \{1,2,3,4,5,6\}$$
+\pause
+\item 某地气温的观测值的样本空间
+$$\Omega = \{T \ |\ T > 0K\}$$
+\item 某地房屋价格的样本空间
+$$\Omega = \{p \ |\ p > 0\text{元}\}$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{随机事件，Random Event}
+样本空间中，具有某些特征的样本点的集合叫做一个随机事件，常用$A,B,\ldots$表示。随机事件也简称事件。一个随机事件就是样本空间的一个子集。
+
+一次试验中，如果出现了事件$A$包含的样本点，则称事件$A$发生。
+
+\vspace{1em}
+\pause
+
+\begin{itemize}
+\item 必然事件：必然发生的随机事件$A = \Omega$
+\item 不可能事件：不可能发生的事件$A = \emptyset$
+\end{itemize}
+必然事件与不可能事件本质上不具有``不确定性''，但是为了方便讨论，依然将其视作``特殊''的随机事件。
+
+\vspace{1em}
+\pause
+
+某地气温$\Omega = \{T \ |\ T > 0K\}$, 那么
+\begin{itemize}
+\item 气温高于$0K$就是一个必然事件；
+\item 气温低于$0K$是不可能事件；
+\item 气温高于$273K$（即约0摄氏度）是某随机事件。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{随机事件的关系与运算}
+\begin{itemize}
+\item 事件包含：$A\subset B$
+\item 事件的和（并）：$A+B = A\cup B$
+\item 事件的积（交）：$AB = A\cap B$
+\item 事件的差：$A-B$
+\item 事件互斥：$A\cap B = \emptyset,$ 事件$A,B$不能同时发生
+\item 事件对立：$A\cap B = \emptyset$且$A\cup B = \Omega$, 事件$A,B$不能同时发生，且恰好发生一个。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{概率空间}
+
+%------------------------------------------------
+
+\subsection{古典概型}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{古典概型}
+若基本事件都等可能出现，那么此时某随机事件$A$的概率为
+\begin{align*}
+& P(A) = \dfrac{\text{事件$A$包含基本事件数目}}{\text{样本空间包含基本事件数目}} \\
+\text{或\hspace{1em}} & P(A) = \dfrac{\text{事件$A$所占区间大小}}{\text{样本空间所占区间大小}}
+\end{align*}
+\end{block}
+
+\pause
+
+\begin{block}{蒲丰投针问题，Buffon's Needle Problem}
+设有一个以平行且等距木纹铺成的地板，现在随意抛一支长度$\ell$比木纹之间距离$h$小的针，那么针与纹线相交的概率为
+$$\dfrac{2\ell}{\pi h}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{伯努利（Bernoulli）概型}
+如果随机试验只有两种可能的结果：事件$A$发生或不发生，则称这样的试验为伯努利试验。事件$A$发生的概率$p$被称作该伯努利试验的参数。
+
+\vspace{1em}
+
+将伯努利试验在相同条件下{\color{red}独立重复}地进行$n$次，这样的试验被称作$n$重伯努利试验，或$n$重独立重复试验，也简称为伯努利概型。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{公理化概率}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{公理化概率}
+设样本空间为$\Omega$, $\mathcal{F}$为$\Omega$某些子集（随机事件）组成的集合，满足
+\begin{itemize}
+\item $\Omega, \emptyset \in \mathcal{F}$
+\item $A_1,A_2\in \mathcal{F} \Longrightarrow A_1\cup A_2 \in \mathcal{F}$
+\item $A\in \mathcal{F} \Longrightarrow \Omega - A \in \mathcal{F}$
+\end{itemize}
+称作事件域。如果定义在$\mathcal{F}$上的一个实值函数$P: \mathcal{F} \to \mathbb{R}$满足
+\begin{itemize}
+\item 非负性：对任一随机事件$A\in\mathcal{F}$, $0 \le P(A) \le 1$
+\item 正则性：$P(\Omega) = 1$
+\item 可数可加性：若可数个事件$A_1,A_2,\ldots$两两互斥，那么
+$$P(\bigcup\limits_{i=1}^{+\infty} A_i) = \sum\limits_{i=1}^{+\infty} P(A_i)$$
+\end{itemize}
+则称$P(A)$为事件$A$的概率。$(\Omega, \mathcal{F}, P)$被称为一个概率空间。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{随机变量}
+
+%------------------------------------------------
+
+\subsection{随机变量的定义}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{随机变量，Random Variable}
+一个随机变量$X$, 指的是一个从{\color{red}样本空间}$\Omega$到实数集$\mathbb{R}$的函数
+$$X: \; \Omega \rightarrow \mathbb{R}, \; \omega \mapsto X(\omega)$$
+\end{block}
+
+\vspace{1em}
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 随机变量这个概念将随机试验、随机问题的结果数量化，从而可以用数学的语言加以描述。
+\item 随机变量主要分为离散型随机变量与连续型随机变量。{\color{red}注意}！存在既不是离散型也不是连续型的随机变量。
+\item 若$g$是一个实变量的实值函数，那么$g(X)$也是一个随机变量。
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{随机变量的例子}
+一个赌博游戏，抛2次硬币，都是正面则赢10元，其他输5元，那么样本空间为
+$$\Omega = \{\text{正正，反正，正反，反反}\}$$
+相应的随机变量就可以定义作
+$$X(\omega) = \begin{cases}
+10, & \omega = \text{正正} \\
+-5, & \text{其他}
+\end{cases}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{分布函数与密度函数}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{随机变量的（累积）分布函数，(Cumulative) Distribution Function}
+设$X$为一个{\color{red}概率空间}$(\Omega, \mathcal{F}, P)$上的随机变量。对任意实数$x\in\mathbb{R}$, 定义
+$$F(x) = P(X \le x) = P(\{\omega \ |\ X(\omega) \le x\})$$
+为随机变量$X$的（累积）分布函数。此时，称随机变量$X$服从分布$F$, 记作$X \sim F$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{分布函数$F(x)$的性质}
+\begin{enumerate}
+\item 单调性：$F(x)$在$(-\infty, +\infty)$上单调不减
+\item 有界性：$0 \le F(x) \le 1$, 并且有
+$$F(-\infty) := \lim\limits_{x\to-\infty} F(x) = 0, \quad F(+\infty) := \lim\limits_{x\to+\infty} F(x) = 1$$
+\item 右连续性：即对任意$x_0\in\mathbb{R}$, 有
+$$F(x_0) = F(x_0+0) := \lim\limits_{x\to x_0+} F(x)$$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{离散型随机变量的分布 --- 质量函数}
+若随机变量$X$的值域是可数个实数$x_1,x_2, \ldots, x_n, \ldots$, 则称其为一个离散型随机变量。特别地，
+$$P(X = x_k) = p_k$$
+被称作随机变量$X$的分布列，或$X$的概率质量函数（Probability Mass Function, PMF）。于是$X$的分布可以表示为一个表
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabu} to 0.8\textwidth { X[c] | X[c] | X[c] | X[c] | X[c] | X[c] }
+\hline
+$X$ & $x_1$ & $x_2$ & $\cdots$ & $x_n$ & $\cdots$ \\
+\hline
+$p$ & $p_1$ & $p_2$ & $\cdots$ & $p_n$ & $\cdots$ \\
+\hline
+\end{tabu}
+\renewcommand{\arraystretch}{1}
+\end{center}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{连续型随机变量的分布 --- 密度函数}
+设随机变量$X$服从分布$F$。若存在非负可积函数$f$，使得对任意$x\in\mathbb{R}$, 有
+$$F(x) = \int\limits_{-\infty}^x f(t)dt,$$
+则称$X$为连续性随机变量。函数$f$被称为随机变量$X$的概率密度函数（Probability Density Function, PDF）
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{统计量}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{总体与样本}
+在统计中，被研究对象的全体被称作总体，可以用随机变量来描述。其组成基本单元被称作个体。$n$个独立，与总体$X$同分布的随机变量$X_1,\ldots,X_n$被称作来自$X$的样本，$n$被称作样本容量。
+\end{block}
+
+\vspace{1em}
+\pause
+
+\begin{block}{统计量}
+设$X_1,\ldots,X_n$是来自总体$X$的样本，$g$是$n$个变元的函数，且不含未知参数，则称$g(X_1,\ldots,X_n)$为一个统计量。常见的统计量有
+\begin{itemize}
+\item 样本均值：$\overline{X} = \dfrac{X_1 + \cdots + X_n}{n}$
+\item 样本方差$S^2 = \dfrac{(X_1-\overline{X})^2 + \cdots + (X_n-\overline{X})^2}{\color{red} n-1}$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{顺序统计量}
+
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

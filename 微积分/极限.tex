@@ -1,0 +1,611 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+% \usepackage{eso-pic}
+% \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+% \put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+% \newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+% \put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% % add logo
+% \AddToShipoutPictureFG{
+% \AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+% }
+% % add slogan
+% \AddToShipoutPictureFG{
+% \AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+% }
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue!35}
+\setbeamercolor{block body}{bg=zkblue!15,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+% \usepackage[printwatermark]{xwatermark}
+% \newsavebox\mybox
+% \savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+% \newwatermark*[
+%   allpages,
+%   angle=45,
+%   scale=4,
+%   xpos=0,
+%   ypos=5
+% ]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+%----------------------------------------
+% pie chart
+\usepackage{datapie}
+
+\begin{filecontents}{ml.csv}
+Name,Quantity
+"线性代数",35
+"概率与统计",25
+"微积分",15
+"算法与优化",15
+"其他",10
+\end{filecontents}
+
+\DTLloaddb{ml}{ml.csv}
+
+
+%----------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Calculus]{\LARGE \bfseries 第一部分\quad 微积分} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Limit] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 1. 极限
+}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{课程引言} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{课程引言}
+
+\begin{figure}[H]
+\centering
+\DTLpiechart{variable=\quantity,outerlabel=\name}{ml}{
+\name=Name,\quantity=Quantity}
+\end{figure}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{课程引言}
+
+\begin{itemize}
+\item<1-> 分析（微积分）是现代科学（比如说机器学习）的基石之一，极限理论是讨论函数微分学、积分学性质的最主要的基础。
+
+\item<2-> 古代朴素的极限思想：
+\begin{itemize}
+\item[$\bullet$]<3-> 割圆术（刘徽）：``割之弥细，所失弥少，割之又割，以至于不可割，则与圆合体，而无所失矣。''
+\item[$\bullet$]<4-> 芝诺悖论（Zeno's paradoxes）：Achilles and the tortoise，\ldots\ldots
+\end{itemize}
+\item<5-> 牛顿（Newton），莱布尼茨（Leibniz）：{\color{red} 无穷小量（infinitesimal）}
+\item<6-> 波尔察诺（Bolzano），柯西（Cauchy），魏尔斯特拉斯（Weierstra\ss）等：{\color{red}$(\varepsilon, \delta)$-语言}
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{数列的极限} 
+%\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+%------------------------------------------------
+
+\subsection{数列的极限：定义}
+
+%------------------------------------------------
+
+\begin{frame}{数列的极限：定义}
+
+\begin{block}{数列极限的定义}<1->
+称实数$A\in\mathbb{R}$为数列$\{a_n\}$的{\bfseries 极限}，如果对于包含$A$的任何一个邻域（或者说开区间）$U(A)$，存在脚标$N$，使得数列的所有脚标大于$N$的项，都落在$U(A)$中。把它记作$\lim\limits_{n\to\infty}a_n = A.$\newline
+我们称有极限的数列是{\bfseries 收敛的}，否则称它是{\bfseries 发散的}。
+\end{block}
+
+\begin{eg}<2->
+\begin{itemize}
+\item[(1).]<3-> $\lim\limits_{n\to\infty} \dfrac{\sin n}{n} = 0$,
+\item[(2).]<4-> $\lim\limits_{n\to\infty} \dfrac{3n^2+7n-1}{n^2-n+8} = 3$,
+\item[(3).]<5-> $\lim\limits_{n\to\infty} (1+\dfrac{1}{n})^n = e$,
+\item[(4).]<6-> 数列$1,2,\dfrac{1}{3},4,\dfrac{1}{5},\ldots$（通项$a_n = n^{(-1)^n}$）没有极限。
+\end{itemize}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{数列的极限：性质}
+
+%------------------------------------------------
+\begin{frame}{数列的极限：性质}
+
+\begin{thm}[极限唯一性]<1->
+数列不能有两个不同的极限。
+\end{thm}
+
+\begin{block}{极限的运算性质}<2->
+设$\lim\limits_{n\to\infty}a_n = A, \lim\limits_{n\to\infty}b_n = B,$ 那么
+\begin{itemize}
+\item[(1).] $\lim\limits_{n\to\infty}(a_n+b_n) = A+B,$
+\item[(2).] $\lim\limits_{n\to\infty}(a_n\cdot b_n) = A\cdot B,$
+\item[(3).] $\lim\limits_{n\to\infty}(\dfrac{a_n}{b_n}) = \dfrac{A}{B},$ 若$b_n\neq0,B\neq0,$
+\item[(4).] $\lim\limits_{n\to\infty} p^{a_n} = p^A,$ 其中$p>0.$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{一些收敛准则}
+
+%------------------------------------------------
+
+\begin{frame}{一些收敛准则}
+
+\begin{block}{夹逼准则}<1->
+设数列$\{a_n\},\{b_n\},\{c_n\}$满足：当$n > N$时，$a_n\leqslant b_n\leqslant c_n$。若$\lim\limits_{n\to\infty}a_n = \lim\limits_{n\to\infty}c_n = A,$ 则$\lim\limits_{n\to\infty}b_n = A.$
+\end{block}
+
+\begin{block}{单调有界收敛定理}<2->
+设$\{a_n\}$为不减（resp. 不增）的数列，它收敛当且仅当它有界，即$a_1\leqslant a_2 \leqslant \cdots \leqslant C$（resp. $a_1\geqslant a_2 \geqslant \cdots \geqslant C$）。
+\end{block}
+
+\begin{block}{柯西收敛准则}<3->
+数列$\{a_n\}$收敛当且仅当它是{\bfseries 柯西列}，即如果对于任何实数$\varepsilon > 0$，存在脚标$N$，使得由$m,n>N$能推出$|a_m-a_n| < \varepsilon.$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{函数的极限}
+
+%------------------------------------------------
+
+\subsection{函数的极限：定义}
+
+%------------------------------------------------
+
+\begin{frame}{函数的极限：定义}
+
+\begin{block}{一些记号}<1->
+\begin{itemize}
+\item 邻域$U(a)$：指的是包含点$a\in\mathbb{R}$的任意一个开区间
+\item 去心邻域$\mathring{U}(a)$：$U(a)\setminus \{a\}$
+\item 左邻域$\mathring{U}^-(a)$：$\mathring{U}(a)\cap \{x\in\mathbb{R}: \ x < a\}$
+\item 右邻域$\mathring{U}^+(a)$：$\mathring{U}(a)\cap \{x\in\mathbb{R}: \ x > a\}$
+\end{itemize}
+\end{block}
+
+\pause
+
+设$f:E\to\mathbb{R}$是一个定义在$\mathbb{R}$的子集$E$上的一个函数，且存在$a$的去心邻域$\mathring{U}(a)$使得$E\cap\mathring{U}(a)\neq\emptyset$。\newline
+我们也可以简单地说$f$在$a$的{\bfseries 近旁}有定义。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{函数的极限：定义}
+
+\begin{block}{函数在一点连续的定义}
+若对任意$\varepsilon > 0$，都存在$\delta > 0$，使得对于满足$0 < |x-a| < \delta$的任何$x\in E$都有$|f(x)-A| < \varepsilon$，那么称当$x$趋于$a$时，$f(x)$趋于$A$，或者说$f(x)$的{\bfseries 极限}是$A$，并记作
+$$\lim\limits_{{\color{gray!50} E\ni}x\to a}f(x) = A.$$
+若$f$在$a$有定义且还有$f(a) = \lim\limits_{x\to a}f(x),$ 则称$f$在点$a${\bfseries 连续}。
+\end{block}
+
+\pause
+
+\begin{block}{单边极限}
+\begin{center}
+\(\displaystyle \lim\limits_{x\to a-}f(x) := \lim\limits_{\mathring{U}^-(a) \ni x\to a}f(x), \quad \lim\limits_{x\to a+}f(x) := \lim\limits_{\mathring{U}^+(a) \ni x\to a}f(x)\) \\
+\pause
+我们有
+$$\lim\limits_{x\to a}f(x) \Longleftrightarrow \lim\limits_{x\to a-}f(x),\lim\limits_{x\to a+}f(x) \text{同时存在且相等}.$$
+\end{center}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{函数的极限：定义}
+
+\begin{eg}<1->
+\begin{itemize}
+\item<2-> $\lim\limits_{x\to0} \dfrac{\sin x}{x} = 1$
+\item<3-> $\lim\limits_{x\to0} \sin\dfrac{1}{x}$不存在
+\end{itemize}
+\end{eg}
+
+\begin{block}{函数图像}<4->
+\begin{figure}[H]
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.7\textwidth,keepaspectratio]{continuous.png}
+\caption*{$y = \dfrac{\sin x}{x}$的图像 \\ \tiny WolframAlpha上输入 \\ plot sin(x)/x x from -12 to 12}
+\label{fg1}
+\end{minipage} \hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=0.7\textwidth,keepaspectratio]{discontinuous.png}
+\caption*{$y = \sin\dfrac{1}{x}$的图像 \\ \tiny WolframAlpha上输入 \\ plot sin(1/x) x from -0.2 to 0.2}
+\label{fg2}
+\end{minipage}
+\end{figure}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{函数的极限：性质}
+
+%------------------------------------------------
+\begin{frame}{函数的极限：性质}
+
+\begin{block}{极限运算性质}<1->
+假设$\lim\limits_{x\to a}f(x)$与$\lim\limits_{x\to a}g(x)$都存在，那么
+\begin{itemize}
+\item $\lim\limits_{x\to a}(f+g)(x) = \lim\limits_{x\to a}f(x)+\lim\limits_{x\to a}g(x)$
+\item $\lim\limits_{x\to a}f\cdot g(x) = \lim\limits_{x\to a}f(x)\cdot\lim\limits_{x\to a}g(x)$
+\item $\lim\limits_{x\to a}\dfrac{x}{y}(x) = \dfrac{\lim\limits_{x\to a}f(x)}{\lim\limits_{x\to a}g(x)},$ 若$\lim\limits_{x\to a}g(x)\neq0$
+\end{itemize}
+\end{block}
+
+\begin{remark}<2->
+与数列的极限类似，函数的极限若存在则唯一，也有夹逼定理、柯西准则等等。
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{复合函数的极限}
+
+%------------------------------------------------
+
+\begin{frame}{复合函数的极限}
+
+\begin{thm}[复合函数的极限]
+设函数$y = g\circ f(x)$由函数$u = f(x)$与函数$y = g(u)$复合而成，且在点$a$的近旁有定义。如果$\lim\limits_{x\to a}f(x) = u_0,$ 而且函数$y = g(u)$在$u=u_{0}$处连续，则
+$$\lim\limits_{x\to a} g\circ f(x) = g(u_0).$$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{无穷大与无穷小}
+
+%------------------------------------------------
+
+\begin{frame}{无穷大与无穷小}
+
+\begin{block}{另一种极限过程（趋于无穷）}
+设$f:(p,+\infty) \to \mathbb{R}$，若对任意$\varepsilon > 0$都存在$L$，使得对所有满足$x > L$的$x$都有$|f(x)-A| < \varepsilon$，那么称当$x$趋于正无穷时，$f(x)$趋于$A$，记作
+$$\lim\limits_{x\to+\infty}f(x) = A.$$
+类似可以定义$\lim\limits_{x\to * }f(x) = **,$ 其中$*,**$可以是$+\infty,-\infty,\infty,$某个实数当中的任意一对。
+\end{block}
+
+\pause
+
+\begin{block}{注记$^*$}
+{\color{zkblue!50}
+以上这些极限过程可以被法国数学家Henry Cartan创立的滤子基（Filter Base）、滤子极限（Limit over a Filter）统一描述。
+}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无穷大与无穷小}
+
+\begin{block}{无穷大与无穷小}<1->
+\begin{itemize}
+\item 若在一个极限过程，$f$趋于（正，负）无穷，则称在这个极限过程中，$f$是一个无穷大量；
+\item 若$f$趋于$0$，则称则称在这个极限过程中，$f$是一个无穷小量。
+\end{itemize}
+\end{block}
+
+\begin{block}{无穷比大小}<2->
+设在某个极限过程中，函数$f$与$g$都是无穷大（resp. 无穷小），
+\begin{itemize}
+\item 若$\dfrac{f}{g}$趋于$0$，则称$g$是比$f$（resp. $f$是比$g$）更高阶的无穷大（resp. 无穷小）；
+\item 若$\dfrac{f}{g}$趋于某个非零实数，则称$f$与$g$是同阶的无穷大（resp. 无穷小）。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无穷大与无穷小}
+
+\begin{block}{无穷大时的复合函数求极限}
+设函数$y = g\circ f(x)$由函数$u = f(x)$与函数$y = g(u)$复合而成，且在点$a$的近旁有定义。如果$\lim\limits_{x\to a}f(x) = \infty, \lim\limits_{u\to \infty} g(u) = A$，则
+$$\lim\limits_{x\to a} g\circ f(x) = A.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \subsection{一些求极限的例题}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \section{习题}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+
+% \end{frame}
+
+
+% %------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,807 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Linear Algebra]{\LARGE \bfseries 第二部分\quad 线性代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Vector and Linear Space] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 2. 向量与线性空间}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+\section{向量} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{标量（数量），Scalar}
+一个标量指的是一个（实）数，$a\in\mathbb{R}$.
+\end{block}
+
+\begin{block}{向量，Vector}
+一个$n$维向量，指的是一个有序的$n$元数组$(a_1,a_2,\cdots,a_n)$, 其中$a_i\in\mathbb{R}$都是实数。一般，我们把它写成列的形式：
+$$\alpha = \begin{pmatrix}
+a_1 \\ a_2 \\ \vdots \\ a_n
+\end{pmatrix} = (a_1,a_2,\cdots,a_n)^T$$
+
+\pause
+
+\begin{itemize}
+\item 所有$n$维列向量构成的集合我们记作$\mathbb{R}^n$;
+\item 所有$n$维行向量构成的集合我们记作$\mathbb{R}^{(n)}$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{向量的运算}
+\begin{itemize}
+\item<1-> 向量的加法：
+$$\begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} + \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix} = \begin{pmatrix} a_1 + b_1 \\ \vdots \\ a_n + b_n \end{pmatrix}$$
+\item<2-> 数乘，$t\in\mathbb{R}$：
+$$t \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}t = \begin{pmatrix} ta_1 \\ \vdots \\ ta_n \end{pmatrix}$$
+\item<3-> 向量加法与数乘的关系：
+\begin{itemize}
+\item $(s+t)\alpha = s\alpha + t\alpha$,
+\item $t(\alpha + \beta) = t\alpha + t\beta$.
+\end{itemize}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{向量的内积（点积，数量积），Inner Product (Dot Product, Scalar Product)}
+设\(\displaystyle \alpha = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}, \beta = \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix}\)为两个$n$维向量，他们的内积（点积，数量积）被定义作
+$$\langle \alpha, \beta \rangle = \alpha\cdot\beta = a_1b_1 + \cdots + a_nb_n.$$
+
+\pause
+
+内积满足
+\begin{itemize}
+\item 对称性：$\langle \alpha, \beta \rangle = \langle \beta, \alpha \rangle$,
+\item 线性性：$\langle \alpha, t_1\beta_1 + t_2\beta_2 \rangle = t_1\langle \alpha, \beta_1 \rangle +  t_2\langle \alpha, \beta_2 \rangle$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{向量的范数，Norm}
+\begin{itemize}
+\item<1-> $\ell_p$-范数（$p\geqslant 1$）：
+$$\Vert \alpha \Vert_p := \left( \vert a_1 \vert^p + \vert a_2 \vert^p + \cdots + \vert a_n \vert^p \right)^{1/p}.$$
+\item<2-> 自然范数（$p = 2$）：
+$$\Vert \alpha \Vert := \sqrt{a_1^2 + a_2^2 + \cdots + a_n^p}.$$
+\item<3-> $\infty$-范数：
+$$\Vert \alpha \Vert_{\infty} := \lim\limits_{p\to\infty} \Vert \alpha \Vert_p = \max_{1\leqslant i \leqslant n} \vert a_i \vert.$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{范数的性质}
+范数的性质列举如下
+\begin{itemize}
+\item 非负性：$\Vert \alpha \Vert_p \geqslant 0$,
+\item 非退化：$\Vert \alpha \Vert_p = 0 \Longleftrightarrow \alpha = \mathbf{0},$
+\item 绝对一次齐次：$\forall t\in\mathbb{R},$ $\Vert t\alpha \Vert_p = |t|\cdot\Vert \alpha \Vert_p$,
+\item 三角不等式：$\Vert \alpha + \beta \Vert_p \leqslant \Vert \alpha \Vert_p + \Vert \beta \Vert_p$,
+\item Cauchy-Schwarz不等式：$|\langle \alpha, \beta \rangle| \leqslant \Vert \alpha \Vert \cdot \Vert \beta \Vert$,\newline
+$\theta = \arccos \dfrac{\langle \alpha, \beta \rangle}{\Vert \alpha \Vert \cdot \Vert \beta \Vert} \in [0, \pi]$被称作是向量$\alpha, \beta$之间的夹角。
+\end{itemize}
+\end{block}
+
+\vspace{1em}
+\pause
+
+\begin{itemize}
+\color{zkblue!50}
+\item $\Vert \alpha \Vert_{\infty} \leqslant \Vert \alpha \Vert_p \leqslant \Vert \alpha \Vert_q \leqslant n^{1/q - 1/p}\Vert \alpha \Vert_p$, 其中$1\leqslant q < p$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{线性空间}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{有限维线性空间（向量空间），Linear Space (Vector Space)}
+设$V \subset \mathbb{R}^n$是$\mathbb{R}^n$中的非空子集合，即一个由一些$n$维列向量构成的集合，满足
+\begin{itemize}
+\item 对向量的加法是封闭的, 即
+$$\alpha, \beta \in V \Longrightarrow \alpha + \beta \in V,$$
+\item 对向量的数乘运算是封闭的, 即
+$$\alpha \in V, t \in \mathbb{R} \Longrightarrow t\alpha \in V.$$
+\end{itemize}
+则称$V$是一个（有限维）线性空间（向量空间）。
+\end{block}
+
+{\color{red}注意！}零向量$\mathbf{0}$是每一个线性空间都必须包含的元素。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性空间的例子}
+\begin{itemize}
+\item \(\displaystyle V = \left\{ \begin{pmatrix}
+x \\ y \\ z\end{pmatrix} \in \mathbb{R}^3 \ \middle| \ x + 4y -2z = 0\right\} \)是一个线性空间；
+\item \(\displaystyle V' = \left\{ \begin{pmatrix}
+x \\ y \\ z\end{pmatrix} \in \mathbb{R}^3 \ \middle| \ x + 4y -2z = 1\right\} \)则不是线性空间。
+\end{itemize}
+\end{block}
+
+\vspace{2em}
+\pause
+
+线性空间是{\color{red}过原点}的直线，平面，超平面等，或者是原点本身以及$\mathbb{R}^n$本身。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{一般的线性空间}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{一般的线性空间}
+实数域$\mathbb{R}$上的一个线性空间指的是一个集合$V$，其中元素被称为``向量''，其上定义了向量的``加法''以及``数乘''运算，对任意的向量$\alpha,\beta,\gamma \in V,$ 以及实数$a,b
+ \in \mathbb{R},$ 满足
+\begin{enumerate}
+\item 加法结合律：$\alpha + (\beta + \gamma) = (\alpha + \beta) + \gamma$,
+\item 加法交换律：$\alpha + \beta = \beta + \alpha$,
+\item 存在``零向量''$\mathbf{0}$满足: $\mathbf{0} + \alpha = \alpha$,
+\item $\alpha$存在唯一的相反向量$-\alpha$满足$\alpha + (-\alpha) = \mathbf{0}$,
+\item 数乘有单位元$1$: $1\cdot\alpha = \alpha$,
+\item 数乘有结合律: $(ab)\alpha = a(b\alpha)$,
+\item 数乘对向量加法的分配律: $a(\alpha + \beta) = a\alpha + a\beta$,
+\item 数量加法对向量的分配律: $(a+b)\alpha = a\alpha + b\alpha$.
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{一般的线性空间的例子}
+\begin{itemize}
+\item $m\times n$矩阵的全体$M_{m\times n}(\mathbb{R})$关于矩阵的加法与数乘构成一个线性空间。
+\item $n$个变量的可微实值函数全体关于函数的加法与数乘构成了一个线性空间。
+\item $\left\{ f: \mathbb{R} \to \mathbb{R} \text{单变量实值函数} \ \middle|\ f(1) = 0 \right\}$关于函数的加法与数乘构成了一个线性空间。
+\end{itemize}
+\end{block}
+
+\vspace{1em}
+\pause
+
+后两个例子是所谓的无限维的线性空间。无限维线性空间的性质和有限维线性空间差别很大，本课程不做讨论。在讨论一个一般的线性空间的时候，我们都假设它是有限维的。
+
+\vspace{1em}
+\pause
+
+线性空间的``维数''还没有定义，精确的定义将在随后给出。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性子空间，Subspace}
+设$V$是一个线性空间，$W \subset V$是$V$的一个子集。如果$W$中的向量关于向量的加法与数乘是封闭的，那么称$W$是$V$的一个（线性）子空间。
+\end{block}
+
+\begin{block}{线性子空间的例子}
+\begin{itemize}
+\item $\{\mathbf{0}\}$与$V$自身是$V$的子空间，被称为平凡子空间。其他的子空间被称为真子空间。
+\item \(\displaystyle W = \left\{ \begin{pmatrix}
+x \\ y \\ z\end{pmatrix} \in \mathbb{R}^3 \ \middle| \ x + 4y -2z = 0\right\} \)是$V = \mathbb{R}^3$的子空间。
+\item \(\displaystyle W^{\perp} = \left\{ \alpha \in V \ \middle| \ \langle \alpha, \beta \rangle = 0, \forall \beta \in W \right\} \)是$V$的子空间，被称作$W$在$V$中的正交补。
+\item 单变量实值可微函数空间是单变量实值连续函数空间的子空间。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{向量间的线性关系}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{向量间的线性关系 -- 线性组合与线性表出}
+\begin{itemize}
+\item<1-> 设$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$ $\in V$是线性空间$V$中$s$个向量, $t_1,$ $t_2,$ $\dots,$ $t_s$ $\in \mathbb{R}$是$s$个实数, 称
+$$t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s$$
+是$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$ 的{\bfseries 线性组合（Linear Combination）}。
+\item<2-> 若对于给定的向量$\beta \in V$, 存在一组数$t_1,$ $t_2,$ $\ldots,$ $t_s$ $\in \mathbb{R}$使得
+$$\beta = t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s$$
+则称$\beta$是$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$的一个线性组合, 也称$\beta$可由$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s${\bfseries 线性表出}。
+\item<3-> 如果对于一组向量$\beta_1,$ $\beta_2,$ $\ldots,$ $\beta_t$ $\in V$，其中每个向量都能被向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$线性表出，则称向量组$\beta_1,$ $\beta_2,$ $\ldots,$ $\beta_t$能被向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$线性表出。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{向量线性生成的子空间}
+设$\alpha_1,\ldots,\alpha_s$为线性空间$V$的一组向量。线性组合全体
+$$\left\{ t_1\alpha_1 + \cdots t_s\alpha_s \ \middle|\ t_1,\ldots,t_s\in\mathbb{R} \right\}$$
+组成了$V$的一个线性子空间，被称为由$\alpha_1,\ldots,\alpha_s$线性生成（张成）的子空间。记作
+$$\operatorname{span}\left\{\alpha_1, \ldots, \alpha_s\right\}.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{向量间的线性关系 -- 线性相关与线性无关}
+给定向量空间$V$中$s$个向量$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$, 若存在{\color{red}不全为零}的常数 $t_1,$ $t_2,$ $\dots,$ $t_s$ $\in \mathbb{R}$使得
+$$t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s = \mathbf{0},$$
+则称这个向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$是{\bfseries 线性相关的（Linearly Dependent）}
+\newline \pause \vspace{1em}
+否则, 称这个向量组是{\bfseries 线性无关的（Linearly Independent）}。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{向量间的线性关系 -- 极大线性无关组与向量组的秩}
+设$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$是线性空间$V$中的一组向量。如果
+\begin{itemize}
+\item 存在$r$个线性无关的向量$\alpha_{i_1}, \alpha_{i_2}, \ldots, \alpha_{i_r}$;
+\item 再加入任意一个向量$\alpha_i (i=1,2,\ldots,s)$, 新得到的向量组$\alpha_{i_1}, \alpha_{i_2}, \ldots, \alpha_{i_r}, \alpha_i$都线性相关，
+\end{itemize}
+则称向量组$\alpha_{i_1},$ $\alpha_{i_2},$ $\ldots,$ $\alpha_{i_r}$是向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$的一个{\bfseries 极大线性无关组}。
+
+\pause
+
+数$r$被称作向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$的{\bfseries 秩（rank）}，记作
+$$r(\alpha_1, \alpha_2, \ldots, \alpha_s)$$
+我们还约定，只含零向量$\mathbf{0}$的向量组的秩等于$0$.
+\end{block}
+
+\begin{remark}
+极大线性无关组{\color{red}不是}唯一的，但秩是唯一确定的。
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{基与维数}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性空间的基，Basis}
+称线性空间$V$的一组向量$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$是$V$的一组基（Basis），如果满足以下两个条件：
+\begin{itemize}
+\item $\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$是线性无关的；
+\item 任取向量$\alpha\in V$，$\alpha$是$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$的线性组合。
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{例子}
+$\mathbb{R}^3$的一组基可以选取为自然基\(\displaystyle e_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, e_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, e_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\); \newline
+\pause
+也可以选为
+\(\displaystyle \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\).
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性空间的维数，Dimension}
+称线性空间$V$的一组基中元素（向量）个数为该线性空间$V$的维数（Dimension），并记做$\dim V$.
+\end{block}
+
+\vspace{2em}
+\pause
+
+\begin{remark}
+线性空间的基不唯一，但是维数是唯一确定的。
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例子}
+$2\times 2$矩阵全体
+$$M_{2\times 2}(\mathbb{R}) = \left\{ \begin{pmatrix}
+a & b \\ c & d \end{pmatrix} \ \middle|\ a,b,c,d \in \mathbb{R} \right\}$$
+是一个4维线性空间。它的一组基可以选为自然基
+$$\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}.$$
+以下的4个方阵也构成$M_{2\times 2}(\mathbb{R})$的一组基
+$$\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & -1 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}, \; \begin{pmatrix} 0 & -2 \\ 0 & 3 \end{pmatrix}.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{从线性空间的角度来看线性方程组}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{从线性空间的角度来看线性方程组}
+把线性方程组$A\mathbf{x} = \mathbf{b}$的系数矩阵$A$写成列向量组成的行的形式
+$$A = (\alpha_1, \alpha_2, \ldots, \alpha_n),$$
+原方程组即可写作
+$$x_1\alpha_1 + x_2\alpha_2 + \cdots + x_n\alpha_n = \mathbf{b}.$$
+
+\pause
+
+于是
+$$A\mathbf{x} = \mathbf{b} \text{ 有解 } \Longleftrightarrow \mathbf{b} \in \operatorname{span}\left\{ \alpha_1, \alpha_2, \ldots, \alpha_n \right\} \subset \mathbb{R}^m.$$
+
+$\operatorname{span}\left\{ \alpha_1, \alpha_2, \ldots, \alpha_n \right\}$被称作是矩阵$A$的列空间（Column Space），记作$C(A)$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{从线性空间的角度来看线性方程组}
+类似地，把线性方程组$A\mathbf{x} = \mathbf{b}$的系数矩阵$A$写成行向量组成的列的形式
+$$A = (\beta_1, \ldots, \beta_m)^T,$$
+原方程组即可写作
+$$\begin{cases}
+\langle \beta_1, \mathbf{x} \rangle = b_1 \\
+\phantom{yyy} \vdots \\
+\langle \beta_m, \mathbf{x} \rangle = b_m \\
+\end{cases}$$
+
+\pause
+
+于是，
+$$A\mathbf{x} = \mathbf{b} \text{ 有解 } \Longleftrightarrow \text{ 存在$\mathbf{x}$使得$\langle \beta_i, \mathbf{x} \rangle = b_i$}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

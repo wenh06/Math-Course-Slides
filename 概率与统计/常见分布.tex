@@ -1,0 +1,790 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Probability \& Statistics]{\LARGE \bfseries 第三部分\quad 概率与统计} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Common Distributions] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 4. 常见分布}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{常见离散分布}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{离散型均匀分布，Discrete Uniform Distribution}
+\begin{itemize}
+\item 符号：$\mathcal{U}\{a,b\}$, \; $a,b\in\mathbb{Z}, a \le b$.
+\item PMF：$P(X = k) = \dfrac{1}{n}, \; n = b-a+1, k\in [a,b]\cap\mathbb{Z}$.
+\item 期望：$\dfrac{a+b}{2}$
+\item 方差：$\dfrac{n^2-1}{12}$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{伯努利分布，Bernoulli Distribution}
+\begin{itemize}
+\item 符号：$B(1,p)$, \; $0<p<1$.
+\item PMF：$P(X = k) = \begin{cases}
+p, & k=1\\
+1-p, & k=0
+\end{cases}$
+\item 期望：$p$
+\item 方差：$p(1-p)$
+\end{itemize}
+
+伯努利分布来源是进行参数为$p$的伯努利试验，即一次试验只有两个结果，记作``成功''与``失败''，概率分别为$p$与$1-p$, 而随机变量$X$被定义作，当``成功''时取1，``失败''时取0.
+\end{block}
+
+\vspace{1em}
+\pause
+
+当$p=\frac{1}{2}$, 并当``失败''时随机变量$X$取$-1$, 那么我们就得到了所谓的Rademache分布。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{二项分布，Binomial Distribution}
+\begin{itemize}
+\item 符号：$B(n,p)$, \; $n = 1,2,\cdots, 0<p<1$.
+\item PMF：$P(X = k) = C_n^kp^k(1-p)^{n-k}$, \; $1\le k \le n$.
+\item 期望：$np$
+\item 方差：$np(1-p)$
+\end{itemize}
+
+\vspace{1em}
+\pause
+
+二项分布来自于，进行$n$重伯努利试验，定义随机变量$X$为试验``成功''的次数。或者，我们可以将$X$视作是$n$个独立的满足伯努利分布的随机变量$X_1,\ldots,X_n$之和。容易算得
+$$P(X=k) = C_n^kp^k(1-p)^{n-k}$$
+于是$X$服从二项分布$B(n,p)$. 特别地，当$n=1$时，$B(1,p)$即是伯努利分布。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{负二项分布，Negative Binomial Distribution}
+\begin{itemize}
+\item 符号：$NB(r,p)$, \; $r = 1,2,\cdots, 0<p<1$.
+\item PMF：$P(X = k) = C_{k-1}^{r-1} p^r(1-p)^{k-r}, \; k = r, r+1, \ldots$
+\item 期望：$\dfrac{r(1-p)}{p}$
+\item 方差：$\dfrac{r(1-p)}{p^2}$
+\end{itemize}
+
+\vspace{1em}
+\pause
+
+负二项分布的来自连续不断且重复地进行参数为$p$的伯努利试验，定义随机变量$X$为试验恰好取得$r$次``成功''的结果时，试验进行的次数。
+
+负二项分布可以从二项分布推出来，因为
+$$\{X=k\} = \{\text{第$k$次试验成功}\}\{\text{前$k-1$次试验恰好成功$r-1$次}\}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{泊松（Poisson）分布}
+\begin{itemize}
+\item 符号：$P(\lambda)$, \; $\lambda > 0$.
+\item PMF：$P(X = k) = e^{-\lambda}\frac{\lambda^k}{k!}, \; k \in \mathbb{N}$
+\item 期望：$\lambda$
+\item 方差：$\lambda$
+\end{itemize}
+\end{block}
+
+\pause
+
+泊松分布适合于描述单位时间或空间内小概率的随机事件发生的次数，因此也被称作泊松小数法则（Law of Small Numbers）。泊松分布也可由二项分布导出：
+
+\begin{block}{泊松定理}
+设随机变量$X_n$服从二项分布$B(n,p_n)$, 其中$p_n$与$n$相关，且满足$\lim\limits_{n\to\infty} np_n = \lambda$.则对任意$k \in \mathbb{N}$有$\lim\limits_{n\to\infty} P(X_n = k) = e^{-\lambda}\frac{\lambda^k}{k!}$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{几何分布，Geometric Distribution}
+\begin{itemize}
+\item 符号：$Ge(p)$, \; $0 < p < 1$.
+\item PMF：$P(X = k) = p(1-p)^{k-1}$
+\item 期望：$\dfrac{1}{p}$
+\item 方差：$\dfrac{1-p}{p^2}$
+\end{itemize}
+
+\vspace{1em}
+\pause
+
+连续不断且独立地重复参数为$p$的伯努利试验，令随机变量$X$为首次``成功''时，已经进行的试验次数。容易验证$X$服从几何分布$Ge(p)$. 几何分布是离散分布中唯一具有所谓``无记忆性''的特点的分布，即若$X\sim Ge(p)$, 则
+$$P(X>s+t | X>s) = P(X>t)$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{常见连续分布}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{连续均匀分布，Continuous Uniform Distribution}
+\begin{itemize}
+\item 符号：$\mathcal{U}(a,b)$, \; $a \le b$.
+\item PDF：$f(x) = \begin{cases}
+\frac{1}{b-a}, & x\in[a,b] \\
+0, & \text{其他情况}
+\end{cases}$.
+\item 期望：$\dfrac{a+b}{2}$
+\item 方差：$\dfrac{(b-a)^2}{12}$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{正态分布，Normal Distribution}
+\begin{itemize}
+\item 符号：$N(\mu, \sigma^2)$, \; $\mu\in\mathbb{R}, \sigma>0$
+\item PDF：$f(x) = \dfrac{1}{\sqrt{2\pi}\cdot\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+\item 期望：$\mu$
+\item 方差：$\sigma^2$
+\end{itemize}
+
+\pause
+
+正态分布又称高斯分布，是最重要的连续型分布。一般来说，一个随机变量如果受许多随机因素影响，而其中没有主导因素，那么其服从正态分布。当$\mu = 0, \sigma = 1$时，$N(0, 1)$被称作标准正态分布。当随机变量$X$服从正态分布$N(\mu, \sigma^2)$时，我们有
+$$\dfrac{X-\mu}{\sigma} \sim N(0, 1)$$
+标准正态分布的密度函数一般记作$\varphi(x)$, 分布函数记作$\Phi(x)$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{指数分布，Exponential Distribution}
+\begin{itemize}
+\item 符号：$Exp(\lambda)$, \; $\lambda > 0$.
+\item PDF：$f(x) = 
+\begin{cases}
+\lambda e^{-\lambda x}, & x \ge 0 \\
+0, & x < 0
+\end{cases}$
+\item 期望：$\dfrac{1}{\lambda}$
+\item 方差：$\dfrac{1}{\lambda^2}$
+\end{itemize}
+
+\vspace{1em}
+\pause
+
+指数分布是连续型分布中唯一具有``无记忆性''特点的分布，即若$X\sim Exp(\lambda)$, 则
+$$P(X>s+t | X>s) = P(X>t)$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Gamma 分布}
+\begin{itemize}
+\item 符号：$\operatorname{Gamma}(\alpha,\beta)$, $\alpha > 0$被称为Shape, $\beta > 0$被称作Rate
+\item PDF：$f(x) = \begin{cases}
+\dfrac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, & x > 0 \\
+0, & x \le 0
+\end{cases}$
+\item 期望：$\dfrac{\alpha}{\beta}$
+\item 方差：$\dfrac{\alpha}{\beta^2}$
+\end{itemize}
+\end{block}
+
+其中，$\Gamma$函数定义为$\displaystyle \Gamma(z) = \int_0^{+\infty} \dfrac{t^{z-1}}{e^t} dt$. 其在正整数$n$上的取值为$\Gamma(n) = (n-1)!$.
+
+\vspace{1em}
+\pause
+
+指数分布是一种特殊的Gamma分布，即$Exp(\lambda) = \operatorname{Gamma}(1, \lambda)$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Beta 分布}
+\begin{itemize}
+\item 符号：$\operatorname{Beta}(\alpha,\beta)$, $\alpha,\beta > 0$被称为Shape
+\item PDF：$f(x) = \begin{cases}
+\dfrac{x^{\alpha-1} (1-x)^{\beta-1}}{\mathrm{B}(\alpha,\beta)}, & 0 \le x \le 1 \\
+0, & \text{ 其他情况}
+\end{cases}$
+\item 期望：$\dfrac{\alpha}{\alpha+\beta}$
+\item 方差：$\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$
+\end{itemize}
+\end{block}
+
+其中，Beta函数定义为
+$$\mathrm{B} (\alpha,\beta) = \int _{0}^{1}t^{\alpha-1}(1-t)^{\beta-1}\,dt = \dfrac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{$\chi^2$-分布}
+\begin{itemize}
+\item 符号：$\chi^2_n$, \; $n = 1,2,\ldots$ 为自由度
+\item PDF：$f(x) = \dfrac{1}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})} x^{\frac{n}{2}-1} e^{-\frac{x}{2}}$
+\item 期望：$n$
+\item 方差：$2n$
+\end{itemize}
+
+\vspace{1em}
+\pause
+
+当随机变量$X_1,\ldots,X_n$独立且都服从标准正态分布$N(0,1)$, 那么随机变量
+$$\chi^2 = X_1^2 + \cdots + X_n^2$$
+即服从自由度为$n$的$\chi^2$-分布$\chi^2_n$.
+
+\vspace{1em}
+
+$\chi^2$-分布也是一种特殊的Gamma分布，即$\chi^2_n = \operatorname{Gamma}(\frac{n}{2},\frac{1}{2})$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{t-分布，Student's t-Distribution}
+\begin{itemize}
+\item 符号：$t_{\nu}$, \; $\nu > 0$ 为自由度
+\item PDF：$f(x) = \dfrac{\Gamma(\frac{\nu+1}{2})}{\sqrt{\nu\pi}\Gamma(\frac{\nu}{2})} \left( 1 + \dfrac{x^2}{\nu} \right)^{-\frac{\nu+1}{2}}$
+\item 期望：$0$, 当$\nu > 1$
+\item 方差：$\frac{\nu}{\nu-2}$, 当$\nu > 2$
+\end{itemize}
+\end{block}
+
+\pause
+
+t-分布可由正态分布导出：设$X_1,\ldots,X_n$是独立随机变量且都服从正态分布$N(\mu, \sigma^2)$, 考虑样本平均与样本方差
+$$\overline{X} = \dfrac{1}{n}\sum\limits_{i=1}^n X_i, \quad S^2 = \dfrac{1}{n-1}\sum\limits_{i=1}^n (X_i-\overline{X})^2$$
+随机变量$\dfrac{\overline{X} - \mu}{S/\sqrt{n}}$即满足$t_{n-1}$-分布。
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{帕累托分布，Pareto Distribution}
+% \begin{itemize}
+% \item 符号：$t_{\nu}$, $\nu > 0$ 为自由度
+% \item PDF：$f(x) = \dfrac{\Gamma(\frac{\nu+1}{2})}{\sqrt{\nu\pi}\Gamma(\frac{\nu}{2})} \left( 1 + \dfrac{x^2}{\nu} \right)^{-\frac{\nu+1}{2}}$
+% \item 期望：$0$, 当$\nu > 1$
+% \item 方差：$\frac{\nu}{\nu-2}$, 当$\nu > 2$
+% \end{itemize}
+% \end{block}
+
+% \pause
+
+
+% \end{frame}
+
+%------------------------------------------------
+
+\section{多维随机变量的分布}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{多项分布，Multinomial Distribution}
+\begin{itemize}
+\item 符号：$M(n;p_1,\ldots,p_m)$, \newline
+$n = 1,2,\ldots;$ $0 < p_1,\ldots,p_m < 1$ 且 $p_1+\cdots+p_m = 1$
+\item PMF：$P(X_1=k_1,\ldots,X_m=k_m) = \dfrac{n!}{k_1!\cdots k_m!} p_1^{k_1}\cdots p_n^{k_m}$, \newline
+其中$k_1+\cdots+k_m = n$
+\item 期望：$E(X_i) = np_i$
+\item 方差：$Var(X_i) = np_i(1-p_i)$
+\item 协方差：$Cov(X_i,X_j) = -np_ip_j$
+\end{itemize}
+\end{block}
+
+\vspace{1em}
+\pause
+
+设一个随机试验有$m$个结果，概率分别为$p_1,\ldots,p_m$, 做$n$次独立重复试验，令随机变量$X_i$为第$i$个结果出现的次数，那么随机向量$(X_1,\ldots,X_m)$服从多项分布$M(n;p_1,\ldots,p_m)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{多元正态分布，Multivariate Normal (MVN) Distribution}
+\begin{itemize}
+\item 符号：$N(\boldsymbol\mu, \Sigma)$, \; $\boldsymbol\mu \in \mathbb{R}^n, \Sigma \in M_n(\mathbb{R})$半正定
+\item PDF：$f(\mathbf{x}) = \det(2\pi \Sigma )^{-{\frac {1}{2}}}\,e^{-{\frac {1}{2}}(\mathbf {x} -{\boldsymbol {\mu }})^T \Sigma^{-1}(\mathbf {x} -{\boldsymbol {\mu }})}$ \newline
+注意，当且仅当$\Sigma$正定的时候，联合密度函数$f(\mathbf{x})$才有定义
+\item 期望：$E(X_i) = \mu_i$
+\item 方差：$Var(X_i) = \Sigma_{ii}$
+\item 协方差：$Cov(X_i,X_j) = \Sigma_{ij}$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{狄利克雷分布，Dirichlet Distribution}
+\begin{itemize}
+\item 符号：$\operatorname{Dir}(\boldsymbol\alpha)$, \; 其中$\boldsymbol\alpha = (\alpha_1,\ldots,\alpha_K)$为所谓的集中参数（Concentration Parameters）, $\alpha_i>0, K \ge 2$
+\item PDF：$\displaystyle 
+f(\mathbf{x}) = \begin{cases}
+\dfrac{1}{B(\boldsymbol\alpha)} \prod\limits_{i=1}^{K} x_{i}^{\alpha_{i}-1}, & x_i > 0, \sum\limits_{i=1}^{K} x_i = 1 \\
+0, & \text{ 其他情况}
+\end{cases}$
+\item 期望：$E(X_i) = \dfrac{\alpha_{i}}{\alpha_0}$, 其中$\alpha_0 := \sum\limits_{j=1}^K \alpha_{j}$
+\item 方差：$Var(X_i) = \dfrac{\alpha_{i}(\alpha_{0}-\alpha_{i})}{\alpha_{0}^{2}(\alpha_{0}+1)}$
+\item 协方差：$Cov(X_i,X_j) = -\dfrac{\alpha_{i}\alpha_{j}}{\alpha_{0}^{2}(\alpha_{0}+1)}$
+\end{itemize}
+
+其中$\displaystyle B({\boldsymbol {\alpha}}) = \left. \prod\limits_{i=1}^{K}\Gamma(\alpha_{i}) \middle/ \Gamma {\bigl(}\sum\limits_{i=1}^{K}\alpha_{i}{\bigr)} \right.$为多变量Beta函数
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{独立随机变量和的分布}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{离散型独立随机变量的和}
+设离散型随机变量$X,Y$相互独立，那么$Z = X+Y$也是一个离散型随机变量，且对所有有意义的实数$z$, 有
+\begin{align*}
+P(Z=z) & = P(X+Y=z) = \sum\limits_{x+y=z} P(X=x,Y=y) \\
+& = \sum\limits_{x+y=z} P(X=x)P(Y=y) \\
+& = \sum\limits_x P(X=x)P(Y=z-x) \\
+& = \sum\limits_y P(X=z-y)P(Y=y)
+\end{align*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{连续型独立随机变量的和}
+设连续型随机变量$X,Y$相互独立，分别有密度函数
+$$f_X(x), \quad f_Y(y)$$
+那么$Z = X+Y$也是一个连续型随机变量，且$Z$的密度函数为
+\begin{align*}
+f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x)dx = 
+\int_{-\infty}^{+\infty} f_X(z-y) f_Y(y)dy
+\end{align*}
+以上公式被称作卷积公式。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例子}
+在前一章随机变量的学习中，我们已经接触过这样的结果了：\newline
+设随机变量$X_1,\ldots,X_n$相互独立且都服从正态分布$N(\mu, \sigma^2)$, 那么$Y = \sum\limits_{i=1}^n a_iX_i$也服从正态分布：
+$$Y \sim N \left( \mu \sum\limits_{i=1}^n a_i, \sigma^2 \sum\limits_{i=1}^n a_i^2 \right)$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{更多例子}
+问题：设随机变量$X_1,X_2$相互独立且都服从指数分布$Exp(\lambda)$. 希望求出随机变量$Y = X_1+X_2$的密度函数$f(y)$.
+
+\vspace{1em}
+\pause
+
+解：当$y<0$时，满足$x_1+x_2=y$的$x_1,x_2$中至少有一个小于0，因此自然有$f(y) = 0$. 当$y\ge 0$时，可以利用卷积公式算得
+\begin{align*}
+f(y) & = \int_{-\infty}^{+\infty} f_{X_1}(x_1) f_{X_2}(y-x_1) dx_1 = \int_{0}^{y} \lambda e^{-\lambda x_1} \cdot \lambda e^{-\lambda (y-x_1)} dx_1 \\
+& = \lambda^2 \int_{0}^{y} e^{-\lambda y} dx_1 = \lambda^2 y e^{-\lambda y}
+\end{align*}
+进一步，可以用归纳法证明，当有$n$个独立的，都服从指数分布$Exp(\lambda)$的随机变量$X_1,\ldots,X_n$时，随机变量$Y = X_1+\cdots+X_n$的密度函数为
+$$f(y) = \dfrac{\lambda^n y^{n-1} e^{-\lambda y}}{(n-1)!}, \quad y \ge 0$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+{
+\large
+直接用卷积公式来计算多个独立随机变量的和的分布往往非常繁琐，为了简化计算，需要引入矩母函数（Moment-Generating Function, MGF）、特征函数（Characteristic Function, CF）等，本课程就不深入细讲了。
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

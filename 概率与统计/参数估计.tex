@@ -1,0 +1,594 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+\usepackage{tabu}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Probability \& Statistics]{\LARGE \bfseries 第三部分\quad 概率与统计} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Parameters Estimation] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 8. 参数估计}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+{
+\large
+在实际问题中，很多时候总体分布（的类型）已知，但此分布的一些参数却还不能确定，需要通过一些方法把这些参数确定下来。这就是这一章考虑的参数估计的问题。
+
+\vspace{1em}
+\pause
+
+当然，很多时候，总体分布很难事先知道，但需要推断总体的某些性质，这便是另一个问题 --- 假设检验了。
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{矩估计法}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩估计}
+假设我们需要去估计总体$X$的分布的$k$个参数$\theta_1, \ldots, \theta_k$.
+
+\vspace{1em}
+
+总体的前$k$阶矩能被表示为$\theta_1, \ldots, \theta_k$的函数：
+\begin{equation*}
+\begin{cases}
+\mu_1 = E(X) = h_1(\theta_1, \ldots, \theta_k) \\
+\hspace{0.5cm} \vdots \\
+\mu_k = E(X^k) = h_k(\theta_1, \ldots, \theta_k)
+\end{cases}
+\end{equation*}
+解上述方程，用$\mu_1,\ldots,\mu_k$来表示参数$\theta_1, \ldots, \theta_k$:
+\begin{equation}
+\label{inversed}
+\begin{cases}
+\theta_1 = g_1(\mu_1, \ldots, \mu_k) \\
+\hspace{0.5cm} \vdots \\
+\theta_k = g_k(\mu_1, \ldots, \mu_k)
+\end{cases}
+\end{equation}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩估计}
+根据大数定律，当总体的$k$阶矩存在时，样本的$k$阶矩
+$$A_k := \dfrac{X_1^k+\cdots+X_n^k}{n}$$
+依概率收敛于总体的$k$阶矩$E(X^k)$。以样本矩$A_1,\ldots,A_k$代替总体矩$\mu_1,\ldots,\mu_k$代入方程组\eqref{inversed}，即可得到参数的估计
+\begin{equation*}
+\begin{cases}
+\widehat{\theta}_1 = g_1(A_1, \ldots, A_k) \\
+\hspace{0.5cm} \vdots \\
+\widehat{\theta}_k = g_k(A_1, \ldots, A_k)
+\end{cases}
+\end{equation*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩估计例子}
+问题：设总体$X$服从正态分布$N(\mu,\sigma^2)$, 而参数$\mu, \sigma$未知。求其矩估计表达。
+
+\vspace{1em}
+\pause
+
+解：容易求得$X$的一、二阶矩为
+\[
+\begin{cases}
+\mu_1 = E(X) = \mu \\
+\mu_2 = E(X^2) = Var(X) + E(X)^2 = \sigma^2 + \mu^2
+\end{cases}
+\]
+解方程组得
+\[
+\begin{cases}
+\mu = \mu_1 \\
+\sigma^2 = \mu_2 - \mu_1^2
+\end{cases}
+\]
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩估计例子（续）}
+\vspace{1em}
+接下来，用样本矩$A_1 = \overline{X} = \dfrac{X_1+\cdots+X_n}{n}$以及$A_2 = \dfrac{X_1^2+\cdots+X_n^2}{n}$分别代替$\mu_1,\mu_2$, 即有参数$\mu, \sigma^2$的估计
+\begin{equation*}
+\begin{cases}
+\widehat{\mu} = \overline{X} \\
+\widehat{\sigma}^2 = \dfrac{X_1^2+\cdots+X_n^2}{n} - \overline{X}^2 = \dfrac{1}{n}\sum\limits_{i=1}^n (X_i-\overline{X})^2
+\end{cases}
+\end{equation*}
+\end{block}
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\section{最大似然估计法}
+
+%------------------------------------------------
+
+\begin{frame}
+
+最大似然估计法的思想是：利用已得到的抽样结果，寻找使这个结果出现的可能性最大的参数的值作为参数的估计。
+
+\begin{block}{似然函数，Likelihood Function}
+设总体随机变量$X$有
+\begin{itemize}
+\item PMF: $P(X=x) = p(x;\theta)$, 离散情形；
+\item PDF: $f(x;\theta)$, 连续情形。
+\end{itemize}
+那么样本$X_1,\ldots,X_n$的似然函数被定义作
+\[
+L(\theta) = L(x_1,\ldots,x_n; \theta) = \begin{cases}
+\prod\limits_{i=1}^n p(x_i;\theta), & \text{离散情形} \\
+\prod\limits_{i=1}^n f(x_i;\theta), & \text{连续情形}
+\end{cases}
+\]
+注意，以上的$\theta$可能是由多个参数组成的向量。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最大似然估计法，Maximum Likelihood Estimation, MLE}
+对于已知的样本值$x_1,\ldots,x_n$, 在参数$\theta$的可能取值范围内，选择使似然函数达到最大值的参数值
+$$\widehat{\theta} = \widehat{\theta} (x_1,\ldots,x_n) = \argmax\limits_{\theta} L(x_1,\ldots,x_n; \theta)$$
+被称为参数$\theta$的最大似然估计值，统计量$\widehat{\theta} = \widehat{\theta} (X_1,\ldots,X_n)$被称为$\theta$的最大似然估计量。以上方法被称作参数的最大似然估计法。
+
+\vspace{1em}
+\pause
+
+而求这个最大值的问题，即是求一个单（多）变量函数$L(\theta)$的极值的问题。这个问题在本课程微积分部分已经被研究得很透彻了。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{似然函数求极大值}
+\begin{itemize}
+\item 单变量情形: 设似然函数$L(\theta)$ $m$阶连续可微，则当$m$为偶数且
+$$L^{(1)}(\theta) = \cdots = L^{(m-1)}(\theta) = 0, \quad L^{(m)}(\theta) < 0$$
+时$L(\theta)$有局部极大值。
+\item 多变量情形：设似然函数$L(\theta_1,\ldots,\theta_k)$有直到2阶的连续偏导，那么当
+$$\nabla L(\theta) = \left( \dfrac{\partial L}{\partial \theta_1}, \ldots, \dfrac{\partial L}{\partial \theta_k} \right) = \mathbf{0},$$
+且黑塞矩阵$H(L) = \left( \dfrac{\partial^2 L}{\partial \theta_i \partial \theta_j} \right)$负定时，$L(\theta)$有局部极大值。
+\item 注意，很容易看出$\ln L$与$L$有相同极值点，而$L$为乘积形式，故上述方程中用$\ln L$代替$L$, 计算过程可能更简便。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最大似然估计法例子}
+问题：设总体$X$服从参数$p$的伯努利分布，即有分布列
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabu} to 0.5\textwidth { X[c] | X[c] | X[c] }
+\hline
+$X$ & 0 & 1 \\
+\hline
+$P$ & $1-p$ & $p$ \\
+\hline
+\end{tabu}
+\renewcommand{\arraystretch}{1}
+\end{center}
+设样本$X_1,\ldots,X_n$的一组观测值为$x_1,\ldots,x_n$, 求参数$p$的最大似然估计。
+
+\vspace{1em}
+\pause
+
+解：容易算得参数$p$的似然函数为
+$$L(p) = \prod\limits_{i=1}^n p^{x_i}(1-p)^{1-x_i} = p^{\sum\limits_{i=1}^n x_i} (1-p)^{n - \sum\limits_{i=1}^n x_i}.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最大似然估计法例子（续）}
+令$y = \sum\limits_{i=1}^n x_i$, 并取对数，有
+$$\ln L(p) = y\ln p + (n-y)\ln (1-p)$$
+解方程
+$$0 = \dfrac{d \ln L(p)}{dp} = \dfrac{y}{p} - (n-y) \dfrac{1}{1-p}$$
+得唯一驻点$p = \dfrac{y}{n} = \overline{x}$. 而此时，
+$$\left. \dfrac{d^2 \ln L(p)}{dp^2} \right|_{p=\overline{x}} = \left. \left( -\dfrac{y}{p^2} - (n-y) \dfrac{1}{(1-p)^2} \right) \right|_{y=\overline{x}} < 0$$
+于是，参数$p$的最大似然估计值为$\overline{x}$, 最大似然估计量为$\overline{X}$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+下面，我们从最大似然估计的角度来看最小二乘法
+
+\begin{block}{最小二乘法}
+假设我们有线性模型
+$$Y = f(\mathbf{x}) = \sum\limits_{j=0}^m w_jx_j  = \mathbf{w}^T\mathbf{x} \quad (x_0=1)$$
+以及样本集$\{(y_i,\mathbf{x}_i)\}_{i=1}^n$. 我们需要求参数$\mathbf{w} = (w_0,\ldots,w_m)^T$.
+
+\vspace{1em}
+\pause
+
+假设
+\begin{itemize}
+\item $y_i = f(\mathbf{x}_i) = \mathbf{w}^T\mathbf{x}_i + \varepsilon_i$
+\item $\varepsilon_i \sim N(0, \sigma^2)$
+\item $\varepsilon_1, \ldots, \varepsilon_n$相互独立
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最小二乘法}
+由于$\varepsilon_i \sim N(0, \sigma^2)$, 故$y_i \sim N(\mathbf{w}^T\mathbf{x}_i, \sigma^2)$. 于是，参数$\mathbf{w}$的似然函数为
+$$L(\mathbf{w}) = \prod\limits_{i=1}^n \dfrac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(y_i-\mathbf{w}^T\mathbf{x}_i)^2}{2\sigma^2}}$$
+于是
+$$\widehat{\mathbf{w}} = \argmax\limits_{\mathbf{w}} \ln L(\mathbf{w}) = \argmax\limits_{\mathbf{w}} \left( -\dfrac{1}{2\sigma^2} \sum\limits_{i=1}^n (y_i-\mathbf{w}^T\mathbf{x}_i)^2 + const \right)$$
+这等价于
+$$\widehat{\mathbf{w}} = \argmin\limits_{\mathbf{w}} \sum\limits_{i=1}^n (y_i-\mathbf{w}^T\mathbf{x}_i)^2$$
+此即为最小二乘法问题。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

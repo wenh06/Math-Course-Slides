@@ -1,0 +1,593 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Probability \& Statistics]{\LARGE \bfseries 第三部分\quad 概率与统计} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Conditional Probability] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 2. 条件概率}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{条件概率}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{条件概率，Conditional Probability}
+设有$A,B$两个随机事件，且$P(B) > 0$, 称
+$$P(A|B) = \dfrac{P(AB)}{P(B)}$$
+为``在事件$B$发生的条件下，事件$A$发生''的条件概率。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{条件概率的例子}
+考虑所有的恰好有两个孩子的家庭。假定生男生女是等可能的。
+
+\vspace{1em}
+
+（1）{\color{red}随机选择一个家庭}，发现该家庭有一个男孩，则另一个小孩还是男孩的概率是？
+
+\vspace{1em}
+\pause
+
+解：样本空间为
+$$\Omega = \{gg, gb, bg, bb\}$$
+其中$g$代表女孩，$b$代表男孩，字母的顺序代表出生次序，每一个样本点是一个（类）家庭。
+\begin{itemize}
+\item 事件``有一个孩子是男孩''为$A = \{gb,bg,bb\}$.
+\item 事件``两个孩子都是男孩''为$B = \{bb\}$
+\end{itemize}
+
+于是``该家庭有一个男孩，另一个小孩还是男孩''为条件概率
+$$P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{P(B)}{P(A)} = \dfrac{1}{3}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{条件概率的例子（续）}
+（2）从这些家庭中{\color{red}随机选一个孩子}，发现是男孩，则他家里另一个小孩是男孩的概率是？
+
+\vspace{1em}
+\pause
+
+解：这个问题中，我们的样本空间要变了：
+$$\Omega = \{g_g, g_b, b_g, b_b\}$$
+样本点变成了孩子（的性别），下标为他（她）家里另一个小孩的性别。我们在这个问题中要考虑的事件也相应地变为了
+\begin{itemize}
+\item ``（这个孩子）是一个男孩''$A = \{b_g, b_b\}$
+\item ``（这个孩子）有一个兄弟''$B = \{g_b, b_b\}$
+\end{itemize}
+相应的（条件）概率为
+$$P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{1}{2}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{乘积公式}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{乘积公式}
+设有两个事件$A,B$，满足$P(B) > 0$, 那么
+$$P(AB) = P(B)\cdot P(A|B)$$
+
+\pause
+
+证明：这个直接根据条件概率的定义即可得到：
+$$P(A|B) = \dfrac{P(AB)}{P(B)} \; \Longrightarrow \; P(AB) = P(B)\cdot P(A|B)$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{链式法则}
+把以上关于两个事件的乘积公式，用数学归纳法可以扩展到$n$个事件的乘积公式：
+$$P(A_1\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1\cdots A_{n-1}).$$
+当然，前提是假设$P(A_1\cdots A_{n-1}) > 0.$ 乘积公式又被称作是链式法则。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{全概率公式}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{全概率公式}
+假设$\Omega = \sum\limits_n A_n$是把样本空间$\Omega$划分为不相交集合的分割，即事件$A_n$之间互不相容，那么对任意事件$B$,有
+$$P(B) = \sum\limits_n P(A_n)P(B|A_n).$$ \pause
+也就是说，事件$B$可能在很多互斥的情形下发生，那么它发生的总体的概率等于各种情形发生的概率以及相应条件概率乘积的求和。
+\end{block}
+
+\vspace{1em}
+\pause
+
+证明：
+\begin{align*}
+P(B) & = P(B\Omega) = P(B\sum\limits_n A_n) = \sum\limits_n P(BA_n) \\
+& = \sum\limits_n P(BA_n) = \sum\limits_n P(A_n)P(B|A_n)
+\end{align*}
+\end{frame}
+
+%------------------------------------------------
+
+\section{贝叶斯公式}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{贝叶斯公式，Bayes' Rule}
+设$A,B$是两个随机事件，且假设$P(B) > 0$, 那么
+$$P(A|B) = \dfrac{P(B|A)P(A)}{P(B)}$$
+以上被称作贝叶斯公式。
+
+\vspace{1em}
+\pause
+
+若更进一步，$\Omega = \sum\limits_n A_n$是把样本空间$\Omega$划分为不相交集合的分割，那么
+$$P(A_n|B) = \dfrac{P(A_n)P(B|A_n)}{\sum\limits_i P(A_i)P(B|A_i)}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{先验概率与后验概率}
+事件$A_1,A_2,\ldots,A_n,\ldots$被称作是先验概率（Prior Probability）。也就是说，（在试验之前就）已知的概率，是没有进一步信息（不知道事件$B$是否发生）的情况下，诸事件发生的概率。
+
+\vspace{1em}
+
+在试验中，发生了事件$B$，这个时候，条件概率$P(A_n|B)$就反映了试验后，事件$B$发生的来源的各种可能性的大小，被称作后验概率（Posterior Probability）。
+\end{block}
+
+\vspace{1em}
+\pause
+
+贝叶斯公式于是也可以写作
+$$\underbrace{P(A_n|B)}_{\substack{\text{后验概率} \\ \text{Posterior}}} \propto \underbrace{P(B|A_n)}_{\substack{\text{似然} \\ \text{Likelihood}}} \cdot \underbrace{P(A_n)}_{\substack{\text{先验概率} \\ \text{Prior}}}$$
+上式中的符号$\propto$表示成正比。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例题}
+假设某地区艾滋病毒携带率为$0.00001$. 有一种检测方法，对病毒携带者有$99\%$的诊断率（Accuracy），但是对未携带病毒者有$0.01\%$的误诊率（False Positive Rate）。如果该地区一个人，接受这种测试之后结果呈阳性（即被诊断携带病毒），那么他的确是病毒携带者的概率是多少？
+\end{block}
+
+\vspace{1em}
+\pause
+
+我们取事件
+\begin{gather*}
+A_1 = \text{``携带病毒''}, \quad A_2 = \text{``未携带病毒''}; \\
+B_1 = \text{``检测阳性''}, \quad B_2 = \text{``检测阴性''}.
+\end{gather*}
+$A_1$与$A_2$, $B_1$与$B_2$正好是两对对立事件。于是，我们的已知条件就用概率的语言写出来就是
+\begin{gather*}
+P(A_1) = 0.00001,\; P(B_1|A_1) = 0.99,\; P(B_1|A_2) = 0.0001
+\end{gather*}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+我们需要求得量是$P(A_1|B_1)$. 于是根据贝叶斯公式，有
+\begin{align*}
+P(A_1|B_1) & = \dfrac{P(A_1)P(B_1|A_1)}{P(A_1)P(B_1|A_1) + P(A_2)P(B_1|A_2)} \\
+& = \dfrac{0.00001\times 0.99}{0.00001\times 0.99 + 0.99999\times 0.0001} \approx 9\%
+\end{align*}
+此人真实携带病毒的概率并不高。问题的关键在于False Positive Rate $P(B_1|A_2)$相对于病毒携带率$P(A_1)$太高。在医疗领域，更关心的往往是所谓的False Negative，将病毒携带者诊断成未携带病毒者（阴性），其概率为
+$$P(A_1|B_2) = \dfrac{P(A_1)P(B_2|A_1)}{P(A_1)P(B_2|A_1) + P(A_2)P(B_2|A_2)} \approx 10^{-7}.$$
+概率很低。
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% 大家可以考虑这样一个问题：
+
+% \vspace{1em}
+
+% 假设这是血检，那么对于一个未携带病毒者来说，
+% \begin{enumerate}
+% \item 一个血样分5份，分别进行测试，这5次测试全部呈阳性的概率是多少？
+% \item 要使至少有一次测试呈阴性的概率高于$95\%$, 至少要进行几次测试？
+% \end{enumerate}
+
+% \end{frame}
+
+%------------------------------------------------
+
+\section{独立事件}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{独立事件}
+事件$A,B$相互独立，指的是有
+$$P(AB) = P(A)\cdot P(B)$$
+或者等价地，
+$$P(A|B) = P(A), \quad P(B|A) = P(B)$$
+
+\vspace{1em}
+\pause
+
+可以定义多个事件的独立性：
+$$P(A_1A_2\cdots A_n) = P(A_1)P(A_2)\cdots P(A_n).$$
+
+\vspace{1em}
+\pause
+
+{\color{red}注意}！
+$$\text{多个事件两两独立} \; \not\Rightarrow \text{这些事件是独立的}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例子}
+有四个相同的箱子，其中三个分别装有香蕉、苹果、梨，另外一个箱子里这三种水果都有。随意打开一个箱子，拿到三种水果的概率都是$\frac{1}{2}$.
+\begin{itemize}
+\item 同时拿到其中两种水果的概率都是$\frac{1}{4} = \frac{1}{2} \times \frac{1}{2},$ 于是，``拿到香蕉''、``拿到苹果''、``拿到梨''这三个事件是两两独立的。
+\item 同时拿到三种水果的概率也是是$\frac{1}{4}$, 但$\frac{1}{4} \neq \frac{1}{2} \times \frac{1}{2} \times \frac{1}{2},$ 于是，以上三个事件不是相互独立的。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

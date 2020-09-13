@@ -1,0 +1,981 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Linear Algebra]{\LARGE \bfseries 第二部分\quad 线性代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Linear Equations and Matrix] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 1. 线性方程组与矩阵}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+\section{课程引言} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性代数 -- 机器学习最重要的数学工具}
+\begin{itemize}
+\item<2-> 线性关系是我们用来描述复杂的现实世界的一种简单的近似
+\item<3-> 这种近似虽然简单，但表达力非常强
+\item<4-> 机器学习一般要处理大量数据，这些数据的存储以及表达形式，被抽象为叫做``矩阵''的东西。矩阵是线性代数的基本概念以及研究对象之一
+\item<5-> 大量的工具集，如numpy, scikit-learn等，基本的数据结构是数组$\rightsquigarrow$``向量''，``矩阵''，``张量''\ldots\ldots 用好线性代数，事半功倍
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{一个线性回归的例子 -- 房价评估}
+目标：从给定的房屋{\bfseries 信息}来估计房屋每平米的价格$Y$。
+
+\pause
+
+信息：
+\begin{itemize}
+\item $X_1$: 所在区域人均犯罪率
+\item $X_2$: 住宅用地比例
+\item $X_3$: 所在区域非零售商业用地占比
+\item $X_4$: 所在区域一氧化氮浓度
+\item $X_5$: 到几个主要商业中心的加权距离
+\item $X_6$: 交通便利程度
+\item $X_7$: 所在区域学校的学生-教师比
+\end{itemize}
+
+\pause
+
+$N$个样本：
+$$\left\{(y_i, x_{i1}, x_{i2}, \cdots, x_{i7}) \right\}_{i=1}^N$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{一个线性回归的例子 -- 房价评估}
+最简单的模型 -- 线性模型：
+$$Y(X_1,X_2,\ldots,X_7) = w_1X_1 + w_2X_2 + \cdots + w_7X_7 + b.$$
+
+\pause
+
+$N$个样本，即有
+$$
+\begin{cases}
+y_1 = w_1x_{11} + w_2x_{12} + \cdots + w_7x_{17} + b \\
+y_2 = w_1x_{21} + w_2x_{22} + \cdots + w_7x_{27} + b \\
+\phantom{yyy} \vdots \\
+y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b 
+\end{cases}$$
+
+\pause
+
+来求$w_1,w_2,\ldots,w_7,b$, 使得任意给出一个房屋的信息$(x_1,\ldots,x_7)$, 我们的预测值$Y(x_1,\ldots,x_7)$（如果做不到精确相等）尽量接近该房屋每平米的实际价格$y$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{线性方程组} 
+%\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+
+\subsection{线性方程组定义} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性方程组}
+$n$个未知元$m$个方程的线性方程组具有以下形式
+$$
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+\phantom{yyy} \vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\end{cases}$$
+
+\pause
+
+$x_1,\ldots,x_n$被称为未定元，$a_{ij},b_i$是一些常数，$i=1,2,\ldots,m;$ $j = 1,2,\ldots,n,$ 其中$a_{ij}$被称为方程组系数，$b_i$被称为常数项。
+
+\pause
+
+\begin{itemize}
+\item 齐次线性方程组：$b_1,b_2,\ldots,b_m = 0$
+\item 非齐次线性方程组：$b_1,b_2,\ldots,b_m$不全为$0$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{Gau{\ss}消元法} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+\begin{enumerate}
+\item 在$a_{i1} (i=1,2,\ldots,m)$中选取一个不等于$0$的$a_{i_01}$（不妨设存在这样的$a_{i_01}$）， 把第$i$行的方程两边同时除以$a_{i_01}$, 然后把它放到第一行。原方程组变形为
+$$
+\begin{cases}
+x_1 + {\color{red} \dfrac{a_{i_02}}{a_{i_01}}}x_2 + \cdots + {\color{red} \dfrac{a_{i_0n}}{a_{i_01}}}x_n = {\color{red} \dfrac{b_{i_0}}{a_{i_01}}} \\
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+\phantom{yyy} \vdots \\
+a_{i_0-1,1}x_1 + a_{i_0-1,2}x_2 + \cdots + a_{i_0-1,n}x_n = b_{i_0-1} \\
+a_{i_0+1,1}x_1 + a_{i_0+1,2}x_2 + \cdots + a_{i_0+1,n}x_n = b_{i_0+1} \\
+\phantom{yyy} \vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\end{cases}$$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+\begin{enumerate}\addtocounter{enumi}{1}
+\item 把$x_1 + \dfrac{a_{i_02}}{a_{i_01}}x_2 + \cdots + \dfrac{a_{i_0n}}{a_{i_01}}x_n = \dfrac{b_{i_0}}{a_{i_01}}$乘以$-a_{i1}$加到相应行的等式上面，方程继续变形为
+$$
+\begin{cases}
+x_1 + {\color{red} \dfrac{a_{i_02}}{a_{i_01}}}x_2 + \cdots + {\color{red} \dfrac{a_{i_0n}}{a_{i_01}}}x_n = {\color{red} \dfrac{b_{i_0}}{a_{i_01}}} \\
+\phantom{x_1 +a} {\color{red} a'_{12}}x_2 + \cdots + {\color{red} a'_{1n}}x_n = {\color{red} b'_1} \\
+\phantom{yyyyyyyyy} \vdots \\
+\phantom{x_1 +a} {\color{red} a'_{m2}}x_2 + \cdots + {\color{red} a'_{mn}}x_n = {\color{red} b'_m}
+\end{cases}$$
+
+\pause
+
+其中$a'_{ij}$与$b'_i$为通过上面的运算新得到的系数，容易看出
+$$a'_{ij} = a_{ij} - a_{i1}\dfrac{a_{i_0j}}{a_{i_01}}, \quad b'_{i} = b_{i} - a_{i1}\dfrac{b_{i_0}}{a_{i_01}}.$$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+\begin{enumerate}\addtocounter{enumi}{2}
+\item 对于除第一个方程外剩下（{\color{red}至多}有$m-1$个）的方程
+$$
+\small
+\begin{cases}
+a'_{12}x_2 + \cdots + a'_{1n}x_n = b'_1 \\
+\phantom{yyyy} \vdots \\
+a'_{m2}x_2 + \cdots + a'_{mn}x_n = b'_m
+\end{cases}$$
+重复之前的步骤1,2，重复最多$m$次之后，原方程组约化到如下的$k+1$个方程的形式，即所谓的阶梯形（Echelon Form）
+$$
+\begin{cases}
+x_1 + a'_{12}x_2 + a'_{13}x_3 + \cdots + a'_{1n}x_n = b'_1 \\
+\phantom{x_1 + 1} x_{\color{red} j_2} + a'_{2,j_2+1}x_{j_2+1} + \cdots + a'_{2n}x_n = b'_2 \\
+\phantom{yyyyyyyyyyyyyyyyy} \vdots \\
+\phantom{yyyyyyyyyyyyyyyyy} x_{\color{red} j_k} + \cdots + a'_{kn}x_n = b'_k \\
+\phantom{yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy} {\color{red} 0 = b'_{k+1}}
+\end{cases}$$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+\begin{enumerate}\addtocounter{enumi}{3}
+\item 对于{\color{red}不出现$0 = $非零常数的阶梯形}，从最底下的方程开始，逐次代入上一个方程中，即可求得原线性方程组的解。解的形式是
+$$\begin{cases}
+x_1 = \ell_1(x_{h_1},\ldots,x_{h_s},b'_1,\ldots,b'_k) \\
+x_{j_2} = \ell_2(x_{h_1},\ldots,x_{h_s},b'_1,\ldots,b'_k) \\
+\phantom{yyy} \vdots \\
+x_{j_k} = \ell_k(x_{h_1},\ldots,x_{h_s},b'_1,\ldots,b'_k)
+\end{cases}$$
+其中$\ell_1,\ldots,\ell_k$有如下的形式
+$$t_1x_{h_1}+\cdots+t_sx_{h_s}+t'_1b'_1+\cdots+t'_kb'_k$$
+$t_1,\ldots,t_s,t'_1,\ldots,t'_k$是一些实数，$h_1,\ldots,h_s$为$1,2,\ldots,n$中除掉$1,j_2,\ldots,j_k$中剩下的数，$x_{h_1},\ldots,x_{h_s}$为自由变元。
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{用Gau{\ss}消元法解线性方程组的例子}
+求解三元线性方程组$\systeme{3x_2 + x_3 = 9, x_1 - 2x_2 + x_3 = 0 , 3x_1 + 3x_2 - x_3 = 6}$
+
+\pause
+
+解：
+{\scriptsize
+\begin{eqnarray*}
+& & \systeme{3x_2 + x_3 = 9 , x_1 - 2x_2 + x_3 = 0 , 3x_1 + 3x_2 - x_3 = 6} \xrightarrow{(1)\leftrightarrow(2)} \systeme{x_1 - 2x_2 + x_3 = 0 , 3x_2 + x_3 = 9 , 3x_1 + 3x_2 - x_3 = 6} \\
+& \xrightarrow{-3\cdot(1) + (3)} & \systeme{x_1 - 2x_2 + x_3 = 0, 3x_2 + x_3 = 9,  9x_2 - 4x_3 = 6} \xrightarrow{[-3\cdot(2)+(3)]/7} \systeme{x_1 - 2x_2 + x_3 = 0 , 3x_2 + x_3 = 9 , x_3 = 3} \\ & \xrightarrow{\substack{-1\cdot(3)+(1) \\ -1\cdot(3)+(2)}} & \systeme{x_1 - 2x_2 = -3 , 3x_2 = 6, x_3 = 3} \xrightarrow{\substack{\frac13\cdot(2) \\ \frac23\cdot(2)+(1)}} \systeme{x_1 = 1, x_2 = 2, x_3 = 3}
+\end{eqnarray*}
+}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{用Gau{\ss}消元法解线性方程组的例子}
+(1). 求解二元线性方程组$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 16}$
+
+\pause
+
+解：
+$$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 16} \xrightarrow{(2)-(1)\times 3} \left\{\begin{aligned}
+x_1 - 2x_2 & = 2 \\ 0 & = 10
+\end{aligned}\right.$$
+此时，无解。
+
+\pause
+
+(2). 求解二元线性方程组$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 6}$
+
+\pause
+
+解：
+$$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 6} \xrightarrow{(2)-(1)\times 3} \left\{\begin{aligned}
+x_1 - 2x_2 & = 2 \\ 0 & = 0
+\end{aligned}\right.$$
+此时有无穷多组解：$x_2 = t, x_1 = 2t+2, t\in\mathbb{R}.$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{线性方程组解的情况} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性方程组解的情况}
+非齐次线性方程组：
+\begin{itemize}
+\item 无解：{\color{red}化成阶梯型之后}，有{\color{red} $0 = $非零数}的方程。
+\item 有唯一的一组解：{\color{red}化成阶梯型之后}，方程数量等于未知元个数，且{\color{red}没有$0 = $非零数}的方程，即$m \geqslant k = n.$
+\item 有无穷多组解：{\color{red}化成阶梯型之后}，方程数量小于未知元个数，且{\color{red}没有$0 = $非零数}的方程，即$k < n.$
+\end{itemize}
+
+\vspace{1em}
+\pause
+
+齐次线性方程组：
+\begin{itemize}
+\item 有唯一的一组解，零解：{\color{red}化成阶梯型之后}，方程数量等于未知元个数，即$m \geqslant k = n.$
+\item 有无穷多组解：{\color{red}化成阶梯型之后}，方程数量小于未知元个数，即$k < n.$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{作为线性方程组的线性回归问题}
+我们以系数作为未知元，于是能从一个线性回归的问题得到一个线性方程组
+$$
+\begin{cases}
+x_{11}w_1 + x_{12}w_2 + \cdots + x_{1n}w_n + 1\cdot b = y_1 \\
+x_{21}w_1 + x_{22}w_2 + \cdots + x_{2n}w_n + 1\cdot b = y_2 \\
+\phantom{yyy} \vdots \\
+x_{N1}w_1 + x_{N2}w_2 + \cdots + x_{Nn}w_n + 1\cdot b = y_N
+\end{cases}$$
+
+\pause
+
+但是很不幸，样本数量，或者说方程个数，$N$远大于$n$，所谓的数据的features的数量。上述非齐次线性方程组一般是没有解的。
+
+解决的办法以后将会讲到。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{矩阵初步}
+
+%------------------------------------------------
+
+\subsection{矩阵的定义} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+我们可以把之前遇到的线性方程组系数与未知元分开写，写成一种更紧凑的形式
+\[
+\underbrace{\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}}_{\text{系数矩阵} A = (a_{ij})} \underbrace{\begin{pmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}}_{\text{未知元列}\mathbf{x}} = 
+\underbrace{\begin{pmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_n
+\end{pmatrix}}_{\text{常数项列}\mathbf{b}}
+\]
+
+\pause
+
+即
+$$A\mathbf{x} = \mathbf{b}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的定义，Matrix}
+由$mn$个实数排成行列的矩形数表, 用圆(或方)括号括起来，即
+$$A = \kbordermatrix{
+& \substack{\mathbf{a}_1 \\ \downarrow} & \substack{\mathbf{a}_2 \\ \downarrow} & \cdots & \substack{\mathbf{a}_n \\ \downarrow} \\
+\mathbf{\alpha}_1 \to & a_{11} & a_{12} & \cdots & a_{1n} \\ 
+\mathbf{\alpha}_2 \to & a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+\mathbf{\alpha}_m \to & a_{m1} & a_{m2} & \cdots & a_{mn}
+} = \begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}$$
+称为$m\times n$型的矩阵，简记为$A = (a_{ij})_{m\times n}$，其中横排$\mathbf{\alpha}_i$称为矩阵的行，竖排$\mathbf{a}_j$称为矩阵的列。$a_{ij}$称为矩阵的元素，其第一个下标表示所在的行数，第二个下标表示其所在的列数。全体$m\times n$型的矩阵组成的集合，记为$M_{m\times n}(\mathbb{R})$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的同型与相等}
+\begin{itemize}
+\item 若两个矩阵行数相同且列数相同，则称这两个矩阵是同型的；
+\item 若两个矩阵同型且对应元素相等，则称这两个矩阵是相等的。
+\end{itemize}
+\end{block}
+
+\vspace{2em}
+\pause
+
+\begin{remark}
+在之前矩阵的定义中，我们指明了矩阵元素来自实数集$\mathbb{R}$. 其实矩阵的元素可以来自任意一个有``加法''以及``乘法''的数学实体$R$, 例如有限域$\mathbb{F}_q$, 多项式环$\mathbb{R}[x_1,x_2,\ldots,x_s]$, 等等。相应矩阵的集合被记作$M_{m\times n}(R)$.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{特殊矩阵} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{一些特殊矩阵}
+\begin{itemize}
+\item 方阵：行数与列数都等于$n$的矩阵称为$n$阶方阵。全体$n$阶方阵组成的集合，记为$M_n(\mathbb{R})$.
+\item 零矩阵：元素全为零的矩阵称为零矩阵，记为$O$或$0_{m\times n}$.
+\item 行矩阵（行向量）：大小为$1\times n$的矩阵 \(\displaystyle \begin{pmatrix} a_1 & a_2 & \cdots & a_n \end{pmatrix}\).
+\item 列矩阵（列向量）：大小为$n\times 1$的矩阵 \(\displaystyle \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix}\).
+\end{itemize}
+矩阵也可用列向量表示为$A = \begin{pmatrix}
+\mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n
+\end{pmatrix}$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{一些特殊矩阵}
+\begin{itemize}
+\item 对角阵：$n\times n$的矩阵$(a_{ij})_{n\times n}$，其中$a_{ij} = 0 \text{当$i\neq j$.}$对角阵简记为
+$$diag(a_{11},a_{22},\cdots,a_{nn}) = \begin{pmatrix} a_{11} & & \\ & \ddots & \\ & & a_{nn} \end{pmatrix}.$$
+\item 单位阵：$I_n = diag(1,1,\cdots,1)$.
+\item 纯量阵：$cI_n = diag(c,c,\cdots,c), c \in \mathbb{R}$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{一些特殊矩阵}
+\begin{itemize}
+\item 上三角阵：主对角线下方的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i > j$.}$
+$$\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & \vdots \\ & & & a_{nn} 
+\end{pmatrix}$$
+
+\item 严格上三角阵：主对角线下方以及主对角线上的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i \geqslant j$.}$
+\end{itemize}
+类似可以定义（严格）下三角阵。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{矩阵的线性运算} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的线性运算}
+\begin{itemize}
+\item 加法：同型矩阵对应分量相加。
+$$A = (a_{ij})_{m\times n}, B = (b_{ij})_{m\times n} \Rightarrow A + B := (a_{ij} + b_{ij})_{m\times n}$$
+满足
+\begin{itemize}
+\item[$\bullet$] 结合律：$(A+B)+C = A+(B+C)$
+\item[$\bullet$] 交换律：$A+B = B+A$
+\end{itemize}
+\item 减法：同型矩阵对应分量相减。
+$$A - B := A + (-B) = (a_{ij} - b_{ij})_{m\times n}$$
+\item 数量乘法（或数乘）：矩阵的每个分量同乘一个数。
+$$\text{设 }t\in\mathbb{R}, A = (a_{ij})_{m\times n}, \text{ 则  } tA = t(a_{ij})_{m\times n} := (ta_{ij})_{m\times n}$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{矩阵的乘法} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的乘法}
+设$A = (a_{ij})_{m\times s}, B = (b_{ij})_{t\times n}$。如果矩阵$A$的列数等于矩阵$B$的行数，即$s=t$，则$A$与$B$ 可以相乘，记为$AB$。$AB$为一个$m\times n$阶的矩阵，其$(i,j)$位置上的元素是$A$ 的第$i$行的元素与$B$的第$j$列对应位置上的元素乘积之和，即如果记$AB = (c_{ij})_{m\times n}$，那么
+$$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj} = \sum\limits_{k=1}^s a_{ik}b_{kj}.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的乘法}
+\[
+  \left(\begin{array}{*3{c}}
+  \vdots & & \vdots \\
+    \tikzmark{left}{$a_{{\color{red}i}1}$} & \cdots & \tikzmark{right}{$a_{{\color{red}i}s}$} \\
+    \vdots &  & \vdots
+  \end{array}\right)
+  \Highlight[first]
+  \left(\begin{array}{*3{c}}
+    \cdots & \tikzmark{left}{$b_{1{\color{red}j}}$} & \cdots \\
+     & \vdots & \\
+    \cdots & \tikzmark{right}{$b_{s{\color{red}j}}$} & \cdots
+  \end{array}\right) = 
+  \left(\begin{array}{*3{c}}
+     & \vdots & \\
+    \cdots & c_{\color{red} ij} & \cdots \\
+     & \vdots & 
+  \end{array}\right)
+\]
+\Highlight[second]
+
+$$c_{\color{red} ij} = a_{{\color{red}i}1}b_{1{\color{red}j}} + a_{{\color{red}i}2}b_{2{\color{red}j}} + \cdots + a_{{\color{red}i}s}b_{s{\color{red}j}}.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵乘法的运算律}
+设$A\in M_{m\times n}(\mathbb{R})$为一个$m\times n$阶矩阵，且取$B, C$使得下列运算可行，则
+\begin{itemize}
+\item 零矩阵：$0_{s\times m}A = 0_{s\times n}, \quad A0_{n\times t} = 0_{m\times t}$.
+\item 单位阵：$I_mA = A, \quad AI_n = A$.
+\item 数乘：$(kA)B = A(kB) = k(AB)$.
+\item 左右分配律：$A(B+C) = AB + AC, (B+C)A = BA+CA$.
+\item 结合律：$A(BC) = (AB)C$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵乘法的一些``反常''的性质}
+\begin{itemize}
+\item 不满足交换律：一般来说$AB\neq BA$. 如果$AB = BA$, 则称这两个矩阵是交换的。\pause \newline
+于是，矩阵乘法要分``左乘''以及``右乘''。\pause
+\item 存在零因子:
+\begin{eqnarray*}
+A \neq 0, B \neq 0 & \not\Rightarrow & AB \neq 0; \\
+AB = 0 & \not\Rightarrow & A = 0 \text{ 或 } B = 0.
+\end{eqnarray*} \pause
+\item 不满足消去律：$AB = AC \not\Rightarrow B = C$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{方阵的逆}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方阵的逆}
+设$A\in M_{n\times n}(\mathbb{R})$为一个方阵，如果存在方阵$B\in M_{n\times n}(\mathbb{R})$，使得$AB = BA = I_n$, 则称$A$是一个可逆（Invertible）方阵。此时，称$B$为$A$的逆方阵，记作$A^{-1}$.
+
+\pause
+
+\begin{itemize}
+\item 可逆阵也被称为非奇异（Nonsingular）阵；
+\item 不可逆阵也被称为奇异（Singular）阵；
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{例子}
+\begin{itemize}
+\item \(\displaystyle A = \begin{pmatrix}
+\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \text{ 可逆，且 } A^{-1} = \begin{pmatrix}
+\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix} \)
+\item \(\displaystyle B = \begin{pmatrix}
+1 & 1 \\ 1 & 1 \end{pmatrix} \text{ 不可逆。}\)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方阵逆的性质}
+设$A, B$是同型可逆阵，那么
+\begin{itemize}
+\item $A$的逆若存在，则唯一。
+\item $(A^{-1})^{-1} = A$.
+\item $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{方阵的逆与线性方程组求解}
+如果线性方程组
+$$A\mathbf{x} = \mathbf{b}$$
+中的系数矩阵$A$是一个{\color{red}可逆方阵}，那么在上式左右两边同时左乘$A^{-1}$, 那么有
+$$\mathbf{x} = A^{-1}\mathbf{b}.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{矩阵的转置} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的转置，Transpose}
+将$m\times n$的矩阵$A = (a_{ij})_{m\times n}$的行与列互换得到的矩阵称为矩阵$A$的转置，记作$A^T$，即
+$$A^T = (a_{ji})_{n\times m}.$$
+简单来说，就是沿着（左上到右下的）对角线翻转一下。{\color{red} 注意}，上式说的是$A^T$的第$(i,j)$位置的元素为$a_{ji}$.
+\end{block}
+
+\pause
+
+\begin{block}{矩阵转置的例子}
+设\(\displaystyle A = \begin{pmatrix}
+1 & 2 & 3 & 4 \\ 5 & 6 & 7 & 8 \end{pmatrix}, B = \begin{pmatrix}
+1 & 2 & 3 \\ & 4 & 5 \\ & & 6 \end{pmatrix}, C = \begin{pmatrix}
+1 & & \\ & 2 & \\ & & 3 \end{pmatrix},\) \newline \pause
+那么\(\displaystyle A^T = \begin{pmatrix}
+1 & 5 \\ 2 & 6 \\ 3 & 7 \\ 4 & 8 \end{pmatrix}, B^T = \begin{pmatrix}
+1 & & \\ 2 & 4 & \\ 3 & 5 & 6 \end{pmatrix}, C^T = \begin{pmatrix}
+1 & & \\ & 2 & \\ & & 3 \end{pmatrix}.\)
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的转置的性质}
+\begin{enumerate}
+\item 两次还原：$(A^T)^T = A$.
+\item 加法相容：$(A+B)^T = A^T+B^T$.
+\item 数乘相容：$(tA)^T = tA^T$.
+\item 乘法反序：$(AB)^T = B^TA^T$.
+\item 与求逆可交换：$(A^{-1})^T = (A^T)^{-1}$, 若$A$可逆。
+\end{enumerate}
+\end{block}
+
+\pause
+
+\begin{block}{对称阵与反对称阵，Symmetric and Anti-Symmetric Matrices}
+设$A$是一个方阵，
+\begin{itemize}
+\item 若$A = A^T,$ 则称$A$是一个对称阵；
+\item 若$A = -A^T,$ 则称$A$是一个反对称阵；
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵转置乘法反序性质的证明}
+设$A = (a_{ij})_{m\times s},$ $B = (b_{ij})_{s\times n}$, 令$A^T = (a'_{ij})_{s\times m},$ $B^T = (b'_{ij})_{n\times s}$. 那么有
+$$a'_{ij} = a_{ji}, \quad b'_{ij} = b_{ji}.$$
+令$C = (c_{ij})_{m\times n} = AB$, $C^T = (c'_{ij})_{n\times m}$, $D = (d_{ij})_{n\times m} = B^TA^T$, 那么由矩阵乘法定义有
+\begin{align*}
+c'_{ji} & = c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj}, \\
+d_{ji} & = b'_{j1}a'_{1i} + b'_{j2}a'_{2i} + \cdots + b'_{js}a'_{si} \\
+& = b_{1j}a_{i1} + b_{2j}a_{i2} + \cdots + b_{sj}a_{is}.
+\end{align*}
+矩阵$C^T = (AB)^T$, $D = B^TA^T$是同型的（$n\times m$），而且对应位置的值相等，于是$(AB)^T = B^TA^T$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

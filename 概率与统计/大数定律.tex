@@ -1,0 +1,473 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Probability \& Statistics]{\LARGE \bfseries 第三部分\quad 概率与统计} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Law of Large Numbers] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 6. 大数定律}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{切比雪夫不等式}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{切比雪夫不等式，Chebyshev's Inequality}
+设随机变量$X$的期望$E(X)$与方差$Var(X)$都存在，那么对任意的正实数$\varepsilon > 0$, 下列不等式都成立
+$$P(\vert X - E(X) \vert \ge \varepsilon) \le \dfrac{Var(X)}{\varepsilon^2}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{切比雪夫不等式离散型情况的证明}
+设$X$是离散型随机变量，且有分布列$p_i = P(X = x_i)$, 那么
+\begin{align*}
+& P(\vert X - E(X) \vert \ge \varepsilon) \\
+= & \sum\limits_{\vert x_i - E(X) \vert \ge \varepsilon} p_i \le \sum\limits_{\vert x_i - E(X) \vert \ge \varepsilon} p_i \cdot \dfrac{(x_i - E(X))^2}{\varepsilon^2} \\
+= & \dfrac{1}{\varepsilon^2} \sum\limits_{\vert x_i - E(X) \vert \ge \varepsilon} p_i \cdot (x_i - E(X))^2 \\
+\le & \dfrac{1}{\varepsilon^2} \sum\limits_i p_i \cdot (x_i - E(X))^2 = \dfrac{Var(X)}{\varepsilon^2}
+\end{align*}
+\end{block}
+
+\pause
+
+连续型随机变量的情形也能类似证明，大家自行推导。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{大数定律}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{依概率收敛，Convergence in Probability}
+设$X_1,\ldots,X_n,\ldots$为一列随机变量，$a\in \mathbb{R}$为一个常数，若有
+$$\lim\limits_{n\to\infty} P(\vert X_n - a \vert < \varepsilon) = 1$$
+对任意正实数$\varepsilon$成立，那么称随机变量序列$\{X_n\}_{n\ge1}$依概率收敛于$a$, 并记作
+$$X_n \xrightarrow{P} a$$
+
+\pause
+
+自然，我们可以类似地定义随机变量序列依概率收敛于一个随机变量
+$$X_n \xrightarrow{P} X$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{切比雪夫定理}
+设互相独立的随机变量序列$\{X_n\}_{n\ge1}$有相同的期望与方差，即
+$$E(X_n) = \mu, \; Var(X_n) = \sigma^2, \quad n=1,2,\ldots$$
+那么$\dfrac{1}{n}\sum\limits_{i=1}^n X_i$依概率收敛于$\mu$, 也就是说
+$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \mu \right\vert < \varepsilon \right) = 1$$
+对任意正实数$\varepsilon$成立。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{伯努利大数定律，Law of Large Numbers, LLN}
+设$n_A$是$n$次独立重复试验中事件$A$的出现次数，$p$为每次试验中事件$A$出现的概率（即参数$p$的伯努利试验）。那么对任意的正实数$\varepsilon$, 有
+$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{n_A}{n} - \mu \right\vert < \varepsilon \right) = 1$$
+\end{block}
+
+\vspace{1em}
+\pause
+
+伯努利大数定律是切比雪夫定理的一个特殊情况，也就是说令
+$$X_n = \begin{cases}
+1, & \text{若第$n$次试验中事件$A$发生} \\
+0, & \text{若第$n$次试验中事件$A$不发生} 
+\end{cases} \quad n=1,2,\ldots$$
+那么随机变量序列$\{X_n\}_{n\ge1}$满足切比雪夫定理条件。
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{伯努利大数定律的意义}
+\begin{itemize}
+\item 当事件$A$发生的概率$p$已知时，大数定律可以用来预测试验结果。
+\item 当事件$A$发生的概率$p$未知时，因为当试验次数充分大时，事件$A$发生的频率$\dfrac{n_A}{n}$与事件$A$发生的概率$p$差别很小（依概率收敛），于是可以用事件$A$发生的频率来估计概率。此即所谓的``逆概率问题''，是 Monte Carlo 方法的起源。
+\item 如果事件$A$发生的概率很小，则由大数定律知道其发生的频率也是很低的，或者说事件$A$很少发生，以至于在一次试验中几乎不会发生。这就是所谓的``小概率原理''。
+\end{itemize}
+\end{block}
+
+\vspace{1em}
+\pause
+
+伯努利大数定律的条件可以一定程度的减弱。能减弱到什么程度，依然处在研究中。目前各种形式的大数定律的研究还远未达到完善的程度。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{更一般的大数定律}
+设$\{X_n\}_{n\ge1}$是一列随机变量，如果下列条件之一成立
+\begin{enumerate}
+\item 切比雪夫条件：随机变量两两不相关，期望、方差都存在，且方差有界
+\item 马尔科夫（Markov）条件：$\lim\limits_{n\to\infty} \dfrac{1}{n}Var\left( \sum\limits_{i=1}^n X_i \right) = 0$
+\end{enumerate}
+那么对于任意正实数$\varepsilon$, 有
+$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \dfrac{1}{n}\sum\limits_{i=1}^n E(X_i) \right\vert < \varepsilon \right) = 1$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{辛钦（Khinchin）大数定律}
+设$\{X_n\}_{n\ge1}$是一列独立同分布的随机变量，$E(X_n) = \mu$.那么对任意正实数$\varepsilon$, 有
+$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \mu \right\vert < \varepsilon \right) = 1$$
+\end{block}
+
+\vspace{1em}
+\pause
+
+注意与切比雪夫定理的区别。这里对随机变量的方差并{\color{red}没有加任何假设}。
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

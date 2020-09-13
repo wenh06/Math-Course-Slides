@@ -1,0 +1,681 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Linear Algebra]{\LARGE \bfseries 第二部分\quad 线性代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Eigenvalue and Eigenvector] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 5. 特征值与特征向量}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\section{特征值与特征向量}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{问题引入}
+之前已经讲过，一个线性变换$\varphi: V \to V$对应于一个方阵
+$$\varphi(e_1, \ldots, e_n) = (e_1, \ldots, e_n) \underbrace{\begin{pmatrix}
+a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{n1} & \cdots & a_{nn} \end{pmatrix}}_{A}$$
+
+\pause
+
+但是这样的表示形式稍显复杂，希望得到$\varphi$的尽可能简单的表示。
+
+\pause
+
+可能的办法：换一组基，$\varepsilon_1, \ldots, \varepsilon_n$, 使得
+$$\varphi(\varepsilon_1) = \lambda_1 \varepsilon_1, \; \ldots, \; \varphi(\varepsilon_n) = \lambda_n\varepsilon_n$$
+也就是说，此时$\varphi$对应的方阵为$diag(\lambda_1 , \ldots, \lambda_n)$.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{问题引入}
+\vspace{1em}
+于是，我们有如下的问题
+\vspace{2em}
+\begin{itemize}
+\item<2-> 这样的$\varepsilon_1,\ldots,\varepsilon_n$是否存在？
+\vspace{1em}
+\item<3-> 如果存在，如何找这些$\varepsilon_i$以及$\lambda_i$?
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{特征值与特征向量}
+如果有$\lambda \in \mathbb{R}$以及{\color{red}非零向量}$\alpha \in V$, 使得
+$$\varphi(\alpha) = \lambda \alpha,$$
+那么称$\lambda$为线性变换$\varphi$的特征值（Eigenvalue或Characteristic Value），向量$\alpha$被称为线性变换$\varphi$的属于特征值$\lambda$的特征向量（Eigenvector）。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{特征值与特征向量}
+假设我们从$V$的某一组基$e_1, \ldots, e_n$出发，开始寻找$\varphi$的特征值与特征向量。
+
+\vspace{1em}
+\pause
+
+设$\varphi$在这组基下的矩阵表达为$A$. 对于向量$\alpha \in V$, 设它在这组基下的坐标为$\mathbf{x} = (x_1,\ldots,x_n)^T$.于是，如果$\alpha$是线性变换$\varphi$的属于特征值$\lambda$的特征向量，那么
+$$A\mathbf{x} = \lambda\mathbf{x}$$
+于是，$\lambda$也被称为方阵$A$的特征值，列向量$\mathbf{x}$被称为方阵$A$的的属于特征值$\lambda$的特征列向量。
+
+
+\vspace{1em}
+\pause
+\begin{itemize}
+\item 特征值与基的选取无关；相似的方阵有同一组特征值。
+\item 特征向量有很多：设$\alpha_1,\alpha_2$都是属于$\lambda$的特征向量，那么任取不同时为零的实数$t_1,t_2$, 新的向量$t_1\alpha_1+t_2\alpha_2$也是属于$\lambda$的特征向量。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{如何求特征值}
+设一个实数$\lambda\in\mathbb{R}$是方阵$A$的特征值，即存在非零列向量$\mathbf{x}$使得$A\mathbf{x} = \lambda\mathbf{x}$. 那么
+\begin{align*}
+A\mathbf{x} = \lambda\mathbf{x} & \Longleftrightarrow (A - \lambda I_n) \mathbf{x} = \mathbf{0} \\
+& \Longrightarrow \det (A - \lambda I_n) = 0
+\end{align*}
+
+\pause
+
+反过来，如果$\det (A - \lambda I_n) = 0$，那么线性方程组$(A - \lambda I_n) \mathbf{x} = \mathbf{0}$总是有（无穷多）解的。任取一个非零解$\mathbf{x}_0$, 它都满足$(A - \lambda I_n) \mathbf{x}_0 = \mathbf{0}$, 即有$A\mathbf{x}_0 = \lambda\mathbf{x}_0$. 于是我们知道$\lambda$是方阵$A$的特征值，而$\mathbf{x}_0$是属于$\lambda$的特征向量。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{特征方程}
+称以$\lambda$为未定元的多项式
+$$f(\lambda) := \det(\lambda I_n - A) \in \mathbb{R}[\lambda]$$
+为方阵$A$的特征多项式（Characteristic Polynomial）。
+
+\vspace{2em}
+\pause
+
+\begin{itemize}
+\item 方阵$A$的特征值，就是方阵$A$的特征多项式$f(\lambda)$的根。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{特征方程}
+\begin{itemize}
+\item 回忆一下，我们之前讲过，只要一个数学实体$R$有``加法''、``乘法''以及``数乘''，我们就能定义元素为$R$中元素的$m\times n$矩阵，其全体记作$M_{m\times n}(R)$. 其方阵$(a_{ij})_{n\times n}$的行列式可以依照实数方阵的行列式类似定义：
+$$\det(a_{ij}) = \sum\limits_{j_1\ldots j_n} (-1)^{\tau(j_1\ldots j_n)} a_{1j_1}\cdots a_{nj_n}$$
+\item 对于任意的一个可逆方阵$P$，有
+\begin{align*}
+\det(\lambda I_n - P^{-1}AP) = \det (P^{-1}(\lambda I_n - A)P) = \det(\lambda I_n - A)
+\end{align*}
+也就是说相似方阵有相同的特征多项式。对于线性变换$\varphi$来说，无论$V$取哪一组集，得到相应的方阵表示，它们的特征多项式都是一样的。于是，$f(\lambda)$也被称为线性变换$\varphi$的特征多项式。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{没有特征值的情况}
+{\bfseries 注意}！一个实方阵不一定有实的特征值。
+
+\vspace{1em}
+\pause
+
+例如，考虑2阶方阵$A = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$, 它的特征多项式为
+\begin{align*}
+f(\lambda) &= \det (\lambda I_2 - A) = \det \begin{pmatrix} \lambda - \cos\theta & \sin\theta \\ -\sin\theta & \lambda - \cos\theta \end{pmatrix} \\
+& = (\lambda - \cos\theta)(\lambda - \cos\theta) + \sin\theta\sin\theta \\
+& = \lambda^2 - 2\cos\theta\lambda + 1
+\end{align*}
+以上方程当$\cos\theta\neq 1$时是没有实根的。
+
+\vspace{1em}
+\pause
+
+方阵$A$对应于2维实平面$\mathbb{R}^2$中的逆时针旋转$\theta$角的线性变换。除非这个角度是$2\pi$的倍数，否则不可能有向量经过这个变换之后还保持方向不变。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{如何求特征向量}
+从方阵$A$的特征多项式$f(\lambda)$出发，算得其特征值$\lambda_1, \ldots, \lambda_s$, 接下来就可以从$s$个齐次线性方程组出发
+$$(A - \lambda_i I_n)\mathbf{x} = \mathbf{0}$$
+算得属于相应特征值的特征向量。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{几何重数与代数重数}
+对于方阵$A$的一个特征值$\lambda_i$, 称
+$$V_{\lambda_i} := \{ \mathbf{x} \in \mathbb{R}^n \ |\ A\mathbf{x} = \lambda_i\mathbf{x} \}$$
+为$A$的关于特征值$\lambda_i$的特征子空间，其维数为特征值$\lambda_i$的几何重数。注意，零向量满足上式，自然包含在所有的$V_{\lambda_i}$中，但特征向量不能是零向量。也就是说
+$$V_{\lambda_i} := \{ \text{属于$\lambda_i$的特征向量} \} \cup \{\mathbf{0}\}$$
+
+\vspace{1em}
+\pause
+
+相应地，特征多项式$f(\lambda)$的因子$(\lambda - \lambda_i)$的次数被称为特征值$\lambda_i$的代数重数。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{算例}
+求方阵$A = \begin{pmatrix} 2 & 2 & -1 \\ -1 & 0 & 1 \\ -1 & 0 & 2 \end{pmatrix}$的特征值与特征多项式。
+
+\vspace{1em}
+\pause
+
+解：先求$A$的特征值，特征多项式为
+$$
+f(\lambda) = \det \begin{pmatrix} \lambda-2 & -2 & 1 \\ 1 & \lambda & -1 \\ 1 & 0 & \lambda-2 \end{pmatrix} = (\lambda-1)^2(\lambda-2)
+$$
+所以得到$A$的特征值为：$\lambda_1=1$（重数为2）；$\lambda_2=2$。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{算例}
+再求$A$的特征向量。
+
+\begin{itemize}
+\item 对于$\lambda_1 = 1$，解齐次线性方程组
+$$(\lambda_1 I-A)\mathbf{x} = \mathbf{0},$$
+得到属于特征值$\lambda_1 = 1$的一个线性无关的特征向量为$\mathbf{x}_{11} = t(1,0,1)^T, t\in\mathbb{R}, t\neq 0$.
+\item 对于$\lambda_2 = 2$，解齐次线性方程组
+$$(\lambda_2 I-A)\mathbf{x} = \mathbf{0},$$
+得到属于特征值$\lambda_2 = 2$的一个线性无关的特征向量为$\mathbf{x}_{21} = t(0,1,2)^T, t\in\mathbb{R}, t\neq 0$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{特征值与特征向量的性质}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{特征值与特征向量的性质}
+\begin{itemize}
+\item<1-> $n$阶方阵的特征值至多有$n$个，可以少于$n$个。
+\item<2-> 每个特征值都对应有至少一个特征向量，但其特征空间的维数（几何重数）不超过其代数重数，可以严格小于。
+\item<3-> 设$f(\lambda) = \det(\lambda I_n - A) = \lambda^n - a_1\lambda^{n-1} + \cdots + (-1)^na_n$是方阵$A$的特征多项式，那么
+$$a_1 = tr A, \quad a_n = \det A$$
+\item<4-> 对于分块方阵\(\displaystyle A = \begin{pmatrix} A_1 & A_3 \\ 0 & A_2 \end{pmatrix}\), 其中$A_1,A_2$都是方阵，那么
+$$f_A(\lambda) = f_{A_1}(\lambda)f_{A_2}(\lambda)$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{方阵的对角化}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方阵的对角化}
+\begin{itemize}
+\item 方阵$A$相似于上三角阵\(\displaystyle \begin{pmatrix} \lambda_1 & & * \\ & \ddots & \\ & & \lambda_n \end{pmatrix}\)当且仅当其特征多项式$f(\lambda)$有$n$个特征值（可以重复）$\lambda_1,\ldots,\lambda_n$.
+
+\vspace{2em}
+\pause
+
+\item 方阵可对角化的充要条件：\newline
+方阵$A$相似于对角阵\(\displaystyle \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}\)当且仅当他有$n$个线性无关的特征向量。此时，$\lambda_1,\ldots,\lambda_n$为$A$的特征值。
+
+\vspace{1em}
+\pause
+
+因此，可对角化方阵的对角化又被称作方阵的特征分解（Eigendecomposition）。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方阵的对角化}
+{\bfseries 引理}：设$\lambda_1\neq\lambda_2$是方阵$A$的两个不相等的特征值。任取对应于$\lambda_1$的一个特征向量$\alpha_1$, 任取对应于$\lambda_2$的一个特征向量$\alpha_2$, 那么$\alpha_1$与$\alpha_2$线性无关。
+
+\vspace{2em}
+\pause
+
+{\bfseries 推论}：若$n$阶方阵有$n$个互不相等的特征值，那么该方阵可以对角化。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{引理的证明}
+有定义，$\alpha_1$与$\alpha_2$都不是零向量，因此假如他们线性相关，就可以设存在实数$k$使得$\alpha_1=k\alpha_2$. 那么
+$$A\alpha_1 = A(k\alpha_2) = kA\alpha_2 = k\lambda_2\alpha_2.$$
+另一方面，又有
+$$A\alpha_1 = \lambda_1\alpha_1 = \lambda_1k\alpha_2.$$
+于是
+$$k\lambda_2\alpha_2 = k\lambda_1\alpha_2,$$
+即
+$$k(\lambda_1-\lambda_2)\alpha_2 = \mathbf{0}.$$
+这与特征向量的定义（都是非零向量）矛盾。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方阵对角化的过渡矩阵}
+设$n$阶方阵$A$有$n$个线性无关的特征列向量$\alpha_1,\ldots,\alpha_n$, 分别对应于特征值$\lambda_1,\ldots,\lambda_n$, 那么有
+$$A(\alpha_1,\ldots,\alpha_n) = (\alpha_1,\ldots,\alpha_n) \underbrace{\begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}}_{\Lambda}.$$
+
+\vspace{1em}
+\pause
+
+令$P = (\alpha_1,\ldots,\alpha_n)$, 为一个可逆$n$阶方阵，而且有$AP = P\Lambda,$ 即有
+$$A = P\Lambda P^{-1}, \quad \text{ 或者说 } P^{-1}AP = \Lambda.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例题}
+令$A = \begin{pmatrix} 2 & -1 & 2 \\ 0 & 3 & 1 \\ 0 & 0 & 5 \end{pmatrix}$, 求$A^{n}$.
+
+\vspace{1em}
+\pause
+
+解：容易算得$A$的特征值为$2, 3, 5$, 对应的特征向量为$$k(1,0,0)^T, \; k(-1,1,0)^T, \; k(1,1,2)^T$$
+那么令$P=\begin{pmatrix} 1 & -1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 2 \end{pmatrix}$，则有$A = P \begin{pmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix} P^{-1}$.
+因此
+\begin{equation*}
+\small
+A^{n} = P \begin{pmatrix} 2^{n} & 0 & 0 \\ 0 & 3^{n} & 0 \\ 0 & 0 & 5^{n} \end{pmatrix} P^{-1} = \begin{pmatrix} 2^{n} & 2^n-3^n & \frac{1}{2}(3^n+5^n-2^{n+1}) \\ 0 & 3^n & \frac{1}{2}(5^n-3^n) \\ 0 & 0 & 5^n \end{pmatrix}
+\end{equation*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

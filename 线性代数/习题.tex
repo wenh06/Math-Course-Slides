@@ -1,0 +1,533 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Linear Algebra]{\LARGE \bfseries 第二部分\quad 线性代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Exercises] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries 习题}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+
+{\color{red} \scriptsize 带$^*$号的题目可以不做}
+
+\vspace{1em}
+
+1. 用高斯消元法解下列线性方程组
+\begin{itemize}
+\item[(1)] $\displaystyle \systeme{-x_2 -x_3 + x_4 = 0, x_1 + x_2 + 3x_3 - x_4 = 0, -2x_1 + 3x_2 - x_4 = 0, -x_1 - 4x_3 - 4x_4 = 0}$
+\item[(2)] $\displaystyle \systeme{x_1 + x_2 + x_3 = 0, x_2 + x_3 = -2, -x_1 - 2x_3 = -2}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+2. 计算下列方阵的行列式
+% \begin{itemize}
+% \item[(1)] $\displaystyle $
+% \item[(2)] $\displaystyle $
+% \end{itemize}
+
+(1) $\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$ \quad (2) $\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$ \quad (3) $\begin{pmatrix} \cos\theta & 0 & -\sin\theta \\ 0 & 1 & 0 \\ \sin\theta & 0 & \cos\theta \end{pmatrix}$ \newline
+\vspace{0.5em}
+(4) $\begin{pmatrix} 1 & 2 & -2 & 1 \\ -1 & -2 & 4 & -2 \\ 0 & 1 & 2 & -1 \\ 4 & 3 & -3 & 5 \end{pmatrix}$ \quad (5) $\begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & -1 & 2 & 3 \\ 1 & 1 & 4 & 9 \\ 1 & -1 & 8 & 27 \end{pmatrix}$
+
+\vspace{1em}
+
+3$^*$. 设$\left\{ \begin{array}{rcl} L_1: \alpha x + \beta y + \gamma = 0 \\ L_2: \gamma x + \alpha y + \beta = 0 \\ L_3: \beta x + \gamma y + \alpha = 0\end{array}\right.$是$\mathbb{R}^2$平面上三条不同的直线。如果$L_1, L_2, L_3$交于一点，试证$\alpha + \beta + \gamma = 0$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+4. 计算矩阵的乘积
+\begin{itemize}
+\item[(1)] 设$A = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}, B = \begin{pmatrix} b_1 & b_2 \end{pmatrix}$, 分别计算$AB$与$BA$
+\vspace{0.5em}
+\item[(2)] 设$A = \begin{pmatrix} 1 & 1 \\ -1 & -1 \end{pmatrix}, B = \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$, 分别计算$AB$与$BA$
+\vspace{0.5em}
+\item[(3)] 设$A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}, B = \begin{pmatrix} -1 & 3 \\ -2 & 1 \end{pmatrix}, C = \begin{pmatrix} -7 & 1 \\ 1 & 2 \end{pmatrix}$，分别计算$AB$与$AC$
+\vspace{0.5em}
+\item[(4)] 设$A = \begin{pmatrix} a_1 \\ a_2 \\ a_3 \end{pmatrix}, B = \begin{pmatrix} b_1 & b_2 & b_3 \end{pmatrix}$，求$(AB)^{100}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+5. 求下列方阵的逆
+\newline \vspace{0.5em}
+(1) $\begin{pmatrix} \cos\varphi & -\sin\varphi \\ \sin\varphi & \cos\varphi \end{pmatrix}$ \quad (2) $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$, 其中$ad-bc\neq 0$
+\newline \vspace{0.5em}
+(3) $\begin{pmatrix} 2 & 0 & 7 \\ -1 & 4 & 5 \\ 3 & 1 & 2 \end{pmatrix}$ \qquad\quad (4) $\begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 1 & -1 & -1 \\ 1 & -1 & 1 & -1 \\ 1 & -1 & -1 & 1 \end{pmatrix}$
+
+\vspace{1em}
+
+6. 设$n$阶方阵$A$满足$A^k = 0$, 求证$I_n-A$可逆，且它的逆为
+$$(I_n-A)^{-1} = I_n + A + A^2 + \cdots + A^{k-1}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+7$^*$. 设$A$为$n$阶可逆阵。
+\begin{itemize}
+\item[(1)] 设$\mathbf{u}, \mathbf{v}$是$n$维列向量，且$1 + \mathbf{v}^T A^{-1} \mathbf{u} \neq 0$，求证
+$$(A+\mathbf{u}\mathbf{v}^T)^{-1} = A^{-1} - \frac{A^{-1} \mathbf{u} \mathbf{v}^T A^{-1}}{1 + \mathbf{v}^T A^{-1} \mathbf{u}}$$
+\item[(2)] 设$U$是$n\times k$矩阵，$V$是$k\times n$矩阵，$C$是$k\times k$矩阵，且$ C^{-1}+VA^{-1}U$可逆，求证
+$$ \left(A+UCV \right)^{-1} = A^{-1} - A^{-1}U \left(C^{-1}+VA^{-1}U \right)^{-1} VA^{-1}.$$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+8. 判断下列子集是否为给定线性空间$\mathbb{R}^3$的子空间\\
+\begin{itemize}
+\item[(1)] $V_1 = \{(x_1,2,0) \in \mathbb{R}^3\}$
+\vspace{0.4em}
+\item[(2)] $V_2 = \{(x_1,0,x_3) \in \mathbb{R}^3\}$
+\vspace{0.4em}
+\item[(3)] $V_3 = \{(x_1,x_2,x_3) \in \mathbb{R}^3 \ |\ x_1-3x_2+2x_3=0\}$
+\vspace{0.4em}
+\item[(4)] $V_4 = \{(x_1,x_2,x_3) \in \mathbb{R}^3 \ |\ x_1-3x_2+2x_3=1\}$
+\vspace{0.4em}
+\item[(5)] $V_5 = \{(x_1,x_2,x_3) \in \mathbb{R}^3 \ |\ \frac{x_1}{2}=\frac{x_2-4}{3}=\frac{x_3-3}{4}\}$
+\vspace{0.4em}
+\item[(6)] $V_6 = \{(x_1,x_2,x_3) \in \mathbb{R}^3 \ |\ x_1=x_3\mbox{且}x_1+x_2+x_3=0\}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+9. 设$\alpha = (1,-2,2,0)^T, \beta = (3,2,1,-2)^T$为$\mathbb{R}^4$中的两个向量
+\begin{itemize}
+\item[(1)] 分别求$\alpha, \beta$的长度，二者的内积以及夹角
+\vspace{0.4em}
+\item[(2)] 设$V = \operatorname{span}\{\alpha, \beta\}$, 求$V$在$\mathbb{R}^4$中的正交补$V^{\perp}$
+\end{itemize}
+
+\vspace{1em}
+
+10. 用Gram-Schmidt正交化程序把$\mathbb{R}^4$的基
+$$(1,1,1,1)^T,(1,0,1,1)^T,(1,1,0,1)^T,(1,1,1,0)^T$$
+化为一组标准正交基
+
+\vspace{1em}
+
+11. 将实对称阵$A = \begin{pmatrix} 0 & 1 & 1 & -1 \\ 1 & 0 & -1 & 1 \\ 1 & -1 & 0 & 1 \\ - 1 & 1 & 1 & 0 \end{pmatrix}$对角化
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+12. 考虑矩阵$A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 5 \end{pmatrix}$与矩阵$B = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 5 \end{pmatrix}$. 问
+\begin{itemize}
+\item[(1)] $A,B$是否相抵？
+\item[(2)] $A,B$是否相似？
+\end{itemize}
+
+\vspace{1em}
+
+13. 假设在某省，每年有比例$p$的农村居民移居城镇，有比例为$q$的城镇居民移居到农村。假设该省的人口总数不变，
+且上述人口迁移的规律不变。将$n$ 年后农村人口和城镇人口占总人口的比例分别记为$x_n$ 和$y_n$ （$x_n+y_n=1$）。
+\begin{itemize}
+\item[(1)] 求关系式$\begin{pmatrix} x_{n+1} \\ y_{n+1} \end{pmatrix} = A \begin{pmatrix} x_n \\ y_n \end{pmatrix}$ 中的矩阵$A$
+\item[(2)] 设目前农村与城镇人口相等，即$\begin{pmatrix} x_0 \\ y_0 \end{pmatrix} = \begin{pmatrix} 0.5 \\ 0.5 \end{pmatrix}$, 
+求$\begin{pmatrix} x_{n} \\ y_{n} \end{pmatrix}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+14. 判别下列二次型是否正定
+\begin{itemize}
+\item[(1)] $10x_1^2 + 8x_1x_2 + 24x_1x_3 + 2x_2^2 - 28x_2x_3 + x_3^2$
+\vspace{0.4em}
+\item[(2)] $\sum\limits_{i=1}^n x_i^2 + \sum\limits_{1\le i<j\le n} x_ix_j$
+\end{itemize}
+
+\vspace{1em}
+
+15. 考虑二次型
+$$Q(x_1,x_2,x_3) = \lambda(x_1^2+x_2^2+x_3^2) + 2x_1x_2 + 2x_1x_3 - 2x_2x_3$$
+问$\lambda$分别取什么值的时候，$Q$是正定，以及负定的
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+16. 求以下矩阵的Moore-Penrose伪逆$A^+$
+
+\vspace{0.5em}
+
+(1) $(a,b,c)$ \quad (2) $\begin{pmatrix} a \\ b \\ c \end{pmatrix}$ \quad (3) $\begin{pmatrix} a & 0 & 0 \\ 0 & b & 0 \\ 0 & 0 & 0 \end{pmatrix}$ \quad (4) $\begin{pmatrix} a & b \\ 2a & 2b \end{pmatrix}$ 
+
+\vspace{0.5em}
+
+(5) $\begin{pmatrix} 3 & 0 \\ 4 & 5 \end{pmatrix}$ \quad (6) $\begin{pmatrix} 0 & 1 & & \\ & \ddots & \ddots & \\ & & \ddots & 1 \\ & & & 0 \end{pmatrix}$ \quad (7) $\begin{pmatrix} 0 & \cdots & 0 & 1 \\ \vdots & \ddots & & 0 \\ \vdots & & \ddots & \vdots \\ 0 & \cdots & \cdots & 0 \end{pmatrix}$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+17. 求下列线性方程组的最小二乘解
+\begin{itemize}
+\item[(1)] $\begin{pmatrix} 1 & -2 & 4 \\ 1 & -1 & 1 \\ 1 & 0 & 0 \\ 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 2 \\ 1 \\ 0 \end{pmatrix}$
+\item[(2)] $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$
+\end{itemize}
+
+\vspace{1em}
+
+18$^*$. 叙述并证明复矩阵情况的奇异值分解定理
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,492 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+
+\usepackage[ruled,linesnumbered]{algorithm2e}
+% \usepackage{listings}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-------------------------------------
+%	TITLE PAGE
+%-------------------------------------
+
+
+\title[Calculus]{\LARGE \bfseries 第一部分\quad 微积分} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[\tiny Back Propagation] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 9. 反向传播算法初步
+}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%---------------------------------------
+%	PRESENTATION SLIDES
+%---------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+
+\tikzset{%
+  every neuron/.style={
+    circle,
+    draw,
+    minimum size=0.5cm
+  },
+  neuron missing/.style={
+    draw=none, 
+    scale=2,
+    text height=0.333cm,
+    execute at begin node=\color{zkblue}$\vdots$
+  },
+}
+
+\begin{block}{神经网络示意图}
+\end{block}
+
+
+\begin{center}
+\begin{tikzpicture}[x=1.3cm, y=0.9cm, >=stealth]
+
+% \foreach \m/\l [count=\y] in {1,2,3,missing,4}
+%   \node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2.5-\y) {$x_{\m}$};
+\foreach \m/\l [count=\y] in {1,2,3}
+  \node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2.5-\y) {$x_{\m}$};
+  \node [neuron missing/.try] (input-missing) at (0,2.5-4) {};
+  \node [every neuron/.try] (input-4) at (0,2.5-5) {$x_n$};
+
+% \foreach \m [count=\y] in {1,missing,2}
+%   \node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};  
+  \node [every neuron/.try] (hidden-1) at (2,2-1*1.25) {$t_1$};
+  \node [neuron missing/.try] (hidden-missing) at (2,2-2*1.25) {};
+  \node [every neuron/.try] (hidden-2) at (2,2-3*1.25) {$t_p$};
+
+% \foreach \m [count=\y] in {1,missing,2}
+%   \node [every neuron/.try, neuron \m/.try ] (output-\m) at (4,1.5-\y) {};
+  \node [every neuron/.try] (output-1) at (4,1.5-1) {$y_1$};
+  \node [neuron missing/.try] (output-missing) at (4,1.5-2) {};
+  \node [every neuron/.try] (output-2) at (4,1.5-3) {$y_m$};
+
+\foreach \l [count=\i] in {1,2,3,n}
+  \draw [<-] (input-\i) -- ++(-1,0)
+    node [above, midway] {$I_\l$};
+
+% \foreach \l [count=\i] in {1,n}
+%   \node [above] at (hidden-\i.north) {$H_\l$};
+\node [above] at (hidden-1.north) {$H_1$};
+\node [below] at (hidden-2.south) {$H_p$};
+
+\foreach \l [count=\i] in {1,m}
+  \draw [->] (output-\i) -- ++(1,0)
+    node [above, midway] {$O_\l$};
+
+\foreach \i in {2,...,3}
+  \foreach \j in {1,...,2}
+    \draw [->] (input-\i) -- (hidden-\j);
+
+\draw [->] (input-1) -- (hidden-2);
+\draw [->] (input-4) -- (hidden-1);
+\draw [->] (input-1) -- (hidden-1)
+  node [above, midway] {$\color{red} w_{11}$};
+\draw [->] (input-4) -- (hidden-2)
+  node [below, midway] {$\color{red} w_{np}$};
+
+% \foreach \i in {1,...,2}
+%   \foreach \j in {1,...,2}
+%     \draw [->] (hidden-\i) -- (output-\j);
+
+\draw [->] (hidden-1) -- (output-2);
+\draw [->] (hidden-2) -- (output-1);
+\draw [->] (hidden-1) -- (output-1)
+  node [above, midway] {$\color{red} v_{11}$};
+\draw [->] (hidden-2) -- (output-2)
+  node [below, midway] {$\color{red} v_{pm}$};
+
+\foreach \l [count=\x from 0] in {输入层, 隐藏层, 输出层}
+  \node [align=center, above] at (\x*2,2) {\l};
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{神经网络}
+对于以上神经网络，有
+\begin{align*}
+\small
+t_j = \sigma( \underbrace{\sum\limits_{i=1}^n {\color{red} w_{ij}}x_i + {\color{red} b_j}}_{r_j^{(1)}} ), \quad y_j = \sigma ( \underbrace{\sum\limits_{i=1}^p {\color{red} v_{ij}}t_i + {\color{red} b'_j}}_{r_j^{(2)}})
+\end{align*}
+其中的$\sigma$为所谓的Activation Function, 一般是以下的Sigmoid Functions之一
+\begin{itemize}
+\item 逻辑函数$f(x) = \dfrac{1}{1 + e^{-x}}$,
+\item 双曲函数$\tanh(x) = \dfrac{e^x - e^{-x}}{e^x + e^{-x}}$,
+\item 误差函数$\operatorname{erf}(x) = \dfrac{1}{\sqrt{\pi}} \int\limits_{0}^x e^{-t^2}dt$, \; $\cdots\cdots$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{反向传播算法原理}
+预先取定一个损失函数$L$, 例如可以取
+$$L(y, \widehat{y}) = (y-\widehat{y})^2$$
+其中$\widehat{y}$为模型的输出值。
+
+\vspace{0.5em}
+
+目标：使$\mathcal{L} = \sum L(y_j, \widehat{y}_{j}) {\color{gray!50} + \text{正则化项}}$最小化。
+
+\vspace{0.5em}
+
+方法：梯度下降。为了记号方便，考虑没有$b,b'$的情形。
+$$\mathcal{L}(v_{ij}+h_{ij}) \approx \mathcal{L}(v_{ij}) + \nabla\mathcal{L}(v_{ij})\cdot (h_{ij})$$
+需要取$(v_{ij})$的增量为
+$$(h_{ij}) = -\eta \nabla\mathcal{L}(v_{ij})$$
+$\eta$为所谓的学习率。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{反向传播算法原理}
+用坐标表示（再加上求偏导的链式法则）就是
+$$h_{ij} = -\eta\dfrac{\partial\mathcal{L}}{\partial v_{ij}} = \pause -\eta \underbrace{\dfrac{\partial L}{\partial \widehat{y}_j}}_{\partial_2 L} \cdot \underbrace{\dfrac{\partial \widehat{y}_j}{\partial r_j^{(2)}}}_{\sigma'} \cdot \underbrace{\dfrac{\partial r_j^{(2)}}{\partial v_{ij}}}_{t_i}$$
+于是隐藏层到输出层的权重就要做如下更新：
+
+\pause
+
+$$v_{ij} \quad{\color{red}\longrightarrow\quad} v_{ij} + h_{ij} = v_{ij} - \eta \cdot \partial_2 L \cdot \sigma' \cdot t_i$$
+
+
+\pause
+
+同理，输入层到隐藏层的权重要做如下更新：
+$$w_{ij} \quad{\color{red}\longrightarrow\quad} w_{ij} - \eta \partial_2 L \cdot \sigma' \cdot x_i$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{反向传播}
+\begin{itemize}
+\item 通过这种反向的反馈机制，用输出的结果，反过来调节权重的大小。
+\vspace{1em}
+\pause
+\item 用调整后的神经网络输入下一组样本，进行实验。用同样的方法再次调节权重的大小。依次重复，直到达到停止条件。
+\end{itemize}
+
+\end{block}
+
+\end{frame}
+
+% %------------------------------------------------
+
+\begin{frame}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwRepeat{Do}{do}{while}
+
+\Input{训练集$\left\{\mathbf{y}_i, \mathbf{x}_i\right\}_{i=1}^N$}
+\Input{可微凸损失函数$L(y,\widehat{y})$, 激励函数$\sigma$, 学习率$\eta$}
+% \Input{weak learner $f_m(\mathbf{x}), m = 1,\ldots,M$}
+% initialize model with a constant value
+任选一组参数$(v_{ij}), (w_{ij}), b_i, b'_i$\;
+$i \gets 1$ \;
+\Do{达到停止条件}
+{
+输入$\mathbf{x}_i$, 计算预测值$\widehat{\mathbf{y}}_i$, 并保存中间结果（隐藏层$\mathbf{t}_i$）\;
+计算$\partial_2 L, \sigma'$在相应自变量（$\widehat{\mathbf{y}}_i, \mathbf{t}_i$）处的取值 \;
+更新隐藏层到输出层的权重以及Bias \;
+更新输入层到隐藏层的权重以及Bias \;
+$i \gets i+1$ \;
+}
+\Output{带参数$(v_{ij}), (w_{ij}), b_i, b'_i$的神经网络}
+\caption{最简单的反向传播算法}
+\end{algorithm}
+
+\end{frame}
+
+% %------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

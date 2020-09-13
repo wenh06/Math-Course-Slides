@@ -1,0 +1,559 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Linear Algebra]{\LARGE \bfseries 第二部分\quad 线性代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[SVD] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 7. 奇异值分解}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+\section{问题引入} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+\begin{frame}
+
+\begin{block}{问题引入}
+\begin{itemize}
+\item<1-> 方阵：特征分解。\newline
+一个$n$阶可对角化方阵$A$可以分解为
+$$A = P\Lambda P^{-1},$$
+其中$\Lambda = \operatorname{diag}(\lambda_1,\ldots,\lambda_n)$是一个{\color{red}对角阵}，对角元$\lambda_i$为$A$的特征值，$P$由相应的特征向量$\mathbf{v}_i$组成。\newline
+
+\item<2-> 问题：对于一个一般的$m\times n$的实矩阵，如何将其``对角化''？
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{奇异值分解定理} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解定理，Theorem of Singular Value Decomposition}
+设$M$是一个$m\times n$的实矩阵，则$M$有如下的所谓的奇异值分解（Singular Value Decomposition, SVD）：
+$$M = U\Sigma V^T = U\begin{pmatrix}
+\sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\! V^T,$$
+\pause
+\begin{itemize}
+\item $r = r(M)$，$\sigma_1 \geqslant \cdots \geqslant \sigma_r > 0$被称为奇异值（Singular Value）
+\item $U,V$分别为$m$阶，$n$阶正交矩阵，他们的前$r$列向量分别被称为左、右奇异向量（Left-,Right-Singular Vector）。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{定理证明} 
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{关键点}
+\begin{itemize}
+\item<2-> 特征分解的特殊情况：当$A$是一个实对称方阵的时候，它正交相似于对角阵：
+$$A = P\Lambda P^T,$$
+其中$P$为正交阵。
+\vspace{1em}
+\item<3-> 若$M$为$m\times n$的实矩阵，则$MM^T, M^TM$分别为$m$阶与$n$阶实对称方阵。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{引理}
+\centering
+$MM^T$与$M^TM$的特征值非负，且二者的正特征值之集相同。
+\end{block}
+
+\pause
+
+\begin{proof}[证明\nopunct]
+任取$MM^T$的一个特征值$\lambda$以及相应的一个特征向量$\mathbf{x}$，即有$MM^T\mathbf{x} = \lambda\mathbf{x}$。那么$\mathbf{x}^TMM^T\mathbf{x} = \mathbf{x}^T\lambda\mathbf{x}$，即
+\begin{equation}
+\label{eq1}
+\Vert M^T\mathbf{x} \Vert^2 = \lambda \Vert \mathbf{x} \Vert^2.
+\end{equation}
+所以$\lambda$非负。同理$M^TM$的特征值也都是非负实数。\newline\pause
+设$\lambda > 0$,还是由$MM^T\mathbf{x} = \lambda\mathbf{x}$，有
+\begin{equation}
+\label{eq2}
+M^TMM^T\mathbf{x} = \lambda M^T\mathbf{x},
+\end{equation}
+又由\eqref{eq1}式知$M^T\mathbf{x}$非零向量，故$\lambda$也是$M^TM$的正特征值。
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解定理的证明}
+把$MM^T$与$M^TM$的正特征值记为$\sigma_1^2 \geqslant \cdots \geqslant \sigma_r^2 > 0,$ 其中$\sigma_i>0.$ 设$M^TM$通过$n$阶正交阵$V = (\mathbf{v}_1,\ldots,\mathbf{v}_n)$对角化：
+$$M^TM = V \begin{pmatrix}
+\sigma_1^2 & & & \\ & \ddots & & \\ & & \sigma_r^2 & \\ & & & \bigzero \end{pmatrix}_n\!\! V^T.$$
+有$M^TM\mathbf{v}_i = \sigma_i^2\mathbf{v}_i,$ 令$\mathbf{u}_i = \dfrac{M\mathbf{v}_i}{\sigma_i},$ 那么可以证明：
+
+\pause
+
+\begin{enumerate}
+\item $\mathbf{u}_1, \ldots, \mathbf{u}_r$是$m$阶实对称阵$MM^T$的单位正交的特征向量；
+\item $M\mathbf{v}_i = \sigma_i\mathbf{u}_i, \ M^T\mathbf{u}_i = \sigma_i\mathbf{v}_i.$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解定理的证明}
+于是有
+$$M(\mathbf{v}_1,\ldots,\mathbf{v}_r) = (\mathbf{u}_1,\ldots,\mathbf{u}_r) \begin{pmatrix}
+\sigma_1 & & \\ & \ddots & \\ & & \sigma_r \end{pmatrix}.$$
+
+\pause
+
+把$\left\{ \mathbf{u}_1,\ldots,\mathbf{u}_r \right\}$扩充为$\mathbb{R}^m$的一组单位正交基$\left\{ \mathbf{u}_1,\ldots,\mathbf{u}_r,  \mathbf{u}_{r+1},\ldots,\mathbf{u}_m \right\}$，那么我们就得到了SVD定理中的形式:
+$$M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
+\sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\!(\mathbf{v}_1,\ldots,\mathbf{v}_n)^T.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解的一种更紧凑的形式}
+将$M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
+\sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\!(\mathbf{v}_1,\ldots,\mathbf{v}_n)^T$写成分块形式
+$$M = (U_1, U_2) \begin{pmatrix} \Sigma_0 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} V_1 \\ V_2 \end{pmatrix} = U_1\Sigma_0V_1,$$
+其中
+\begin{gather*}
+U_1 = (\mathbf{u}_1,\ldots,\mathbf{u}_r), \quad U_2 = (\mathbf{u}_{r+1},\ldots,\mathbf{u}_m); \\
+V_1 = (\mathbf{v}_1,\ldots,\mathbf{v}_r)^T, \quad V_2 = (\mathbf{v}_{r+1},\ldots,\mathbf{v}_n)^T; \\
+\Sigma_0 = \begin{pmatrix}
+\sigma_1 & & \\ & \ddots & \\ & & \sigma_r \end{pmatrix}
+\end{gather*}
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{例子与应用}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解的例子}
+计算矩阵$M = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$的奇异值分解。
+
+\vspace{1em}
+\pause
+
+解：有
+$$M^TM = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix} \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.$$
+于是有奇异值$\sigma_1 = \sigma_2 = 1$. 我们可以选取
+$$\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+从而有
+$$\mathbf{u}_1 = M\mathbf{v}_1 = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \quad \mathbf{u}_2 = M\mathbf{v}_2 = \begin{pmatrix} -\sin\theta \\ \cos\theta \end{pmatrix}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解的例子（续）}
+于是$M = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$的奇异值分解可以是
+$$M = U\Sigma V^T = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \cdot I_2 \cdot I_2.$$
+
+\vspace{1em}
+\pause
+
+我们也可以另选
+$$\mathbf{v}_1 = \begin{pmatrix} \cos\alpha \\ \sin\alpha \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} -\sin\alpha \\ \cos\alpha \end{pmatrix},$$
+于是，相应的奇异值分解为
+$$M = U\Sigma V^T = \begin{pmatrix} \cos(\theta+\alpha) & -\sin(\theta+\alpha) \\ \sin(\theta+\alpha) & \cos(\theta+\alpha) \end{pmatrix} \cdot I_2 \cdot \begin{pmatrix} \cos\alpha & \sin\alpha \\ -\sin\alpha & \cos\alpha \end{pmatrix}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解的应用：图像压缩}
+利用SVD，我们可以把一个秩为$r$的$m\times n$矩阵$M$写作
+$$M = \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \cdots + \sigma_r\mathbf{u}_r\mathbf{v}_r^T.$$
+
+考虑$M$是一幅$m\times n$个像素的图片的情况。尽管图片一般接近满秩，但{\color{red}有效秩}很低。也就是说，存在一个相对于$r$很小的$k$，使得$\sigma_{k+1},\ldots,\sigma_{r}$非常小，接近于$0$，因此用
+$$M_k := \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \cdots + \sigma_k\mathbf{u}_k\mathbf{v}_k^T$$
+可以很好地近似$M$，同时只需要存储$k(m+n+1)$个数据，而不是原始的$mn$个数据。于是所需存储的数据大大减少，图像得到了压缩。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{奇异值分解的应用}
+SVD的应用还包括
+\begin{itemize}
+\item 计算Moore–Penrose伪逆，进而求解最小二乘法问题；
+\item 数据集的主成分分析（Principal Components Analysis，PCA）;
+\item PageRank
+\item Eigenface
+\item $\cdots\cdots$
+\end{itemize}
+\end{block}
+
+\vspace{1em}
+\pause
+
+还需要强调的是，计算机中SVD的实现，并不是按我们证明SVD定理中的步骤来的，而是用另外的快速的算法。（类似的还有线性代数中其他很多的计算）
+
+这里就不做讨论了。
+
+\end{frame}
+
+%------------------------------------------------
+
+% %------------------------------------------------
+
+% \section{习题}
+
+% %------------------------------------------------
+
+% \begin{frame}
+% \frametitle{习题}
+
+% \begin{itemize}
+% \item[1.] 完成奇异值分解定理证明过程中留作习题的部分。\newline
+% \item[2.] 叙述并证明复矩阵情况的奇异值分解定理。\newline
+% \item[3.] 利用numpy等工具对图片进行奇异值分解。（可参考\href{https://www.frankcleary.com/svdimage/}{\nolinkurl{https://www.frankcleary.com/svdimage/}}）
+% \end{itemize}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

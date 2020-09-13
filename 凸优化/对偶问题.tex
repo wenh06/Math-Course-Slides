@@ -1,0 +1,614 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+\makeatletter
+\providecommand{\leftsquigarrow}{%
+  \mathrel{\mathpalette\reflect@squig\relax}%
+}
+\newcommand{\reflect@squig}[2]{%
+  \reflectbox{$\m@th#1\rightsquigarrow$}%
+}
+\makeatother
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Convex Optimization]{\LARGE \bfseries 第四部分\quad 凸优化} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Dual Problems] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 4. 对偶问题}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{Lagrange对偶函数}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{标准问题的Lagrange函数}
+考虑标准的优化问题
+\vspace{-0.5em}
+\begin{eqnarray*}
+& \text{minimize} & f_0(\mathbf{x}) \\
+& \text{subject to} & f_i(\mathbf{x}) \le 0, \quad i = 1,\ldots,m \\
+& & h_j(\mathbf{x}) = 0, \quad j = 1,\ldots,p
+\end{eqnarray*}
+定义它的Lagrange函数$L: \mathbb{R}^n \times \mathbb{R}^m \times \mathbb{R}^p \rightarrow \mathbb{R}$为
+\vspace{-0.5em}
+$$L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu) = f_0(\mathbf{x}) + \sum\limits_{i=1}^m \lambda_i f_i(\mathbf{x}) + \sum\limits_{j=1}^p \nu_j h_j(\mathbf{x})$$
+\vspace{-1em}
+\begin{itemize}
+\item $\lambda_i \ge 0$: 对应$f_i(\mathbf{x}) \le 0$的Lagrange乘子（Multiplier）
+\item $\nu_j$: 对应$h_j(\mathbf{x}) = 0$的Lagrange乘子
+\item $\boldsymbol\lambda, \boldsymbol\nu$: Lagrange乘子向量，或对偶变量
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Lagrange对偶函数}
+定义Lagrange对偶函数$g: \mathbb{R}^m \times \mathbb{R}^p \rightarrow \mathbb{R}$为Lagrange函数关于$\mathbf{x}$取得的最小值：即对$\boldsymbol\lambda, \boldsymbol\nu$有
+\begin{align*}
+g(\boldsymbol\lambda, \boldsymbol\nu) & = \inf\limits_{\mathbf{x}} L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu) \\
+& = \inf\limits_{\mathbf{x}} \left( f_0(\mathbf{x}) + \sum\limits_{i=1}^m \lambda_i f_i(\mathbf{x}) + \sum\limits_{j=1}^p \nu_j h_j(\mathbf{x}) \right)
+\end{align*}
+注：若在某点$(\boldsymbol\lambda, \boldsymbol\nu)$, $L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu)$关于$\mathbf{x}$无最小值，则定义$g(\boldsymbol\lambda, \boldsymbol\nu) = -\infty$.
+
+\vspace{0.7em}
+\pause
+
+\begin{itemize}
+\item 对偶函数$g$是凹函数
+\item 若$\lambda_i$均非负，则最优值$p^* \ge g(\boldsymbol\lambda, \boldsymbol\nu)$. 也就是说，对偶函数构成原问题最优值$p^*$的下界
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{再谈线性规划问题}
+标准线性规划问题如下
+\begin{eqnarray*}
+& \text{minimize} & \mathbf{c}^T\mathbf{x} \\
+& \text{subject to} & -x_i \le 0, \quad i = 1,\ldots,n \\
+& & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+其Lagrange函数为
+\begin{align*}
+L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu) & = \mathbf{c}^T\mathbf{x} - \boldsymbol\lambda^T \mathbf{x} + \boldsymbol\nu^T(A\mathbf{x} - \mathbf{b}) \\
+& = -\mathbf{b}^T \boldsymbol\nu + (\mathbf{c} + A^T \boldsymbol\nu - \boldsymbol\lambda)^T \mathbf{x}
+\end{align*}
+注意，$\boldsymbol\lambda$每个分量都非负。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{再谈线性规划问题}
+于是对偶函数为
+\begin{align*}
+g(\boldsymbol\lambda, \boldsymbol\nu) & = \inf\limits_{\mathbf{x}} L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu) = \inf\limits_{\mathbf{x}} (-\mathbf{b}^T \boldsymbol\nu + (\mathbf{c} + A^T \boldsymbol\nu - \boldsymbol\lambda)^T \mathbf{x}) \\
+& = \begin{cases}
+-\mathbf{b}^T \boldsymbol\nu, & \text{ 若 } \mathbf{c} + A^T \boldsymbol\nu = \boldsymbol\lambda \\
+-\infty, & \text{ 其他情况 }
+\end{cases}
+\end{align*}
+因此，当$\mathbf{c} + A^T \boldsymbol\nu$每个分量都非负的时候，有
+$$p^* \ge -\mathbf{b}^T \boldsymbol\nu$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{对偶函数与共轭函数}
+对于带线性约束的凸优化问题
+\begin{eqnarray*}
+& \text{minimize} & f_0(\mathbf{x}) \\
+& \text{subject to} & A \mathbf{x} \preccurlyeq \mathbf{b} \\
+& & C \mathbf{x} = \mathbf{d}
+\end{eqnarray*}
+它的对偶函数能用目标函数的共轭函数比较简单地表达
+\begin{align*}
+g(\boldsymbol\lambda, \boldsymbol\nu) & = \inf\limits_{\mathbf{x}} \left( f_0(\mathbf{x}) +(A^T \boldsymbol\lambda + C^T \boldsymbol\nu)^T \mathbf{x} - \mathbf{b}^T \boldsymbol\lambda - \mathbf{d}^T \boldsymbol\nu \right) \\
+& = -f_0^*(A^T \boldsymbol\lambda + C^T \boldsymbol\nu) - \mathbf{b}^T \boldsymbol\lambda - \mathbf{d}^T \boldsymbol\nu
+\end{align*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{对偶问题}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\hspace{2em} Lagrange 对偶函数$g(\boldsymbol\lambda, \boldsymbol\nu)$给出了我们考虑的凸优化问题的最优值$p^*$的用参数$(\boldsymbol\lambda, \boldsymbol\nu)$表达的下界。那么，一个自然的问题就是，从
+Lagrange 对偶函数能得到的最好的下界是什么。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Lagrange对偶问题}
+标准凸优化问题的Lagrange对偶问题指的是如下的凸优化问题
+\begin{eqnarray*}
+& \text{maximize} & g(\boldsymbol\lambda, \boldsymbol\nu) \\
+& \text{subject to} & \lambda_i \ge 0, \quad i = 1,\ldots,n
+\end{eqnarray*}
+
+\begin{itemize}
+\item 这个问题的最优解$(\boldsymbol\lambda^*, \boldsymbol\nu^*)$被称作是对偶最优解，或是最优Lagrange乘子。相应的最优值被记作$d^*$
+\item 对偶问题总是一个凸优化问题，因为它要极大化的目标函数$g(\boldsymbol\lambda, \boldsymbol\nu)$总是凹函数，且约束集合是凸集。
+\item 一般地，将$g(\boldsymbol\lambda, \boldsymbol\nu) > -\infty$的隐含条件显式地加入约束条件中，能使问题简化
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{对偶问题的例子}
+标准线性规划问题
+\begin{eqnarray*}
+& \text{minimize} & \mathbf{c}^T\mathbf{x} \\
+& \text{subject to} & -x_i \le 0, \quad i = 1,\ldots,n \\
+& & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+的对偶问题为
+\begin{eqnarray*}
+& \text{maximize} & -\mathbf{b}^T \boldsymbol\nu \\
+& \text{subject to} & A^T \boldsymbol\nu + \mathbf{c} \succcurlyeq \mathbf{0}
+\end{eqnarray*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{弱对偶性与强对偶性}
+\begin{itemize}
+\item 弱对偶性：由$p^* \ge g(\boldsymbol\lambda, \boldsymbol\nu)$我们有不等式
+$$d^* \le p^*$$
+这个性质被称为弱对偶性，其差值$p^* - d^*$被称作原问题的最优对偶间隙（Optimal Duality Gap）
+\vspace{1em}
+\item 强对偶性：如果有等式$d^* = p^*$成立，即最优对偶间隙为0，那么称强对偶性成立。
+\begin{itemize}
+\item[$\bullet$] 一般情况下，强对偶性不成立
+\item[$\bullet$] 如果原问题是凸问题，强对偶性通常成立，但不总是成立
+\item[$\bullet$] 强对偶性成立需要除了凸性条件外的一些条件，这些条件被称作约束准则（Constraint Qualifications）
+\end{itemize}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Slater约束准则}
+对于优化变量$\mathbf{x}$的定义域$\mathcal{D}$, 定义其仿射包（Affine Hull）为
+$$\operatorname{aff}\mathcal{D} = \left\{ \theta_1\mathbf{x}_1 + \cdots + \theta_k\mathbf{x}_k \ \middle|\ \begin{array}{l}
+k \in \mathbb{Z}_{>0}; \; \mathbf{x}_1,\ldots,\mathbf{x}_k \in \mathcal{D}; \\
+\theta_1+\cdots\theta_k = 1
+\end{array} \right \}$$
+以及它的相对内部（Relative Interior）为
+$$\operatorname{relint} \mathcal{D} = \left\{ \mathbf{x} \in \mathcal{D} \ \middle|\ B(\mathbf{x},r) \cap \operatorname{aff}\mathcal{D} \subset \mathcal{D} \text{ 对于某些 } r > 0 \right\}$$
+其中$B(\mathbf{x},r) = \{\mathbf{y} \in \mathbb{R}^n \ |\ \Vert \mathbf{y} - \mathbf{x} \Vert \le r\}$为以$\mathbf{x}$为中心，以$r$为半径的闭球。
+
+\vspace{1em}
+\pause
+
+强对偶性成立的Slater约束准则指的是以下的条件：
+$$\exists\; \mathbf{x} \in \operatorname{relint} \mathcal{D}, \; \text{ 使得 }\; 
+\begin{array}{l}
+f_i(\mathbf{x}) \; {\color{red}<}\; 0, \; i = 1,\ldots,m \\
+A\mathbf{x} = \mathbf{b}
+\end{array}$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Karush-Kuhn-Tucker (KKT) 最优性条件}
+
+%------------------------------------------------
+
+\begin{frame}
+
+假设目标函数$f_0$以及（不等式和等式）约束函数$f_i,h_j$可微
+
+\pause
+
+\begin{block}{KKT 最优性条件}
+\begin{enumerate}
+\item 原始约束条件：$f_i(\mathbf{x}) \le 0, \; h_j(\mathbf{x}) = 0$
+\item 对偶约束条件：$\lambda_i \ge 0$
+\item 互补松弛条件：$\lambda_if_i(\mathbf{x}) = 0$
+\item Lagrange函数$L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu)$关于$\mathbf{x}$的梯度为$\mathbf{0}$
+$$\nabla f_0(\mathbf{x}) + \sum\limits_{i=1}^m \lambda_i \nabla f_i(\mathbf{x}) + \sum\limits_{j=1}^p \nu_j \nabla h_j(\mathbf{x}) = \mathbf{0}$$
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{itemize}
+\item 如果强对偶性成立，而且$\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu$是最优的，那么点$(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu)$必须满足 KKT 最优性条件
+\vspace{0.5em}
+\item 对于凸的原问题来说，如果$(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu)$满足 KKT 最优性条件，那么它们就是（相应问题）的最优解
+\vspace{0.5em}
+\item 很多求解凸优化问题的方法可以认为或是理解为求解 KKT 条件的方法
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例子}
+等式约束的二次凸问题求极小
+\begin{eqnarray*}
+& \text{minimize} & \dfrac{1}{2}\mathbf{x}^T P \mathbf{x} + \mathbf{q}^T\mathbf{x} + r \\
+& \text{subject to} & A\mathbf{x} = \mathbf{b}
+\end{eqnarray*}
+其中$P$半正定。此问题的 KKT 条件为
+\begin{align*}
+A\mathbf{x} = \mathbf{b}, \quad P\mathbf{x} + \mathbf{q} + A^T \boldsymbol\nu = \mathbf{0}
+\end{align*}
+可以将其写成分块矩阵的形式
+\[
+{\color{red} \text{KKT矩阵} \leftsquigarrow \begin{pmatrix} P & A^T \\ A & 0 \end{pmatrix}} \begin{pmatrix} \mathbf{x} \\ \boldsymbol\nu \end{pmatrix} = \begin{pmatrix} -\mathbf{q} \\ \mathbf{b} \end{pmatrix}
+\]
+求解以上有$m+n$个未知元,$m+n$个方程的线性方程组即可以得到这个优化问题的最优解以及对偶最优解。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{Vandermonde行列式的计算}
+% \begin{enumerate}
+% % \addtocounter{enumi}{0}
+% \item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+% \[
+% V_n = \det \begin{pmatrix}
+% 1 & 1 & \cdots & 1 \\
+% 0 & a_2-a_1 & \cdots & a_n-a_1 \\
+% \vdots & \vdots & & \vdots \\
+% 0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+% \end{pmatrix}
+% \]
+% \end{enumerate}
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

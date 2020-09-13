@@ -1,0 +1,484 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Calculus]{\LARGE \bfseries 第一部分\quad 微积分} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[Limit of Multivariate Functions] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 4. 多变量函数的极限
+}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%---------------------------------
+%	PRESENTATION SLIDES
+%---------------------------------
+
+%------------------------------------------------
+\section{欧氏空间} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+
+我们考虑$n$维{\bfseries 欧氏空间（Euclidean Space）}
+$$\mathbb{R}^n := \left\{ \mathbf{x} = (x_1,\ldots,x_n) \ \middle\vert \ x_i\in\mathbb{R}, 1\leqslant i \leqslant n \right\}.$$
+
+\pause
+
+% $\mathbb{R}^n$中可以定义内积（Inner Product）
+% $$\langle \vec{x}, \vec{y} \rangle := x_1y_1 + \cdots + x_ny_n,$$
+
+% \pause
+
+$\mathbb{R}^n$有自然范数（Norm）
+$$\Vert \mathbf{x} \Vert := \sqrt{x_1^2 + \cdots + x_n^2},$$
+
+\pause
+
+以及更一般的$\ell_p$范数（$p\geqslant1$）
+$$\Vert \mathbf{x} \Vert_p := \left(|x_1|^p + \cdots + |x_n|^p\right)^{1/p}.$$
+
+\pause
+
+由范数可以诱导出$\mathbb{R}^n$中的距离，或称度量（Metric）
+$$d(\mathbf{x}, \mathbf{y}) = \Vert \mathbf{x} - \mathbf{y} \Vert = \sqrt{\sum\limits_{i=1}^n (x_i-y_i)^2}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+机器学习的一些线性模型（Linear Models）
+$$\label{linear model}
+y_{pred}(b,\mathbf{w},\mathbf{x}) = b + w_1x_1 + \ldots + w_nx_n = b + \mathbf{w}\cdot\mathbf{x},$$
+在训练的时候为了平抑过拟合（Overfit）现象，会在损失函数期望的后面加一个正则化项（Regularization），或者叫罚项（Penalty）$R(\mathbf{w})$. $R(\mathbf{w})$可以是$\ell_2$或$\ell_1$正则化，Elastic Net等：
+\begin{align*}
+& \lVert\mathbf{w}\rVert_2 = \sqrt{\sum\limits_{1 \leqslant i \leqslant n} w_i^2}, \\
+& \lVert\mathbf{w}\rVert_1 = \sum\limits_{1 \leqslant i \leqslant n} \lvert w_i\rvert, \\
+& \gamma \lVert\mathbf{w}\rVert_1 + (1-\gamma) \lVert\mathbf{w}\rVert_2.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{多变量实值函数的极限} 
+%\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{回忆以及扩展一些术语}
+设$\mathbf{a}\in\mathbb{R}^n$, 考虑它的
+\begin{itemize}
+\item 邻域$U(\mathbf{a}) = U(\mathbf{a},\delta) := \left\{ \mathbf{x}: \ d(\mathbf{a}, \mathbf{x}) < \delta \right\},$
+\item 去心邻域$\mathring{U}(\mathbf{a}) = \mathring{U}(\mathbf{a},\delta) = U(\mathbf{a})\setminus \{\mathbf{a}\} = \left\{ \mathbf{x}: \ 0 < d(\mathbf{a}, \mathbf{x}) < \delta \right\}.$
+\end{itemize}
+
+\vspace{2em}
+\pause
+
+称多变量函数，即定义域$E$包含于某个欧氏空间$\mathbb{R}^n$的函数，在点$\mathbf{a}$的近旁有定义，说的是存在点$\mathbf{a}$的某个去心邻域$\mathring{U}(\mathbf{a})$使得$E\cap \mathring{U}(\mathbf{a}) \neq \emptyset.$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{多变量实值函数极限的定义}
+设函数$f: \mathbb{R}^n \ni E \to \mathbb{R}$在点$\mathbf{a}$的近旁有定义。若对任意$\varepsilon > 0$，都存在$\delta > 0$，使得对于满足$0 < d(\mathbf{a}, \mathbf{x}) < \delta$的任何$\mathbf{x}\in E$都有
+$$|f(\mathbf{x})-A| < \varepsilon,$$
+则称当$\mathbf{x}$趋于$\mathbf{a}$时，$f(\mathbf{x})$趋于$A$，说$f(\mathbf{x})$的{\bfseries 极限}是$A$，并记作
+$$\lim\limits_{\mathbf{x}\to \mathbf{a}}f(\mathbf{x}) = A.$$
+若$f$在$\mathbf{a}$有定义且还有$f(\mathbf{a}) = \lim\limits_{\mathbf{x}\to \mathbf{a}}f(\mathbf{x}),$ 则称$f$在点$\mathbf{a}${\bfseries 连续}。
+\end{block}
+
+\pause
+
+容易看出，极限运算法则以及柯西收敛准则仍然是成立的。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例子}
+考察函数\(\displaystyle f(x,y) = \dfrac{x^2y}{x^4+y^2}\)，它的定义域为$\mathbb{R}^2\setminus\{0\}.$我们有
+\begin{align*}
+f(a,a^2) & = \dfrac{1}{2} \\
+f(a,-a^2) & = -\dfrac{1}{2} \\
+\end{align*}
+因此$\lim\limits_{(x,y)\to(0,0)} f(x,y)$不存在。
+\end{block}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{方向极限}
+
+%------------------------------------------------
+
+\begin{frame}
+
+类比于单变量情形的单边导数，多变量情形有方向极限（Directional Limit）。
+
+\pause
+
+\begin{block}{方向极限}
+设$\mathbf{v}\in\mathbb{R}^n, \mathbf{v} \neq \mathbf{0},$ 如果下列极限存在
+$$\lim\limits_{t\to0+} f(\mathbf{a} + t\mathbf{v}),$$
+则称其为多变量函数$f$沿方向$\mathbf{v}$在点$\mathbf{a}$的方向极限。
+\end{block}
+
+\pause
+
+{\bfseries 注意！}即使多变量函数$f$在一点沿任一方向的方向极限都存在且相等，也不能保证$f$在这一点的极限存在。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{例子}
+例如，还是考虑函数\(\displaystyle f(x,y) = \dfrac{x^2y}{x^4+y^2}\)在$(0,0)$点处的情况。对任何$\mathbf{v} = (v_1,v_2)\neq(0,0)$, 有
+$$\lim\limits_{t\to0+} f(t\mathbf{v}) = \lim\limits_{t\to0+} \dfrac{t^3v_1v_2}{t^4v_1^4 + t^2v_2^2} = 0.$$
+也就是说这个函数在原点处的所有方向极限都等于$0$.
+\end{block}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{多变量向量值函数的极限}
+
+%------------------------------------------------
+
+\begin{frame}
+
+我们来考虑多变量向量值函数$\mathbf{f}:\mathbb{R}^n \supset E \to \mathbb{R}^m.$
+
+\pause
+
+\begin{block}{多变量向量值函数极限的定义}
+设函数$\mathbf{f}: \mathbb{R}^n \supset E \to \mathbb{R}$在点$\mathbf{a}$的近旁有定义。若对任意$\varepsilon > 0$，都存在$\delta > 0$，使得对于满足$0 < d(\mathbf{a}, \mathbf{x}) < \delta$的任何$\mathbf{x}\in E$都有
+$$d(\mathbf{f}(\mathbf{x}), \mathbf{A}) < \varepsilon,$$
+则称当$\mathbf{x}$趋于$\mathbf{a}$时，$\mathbf{f}(\mathbf{x})$趋于$\mathbf{A}$，说$\mathbf{f}(\mathbf{x})$的{\bfseries 极限}是$\mathbf{A}$，并记作
+$$\lim\limits_{\mathbf{x}\to \mathbf{a}}\mathbf{f}(\mathbf{x}) = \mathbf{A}.$$
+若$\mathbf{f}$在$\mathbf{a}$有定义且还有$\mathbf{f}(\mathbf{a}) = \lim\limits_{\mathbf{x} \to \mathbf{a}} \mathbf{f}(\mathbf{x}),$ 则称$\mathbf{f}$在点$\mathbf{a}${\bfseries 连续}。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+多变量向量值函数$\mathbf{f}:\mathbb{R}^n \supset E \to \mathbb{R}^m$等价于给出$m$个实值函数（即每个坐标）$f_i: E \to \mathbb{R}.$令$\mathbf{A} = (A_1,\ldots,A_m), \mathbf{y} = (y_1,\ldots,y_m) \in \mathbb{R}^m,$那么
+$$|y_i - A_i| \leqslant d(\mathbf{y}, \mathbf{A}) \leqslant \sqrt{m}\cdot \max\limits_{1\leqslant i \leqslant m} |y_i - A_i|.$$
+回忆一下，\(\displaystyle d(\mathbf{y}, \mathbf{A}) = \sqrt{\sum\limits_{i=1}^m (y_i - A_i)^2}.\)
+
+\pause
+
+于是我们有
+$$\lim\limits_{\mathbf{x}\to\mathbf{a}} \mathbf{f}(\mathbf{x}) = \mathbf{A} \Longleftrightarrow \lim\limits_{\mathbf{x}\to\mathbf{a}} f_i(\mathbf{x}) = A_i, 1\leqslant i \leqslant m.$$
+
+\pause
+
+也就是说，$\mathbb{R}^m$中的收敛是按坐标收敛的，没有比1维实值的情况多任何东西。
+
+\end{frame}
+
+%------------------------------------------------
+
+% \section{习题}
+
+% %------------------------------------------------
+
+% \begin{frame}
+% % \frametitle{习题}
+
+
+% \end{frame}
+
+
+% %------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

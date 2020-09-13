@@ -1,0 +1,1156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+\usetheme{Berkeley}
+%\usetheme{Berlin}
+% \usetheme{Boadilla}
+%\usetheme{CambridgeUS} %red
+%\usetheme{Copenhagen} %pseudo-flat, round
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover} %left column
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+% \usetheme{Luebeck} %flat, square
+%\usetheme{Madrid}
+%\usetheme{Malmoe} %brief, triangle
+%\usetheme{Marburg} %right column
+%\usetheme{Montpellier} %brief, upper column
+%\usetheme{PaloAlto} %right column
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw} %upper column
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+% \usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%------------------------------------------
+% add logo and slogan
+
+\usepackage{eso-pic}
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
+\newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
+
+% add logo
+\AddToShipoutPictureFG{
+\AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{zklogo.png}}}
+}
+% add slogan
+\AddToShipoutPictureFG{
+\AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{zkslogan.png}}}
+}
+%--------------------------------------------
+
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{pgfplots}
+
+% \definecolor{tsinghua}{rgb}{.434,.09,.531}
+% \usecolortheme[named=tsinghua]{structure}
+
+\definecolor{zkblue}{RGB}{88,135,175}
+\definecolor{zkbackground}{RGB}{230,232,234}
+\usecolortheme[named=zkblue]{structure}
+
+\setbeamercolor{section in head/foot}{fg=white}
+% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
+% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
+% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
+% \setbeamercolor{author}{fg=tsinghua}
+% \setbeamercolor{institute}{fg=tsinghua}
+% \setbeamercolor{date}{fg=tsinghua}
+% \setbeamercolor{normal text}{fg=tsinghua}
+\setbeamercolor{subsection in toc}{fg=zkblue!35}
+\setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{block body}{bg=zkblue!25,fg=zkblue}
+\setbeamercolor{author}{fg=zkblue}
+\setbeamercolor{institute}{fg=zkblue}
+\setbeamercolor{date}{fg=zkblue}
+\setbeamercolor{normal text}{fg=zkblue}
+\setbeamercolor{background canvas}{bg=zkbackground}
+
+
+% \setbeamercolor{section in toc}{fg=jdred,bg=white}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+
+%----------------------------------------------
+% watermark
+
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+
+\usepackage[printwatermark]{xwatermark}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan,opacity=0.3]\node{ZhongKeMiCi};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=4,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+
+%----------------------------------------------
+
+
+\usepackage[BoldFont,SlantFont]{xeCJK}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage{latexsym,amscd,color}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{enumerate,euscript}
+\usepackage{amssymb,url,xspace}
+\usepackage{mathtools,kbordermatrix}
+\usepackage{tikz-cd}
+\usepackage[all,cmtip]{xy}
+\usepackage{dashbox}
+\usepackage{tikz}
+\usetikzlibrary{trees,arrows,matrix,fit}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[justification = centering]{caption}
+\usepackage{multicol}
+\usepackage{xtab}
+\usepackage{cases}
+\usepackage{systeme}
+\usepackage{arydshln}
+
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand\bigzero{\makebox(-8,7){\huge$0$}}
+
+\renewcommand*{\proofname}{证明}
+
+\newcommand{\fieldc}{\mathbb{C}}
+\newcommand{\fieldr}{\mathbb{R}}
+\newcommand{\fieldq}{\mathbb{Q}}
+\newcommand{\ringz}{\mathbb{Z}}
+\newcommand{\fp}[1]{\mathbb{F}_{{#1}}}
+\newcommand{\vs}{vector space}
+\newcommand{\sheafl}{\mathscr{L}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\gl}{\operatorname{\mathfrak{g}\mathfrak{l}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Inf}{\operatorname{Inf}}
+
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{prop}[thm]{性质}
+\newtheorem{lem}[thm]{引理}
+\newtheorem{Def}[thm]{定义}
+\newtheorem{conj}[thm]{猜想}
+\newtheorem{cor}[thm]{推论}
+\newtheorem{remark}[thm]{注记}
+\newtheorem{eg}[thm]{例题}
+\newtheorem{exer}[thm]{习题}
+\newtheorem{recall}[thm]{Recall}
+\newtheorem{question}[thm]{Qustion}
+\newtheorem{observation}[thm]{Observation}
+\newtheorem*{convention}{Convention}
+
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{35}{46}}
+\makeatother
+
+
+\newif\ifshowtoc
+\showtoctrue% toggles to show the toc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+\allowdisplaybreaks
+
+\usepackage{zhnumber}
+\zhnumsetup{time=Chinese}
+
+\setCJKmainfont[BoldFont = simhei.ttf]{simfang.ttf}
+
+\setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
+\setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}
+
+\setcounter{tocdepth}{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Linear Algebra]{\LARGE \bfseries 第二部分\quad 线性代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[More on Matrix] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 3. 矩阵进阶}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+\section{行列式} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\subsection{行列式的定义}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{排列与逆序数}
+\begin{itemize}
+\item 由自然数$1,2,\cdots,n$组成的有序数组称为一个$n$元排列，记为$j_1j_2\cdots j_n$。全体$n$元排列组成的集合记为$P_n$。
+\item 在一个$n$元排列$j_1j_2\cdots j_n$中，如果一个大数排在小数面前，即当$s<t$时，有$j_s>j_t$，则称这一对数$j_sj_t$构成一个逆序。此排列的逆序总数称为它的逆序数，记为$$\tau(j_1j_2\cdots j_n).$$
+\end{itemize}
+
+\end{block}
+
+\begin{block}{例子}
+排列$n, n-1, \cdots, 2, 1$的逆序数为
+$$\tau(n, n-1, \cdots, 2, 1) = (n-1)+(n-2)+\cdots+1 = \frac{n}{2}(n-1).$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{行列式，Determinant}
+方阵$A = (a_{ij})_{n\times n}$的行列式被定义作实数
+$$\det A := \sum\limits_{j_1j_2\cdots j_n \in P_n} (-1)^{\tau(j_1j_2\cdots j_n)} a_{1j_1}a_{2j_2}\cdots a_{nj_n}.$$
+\end{block}
+
+\pause
+
+即，从方阵$A$中的每行取一个数，要求这$n$个数不能有来自同一列的，前面加上一个由列号组成的排序的逆序数决定的正负号，然后对所有可能的这样的取法进行求和。共计$n!$项。
+
+\pause
+
+\begin{block}{例子}
+\begin{itemize}
+\item \(\displaystyle \det \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} = \cos^2\theta + \sin^2\theta = 1\)
+\item $\det(diag(a_1, \cdots, a_n)) = a_1\cdots a_n$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{二阶与三阶方阵的行列式}
+\begin{itemize}
+\item<2-> 二阶方阵的行列式：
+$$\det \begin{pmatrix} {\color{red}a_{11}} & {\color{green}a_{12}} \\ {\color{green}a_{21}} & {\color{red}a_{22}} \end{pmatrix} = {\color{red}a_{11}a_{22}} - {\color{green}a_{12}a_{21}}.$$
+\item<3-> 三阶方阵的行列式：
+\begin{multline*}
+\det \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix} \\
+\shoveleft{= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}} \\
+- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} - a_{13}a_{22}a_{31}.
+\end{multline*}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{行列式的性质}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{行列式的性质}
+为了方便叙述，把矩阵$A$写成列向量组成行矩阵的形式。
+\begin{itemize}
+\item 对列有多线性性：$\det(\alpha_1, \cdots, t\alpha_j + s\beta_j, \cdots, \alpha_n) = t\det(\alpha_1, \cdots, \alpha_j, \cdots, \alpha_n) + s\det(\alpha_1, \cdots, \beta_j, \cdots, \alpha_n).$
+\item 对列有交错性：$\det(\alpha_1, \cdots, \alpha_s, \cdots, \alpha_t, \cdots, \alpha_n) = -\det(\alpha_1, \cdots, \alpha_t, \cdots, \alpha_s, \cdots, \alpha_n).$
+\item 把某一列的常数倍加到另一列上，行列式值不变：$\det(\alpha_1, \cdots, \alpha_i + k\alpha_j, \cdots, \alpha_j, \cdots, \alpha_n) = \det(\alpha_1, \cdots, \alpha_i, \cdots, \alpha_j, \cdots, \alpha_n).$
+\item 某两列成比例，则行列式值为0.
+\item $\det A = \det A^T$.
+\item $A,B$是同型方阵，则$\det(AB) = \det A \cdot \det B$.
+\end{itemize}
+\end{block}
+
+{\color{red}注意！}以上性质对行同样成立。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{行列式与方阵奇异性以及线性方程组求解}
+$$\text{方阵$A$非奇异 } \Longleftrightarrow \det A \neq 0.$$
+于是，一个自然的推论是：
+$$\text{线性方程组$A\mathbf{x} = \mathbf{b}$有解 } \Longleftrightarrow \det A \neq 0.$$
+
+\pause
+
+更进一步，若$\det A \neq 0$, 则线性方程组的解为
+$$x_i = \dfrac{D_i}{\det A}, \quad i = 1,2,\ldots,n,$$
+其中$D_i$为把$A$的第$i$列替换为$\mathbf{b}$所得方阵的行列式。\newline
+这便是所谓的Cramer法则。它是我们接下来要讲的行列式的Laplace展开的一个自然的推论。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Cramer法则求线性方程组解的例子}
+求解线性方程组
+$\systeme{x_1 - 2x_2 + x_3 = -2 , 2x_1 + x_2 - 3x_3 = 1 , -x_1 + x_2 - x_3 = 0}$
+
+\vspace{1em}
+\pause
+
+系数矩阵为
+$$A = \begin{pmatrix} 1 & -2 & 1 \\ 2 & 1 & -3 \\ -1 & 1 & -1 \end{pmatrix}.$$
+其行列式
+$$D = \det A = -5 \neq 0.$$
+于是原线性方程组有唯一解。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Cramer法则求线性方程组解的例子}
+那么
+\[
+\scriptsize
+\begin{array}{c}
+D_1 = \det\begin{pmatrix} -2 & -2 & 1 \\ 1 & 1 & -3 \\ 0 & 1 & -1 \end{pmatrix} = -5, D_2 = \det \begin{pmatrix} 1 & -2 & 1 \\ 2 & 1 & -3 \\ -1 & 0 & -1 \end{pmatrix} = -10, \\
+D_3 = \det \begin{pmatrix} 1 & -2 & -2 \\ 2 & 1 & 1 \\ -1 & 1 & 0 \end{pmatrix} = -5
+\end{array}
+\]
+于是解为
+\[
+\begin{cases}
+x_1 = \frac{D_1}{D} = 1 \\
+x_2 = \frac{D_2}{D} = 2 \\
+x_3 = \frac{D_3}{D} = 1 \\
+\end{cases}
+\]
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{Laplace 展开}
+
+%------------------------------------------------
+
+\begin{frame}
+
+% \begin{block}{子方阵，Submatrix}
+% 设$1\leqslant i_1 < \cdots < i_s \leqslant n$, $1\leqslant j_1 < \cdots < j_s \leqslant n$. $n$阶方阵$A = (a_{ij})$中位于第$i_1, \ldots, i_s$行和第$j_1, \ldots, j_s$行交叉处的元素按原排序组成的$s\times s$的方阵被称为$A$的一个$s$阶子方阵（Submatrix），记作
+% $$A\left(\substack{i_1 \cdots i_s \\ j_1 \cdots j_s}\right).$$
+% \end{block}
+
+\begin{block}{代数余子式，Cofactor}
+设$A=(a_{ij})$为$n$阶方阵，称删去$A$的第$i$行与第$j$列所得的新方阵被称为元素$a_{ij}$对应的余子方阵（Complementary Submatrix），记作
+$$A^c\begin{pmatrix} i \\ j \end{pmatrix}.$$
+方阵$A$的$(i,j)$代数余子式（Cofactor）则被定义作以下的数
+$$A_{ij} := (-1)^{i+j} \det\left( A^c\begin{pmatrix} i \\ j \end{pmatrix} \right).$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{按第$i$行展开计算行列式}
+设$A=(a_{ij})$为$n$阶方阵，$A_{ij}$为$A$的$(i,j)$代数余子式，那么有\pause
+\begin{enumerate}
+\item \(\displaystyle \det A = \sum\limits_{j = 1}^n a_{ij}A_{ij},\)
+\item \(\displaystyle \sum\limits_{j = 1}^n a_{kj}A_{ij} = 0,\) 若$k\neq i$.
+\end{enumerate}
+
+\pause
+
+类似地，我们有按第$j$行展开计算行列式的公式。
+\end{block}
+
+\vspace{1em}
+\pause
+
+一般地，我们有按多行（列）展开计算行列式的公式，即所谓的Laplace展开。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{代数余子式与方阵求逆}
+若方阵$A = (a_{ij})$的行列式$\det A \neq 0$，那么它的逆为
+$$A^{-1} = \dfrac{A^*}{\det A},$$
+其中$A^*$为所谓的$A$的古典伴随方阵（Classical Adjoint），它等于$A$的余子方阵（Cofactor Matrix）的转置：
+$$A^* = (A_{ij})^T,$$
+其中的$A_{ij}$即为$A$的$(i,j)$代数余子式。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{行列式算例}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{上（下）三角阵的行列式}
+对于上三角阵，我们有
+$$
+\begin{aligned}
+& \det \begin{pmatrix}
+a_{11} & a_{12} & \cdots & \cdots & a_{1n} \\ 0 & a_{22} & \cdots & \cdots & a_{2n} \\ 0 & 0 & \ddots & & \vdots \\ \vdots & \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \cdots & 0 & a_{nn} \end{pmatrix} \\
+= & (-1)^{\tau(12\cdots n)}a_{11}a_{22}\cdots a_{nn} = a_{11}a_{22}\cdots a_{nn}.
+\end{aligned}
+$$
+
+\vspace{1em}
+\pause
+
+类似地，下三角阵的行列式也等于主对角线元素之积。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Vandermonde行列式}
+对于$n\geqslant2$,
+$$V_n = \det \begin{pmatrix}
+1 & 1 & 1 & \cdots & 1 \\
+a_1 & a_2 & a_3 & \cdots & a_n \\
+a_1^2 & a_2^2 & a_3^2 & \cdots & a_n^2 \\
+\vdots & \vdots & \vdots & & \vdots \\
+a_1^{n-1} & a_2^{n-1} & a_3^{n-1} & \cdots & a_n^{n-1}
+\end{pmatrix} = \prod_{1\leqslant j < i \leqslant n} (a_i - a_j).$$
+\end{block}
+
+\vspace{2em}
+\pause
+
+用数学归纳法证明。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Vandermonde行列式的计算}
+\begin{enumerate}
+% \addtocounter{enumi}{0}
+\item 把第$n-1$行乘以$-a_1$加到第$n$行，再把第$n-2$行乘以$-a_1$加到第$n-1$行。按照这种顺序依次向上，直到用第$2$行乘以$-a_1$加到第$1$行。由行列式性质，$V_n$的值不变。
+\[
+V_n = \det \begin{pmatrix}
+1 & 1 & \cdots & 1 \\
+0 & a_2-a_1 & \cdots & a_n-a_1 \\
+\vdots & \vdots & & \vdots \\
+0 & a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1) \\
+\end{pmatrix}
+\]
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Vandermonde行列式的计算}
+\begin{enumerate}
+\addtocounter{enumi}{1}
+\item<1-> 把上式右边{\color{red}按第1列展开}，有
+\[
+V_n = (-1)^{1+1} \cdot 1 \cdot \det \begin{pmatrix}
+a_2-a_1 & \cdots & a_n-a_1 \\
+\vdots & & \vdots \\
+a_2^{n-2}(a_2-a_1) & \cdots & a_n^{n-2}(a_n-a_1)
+\end{pmatrix}
+\]
+\item<2-> 每一列提取$(a_i-a_1)$, $i=2,3,\ldots,n$. 于是有
+\[
+\begin{aligned}
+V_n & = \prod\limits_{i=2}^n (a_i-a_1) \cdot \det \begin{pmatrix}
+1 & 1 & \cdots & 1 \\
+a_2 & a_3 & \cdots & a_n \\
+\vdots & \vdots & & \vdots \\
+a_2^{n-2} & a_3^{n-2} & \cdots & a_n^{n-2}
+\end{pmatrix} \\
+& = \prod\limits_{i=2}^n (a_i-a_1) \cdot V_{n-1}
+\end{aligned}
+\]
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{Vandermonde行列式的计算}
+\begin{enumerate}
+\addtocounter{enumi}{3}
+\item 根据上面得到的递推式，我们就有
+\begin{align*}
+V_n & = \prod\limits_{i=2}^n (a_i-a_1) \cdot V_{n-1} = \prod\limits_{i=2}^n (a_i-a_1) \cdot \prod\limits_{i=3}^n (a_i-a_2) \cdot V_{n-2} \\
+ & \cdots\cdots \\
+ & = \prod\limits_{i=2}^n (a_i-a_1) \cdots \prod\limits_{i=n-1}^n (a_i-a_{n-2}) \det \begin{pmatrix} 1 & 1 \\ a_{n-1} & a_n \end{pmatrix} \\
+ & = \prod\limits_{1\leqslant i < j \leqslant n} (a_j-a_i)
+\end{align*}
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{迹}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{方阵迹的定义，Trace}
+对方阵$A = (a_{ij}) \in M_n(\mathbb{R})$，定义$A$的迹(Trace)为其主对角元之和：
+$$tr(A) = a_{11} + \cdots + a_{nn} = \sum\limits_{i=1}^n a_{ii}.$$
+\end{block}
+
+\pause
+
+\begin{block}{迹的性质}
+设$A,B\in M_n(\mathbb{R}),$ $t\in \mathbb{R},$ 那么
+\begin{itemize}
+\item $tr(A+B) = tr(A) + tr(B)$,
+\item $tr(tA) = t\cdot tr(A)$,
+\item $tr(A^T) = tr(A)$,
+\item $tr(AB) = tr(BA)$,
+\item $tr(AA^T) = 0 \Longleftrightarrow A = 0$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{$tr(AB) = tr(BA)$的证明}
+$$tr(AB) = \sum\limits_{i=1}^n \left( \sum\limits_{s=1}^n a_{is}b_{si} \right) = \sum\limits_{s=1}^n \left( \sum\limits_{i=1}^n b_{si}a_{is} \right) = tr(BA)$$
+\end{block}
+
+\pause
+
+\begin{block}{$tr(AA^T) = 0 \Longleftrightarrow A = 0$的证明}
+$$tr(AA^T) = \sum\limits_{i=1}^n \left( \sum\limits_{s=1}^n a_{is}\cdot a_{is} \right) = \sum\limits_{i=1}^n \sum\limits_{s=1}^n a^2_{is}$$
+于是
+\begin{align*}
+tr(AA^T) = 0 & \Longleftrightarrow a_{is} = 0 \; (i,s = 1,2,\ldots,n) \\
+ & \Longleftrightarrow A = 0
+\end{align*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{矩阵分块运算}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{分块矩阵，Block Matrix}
+在矩阵的某些行间、列间插入若干直线，把矩阵分成若干小块（也是矩阵），每个小块被称为该矩阵的块（Block）。被表示为由块构成的矩阵被称为分块矩阵（Block Matrix）。
+\end{block}
+
+\pause
+
+以下就是一个分块矩阵的例子
+\[
+  \setlength{\dashlinegap}{2pt}
+  A = \left( \begin{array}{cc:cc:c}
+    1 & 2 & 3 & 4 & 0 \\
+    5 & 6 & 7 & 8 & 1 \\
+    \hdashline
+    1 & 1 & 1 & 1 & 9 \\
+  \end{array} \right)
+\]
+它被分为\(\displaystyle A_{11} = \begin{pmatrix}
+1 & 2 \\ 5 & 6 \end{pmatrix}, A_{12} = \begin{pmatrix}
+3 & 4 \\ 7 & 8 \end{pmatrix}, A_{13} = \begin{pmatrix}
+0 \\ 1 \end{pmatrix}, A_{21} = A_{22} = (1 \ 1), A_{23} = (9)\). 于是可以把$A$写作
+\[
+A = \begin{pmatrix}
+A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23}
+\end{pmatrix}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{分块矩阵的运算}
+\begin{itemize}
+\item 分块矩阵的加法：若矩阵$A,B$是同型的，且被{\color{red} 同样地分块}，则{\color{red}对应块相加}得$A+B$.
+\item 分块矩阵的数乘：实数$k$数乘分块矩阵$A$, 只需要$k$去数乘$A$的每个块即可。
+\item 分块矩阵的乘法：设矩阵$A$的列数等于矩阵$B$的行数, 且$A$的列的划分与$B$的行的划分一致时，可以按类似普通矩阵乘法的方式进行分块矩阵的乘法。即划分为$A = (A_{ij})_{r\times {\color{red}s}}, B = (B_{kl})_{{\color{red}s}\times t}$, 且$A_{ij}$为$m_i\times n_j$矩阵，$B_{kl}$为$p_k\times q_l$矩阵，那么
+$$n_j = p_j, \quad j = 1, 2, \ldots, s$$
+此时，记$AB = C = (C_{ij})_{r\times t},$ 则有
+$$C_{ij} = A_{i1}B_{1j} + A_{i2}B_{2j} + \cdots + A_{is}B_{sj}.$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{分块矩阵的运算}
+\begin{itemize}
+\item 分块矩阵的转置：设
+$$A = \begin{pmatrix}
+A_{11} & \cdots & A_{1t} \\
+\vdots & \ddots & \vdots \\
+A_{s1} & \cdots & A_{st}
+\end{pmatrix},$$
+则分块矩阵A的转置为
+$$A^T = \begin{pmatrix}
+A_{11}^{{\color{red}T}} & \cdots & A_{s1}^{{\color{red}T}} \\
+\vdots & \ddots & \vdots \\
+A_{1t}^{{\color{red}T}} & \cdots & A_{st}^{{\color{red}T}}
+\end{pmatrix},$$
+即，每一块子矩阵均做转置，且行列下标互换。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵分块运算的例子}
+\[
+  \setlength{\dashlinegap}{2pt}
+  A = \left( \begin{array}{cc:cc:c}
+    1 & 2 & 3 & 4 & 0 \\
+    5 & 6 & 7 & 8 & 1 \\
+    \hdashline
+    1 & 1 & 1 & 1 & 9 \\
+  \end{array} \right), \quad
+  B = \left( \begin{array}{cc}
+    1 & -1 \\
+    0 & 1 \\
+    \hdashline
+    2 & 3 \\
+    0 & 0 \\
+    \hdashline
+    1 & 7 \\
+  \end{array} \right)
+\]
+那么\(\displaystyle C = AB =
+\left( \begin{array}{c}
+    C_{11} \\
+    \hdashline
+    C_{21} \\
+  \end{array} \right)\), 其中
+\begin{align*}
+C_{11} & = \begin{pmatrix} 1 & 2 \\ 5 & 6 \end{pmatrix} \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix} +  \begin{pmatrix} 3 & 4 \\ 7 & 8 \end{pmatrix} \begin{pmatrix} 2 & 3 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} \begin{pmatrix} 1 & 7 \end{pmatrix}\\
+C_{21} & = \begin{pmatrix} 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix} +  \begin{pmatrix} 1 & 1 \end{pmatrix} \begin{pmatrix} 2 & 3 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 9 \end{pmatrix} \begin{pmatrix} 1 & 7 \end{pmatrix}
+\end{align*}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{特殊的分块矩阵}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{特殊的分块矩阵}
+\begin{itemize}
+\item 准对角阵：
+$$A = \begin{pmatrix} A_{11} & & \\ & \ddots & \\ & & A_{nn} \end{pmatrix} = diag(A_{11},\cdots,A_{nn}),$$
+\item 准上三角矩阵：
+$$A = \begin{pmatrix} A_{11} & A_{12} & \cdots & A_{1n} \\ 0 & A_{22} & \cdots & A_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & A_{nn} \end{pmatrix},$$
+类似可以定义准下三角矩阵。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵分块化零}
+设方阵$M$分块为\(\displaystyle M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\), 其中$A, D$分别为$r$阶与$n-r$阶方阵。
+\begin{itemize}
+\item $A$非奇异时：
+\begin{align*}
+\begin{pmatrix} A & B \\ C & D \end{pmatrix} \begin{pmatrix} I & -A^{-1}B \\ 0 & I \end{pmatrix} = \begin{pmatrix} A & 0 \\ C & D-CA^{-1}B \end{pmatrix} \\
+\begin{pmatrix} I & 0 \\ -CA^{-1} & I \end{pmatrix} \begin{pmatrix} A & B \\ C & D \end{pmatrix} = \begin{pmatrix} A & B \\ 0 & D-CA^{-1}B \end{pmatrix}
+\end{align*}
+\item $D$非奇异时：
+\begin{align*}
+\begin{pmatrix} A & B \\ C & D \end{pmatrix} \begin{pmatrix} I & 0 \\ -D^{-1}C & I \end{pmatrix} = \begin{pmatrix} A-BD^{-1}C & B \\ 0 & D \end{pmatrix} \\
+\begin{pmatrix} I & -BD^{-1} \\ 0 & I \end{pmatrix} \begin{pmatrix} A & B \\ C & D \end{pmatrix} = \begin{pmatrix} A-BD^{-1}C & 0 \\ C & D \end{pmatrix}
+\end{align*}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{矩阵的初等变换}
+
+%------------------------------------------------
+
+\subsection{初等矩阵}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{三种初等矩阵，Elementary Matrix}
+\begin{enumerate}
+\item 第一种：将单位阵$I_n$的第$i$行（列）乘以非零实数$c$
+\[
+E_i(c) := \begin{pmatrix} 1 & & & & & & \\ & \ddots & & & & & \\ & & 1 & & & & \\ & & & {\color{red}c} & & & \\ & & & & 1 & &  \\ & & & & & \ddots & \\ & & & & & & 1 \end{pmatrix}
+\]
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{三种初等矩阵，Elementary Matrix}
+\begin{enumerate}
+\addtocounter{enumi}{1}
+\item 第二种：将单位阵$I_n$的第$i$列乘以非零实数$c$加到第$j$列上去（或第$j$行乘以非零实数$c$加到第$i$行上去）
+\[
+E_{ij}(c) := \begin{pmatrix} 1 & & & & & & \\ & \ddots & & & & & \\ & & 1 & \cdots & {\color{red}c} & & \\ & & & \ddots & \vdots & & \\ & & & & 1 & & \\ & & & & & \ddots & \\ & & & & & & 1 \end{pmatrix}, \quad i > j
+\]
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{三种初等矩阵，Elementary Matrix}
+或是
+\[
+E_{ij}(c) := \begin{pmatrix} 1 & & & & & & \\ & \ddots & & & & & \\ & & 1 & & & & \\ & & \vdots & \ddots & & & \\ & & {\color{red}c} & \cdots & 1 & &  \\ & & & & & \ddots & \\ & & & & & & 1 \end{pmatrix}, \quad i < j
+\]
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{三种初等矩阵，Elementary Matrix}
+\begin{enumerate}
+\addtocounter{enumi}{2}
+\item 第三种：交换单位矩阵$I_n$的第$i$列与第$j$列（或第$i$行与第$j$行）
+\[
+\scriptsize
+E_{ij} := \left(\begin{array}{*{11}c}
+1 & & & & & & & & &  & \\ & \ddots & & & & & & & & & \\ & & 1 & & & & & & & & \\ & & & 0 & \cdots & \cdots & \cdots & 1 & & & \\ & & & \vdots & 1 & & & \vdots & & & \\ & & & \vdots & & \ddots & & \vdots & & & \\ & & & \vdots & & & 1 & \vdots & & & \\ & & & 1 & \cdots & \cdots & \cdots & 0 & & & \\ & & & & & & & & 1 & & \\ & & & & & & & & & \ddots & \\ & & & & & & & & & & 1 \end{array}\right)
+\]
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{三种初等列变换}
+\begin{enumerate}
+% \addtocounter{enumi}{2}
+\item 矩阵第$i$列乘以非零实数$c$
+\item 矩阵第$i$列乘以非零实数$c$加到第$j$列上去
+\item 交换矩阵的第$i$列与第$j$列
+\end{enumerate}
+\end{block}
+
+\pause
+
+\begin{block}{三种初等行变换}
+\begin{enumerate}
+% \addtocounter{enumi}{2}
+\item 矩阵第$i$行乘以非零实数$c$
+\item 矩阵第$i$行乘以非零实数$c$加到第$j$行上去
+\item 交换矩阵的第$i$行与第$j$行
+\end{enumerate}
+\end{block}
+
+\pause
+
+矩阵的初等列变换与初等行变换统称为矩阵的初等变换。
+
+\pause
+
+回忆一下，在用Gau{\ss}消元法求线性方程组解的时候，以及在计算方阵行列式的时候，我们已经多次用到了矩阵的初等变换。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵初等变换与初等矩阵的关系}
+\begin{itemize}
+\item 矩阵$A$的初等{\color{red}行}变换相当于一个初等矩阵{\color{red}左乘}该矩阵$A$
+\item 矩阵$A$的初等{\color{green}列}变换相当于一个初等矩阵{\color{green}右乘}该矩阵$A$
+\end{itemize}
+\end{block}
+
+\pause
+
+矩阵$A$用它的行向量写成列的形式
+$$A = \begin{pmatrix}
+\beta_1 \\ \vdots \\ \beta_m
+\end{pmatrix},$$
+另一个矩阵（写成原始的矩阵元素的行列的形式）去左乘它，才是``能乘''的，有意义的：
+$$\begin{pmatrix}
+a_{11} & \cdots & a_{1m} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mm}
+\end{pmatrix} \begin{pmatrix}
+\beta_1 \\ \vdots \\ \beta_m
+\end{pmatrix}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{矩阵的秩}
+
+%------------------------------------------------
+
+\subsection{矩阵秩的定义}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的列秩与行秩}
+把一个$m\times n$的矩阵$A$的列$\alpha_1, \ldots, \alpha_n$拿出来，构成了$\mathbb{R}^m$中的一个向量组。矩阵$A$的列秩即被定义为这个向量组的秩，即
+$$r_c(A) = r(\alpha_1, \ldots, \alpha_n).$$
+类似地，矩阵$A$的行秩即被定义为$A$的行，$\beta_1, \ldots, \beta_m \in \mathbb{R}^{(n)}$, 这$m$个向量组成的向量组的秩
+$$r_r(A) = r(\beta_1, \ldots, \beta_m).$$
+\end{block}
+
+\pause
+
+\begin{thm}
+\begin{itemize}
+\item 矩阵的初等列变换不改变$r_c(A)$;
+\item 矩阵的初等行变换不改变$r_r(A)$.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的秩}
+矩阵的列秩$r_c(A)$与行秩$r_r(A)$是相等的。因此，这个值可以被定义为矩阵$A$的秩，记作$r(A)$.
+\end{block}
+
+\pause
+
+因为矩阵的初等行变换不改变矩阵的行秩$r_r(A)$, 所以把$A$化成阶梯形
+\[
+\scriptsize
+\left(\begin{array}{*{11}c}
+0 & \cdots & 1 & * & * & * & * & * & * & * & * \\ 0 & \cdots & \cdots & \cdots & 1 & * & * & * & * & * & * \\ 0 & \cdots & \cdots & \cdots & \cdots & \cdots & 1 & * & * & * & * \\ \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots\\ 0 & \cdots & \cdots & \cdots & \cdots & \cdots & \cdots & \cdots & 1 & * & * \end{array}\right)
+\]
+$\cdots$代表一些$0$, $*$代表一些实数（可以是$0$也可以不是$0$）。很容易看出以上阶梯形的行秩与列秩相等。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵的秩}
+矩阵的秩还可以定义作，矩阵所有的行列式不等于$0$的子方阵(Submatrix)中，阶数最大者的阶数。
+
+\vspace{2em}
+\pause
+
+\begin{itemize}
+\item $s$阶子方阵：原矩阵的某$s$行与某$s$列相交处元素，按原来的次序，新排成的方阵。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{矩阵秩的性质}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵秩的性质}
+\begin{itemize}
+\item 左（右）乘非奇异方阵不改变原来矩阵的秩：只要方阵$P$非奇异，那么对任意矩阵$A,B$，只要乘积有意义，就有
+$$r(PA) = r(A), \quad r(BP) = r(B)$$
+\item $r(AB) \leqslant \min\{ r(A), r(B) \}$
+\pause
+\item （Sylvester）设$A \in M_{m\times s}, B \in M_{s\times n},$ 那么
+$$r(A) + r(B) \leqslant r(AB) + s$$
+\item （Frobenius）假设乘积有意义，那么
+$$r(AB) + r(BC) \leqslant r(ABC) + r(B)$$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{矩阵的秩与线性方程组的解}
+
+%------------------------------------------------
+
+\begin{frame}
+
+考虑非齐次线性方程组$A\mathbf{x} = \mathbf{b}$，我们用矩阵的秩来给出一个这个方程组解存在的充要条件。
+
+\pause
+
+\begin{block}{非齐次线性方程组有解的充要条件}
+\begin{itemize}
+\item 增广矩阵（Augmented Matrix）：把常数项列$\mathbf{b}$加到系数矩阵$A$的最后一列，新得到的矩阵被称为增广矩阵，记作$(A | \mathbf{b})$.
+\item $A\mathbf{x} = \mathbf{b} \text{ 有解 } \Longleftrightarrow r(A) = r(A | \mathbf{b})$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{线性方程组解的结构}
+(1). $n$个变元的齐次线性方程组$A\mathbf{x} = \mathbf{0}$的解的全体的集合$W_A$是$\mathbb{R}^n$的一个线性子空间，被称作$A\mathbf{x} = \mathbf{0}$的解空间，且等于$A$的行空间的正交补：
+$$W_A = (C(A^T))^{\perp}$$
+
+\vspace{1em}
+\pause
+
+(2). 非齐次线性方程组$A\mathbf{x} = \mathbf{b}$有解当且仅当$r(A) = r(A | \mathbf{b})$. 在这种情况下，设$\mathbf{x}_0$为$A\mathbf{x} = \mathbf{b}$的任意一个解（被称为特解），那么全体解可以被表示为
+$$\mathbf{x}_0 + W_A := \{ \mathbf{x}_0 + \mathbf{x} \ |\ \mathbf{x} \in W_A \},$$
+其中$W_A$为相应齐次线性方程组$A\mathbf{x} = \mathbf{0}$的解空间。集合$\mathbf{x}_0 + W_A$被称为方程组$A\mathbf{x} = \mathbf{b}$的解陪集。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{矩阵相抵}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{矩阵相抵}
+同型矩阵$A$与$B$相抵（Equivalent，又称等价，记作$A\sim B$），指的是能够对矩阵$A$进行有限次的初等变换后得到矩阵$B$. 也就是说，存在初等方阵$P_1,\ldots,P_s;Q_1,\ldots,Q_t$, 使得
+$$B = P_s \cdots P_1 A Q_1 \cdots Q_t.$$
+\end{block}
+
+\pause
+
+\begin{block}{相抵标准形}
+任何一个矩阵$A$都相抵于
+$$\begin{pmatrix}
+I_r & 0 \\ 0 & 0
+\end{pmatrix},$$
+被称作$A$的相抵标准形，其中$r = r(A)$.
+\end{block}
+
+\end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+% \begin{block}{}
+
+% \end{block}
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
