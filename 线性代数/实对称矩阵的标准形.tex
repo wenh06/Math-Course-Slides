@@ -1,0 +1,537 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[{\bfseries 欧几里得空间}\\\vspace{1em}实对称矩阵的标准形]{\LARGE \bfseries 第九章 ~~ 欧几里得空间} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 6. 实对称矩阵的标准形}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\section{主要结论}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{主要结论}
+
+\begin{block}{回忆：对称矩阵的对角化}
+{\bfseries 定理}：数域$P$上任意一个对称矩阵都合同（congruent）于一对角矩阵。即对任意对称矩阵$A$，都存在可逆矩阵$C$，使得
+$$C^TAC$$
+为对角阵。
+
+\vspace{1em}
+\pause
+
+{\bfseries Sketch}：通过对对称矩阵对应的二次型进行``配方''，并对变量个数作归纳。
+\end{block}
+
+\vspace{1em}
+\pause
+
+对于{\bfseries 实对称矩阵}，上述结果将被加强为
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{主要结论}
+
+\begin{block}{实对称矩阵的标准形}
+对于任意一个$n$阶实对称矩阵$A$，都存在一个$n$阶{\bfseries 正交矩阵}~$P$，使得
+$$P^TAP = P^{-1}AP$$
+成对角形。
+\end{block}
+
+\vspace{1em}
+\pause
+
+在证明主要结论之前，我们先介绍一些（实）对称矩阵的性质。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{对称矩阵的性质}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+\begin{lem}
+设$A$是实对称矩阵，则$A$的特征值都是实数。
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+\begin{proof}
+设实对称矩阵$A$为$n$阶的，任取一个（复）特征值$\lambda_0$, 依定义存在（复系数）的$n$维非零向量$\xi = (x_1,x_2,\ldots,x_n)^T$，使得
+$$A\xi = \lambda_0\xi.$$
+上式左乘$\overline{\xi}^T$，有
+$$\overline{\xi}^TA\xi = \lambda_0 \overline{\xi}^T\xi.$$
+由于$A$是实对称矩阵，有$A = \overline{A}^T$，于是上式左边有
+$$\overline{\xi}^TA\xi = \overline{\xi}^T\overline{A}^T\xi = (\overline{A\xi})^T\xi = (\overline{\lambda_0\xi})^T\xi = \overline{\lambda}_0 ~ \overline{\xi}^T\xi.$$
+由于$\xi$为非零向量，即$\displaystyle \overline{\xi}^T\xi = \sum\limits_{i=1}^n \lvert x_i \rvert^2 \neq 0$，因此必须有$\lambda_0 = \overline{\lambda}_0$，即$\lambda_0$为一个实数。
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+对应于$n$阶实对称矩阵$A$，在$n$维欧氏空间$\mathbb{R}^n$上可以定义如下的一个线性变换$\mathscr{A}$:
+
+$$\mathscr{A} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} := A \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}$$
+
+\pause
+
+那么$\mathscr{A}$在标准正交基
+$$\varepsilon_1 = \begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \varepsilon_2 = \begin{pmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{pmatrix}, \varepsilon_n = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$$
+下的矩阵就是$A$。对于$A, \mathscr{A}$，有如下性质
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+\begin{lem}
+对于任意的$\alpha, \beta \in \mathbb{R}^n$，有
+$$\langle \mathscr{A}\alpha, \beta \rangle = \langle \alpha, \mathscr{A}\beta \rangle,$$
+或等价地
+$$\beta^T (A\alpha) = \alpha^T A \beta.$$
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+\begin{proof}
+只要证明后一等式即可：
+\begin{align*}
+    \beta^T (A\alpha) & = \beta^T A \alpha = \beta^T A^T \alpha \\
+    & = (A\beta)^T \alpha = \left( (A\beta)^T \alpha \right)^T \\
+    & = \alpha^T (A\beta).
+\end{align*}
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+\begin{Def}
+满足对于任意的$\alpha, \beta \in \mathbb{R}^n$，有
+$$\langle \mathscr{A}\alpha, \beta \rangle = \langle \alpha, \mathscr{A}\beta \rangle$$
+的欧氏空间中的线性变换$\mathscr{A}$被称为{\bfseries 对称变换}。
+\end{Def}
+
+\pause
+\vspace{2em}
+
+容易证明，对称变换在标准正交基下的矩阵是实对称矩阵。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+\begin{lem}
+设$\mathscr{A}$是对称变换，$V_1$是$\mathscr{A}$-子空间，那么$V_1$的正交补$V_1^{\perp}$也是$\mathscr{A}$-子空间。
+\end{lem}
+
+\vspace{1em}
+\pause
+
+\begin{proof}
+要证明$V_1^{\perp}$也是$\mathscr{A}$-子空间，只要证明任取$\alpha\in V_1^{\perp}$，都有$\mathscr{A}\alpha\in V_1^{\perp}$，即任取$\beta\in V_1$有$\langle \mathscr{A}\alpha, \beta \rangle = 0$。实际上
+\begin{align*}
+    \langle \mathscr{A}\alpha, \beta \rangle = \langle \alpha, \mathscr{A}\beta \rangle = 0.
+\end{align*}
+
+\pause
+
+上面第一个等号是因为$\mathscr{A}$是对称变换；第二个等号是因为$V_1$是$\mathscr{A}$-子空间且$\beta\in V_1$，故$\mathscr{A}\beta \in V_1$，而$\alpha\in V_1^{\perp}$，从而有$\langle \alpha, \mathscr{A}\beta \rangle = 0$。于是，$V_1^{\perp}$也是$\mathscr{A}$-子空间。
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{对称矩阵的性质}
+
+\begin{lem}
+设$A$是$n$阶实对称矩阵，则$\mathbb{R}^n$中属于$A$的不同的特征值的特征向量必正交。
+\end{lem}
+
+\vspace{0.5em}
+\pause
+
+\begin{proof}
+设$\alpha_1, \alpha_2$为分别属于实对称阵$A$的两个不相等特征值$\lambda_1, \lambda_2$, 即
+$$A\alpha_1 = \lambda_1\alpha_1, \; A\alpha_2 = \lambda_2\alpha_2.$$
+于是，我们有
+$$\begin{cases}
+\alpha_2^T A\alpha_1 = \alpha_2^T\lambda_1\alpha_1 = \lambda_1 \langle \alpha_2, \alpha_1 \rangle \\
+\alpha_2^T A\alpha_1 = (\alpha_2^T A^T)\alpha_1 = (A\alpha_2)^T\alpha_1 = \lambda_2 \langle \alpha_2, \alpha_1 \rangle
+\end{cases}$$
+由于$\lambda_1 \neq \lambda_2$, 因此$\langle \alpha_2, \alpha_1 \rangle = 0$，即$\alpha_1, \alpha_2$正交。
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{主要定理的证明}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{主要定理}
+
+\begin{thm}
+对于任意一个$n$阶实对称矩阵$A$，都存在一个$n$阶{\bfseries 正交矩阵}~$P$，使得
+$$P^TAP = P^{-1}AP$$
+成对角形。
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{主要定理的证明}
+
+\begin{proof}
+\phantom{一一}令$\mathscr{A}$为$n$维欧氏空间$\mathbb{R}^n$中由$A$给出的对称变换，即
+$$\mathscr{A} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} := A \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix},$$
+那么只要证明$\mathscr{A}$有$n$个特征向量组成一组标准正交基即可。
+
+\pause
+
+\vspace{0.6em}
+
+\phantom{一一}对空间的维数$n$作归纳。
+
+\vspace{0.6em}
+
+\phantom{一一}$n=1$时，命题平凡成立。
+\renewcommand{\qedsymbol}{}
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{主要定理的证明}
+
+\begin{proof}
+\phantom{一一}设$n-1$时定理结论成立。设对称变换$\mathscr{A}$有一个特征向量$\alpha_1$，其特征值为实数$\lambda_1$，即$\mathscr{A}\alpha_1 = \lambda_1\alpha_1$。不妨设$\alpha_1$为单位长度的向量，否则用$\displaystyle \dfrac{\alpha_1}{\lvert \alpha_1 \rvert}$代替$\alpha_1$即可。
+
+\vspace{0.6em}
+\pause
+
+\phantom{一一}令
+$$V_1 = L(\alpha_1)^\perp$$
+为$L(\alpha_1)$的正交补。那么根据之前的引理，$V_1$为$\mathscr{A}$-子空间，其维数为$n-1$。显然$\mathscr{A}|_{V_1}$为$n-1$维欧氏空间$V_1$上的对称变换。
+
+\vspace{0.6em}
+\pause
+
+\phantom{一一}由归纳假设，$\mathscr{A}|_{V_1}$有$n-1$个特征向量$\alpha_2,\ldots,\alpha_n$构成$V_1$的一组标准正交基。于是，$\alpha_1,\alpha_2,\ldots,\alpha_n$是$\mathbb{R}^n$的一组标准正交基，同时也是$\mathscr{A}$的$n$个特征向量。
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{remark}
+可以进一步要求正交矩阵$P$行列式为1。
+
+\pause
+
+若$\lvert P \rvert = -1$，那么取
+$$S = \operatorname{diag}(-1,1,\cdots,1),$$
+那么$P_1 = PS$是正交矩阵，而且有
+$$\lvert P_1 \rvert = \lvert P \rvert \lvert S \rvert = 1,$$
+并且有
+\begin{align*}
+P_1^TAP_1 & = S^T P^T A P S \\
+& = \operatorname{diag}(-1,1,\cdots,1)\operatorname{diag}(\lambda_1,\cdots,\lambda_n)\operatorname{diag}(-1,1,\cdots,1) \\
+& = \operatorname{diag}(\lambda_1,\cdots,\lambda_n) \\
+& = P^TAP.
+\end{align*}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{正交过渡矩阵的求法}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{正交过渡矩阵的求法}
+
+\begin{block}{}
+{\bfseries 问题}：给定实对称矩阵$A$之后，如何求正交矩阵$P$，使得$P^TAP$成对角形？
+\end{block}
+
+\vspace{0.5em}
+\pause
+
+由本节主要定理的证明过程可以看出，求正交矩阵$P$，等于求一组实对称矩阵$A$的，构成$\mathbb{R}^n$的一组标准正交基的特征向量。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{正交过渡矩阵的求法}
+
+实际上，假设
+$$\eta_1 = \begin{pmatrix} t_{11} \\ t_{21} \\ \vdots \\ t_{n1} \end{pmatrix}, \quad \eta_2 = \begin{pmatrix} t_{12} \\ t_{22} \\ \vdots \\ t_{n2} \end{pmatrix}, \quad \eta_n = \begin{pmatrix} t_{1n} \\ t_{2n} \\ \vdots \\ t_{nn} \end{pmatrix}$$
+是$\mathbb{R}^n$的一组标准正交基，且都是$A$的特征向量。那么由$\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n$到$\eta_1, \eta_2, \ldots, \eta_n$的过渡矩阵即为
+$$P = \begin{pmatrix} t_{11} & t_{12} & \cdots & t_{1n} \\ t_{21} & t_{22} & \cdots & t_{2n} \\ \vdots & \vdots &  & \vdots \\ t_{n1} & t_{n2} & \cdots & t_{nn} \\\end{pmatrix}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{正交过渡矩阵的求法}
+
+很容易看出，$P$是一个正交矩阵，而且
+$$P^{-1}AP = P^TAP = \operatorname{diag}(\lambda_1, \lambda_2, \cdots, \lambda_n),$$
+是对角阵，其中$\lambda_1, \lambda_2, \ldots, \lambda_n$分别为$\eta_1, \eta_2, \ldots, \eta_n$对应的特征值。
+
+\pause
+\vspace{1em}
+
+于是，求正交过渡矩阵$P$的步骤可以总结如下：
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{正交过渡矩阵的求法}
+
+{\bfseries 步骤1.} 求$A$的特征值。我们设$\lambda_1, \lambda_2, \ldots, \lambda_r$为$A$的全部的{\bfseries 不同的}特征值。
+
+\pause
+\vspace{1em}
+
+{\bfseries 步骤2.} 对每个$\lambda_i$，解齐次线性方程组
+$$\left( \lambda_i E - A \right) \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \mathbf{0},$$
+求出一组基础解系，此即为$A$的特征子空间$V_{\lambda_i}$的一组基。由这组基出发，通过格拉姆-施密特正交化（Gram–Schmidt process）得到$V_{\lambda_i}$的一组标准正交基
+$$\eta_{i1}, \ldots, \eta_{ik_i}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{正交过渡矩阵的求法}
+
+{\bfseries 步骤3.} 由于$\lambda_1, \lambda_2, \ldots, \lambda_r$互不相同，根据对称矩阵性质，$\eta_{11}, \ldots, \eta_{1k_1}, \ldots, \eta_{r1}, \ldots, \eta_{rk_r}$两两正交。此即为$\mathbb{R}^n$的一组标准正交基，同时也是实对称矩阵$A$的特征向量。于是正交过渡矩阵$P$被求出来了，即为
+$$P = (\eta_{11}, \cdots, \eta_{1k_1}, \cdots, \eta_{r1}, \cdots, \eta_{rk_r}).$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{例题}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+\begin{eg}
+已知
+$$A = \begin{pmatrix} 0 & 1 & 1 & -1 \\ 1 & 0 & -1 & 1 \\ 1 & -1 & 0 & 1 \\ -1 & 1 & 1 & 0 \end{pmatrix},$$
+求正交矩阵$P$使得$P^TAP$成对角形。
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+{\bfseries 解：}先求$A$的特征值。
+\begin{align*}
+    \lvert \lambda E - A \rvert & = \begin{vmatrix} \lambda & -1 & -1 & 1 \\ -1 & \lambda & 1 & -1 \\ -1 & 1 & \lambda & -1 \\ 1 & -1 & -1 & \lambda \end{vmatrix} \\
+    & = \begin{vmatrix} 0 & \lambda-1 & \lambda-1 & 1-\lambda^2 \\ 0 & \lambda-1 & 0 & \lambda-1 \\ 0 & 0 & \lambda-1 & \lambda-1 \\ 1 & -1 & -1 & \lambda \end{vmatrix} \\
+    & = - (\lambda - 1)^3 \begin{vmatrix} 1 & 1 & -1-\lambda \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{vmatrix} \\
+    & = (\lambda - 1)^3 (\lambda + 3)
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+接下来，将求得的特征值$\lambda = $1（三重），-3分别代入齐次线性方程组
+$$\left( \lambda_i E - A \right) \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \mathbf{0}$$
+中求基础解系。例如，将$\lambda = 1$代入，有
+$$\begin{cases}
+x_1 - x_2 - x_3 + x_4 = 0 \\
+-x_1 + x_2 + x_3 - x_4 = 0 \\
+-x_1 + x_2 + x_3 - x_4 = 0 \\
+x_1 - x_2 - x_3 + x_4 = 0 \\
+\end{cases}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+其基础解系可以取为
+$$\begin{cases}
+\alpha_1 = (1,1,0,0)^T \\
+\alpha_2 = (1,0,1,0)^T \\
+\alpha_3 = (-1,0,0,1)^T \\
+\end{cases}$$
+通过格拉姆-施密特正交化得到属于三重特征值1的三个标准正交的特征向量为
+$$\begin{cases}
+\eta_1 = \left(\dfrac{1}{\sqrt{2}},\dfrac{1}{\sqrt{2}},0,0 \right)^T \\
+\eta_2 = \left(\dfrac{1}{\sqrt{6}},-\dfrac{1}{\sqrt{6}},\dfrac{2}{\sqrt{6}},0 \right)^T \\
+\eta_3 = \left(-\dfrac{1}{\sqrt{12}},\dfrac{1}{\sqrt{12}},\dfrac{1}{\sqrt{12}},\dfrac{3}{\sqrt{12}} \right)^T \\
+\end{cases}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+用同样的方法求得属于特征值-3的标准正交基为
+
+$$\eta_4 = \left( \dfrac{1}{2}, -\dfrac{1}{2}, -\dfrac{1}{2}, \dfrac{1}{2} \right)^T$$
+
+于是将$\eta_1, \eta_2, \eta_3, \eta_4$排列在一起得到所要求的正交过渡矩阵
+
+$$P = (\eta_1, \eta_2, \eta_3, \eta_4) = \begin{pmatrix} \dfrac{1}{\sqrt{2}} & \dfrac{1}{\sqrt{6}} & -\dfrac{1}{\sqrt{12}} & \dfrac{1}{2} \\ \dfrac{1}{\sqrt{2}} & -\dfrac{1}{\sqrt{6}} & \dfrac{1}{\sqrt{12}} & -\dfrac{1}{2} \\ & \dfrac{2}{\sqrt{6}} & \dfrac{1}{\sqrt{12}} & -\dfrac{1}{2} \\ & & \dfrac{3}{\sqrt{12}} & \dfrac{1}{2} \end{pmatrix}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{主要定理的另一种叙述}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{主要定理的另一种叙述}
+
+主要定理可以用二次型的语言重新叙述为
+
+\begin{thm}
+任意一个实二次型
+$$\sum\limits_{i=1}^n \sum\limits_{j=1}^n a_{ij}x_ix_j, \quad a_{ij} = a_{ji},$$
+都可以经过{\bfseries 正交的线性替换}变成平方和
+$$\lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2,$$
+其中平方项系数$\lambda_1,\lambda_2,\ldots,\lambda_n$就是实对称矩阵$A$的特征多项式全部的根。
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{}
+
+这里，一个线性替换
+$$
+\begin{cases}
+x_1 = c_{11}y_1 + c_{12}y_2 + \cdots + c_{1n}y_n \\
+x_2 = c_{21}y_1 + c_{22}y_2 + \cdots + c_{2n}y_n \\
+\hspace{4em} \cdots\cdots \\
+x_n = c_{n1}y_1 + c_{n2}y_2 + \cdots + c_{nn}y_n \\
+\end{cases}
+$$
+被称作正交的线性替换，如果其系数矩阵$C = (c_{i,j})$是正交的。
+
+\end{frame}
+
+%------------------------------------------------
+% % closing page
+
+\begin{frame}
+
+\uncover<1>{
+\HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+}
+
+\uncover<2>{
+\HUGE{\centerline{\bfseries {\color{gray}Thank} {\color{zkblue} You}}}
+}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
