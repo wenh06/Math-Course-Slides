@@ -75,22 +75,9 @@
 % \usecolortheme{wolverine}
 
 %------------------------------------------
-% add logo and slogan
+% add logo
 
-% \usepackage{eso-pic}
-% \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
-% \put(\LenToUnit{0.65\paperwidth},\LenToUnit{0.83\paperheight}){#1}}}
-% \newcommand\AtPagemyLowerRight[1]{\AtPageLowerLeft{%
-% \put(\LenToUnit{0.72\paperwidth},\LenToUnit{0.015\paperheight}){#1}}}
-
-% % add logo
-% \AddToShipoutPictureFG{
-% \AtPagemyUpperLeft{{\includegraphics[width=4.3cm,keepaspectratio]{images/zklogo.png}}}
-% }
-% % add slogan
-% \AddToShipoutPictureFG{
-% \AtPagemyLowerRight{{\includegraphics[width=3.3cm,keepaspectratio]{images/zkslogan.png}}}
-% }
+% \logo{\includegraphics[height=1.55cm]{images/logo_buaa_math.jpg}}
 
 %--------------------------------------------
 
@@ -138,7 +125,7 @@
 %----------------------------------------------
 % watermark
 
-% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
+% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{images/logo_buaa_math.jpg}};}
 
 % \usepackage[printwatermark]{xwatermark}
 % \newsavebox\mybox
