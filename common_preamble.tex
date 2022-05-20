@@ -19,7 +19,7 @@
 %	PACKAGES AND THEMES
 %----------------------------------------------------------------------------------------
 
-\documentclass[11pt]{beamer}
+\documentclass[10pt]{beamer}
 
 \mode<presentation> {
 
@@ -140,32 +140,32 @@
 
 % \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{zklogo}};}
 
-\usepackage[printwatermark]{xwatermark}
-\newsavebox\mybox
-\savebox\mybox{\tikz[color=cyan,opacity=0.2]\node{WEN HAO};}
-\newwatermark*[
-  allpages,
-  angle=45,
-  scale=4,
-  xpos=0,
-  ypos=5
-]{\usebox\mybox}
+% \usepackage[printwatermark]{xwatermark}
+% \newsavebox\mybox
+% \savebox\mybox{\tikz[color=cyan,opacity=0.2]\node{WEN HAO};}
+% \newwatermark*[
+%   allpages,
+%   angle=45,
+%   scale=4,
+%   xpos=0,
+%   ypos=5
+% ]{\usebox\mybox}
 
-\newwatermark*[
-  allpages,
-  angle=45,
-  scale=4,
-  xpos=50,
-  ypos=5
-]{\usebox\mybox}
+% \newwatermark*[
+%   allpages,
+%   angle=45,
+%   scale=4,
+%   xpos=50,
+%   ypos=5
+% ]{\usebox\mybox}
 
-\newwatermark*[
-  allpages,
-  angle=45,
-  scale=4,
-  xpos=-40,
-  ypos=20
-]{\usebox\mybox}
+% \newwatermark*[
+%   allpages,
+%   angle=45,
+%   scale=4,
+%   xpos=-40,
+%   ypos=20
+% ]{\usebox\mybox}
 
 %----------------------------------------------
 
@@ -231,6 +231,8 @@
 \newcommand{\Irr}{\operatorname{Irr}}
 \newcommand{\Inf}{\operatorname{Inf}}
 \DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
 
 \makeatletter
 \providecommand{\leftsquigarrow}{%

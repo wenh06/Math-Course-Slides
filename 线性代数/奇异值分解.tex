@@ -43,6 +43,7 @@
 \section{问题引入} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 \begin{frame}
+\frametitle{问题引入}
 
 \begin{block}{问题引入}
 \begin{itemize}
@@ -64,6 +65,7 @@ $$A = P\Lambda P^{-1},$$
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解定理}
 
 \begin{block}{奇异值分解定理，Theorem of Singular Value Decomposition}
 设$M$是一个$m\times n$的实矩阵，则$M$有如下的所谓的奇异值分解（Singular Value Decomposition, SVD）：
@@ -85,6 +87,7 @@ $$M = U\Sigma V^T = U\begin{pmatrix}
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解定理证明}
 
 \begin{block}{关键点}
 \begin{itemize}
@@ -102,6 +105,7 @@ $$A = P\Lambda P^T,$$
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解定理证明}
 
 \begin{block}{引理}
 \centering
@@ -130,6 +134,7 @@ M^TMM^T\mathbf{x} = \lambda M^T\mathbf{x},
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解定理证明}
 
 \begin{block}{奇异值分解定理的证明}
 把$MM^T$与$M^TM$的正特征值记为$\sigma_1^2 \geqslant \cdots \geqslant \sigma_r^2 > 0,$ 其中$\sigma_i>0.$ 设$M^TM$通过$n$阶正交阵$V = (\mathbf{v}_1,\ldots,\mathbf{v}_n)$对角化：
@@ -150,6 +155,7 @@ $$M^TM = V \begin{pmatrix}
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解定理证明}
 
 \begin{block}{奇异值分解定理的证明}
 于是有
@@ -168,6 +174,7 @@ $$M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解定理}
 
 \begin{block}{奇异值分解的一种更紧凑的形式}
 将$M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
@@ -192,6 +199,7 @@ V_1 = (\mathbf{v}_1,\ldots,\mathbf{v}_r)^T, \quad V_2 = (\mathbf{v}_{r+1},\ldots
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解例子}
 
 \begin{block}{奇异值分解的例子}
 计算矩阵$M = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$的奇异值分解。
@@ -212,6 +220,7 @@ $$\mathbf{u}_1 = M\mathbf{v}_1 = \begin{pmatrix} \cos\theta \\ \sin\theta \end{p
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解例子}
 
 \begin{block}{奇异值分解的例子（续）}
 于是$M = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$的奇异值分解可以是
@@ -231,6 +240,7 @@ $$M = U\Sigma V^T = \begin{pmatrix} \cos(\theta+\alpha) & -\sin(\theta+\alpha) \
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解应用}
 
 \begin{block}{奇异值分解的应用：图像压缩}
 利用SVD，我们可以把一个秩为$r$的$m\times n$矩阵$M$写作
@@ -246,6 +256,7 @@ $$M_k := \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \cdots + \sigma_k\mathbf{u}_k\math
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{奇异值分解应用}
 
 \begin{block}{奇异值分解的应用}
 SVD的应用还包括
