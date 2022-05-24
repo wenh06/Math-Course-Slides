@@ -209,7 +209,7 @@ $$AA^+\mathbf{b} = \mathbf{b}$$
 $$A\mathbf{x} = \mathbf{b}\text{无解} \Longleftrightarrow \mathbf{b}\not\in C(A)$$
 
 转而：在$C(A)$中寻找$A\widehat{\mathbf{x}}$, 使得它与$\mathbf{b}$最接近，即求
-$$\argmin_{\widehat{\mathbf{x}}}\Vert A\widehat{\mathbf{x}} - \mathbf{b} \Vert,$$
+$$\argmin_{\widehat{\mathbf{x}}}\lVert A\widehat{\mathbf{x}} - \mathbf{b} \rVert,$$
 并称其为一个最小二乘解。
 
 \vspace{2em}
@@ -226,7 +226,7 @@ $$\argmin_{\widehat{\mathbf{x}}}\Vert A\widehat{\mathbf{x}} - \mathbf{b} \Vert,$
 \begin{block}{最小二乘法：法方程组}
 {\bfseries 事实}：$\mathbb{R}^m$中的一个点，与一个线性子空间中距离最短的点是这个点在这个子空间上的投影。于是
 \begin{align*}
-\Vert A\widehat{\mathbf{x}} - \mathbf{b} \Vert \text{取得最小值} & \Longleftrightarrow A\widehat{\mathbf{x}} - \mathbf{b} \perp C(A) \\
+\lVert A\widehat{\mathbf{x}} - \mathbf{b} \rVert \text{取得最小值} & \Longleftrightarrow A\widehat{\mathbf{x}} - \mathbf{b} \perp C(A) \\
 & \Longleftrightarrow A^T (A\widehat{\mathbf{x}} - \mathbf{b}) = \mathbf{0} \\
 & \Longleftrightarrow A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}
 \end{align*}
@@ -295,7 +295,7 @@ A^TA\cdot\mathbf{x}^+ & = A^TAA^+ \cdot \mathbf{b} \\
 （2）$\mathbf{x}^+$是最小二乘解中长度最小者：设$\widehat{\mathbf{x}}_0$也是一个最小二乘解，即满足$A^TA\widehat{\mathbf{x}}_0 = A^T\mathbf{b}$. 于是
 \begin{align*}
 & A^TA(\widehat{\mathbf{x}}_0-\mathbf{x}^+) = A^T\mathbf{b} - A^T\mathbf{b} = \mathbf{0} \\
-\Longrightarrow & \Vert A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) \Vert = (\widehat{\mathbf{x}}_0-\mathbf{x}^+)^T A^TA (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = 0 \\
+\Longrightarrow & \lVert A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) \rVert^2 = (\widehat{\mathbf{x}}_0-\mathbf{x}^+)^T A^TA (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = 0 \\
 \Longrightarrow & A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \mathbf{0}
 \end{align*}
 
@@ -303,7 +303,7 @@ A^TA\cdot\mathbf{x}^+ & = A^TAA^+ \cdot \mathbf{b} \\
 
 $A$用其奇异值分解又可写作$A = \sum\limits_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i^T$. 于是从上式我们有
 \begin{align*}
-A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \mathbf{0} & \Longrightarrow \sum\limits_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \mathbf{0} \\
+A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \mathbf{0} & \Longrightarrow \sum\limits_{i=1}^r \sigma_i \mathbf{u}_i \underbrace{\color{red} \mathbf{v}_i^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+)}_{\textbf{这是个数}} = \mathbf{0} \\
 & \Longrightarrow \sum\limits_{i=1}^r \left( \sigma_i \cdot \left( \mathbf{v}_i^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) \right) \right) \mathbf{u}_i = \mathbf{0}
 \end{align*}
 \end{block}
@@ -336,7 +336,7 @@ $$\mathbf{v}_1^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \cdots = \mathbf{v}_r^T
 
 \begin{block}{最小二乘解}
 因此，我们有
-$$\Vert \widehat{\mathbf{x}}_0 \Vert^2 = \Vert \mathbf{x}^+ + (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \Vert^2 = \Vert \mathbf{x}^+ \Vert^2 + \Vert (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \Vert^2 \geqslant \Vert \mathbf{x}^+ \Vert^2$$
+$$\lVert \widehat{\mathbf{x}}_0 \rVert^2 = \lVert \mathbf{x}^+ + (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 = \lVert \mathbf{x}^+ \rVert^2 + \lVert (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 \geqslant \lVert \mathbf{x}^+ \rVert^2$$
 也就是说$\mathbf{x}^+ = A^+\mathbf{b}$的确是长度最小的最小二乘解。
 \end{block}
 
