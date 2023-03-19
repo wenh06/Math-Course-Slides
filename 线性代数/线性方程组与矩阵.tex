@@ -3,6 +3,11 @@
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%-----------------------------------
+%	extra packages
+%-----------------------------------
+
+\usepackage{kbordermatrix}
 
 %-----------------------------------
 %	TITLE PAGE
@@ -18,7 +23,6 @@
 %------------------------------------------------
 
 \begin{document}
-
 
 %------------------------------------------------
 
@@ -386,15 +390,18 @@ $$A\mathbf{x} = \mathbf{b}$$
 
 \begin{block}{矩阵的定义，Matrix}
 由$mn$个实数排成行列的矩形数表, 用圆(或方)括号括起来，即
-$$A = \kbordermatrix{
+$$
+A = \kbordermatrix{
 & \substack{\mathbf{a}_1 \\ \downarrow} & \substack{\mathbf{a}_2 \\ \downarrow} & \cdots & \substack{\mathbf{a}_n \\ \downarrow} \\
-\mathbf{\alpha}_1 \to & a_{11} & a_{12} & \cdots & a_{1n} \\ 
+\mathbf{\alpha}_1 \to & a_{11} & a_{12} & \cdots & a_{1n} \\
 \mathbf{\alpha}_2 \to & a_{21} & a_{22} & \cdots & a_{2n} \\
 \vdots & \vdots & \vdots & \vdots & \vdots \\
 \mathbf{\alpha}_m \to & a_{m1} & a_{m2} & \cdots & a_{mn}
-} = \begin{bmatrix}
+}
+= \begin{bmatrix}
 a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 称为$m\times n$型的矩阵，简记为$A = (a_{ij})_{m\times n}$，其中横排$\mathbf{\alpha}_i$称为矩阵的行，竖排$\mathbf{a}_j$称为矩阵的列。$a_{ij}$称为矩阵的元素，其第一个下标表示所在的行数，第二个下标表示其所在的列数。全体$m\times n$型的矩阵组成的集合，记为$M_{m\times n}(\mathbb{R})$.
 \end{block}
 

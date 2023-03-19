@@ -166,7 +166,7 @@
 \usepackage{amsmath,amsfonts,amssymb,mathrsfs}
 \usepackage{enumerate,euscript}
 \usepackage{amssymb,url,xspace}
-\usepackage{mathtools,kbordermatrix}
+\usepackage{mathtools}
 \usepackage{tikz-cd}
 \usepackage[all,cmtip]{xy}
 \usepackage{dashbox}
@@ -179,7 +179,9 @@
 \usepackage{xtab}
 \usepackage{cases}
 \usepackage{systeme}
-\usepackage{arydshln}
+% \usepackage{arydshln}  % conflict with kbordermatrix
+% \usepackage{kbordermatrix}  % TODO: replace with nicematrix
+% https://tex.stackexchange.com/questions/328072/conflict-between-kbordermatrix-and-arydshln
 \usepackage[ruled,vlined]{algorithm2e}
 
 \tikzset{%
