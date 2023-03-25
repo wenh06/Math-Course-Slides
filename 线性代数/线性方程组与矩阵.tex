@@ -47,24 +47,24 @@
 \section{课程引言} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{线性代数 -- 机器学习最重要的数学工具}
 
-\begin{block}{线性代数 -- 机器学习最重要的数学工具}
+% \begin{block}{线性代数 -- 机器学习最重要的数学工具}
 \begin{itemize}
 \item<2-> 线性关系是我们用来描述复杂的现实世界的一种简单的近似
 \item<3-> 这种近似虽然简单，但表达力非常强
 \item<4-> 机器学习一般要处理大量数据，这些数据的存储以及表达形式，被抽象为叫做``矩阵''的东西。矩阵是线性代数的基本概念以及研究对象之一
 \item<5-> 大量的工具集，如numpy, scikit-learn等，基本的数据结构是数组$\rightsquigarrow$``向量''，``矩阵''，``张量''\ldots\ldots 用好线性代数，事半功倍
 \end{itemize}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{一个线性回归的例子 -- 房价评估}
 
-\begin{block}{一个线性回归的例子 -- 房价评估}
+% \begin{block}{一个线性回归的例子 -- 房价评估}
 目标：从给定的房屋{\bfseries 信息}来估计房屋每平米的价格$Y$。
 
 \pause
@@ -84,15 +84,15 @@
 
 $N$个样本：
 $$\left\{(y_i, x_{i1}, x_{i2}, \cdots, x_{i7}) \right\}_{i=1}^N$$
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{一个线性回归的例子 -- 房价评估}
 
-\begin{block}{一个线性回归的例子 -- 房价评估}
+% \begin{block}{一个线性回归的例子 -- 房价评估}
 最简单的模型 -- 线性模型：
 $$Y(X_1,X_2,\ldots,X_7) = w_1X_1 + w_2X_2 + \cdots + w_7X_7 + b.$$
 
@@ -110,7 +110,7 @@ y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b
 \pause
 
 来求$w_1,w_2,\ldots,w_7,b$, 使得任意给出一个房屋的信息$(x_1,\ldots,x_7)$, 我们的预测值$Y(x_1,\ldots,x_7)$（如果做不到精确相等）尽量接近该房屋每平米的实际价格$y$.
-\end{block}
+% \end{block}
 
 \end{frame}
 
@@ -124,9 +124,9 @@ y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{线性方程组定义}
 
-\begin{block}{线性方程组}
+% \begin{block}{线性方程组}
 $n$个未知元$m$个方程的线性方程组具有以下形式
 $$
 \begin{cases}
@@ -146,19 +146,19 @@ $x_1,\ldots,x_n$被称为未定元，$a_{ij},b_i$是一些常数，$i=1,2,\ldots
 \item 齐次线性方程组：$b_1,b_2,\ldots,b_m = 0$
 \item 非齐次线性方程组：$b_1,b_2,\ldots,b_m$不全为$0$
 \end{itemize}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\subsection{Gau{\ss}消元法} 
+\subsection{Gau{\ss}消元法}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{解线性方程组 - Gau{\ss}消元法}
 
-\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+% \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}
 \item 在$a_{i1} (i=1,2,\ldots,m)$中选取一个不等于$0$的$a_{i_01}$（不妨设存在这样的$a_{i_01}$）， 把第$i$行的方程两边同时除以$a_{i_01}$, 然后把它放到第一行。原方程组变形为
 $$
@@ -172,15 +172,15 @@ a_{i_0+1,1}x_1 + a_{i_0+1,2}x_2 + \cdots + a_{i_0+1,n}x_n = b_{i_0+1} \\
 a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
 \end{cases}$$
 \end{enumerate}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{解线性方程组 - Gau{\ss}消元法}
 
-\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+% \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}\addtocounter{enumi}{1}
 \item 把$x_1 + \dfrac{a_{i_02}}{a_{i_01}}x_2 + \cdots + \dfrac{a_{i_0n}}{a_{i_01}}x_n = \dfrac{b_{i_0}}{a_{i_01}}$乘以$-a_{i1}$加到相应行的等式上面，方程继续变形为
 $$
@@ -196,15 +196,15 @@ x_1 + {\color{red} \dfrac{a_{i_02}}{a_{i_01}}}x_2 + \cdots + {\color{red} \dfrac
 其中$a'_{ij}$与$b'_i$为通过上面的运算新得到的系数，容易看出
 $$a'_{ij} = a_{ij} - a_{i1}\dfrac{a_{i_0j}}{a_{i_01}}, \quad b'_{i} = b_{i} - a_{i1}\dfrac{b_{i_0}}{a_{i_01}}.$$
 \end{enumerate}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{解线性方程组 - Gau{\ss}消元法}
 
-\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+% \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}\addtocounter{enumi}{2}
 \item 对于除第一个方程外剩下（{\color{red}至多}有$m-1$个）的方程
 $$
@@ -224,15 +224,15 @@ x_1 + a'_{12}x_2 + a'_{13}x_3 + \cdots + a'_{1n}x_n = b'_1 \\
 \phantom{yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy} {\color{red} 0 = b'_{k+1}}
 \end{cases}$$
 \end{enumerate}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{解线性方程组 - Gau{\ss}消元法}
 
-\begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
+% \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}\addtocounter{enumi}{3}
 \item 对于{\color{red}不出现$0 = $非零常数的阶梯形}，从最底下的方程开始，逐次代入上一个方程中，即可求得原线性方程组的解。解的形式是
 $$\begin{cases}
@@ -245,15 +245,15 @@ x_{j_k} = \ell_k(x_{h_1},\ldots,x_{h_s},b'_1,\ldots,b'_k)
 $$t_1x_{h_1}+\cdots+t_sx_{h_s}+t'_1b'_1+\cdots+t'_kb'_k$$
 $t_1,\ldots,t_s,t'_1,\ldots,t'_k$是一些实数，$h_1,\ldots,h_s$为$1,2,\ldots,n$中除掉$1,j_2,\ldots,j_k$中剩下的数，$x_{h_1},\ldots,x_{h_s}$为自由变元。
 \end{enumerate}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{用Gau{\ss}消元法解线性方程组的例子}
 
-\begin{block}{用Gau{\ss}消元法解线性方程组的例子}
+% \begin{block}{用Gau{\ss}消元法解线性方程组的例子}
 求解三元线性方程组$\systeme{3x_2 + x_3 = 9, x_1 - 2x_2 + x_3 = 0 , 3x_1 + 3x_2 - x_3 = 6}$
 
 \pause
@@ -265,15 +265,15 @@ $t_1,\ldots,t_s,t'_1,\ldots,t'_k$是一些实数，$h_1,\ldots,h_s$为$1,2,\ldot
 & \xrightarrow{-3\cdot(1) + (3)} & \systeme{x_1 - 2x_2 + x_3 = 0, 3x_2 + x_3 = 9,  9x_2 - 4x_3 = 6} \xrightarrow{[-3\cdot(2)+(3)]/7} \systeme{x_1 - 2x_2 + x_3 = 0 , 3x_2 + x_3 = 9 , x_3 = 3} \\ & \xrightarrow{\substack{-1\cdot(3)+(1) \\ -1\cdot(3)+(2)}} & \systeme{x_1 - 2x_2 = -3 , 3x_2 = 6, x_3 = 3} \xrightarrow{\substack{\frac13\cdot(2) \\ \frac23\cdot(2)+(1)}} \systeme{x_1 = 1, x_2 = 2, x_3 = 3}
 \end{eqnarray*}
 }
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{用Gau{\ss}消元法解线性方程组的例子}
 
-\begin{block}{用Gau{\ss}消元法解线性方程组的例子}
+% \begin{block}{用Gau{\ss}消元法解线性方程组的例子}
 (1). 求解二元线性方程组$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 16}$
 
 \pause
@@ -295,7 +295,7 @@ $$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 6} \xrightarrow{(2)-(1)\times 3} \left\
 x_1 - 2x_2 & = 2 \\ 0 & = 0
 \end{aligned}\right.$$
 此时有无穷多组解：$x_2 = t, x_1 = 2t+2, t\in\mathbb{R}.$
-\end{block}
+% \end{block}
 
 \end{frame}
 
@@ -305,9 +305,9 @@ x_1 - 2x_2 & = 2 \\ 0 & = 0
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{线性方程组解的情况}
 
-\begin{block}{线性方程组解的情况}
+% \begin{block}{线性方程组解的情况}
 非齐次线性方程组：
 \begin{itemize}
 \item 无解：{\color{red}化成阶梯型之后}，有{\color{red} $0 = $非零数}的方程。
@@ -323,15 +323,15 @@ x_1 - 2x_2 & = 2 \\ 0 & = 0
 \item 有唯一的一组解，零解：{\color{red}化成阶梯型之后}，方程数量等于未知元个数，即$m \geqslant k = n.$
 \item 有无穷多组解：{\color{red}化成阶梯型之后}，方程数量小于未知元个数，即$k < n.$
 \end{itemize}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{作为线性方程组的线性回归问题}
 
-\begin{block}{作为线性方程组的线性回归问题}
+% \begin{block}{作为线性方程组的线性回归问题}
 我们以系数作为未知元，于是能从一个线性回归的问题得到一个线性方程组
 $$
 \begin{cases}
@@ -346,7 +346,7 @@ x_{N1}w_1 + x_{N2}w_2 + \cdots + x_{Nn}w_n + 1\cdot b = y_N
 但是很不幸，样本数量，或者说方程个数，$N$远大于$n$，所谓的数据的features的数量。上述非齐次线性方程组一般是没有解的。
 
 解决的办法以后将会讲到。
-\end{block}
+% \end{block}
 
 \end{frame}
 
@@ -356,11 +356,11 @@ x_{N1}w_1 + x_{N2}w_2 + \cdots + x_{Nn}w_n + 1\cdot b = y_N
 
 %------------------------------------------------
 
-\subsection{矩阵的定义} 
+\subsection{矩阵的定义}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{线性方程组的紧凑形式}
 
 我们可以把之前遇到的线性方程组系数与未知元分开写，写成一种更紧凑的形式
 \[
@@ -386,9 +386,9 @@ $$A\mathbf{x} = \mathbf{b}$$
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵(Matrix)的定义}
 
-\begin{block}{矩阵的定义，Matrix}
+% \begin{block}{矩阵(Matrix)的定义}
 由$mn$个实数排成行列的矩形数表, 用圆(或方)括号括起来，即
 $$
 A = \kbordermatrix{
@@ -403,15 +403,15 @@ a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots
 \end{bmatrix}
 $$
 称为$m\times n$型的矩阵，简记为$A = (a_{ij})_{m\times n}$，其中横排$\mathbf{\alpha}_i$称为矩阵的行，竖排$\mathbf{a}_j$称为矩阵的列。$a_{ij}$称为矩阵的元素，其第一个下标表示所在的行数，第二个下标表示其所在的列数。全体$m\times n$型的矩阵组成的集合，记为$M_{m\times n}(\mathbb{R})$.
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵的同型与相等}
 
-\begin{block}{矩阵的同型与相等}
+\begin{block}{矩阵的同型与相等的定义}
 \begin{itemize}
 \item 若两个矩阵行数相同且列数相同，则称这两个矩阵是同型的；
 \item 若两个矩阵同型且对应元素相等，则称这两个矩阵是相等的。
@@ -433,9 +433,9 @@ $$
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{一些特殊矩阵}
 
-\begin{block}{一些特殊矩阵}
+% \begin{block}{一些特殊矩阵}
 \begin{itemize}
 \item 方阵：行数与列数都等于$n$的矩阵称为$n$阶方阵。全体$n$阶方阵组成的集合，记为$M_n(\mathbb{R})$.
 \item 零矩阵：元素全为零的矩阵称为零矩阵，记为$O$或$0_{m\times n}$.
@@ -445,30 +445,30 @@ $$
 矩阵也可用列向量表示为$A = \begin{pmatrix}
 \mathbf{a}_1 & \mathbf{a}_2 & \cdots & \mathbf{a}_n
 \end{pmatrix}$.
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{一些特殊矩阵}
 
-\begin{block}{一些特殊矩阵}
+% \begin{block}{一些特殊矩阵}
 \begin{itemize}
 \item 对角阵：$n\times n$的矩阵$(a_{ij})_{n\times n}$，其中$a_{ij} = 0 \text{当$i\neq j$.}$对角阵简记为
 $$diag(a_{11},a_{22},\cdots,a_{nn}) = \begin{pmatrix} a_{11} & & \\ & \ddots & \\ & & a_{nn} \end{pmatrix}.$$
 \item 单位阵：$I_n = diag(1,1,\cdots,1)$.
 \item 纯量阵：$cI_n = diag(c,c,\cdots,c), c \in \mathbb{R}$.
 \end{itemize}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{一些特殊矩阵}
 
-\begin{block}{一些特殊矩阵}
+% \begin{block}{一些特殊矩阵}
 \begin{itemize}
 \item 上三角阵：主对角线下方的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i > j$.}$
 $$\begin{pmatrix}
@@ -478,7 +478,7 @@ a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & 
 \item 严格上三角阵：主对角线下方以及主对角线上的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i \geqslant j$.}$
 \end{itemize}
 类似可以定义（严格）下三角阵。
-\end{block}
+% \end{block}
 
 \end{frame}
 
@@ -488,9 +488,9 @@ a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & 
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵的线性运算}
 
-\begin{block}{矩阵的线性运算}
+% \begin{block}{矩阵的线性运算}
 \begin{itemize}
 \item 加法：同型矩阵对应分量相加。
 $$A = (a_{ij})_{m\times n}, B = (b_{ij})_{m\times n} \Rightarrow A + B := (a_{ij} + b_{ij})_{m\times n}$$
@@ -504,7 +504,7 @@ $$A - B := A + (-B) = (a_{ij} - b_{ij})_{m\times n}$$
 \item 数量乘法（或数乘）：矩阵的每个分量同乘一个数。
 $$\text{设 }t\in\mathbb{R}, A = (a_{ij})_{m\times n}, \text{ 则  } tA = t(a_{ij})_{m\times n} := (ta_{ij})_{m\times n}$$
 \end{itemize}
-\end{block}
+% \end{block}
 
 \end{frame}
 
@@ -514,20 +514,20 @@ $$\text{设 }t\in\mathbb{R}, A = (a_{ij})_{m\times n}, \text{ 则  } tA = t(a_{i
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵的乘法的定义}
 
-\begin{block}{矩阵的乘法}
+% \begin{block}{矩阵的乘法}
 设$A = (a_{ij})_{m\times s}, B = (b_{ij})_{t\times n}$。如果矩阵$A$的列数等于矩阵$B$的行数，即$s=t$，则$A$与$B$ 可以相乘，记为$AB$。$AB$为一个$m\times n$阶的矩阵，其$(i,j)$位置上的元素是$A$ 的第$i$行的元素与$B$的第$j$列对应位置上的元素乘积之和，即如果记$AB = (c_{ij})_{m\times n}$，那么
 $$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj} = \sum\limits_{k=1}^s a_{ik}b_{kj}.$$
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵的乘法的示意图}
 
-\begin{block}{矩阵的乘法}
+% \begin{block}{矩阵的乘法}
 \[
   \left(\begin{array}{*3{c}}
   \vdots & & \vdots \\
@@ -549,15 +549,15 @@ $$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj} = \sum\limits_{k=
 \Highlight[second]
 
 $$c_{\color{red} ij} = a_{{\color{red}i}1}b_{1{\color{red}j}} + a_{{\color{red}i}2}b_{2{\color{red}j}} + \cdots + a_{{\color{red}i}s}b_{s{\color{red}j}}.$$
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵乘法的运算律}
 
-\begin{block}{矩阵乘法的运算律}
+% \begin{block}{矩阵乘法的运算律}
 设$A\in M_{m\times n}(\mathbb{R})$为一个$m\times n$阶矩阵，且取$B, C$使得下列运算可行，则
 \begin{itemize}
 \item 零矩阵：$0_{s\times m}A = 0_{s\times n}, \quad A0_{n\times t} = 0_{m\times t}$.
@@ -566,15 +566,15 @@ $$c_{\color{red} ij} = a_{{\color{red}i}1}b_{1{\color{red}j}} + a_{{\color{red}i
 \item 左右分配律：$A(B+C) = AB + AC, (B+C)A = BA+CA$.
 \item 结合律：$A(BC) = (AB)C$.
 \end{itemize}
-\end{block}
+% \end{block}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵乘法的一些``反常''的性质}
 
-\begin{block}{矩阵乘法的一些``反常''的性质}
+% \begin{block}{矩阵乘法的一些``反常''的性质}
 \begin{itemize}
 \item 不满足交换律：一般来说$AB\neq BA$. 如果$AB = BA$, 则称这两个矩阵是交换的。\pause \newline
 于是，矩阵乘法要分``左乘''以及``右乘''。\pause
@@ -585,7 +585,7 @@ AB = 0 & \not\Rightarrow & A = 0 \text{ 或 } B = 0.
 \end{eqnarray*} \pause
 \item 不满足消去律：$AB = AC \not\Rightarrow B = C$.
 \end{itemize}
-\end{block}
+% \end{block}
 
 \end{frame}
 
@@ -595,9 +595,9 @@ AB = 0 & \not\Rightarrow & A = 0 \text{ 或 } B = 0.
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{方阵的逆}
 
-\begin{block}{方阵的逆}
+\begin{block}{方阵逆的定义}
 设$A\in M_{n\times n}(\mathbb{R})$为一个方阵，如果存在方阵$B\in M_{n\times n}(\mathbb{R})$，使得$AB = BA = I_n$, 则称$A$是一个可逆（Invertible）方阵。此时，称$B$为$A$的逆方阵，记作$A^{-1}$.
 
 \pause
@@ -624,7 +624,7 @@ AB = 0 & \not\Rightarrow & A = 0 \text{ 或 } B = 0.
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{方阵的逆}
 
 \begin{block}{方阵逆的性质}
 设$A, B$是同型可逆阵，那么
@@ -648,17 +648,15 @@ $$\mathbf{x} = A^{-1}\mathbf{b}.$$
 
 %------------------------------------------------
 
-\subsection{矩阵的转置} 
+\subsection{矩阵的转置}
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵(Transpose)的转置}
 
-\begin{block}{矩阵的转置，Transpose}
 将$m\times n$的矩阵$A = (a_{ij})_{m\times n}$的行与列互换得到的矩阵称为矩阵$A$的转置，记作$A^T$，即
 $$A^T = (a_{ji})_{n\times m}.$$
 简单来说，就是沿着（左上到右下的）对角线翻转一下。{\color{red} 注意}，上式说的是$A^T$的第$(i,j)$位置的元素为$a_{ji}$.
-\end{block}
 
 \pause
 
@@ -677,9 +675,9 @@ $$A^T = (a_{ji})_{n\times m}.$$
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵的转置的性质}
 
-\begin{block}{矩阵的转置的性质}
+% \begin{block}{矩阵的转置的性质}
 \begin{enumerate}
 \item 两次还原：$(A^T)^T = A$.
 \item 加法相容：$(A+B)^T = A^T+B^T$.
@@ -687,8 +685,9 @@ $$A^T = (a_{ji})_{n\times m}.$$
 \item 乘法反序：$(AB)^T = B^TA^T$.
 \item 与求逆可交换：$(A^{-1})^T = (A^T)^{-1}$, 若$A$可逆。
 \end{enumerate}
-\end{block}
+% \end{block}
 
+\vspace{1em}
 \pause
 
 \begin{block}{对称阵与反对称阵，Symmetric and Anti-Symmetric Matrices}
@@ -703,9 +702,9 @@ $$A^T = (a_{ji})_{n\times m}.$$
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{矩阵转置乘法反序性质的证明}
 
-\begin{block}{矩阵转置乘法反序性质的证明}
+% \begin{block}{矩阵转置乘法反序性质的证明}
 设$A = (a_{ij})_{m\times s},$ $B = (b_{ij})_{s\times n}$, 令$A^T = (a'_{ij})_{s\times m},$ $B^T = (b'_{ij})_{n\times s}$. 那么有
 $$a'_{ij} = a_{ji}, \quad b'_{ij} = b_{ji}.$$
 令$C = (c_{ij})_{m\times n} = AB$, $C^T = (c'_{ij})_{n\times m}$, $D = (d_{ij})_{n\times m} = B^TA^T$, 那么由矩阵乘法定义有
@@ -714,8 +713,8 @@ c'_{ji} & = c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj}, \\
 d_{ji} & = b'_{j1}a'_{1i} + b'_{j2}a'_{2i} + \cdots + b'_{js}a'_{si} \\
 & = b_{1j}a_{i1} + b_{2j}a_{i2} + \cdots + b_{sj}a_{is}.
 \end{align*}
-矩阵$C^T = (AB)^T$, $D = B^TA^T$是同型的（$n\times m$），而且对应位置的值相等，于是$(AB)^T = B^TA^T$.
-\end{block}
+矩阵$C^T = (AB)^T$, $D = B^TA^T$是同型的（$n\times m$），而且对应位置的值相等，于是$(AB)^T = B^TA^T$. \qed
+% \end{block}
 
 \end{frame}
 
