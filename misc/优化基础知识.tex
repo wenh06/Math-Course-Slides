@@ -1,0 +1,175 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[Optimization Basics]{\LARGE \bfseries \quad 优化基础知识} % The short title appears at the bottom of every slide, the full title is only on the title page
+% \author[Basic Concepts] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{基本概念}
+
+%------------------------------------------------
+
+\begin{frame}{数学优化问题，{\smaller Mathematical Optimization Problem}}
+
+% \begin{block}
+数学优化问题，或简称优化问题，指的是求以下的量的问题
+$$\min\limits_{\mathbf{x}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le (\text{或} = ) b_i, \; i = 1,\ldots,m \right\}$$
+其中
+\begin{itemize}
+\item $\mathbf{x} = (x_1,\ldots,x_n)^T$ 为优化变量（Optimization Variable）
+\item $f_0: \mathbb{R}^n \to \mathbb{R}$ 被称作目标函数（Objective Function），其定义域我们一般记作$\mathcal{D}$或$\operatorname{dom}f$
+\item $f_i: \mathbb{R}^n \to \mathbb{R}, \; i = 1,\ldots,m,$ 被称作约束函数（Constraint Functions）。如果一个优化问题没有约束函数，则被称作一个无约束问题。
+\item $b_1,\ldots,b_m$ 被称作约束边界（Bounds）
+\end{itemize}
+% \end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{最优解，Optimal Solution}
+
+在一个优化问题中，满足所有约束条件
+$$f_i(\mathbf{x}) \le b_i,\; i = 1,\ldots,m,$$
+的向量$\mathbf{x}$被称作可行的（Feasible）。全体可行点组成的集合被称作可行集。
+
+\vspace{1em}
+
+如果可行集中一个向量$\mathbf{x}^*$, 在目标函数$f_0$上取值最小，即
+$$\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le b_i, \; i = 1,\ldots,m \right\}$$
+则称$\mathbf{x}^*$为这个优化问题的最优解。相应地，目标函数$f_0$在最优解$\mathbf{x}^*$处的取值$p^* = f_0(\mathbf{x}^*)$被称作最优值。
+% \end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一些基本的优化问题}
+
+\begin{itemize}
+\item 最小二乘法：
+$$\min\limits_{\mathbf{x}} \Vert A\mathbf{x} - \mathbf{b} \Vert_2^2 = \sum (\mathbf{a}_i^T\mathbf{x} - b_i)^2$$
+这是一个无约束问题。
+\vspace{1em}
+\item 线性规划 (Linear Programming)
+$$\min\limits_{\mathbf{x}} \left\{ \mathbf{c}^T\mathbf{x} \ \middle|\ \mathbf{a}_i^T\mathbf{x} \le b_i, \; i = 1,\ldots,m \right\}$$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{基础算法}
+
+%------------------------------------------------
+
+\begin{frame}{无约束优化}
+
+% \begin{block}
+无约束优化问题具有以下形式
+$$\text{minimize} \quad f(\mathbf{x})$$
+如果$f$是凸函数 (convex function)，那么
+$$\mathbf{x}^* \text{ 是最优解 } \Longleftrightarrow \nabla f(\mathbf{x}^*) = \mathbf{0}$$
+这个方程（组）一般没有解析解，必须采用迭代算法求解，即寻找所谓的极小化点列
+$$\mathbf{x}^{(0)}, \ldots, \mathbf{x}^{(k)}, \ldots,$$
+使得当$k\to\infty$时，$f(\mathbf{x}^{(k)}) \to p^*$
+% \end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{下降方法}
+
+极小化点列将按以下方式产生
+$$\mathbf{x}^{(k+1)} = \mathbf{x}^{(k)} + t^{(k)} \Delta \mathbf{x}^{(k)}, \text{ 且有 } f(\mathbf{x}^{(k+1)}) < f(\mathbf{x}^{(k)})$$
+其中
+\begin{itemize}
+\item $\Delta \mathbf{x}^{(k)}$被称为第$k$次迭代搜索方向，或步径
+\item $t^{(k)} > 0$被称作第$k$次迭代步长 (step size)，又称学习率 (learning rate)
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{下降方法}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\DontPrintSemicolon
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwRepeat{Do}{do}{while}
+
+给定初始点$\mathbf{x}$ \;
+\Do{达到停止条件}
+{
+确定下降方向$\Delta \mathbf{x}$ \;
+搜索并选择步长$t$ \;
+$ \mathbf{x} \gets \mathbf{x} + t \Delta \mathbf{x}$ \;
+}
+\Output{近似最优解$\mathbf{x}$}
+\caption{通用下降方法}
+\end{algorithm}
+
+\vspace{1em}
+\pause
+
+\begin{itemize}
+\item $\Delta \mathbf{x} = - \nabla f(\mathbf{x}) \; \rightsquigarrow \; \text{\color{red} 梯度下降法}$
+\item $\Delta \mathbf{x}_{nsd} = \argmin\limits_{\mathbf{v}} \{ \nabla f(\mathbf{x})^T \mathbf{v} \ |\ \Vert \mathbf{v} \Vert = 1 \} \; \rightsquigarrow \; \text{\color{red} 最速下降法}$
+\item $\Delta \mathbf{x}_{nt} = - H(f)(\mathbf{x})^{-1} \nabla f(\mathbf{x}) \; \rightsquigarrow \; \text{\color{red} Newton法}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
