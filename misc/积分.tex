@@ -1,0 +1,258 @@
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[高等数学]{\LARGE \bfseries 第3章\quad 一元函数积分学及其应用} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[定积分] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries \S 3. 定积分
+}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{定积分的定义} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分（定积分）}
+
+\begin{block}{带标志点的分划，Labelled Partition}<1->
+闭区间$[a,b]$的一个分划$P$指的是区间$[a,b]$内的有限个点组$a=x_0<\cdots<x_n=b.$ 区间$[x_{i-1},x_i]$的长度$\Delta x_i = x_i-x_{i-1}$的最大值被称为$P$的宽度，记作$\lambda(P)$。\newline\pause
+一个带标志点的分划$(P,\xi)$指的是每个区间$[x_{i-1},x_i]$中还选定了一个点$\xi\in[x_{i-1},x_i].$
+\end{block}
+
+\begin{block}{黎曼积分}<3->
+称数$I$是函数$f$在闭区间$[a,b]$上的黎曼积分，如果对任意的$\varepsilon > 0$，都能找到$\delta > 0$，使得$[a,b]$的任意带标志点的分划$(P,\xi)$，只要满足$\lambda(P) < \delta,$ 就有
+$$\left| I - \sum\limits_{i=1}^n f(\xi_i)\Delta x_i \right| < \varepsilon.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{定积分定义用极限表达}
+
+用$\int_a^b f(x)dx$表示$f$在$[a,b]$上的黎曼积分，即数$I$。于是，用极限的语言写出来就是
+$$\int_a^b f(x)dx = \lim\limits_{\lambda(P) \to 0} \sum\limits_{i=1}^n f(\xi_i)\Delta x_i.$$
+
+\vspace{2em}
+\pause
+
+{\bfseries 注意！}存在函数不可积的情况。但我们不去讨论函数的可积性等问题。以下我们都假设函数是可积的。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{定积分的性质} 
+%\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{定积分重要性质}
+
+\begin{itemize}
+\item 关于被积函数线性：
+$$\int_a^b (\alpha f + \beta g)(x)dx = \alpha \int_a^b f(x) dx + \beta \int_a^b g(x) dx.$$
+\item 关于积分区间可加：设$a \leqslant b \leqslant c,$ 那么
+$$\int_a^c f(x) dx = \int_a^b f(x) dx + \int_b^c f(x) dx.$$
+\item \(\displaystyle \int_a^b f(x) dx = -\int_b^a f(x) dx.\)
+\item \(\displaystyle \int_a^a f(x) dx = 0.\)
+\item \(\displaystyle \left|\int_a^b f(x) dx\right| \leqslant \int_a^b |f(x)| dx.\)
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{定积分的中值定理}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第一中值定理}
+
+\begin{block}{积分第一中值定理，First Mean Value Theorem for the Integral}
+设可积函数$f,g$定义在区间$[a,b]$上，且$g$在$(a,b)$上不变号，那么
+$$\int_a^b (f\cdot g)(x)dx = \mu\int_a^b g(x)dx,$$
+其中$\mu$是一个介于$f$在$[a,b]$最小值与最大值之间的数。进一步，如果$f$连续，那么存在$\xi \in [a,b]$使得
+$$\int_a^b (f\cdot g)(x)dx = f(\xi)\int_a^b g(x)dx.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第二中值定理}
+
+\begin{block}{积分第二中值定理}
+设可积函数$f,g$定义在区间$[a,b]$上，且$g$在$(a,b)$上单调，那么存在$\xi \in [a,b]$使得
+$$\int_a^b (f\cdot g)(x)dx = g(a)\int_a^{\xi} f(x)dx + g(b)\int_{\xi}^b f(x)dx.$$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{牛顿-莱布尼茨公式}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{牛顿-莱布尼茨公式，The Newton–Leibniz Formula}
+设可积函数$f$定义在区间$[a,b]$上，那么
+$$\int_a^b f(x)dx = \left.F(x)\right\vert_a^b := F(b) - F(a),$$
+其中$F$是$f$的任一个原函数（Primitive），即{\color{zkblue!50}除去有限个点外有}$F'(x) = f(x)$.
+\end{block}
+
+\vspace{2em}
+\pause
+
+$F$又被称作反导数（Anti-derivative），不定积分（Indefinite Integral）等。
+
+\end{frame}
+
+%------------------------------------------------
+
+%------------------------------------------------
+
+\section{分部积分法}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{分部积分法，Integration by Parts}
+设函数$f,g$在区间$[a,b]$上连续可微（即它们的导函数连续），那么
+$$\int_a^b (f\cdot g')(x)dx = (f\cdot g)(x)|_a^b - \int_a^b (f'\cdot g)(x)dx.$$
+
+\pause
+
+上式又可简记为\(\displaystyle \int_a^b fdg = (f\cdot g)|_a^b - \int_a^b gdf.\)
+\end{block}
+
+\pause
+
+例题：
+\begin{align*}
+\int_0^{\pi} x \cos x dx & = \int_0^{\pi} x d\sin x = x\sin x|_0^{\pi} - \int_0^{\pi} \sin x dx \\
+& = - \int_0^{\pi} \sin x dx = \cos x|_0^{\pi} = -2.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+%------------------------------------------------
+
+\section{变量替换公式}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{变量替换公式，Formula for Change of Variable}
+设函数$\varphi: [\alpha,\beta] \to [a,b]$是闭区间$[\alpha,\beta]$到闭区间$[a,b]$的连续可微函数，且$\varphi(\alpha) = a, \varphi(\beta) = b$。那么对于任意在$[a,b]$上连续的函数$f$有
+$$\int_a^b f(x)dx = \int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t)dt.$$
+\end{block}
+
+\pause
+
+例题：
+\begin{align*}
+\int_{-1}^{1} \sqrt{1-x^2} dx & = \int_{-\pi/2}^{\pi/2} \sqrt{1-\sin^2t}\cos t dt = \int_{-\pi/2}^{\pi/2} \cos^2 t dt \\
+& = \dfrac{1}{2} \int_{-\pi/2}^{\pi/2} (1+\cos 2t) dt = \left.\dfrac{1}{2}\left(t + \dfrac{1}{2}\sin 2t \right)\right\vert_{-\pi/2}^{\pi/2} \\
+& = \dfrac{\pi}{2}.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{反常积分}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{积分区间无界的反常积分（Improper Integral）}
+设函数$f$定义在$[a,+\infty)$上，且对任意$b>a$，函数$f$在$[a,b]$上可积，如果下式右端极限存在
+$$\int_a^{+\infty} f(x)dx := \lim\limits_{b\to+\infty} \int_a^b f(x)dx,$$
+则称其为$f$在$[a,+\infty)$上的反常积分。
+\end{block}
+
+\pause
+
+\begin{block}{无界函数的反常积分}
+设函数$f$定义在区间$[a,w)$上，且在任意闭区间$[a,b]\subset [a,w)$上可积，如果下式右端极限存在
+$$\int_a^w f(x)dx := \lim\limits_{b\to w-} \int_a^b f(x)dx,$$
+则称其为$f$在$[a,w)$上的反常积分。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+% \section{积分的数值方法}
+
+% %------------------------------------------------
+
+% \begin{frame}
+
+
+
+% \end{frame}
+
+% % %------------------------------------------------
+
+% \section{习题}
+
+% %------------------------------------------------
+
+% \begin{frame}
+% % \frametitle{习题}
+
+
+% \end{frame}
+
+
+% %------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
