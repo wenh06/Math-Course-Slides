@@ -43,7 +43,7 @@
     minimum size=0.5cm
   },
   neuron missing/.style={
-    draw=none, 
+    draw=none,
     scale=2,
     text height=0.333cm,
     execute at begin node=\color{zkblue}$\vdots$
@@ -65,7 +65,7 @@
   \node [every neuron/.try] (input-4) at (0,2.5-5) {$x_n$};
 
 % \foreach \m [count=\y] in {1,missing,2}
-%   \node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};  
+%   \node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};
   \node [every neuron/.try] (hidden-1) at (2,2-1*1.25) {$t_1$};
   \node [neuron missing/.try] (hidden-missing) at (2,2-2*1.25) {};
   \node [every neuron/.try] (hidden-2) at (2,2-3*1.25) {$t_p$};

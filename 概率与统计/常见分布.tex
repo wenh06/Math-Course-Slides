@@ -220,7 +220,7 @@ $$\dfrac{X-\mu}{\sigma} \sim N(0, 1)$$
 \begin{block}{指数分布，Exponential Distribution}
 \begin{itemize}
 \item 符号：$Exp(\lambda)$, \; $\lambda > 0$.
-\item PDF：$f(x) = 
+\item PDF：$f(x) =
 \begin{cases}
 \lambda e^{-\lambda x}, & x \ge 0 \\
 0, & x < 0
@@ -400,7 +400,7 @@ $n = 1,2,\ldots;$ $0 < p_1,\ldots,p_m < 1$ 且 $p_1+\cdots+p_m = 1$
 \begin{block}{狄利克雷分布，Dirichlet Distribution}
 \begin{itemize}
 \item 符号：$\operatorname{Dir}(\boldsymbol\alpha)$, \; 其中$\boldsymbol\alpha = (\alpha_1,\ldots,\alpha_K)$为所谓的集中参数（Concentration Parameters）, $\alpha_i>0, K \ge 2$
-\item PDF：$\displaystyle 
+\item PDF：$\displaystyle
 f(\mathbf{x}) = \begin{cases}
 \dfrac{1}{B(\boldsymbol\alpha)} \prod\limits_{i=1}^{K} x_{i}^{\alpha_{i}-1}, & x_i > 0, \sum\limits_{i=1}^{K} x_i = 1 \\
 0, & \text{ 其他情况}
@@ -444,7 +444,7 @@ P(Z=z) & = P(X+Y=z) = \sum\limits_{x+y=z} P(X=x,Y=y) \\
 $$f_X(x), \quad f_Y(y)$$
 那么$Z = X+Y$也是一个连续型随机变量，且$Z$的密度函数为
 \begin{align*}
-f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x)dx = 
+f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x)dx =
 \int_{-\infty}^{+\infty} f_X(z-y) f_Y(y)dy
 \end{align*}
 以上公式被称作卷积公式。

@@ -104,7 +104,7 @@ $$
 y_1 = w_1x_{11} + w_2x_{12} + \cdots + w_7x_{17} + b \\
 y_2 = w_1x_{21} + w_2x_{22} + \cdots + w_7x_{27} + b \\
 \phantom{yyy} \vdots \\
-y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b 
+y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b
 \end{cases}$$
 
 \pause
@@ -116,11 +116,11 @@ y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b
 
 %------------------------------------------------
 
-\section{线性方程组} 
+\section{线性方程组}
 %\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 
-\subsection{线性方程组定义} 
+\subsection{线性方程组定义}
 
 %------------------------------------------------
 
@@ -301,7 +301,7 @@ x_1 - 2x_2 & = 2 \\ 0 & = 0
 
 %------------------------------------------------
 
-\subsection{线性方程组解的情况} 
+\subsection{线性方程组解的情况}
 
 %------------------------------------------------
 
@@ -371,7 +371,7 @@ a_{21} & a_{22} & \cdots & a_{2n} \\
 a_{m1} & a_{m2} & \cdots & a_{mn}
 \end{pmatrix}}_{\text{系数矩阵} A = (a_{ij})} \underbrace{\begin{pmatrix}
 x_1 \\ x_2 \\ \vdots \\ x_n
-\end{pmatrix}}_{\text{未知元列}\mathbf{x}} = 
+\end{pmatrix}}_{\text{未知元列}\mathbf{x}} =
 \underbrace{\begin{pmatrix}
 b_1 \\ b_2 \\ \vdots \\ b_n
 \end{pmatrix}}_{\text{常数项列}\mathbf{b}}
@@ -429,7 +429,7 @@ $$
 
 %------------------------------------------------
 
-\subsection{特殊矩阵} 
+\subsection{特殊矩阵}
 
 %------------------------------------------------
 
@@ -472,7 +472,7 @@ $$diag(a_{11},a_{22},\cdots,a_{nn}) = \begin{pmatrix} a_{11} & & \\ & \ddots & \
 \begin{itemize}
 \item 上三角阵：主对角线下方的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i > j$.}$
 $$\begin{pmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & \vdots \\ & & & a_{nn} 
+a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & \vdots \\ & & & a_{nn}
 \end{pmatrix}$$
 
 \item 严格上三角阵：主对角线下方以及主对角线上的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i \geqslant j$.}$
@@ -484,7 +484,7 @@ a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & 
 
 %------------------------------------------------
 
-\subsection{矩阵的线性运算} 
+\subsection{矩阵的线性运算}
 
 %------------------------------------------------
 
@@ -510,7 +510,7 @@ $$\text{设 }t\in\mathbb{R}, A = (a_{ij})_{m\times n}, \text{ 则  } tA = t(a_{i
 
 %------------------------------------------------
 
-\subsection{矩阵的乘法} 
+\subsection{矩阵的乘法}
 
 %------------------------------------------------
 
@@ -539,11 +539,11 @@ $$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj} = \sum\limits_{k=
     \cdots & \tikzmark{left}{$b_{1{\color{red}j}}$} & \cdots \\
      & \vdots & \\
     \cdots & \tikzmark{right}{$b_{s{\color{red}j}}$} & \cdots
-  \end{array}\right) = 
+  \end{array}\right) =
   \left(\begin{array}{*3{c}}
      & \vdots & \\
     \cdots & c_{\color{red} ij} & \cdots \\
-     & \vdots & 
+     & \vdots &
   \end{array}\right)
 \]
 \Highlight[second]
