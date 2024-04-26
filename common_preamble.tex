@@ -225,6 +225,10 @@
 % \usepackage{kbordermatrix}  % TODO: replace with nicematrix
 % https://tex.stackexchange.com/questions/328072/conflict-between-kbordermatrix-and-arydshln
 \usepackage[ruled,vlined]{algorithm2e}
+\usepackage{calc}
+
+\newlength{\noleftmargin}
+\setlength{\noleftmargin}{-1in-\oddsidemargin}%
 
 \tikzset{%
   highlight/.style={rectangle,rounded corners,fill=red!15,draw,
@@ -281,7 +285,7 @@
 \newtheorem{conj}[thm]{猜想}
 \newtheorem{cor}[thm]{推论}
 \newtheorem{remark}[thm]{注记}
-\newtheorem{eg}[thm]{例题}
+\newtheorem{eg}[thm]{例}
 \newtheorem{exer}[thm]{习题}
 \newtheorem{recall}[thm]{Recall}
 \newtheorem{question}[thm]{Qustion}
@@ -314,6 +318,7 @@
 % \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simfang.ttf}
 \setCJKmainfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
 \setCJKsansfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
+\setCJKmonofont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
 
 \setlength{\belowdisplayskip}{5pt} \setlength{\belowdisplayshortskip}{5pt}
 \setlength{\abovedisplayskip}{5pt} \setlength{\abovedisplayshortskip}{5pt}

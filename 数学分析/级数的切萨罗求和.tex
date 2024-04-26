@@ -1,0 +1,197 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setCJKmainfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simhei.ttf}
+\setCJKsansfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simhei.ttf}
+\setCJKmonofont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simhei.ttf}
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[数学分析II]{\LARGE \bfseries 第九章\quad 级数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{\Large \bfseries 级数的Cesàro求和法及Tauber型定理}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\begin{frame}{引言}
+
+这一讲，我们来扩展“可求和”级数的范围，例如
+
+\pause
+
+$$\sum\limits_{n=1}^{\infty} (-1)^{n+1} = 1 - 1 + 1 - 1 + \cdots$$
+
+\pause
+
+这在通常意义下是一个发散的级数, 但我们很快会知道它是一个所谓的Cesàro 意义下可和的级数.
+
+\vspace*{2em}
+\pause
+
+Cesàro 求和法, 实际上可以视作是某种“动态加权平均”的方法. 配合上Tauber型的定理, 可以在掌握数项级数某种意义上的前 $n$ 项均值变化趋势的前提下, 结合关于通项的某种“正则性”, 对级数本身的敛散性等性质做出判断.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[定义]{Cesàro可和级数定义}
+
+%------------------------------------------------
+
+\begin{frame}{Cesàro意义下可和的级数}
+
+\begin{Def}[Cesàro意义下可和的级数]
+设 $s_n = \sum\limits_{k=1}^{n} a_k$ 是数项级数 $\sum\limits_{n=1}^{\infty} a_n$ 的前 $n$ 项和, 记 {\color{red}$\sigma_n = \dfrac{1}{n} \sum\limits_{k=1}^{n} s_k$}. 若 {\color{red}$\lim\limits_{n\to\infty} \sigma_n = A \in \mathbb{R}$}, 则称级数 $\sum\limits_{n=1}^{\infty} a_n$ 在Cesàro意义下可和, 或者更准确的说是在 $(c, 1)$ 的意义下可和, 并记为 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1).$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cesàro意义下可和的级数}
+
+\begin{eg}
+{\smaller[1]
+考虑我们一开始提到的通常意义下发散的级数
+$$\sum\limits_{n=1}^{\infty} a_n = \sum\limits_{n=1}^{\infty} (-1)^{n+1}  = 1 - 1 + 1 - 1 + \cdots,$$
+容易算得
+$$s_n = \sum\limits_{k=1}^{n} a_k = \begin{cases}
+    1, & n = 2m - 1 \\
+    0, & 2 = m
+\end{cases} \quad m = 1, 2, \dots$$
+进而有
+$$\sigma_n = \sum\limits_{k=1}^n s_k = \begin{cases}
+  \dfrac{m}{2m - 1}, & n = 2m - 1\\
+  \dfrac{1}{2}, & n = 2m
+  \end{cases} \quad m = 1, 2, \dots$$
+}
+$\sigma_n$ 关于 $n$ 有极限, 为 $\lim\limits \sigma_n = \dfrac{1}{2}.$ 于是这个级数在 $(c, 1)$ 意义下可和, 即有
+$$\sum\limits_{n=1}^{\infty} a_n = \dfrac{1}{2}~(c, 1).$$
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cesàro意义下可和的级数}
+
+一个自然的问题是：对于通常意义下收敛的级数 $\sum\limits_{n=1}^{\infty} a_n = A \in \mathbb{R},$ 它在 $(c, 1)$ 意义下是可和的吗？如果是, 那么它的和还是 $A$ 吗？
+
+\pause
+\vspace*{2em}
+
+\begin{prop}
+设级数 $\sum\limits_{n=1}^{\infty} a_n$ 在通常意义下收敛到有限实数 $A,$ 即 $\lim\limits_{n \to \infty} s_n = A,$ 那么级数 $\sum\limits_{n=1}^{\infty} a_n$ 是 $(c, 1)$ 可和, 而且有 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1).$
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最大似然估计法，Maximum Likelihood Estimation, MLE}
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{似然函数求极大值}
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最大似然估计法例子}
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最大似然估计法例子（续）}
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最小二乘法}
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{block}{最小二乘法}
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
