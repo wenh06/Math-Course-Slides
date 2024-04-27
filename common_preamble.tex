@@ -15,104 +15,46 @@
 % Compiler: XeLatex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\makeatletter
+\@ifundefined{ifUseLogo}{%
+  \newif\ifUseLogo
+}{}
+\makeatother
+
 %---------------------------------
 %	PACKAGES AND THEMES
 %---------------------------------
 
 \documentclass[10pt]{beamer}
 
-\mode<presentation> {
-
-% The Beamer class comes with a number of default slide themes
-% which change the colors and layouts of slides. Below this is a list
-% of all the themes, uncomment each in turn to see what they look like.
-
-%\usetheme{default}
-%\usetheme{AnnArbor}
-%\usetheme{Antibes}
-%\usetheme{Bergen}
-\usetheme{Berkeley}
-%\usetheme{Berlin}
-% \usetheme{Boadilla}
-%\usetheme{CambridgeUS} %red
-%\usetheme{Copenhagen} %pseudo-flat, round
-%\usetheme{Darmstadt}
-%\usetheme{Dresden}
-%\usetheme{Frankfurt}
-%\usetheme{Goettingen}
-%\usetheme{Hannover} %left column
-%\usetheme{Ilmenau}
-%\usetheme{JuanLesPins}
-% \usetheme{Luebeck} %flat, square
-%\usetheme{Madrid}
-%\usetheme{Malmoe} %brief, triangle
-%\usetheme{Marburg} %right column
-%\usetheme{Montpellier} %brief, upper column
-%\usetheme{PaloAlto} %right column
-%\usetheme{Pittsburgh}
-%\usetheme{Rochester}
-%\usetheme{Singapore}
-%\usetheme{Szeged}
-%\usetheme{Warsaw} %upper column
-
-% As well as themes, the Beamer class has a number of color themes
-% for any slide theme. Uncomment each of these in turn to see how it
-% changes the colors of your current slide theme.
-
-% \usecolortheme{albatross}
-% \usecolortheme{beaver}
-% \usecolortheme{beetle}
-% \usecolortheme{crane}
-% \usecolortheme{dolphin}
-% \usecolortheme{dove}
-% \usecolortheme{fly}
-% \usecolortheme{lily}
-% \usecolortheme{orchid}
-% \usecolortheme{rose}
-% \usecolortheme{seagull}
-% \usecolortheme{seahorse}
-% \usecolortheme{whale}
-% \usecolortheme{wolverine}
-
-%------------------------------------------
-% add logo
-
-\logo{\includegraphics[height=1.5cm]{images/logo_cau_science_white.png}}
-
-% \logo{\includegraphics[height=1.55cm]{images/logo_buaa_math.jpg}}
-
-%------------------------------------------
+\input{colors}
 
 \usefonttheme{serif}
+
+\usepackage{arydshln}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-
 \usepackage{pgfplots}
-
-% colours
-\definecolor{tsinghua}{rgb}{.434, .09, .531}
-\definecolor{tsinghua-1}{HTML}{791CB5}
-\definecolor{tsinghua-2}{HTML}{4B0C77}
-
-\definecolor{cau-green-1}{HTML}{4b9537}
-\definecolor{cau-green-2}{HTML}{00873c}
-\definecolor{cau-green-3}{HTML}{307c5a}
-
-\definecolor{pale}{rgb}{.9,.9,.9}
-% \usecolortheme[named=tsinghua]{structure}
-%\usecolortheme[named=cyan]{structure}
-%\usecolortheme[named=violet]{structure}
-
-\definecolor{jdhblue}{RGB}{2,93,186}
-
-\definecolor{zkblue}{RGB}{88,135,175}
-\definecolor{zkbackground}{RGB}{230,232,234}
-
+\pgfplotsset{compat=1.18}
 
 % define theme color
 \colorlet{themecolor}{cau-green-1}
 % \colorlet{themecolor}{zkblue}
 
+\mode<presentation> {
+
+\ifUseLogo
+\usetheme{Berkeley}
+
+% add logo
+\logo{\includegraphics[height=1.5cm]{images/logo_cau_science_white.png}}
+% \logo{\includegraphics[height=1.55cm]{images/logo_buaa_math.jpg}}
+\else
+% \usetheme{Goettingen}
+\usetheme{Hannover} %left column
+\fi
+
+%------------------------------------------
 
 \usecolortheme[named=themecolor]{structure}
 
@@ -133,6 +75,18 @@
 \setbeamercolor{date}{fg=themecolor}
 \setbeamercolor{normal text}{fg=themecolor}
 \setbeamercolor{background canvas}{bg=zkbackground}
+
+\setbeamercolor{palette sidebar secondary}{fg=themecolor,bg=white!80}
+% \setbeamercolor{subsection in sidebar}{fg=themecolor,bg=white!80}
+% \setbeamercolor{section in sidebar shaded}{fg=white!75}
+% \setbeamercolor{subsection in sidebar shaded}{fg=white!75}
+
+% \setbeamercolor{section in sidebar shaded}{fg=white!75}
+% \setbeamercolor{subsection in sidebar shaded}{fg=white!75}
+
+\setbeamerfont{title in sidebar}{size=\scriptsize}
+\setbeamerfont{author in sidebar}{size=\scriptsize}
+\setbeamerfont{section in sidebar}{size=\scriptsize}
 
 
 % \setbeamercolor{section in toc}{fg=jdred,bg=white}
@@ -189,6 +143,7 @@
 
 % page number in the left side bar
 % https://tex.stackexchange.com/questions/332895/slide-number-in-the-sidebar-of-paloalto-theme-in-beamer
+
 \addtobeamertemplate{footline}
 {%
    \usebeamercolor[fg]{author in sidebar}
@@ -197,7 +152,6 @@
 }
 
 %----------------------------------------------
-
 
 \usepackage[BoldFont,SlantFont]{xeCJK}
 
@@ -213,7 +167,7 @@
 \usepackage[all,cmtip]{xy}
 \usepackage{dashbox}
 \usepackage{tikz}
-\usetikzlibrary{trees,arrows,matrix,fit}
+\usetikzlibrary{trees, arrows, matrix, fit}
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage[justification = centering]{caption}
@@ -226,6 +180,9 @@
 % https://tex.stackexchange.com/questions/328072/conflict-between-kbordermatrix-and-arydshln
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{calc}
+% \usepackage{cleveref}
+\usepackage{cancel}
+\usepackage{pifont}
 
 \newlength{\noleftmargin}
 \setlength{\noleftmargin}{-1in-\oddsidemargin}%
@@ -279,7 +236,7 @@
 \makeatother
 
 \newtheorem{thm}{定理}[section]
-\newtheorem{prop}[thm]{性质}
+\newtheorem{prop}[thm]{命题}
 \newtheorem{lem}[thm]{引理}
 \newtheorem{Def}[thm]{定义}
 \newtheorem{conj}[thm]{猜想}
