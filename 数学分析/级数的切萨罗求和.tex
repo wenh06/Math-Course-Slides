@@ -103,7 +103,7 @@ $$\sum\limits_{n=1}^{\infty} a_n = \sum\limits_{n=1}^{\infty} (-1)^{n+1}  = 1 - 
 容易算得
 $$s_n = \sum\limits_{k=1}^{n} a_k = \begin{cases}
     1, & n = 2m - 1 \\
-    0, & 2 = m
+    0, & n = 2m
 \end{cases} \quad m = 1, 2, \dots$$
 进而有
 $$\sigma_n = \sum\limits_{k=1}^n s_k = \begin{cases}
@@ -131,7 +131,7 @@ $$\sum\limits_{n=1}^{\infty} a_n = \dfrac{1}{2}~(c, 1).$$
 \vspace*{2em}
 
 \begin{prop}
-设级数 $\sum\limits_{n=1}^{\infty} a_n$ 在通常意义下收敛到有限实数 $A,$ 即 $\lim\limits_{n \to \infty} s_n = A,$ 那么级数 $\sum\limits_{n=1}^{\infty} a_n$ 是 $(c, 1)$ 可和, 而且有 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1).$
+设级数 $\sum\limits_{n=1}^{\infty} a_n$ 在通常意义下收敛到有限实数 $A,$ 即 $\lim\limits_{n \to \infty} s_n = A,$ 那么级数 $\sum\limits_{n=1}^{\infty} a_n$ 是 $(c, 1)$ 可和的, 而且有 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1).$
 \end{prop}
 
 \end{frame}
@@ -143,7 +143,7 @@ $$\sum\limits_{n=1}^{\infty} a_n = \dfrac{1}{2}~(c, 1).$$
 \begin{proof}
 若 $\sum\limits_{n=1}^{\infty} a_n$ 在通常意义下收敛到有限实数 $A,$ 那么
 $$A = \lim\limits_{n \to \infty} s_n = \lim\limits_{n \to \infty} \dfrac{n\sigma_n - (n-1)\sigma_{n-1}}{n - (n-1)}, $$
-于是根据Stolz公式, 有
+于是根据Stolz公式 (Stolz–Cesàro定理), 有
 $$\lim\limits_{n \to \infty} \sigma_n = \lim\limits_{n \to \infty} \dfrac{n\sigma_n}{n} = \lim\limits_{n \to \infty} \dfrac{n\sigma_n - (n-1)\sigma_{n-1}}{n - (n-1)} = A.$$
 这表明了 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1).$
 \end{proof}
@@ -170,6 +170,7 @@ $$
 \vspace*{1em}
 
 由此, 可以归纳地定义 $(c, r)$ 意义下可和的级数, $r \geqslant 1$ 为正整数.
+$$\sigma_n^{(r)} = \dfrac{1}{n} \sum\limits_{k=1}^n \sigma_n^{(r-1)} \text{ 关于 $n$ 收敛}, ~~ (\text{约定 } \sigma_n^{(1)} = \sigma_n, \sigma_n^{(0)} = s_n).$$
 
 \end{frame}
 
@@ -178,10 +179,24 @@ $$
 \begin{frame}{$(c, r)$ 意义下可和的级数}
 
 将通常意义下收敛的级数称作是 $(c, 0)$ 意义下可和的级数, 那么根据之前我们证明的命题以及举的例子, 我们有如下的集合 (空间) 的真包含的关系:
+% \begin{multline*}
+%   \{ (c, 0) \text{可和级数} \} \subsetneqq \{ (c, 1) \text{可和级数} \} \subsetneqq \cdots \\ \subsetneqq \{ (c, r) \text{可和级数} \} \subsetneqq \{ (c, r+1) \text{可和级数} \} \subsetneqq \cdots
+% \end{multline*}
 
-\begin{multline*}
-  \{ (c, 0) \text{可和级数} \} \subsetneqq \{ (c, 1) \text{可和级数} \subsetneqq \cdots \\ \subsetneqq \{ (c, r) \text{可和级数} \} \subsetneqq \{ (c, r+1) \text{可和级数} \} \subsetneqq \cdots
-\end{multline*}
+$$
+\begin{array}{c}
+\{ (c, 0) \text{可和级数} \} \\
+\rotatebox[origin=c]{-90}{$\subsetneqq$} \\
+\{ (c, 1) \text{可和级数} \} \\
+\rotatebox[origin=c]{-90}{$\subsetneqq$} \\
+\vdots \\
+\{ (c, r) \text{可和级数} \} \\
+\rotatebox[origin=c]{-90}{$\subsetneqq$} \\
+\{ (c, r+1) \text{可和级数} \} \\
+\rotatebox[origin=c]{-90}{$\subsetneqq$} \\
+\vdots
+\end{array}
+$$
 
 \end{frame}
 
@@ -209,11 +224,14 @@ $$
 
 \begin{frame}{Tauber型定理证明}
 
-我们考察 $s_n - \sigma_n,$ 有
+我们考察 $s_n - \sigma_n,$
+\pause
+有
 \begin{align*}
   s_n - \sigma_n & = \sum\limits_{k=1}^n a_k - \sum\limits_{k=1}^n \left( 1 - \dfrac{k-1}{n} \right) a_k \\
   & = \dfrac{\sum\limits_{k=1}^n (k-1)a_k}{n}.
 \end{align*}
+\pause
 由于 $n \to \infty$ 时有 $a_n = \mathrm{o}\left( \dfrac{1}{n} \right),$ 那么 $\lim\limits_{n \to \infty} n a_n = 0,$ 这也等价于
 $$\lim\limits_{n \to \infty} (n - 1) a_n = 0.$$
 
@@ -265,7 +283,7 @@ $$s_n = \sigma_n + \sum\limits_{k = 1}^n \dfrac{(k-1)a_k}{n}.$$
 \pause
 \vspace*{1em}
 
-\begin{block}{题外话}
+\begin{block}{注意}
 很多判别法、计算公式，例如 L'Hopital 法则, Stolz 公式, 包括后面要学的一致收敛的函数项级数的逐项微分、积分的结论, 相关条件都是一种充分性条件, 远\textbf{\color{red}不是必要条件}.
 \end{block}
 
@@ -275,15 +293,31 @@ $$s_n = \sigma_n + \sum\limits_{k = 1}^n \dfrac{(k-1)a_k}{n}.$$
 
 \begin{frame}{增强的Tauber型定理的分析与证明}
 
-想法: 将 $s_n - \sigma_n$ 与 $\sigma_n - \sigma_m$ 联系上, 并用它控制余项的大小. 假设 $n > m,$ 那么有
+想法: 将 $s_n - \sigma_n$ 与 $\sigma_n - \sigma_m$ 联系上, 并用它控制余项的大小.
+
+\only<2>{
+假设 $n > m,$ 那么有
 \begin{align*}
-  \sigma_n - \sigma_m & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^m s_k \\
-  & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^{{\color{red}n}} s_k + \dfrac{1}{m} \sum\limits_{k=m+1}^{n} s_k \\
+  \sigma_n - \sigma_m & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^{{\color{red}m}} s_k \\
+  & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^{{\color{red}n}} s_k + \dfrac{1}{m} \sum\limits_{{\color{red}k=m+1}}^{n} s_k \\
   & = \dfrac{m - n}{nm} \sum\limits_{k=1}^n s_k + \dfrac{1}{m} \sum\limits_{k=m+1}^{n} s_k.
 \end{align*}
 
 另一方面, 有
-$$s_n - \sigma_n = s_n - \dfrac{1}{n} \sum\limits_{k = 1}^n s_k = \dfrac{1}{n} \sum\limits_{k = 1}^n (s_n - s_k).$$
+$$s_n - \sigma_n = s_n - \dfrac{1}{n} \sum\limits_{k = 1}^n s_k.$$
+}
+
+\only<3>{假设 $n > m,$ 那么有
+\begin{align*}
+  \sigma_n - \sigma_m & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^m s_k \\
+  & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^{n} s_k + \dfrac{1}{m} \sum\limits_{k=m+1}^{n} s_k \\
+  & = \dfrac{m - n}{nm} {\color{red}
+  \sum\limits_{k=1}^n s_k} + \dfrac{1}{m} \sum\limits_{k=m+1}^{n} s_k.
+\end{align*}
+
+另一方面, 有
+$$s_n - \sigma_n = s_n - \dfrac{1}{n} {\color{red} \sum\limits_{k = 1}^n s_k}.$$
+}
 
 \end{frame}
 
@@ -294,7 +328,7 @@ $$s_n - \sigma_n = s_n - \dfrac{1}{n} \sum\limits_{k = 1}^n s_k = \dfrac{1}{n} \
 两式通分相减, 有
 \begin{align*}
 & (s_n - \sigma_n) - \dfrac{m}{n - m}(\sigma_n - \sigma_m) \\
-& = \dfrac{1}{n} \sum\limits_{k = 1}^n (s_n - {\color{red} \cancel{s_k}}) + {\color{red} \cancel{\dfrac{1}{n} \sum\limits_{k=1}^n s_k}} - \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} s_k \\
+& = s_n - {\color{red} \cancel{\dfrac{1}{n} \sum\limits_{k = 1}^n s_k}} + {\color{red} \cancel{\dfrac{1}{n} \sum\limits_{k=1}^n s_k}} - \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} s_k \\
 & = s_n - \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} s_k = \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k).
 \end{align*}
 
@@ -310,7 +344,7 @@ $$s_n - \sigma_n = \underbrace{\color{cyan}\dfrac{m}{n - m}(\sigma_n - \sigma_m)
 
 \begin{frame}{增强的Tauber型定理的分析与证明}
 
-对于 $\text{\ding{173}} = \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k),$ 我们有估计
+对于 $\text{\ding{173}} = \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k)$ 和式中的每一项, 我们有估计
 {\smaller
 \begin{multline*}
   \lvert s_n - s_k \rvert = \lvert a_{k+1} + \cdots + a_n \rvert \\
@@ -326,7 +360,7 @@ $$
 
 \pause
 
-我们希望有 $\dfrac{n-m-1}{m+1} < \varepsilon,$ 即 $m > \dfrac{n}{1 + \varepsilon} - 1.$ 取
+我们希望有 $\dfrac{n-m-1}{m+1} < \varepsilon$ 可推出 $m > \dfrac{n}{1 + \varepsilon} - 1.$ 取
 $$\color{red} m = \left[ \dfrac{n}{1 + \varepsilon} \right] < n,$$
 即有 $\lvert \text{\ding{173}} \rvert < M \varepsilon.$
 
@@ -338,7 +372,7 @@ $$\color{red} m = \left[ \dfrac{n}{1 + \varepsilon} \right] < n,$$
 
 对于 $\text{\ding{172}} = \dfrac{m}{n - m}(\sigma_n - \sigma_m),$ 从 $m = \left[ \dfrac{n}{1 + \varepsilon} \right] \leqslant \dfrac{n}{1 + \varepsilon},$ 有 $m \varepsilon + m \leqslant n,$ 从而有 $\dfrac{m}{n - m} \leqslant \dfrac{1}{\varepsilon}.$ 于是
 $$\lvert \text{\ding{172}} \rvert = \left\lvert \dfrac{m}{n - m}(\sigma_n - \sigma_m) \right\rvert \leqslant \dfrac{1}{\varepsilon} \left\lvert \sigma_n - \sigma_m \right\rvert.$$
-取 $N$ 充分大, 使得 $\forall n > m > N$ 都有 $\left\lvert \sigma_n - \sigma_m \right\rvert < \varepsilon^2,$ 那么
+若取 $N$ 充分大, 使得 $\forall n > m > N$ 都有 $\left\lvert \sigma_n - \sigma_m \right\rvert < {\color{red} \varepsilon^2},$ 那么
 $$\left\lvert s_n - \sigma_n \right\rvert \leqslant \lvert \text{\ding{172}} \rvert + \lvert \text{\ding{173}} \rvert < \varepsilon + M \varepsilon = (M+1)\varepsilon.$$
 
 \pause
@@ -352,7 +386,7 @@ $$\left\lvert s_n - \sigma_n \right\rvert \leqslant \lvert \text{\ding{172}} \rv
 
 \begin{frame}{Tauber型定理}
 
-以上我们证明了两个所谓的Tauber型定理, 即在某些附加的“正则性”条件下，根据考察的量的某些均值的性质，对这个量本身的性质作一些判断。
+以上我们证明了两个所谓的Tauber型的定理, 即在某些附加的“正则性”条件下，根据考察的量的某些均值的性质，对这个量本身的性质作一些判断。
 
 \pause
 \vspace{1em}
@@ -369,7 +403,30 @@ $$a_n = s_n - s_{n-1} = \mathrm{o}\left(\dfrac{1}{n}\right) \text{ 或 } \mathrm
 
 %------------------------------------------------
 
-\begin{frame}{Tauber型定理}
+\begin{frame}{总结}
+
+{\larger[2] \color{red} \ding{43}} Cesàro $(c, r)$ 意义下可和的级数 $\sum\limits_{n=1}^\infty a_n:$
+\begin{align*}
+  & (c, 0): \quad s_n = \dfrac{1}{n} \sum\limits_{k=1}^n a_n \text{ 收敛} \\
+  & (c, 1): \quad \sigma_n = \dfrac{1}{n} \sum\limits_{k=1}^n s_n \text{ 收敛} \\
+  % & (c, 2): \quad \sigma_n^{(2)} = \dfrac{1}{n} \sum\limits_{k=1}^n \sigma_n \text{ 收敛} \\
+  & \phantom{++++++} \vdots
+\end{align*}
+
+\pause
+
+{\larger[2] \color{red} \ding{43}} 有集合真包含关系: $\{ (c, r) \text{可和级数} \} \subsetneqq \{ (c, r + 1) \text{可和级数} \}$
+
+\pause
+\vspace{0.8em}
+
+{\larger[2] \color{red} \ding{43}} Tauber型定理:
+$$
+\left. \begin{array}{r}
+\sum\limits_{n=1}^\infty a_n \text{ 在 $(c,1)$ 意义下可和} \\
+a_n = \mathrm{o} \left( \dfrac{1}{n} \right) (\text{或 } \mathrm{O} \left( \dfrac{1}{n} \right))
+\end{array} \right\} \Longrightarrow \sum\limits_{n=1}^\infty a_n \text{ 在通常意义下可和}
+$$
 
 \end{frame}
 
