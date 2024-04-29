@@ -49,12 +49,12 @@
 % add logo
 \logo{\includegraphics[height=1.5cm]{images/logo_cau_science_white.png}}
 % \logo{\includegraphics[height=1.55cm]{images/logo_buaa_math.jpg}}
-\else
-% \usetheme{Goettingen}
-\usetheme{Hannover} %left column
-\fi
 
-%------------------------------------------
+\setbeamercolor{subsection in toc}{fg=zkbackground}
+% \setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
+\setbeamercolor{frametitle}{fg=white,bg=themecolor}
+
+
 
 \usecolortheme[named=themecolor]{structure}
 
@@ -66,9 +66,6 @@
 % \setbeamercolor{institute}{fg=tsinghua}
 % \setbeamercolor{date}{fg=tsinghua}
 % \setbeamercolor{normal text}{fg=tsinghua}
-\setbeamercolor{subsection in toc}{fg=themecolor!35}
-% \setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
-\setbeamercolor{frametitle}{fg=white,bg=themecolor}
 \setbeamercolor{block body}{bg=themecolor!25,fg=themecolor}
 \setbeamercolor{author}{fg=themecolor}
 \setbeamercolor{institute}{fg=themecolor}
@@ -76,7 +73,7 @@
 \setbeamercolor{normal text}{fg=themecolor}
 \setbeamercolor{background canvas}{bg=zkbackground}
 
-\setbeamercolor{palette sidebar secondary}{fg=themecolor,bg=white!80}
+\setbeamercolor{palette sidebar secondary}{fg=themecolor, bg=white!80}
 % \setbeamercolor{subsection in sidebar}{fg=themecolor,bg=white!80}
 % \setbeamercolor{section in sidebar shaded}{fg=white!75}
 % \setbeamercolor{subsection in sidebar shaded}{fg=white!75}
@@ -95,6 +92,29 @@
 %\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
 
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+
+% page number in the left side bar
+% https://tex.stackexchange.com/questions/332895/slide-number-in-the-sidebar-of-paloalto-theme-in-beamer
+
+\addtobeamertemplate{footline}
+{
+   \usebeamercolor[fg]{author in sidebar}
+   \vskip-1cm\hskip4pt
+   {\bfseries\color{white}\fontsize{8pt}{8pt}\selectfont \insertframenumber\,/\,\inserttotalframenumber\kern1em\vskip2pt}
+}
+
+\else
+% \usetheme{Goettingen}
+% \usetheme[width=.1\paperwidth]{Hannover} %left column
+\usetheme[width=.1\paperwidth]{AAUsidebar} %left column
+
+% \setbeamercolor{subsection in toc}{fg=zkbackground}
+% \setbeamercolor{frametitle}{fg=themecolor,bg=zkbackground}
+% \setbeamercolor{block header}{bg=themecolor!75,fg=themecolor}
+
+\fi
+
+%------------------------------------------
 }
 
 
@@ -141,15 +161,8 @@
 %     \insertframenumber/\inserttotalframenumber
 % }
 
-% page number in the left side bar
-% https://tex.stackexchange.com/questions/332895/slide-number-in-the-sidebar-of-paloalto-theme-in-beamer
 
-\addtobeamertemplate{footline}
-{%
-   \usebeamercolor[fg]{author in sidebar}
-   \vskip-1cm\hskip10pt
-   {\bfseries\color{white}\fontsize{10pt}{10pt}\selectfont \insertframenumber\,/\,\inserttotalframenumber\kern1em\vskip2pt}
-}
+
 
 %----------------------------------------------
 
