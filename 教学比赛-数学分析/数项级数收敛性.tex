@@ -41,15 +41,55 @@
 
 \begin{frame}{芝诺悖论 (Zeno's Paradox)}
 
-\includegraphics[width=0.6\textwidth]{images/zeno-paradox.jpg}
+大约公元前425年，古希腊有一位名叫芝诺的学者，曾提出过若干个在数学发展是上产生过重大影响的悖论。“Achilles追赶乌龟”即是其中较著名的一个。
+
+\vspace*{0.9em}
+
+\begin{columns}
+  \begin{column}{0.47\textwidth}
+    \includegraphics[width=0.95\textwidth]{images/zeno-paradox.jpg}
+  \end{column}
+  \pause
+  \begin{column}{0.51\textwidth}
+    设乌龟在Achilles前面$S_1$米处向前爬行，Achilles在后面追赶。\\
+    当Achilles用了$t_1$秒时间，跑完$S_1$米时，乌龟已向前爬了$S_2$米；\\
+    当Achilles再用$t_2$秒时间，跑完$S_2$米时，乌龟又向前爬了$S_3$米；\\
+    $\cdots\cdots$\\
+    这样的过程可以一直继续下去，因此Achilles{\color{red}永远}也追不上乌龟。
+  \end{column}
+\end{columns}
+
+\pause
+\vspace*{0.9em}
+
+{\larger[2]\color{red}
+$$
+t_1 + t_2 + \cdots + t_n + \cdots = \text{无穷}?
+$$
+}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{一尺之捶，日取其半，万世不竭 | {\smaller[2] 《庄子·天下》}}
+\begin{frame}{一尺之捶，日取其半，万世不竭 |{\smaller[2] 《庄子·杂篇·天下》}}
 
+\begin{center}
 \includegraphics[width=0.9\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
+\end{center}
+
+\pause
+\vspace*{-0.6em}
+
+{\larger[2]\color{red}
+$$
+1 = \dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots ~ !
+$$
+}
+
+\pause
+
+以上两个例子，我们遇到的都是无穷（{\color{red}可列}）多个数相加的情况，称之为{\color{red}“数项级数”}。那么数项级数有什么特点以及运算规律呢？这是我们接下来要学习的。
 
 \end{frame}
 
@@ -59,9 +99,88 @@
 
 %------------------------------------------------
 
+\begin{frame}{数项级数定义}
+
+设$x_1, x_2, \dots, x_n, \dots$是无穷可列个实数，我们称它们的{\color{red}“和”}
+$$x_1 + x_2 + \cdots + x_n + \cdots$$
+为\textbf{无穷数项级数}（简称\textbf{级数}），（形式上）记为$\sum\limits_{n=1}^\infty x_n,$ 其中$x_n$成为级数的\textbf{通项}或\textbf{一般项}。
+
+\pause
+\vspace*{0.5em}
+
+\begin{block}{{\larger 问题} -- 如何进行无限求和？}
+\vspace*{-1em}
+{\larger[1]
+\begin{align*}
+{\color{red}\checkmark} & \phantom{+} x_1 + x_2 + \cdots + x_n \\
+{\color{red}\textbf{?}} & \phantom{+} x_1 + x_2 + \cdots + x_n {\color{red} + \cdots}
+\end{align*}
+}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{部分和数列}
+
+想法：我们考虑有限项（前$n$项）的和，然后将无限求和定义为其{\color{red}极限}！
+
+\pause
+
+\begin{align*}
+  S_1 & = x_1, \\
+  S_2 & = x_1 + x_2, \\
+  S_3 & = x_1 + x_2 + x_3, \\
+  \vdots & \\
+  S_n & = x_1 + x_2 + \cdots + x_n, \\
+  \vdots \\
+  \rotatebox[origin=c]{-90}{$\to$} \\
+  & \hspace*{-1.6em} \sum\limits_{n=1}^\infty x_n
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{作为部分和数列极限的无穷级数}
+
+\begin{Def}
+如果部分和数列$\{S_n\}$收敛于有限实数$S,$ 则称无穷级数$\sum\limits_{n=1}^\infty x_n$收敛，且称它的和为$S,$ 记为
+$$S = \sum\limits_{n=1}^\infty x_n;$$
+\pause
+如果部分和数列$\{S_n\}$发散，则称无穷级数$\sum\limits_{n=1}^\infty x_n$发散。
+\end{Def}
+
+\pause
+\vspace*{1em}
+
+由上述定义可知，只有当无穷级数收敛时，无穷多个实数的加法才是有意义的，并且它们的和就是级数的部分和数列的极限。
+\pause
+所以，级数的收敛与数列的收敛本质上是一回事！
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{几何级数}
+
+设$|q| < 1,$ 则\textbf{几何级数}（即\textbf{等比数列}）
+$$\sum\limits_{n=1}^\infty q^{n-1} = 1 + q + q^2 + \cdots + q^n + \cdots$$
+是收敛的。这是因为它的部分和数列通项为
+$$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - q^n}{1 - q} ~~ \xrightarrow{\phantom{+} n \to \infty \phantom{+}} ~~ \dfrac{1}{1 - q}$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[基本性质]{级数的基本性质}
+
+%------------------------------------------------
+
 \begin{frame}{待写}
 
-
+待写
 
 \end{frame}
 
