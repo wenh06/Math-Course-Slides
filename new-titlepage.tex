@@ -1,0 +1,47 @@
+\let\oldtitlegraphic\titlegraphic
+\renewcommand{\titlegraphic}[3][]{%
+\oldtitlegraphic{\node[inner sep=0pt,anchor=north west,#3] at (titlepage) {\includegraphics[#1]{#2}}}}
+
+
+% ******************
+% title page
+% ******************
+\setbeamertemplate{title page}
+{
+  \begingroup
+  \begin{tikzpicture}[overlay,remember picture]
+  \draw[fill=gray,draw=none] (current page.north west) rectangle (\paperwidth,-.3cm);
+		\node[xshift=-5cm,yshift=-4.1cm] 
+		 	at (current page.north east) (titlepage) {};
+	  \inserttitlegraphic;
+		\draw[line width=4mm,xshift=-3mm,draw=structure.fg,yshift=-1mm] 
+		 	(0,0) -- (\paperwidth,0) {};
+\node[anchor=south west,align=left] at (0,.25) {% 
+\parbox{12cm}{%     
+\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else\vskip.5ex%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}
+        \insertsubtitle\par}%
+      \fi}};
+\node[anchor=north west,align=left] at (0,-.4) {%
+\parbox{7cm}{
+      {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}\vskip-.5ex
+      {\usebeamerfont{author}\usebeamercolor[fg]{author}\scriptsize\ttfamily\@mail}
+    \vskip3mm
+      \usebeamerfont{institute}\usebeamercolor[fg]{author}\insertinstitute
+    \vskip3mm
+      \usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate
+}}; 
+  \end{tikzpicture}
+  \endgroup
+}
+
+
+% ******************
+% new commands
+% ******************
+\renewcommand{\maketitle}{%
+\begin{frame}[plain]
+\titlepage
+\end{frame}}
