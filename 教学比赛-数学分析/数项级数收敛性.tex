@@ -291,11 +291,12 @@ $$\lim\limits_{n\to\infty} x_n = 0.$$
 
 \begin{frame}{数项级数收敛的必要条件}
 
-\begin{block}{注意}
+% \begin{block}{注意}
+\begin{attnblock}
 $\lim\limits_{n\to\infty} x_n = 0$只是级数收敛的必要条件，并{\color{red}不是充分条件}。例如
 $$\zeta(1) = \lim\limits_{n\to\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots$$
 就满足这一必要条件，但它本身是发散的。
-\end{block}
+\end{attnblock}
 
 \pause
 \vspace*{0.5em}
@@ -308,14 +309,14 @@ $$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots
 
 %------------------------------------------------
 
-\begin{frame}{数项级数运算的线性性}
+\begin{frame}{收敛级数运算的线性性}
 
-\begin{thm}[数项级数运算的线性性]
+\begin{thm}[收敛级数运算的线性性]
 设$\sum\limits_{n=1}^\infty a_n = A,$ $\sum\limits_{n=1}^\infty b_n = B,$ $\alpha, \beta$是两个常数，那么
 $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 \end{thm}
 
-也就是说，对收敛级数可以进行加法以及数乘的运算。
+也就是说，对{\color{red}收敛级数}可以进行加法以及数乘的运算。
 
 \pause
 \vspace{0.5em}
@@ -328,7 +329,7 @@ $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 
 %------------------------------------------------
 
-\begin{frame}{数项级数运算线性性的应用}
+\begin{frame}{收敛级数运算线性性的应用}
 
 \begin{eg}
 \begin{center}
@@ -350,9 +351,110 @@ $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 
 %------------------------------------------------
 
-\begin{frame}{数项级数运算的加法结合律}
+\begin{frame}{收敛级数的加法结合律}
 
-待写
+在公式$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B$中取$\beta = 0,$ 那么可以得到收敛级数关于数乘的分配律
+$$\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\infty a_n,$$
+那么一个自然的问题是，有限个实数(加法)运算的其他性质，例如{\color{red}结合律、交换律}等，对于级数而言是否还成立呢？
+
+\pause
+\vspace{1em}
+
+对于{\color{red}收敛级数}的加法结合律，我们有肯定的回答：
+
+\begin{thm}[数项级数的加法结合律]
+设级数$\sum\limits_{n=1}^\infty x_n$收敛，则在它的求和表达式中任意添加括号后所得的级数仍然收敛，且其和不变。
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{收敛级数加法结合律的证明}
+
+设级数$\sum\limits_{n=1}^\infty x_n$添加括号之后的表示为
+\begin{multline*}
+  (x_1 + x_2 + \cdots + x_{n_1}) + (x_{n_1+1} + x_{n_1+2} + \cdots + x_{n_2}) + \cdots \\
+  + (x_{n_{k-1}+1} + x_{n_{k-1}+2} + \cdots + x_{n_k}) + \cdots
+\end{multline*}
+令
+\begin{align*}
+  y_1 & = x_1 + x_2 + \cdots + x_{n_1} \\
+  y_2 & = x_{n_1+1} + x_{n_1+2} + \cdots + x_{n_2} \\
+  \vdots \\
+  y_k & = x_{n_{k-1}+1} + x_{n_{k-1}+2} + \cdots + x_{n_k} \\
+  \vdots
+\end{align*}
+那么$\sum\limits_{n=1}^\infty x_n$按上面方式添加括号所得的级数即为$\sum\limits_{n=1}^\infty y_n.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{收敛级数加法结合律的证明}
+
+记$\sum\limits_{n=1}^\infty x_n$的部分和数列为$\{S_n\},$ $\sum\limits_{n=1}^\infty y_n$的部分和数列为$\{U_n\},$ 那么有
+\begin{align*}
+  U_{\color{red}1} & = y_1 = x_1 + x_2 + \cdots + x_{n_1} = S_{\color{red}n_1}, \\
+  U_{\color{red}2} & = y_1 + y_2 = x_1 + x_2 + \cdots + x_{n_2} = S_{\color{red}n_2}, \\
+  \vdots \\
+  U_{\color{red}k} & = y_1 + y_2 + \cdots + y_k = x_1 + x_2 + \cdots + x_{n_k} = S_{\color{red}n_k}, \\
+  \vdots
+\end{align*}
+也就是说，数列$\{U_n\}$是$\{S_n\}$的一个子列。 于是，由$\{S_n\}$的收敛性即得$\{U_n\}$的收敛性，且二者极限相同。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{收敛级数加法结合律}
+
+\begin{attnblock}
+加法结合律对原本发散的级数一般不成立。也就是说，加完括号之后的级数如果收敛，我们不能得出原来级数收敛的结论。这是因为数列某个子列的收敛性，并不能保证原来整个数列的收敛性。
+\end{attnblock}
+
+\pause
+\vspace{0.8em}
+
+我们的反例如下：
+
+将发散级数$\sum\limits_{n=1}^\infty (-1)^{n-1}$每两项之间加上括号，则有
+$$(1-1) + (1-1) + \cdots + (1-1) + \cdots = 0 + 0 + \cdots + 0 + \cdots = 0$$
+
+\pause
+
+\vspace{0.4em}
+
+换一种方式，从第二项开始，每两项之间加上括号，有
+$$1 - (1-1) - (1-1) + \cdots - (1-1) + \cdots = 1 + 0 + \cdots + 0 + \cdots = 1$$
+
+\pause
+\vspace*{-0.6em}
+
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 发散级数不满足加法结合律！}
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{应用例题}
+
+\begin{eg}
+  一慢性病患者需每天服用某种药物，按医嘱每天服用$0.05$mg，设体内的药物每天有$20\%$通过各种渠道排泄掉，问长期服药后患者体内药量维持在怎样的水平？
+\end{eg}
+
+\pause
+
+\textbf{解：} 服药第一天，患者体内药量为$0.05$mg；\\
+\pause
+服药第二天，患者体内药量增加$0.05$mg，但之前剩下的药量被排泄掉$20\%,$ 因此共计$0.05 + 0.05\cdot(1-0.2) = 0.05\cdot\left(1 + \dfrac{4}{5}\right)$mg;\\
+\pause
+服药第三天，患者体内药量增加$0.05$mg，但之前剩下的药量被排泄掉$20\%,$ 因此共计$0.05 + (0.05 + 0.05\cdot(1-0.2))\cdot(1-0.2) = 0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2\right)$mg;\\
+\pause
+$\cdots\cdots$以此类推，长期服药后，患者体内药量为
+$$0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2 + \left( \dfrac{4}{5} \right)^3 + \cdots \right) = 0.25 \text{(mg)}.$$
 
 \end{frame}
 
@@ -364,17 +466,30 @@ $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 数项级数的定义：
+$$\sum\limits_{n=1}^\infty x_n := \text{它的部分和数列} \left\{ S_n = \sum\limits_{k=1}^n x_k \right\} \text{的极限}$$
 
 \pause
-\vspace{0.8em}
+\vspace{0.4em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 数项级数收敛的{\color{red}必要条件}：$\lim\limits_{n\to\infty} x_n = 0.$
 
 \pause
-\vspace{0.8em}
+\vspace{0.4em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 收敛级数运算线性性：$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$
+
+\pause
+\vspace{0.4em}
+
+{\larger[2] \color{red} \ding{43}} 收敛级数加法结合律：在它的求和表达式中任意添加括号后所得的级数仍然收敛，且其和不变。
+
+\pause
+\vspace{0.4em}
+
+\begin{attnblock}
+  以上运算性质都是对收敛级数才成立的，对发散级数一般不成立。之后我们会看到，级数的加法交换律要求更加严格，即使对收敛的级数都可能不成立！
+\end{attnblock}
 
 \end{frame}
 
