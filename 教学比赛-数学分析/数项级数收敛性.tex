@@ -55,17 +55,22 @@
     当Achilles用了$t_1$秒时间，跑完$S_1$米时，乌龟已向前爬了$S_2$米；\\
     当Achilles再用$t_2$秒时间，跑完$S_2$米时，乌龟又向前爬了$S_3$米；\\
     $\cdots\cdots$\\
-    这样的过程可以一直继续下去，因此Achilles{\color{red}永远}也追不上乌龟。
+    这样的过程可以一直继续下去，因此Achilles {\color{red}永远}也追不上乌龟。
   \end{column}
 \end{columns}
 
 \pause
 \vspace*{0.9em}
 
-{\larger[2]\color{red}
-$$
-t_1 + t_2 + \cdots + t_n + \cdots = \text{无穷}?
-$$
+% {\larger[2]\color{red}
+% $$
+% t_1 + t_2 + \cdots + t_n + \cdots = \text{无穷}?
+% $$
+% }
+{\larger[2]
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \color{red!80} t_1 + t_2 + \cdots + t_n + \cdots = \text{无穷}?
+\end{empheq}
 }
 
 \end{frame}
@@ -75,16 +80,21 @@ $$
 \begin{frame}{一尺之捶，日取其半，万世不竭 |{\smaller[2] 《庄子·杂篇·天下》}}
 
 \begin{center}
-\includegraphics[width=0.9\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
+\includegraphics[width=0.85\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
 \end{center}
 
 \pause
-\vspace*{-0.6em}
+\vspace*{-0.9em}
 
-{\larger[2]\color{red}
-$$
-1 = \dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots ~ !
-$$
+% {\larger[2]\color{red}
+% $$
+% 1 = \dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots ~ !
+% $$
+% }
+{\larger[2]
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \color{red!80} 1 = \dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots ~ !
+\end{empheq}
 }
 
 \pause
@@ -95,7 +105,7 @@ $$
 
 %------------------------------------------------
 
-\section[定义]{数项级数定义}
+\section[定义]{数项级数的定义}
 
 %------------------------------------------------
 
@@ -103,7 +113,7 @@ $$
 
 设$x_1, x_2, \dots, x_n, \dots$是无穷可列个实数，我们称它们的{\color{red}“和”}
 $$x_1 + x_2 + \cdots + x_n + \cdots$$
-为\textbf{无穷数项级数}（简称\textbf{级数}），（形式上）记为$\sum\limits_{n=1}^\infty x_n,$ 其中$x_n$成为级数的\textbf{通项}或\textbf{一般项}。
+为\textbf{无穷数项级数}（简称\textbf{级数}），（形式上）记为$\sum\limits_{n=1}^\infty x_n,$ 其中$x_n$称为级数的\textbf{通项}或\textbf{一般项}。
 
 \pause
 \vspace*{0.5em}
@@ -135,8 +145,8 @@ $$x_1 + x_2 + \cdots + x_n + \cdots$$
   \vdots & \\
   S_n & = x_1 + x_2 + \cdots + x_n, \\
   \vdots \\
-  \rotatebox[origin=c]{-90}{$\to$} \\
-  & \hspace*{-1.6em} \sum\limits_{n=1}^\infty x_n
+  \rotatebox[origin=c]{-90}{\color{red}$\to$} \\
+  & \hspace*{-1.5em} {\color{red}\sum\limits_{n=1}^\infty x_n}
 \end{align*}
 
 \end{frame}
@@ -149,36 +159,198 @@ $$x_1 + x_2 + \cdots + x_n + \cdots$$
 如果部分和数列$\{S_n\}$收敛于有限实数$S,$ 则称无穷级数$\sum\limits_{n=1}^\infty x_n$收敛，且称它的和为$S,$ 记为
 $$S = \sum\limits_{n=1}^\infty x_n;$$
 \pause
+\vspace*{-0.3em}
 如果部分和数列$\{S_n\}$发散，则称无穷级数$\sum\limits_{n=1}^\infty x_n$发散。
 \end{Def}
 
 \pause
-\vspace*{1em}
+\vspace*{0.3em}
 
-由上述定义可知，只有当无穷级数收敛时，无穷多个实数的加法才是有意义的，并且它们的和就是级数的部分和数列的极限。
+由上述定义可知，只有当无穷级数收敛时，无穷多个实数的加法才是有意义的，并且它们的和就是级数的部分和数列的极限。所以，
+
 \pause
-所以，级数的收敛与数列的收敛本质上是一回事！
+
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 级数的收敛与数列的收敛本质上是一回事！}
+\end{empheq}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{几何级数}
+\section[典型例子]{数项级数的典型例子}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数的典型例子 | {\smaller 几何级数}}
 
 设$|q| < 1,$ 则\textbf{几何级数}（即\textbf{等比数列}）
 $$\sum\limits_{n=1}^\infty q^{n-1} = 1 + q + q^2 + \cdots + q^n + \cdots$$
-是收敛的。这是因为它的部分和数列通项为
-$$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - q^n}{1 - q} ~~ \xrightarrow{\phantom{+} n \to \infty \phantom{+}} ~~ \dfrac{1}{1 - q}$$
+是收敛的。
+\pause
+这是因为它的部分和数列通项为
+$$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - {\color{red}q^n}}{1 - q} ~~ \xrightarrow{\phantom{+} {\color{red}n \to \infty} \phantom{+}} ~~ \dfrac{1}{1 - q}$$
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[基本性质]{级数的基本性质}
+\begin{frame}{数项级数的典型例子 | {\smaller 发散级数}}
+
+级数
+$$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots$$
+是发散的。
+\pause
+这是因为它的部分和数列通项为
+$$S_n = \begin{cases}
+0, & \text{$n$为偶数}, \\
+1, & \text{$n$为奇数}.
+\end{cases}$$
+显然数列$\{S_n\}$是发散的。
+
+\end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{数项级数的典型例子 | {\smaller $\zeta$}}
+
+$$\zeta(s) = \sum\limits_{n=1}^\infty \dfrac{1}{n^s} = 1 + \dfrac{1}{2^s} + \dfrac{1}{3^s} + \cdots + \dfrac{1}{n^s} + \cdots$$
+被称作$\zeta$函数，是现代 \textbf{(解析) 数论}的中心研究对象之一。上述定义式对实部大于$1$的复数都有意义，并且可以解析延拓为整个复数域$\mathbb{C}$上的一个亚纯函数。著名的黎曼猜想就是关于$\zeta(s)$的：
+% \begin{block}{黎曼猜想}
+% \begin{center}
+% $\zeta(s)$的所有非平凡零点的实部都等于$\dfrac{1}{2}.$
+% \end{center}
+% \end{block}
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} $\zeta(s)$的所有非平凡零点的实部都等于$\dfrac{1}{2}.$}
+\end{empheq}
+
+\pause
+\vspace*{-0.3em}
+
+我们比较熟悉的是$s$是实数的情况。之前在学习数列极限的时候，我们已经证明了
+\begin{center}
+$s > 1$时， $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}$收敛； \quad $s \leqslant 1$时， $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}$发散到正无穷。
+\end{center}
+
+\pause
+\vspace*{-0.3em}
+
+这一级数在今后学习其他级数敛散性判别的时候也会有重要作用。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{芝诺悖论解惑}
+
+设乌龟速度$v_1$ (米/秒) 与 Achilles 速度$v_2$之比为 $q ( 0 < q < 1).$\\
+当 Achilles 跑完 $S_1$ 米时，乌龟已向前爬了$S_2 {\color{red} = qS_1}$米；\\
+当 Achilles 跑完 $S_2$ 米时，乌龟又向前爬了$S_3 {\color{red} = qS_2 = q^2S_1}$米；\\
+$\cdots\cdots$\\
+当 Achilles 跑完 $S_n$ 米时，乌龟已向前爬了$S_{n+1} {\color{red} = q^nS_1}$米；\\
+$\cdots\cdots$\\
+
+\pause
+\vspace*{0.5em}
+
+将所有路程加起来，有
+$$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-1}S_2 + \cdots = \dfrac{S_1}{1 - q}$$
+这{\color{red}无限段}路程之和是{\color{red}有限}的,也就是说，当 Achilles 跑完路程$S = \dfrac{S_1}{1 - q}$ (即经过了{\color{red}有限}的时间$T = \dfrac{S_1}{(1-q)v_2}$秒) 时，他已经追上了乌龟。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[基本性质]{数项级数的基本性质}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数收敛的必要条件}
+
+可以由数列的性质平行地导出数项级数的一些基本性质。
+
+\pause
+
+\begin{thm}[数项级数收敛的必要条件]
+设级数$\sum\limits_{n=1}^\infty x_n$收敛，则其通项所构成的数列$\{x_n\}$是无穷小量，即
+$$\lim\limits_{n\to\infty} x_n = 0.$$
+\end{thm}
+
+\pause
+
+\textbf{证明：}
+  设$\sum\limits_{n=1}^\infty x_n = S,$ 则对级数部分和 $S_n = \sum\limits_{k=1}^k x_k$ 成立
+  $$\lim\limits_{n\to\infty} S_n = \lim\limits_{n\to\infty} S_{n-1} = S,$$
+  于是得到
+  $$\lim\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} (S_n - S_{n-1}) = \lim\limits_{n\to\infty} S_n - \lim\limits_{n\to\infty} S_{n-1} = 0.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数收敛的必要条件}
+
+\begin{block}{注意}
+$\lim\limits_{n\to\infty} x_n = 0$只是级数收敛的必要条件，并{\color{red}不是充分条件}。例如
+$$\zeta(1) = \lim\limits_{n\to\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots$$
+就满足这一必要条件，但它本身是发散的。
+\end{block}
+
+\pause
+\vspace*{0.5em}
+
+这一必要条件的一个重要作用在于，可以用于直接判断某些级数发散，例如我们已经看过的例子
+$$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots$$
+现在可以直接通过其通项$(-1)^{n-1}$不是无穷小量得出这一级数发散的结论，而不需要再去求它的部分和数列，并判断其是否收敛。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数运算的线性性}
+
+\begin{thm}[数项级数运算的线性性]
+设$\sum\limits_{n=1}^\infty a_n = A,$ $\sum\limits_{n=1}^\infty b_n = B,$ $\alpha, \beta$是两个常数，那么
+$$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
+\end{thm}
+
+也就是说，对收敛级数可以进行加法以及数乘的运算。
+
+\pause
+\vspace{0.5em}
+
+\textbf{证明：}
+  设级数$\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$的部分和数列分别为$\{S_n^{(1)}\}, \{S_n^{(2)}\},$ 那么对$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n)$的部分和数列$\{S_n\}$有$S_n = \alpha S_n^{(1)} + \beta S_n^{(2)}.$ 对$n$取极限，并利用极限的线性性，即有
+  $$\lim\limits_{n\to\infty} S_n = \alpha \lim\limits_{n\to\infty} S_n^{(1)} + \beta \lim\limits_{n\to\infty} S_n^{(2)} = \alpha A + \beta B.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数运算线性性的应用}
+
+\begin{eg}
+\begin{center}
+求级数$\sum\limits_{n=1}^\infty \dfrac{4^{n+1} - 3 \cdot 2^n}{5^n}$的值。
+\end{center}
+\end{eg}
+
+\pause
+\vspace*{0.5em}
+
+因为几何级数$\sum\limits_{n=0}^\infty \left( \dfrac{4}{5} \right)^n$与$\sum\limits_{n=0}^\infty \left( \dfrac{2}{5} \right)^n$都收敛，所以依据数项级数运算的线性性，有
+\begin{align*}
+  \sum\limits_{n=1}^\infty \dfrac{4^{n+1} - 3 \cdot 2^n}{5^n} & = \dfrac{16}{5} \sum\limits_{n=0}^\infty \left( \dfrac{4}{5} \right)^n - \dfrac{6}{5} \sum\limits_{n=0}^\infty \left( \dfrac{2}{5} \right)^n \\
+  & = \dfrac{16}{5} \cdot \dfrac{1}{1 - \frac{4}{5}} - \dfrac{6}{5} \cdot \dfrac{1}{1 - \frac{2}{5}} \\
+  & = 14.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数运算的加法结合律}
 
 待写
 
