@@ -401,28 +401,26 @@ $$a_n = s_n - s_{n-1} = \mathrm{o}\left(\dfrac{1}{n}\right) \text{ 或 } \mathrm
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} Cesàro $(c, r)$ 意义下可和的级数 $\sum\limits_{n=1}^\infty a_n:$
+\begin{itemize}
+\item[{\larger[2] \color{red} \ding{43}}] Cesàro $(c, r)$ 意义下可和的级数 $\sum\limits_{n=1}^\infty a_n:$
 \begin{align*}
   & (c, 0): \quad s_n = \dfrac{1}{n} \sum\limits_{k=1}^n a_n \text{ 收敛} \\
   & (c, 1): \quad \sigma_n = \dfrac{1}{n} \sum\limits_{k=1}^n s_n \text{ 收敛} \\
-  % & (c, 2): \quad \sigma_n^{(2)} = \dfrac{1}{n} \sum\limits_{k=1}^n \sigma_n \text{ 收敛} \\
   & \phantom{++++++} \vdots
 \end{align*}
-
+\vspace{-0.8em}
 \pause
-
-{\larger[2] \color{red} \ding{43}} 有集合真包含关系: $\{ (c, r) \text{可和级数} \} \subsetneqq \{ (c, r + 1) \text{可和级数} \}$
-
+\item[{\larger[2] \color{red} \ding{43}}] 有集合真包含关系: $\{ (c, r) \text{可和级数} \} \subsetneqq \{ (c, r + 1) \text{可和级数} \}$
 \pause
 \vspace{0.8em}
-
-{\larger[2] \color{red} \ding{43}} Tauber型定理:
+\item[{\larger[2] \color{red} \ding{43}}] Tauber型定理:
 $$
 \left. \begin{array}{r}
 \sum\limits_{n=1}^\infty a_n \text{ 在 $(c,1)$ 意义下可和} \\
 a_n = \mathrm{o} \left( \dfrac{1}{n} \right) (\text{或 } \mathrm{O} \left( \dfrac{1}{n} \right))
 \end{array} \right\} \Longrightarrow \sum\limits_{n=1}^\infty a_n \text{ 在通常意义下可和}
 $$
+\end{itemize}
 
 \end{frame}
 
