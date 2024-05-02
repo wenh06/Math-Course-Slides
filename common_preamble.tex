@@ -213,7 +213,7 @@
 }
 \newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
   baseline=(#1.base)] \node (#1) {#2};}
-%
+
 \newcommand{\Highlight}[1][submatrix]{%
     \tikz[overlay,remember picture]{
     \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
@@ -303,7 +303,7 @@
 \setlength{\belowdisplayskip}{1pt}
 \setlength{\abovedisplayskip}{1pt}
 \setlength{\belowdisplayshortskip}{0pt}
-\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\abovedisplayshortskip}{-2pt}
 
 \setcounter{tocdepth}{1}
 

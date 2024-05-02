@@ -8,8 +8,8 @@
 %-----------------------------------
 
 \title[数学分析]{\texorpdfstring{\LARGE \bfseries 第九章\quad 数项级数}{第九章 数项级数}} % The short title appears at the bottom of every slide, the full title is only on the title page
-\author[数项级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
-{\Large \bfseries 数项级数的收敛性}
+\author[正项级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{\Large \bfseries 正项级数}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date, can be changed to a custom date
 \date{}
@@ -39,29 +39,425 @@
 
 %------------------------------------------------
 
-\begin{frame}{芝诺悖论 (Zeno's Paradox)}
+\begin{frame}{引言}
 
-\includegraphics[width=0.6\textwidth]{images/zeno-paradox.jpg}
+\begin{columns}
+  \begin{column}{0.51\textwidth}
+    \includegraphics[width=0.95\textwidth]{images/zeno-paradox.jpg}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
+  \end{column}
+\end{columns}
+
+\vspace*{0.9em}
+
+\begin{columns}
+  \begin{column}{0.51\textwidth}
+    \includegraphics[width=0.95\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    $\dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots$
+  \end{column}
+\end{columns}
+
+\pause
+\vspace*{0.9em}
+
+\begin{center}
+这些级数有共同的特点：通项都是正数！
+\end{center}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{一尺之捶，日取其半，万世不竭 | {\smaller[2] 《庄子·天下》}}
+\section[收敛原理]{正项级数的收敛原理}
 
-\includegraphics[width=0.9\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
+%------------------------------------------------
+
+\begin{frame}{正项级数的定义}
+
+\begin{Def}
+  如果级数$\sum\limits_{n=1}^\infty x_n$的通项都是非负实数，即
+  $$x_n \geqslant 0, \quad n = 1, 2, \cdots,$$
+  则称此级数为\textbf{正项级数}。
+\end{Def}
+
+\pause
+
+显然，正项级数$\sum\limits_{n=1}^\infty x_n$的部分和数列$\{S_n\}$是单调增加的，即
+$$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1}, \quad n = 1, 2, \cdots.$$
+由数列的单调收敛原理，立刻可以得到
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[定义]{数项级数定义}
+\begin{frame}{正项级数的收敛原理}
+
+\begin{thm}[正项级数的收敛原理]
+\begin{center}
+正项级数收敛的充分必要条件是它的部分和数列有上界。
+\end{center}
+\end{thm}
+
+\pause
+\vspace*{0.4em}
+
+\textbf{例：} 考虑级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\sqrt[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right].$ 容易看出它是一个正项级数。
+\pause
+它的部分和数列的通项为
+\begin{align*}
+  S_n & = \sum\limits_{k=2}^{n+1} \left[ \dfrac{1}{\sqrt[k]{k}} \ln{\dfrac{k^2}{(k-1)(k+1)}} \right] {\color{red}<} \sum\limits_{k=2}^{n+1} {\color{red}\cancel{\dfrac{1}{\sqrt[k]{k}}}} \ln{\left( \left.\dfrac{k}{k-1} \right/ \dfrac{k+1}{k} \right)} \\
+  & = \sum\limits_{k=2}^{n+1} \left( \ln{\dfrac{k}{k-1}} - \ln{\dfrac{k+1}{k}} \right) = \ln{2} - \ln{\dfrac{n+2}{n+1}} < \ln{2},
+\end{align*}
+所以正项级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\sqrt[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right]$收敛。
+
+\end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{正项级数的收敛原理}
 
+在这个例子中，我们实际上使用了马上要介绍的“比较判别法”，即使用了不等式
+$$\dfrac{1}{\sqrt[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},$$
+$\sum\limits_{n=2}^\infty y_n$相对比较好求，敛散性相对比较好判断。可以通过判断它的收敛性，进而得出$\sum\limits_{n=2}^\infty x_n$的收敛性。
 
+\pause
+\vspace*{1em}
+
+本节剩下的内容，就是介绍一系列包括“比较判别法”在内的简便实用的判别正项级数敛散性的方法。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[比较判别法]{正项级数敛散性的比较判别法}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法}
+
+判断一个正项级数是否收敛，最常用的方法是用一个已知敛散性的级数与它进行比较。
+
+\pause
+
+\begin{thm}[比较判别法]
+设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数，若存在常数$A > 0,$ 使得
+$$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
+\vspace*{-1.6em}
+\begin{enumerate}
+  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时，$\sum\limits_{n=1}^\infty x_n$也收敛；
+  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时，$\sum\limits_{n=1}^\infty y_n$也发散。
+\end{enumerate}
+\end{thm}
+
+\pause
+\vspace*{-0.6em}
+
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 大的收敛，则小的也收敛；\quad 小的发散，则大的也发散。}
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的证明}
+
+设级数$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$的部分和序列分别为$\{S_n\}$与$\{T_n\},$那么显然有
+$$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
+\pause
+于是当数列$\{T_n\}$有上界时，$\{S_n\}$也有上界；当$\{S_n\}$无上界时，$\{T_n\}$必定也上界。那么由{\color{red}正项级数的收敛原理}\tikzmark{mark1}
+
+\pause
+
+\begin{tikzpicture}[remember picture, overlay]
+\node[rectangle, draw=black, fill=cyan!30, text width=0.35\textwidth] at ([xshift=40, yshift=-25]mark1) (mark1_to) {{\bfseries\smaller[2]正项级数收敛的{\color{red}充分必要条件}\color{themecolor}是它的部分和数列有上界}};
+\draw[->, color=black] (mark1_to.north) -- (mark1);
+\end{tikzpicture}
+
+\pause
+
+\begin{enumerate}
+  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时，$\sum\limits_{n=1}^\infty x_n$也收敛；
+  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时，$\sum\limits_{n=1}^\infty y_n$也发散。
+\end{enumerate}
+
+\pause
+
+\begin{attnblock}
+由于改变级数有限个项的数值，并不会改变它的敛散性，所以比较判别法的条件可以放宽为：“存在正整数$N$与常数$A>0,$ 使得$x_n \leqslant Ay_n$对一切$n > N$成立”。
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的应用示例}
+
+\begin{eg}
+  \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$的敛散性。
+  \end{center}
+\end{eg}
+
+\pause
+
+\textbf{解：} 容易看出，当$n > 3$时成立
+$$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-{\color{red}n^3}} = \dfrac{2}{n^2},$$
+由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$的收敛性 (值等于$\dfrac{\pi^2}{6}$)，知$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$收敛。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的应用示例}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性。
+ \end{center}
+\end{eg}
+
+\pause
+\begin{columns}
+  \begin{column}{0.47\textwidth}
+    \begin{tikzpicture}[scale=1.5, domain=0:3.1416/2]
+    \draw[->] (-0.3,0) -- (2.2,0) node[right] {$x$};
+    \draw[->] (0,-0.3) -- (0,2.2) node[above] {$f(x)$};
+
+    \draw[color = orange, dashed, thick] plot[id=x] function{x} node[above right] {$f(x) = x$};
+    \draw[color = blue, thick] plot[id=sin] function{sin(x)}      node[above right] {$f(x) = \sin x$};
+    \draw[color = red, dashed, thick] plot[id=px] function{x * 2 / pi} node[below right] {$f(x) = \dfrac{2}{\pi}x$};
+    \draw[color = themecolor, dashed] (pi/2, 0) node[below] {\smaller[1]$\dfrac{\pi}{2}$} -- (pi/2, pi/2);
+    \draw[color = themecolor, dashed] (0, pi/2) node[left] {\smaller[1]$\dfrac{\pi}{2}$} -- (pi/2, pi/2);
+    \draw[color = themecolor, dashed] (0, 1) node[left] {\smaller[1]$1$} -- (pi/2, 1);
+    \end{tikzpicture}
+  \end{column}
+  \begin{column}{0.51\textwidth}
+    从右图可看出，当$x \in [0, \dfrac{\pi}{2}]$时，成立不等式$\sin x \geqslant \dfrac{2}{\pi} x,$
+    \pause
+    所以当$n\geqslant 2$时有
+    $$\sin\dfrac{\pi}{n} \geqslant \dfrac{2}{\pi} \cdot \dfrac{\pi}{n} = \dfrac{2}{n}.$$
+    由于$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散，所以$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$也发散。
+  \end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的极限形式}
+
+$x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n}$等于某个有限实数，或是发散到$+\infty,$ 这也是我们经常能遇到的情况。比较判别法在这种情况下，有更精细一些的表达
+
+\pause
+
+\begin{thm}[比较判别法的极限形式]
+设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数，且
+\vspace*{-0.9em}
+$$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)$$
+\vspace*{-1.3em}
+\begin{enumerate}
+  \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$也收敛，$\sum\limits_{n=1}^\infty x_n$也收敛；
+  \item[(2)] 若$0 < \ell \leqslant +\infty,$ 则当$\sum\limits_{n=1}^\infty y_n$发散时，$\sum\limits_{n=1}^\infty x_n$也发散。
+\end{enumerate}
+所以当$0 < \ell < +\infty$时，$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$有相同的敛散性。
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法极限形式的应用}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性。
+ \end{center}
+\end{eg}
+
+\pause
+
+\textbf{解：} 对通项有估计
+\begin{align*}
+  e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} & = \left[ 1 + \dfrac{1}{n^2} + \mathrm{o}\left(\dfrac{1}{n^2}\right) \right] - \left[ 1 - \dfrac{1}{2} \left(\dfrac{\pi}{n}\right)^2 + \mathrm{o}\left(\dfrac{1}{n^2}\right) \right] \\
+  & = \left( 1 + \dfrac{\pi^2}{2} \right) \dfrac{1}{n^2} + \mathrm{o}\left(\dfrac{1}{n^2}\right),
+\end{align*}
+\pause
+所以
+\vspace*{-1.6em}
+$$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.$$
+由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[积分判别法]{正项级数敛散性的积分判别法}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的积分判别法}
+
+\only<1>{
+无穷级数与我们上一章学习的反常积分有着密切的联系。我们接下来要介绍一种判别法，建立起二者敛散性分析的桥梁。利用它，我们可以通过反常积分的敛散性判别正项级数的敛散性，反之亦然。
+
+\vspace{1em}
+
+我们很快会看到，前面的很多例子中关于正项级数敛散性，可以很快地通过某些反常积分的敛散性进行判断。
+}
+
+\only<2->{
+\begin{thm}[积分判别法]
+设$f(x)$定义于$[a, +\infty),$ 且$f(x) \geqslant 0,$ 进一步假设$f(x)$在任意有限区间$[a, A]$上黎曼可积。设$\{a_n\}$是单调增加且趋于$+\infty$的数列：
+\vspace*{-0.4em}
+$$a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,$$
+令$u_n = \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=1}^\infty u_n$同时收敛或同时发散到$+\infty,$且有
+\vspace*{-1.6em}
+$$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$$
+\end{thm}
+}
+
+\only<3->{
+特别地，当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n,$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=[a]+1}^\infty f(n)$具有相同的敛散性。
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的证明}
+设正项级数$\sum\limits_{n=1}^\infty u_n$的部分和数列为$\{S_n\},$ 那么对任意$A > a,$ 存在 (由$A$唯一确定的) 正整数$n$使得$a_n \leqslant A < a_{n+1},$ 于是有
+$$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.$$
+\pause
+若正项级数$\sum\limits_{n=1}^\infty u_n$收敛，即数列$\{S_n\}$收敛时，根据极限的夹逼性，$\int_a^A f(x) \mathrm{d} x$当$A \to +\infty$时也收敛，且收敛到同一极限。\\
+若$\sum\limits_{n=1}^\infty u_n$发散到$+\infty,$ 由不等式$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x$可知反常积分$\int_a^{+\infty} f(x) \mathrm{d} x = \lim\limits_{A\to+\infty} \int_a^{A} f(x) \mathrm{d} x = +\infty.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的证明}
+
+当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n$时，在闭区间$[n, n+1]$上有
+$$f(n+1) \leqslant f(x) \leqslant f(n),$$
+由定积分的保序性，有不等式
+$$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mathrm{d} x \leqslant \int_{n}^{n+1} f(n) \mathrm{d} x = f(n).$$
+\pause
+由比较判别法 (使用两次) 知$\sum\limits_{n=[a]+1}^\infty f(n)$与$\sum\limits_{n=[a]+1}^\infty u_n$同时收敛或同时发散，从而与反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$有相同的敛散性。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+我们先把之前用比较判别法做过的例题重新审视一遍。
+
+\pause
+\vspace*{0.6em}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性。
+ \end{center}
+\end{eg}
+
+\pause
+\vspace{0.6em}
+
+\textbf{解：} 由于$f(x) = \sin\dfrac{\pi}{x}$在$[2, +\infty]$上非负单减，所以$\int_2^{+\infty} f(x) \mathrm{d} x$与$\sum\limits_{n=2}^\infty \sin\dfrac{\pi}{n}$有相同的敛散性。而
+\begin{align*}
+\int_2^{+\infty} f(x) \mathrm{d} x & = \int_2^{+\infty} \sin\dfrac{\pi}{x}~\mathrm{d} x = \int_{1/2}^{0} \sin\pi t~\mathrm{d}\dfrac{1}{t} = \int_0^{1/2} \dfrac{\sin\pi t}{t^2} \mathrm{d} t \\
+& \geqslant \int_0^{1/2} \dfrac{\frac{2}{\pi}t}{t^2} \mathrm{d} t = \dfrac{2}{\pi} {\color{red} \int_0^{1/2} \dfrac{1}{t} \mathrm{d} t} \quad \text{发散}
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性。
+ \end{center}
+\end{eg}
+
+\pause
+\vspace{0.6em}
+
+\textbf{解：} 在$[0, 1]$区间上，$g(x) = e^{x^2} - \cos\pi x$是非负递增的，因为很容易算得$g(0) = 0,$ 且 $g'(x) = 2xe^{x^2} + \pi \sin\pi x \geqslant 0.$ 于是
+$$f(x) = g(1/x) = e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x}$$
+为$[1, +\infty]$上单调递减的非负函数。那么根据积分判别法，我们约化到了判断反常积分$\int_1^{+\infty} f(x) \mathrm{d} x$的敛散性：
+$$
+\int_1^{+\infty} f(x) \mathrm{d} x = \int_1^{+\infty} \left( e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x} \right) \mathrm{d} x = \int_0^1 \dfrac{e^{t^2} - \cos\pi t}{t^2} \mathrm{d} t
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+在可能得奇点$0$附近，有无穷小量的等价
+\begin{align*}
+e^{t^2} - \cos\pi t & = (e^{t^2} - 1) + (1 - \cos\pi t) = (e^{t^2} - 1) + 2 \sin^2 \dfrac{\pi t}{2} \\
+& \sim t^2 + 2 \cdot \left( \dfrac{\pi t}{2} \right)^2 = \left( 1 + \dfrac{\pi^2}{2} \right) t^2,
+\end{align*}
+即在$0$附近成立
+$$\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},$$
+于是原来的反常积分收敛，进而知级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$收敛。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+目前我们都是利用积分判别法，从反常积分的敛散性来判别相应正项级数的敛散性。事实上，我们也可以反其道而行之，由已知敛散性的级数出发，去判断某些反常积分的敛散性。
+
+\pause
+\vspace{0.6em}
+
+\begin{eg}
+ \begin{center}
+  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散。
+ \end{center}
+\end{eg}
+
+\pause
+\vspace{0.6em}
+
+\textbf{证明：} 取$a_n = n\pi, ~ n = 0, 1, 2, \dots,$ 那么
+\begin{align*}
+u_n & := \int_{n\pi}^{(n+1)\pi} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x} = \int_{0}^{\pi} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} \\
+& > \int_{0}^{{\color{red} \frac{1}{(n+1)\pi}}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t}
+\end{align*}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+当$0 < t < \dfrac{1}{(n+1)\pi} < 1$时，如下不等式恒成立：
+\vspace*{-0.6em}
+$$(n\pi + t)^2 \sin^2 t < (n + 1)^2 (\pi t)^2 < (n + 1)^2 \pi^2 \dfrac{1}{(n+1)^2\pi^2} = 1.$$
+于是
+\vspace*{-1.2em}
+$$u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} > \dfrac{1}{2\pi} \cdot \dfrac{1}{n+1}.$$
+由于$\sum\limits_{n=1}^\infty \dfrac{1}{n+1}$发散，有比较判别法知$\sum\limits_{n=1}^\infty u_n$发散,又由积分判别法知，反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散。
+
+\pause
+
+\begin{block}{思考题}
+ \begin{center}
+  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^{\color{red}4}\sin^2 x}$收敛。
+ \end{center}
+\end{block}
 
 \end{frame}
 
@@ -73,17 +469,27 @@
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 正项级数的定义：通项都是非负实数的级数。
 
 \pause
 \vspace{0.8em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 正项级数的收敛原理：正项级数收敛的充分必要条件是它的部分和数列有上界。
 
 \pause
 \vspace{0.8em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 不等式形式的比较判别法、极限形式的比较判别法：通过通项之间的比较，由已知敛散性或者敛散性容易判断的级数的敛散性，导出我们感兴趣的级数的敛散性。
+
+\pause
+\vspace{0.8em}
+
+{\larger[2] \color{red} \ding{43}} 积分判别法：建立了非负函数反常积分敛散性与正项级数敛散性之间的等价关系。
+\pause
+特别地，当函数有单调性 (单调递减) 时，有
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \color{red!80} \int_a^{+\infty} f(x) \mathrm{d} x ~~ \text{收敛} ~~ \Longleftrightarrow ~~ \sum\limits_{n=[a]+1} f(n) ~~ \text{收敛}
+\end{empheq}
 
 \end{frame}
 
