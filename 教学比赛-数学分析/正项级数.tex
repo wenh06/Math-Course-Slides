@@ -105,14 +105,14 @@ $$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1},
 \pause
 \vspace*{0.4em}
 
-\textbf{例：} 考虑级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\sqrt[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right].$ 容易看出它是一个正项级数。
+\textbf{例：} 考虑级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right].$ 容易看出它是一个正项级数。
 \pause
 它的部分和数列的通项为
 \begin{align*}
-  S_n & = \sum\limits_{k=2}^{n+1} \left[ \dfrac{1}{\sqrt[k]{k}} \ln{\dfrac{k^2}{(k-1)(k+1)}} \right] {\color{red}<} \sum\limits_{k=2}^{n+1} {\color{red}\cancel{\dfrac{1}{\sqrt[k]{k}}}} \ln{\left( \left.\dfrac{k}{k-1} \right/ \dfrac{k+1}{k} \right)} \\
+  S_n & = \sum\limits_{k=2}^{n+1} \left[ \dfrac{1}{\nroot[k]{k}} \ln{\dfrac{k^2}{(k-1)(k+1)}} \right] {\color{red}<} \sum\limits_{k=2}^{n+1} {\color{red}\cancel{\dfrac{1}{\nroot[k]{k}}}} \ln{\left( \left.\dfrac{k}{k-1} \right/ \dfrac{k+1}{k} \right)} \\
   & = \sum\limits_{k=2}^{n+1} \left( \ln{\dfrac{k}{k-1}} - \ln{\dfrac{k+1}{k}} \right) = \ln{2} - \ln{\dfrac{n+2}{n+1}} < \ln{2},
 \end{align*}
-所以正项级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\sqrt[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right]$收敛。
+所以正项级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right]$收敛。
 
 \end{frame}
 
@@ -121,7 +121,7 @@ $$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1},
 \begin{frame}{正项级数的收敛原理}
 
 在这个例子中，我们实际上使用了马上要介绍的“比较判别法”，即使用了不等式
-$$\dfrac{1}{\sqrt[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},$$
+$$\dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},$$
 $\sum\limits_{n=2}^\infty y_n$相对比较好求，敛散性相对比较好判断。可以通过判断它的收敛性，进而得出$\sum\limits_{n=2}^\infty x_n$的收敛性。
 
 \pause
@@ -229,7 +229,7 @@ $$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-
     \draw[->] (0,-0.3) -- (0,2.2) node[above] {$f(x)$};
 
     \draw[color = orange, dashed, thick] plot[id=x] function{x} node[above right] {$f(x) = x$};
-    \draw[color = blue, thick] plot[id=sin] function{sin(x)}      node[above right] {$f(x) = \sin x$};
+    \draw[color = blue, thick] plot[id=sin] function{sin(x)} node[above right] {$f(x) = \sin x$};
     \draw[color = red, dashed, thick] plot[id=px] function{x * 2 / pi} node[below right] {$f(x) = \dfrac{2}{\pi}x$};
     \draw[color = themecolor, dashed] (pi/2, 0) node[below] {\smaller[1]$\dfrac{\pi}{2}$} -- (pi/2, pi/2);
     \draw[color = themecolor, dashed] (0, pi/2) node[left] {\smaller[1]$\dfrac{\pi}{2}$} -- (pi/2, pi/2);

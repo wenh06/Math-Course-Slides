@@ -187,7 +187,7 @@
 \usepackage[all,cmtip]{xy}
 \usepackage{dashbox}
 \usepackage{tikz}
-\usetikzlibrary{trees, arrows, matrix, fit}
+\usetikzlibrary{trees, arrows, matrix, fit, backgrounds}
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage[justification = centering]{caption}
@@ -244,6 +244,8 @@
 \newcommand{\Inf}{\operatorname{Inf}}
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator*{\argmax}{\arg\!\max}
+
+\newcommand*{\nroot}[2][2]{\sqrt[\leftroot{-3}\uproot{3}#1]{#2}}
 
 
 \makeatletter

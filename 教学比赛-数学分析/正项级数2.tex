@@ -52,7 +52,7 @@
 
 \pause
 
-一个自然的想法是，我们可以利用级数通项相邻前后两项之比$\dfrac{x_{n+1}}{x_n},$ 或者是这些比值前$n$项的“几何均值”$\sqrt[n]{x_n}$ (这里约定了$x_0 = 1,$ $\sqrt[n]{x_n} = \sqrt[n]{\dfrac{x_1}{x_0} \cdot \dfrac{x_2}{x_1} \cdots \dfrac{x_n}{x_{n-1}}}$)进行敛散性的判别。
+一个自然的想法是，我们可以利用级数通项相邻前后两项之比$\dfrac{x_{n+1}}{x_n},$ 或者是这些比值前$n$项的“几何均值”$\nroot[n]{x_n}$ (这里约定了$x_0 = 1,$ $\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{x_1}{x_0} \cdot \dfrac{x_2}{x_1} \cdots \dfrac{x_n}{x_{n-1}}}$)进行敛散性的判别。
 
 \end{frame}
 
@@ -65,7 +65,7 @@
 \begin{frame}{正项级数敛散性的柯西判别法}
 
 \begin{thm}[柯西判别法]
-设$\sum\limits_{n=1}^\infty x_n$是正项级数，$r = \varlimsup_{n\to\infty} \sqrt[n]{x_n},$ 则
+设$\sum\limits_{n=1}^\infty x_n$是正项级数，$r = \varlimsup_{n\to\infty} \nroot[n]{x_n},$ 则
 \begin{itemize}
   \item[(1).] 当$r < 1$时，级数$\sum\limits_{n=1}^\infty x_n$收敛；
   \item[(2).] 当$r > 1$时，级数$\sum\limits_{n=1}^\infty x_n$发散；
@@ -79,9 +79,9 @@
 
 \begin{frame}{柯西判别法的证明}
 
-(1). 当$r = \varlimsup_{n\to\infty} \sqrt[n]{x_n} < 1$时，由上极限的性质，对任意满足$r < q < 1$的实数$q,$
+(1). 当$r = \varlimsup_{n\to\infty} \nroot[n]{x_n} < 1$时，由上极限的性质，对任意满足$r < q < 1$的实数$q,$
 \begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80} 存在正整数$N,$ 使得$\forall n > N,$ 都有$\sqrt[n]{x_n} < q.$}
+  \text{\bfseries\color{red!80} 存在正整数$N,$ 使得$\forall n > N,$ 都有$\nroot[n]{x_n} < q.$}
 \end{empheq}
 由比较判别法 (与$\sum\limits_{n=1}^\infty q^n$比较) 知$\sum\limits_{n=1}^\infty x_n$收敛。
 
@@ -90,7 +90,7 @@
 
 (2). 当$r > 1$时，对任意满足$r > q > 1$的实数$q,$
 \begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80} 有无穷多项$\sqrt[n_k]{x_{n_k}}$满足$\sqrt[n_k]{x_{n_k}} > q.$}
+  \text{\bfseries\color{red!80} 有无穷多项$\nroot[n_k]{x_{n_k}}$满足$\nroot[n_k]{x_{n_k}} > q.$}
 \end{empheq}
 也就是说，存在$\{x_n\}$的一个子列$\{x_{n_k}\},$ 成立
 $$x_{n_k} > q^{n_k} \to +\infty,$$
@@ -105,7 +105,7 @@ $$x_{n_k} > q^{n_k} \to +\infty,$$
 (3). 当$r = 1$时，我们既能找到收敛的例子，也能找到发散的例子。
 \pause
 最直接的就是$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}.$ 对于任何一个固定的实数$s,$ 有
-$$\lim\limits_{n\to\infty} \sqrt[n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\infty} \dfrac{1}{\sqrt[n]{n}} \right)^s = 1.$$
+$$\lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\infty} \dfrac{1}{\nroot[n]{n}} \right)^s = 1.$$
 对于级数$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}$来说，我们知道$s > 1$时它收敛；$s \leqslant 1$时它发散。
 
 \end{frame}
@@ -124,7 +124,7 @@ $$\lim\limits_{n\to\infty} \sqrt[n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\i
 
 \textbf{解：} 由于
 \begin{align*}
-\varlimsup_{n\to\infty} \sqrt[n]{\dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}} & = \varlimsup_{n\to\infty} \left(\sqrt[n]{n}\right)^3 \dfrac{\sqrt{2} + (-1)^n}{3} \\
+\varlimsup_{n\to\infty} \sqrt[\leftroot{-7}\uproot{20}n]{\dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}} & = \varlimsup_{n\to\infty} \left(\nroot[n]{n}\right)^3 \dfrac{\sqrt{2} + (-1)^n}{3} \\
 & = \dfrac{\sqrt{2} + 1}{3} < 1,
 \end{align*}
 根据柯西判别法知级数$\sum\limits_{n=1}^{\infty} \dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}$收敛。
@@ -154,7 +154,7 @@ $$\lim\limits_{n\to\infty} \sqrt[n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\i
 
 \begin{frame}{正项级数敛散性的达朗贝尔判别法}
 
-由于柯西判别法中的通项$\sqrt[n]{x_n}$是达朗贝尔判别法通项$\dfrac{x_{n+1}}{x_n}$的几何平均，可以期待的是柯西判别法强于达朗贝尔判别法。
+由于柯西判别法中的通项$\nroot[n]{x_n}$是达朗贝尔判别法通项$\dfrac{x_{n+1}}{x_n}$的几何平均，可以期待的是柯西判别法强于达朗贝尔判别法。
 
 \pause
 \vspace*{0.6em}
@@ -166,17 +166,17 @@ $$\lim\limits_{n\to\infty} \sqrt[n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\i
 
 \begin{lem}
 设$\{x_n\}$是正项数列，则
-$$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+$$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
 \end{lem}
 
 \pause
 \vspace*{0.6em}
 
-当$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$时，由引理中的不等式，有$\varlimsup_{n\to\infty} \sqrt[n]{x_n} < 1,$ 从而可以由柯西判别法退出收敛性；
+当$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$时，由引理中的不等式，有$\varlimsup_{n\to\infty} \nroot[n]{x_n} < 1,$ 从而可以由柯西判别法退出收敛性；
 
 \pause
 \vspace*{0.6em}
-当$\underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$时，由引理中的不等式，有$\varlimsup_{n\to\infty} \sqrt[n]{x_n} > 1,$ 从而可以由柯西判别法退出发散性。
+当$\underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$时，由引理中的不等式，有$\varlimsup_{n\to\infty} \nroot[n]{x_n} > 1,$ 从而可以由柯西判别法退出发散性。
 
 \end{frame}
 
@@ -184,7 +184,7 @@ $$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty}
 
 \begin{frame}{引理的证明}
 
-第一个不等式$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \sqrt[n]{x_n}:$
+第一个不等式$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n}:$
 
 \pause
 \vspace{1em}
@@ -192,10 +192,10 @@ $$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty}
 由下极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} > \underline{r} - \varepsilon,$ 即有
 \vspace*{-0.5em}
 $$x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},$$
-从而有$\sqrt[n]{x_n} > \sqrt[n]{(\underline{r} - \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立。于是
-$$\varliminf_{n\to\infty} \sqrt[n]{x_n} \geqslant \varliminf_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.$$
+从而有$\nroot[n]{x_n} > \sqrt[\leftroot{-6}\uproot{9}n]{(\underline{r} - \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立。于是
+$$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \varliminf_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.$$
 由$\varepsilon$的任意性知
-$$\varliminf_{n\to\infty} \sqrt[n]{x_n} \geqslant \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+$$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
 
 \end{frame}
 
@@ -203,7 +203,7 @@ $$\varliminf_{n\to\infty} \sqrt[n]{x_n} \geqslant \underline{r} = \varliminf_{n\
 
 \begin{frame}{引理的证明}
 
-第二个不等式$\varliminf_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \sqrt[n]{x_n}$来自于上、下极限的性质。下面我们来证明第三个不等式$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}:$
+第二个不等式$\varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n}$来自于上、下极限的性质。下面我们来证明第三个不等式$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}:$
 
 \pause
 \vspace{1em}
@@ -211,10 +211,10 @@ $$\varliminf_{n\to\infty} \sqrt[n]{x_n} \geqslant \underline{r} = \varliminf_{n\
 由上极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} < \overline{r} + \varepsilon,$ 即有
 \vspace*{-0.5em}
 $$x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},$$
-从而有$\sqrt[n]{x_n} < \sqrt[n]{(\overline{r} + \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立。于是
-$$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.$$
+从而有$\nroot[n]{x_n} < \sqrt[\leftroot{-6}\uproot{9}n]{(\overline{r} + \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立。于是
+$$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.$$
 由$\varepsilon$的任意性知
-$$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+$$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
 
 \end{frame}
 
@@ -244,7 +244,46 @@ $$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\t
 
 \begin{frame}{柯西判别法与达朗贝尔判别法的再比较}
 
-待写
+之前我们利用柯西判别法证明了达朗贝尔判别法，这表明了柯西判别法强于达朗贝尔判别法，即如果一个正项级数的敛散性能通过达朗贝尔判别法判定，则它一定能用柯西判别法来判定。但反过来是不一定的：
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+考虑级数$\sum\limits_{n=1}^\infty x_n = \dfrac{1}{2} + \dfrac{1}{3} + \dfrac{1}{2^2} + \dfrac{1}{3^2} + \cdots,$ 通项为
+\vspace{-1em}
+$$x_{2n-1} = \dfrac{1}{2^n}, ~~ x_{2n} = \dfrac{1}{3^n}$$
+那么
+\begin{gather*}
+\varlimsup_{n\to\infty} \nroot[n]{x_n} = \lim_{n\to\infty} \sqrt[\leftroot{-6}\uproot{13}2n-1]{\frac{1}{2^n}} = \dfrac{1}{\sqrt{2}} \\
+\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim_{n\to\infty} \dfrac{3^n}{2^{n+1}} = +\infty, ~~ \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim_{n\to\infty} \dfrac{2^n}{3^n} = 0.
+\end{gather*}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{柯西判别法与达朗贝尔判别法的再比较}
+
+虽然柯西判别法强于达朗贝尔判别法，但并不是说达朗贝尔判别法就无用武之地。对某些具体的例子而言，虽然两种判别法都适用，但达朗贝尔判别法可能比柯西判别法方便一些：
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+正项级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$收敛性的判定，我们之前是用的达朗贝尔判别法：
+$$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \dfrac{e}{3} < 1.$$
+\pause
+而
+$$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = \dfrac{n}{3} \cdot \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n!}}$$
+极限不太好求，故不太方便适用柯西判别法。
+
+\pause
+\vspace{0.5em}
+
+当然，如果你熟悉斯特林公式$n! \sim \sqrt{2\pi} n^{n+\frac{1}{2}} e^{-n} ~ (n\to\infty),$ 这个例子使用柯西判别法也是可行的。
+\end{eg}
 
 \end{frame}
 
@@ -256,7 +295,151 @@ $$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\t
 
 \begin{frame}{正项级数敛散性的拉比判别法}
 
-待写
+我们已经看到了，基于比较判别法的柯西判别法与达朗贝尔判别法都有无法处理的情况，例如$\sum\limits_{n=1}^\infty \dfrac{1}{n^s}.$
+
+\pause
+\vspace{-0.6em}
+
+这是因为这两个判别法作为比较基准的是几何级数$\sum\limits_{n=1}^\infty q^n.$ 在判定级数收敛时，要求级数的通项受到$q^n (0 < q < 1)$的控制；而在判定级数发散时，则是根据其通项不趋于$0.$ 这二者相去甚远。为了弥补这一距离，我们要引入新的一些判别方法：
+
+\pause
+
+\begin{thm}[拉比判别法]
+设$\sum\limits_{n=1}^\infty x_n$是正项级数，$x_n \neq 0,$ 且$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r,$ 那么
+\vspace{-0.6em}
+\begin{itemize}
+  \item[(1).] 当$r > 1$时，级数$\sum\limits_{n=1}^\infty x_n$收敛；
+  \item[(2).] 当$r < 1$时，级数$\sum\limits_{n=1}^\infty x_n$发散。
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{拉比判别法的分析与证明}
+
+当$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r < 1$时，由极限的性质，对任意满足$r < q < 1$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
+$$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) < q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} < 1 + \dfrac{q}{n} < 1 + \dfrac{1}{n},$$
+从而有
+$$n x_n \leqslant (n+1) x_{n+1}.$$
+也就是说，新数列$y_n := nx_n, n = 1, 2, \dots,$ 当$n \geqslant N$时是递增的，因此有$n x_n \leqslant N x_N,$ 或写为
+$$x_n > N \cdot x_N \cdot {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqslant N.$$
+于是，根据比较判别法，由$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散可推出$\sum\limits_{n=1}^\infty x_n$也发散。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{拉比判别法的分析与证明}
+
+当$r > 1$时，若沿用之前的分析步骤，我们只能推断出$x_n > N \cdot x_N \cdot \dfrac{1}{n},$ 无法由比较判别法判定敛散性。
+
+\pause
+\vspace{0.6em}
+
+但是，如果有$x_n < A \cdot \dfrac{1}{\color{red}n^t},$ $A > 0, {\color{red} t > 1},$ 对所有$n > N$成立，那么可以使用比较判别法得到$\sum\limits_{n=1}^\infty x_n$的收敛性。
+
+\pause
+\vspace{0.6em}
+
+我们还是从$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r > 1$出发,对任意满足$1 < q < r$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
+$$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n}.$$
+
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 想方法将$1 + q\cdot\dfrac{1}{n}$与$\left(\dfrac{n+1}{n}\right)^t = \left(1 + \dfrac{1}{n}\right)^t$联系起来！}
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{拉比判别法的分析与证明}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.777]
+\draw[->] (-0.3,0) -- (8,0) node[right] {$x$} node[below right] {$(1/n)$};
+\draw[->] (0,-0.3) -- (0,7) node[above] {$y$};
+
+\draw[color = blue, dashed, thick] plot[id=t2, domain=0:3] function{(1 + x)**(1.5)} node[above] {$(1 + x)^t ~~ t > 1$};
+\draw[color = blue, dashed, thick] plot[id=t1, domain=0:6] function{(1 + x)**(0.5)} node[above right] {$(1 + x)^t$} node[right] {0 < t < 1};
+\draw[color = red, dashed, thick] plot[id=x2, domain=0:2.8] function{1 + 2 * x} node[above right] {$1 + qx$};
+\draw[color = themecolor, dashed, thick] plot[id=px, domain=0:6] function{1 + x} node[below right] {$1 + x$};
+
+\begin{scope}[on background layer]
+\draw[black, dashed, fill=red!10] (0.8,2.8) circle (2.1);
+\end{scope}
+
+\node[draw = black, text width=0.45\textwidth, fill=cyan!30] at (8,4.6) {\smaller[1]\color{red}可以从函数图像上看到，$1 + qx$的值的确可能在自变量$x = 0$的某个领域内大于$(1 + x)^t$的值，$t > 1$};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{拉比判别法的分析与证明}
+
+首先，比较$f(x) = 1 + qx$与$g(x) = (1 + x)^t$在$x = 0$处的导数值：
+$$
+\begin{cases}
+f'(x) = q \\
+g'(x) = t(1+x)^{t-1}
+\end{cases} ~~ \text{从而有} ~~
+\begin{cases}
+f'(0) = q \\
+g'(0) = t
+\end{cases}
+$$
+\pause
+那么，我们只要进一步取$1 < t < q < r,$ 即有$f'(0) > g'(0).$ 由于$f'(x), g'(x)$的连续性，以及$f(0) = g(0) = 1$知，在$x = 0$的某个左半邻域$(0, \delta)$内，恒有$f(x) > g(x).$
+
+\pause
+
+取$N$充分大，使得$N > \dfrac{1}{\delta},$ 那么$\forall n > N$有$\dfrac{1}{n} \in (0, \delta),$ 从而有
+$$\dfrac{x_n}{x_{n+1}} > f \left(\dfrac{1}{n}\right) = 1 + \dfrac{q}{n} > g \left(\dfrac{1}{n}\right) = \left( 1 + \dfrac{1}{n} \right)^t = \left( \dfrac{n+1}{n} \right)^t,$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{拉比判别法的分析与证明}
+
+于是，就有了我们希望得到的形式：
+$$n^t x_n > (n+1)^t x_{n+1} ~~ \text{对所有$n > N$成立。}$$
+新数列$y_n = n^t x_n$当$n > N$时关于$n$非增，设$A$为它的一个上界，即有
+$$A \geqslant y_n = n^t x_n ~~ (n > N),$$
+亦即
+$$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
+根据比较判别法，由$\sum\limits_{n=1}^\infty \dfrac{1}{n^t}$收敛知$\sum\limits_{n=1}^\infty x_n$也收敛。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{拉比判别法的应用}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{总结}
+
+%------------------------------------------------
+
+\begin{frame}{总结}
+
+{\larger[2] \color{red} \ding{43}} 待写
+
+\pause
+\vspace{0.8em}
+
+{\larger[2] \color{red} \ding{43}} 待写
+
+\pause
+\vspace{0.8em}
+
+{\larger[2] \color{red} \ding{43}} 待写
 
 \end{frame}
 
