@@ -8,8 +8,8 @@
 %-----------------------------------
 
 \title[数学分析]{\texorpdfstring{\LARGE \bfseries 第九章\quad 数项级数}{第九章 数项级数}} % The short title appears at the bottom of every slide, the full title is only on the title page
-\author[正项级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
-{\Large \bfseries 正项级数}
+\author[正项级数敛散性判别法] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{\Large \bfseries 正项级数敛散性判别法}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date, can be changed to a custom date
 \date{}
@@ -48,7 +48,11 @@
 
 \pause
 
-正项等比级数$\sum\limits_{n=1}^\infty q^n ~ (q > 0)$给我们很重要的启示：它的敛散性只依赖于其相邻两项之比，即公比$q$是否小于$1.$ 一个自然的想法是，如果
+正项等比级数$\sum\limits_{n=1}^\infty q^n ~ (q > 0)$给我们很重要的启示：它的敛散性只依赖于其相邻两项之比，即公比$q$是否小于$1.$
+
+\pause
+
+一个自然的想法是，我们可以利用级数通项相邻前后两项之比$\dfrac{x_{n+1}}{x_n},$ 或者是这些比值前$n$项的“几何均值”$\sqrt[n]{x_n}$ (这里约定了$x_0 = 1,$ $\sqrt[n]{x_n} = \sqrt[n]{\dfrac{x_1}{x_0} \cdot \dfrac{x_2}{x_1} \cdots \dfrac{x_n}{x_{n-1}}}$)进行敛散性的判别。
 
 \end{frame}
 
@@ -58,9 +62,72 @@
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{正项级数敛散性的柯西判别法}
 
+\begin{thm}[柯西判别法]
+设$\sum\limits_{n=1}^\infty x_n$是正项级数，$r = \varlimsup_{n\to\infty} \sqrt[n]{x_n},$ 则
+\begin{itemize}
+  \item[(1).] 当$r < 1$时，级数$\sum\limits_{n=1}^\infty x_n$收敛；
+  \item[(2).] 当$r > 1$时，级数$\sum\limits_{n=1}^\infty x_n$发散；
+  \item[(3).] 当$r = 1$时，判别法失效，级数$\sum\limits_{n=1}^\infty x_n$可能收敛也可能发散。
+\end{itemize}
+\end{thm}
 
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{柯西判别法的证明}
+
+(1). 当$r = \varlimsup_{n\to\infty} \sqrt[n]{x_n} < 1$时，由上极限的性质，对任意满足$r < q < 1$的实数$q,$
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 存在正整数$N,$ 使得$\forall n > N,$ 都有$\sqrt[n]{x_n} < q.$}
+\end{empheq}
+由比较判别法 (与$\sum\limits_{n=1}^\infty q^n$比较) 知$\sum\limits_{n=1}^\infty x_n$收敛。
+
+\pause
+\vspace*{0.6em}
+
+(2). 当$r > 1$时，对任意满足$r > q > 1$的实数$q,$
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 有无穷多项$\sqrt[n_k]{x_{n_k}}$满足$\sqrt[n_k]{x_{n_k}} > q.$}
+\end{empheq}
+也就是说，存在$\{x_n\}$的一个子列$\{x_{n_k}\},$ 成立
+$$x_{n_k} > q^{n_k} \to +\infty,$$
+不满足级数收敛的必要条件。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{柯西判别法的证明}
+
+(3). 当$r = 1$时，我们既能找到收敛的例子，也能找到发散的例子。
+\pause
+最直接的就是$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}.$ 对于任何一个固定的实数$s,$ 有
+$$\lim\limits_{n\to\infty} \sqrt[n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\infty} \dfrac{1}{\sqrt[n]{n}} \right)^s = 1.$$
+对于级数$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}$来说，我们知道$s > 1$时它收敛；$s \leqslant 1$时它发散。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{柯西判别法的应用}
+
+\begin{eg}
+\begin{center}
+  判断正项级数$\sum\limits_{n=1}^{\infty} \dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}$的敛散性。
+\end{center}
+\end{eg}
+
+\pause
+
+\textbf{解：} 由于
+\begin{align*}
+\varlimsup_{n\to\infty} \sqrt[n]{\dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}} & = \varlimsup_{n\to\infty} \left(\sqrt[n]{n}\right)^3 \dfrac{\sqrt{2} + (-1)^n}{3} \\
+& = \dfrac{\sqrt{2} + 1}{3} < 1,
+\end{align*}
+根据柯西判别法知级数$\sum\limits_{n=1}^{\infty} \dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}$收敛。
 
 \end{frame}
 
@@ -70,8 +137,142 @@
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{正项级数敛散性的达朗贝尔判别法}
 
-
+\begin{thm}[达朗贝尔判别法]
+设$\sum\limits_{n=1}^\infty x_n ~ (x_n \neq 0)$是正项级数，则
+\begin{itemize}
+  \item[(1).] 当$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \overline{r} < 1$时，级数$\sum\limits_{n=1}^\infty x_n$收敛；
+  \item[(2).] 当$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \underline{r} > 1$时，级数$\sum\limits_{n=1}^\infty x_n$发散；
+  \item[(3).] 当$\overline{r} \geqslant 1$或$\underline{r} \leqslant 1$时，判别法失效，级数$\sum\limits_{n=1}^\infty x_n$可能收敛也可能发散。
+\end{itemize}
+\end{thm}
 
 \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的达朗贝尔判别法}
+
+由于柯西判别法中的通项$\sqrt[n]{x_n}$是达朗贝尔判别法通项$\dfrac{x_{n+1}}{x_n}$的几何平均，可以期待的是柯西判别法强于达朗贝尔判别法。
+
+\pause
+\vspace*{0.6em}
+
+事实也的确如此。达朗贝尔判别法可以通过如下的引理，从柯西判别法推导出来。
+
+\pause
+\vspace*{0.6em}
+
+\begin{lem}
+设$\{x_n\}$是正项数列，则
+$$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+\end{lem}
+
+\pause
+\vspace*{0.6em}
+
+当$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$时，由引理中的不等式，有$\varlimsup_{n\to\infty} \sqrt[n]{x_n} < 1,$ 从而可以由柯西判别法退出收敛性；
+
+\pause
+\vspace*{0.6em}
+当$\underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$时，由引理中的不等式，有$\varlimsup_{n\to\infty} \sqrt[n]{x_n} > 1,$ 从而可以由柯西判别法退出发散性。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理的证明}
+
+第一个不等式$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \sqrt[n]{x_n}:$
+
+\pause
+\vspace{1em}
+
+由下极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} > \underline{r} - \varepsilon,$ 即有
+\vspace*{-0.5em}
+$$x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},$$
+从而有$\sqrt[n]{x_n} > \sqrt[n]{(\underline{r} - \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立。于是
+$$\varliminf_{n\to\infty} \sqrt[n]{x_n} \geqslant \varliminf_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.$$
+由$\varepsilon$的任意性知
+$$\varliminf_{n\to\infty} \sqrt[n]{x_n} \geqslant \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理的证明}
+
+第二个不等式$\varliminf_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \sqrt[n]{x_n}$来自于上、下极限的性质。下面我们来证明第三个不等式$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}:$
+
+\pause
+\vspace{1em}
+
+由上极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} < \overline{r} + \varepsilon,$ 即有
+\vspace*{-0.5em}
+$$x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},$$
+从而有$\sqrt[n]{x_n} < \sqrt[n]{(\overline{r} + \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立。于是
+$$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.$$
+由$\varepsilon$的任意性知
+$$\varlimsup_{n\to\infty} \sqrt[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{达朗贝尔判别法的应用}
+
+\begin{eg}
+\begin{center}
+判断正项级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$的敛散性。
+\end{center}
+\end{eg}
+
+\pause
+\vspace{1em}
+
+\textbf{解：} 令$x_n = \dfrac{n^n}{3^n\cdot n!},$ 那么有
+\begin{align*}
+\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} & = \varlimsup_{n\to\infty} \left[ \dfrac{(n+1)^{n+1}}{3^{n+1}\cdot (n+1)!} \cdot \dfrac{3^n\cdot n!}{n^n} \right] \\
+& = \lim_{n\to\infty} \dfrac{1}{3} \left( 1 + \dfrac{1}{n} \right)^n = \dfrac{e}{3} < 1,
+\end{align*}
+由达朗贝尔判别法知级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$的收敛。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{柯西判别法与达朗贝尔判别法的再比较}
+
+待写
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[拉比判别法]{正项级数敛散性的拉比判别法}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的拉比判别法}
+
+待写
+
+\end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
