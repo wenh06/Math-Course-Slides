@@ -362,7 +362,10 @@ $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_
 \draw[->] (0,-0.3) -- (0,7) node[above] {$y$};
 
 \draw[color = blue, dashed, thick] plot[id=t2, domain=0:3] function{(1 + x)**(1.5)} node[above] {$(1 + x)^t ~~ t > 1$};
-\draw[color = blue, dashed, thick] plot[id=t1, domain=0:6] function{(1 + x)**(0.5)} node[above right] {$(1 + x)^t$} node[right] {0 < t < 1};
+\draw[color = blue, dashed, thick] plot[id=t2, domain=0:4] function{(1 + x)**(1.3)};
+\draw[color = blue, dashed, thick] plot[id=t2, domain=0:1.8] function{(1 + x)**(2)};
+
+\draw[color = blue, dashed, thick] plot[id=t1, domain=0:6] function{(1 + x)**(0.5)} node[above right] {$(1 + x)^t$} node[right] {$0 < t < 1$};
 \draw[color = red, dashed, thick] plot[id=x2, domain=0:2.8] function{1 + 2 * x} node[above right] {$1 + qx$};
 \draw[color = themecolor, dashed, thick] plot[id=px, domain=0:6] function{1 + x} node[below right] {$1 + x$};
 
@@ -419,6 +422,23 @@ $$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
 
 \begin{frame}{拉比判别法的应用}
 
+\begin{eg}
+\begin{center}
+判断级数$\sum\limits_{n=1}^\infty \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1}$的敛散性。
+\end{center}
+\end{eg}
+
+\pause
+% \vspace{0.6em}
+
+\textbf{解：} 记$x_n = \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1},$ 则
+$$\lim\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim\limits_{n\to\infty} \dfrac{(2n+1)^2}{(2n+2)(2n+3)} = 1.$$
+那么达朗贝尔判别法 (以及柯西判别法) 都不适用了。
+\pause
+但是应用拉比判别法，可得
+$$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(6n+5)}{(2n+1)^2} = \dfrac{3}{2} > 1,$$
+所以级数$\sum\limits_{n=1}^\infty \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1}$收敛。
+
 \end{frame}
 
 %------------------------------------------------
@@ -429,17 +449,37 @@ $$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 柯西判别法：$r = \varlimsup_{n\to\infty} \nroot[n]{x_n}$
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} $r < 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$r > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+\end{empheq}
 
 \pause
-\vspace{0.8em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+{\larger[2] \color{red} \ding{43}} 达朗贝尔判别法：$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}, \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}$
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} $\overline{r} < 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$\underline{r} > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{总结}
+
+{\larger[2] \color{red} \ding{43}} 拉比判别法：$r = \lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right)$
+\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} $r > 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$r < 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+\end{empheq}
 
 \pause
-\vspace{0.8em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+拉比判别法本质上还是基于比较判别法，但是相较于柯西判别法与达朗贝尔判别法，对$\dfrac{x_n}{x_{n+1}}$的变化趋势进行了更精细的分析。
+
+\pause
+\vspace{0.6em}
+
+对拉比判别法失效的$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = 1$的情况，可以通过进一步分析$\left[ n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) - 1 \right]$的“阶”的情况，得到更加精细的判别法。这类判别法可以一直“加细”下去，但不会存在一种可以处理所有情况的判别法。
 
 \end{frame}
 
