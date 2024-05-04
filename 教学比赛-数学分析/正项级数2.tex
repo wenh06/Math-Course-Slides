@@ -42,7 +42,7 @@
 \begin{frame}{正项级数比较判别法存在的问题与改进方案}
 
 用比较判别法时，先要对所考虑的级数的收敛性有一个大致估计，进而通过放缩，寻找一个{\color{red}敛散性已知或相对容易判断}的合适级数与之项比较。但就绝大多数情况而言，这两个步骤都具有相当的难度，因此，我们希望有一些
-\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80} 仅针对级数自身元素 (通项) 进行分析的敛散性判别方法。}
 \end{empheq}
 
@@ -80,7 +80,7 @@
 \begin{frame}{柯西判别法的证明}
 
 (1). 当$r = \varlimsup_{n\to\infty} \nroot[n]{x_n} < 1$时，由上极限的性质，对任意满足$r < q < 1$的实数$q,$
-\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80} 存在正整数$N,$ 使得$\forall n > N,$ 都有$\nroot[n]{x_n} < q.$}
 \end{empheq}
 由比较判别法 (与$\sum\limits_{n=1}^\infty q^n$比较) 知$\sum\limits_{n=1}^\infty x_n$收敛。
@@ -89,7 +89,7 @@
 \vspace*{0.6em}
 
 (2). 当$r > 1$时，对任意满足$r > q > 1$的实数$q,$
-\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80} 有无穷多项$\nroot[n_k]{x_{n_k}}$满足$\nroot[n_k]{x_{n_k}} > q.$}
 \end{empheq}
 也就是说，存在$\{x_n\}$的一个子列$\{x_{n_k}\},$ 成立
@@ -346,7 +346,7 @@ $$x_n > N \cdot x_N \cdot {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqslant N.$
 我们还是从$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r > 1$出发,对任意满足$1 < q < r$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
 $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n}.$$
 
-\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80} 想方法将$1 + q\cdot\dfrac{1}{n}$与$\left(\dfrac{n+1}{n}\right)^t = \left(1 + \dfrac{1}{n}\right)^t$联系起来！}
 \end{empheq}
 
@@ -450,14 +450,14 @@ $$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(
 \begin{frame}{总结}
 
 {\larger[2] \color{red} \ding{43}} 柯西判别法：$r = \varlimsup_{n\to\infty} \nroot[n]{x_n}$
-\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80} $r < 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$r > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
 \end{empheq}
 
 \pause
 
 {\larger[2] \color{red} \ding{43}} 达朗贝尔判别法：$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}, \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}$
-\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80} $\overline{r} < 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$\underline{r} > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
 \end{empheq}
 
@@ -468,7 +468,7 @@ $$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(
 \begin{frame}{总结}
 
 {\larger[2] \color{red} \ding{43}} 拉比判别法：$r = \lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right)$
-\begin{empheq}[box={\fancymath[colback=cyan!30,drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80} $r > 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$r < 1$则$\sum\limits_{n=1}^\infty x_n$发散}
 \end{empheq}
 
