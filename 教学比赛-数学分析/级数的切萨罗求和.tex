@@ -42,7 +42,7 @@
 
 \begin{frame}{引言}
 
-这一讲，我们来扩展“可求和”级数的范围，例如
+这一讲, 我们来扩展“可求和”级数的范围, 例如
 
 \pause
 
@@ -56,6 +56,27 @@ $$\sum\limits_{n=1}^{\infty} (-1)^{n+1} = 1 - 1 + 1 - 1 + \cdots$$
 \pause
 
 Cesàro 求和法, 实际上可以视作是某种“动态加权平均”的方法. 配合上Tauber型的定理, 可以在掌握数项级数某种意义上的前 $n$ 项均值变化趋势的前提下, 结合关于通项的某种“正则性”, 对级数本身的敛散性等性质做出判断.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引言}
+
+\begin{columns}
+
+\begin{column}{0.37\textwidth}
+Tauber型定理在数论中处理有关Dirichlet级数 (Dirichlet $L$-函数, Riemann $\zeta$-函数等)有非常多的应用。
+
+\pause
+\vspace{0.4em}
+
+我国著名数学家张寿武先生主要研究领域之一就是$L$-函数。同时，他也培养了一大批国际上有影响力的青年数学家。
+\end{column}
+\begin{column}{0.6\textwidth}
+\includegraphics[width=\textwidth]{images/shouwu-zhang.jpg}
+\end{column}
+\end{columns}
 
 \end{frame}
 
@@ -92,10 +113,12 @@ $$
 
 \begin{frame}{Cesàro意义下可和级数的例子}
 
-\begin{eg}
 {\smaller[1]
 考虑我们一开始提到的通常意义下发散的级数
-$$\sum\limits_{n=1}^{\infty} a_n = \sum\limits_{n=1}^{\infty} (-1)^{n+1}  = 1 - 1 + 1 - 1 + \cdots,$$
+$$\sum\limits_{n=1}^{\infty} a_n = \sum\limits_{n=1}^{\infty} (-1)^{n+1}  = 1 - 1 + 1 - 1 + \cdots.$$
+
+\pause
+
 容易算得
 $$s_n = \sum\limits_{k=1}^{n} a_k = \begin{cases}
     1, & n = 2m - 1 \\
@@ -107,9 +130,11 @@ $$\sigma_n = \sum\limits_{k=1}^n s_k = \begin{cases}
   \dfrac{1}{2}, & n = 2m
   \end{cases} \quad m = 1, 2, \dots$$
 }
+
+\pause
+
 $\sigma_n$ 关于 $n$ 有极限, 为 $\lim\limits \sigma_n = \dfrac{1}{2}.$ 于是这个级数在 $(c, 1)$ 意义下可和, 即有
 $$\sum\limits_{n=1}^{\infty} a_n = \dfrac{1}{2}~(c, 1).$$
-\end{eg}
 
 \end{frame}
 
@@ -150,7 +175,7 @@ $$\lim\limits_{n \to \infty} \sigma_n = \lim\limits_{n \to \infty} \dfrac{n\sigm
 
 \begin{frame}{$(c, r)$ 意义下可和的级数}
 
-对于序列 $\{\sigma_k\},$ 可以考虑极限 $\lim\limits_{n\to\infty} \dfrac{1}{n} \sum\limits_{k=1}^n \sigma_k,$ 若此极限存在，则称级数 $\sum\limits_{n=1}^{\infty} a_n$ 是 $(c, 2)$ 意义下可和的级数:
+对于序列 $\{\sigma_k\},$ 可以考虑极限 $\lim\limits_{n\to\infty} \dfrac{1}{n} \sum\limits_{k=1}^n \sigma_k,$ 若此极限存在, 则称级数 $\sum\limits_{n=1}^{\infty} a_n$ 是 $(c, 2)$ 意义下可和的级数:
 $$
 \begin{array}{r:cccccccccc}
   \sigma_1 \phantom{++} & & a_1 \\
@@ -280,7 +305,7 @@ $$s_n = \sigma_n + \sum\limits_{k = 1}^n \dfrac{(k-1)a_k}{n}.$$
 \vspace*{0.4em}
 
 \begin{attnblock}
-很多判别法、计算公式，例如 L'Hopital 法则, Stolz 公式, 包括后面要学的一致收敛的函数项级数的逐项微分、积分的结论, 相关条件都是一种充分性条件, 远\textbf{\color{red}不是必要条件}.
+很多判别法、计算公式, 例如 L'Hopital 法则, Stolz 公式, 包括后面要学的一致收敛的函数项级数的逐项微分、积分的结论, 相关条件都是一种充分性条件, 远\textbf{\color{red}不是必要条件}.
 \end{attnblock}
 
 \end{frame}
@@ -374,7 +399,7 @@ $$\left\lvert s_n - \sigma_n \right\rvert \leqslant \lvert \text{\ding{172}} \rv
 \pause
 \vspace{1em}
 
-将上述思考、分析过程整理、调整顺序之后，即是完整的证明。
+将上述思考、分析过程整理、调整顺序之后, 即是完整的证明. 
 
 \end{frame}
 
@@ -382,7 +407,7 @@ $$\left\lvert s_n - \sigma_n \right\rvert \leqslant \lvert \text{\ding{172}} \rv
 
 \begin{frame}{Tauber型定理}
 
-以上我们证明了两个所谓的Tauber型的定理, 即在某些附加的“正则性”条件下，根据考察的量的某些均值的性质，对这个量本身的性质作一些判断。
+以上我们证明了两个所谓的Tauber型的定理, 即在某些附加的“正则性”条件下, 根据考察的量的某些均值的性质, 对这个量本身的性质作一些判断. 
 
 \pause
 \vspace{1em}
