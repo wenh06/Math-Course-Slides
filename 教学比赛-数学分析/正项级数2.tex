@@ -369,6 +369,8 @@ $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_
 \draw[color = red, dashed, thick] plot[id=x2, domain=0:2.8] function{1 + 2 * x} node[above right] {$1 + qx$};
 \draw[color = themecolor, dashed, thick] plot[id=px, domain=0:6] function{1 + x} node[below right] {$1 + x$};
 
+\path[color=blue, bend right, ->] (8,6) edge node [midway, above, sloped] {\color{blue}$t$增加} (6,8);
+
 \begin{scope}[on background layer]
 \draw[black, dashed, fill=red!10] (0.8,2.8) circle (2.1);
 \end{scope}
@@ -474,12 +476,14 @@ $$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(
 
 \pause
 
-Raabe判别法本质上还是基于比较判别法, 但是相较于Cauchy判别法与d'Alembert判别法, 对$\dfrac{x_n}{x_{n+1}}$的变化趋势进行了更精细的分析.
+Raabe判别法本质上还是基于比较判别法, 但是相较于Cauchy与d'Alembert判别法, 对$\dfrac{x_n}{x_{n+1}}$的变化趋势进行了更精细的分析.
 
 \pause
 \vspace{0.6em}
 
-对Raabe判别法失效的$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = 1$的情况, 可以通过进一步分析$\left[ n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) - 1 \right]$的“阶”的情况, 得到更加精细的判别法. 这类判别法可以一直“加细”下去, 但不会存在一种可以处理所有情况的判别法.
+对Raabe判别法失效的$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = 1$的情况, 可以通过进一步分析$\left[ n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) - 1 \right]$的“阶”的情况, 得到更加精细的判别法.
+\pause
+这类判别法可以一直“加细”下去, 但不会存在一种可以处理所有情况的判别法.
 
 \end{frame}
 
