@@ -41,7 +41,7 @@
 
 \begin{frame}{Zeno悖论 (Zeno's Paradox)}
 
-大约公元前425年, 古希腊有一位名叫Zeno的学者, 曾提出过若干个在数学发展是上产生过重大影响的悖论. “Achilles追赶乌龟”即是其中较著名的一个. 
+大约公元前425年, 古希腊有一位名叫Zeno的学者, 曾提出过若干个在数学发展是上产生过重大影响的悖论. “Achilles追赶乌龟”即是其中较著名的一个.
 
 \vspace*{0.9em}
 
@@ -55,7 +55,7 @@
     当Achilles用了$t_1$秒时间, 跑完$S_1$米时, 乌龟已向前爬了$S_2$米; \\
     当Achilles再用$t_2$秒时间, 跑完$S_2$米时, 乌龟又向前爬了$S_3$米; \\
     $\cdots\cdots$\\
-    这样的过程可以一直继续下去, 因此Achilles {\color{red}永远}也追不上乌龟. 
+    这样的过程可以一直继续下去, 因此Achilles {\color{red}永远}也追不上乌龟.
   \end{column}
 \end{columns}
 
@@ -99,7 +99,7 @@
 
 \pause
 
-以上两个例子, 我们遇到的都是无穷（{\color{red}可列}）多个数相加的情况, 称之为{\color{red}“数项级数”}. 那么数项级数有什么特点以及运算规律呢？这是我们接下来要学习的. 
+以上两个例子, 我们遇到的都是无穷（{\color{red}可列}）多个数相加的情况, 称之为{\color{red}“数项级数”}. 那么数项级数有什么特点以及运算规律呢？这是我们接下来要学习的.
 
 \end{frame}
 
@@ -113,7 +113,7 @@
 
 设$x_1, x_2, \dots, x_n, \dots$是无穷可列个实数, 我们称它们的{\color{red}“和”}
 $$x_1 + x_2 + \cdots + x_n + \cdots$$
-为\textbf{无穷数项级数}（简称\textbf{级数}）, （形式上）记为$\sum\limits_{n=1}^\infty x_n,$ 其中$x_n$称为级数的\textbf{通项}或\textbf{一般项}. 
+为\textbf{无穷数项级数}（简称\textbf{级数}）, （形式上）记为$\sum\limits_{n=1}^\infty x_n,$ 其中$x_n$称为级数的\textbf{通项}或\textbf{一般项}.
 
 \pause
 \vspace*{0.5em}
@@ -160,13 +160,13 @@ $$x_1 + x_2 + \cdots + x_n + \cdots$$
 $$S = \sum\limits_{n=1}^\infty x_n;$$
 \pause
 \vspace*{-0.3em}
-如果部分和数列$\{S_n\}$发散, 则称无穷级数$\sum\limits_{n=1}^\infty x_n$发散. 
+如果部分和数列$\{S_n\}$发散, 则称无穷级数$\sum\limits_{n=1}^\infty x_n$发散.
 \end{Def}
 
 \pause
 \vspace*{0.3em}
 
-由上述定义可知, 只有当无穷级数收敛时, 无穷多个实数的加法才是有意义的, 并且它们的和就是级数的部分和数列的极限. 所以, 
+由上述定义可知, 只有当无穷级数收敛时, 无穷多个实数的加法才是有意义的, 并且它们的和就是级数的部分和数列的极限. 所以,
 
 \pause
 
@@ -186,7 +186,7 @@ $$S = \sum\limits_{n=1}^\infty x_n;$$
 
 设$|q| < 1,$ 则\textbf{几何级数}（即\textbf{等比数列}）
 $$\sum\limits_{n=1}^\infty q^{n-1} = 1 + q + q^2 + \cdots + q^n + \cdots$$
-是收敛的. 
+是收敛的.
 \pause
 这是因为它的部分和数列通项为
 $$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - {\color{red}q^n}}{1 - q} ~~ \xrightarrow{\phantom{+} {\color{red}n \to \infty} \phantom{+}} ~~ \dfrac{1}{1 - q}$$
@@ -199,14 +199,14 @@ $$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - {\color{red}q^n}}{1 - q} ~~ \xr
 
 级数
 $$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots$$
-是发散的. 
+是发散的.
 \pause
 这是因为它的部分和数列通项为
 $$S_n = \begin{cases}
 0, & \text{$n$为偶数}, \\
 1, & \text{$n$为奇数}.
 \end{cases}$$
-显然数列$\{S_n\}$是发散的. 
+显然数列$\{S_n\}$是发散的.
 
 \end{frame}
 
@@ -230,13 +230,13 @@ $$\zeta(s) = \sum\limits_{n=1}^\infty \dfrac{1}{n^s} = 1 + \dfrac{1}{2^s} + \dfr
 
 我们比较熟悉的是$s$是实数的情况. 之前在学习数列极限的时候, 我们已经证明了
 \begin{center}
-$s > 1$时,  $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}$收敛;  \quad $s \leqslant 1$时,  $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}$发散到正无穷. 
+$s > 1$时,  $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}$收敛;  \quad $s \leqslant 1$时,  $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}$发散到正无穷.
 \end{center}
 
 \pause
 \vspace*{-0.3em}
 
-这一级数在今后学习其他级数敛散性判别的时候也会有重要作用. 
+这一级数在今后学习其他级数敛散性判别的时候也会有重要作用.
 
 \end{frame}
 
@@ -256,7 +256,7 @@ $\cdots\cdots$\\
 
 将所有路程加起来, 有
 $$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-1}S_2 + \cdots = \dfrac{S_1}{1 - q}$$
-这{\color{red}无限段}路程之和是{\color{red}有限}的,也就是说, 当 Achilles 跑完路程$S = \dfrac{S_1}{1 - q}$ (即经过了{\color{red}有限}的时间$T = \dfrac{S_1}{(1-q)v_2}$秒) 时, 他已经追上了乌龟. 
+这{\color{red}无限段}路程之和是{\color{red}有限}的,也就是说, 当 Achilles 跑完路程$S = \dfrac{S_1}{1 - q}$ (即经过了{\color{red}有限}的时间$T = \dfrac{S_1}{(1-q)v_2}$秒) 时, 他已经追上了乌龟.
 
 \end{frame}
 
@@ -268,7 +268,7 @@ $$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-
 
 \begin{frame}{数项级数收敛的必要条件}
 
-可以由数列的性质平行地导出数项级数的一些基本性质. 
+可以由数列的性质平行地导出数项级数的一些基本性质.
 
 \pause
 
@@ -295,7 +295,7 @@ $$\lim\limits_{n\to\infty} x_n = 0.$$
 \begin{attnblock}
 $\lim\limits_{n\to\infty} x_n = 0$只是级数收敛的必要条件, 并{\color{red}不是充分条件}. 例如
 $$\zeta(1) = \lim\limits_{n\to\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots$$
-就满足这一必要条件, 但它本身是发散的. 
+就满足这一必要条件, 但它本身是发散的.
 \end{attnblock}
 
 \pause
@@ -303,7 +303,7 @@ $$\zeta(1) = \lim\limits_{n\to\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1
 
 这一必要条件的一个重要作用在于, 可以用于直接判断某些级数发散, 例如我们已经看过的例子
 $$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots$$
-现在可以直接通过其通项$(-1)^{n-1}$不是无穷小量得出这一级数发散的结论, 而不需要再去求它的部分和数列, 并判断其是否收敛. 
+现在可以直接通过其通项$(-1)^{n-1}$不是无穷小量得出这一级数发散的结论, 而不需要再去求它的部分和数列, 并判断其是否收敛.
 
 \end{frame}
 
@@ -316,7 +316,7 @@ $$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots
 $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 \end{thm}
 
-也就是说, 对{\color{red}收敛级数}可以进行加法以及数乘的运算. 
+也就是说, 对{\color{red}收敛级数}可以进行加法以及数乘的运算.
 
 \pause
 \vspace{0.5em}
@@ -333,7 +333,7 @@ $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 
 \begin{eg}
 \begin{center}
-求级数$\sum\limits_{n=1}^\infty \dfrac{4^{n+1} - 3 \cdot 2^n}{5^n}$的值. 
+求级数$\sum\limits_{n=1}^\infty \dfrac{4^{n+1} - 3 \cdot 2^n}{5^n}$的值.
 \end{center}
 \end{eg}
 
@@ -363,7 +363,7 @@ $$\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\inf
 对于{\color{red}收敛级数}的加法结合律, 我们有肯定的回答：
 
 \begin{thm}[数项级数的加法结合律]
-设级数$\sum\limits_{n=1}^\infty x_n$收敛, 则在它的求和表达式中任意添加括号后所得的级数仍然收敛, 且其和不变. 
+设级数$\sum\limits_{n=1}^\infty x_n$收敛, 则在它的求和表达式中任意添加括号后所得的级数仍然收敛, 且其和不变.
 \end{thm}
 
 \end{frame}
@@ -401,7 +401,7 @@ $$\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\inf
   U_{\color{red}k} & = y_1 + y_2 + \cdots + y_k = x_1 + x_2 + \cdots + x_{n_k} = S_{\color{red}n_k}, \\
   \vdots
 \end{align*}
-也就是说, 数列$\{U_n\}$是$\{S_n\}$的一个子列.  于是, 由$\{S_n\}$的收敛性即得$\{U_n\}$的收敛性, 且二者极限相同. 
+也就是说, 数列$\{U_n\}$是$\{S_n\}$的一个子列.  于是, 由$\{S_n\}$的收敛性即得$\{U_n\}$的收敛性, 且二者极限相同.
 
 \end{frame}
 
@@ -410,7 +410,7 @@ $$\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\inf
 \begin{frame}{收敛级数加法结合律}
 
 \begin{attnblock}
-加法结合律对原本发散的级数一般不成立. 也就是说, 加完括号之后的级数如果收敛, 我们不能得出原来级数收敛的结论. 这是因为数列某个子列的收敛性, 并不能保证原来整个数列的收敛性. 
+加法结合律对原本发散的级数一般不成立. 也就是说, 加完括号之后的级数如果收敛, 我们不能得出原来级数收敛的结论. 这是因为数列某个子列的收敛性, 并不能保证原来整个数列的收敛性.
 \end{attnblock}
 
 \pause
@@ -477,7 +477,7 @@ $$\sum\limits_{n=1}^\infty x_n := \text{它的部分和数列} \left\{ S_n = \su
 \item[{\larger[2] \color{red} \ding{43}}] 收敛级数运算线性性：$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$
 \pause
 \vspace{0.4em}
-\item[{\larger[2] \color{red} \ding{43}}] 收敛级数加法结合律：在它的求和表达式中任意添加括号后所得的级数仍然收敛, 且其和不变. 
+\item[{\larger[2] \color{red} \ding{43}}] 收敛级数加法结合律：在它的求和表达式中任意添加括号后所得的级数仍然收敛, 且其和不变.
 \end{itemize}
 
 \pause

@@ -81,7 +81,7 @@
 \begin{Def}
   如果级数$\sum\limits_{n=1}^\infty x_n$的通项都是非负实数, 即
   $$x_n \geqslant 0, \quad n = 1, 2, \cdots,$$
-  则称此级数为\textbf{正项级数}. 
+  则称此级数为\textbf{正项级数}.
 \end{Def}
 
 \pause
@@ -98,21 +98,21 @@ $$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1},
 
 \begin{thm}[正项级数的收敛原理]
 \begin{center}
-正项级数收敛的充分必要条件是它的部分和数列有上界. 
+正项级数收敛的充分必要条件是它的部分和数列有上界.
 \end{center}
 \end{thm}
 
 \pause
 \vspace*{0.4em}
 
-\textbf{例：} 考虑级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right].$ 容易看出它是一个正项级数. 
+\textbf{例：} 考虑级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right].$ 容易看出它是一个正项级数.
 \pause
 它的部分和数列的通项为
 \begin{align*}
   S_n & = \sum\limits_{k=2}^{n+1} \left[ \dfrac{1}{\nroot[k]{k}} \ln{\dfrac{k^2}{(k-1)(k+1)}} \right] {\color{red}<} \sum\limits_{k=2}^{n+1} {\color{red}\cancel{\dfrac{1}{\nroot[k]{k}}}} \ln{\left( \left.\dfrac{k}{k-1} \right/ \dfrac{k+1}{k} \right)} \\
   & = \sum\limits_{k=2}^{n+1} \left( \ln{\dfrac{k}{k-1}} - \ln{\dfrac{k+1}{k}} \right) = \ln{2} - \ln{\dfrac{n+2}{n+1}} < \ln{2},
 \end{align*}
-所以正项级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right]$收敛. 
+所以正项级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right]$收敛.
 
 \end{frame}
 
@@ -122,12 +122,12 @@ $$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1},
 
 在这个例子中, 我们实际上使用了马上要介绍的“比较判别法”, 即使用了不等式
 $$\dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},$$
-$\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断. 可以通过判断它的收敛性, 进而得出$\sum\limits_{n=2}^\infty x_n$的收敛性. 
+$\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断. 可以通过判断它的收敛性, 进而得出$\sum\limits_{n=2}^\infty x_n$的收敛性.
 
 \pause
 \vspace*{1em}
 
-本节剩下的内容, 就是介绍一系列包括“比较判别法”在内的简便实用的判别正项级数敛散性的方法. 
+本节剩下的内容, 就是介绍一系列包括“比较判别法”在内的简便实用的判别正项级数敛散性的方法.
 
 \end{frame}
 
@@ -139,7 +139,7 @@ $\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断
 
 \begin{frame}{比较判别法}
 
-判断一个正项级数是否收敛, 最常用的方法是用一个已知敛散性的级数与它进行比较. 
+判断一个正项级数是否收敛, 最常用的方法是用一个已知敛散性的级数与它进行比较.
 
 \pause
 
@@ -148,8 +148,8 @@ $\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断
 $$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
 \vspace*{-1.6em}
 \begin{enumerate}
-  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛; 
-  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时, $\sum\limits_{n=1}^\infty y_n$也发散. 
+  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
+  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时, $\sum\limits_{n=1}^\infty y_n$也发散.
 \end{enumerate}
 \end{thm}
 
@@ -181,14 +181,14 @@ $$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
 \pause
 
 \begin{enumerate}
-  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛; 
-  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时, $\sum\limits_{n=1}^\infty y_n$也发散. 
+  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
+  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时, $\sum\limits_{n=1}^\infty y_n$也发散.
 \end{enumerate}
 
 \pause
 
 \begin{attnblock}
-由于改变级数有限个项的数值, 并不会改变它的敛散性, 所以比较判别法的条件可以放宽为：“存在正整数$N$与常数$A>0,$ 使得$x_n \leqslant Ay_n$对一切$n > N$成立”. 
+由于改变级数有限个项的数值, 并不会改变它的敛散性, 所以比较判别法的条件可以放宽为：“存在正整数$N$与常数$A>0,$ 使得$x_n \leqslant Ay_n$对一切$n > N$成立”.
 \end{attnblock}
 
 \end{frame}
@@ -199,7 +199,7 @@ $$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
 
 \begin{eg}
   \begin{center}
-  判断正项级数$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$的敛散性. 
+  判断正项级数$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$的敛散性.
   \end{center}
 \end{eg}
 
@@ -207,7 +207,7 @@ $$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
 
 \textbf{解：} 容易看出, 当$n > 3$时成立
 $$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-{\color{red}n^3}} = \dfrac{2}{n^2},$$
-由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$的收敛性 (值等于$\dfrac{\pi^2}{6}$), 知$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$收敛. 
+由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$的收敛性 (值等于$\dfrac{\pi^2}{6}$), 知$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$收敛.
 
 \end{frame}
 
@@ -217,7 +217,7 @@ $$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-
 
 \begin{eg}
  \begin{center}
-  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性. 
+  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性.
  \end{center}
 \end{eg}
 
@@ -241,7 +241,7 @@ $$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-
     \pause
     所以当$n\geqslant 2$时有
     $$\sin\dfrac{\pi}{n} \geqslant \dfrac{2}{\pi} \cdot \dfrac{\pi}{n} = \dfrac{2}{n}.$$
-    由于$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散, 所以$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$也发散. 
+    由于$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散, 所以$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$也发散.
   \end{column}
 \end{columns}
 
@@ -261,10 +261,10 @@ $x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n
 $$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)$$
 \vspace*{-1.3em}
 \begin{enumerate}
-  \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$也收敛, $\sum\limits_{n=1}^\infty x_n$也收敛; 
-  \item[(2)] 若$0 < \ell \leqslant +\infty,$ 则当$\sum\limits_{n=1}^\infty y_n$发散时, $\sum\limits_{n=1}^\infty x_n$也发散. 
+  \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$也收敛, $\sum\limits_{n=1}^\infty x_n$也收敛;
+  \item[(2)] 若$0 < \ell \leqslant +\infty,$ 则当$\sum\limits_{n=1}^\infty y_n$发散时, $\sum\limits_{n=1}^\infty x_n$也发散.
 \end{enumerate}
-所以当$0 < \ell < +\infty$时, $\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$有相同的敛散性. 
+所以当$0 < \ell < +\infty$时, $\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$有相同的敛散性.
 \end{thm}
 
 \end{frame}
@@ -275,7 +275,7 @@ $$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqs
 
 \begin{eg}
  \begin{center}
-  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性. 
+  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性.
  \end{center}
 \end{eg}
 
@@ -290,7 +290,7 @@ $$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqs
 所以
 \vspace*{-1.6em}
 $$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.$$
-由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛. 
+由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛.
 
 \end{frame}
 
@@ -303,11 +303,11 @@ $$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac
 \begin{frame}{正项级数敛散性的积分判别法}
 
 \only<1>{
-无穷级数与我们上一章学习的反常积分有着密切的联系. 我们接下来要介绍一种判别法, 建立起二者敛散性分析的桥梁. 利用它, 我们可以通过反常积分的敛散性判别正项级数的敛散性, 反之亦然. 
+无穷级数与我们上一章学习的反常积分有着密切的联系. 我们接下来要介绍一种判别法, 建立起二者敛散性分析的桥梁. 利用它, 我们可以通过反常积分的敛散性判别正项级数的敛散性, 反之亦然.
 
 \vspace{1em}
 
-我们很快会看到, 前面的很多例子中关于正项级数敛散性, 可以很快地通过某些反常积分的敛散性进行判断. 
+我们很快会看到, 前面的很多例子中关于正项级数敛散性, 可以很快地通过某些反常积分的敛散性进行判断.
 }
 
 \only<2->{
@@ -322,7 +322,7 @@ $$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limit
 }
 
 \only<3->{
-特别地, 当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n,$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=[a]+1}^\infty f(n)$具有相同的敛散性. 
+特别地, 当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n,$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=[a]+1}^\infty f(n)$具有相同的敛散性.
 }
 
 \end{frame}
@@ -347,7 +347,7 @@ $$f(n+1) \leqslant f(x) \leqslant f(n),$$
 由定积分的保序性, 有不等式
 $$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mathrm{d} x \leqslant \int_{n}^{n+1} f(n) \mathrm{d} x = f(n).$$
 \pause
-由比较判别法 (使用两次) 知$\sum\limits_{n=[a]+1}^\infty f(n)$与$\sum\limits_{n=[a]+1}^\infty u_n$同时收敛或同时发散, 从而与反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$有相同的敛散性. 
+由比较判别法 (使用两次) 知$\sum\limits_{n=[a]+1}^\infty f(n)$与$\sum\limits_{n=[a]+1}^\infty u_n$同时收敛或同时发散, 从而与反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$有相同的敛散性.
 
 \end{frame}
 
@@ -355,14 +355,14 @@ $$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mat
 
 \begin{frame}{积分判别法的应用}
 
-我们先把之前用比较判别法做过的例题重新审视一遍. 
+我们先把之前用比较判别法做过的例题重新审视一遍.
 
 \pause
 \vspace*{0.6em}
 
 \begin{eg}
  \begin{center}
-  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性. 
+  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性.
  \end{center}
 \end{eg}
 
@@ -383,7 +383,7 @@ $$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mat
 
 \begin{eg}
  \begin{center}
-  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性. 
+  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性.
  \end{center}
 \end{eg}
 
@@ -410,7 +410,7 @@ e^{t^2} - \cos\pi t & = (e^{t^2} - 1) + (1 - \cos\pi t) = (e^{t^2} - 1) + 2 \sin
 \end{align*}
 即在$0$附近成立
 $$\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},$$
-于是原来的反常积分收敛, 进而知级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$收敛. 
+于是原来的反常积分收敛, 进而知级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$收敛.
 
 \end{frame}
 
@@ -418,14 +418,14 @@ $$\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},$$
 
 \begin{frame}{积分判别法的应用}
 
-目前我们都是利用积分判别法, 从反常积分的敛散性来判别相应正项级数的敛散性. 事实上, 我们也可以反其道而行之, 由已知敛散性的级数出发, 去判断某些反常积分的敛散性. 
+目前我们都是利用积分判别法, 从反常积分的敛散性来判别相应正项级数的敛散性. 事实上, 我们也可以反其道而行之, 由已知敛散性的级数出发, 去判断某些反常积分的敛散性.
 
 \pause
 \vspace{0.6em}
 
 \begin{eg}
  \begin{center}
-  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散. 
+  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散.
  \end{center}
 \end{eg}
 
@@ -449,13 +449,13 @@ $$(n\pi + t)^2 \sin^2 t < (n + 1)^2 (\pi t)^2 < (n + 1)^2 \pi^2 \dfrac{1}{(n+1)^
 于是
 \vspace*{-1.2em}
 $$u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} > \dfrac{1}{2\pi} \cdot \dfrac{1}{n+1}.$$
-由于$\sum\limits_{n=1}^\infty \dfrac{1}{n+1}$发散, 有比较判别法知$\sum\limits_{n=1}^\infty u_n$发散,又由积分判别法知, 反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散. 
+由于$\sum\limits_{n=1}^\infty \dfrac{1}{n+1}$发散, 有比较判别法知$\sum\limits_{n=1}^\infty u_n$发散,又由积分判别法知, 反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散.
 
 \pause
 
 \begin{block}{思考题}
  \begin{center}
-  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^{\color{red}4}\sin^2 x}$收敛. 
+  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^{\color{red}4}\sin^2 x}$收敛.
  \end{center}
 \end{block}
 
@@ -470,16 +470,16 @@ $$u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^
 \begin{frame}{总结}
 
 \begin{itemize}
-\item[{\larger[2] \color{red} \ding{43}}] 正项级数的定义：通项都是非负实数的级数. 
+\item[{\larger[2] \color{red} \ding{43}}] 正项级数的定义：通项都是非负实数的级数.
 \pause
 \vspace{0.8em}
-\item[{\larger[2] \color{red} \ding{43}}] 正项级数的收敛原理：正项级数收敛的充分必要条件是它的部分和数列有上界. 
+\item[{\larger[2] \color{red} \ding{43}}] 正项级数的收敛原理：正项级数收敛的充分必要条件是它的部分和数列有上界.
 \pause
 \vspace{0.8em}
-\item[{\larger[2] \color{red} \ding{43}}] 不等式形式的比较判别法、极限形式的比较判别法：通过通项之间的比较, 由已知敛散性或者敛散性容易判断的级数的敛散性, 导出我们感兴趣的级数的敛散性. 
+\item[{\larger[2] \color{red} \ding{43}}] 不等式形式的比较判别法、极限形式的比较判别法：通过通项之间的比较, 由已知敛散性或者敛散性容易判断的级数的敛散性, 导出我们感兴趣的级数的敛散性.
 \pause
 \vspace{0.8em}
-\item[{\larger[2] \color{red} \ding{43}}] 积分判别法：建立了非负函数反常积分敛散性与正项级数敛散性之间的等价关系. 
+\item[{\larger[2] \color{red} \ding{43}}] 积分判别法：建立了非负函数反常积分敛散性与正项级数敛散性之间的等价关系.
 \pause
 特别地, 当函数有单调性 (单调递减) 时, 有
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}

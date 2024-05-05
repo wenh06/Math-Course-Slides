@@ -29,7 +29,7 @@
 %the height of the header is 2.5 times the lineheight of the frame title
 \newlength{\beamer@height}
 \usebeamerfont{frametitle} %use the frame title font
-\setlength{\beamer@height}{2.5\baselineskip} 
+\setlength{\beamer@height}{2.5\baselineskip}
 \reset@font %reset fonts
 \def\beamer@lefttext{left} %used for comparison below
 %width of vertical bar separating the main text from the sidebar
@@ -49,7 +49,7 @@
   }
   \setbeamersize{sidebar width \beamer@sidebarside=\beamer@width}
   \setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
-  
+
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   %templates
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,8 +57,8 @@
   \defbeamertemplate*{headline}{AAUsidebar theme}{%
     \AAUheaderbackground%
   }
-  
-  
+
+
   %frame title
   \defbeamertemplate*{frametitle}{AAUsidebar theme}{%
     \ifx\beamer@sidebarside\beamer@lefttext% sidebar on the left
@@ -72,7 +72,7 @@
       \hfill%
     \fi%
   }
-  
+
   %sidebar
   \defbeamertemplate*{sidebar \beamer@sidebarside}{AAUsidebar theme}{%
     \AAUsidebarbackground%
@@ -81,7 +81,7 @@
     \ifx\beamer@hidetitle\undefined% insert short title
       \vspace{-\baselineskip}
       \hspace{0.05\beamer@width}%
-      {% 
+      {%
         \usebeamercolor[fg]{title in sidebar}
         \usebeamerfont{title in sidebar}%
         \insertshorttitle[width={0.9\beamer@width},center,respectlinebreaks]
@@ -140,7 +140,7 @@
       \fi
     }
   \fi
-  
+
   % current section in the sidebar
   \defbeamertemplate*{section in sidebar}{AAUsidebar theme}{%
     \vbox{%
@@ -178,12 +178,12 @@
     \sidebarnavitem{8pt}{subsubsection in sidebar}{
       \sidebarcurframe{\insertframenumber}%
       \insertsubsubsectionhead
-    }  
+    }
   }
 
   % all subsubsection in the sidebar but the current
   \defbeamertemplate*{subsubsection in sidebar shaded}{AAUsidebar theme}{%
-    \sidebarnavitem{8pt}{subsubsection in sidebar shaded}{\insertsubsubsectionhead} 
+    \sidebarnavitem{8pt}{subsubsection in sidebar shaded}{\insertsubsubsectionhead}
   }
 
   \ifx\beamer@shownavsym\undefined% insert navigation symbols
@@ -195,7 +195,7 @@
 }%end of beamer specific options
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Macros used in the theme 
+%Macros used in the theme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % the fancy header background
 \newcommand{\AAUheaderbackground}[0]{%
@@ -251,7 +251,7 @@
   \tikzexternalenable
 }
 
-% sidebar navigation item  
+% sidebar navigation item
 \newcommand{\sidebarnavitem}[3]{%
   \begin{beamercolorbox}[wd=\beamer@width,leftskip=#1,rightskip=1ex plus1fil,vmode]{#2}
     \vbox{}% insert a blank line
