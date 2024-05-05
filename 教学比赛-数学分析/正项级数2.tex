@@ -58,17 +58,17 @@
 
 %------------------------------------------------
 
-\section[柯西判别法]{正项级数敛散性的柯西判别法}
+\section[Cauchy\\判别法]{正项级数敛散性的Cauchy判别法}
 
 %------------------------------------------------
 
-\begin{frame}{正项级数敛散性的柯西判别法}
+\begin{frame}{正项级数敛散性的Cauchy判别法}
 
-\begin{thm}[柯西判别法]
+\begin{thm}[Cauchy判别法]
 设$\sum\limits_{n=1}^\infty x_n$是正项级数, $r = \varlimsup_{n\to\infty} \nroot[n]{x_n},$ 则
 \begin{itemize}
-  \item[(1).] 当$r < 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛；
-  \item[(2).] 当$r > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$发散；
+  \item[(1).] 当$r < 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛; 
+  \item[(2).] 当$r > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$发散; 
   \item[(3).] 当$r = 1$时, 判别法失效, 级数$\sum\limits_{n=1}^\infty x_n$可能收敛也可能发散. 
 \end{itemize}
 \end{thm}
@@ -77,7 +77,7 @@
 
 %------------------------------------------------
 
-\begin{frame}{柯西判别法的证明}
+\begin{frame}{Cauchy判别法的证明}
 
 (1). 当$r = \varlimsup_{n\to\infty} \nroot[n]{x_n} < 1$时, 由上极限的性质, 对任意满足$r < q < 1$的实数$q,$
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
@@ -100,19 +100,19 @@ $$x_{n_k} > q^{n_k} \to +\infty,$$
 
 %------------------------------------------------
 
-\begin{frame}{柯西判别法的证明}
+\begin{frame}{Cauchy判别法的证明}
 
 (3). 当$r = 1$时, 我们既能找到收敛的例子, 也能找到发散的例子. 
 \pause
 最直接的就是$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}.$ 对于任何一个固定的实数$s,$ 有
 $$\lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\infty} \dfrac{1}{\nroot[n]{n}} \right)^s = 1.$$
-对于级数$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}$来说, 我们知道$s > 1$时它收敛；$s \leqslant 1$时它发散. 
+对于级数$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}$来说, 我们知道$s > 1$时它收敛; $s \leqslant 1$时它发散. 
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{柯西判别法的应用}
+\begin{frame}{Cauchy判别法的应用}
 
 \begin{eg}
 \begin{center}
@@ -127,23 +127,23 @@ $$\lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n^s}} = \l
 \varlimsup_{n\to\infty} \sqrt[\leftroot{-7}\uproot{20}n]{\dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}} & = \varlimsup_{n\to\infty} \left(\nroot[n]{n}\right)^3 \dfrac{\sqrt{2} + (-1)^n}{3} \\
 & = \dfrac{\sqrt{2} + 1}{3} < 1,
 \end{align*}
-根据柯西判别法知级数$\sum\limits_{n=1}^{\infty} \dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}$收敛. 
+根据Cauchy判别法知级数$\sum\limits_{n=1}^{\infty} \dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}$收敛. 
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[达朗贝尔判别法]{正项级数敛散性的达朗贝尔判别法}
+\section[d'Alembert\\判别法]{正项级数敛散性的d'Alembert判别法}
 
 %------------------------------------------------
 
-\begin{frame}{正项级数敛散性的达朗贝尔判别法}
+\begin{frame}{正项级数敛散性的d'Alembert判别法}
 
-\begin{thm}[达朗贝尔判别法]
+\begin{thm}[d'Alembert判别法]
 设$\sum\limits_{n=1}^\infty x_n ~ (x_n \neq 0)$是正项级数, 则
 \begin{itemize}
-  \item[(1).] 当$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \overline{r} < 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛；
-  \item[(2).] 当$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \underline{r} > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$发散；
+  \item[(1).] 当$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \overline{r} < 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛; 
+  \item[(2).] 当$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \underline{r} > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$发散; 
   \item[(3).] 当$\overline{r} \geqslant 1$或$\underline{r} \leqslant 1$时, 判别法失效, 级数$\sum\limits_{n=1}^\infty x_n$可能收敛也可能发散. 
 \end{itemize}
 \end{thm}
@@ -152,17 +152,17 @@ $$\lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n^s}} = \l
 
 %------------------------------------------------
 
-\begin{frame}{正项级数敛散性的达朗贝尔判别法}
+\begin{frame}{正项级数敛散性的d'Alembert判别法}
 
-由于柯西判别法中的通项$\nroot[n]{x_n}$是达朗贝尔判别法通项$\dfrac{x_{n+1}}{x_n}$的几何平均, 可以期待的是柯西判别法强于达朗贝尔判别法. 
-
-\pause
-\vspace*{0.6em}
-
-事实也的确如此. 达朗贝尔判别法可以通过如下的引理, 从柯西判别法推导出来. 
+由于Cauchy判别法通项$\nroot[n]{x_n}$是d'Alembert判别法通项$\dfrac{x_{n+1}}{x_n}$的几何平均, 可以期待的是Cauchy判别法强于d'Alembert判别法. 
 
 \pause
-\vspace*{0.6em}
+\vspace*{0.4em}
+
+事实也的确如此. d'Alembert判别法可以通过如下的引理, 从Cauchy判别法推导出来. 
+
+\pause
+\vspace*{0.4em}
 
 \begin{lem}
 设$\{x_n\}$是正项数列, 则
@@ -172,11 +172,11 @@ $$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty}
 \pause
 \vspace*{0.6em}
 
-当$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$时, 由引理中的不等式, 有$\varlimsup_{n\to\infty} \nroot[n]{x_n} < 1,$ 从而可以由柯西判别法退出收敛性；
+当$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$时, 由引理中的不等式, 有$\varlimsup_{n\to\infty} \nroot[n]{x_n} < 1,$ 从而可以由Cauchy判别法推出收敛性; 
 
 \pause
 \vspace*{0.6em}
-当$\underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$时, 由引理中的不等式, 有$\varlimsup_{n\to\infty} \nroot[n]{x_n} > 1,$ 从而可以由柯西判别法退出发散性. 
+当$\underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$时, 由引理中的不等式, 有$\varlimsup_{n\to\infty} \nroot[n]{x_n} > 1,$ 从而可以由Cauchy判别法推出发散性.
 
 \end{frame}
 
@@ -220,7 +220,7 @@ $$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\
 
 %------------------------------------------------
 
-\begin{frame}{达朗贝尔判别法的应用}
+\begin{frame}{d'Alembert判别法的应用}
 
 \begin{eg}
 \begin{center}
@@ -236,15 +236,15 @@ $$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\
 \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} & = \varlimsup_{n\to\infty} \left[ \dfrac{(n+1)^{n+1}}{3^{n+1}\cdot (n+1)!} \cdot \dfrac{3^n\cdot n!}{n^n} \right] \\
 & = \lim_{n\to\infty} \dfrac{1}{3} \left( 1 + \dfrac{1}{n} \right)^n = \dfrac{e}{3} < 1,
 \end{align*}
-由达朗贝尔判别法知级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$的收敛. 
+由d'Alembert判别法知级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$的收敛. 
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{柯西判别法与达朗贝尔判别法的再比较}
+\begin{frame}{Cauchy判别法与d'Alembert判别法的再比较}
 
-之前我们利用柯西判别法证明了达朗贝尔判别法, 这表明了柯西判别法强于达朗贝尔判别法, 即如果一个正项级数的敛散性能通过达朗贝尔判别法判定, 则它一定能用柯西判别法来判定. 但反过来是不一定的：
+之前我们利用Cauchy判别法证明了d'Alembert判别法, 这表明了Cauchy判别法强于d'Alembert判别法, 即如果一个正项级数的敛散性能通过d'Alembert判别法判定, 则它一定能用Cauchy判别法来判定. 但反过来是不一定的：
 
 \pause
 \vspace{0.5em}
@@ -264,51 +264,51 @@ $$x_{2n-1} = \dfrac{1}{2^n}, ~~ x_{2n} = \dfrac{1}{3^n}$$
 
 %------------------------------------------------
 
-\begin{frame}{柯西判别法与达朗贝尔判别法的再比较}
+\begin{frame}{Cauchy判别法与d'Alembert判别法的再比较}
 
-虽然柯西判别法强于达朗贝尔判别法, 但并不是说达朗贝尔判别法就无用武之地. 对某些具体的例子而言, 虽然两种判别法都适用, 但达朗贝尔判别法可能比柯西判别法方便一些：
+虽然Cauchy判别法强于d'Alembert判别法, 但并不是说d'Alembert判别法就无用武之地. 对某些具体的例子而言, 虽然两种判别法都适用, 但d'Alembert判别法可能比Cauchy判别法方便一些：
 
 \pause
 \vspace{0.5em}
 
 \begin{eg}
-正项级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$收敛性的判定, 我们之前是用的达朗贝尔判别法：
+正项级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$收敛性的判定, 我们之前是用的d'Alembert判别法：
 $$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \dfrac{e}{3} < 1.$$
 \pause
 而
 $$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = \dfrac{n}{3} \cdot \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n!}}$$
-极限不太好求, 故不太方便适用柯西判别法. 
+极限不太好求, 故不太方便适用Cauchy判别法. 
 
 \pause
 \vspace{0.5em}
 
-当然, 如果你熟悉斯特林公式$n! \sim \sqrt{2\pi} n^{n+\frac{1}{2}} e^{-n} ~ (n\to\infty),$ 这个例子使用柯西判别法也是可行的. 
+当然, 如果你熟悉斯特林公式$n! \sim \sqrt{2\pi} n^{n+\frac{1}{2}} e^{-n} ~ (n\to\infty),$ 这个例子使用Cauchy判别法也是可行的. 
 \end{eg}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[拉比判别法]{正项级数敛散性的拉比判别法}
+\section[Raabe\\判别法]{正项级数敛散性的Raabe判别法}
 
 %------------------------------------------------
 
-\begin{frame}{正项级数敛散性的拉比判别法}
+\begin{frame}{正项级数敛散性的Raabe判别法}
 
-我们已经看到了, 基于比较判别法的柯西判别法与达朗贝尔判别法都有无法处理的情况, 例如$\sum\limits_{n=1}^\infty \dfrac{1}{n^s}.$
+我们已经看到了, 基于比较判别法的Cauchy判别法与d'Alembert判别法都有无法处理的情况, 例如$\sum\limits_{n=1}^\infty \dfrac{1}{n^s}.$
 
 \pause
 \vspace{-0.6em}
 
-这是因为这两个判别法作为比较基准的是几何级数$\sum\limits_{n=1}^\infty q^n.$ 在判定级数收敛时, 要求级数的通项受到$q^n (0 < q < 1)$的控制；而在判定级数发散时, 则是根据其通项不趋于$0.$ 这二者相去甚远. 为了弥补这一距离, 我们要引入新的一些判别方法：
+这是因为这两个判别法作为比较基准的是几何级数$\sum\limits_{n=1}^\infty q^n.$ 在判定级数收敛时, 要求级数的通项受到$q^n (0 < q < 1)$的控制; 而在判定级数发散时, 则是根据其通项不趋于$0.$ 这二者相去甚远. 为了弥补这一距离, 我们要引入新的一些判别方法：
 
 \pause
 
-\begin{thm}[拉比判别法]
+\begin{thm}[Raabe判别法]
 设$\sum\limits_{n=1}^\infty x_n$是正项级数, $x_n \neq 0,$ 且$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r,$ 那么
 \vspace{-0.6em}
 \begin{itemize}
-  \item[(1).] 当$r > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛；
+  \item[(1).] 当$r > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛; 
   \item[(2).] 当$r < 1$时, 级数$\sum\limits_{n=1}^\infty x_n$发散. 
 \end{itemize}
 \end{thm}
@@ -317,7 +317,7 @@ $$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = 
 
 %------------------------------------------------
 
-\begin{frame}{拉比判别法的分析与证明}
+\begin{frame}{Raabe判别法的分析与证明}
 
 当$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r < 1$时, 由极限的性质, 对任意满足$r < q < 1$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
 $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) < q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} < 1 + \dfrac{q}{n} < 1 + \dfrac{1}{n},$$
@@ -331,7 +331,7 @@ $$x_n > N \cdot x_N \cdot {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqslant N.$
 
 %------------------------------------------------
 
-\begin{frame}{拉比判别法的分析与证明}
+\begin{frame}{Raabe判别法的分析与证明}
 
 当$r > 1$时, 若沿用之前的分析步骤, 我们只能推断出$x_n > N \cdot x_N \cdot \dfrac{1}{n},$ 无法由比较判别法判定敛散性. 
 
@@ -354,7 +354,7 @@ $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_
 
 %------------------------------------------------
 
-\begin{frame}{拉比判别法的分析与证明}
+\begin{frame}{Raabe判别法的分析与证明}
 
 \begin{center}
 \begin{tikzpicture}[scale=0.777]
@@ -381,7 +381,7 @@ $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_
 
 %------------------------------------------------
 
-\begin{frame}{拉比判别法的分析与证明}
+\begin{frame}{Raabe判别法的分析与证明}
 
 首先, 比较$f(x) = 1 + qx$与$g(x) = (1 + x)^t$在$x = 0$处的导数值：
 $$
@@ -406,7 +406,7 @@ $$\dfrac{x_n}{x_{n+1}} > f \left(\dfrac{1}{n}\right) = 1 + \dfrac{q}{n} > g \lef
 
 %------------------------------------------------
 
-\begin{frame}{拉比判别法的分析与证明}
+\begin{frame}{Raabe判别法的分析与证明}
 
 于是, 就有了我们希望得到的形式：
 $$n^t x_n > (n+1)^t x_{n+1} ~~ \text{对所有$n > N$成立. }$$
@@ -420,7 +420,7 @@ $$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
 
 %------------------------------------------------
 
-\begin{frame}{拉比判别法的应用}
+\begin{frame}{Raabe判别法的应用}
 
 \begin{eg}
 \begin{center}
@@ -433,9 +433,9 @@ $$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
 
 \textbf{解：} 记$x_n = \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1},$ 则
 $$\lim\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim\limits_{n\to\infty} \dfrac{(2n+1)^2}{(2n+2)(2n+3)} = 1.$$
-那么达朗贝尔判别法 (以及柯西判别法) 都不适用了. 
+那么d'Alembert判别法 (以及Cauchy判别法) 都不适用了. 
 \pause
-但是应用拉比判别法, 可得
+但是应用Raabe判别法, 可得
 $$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(6n+5)}{(2n+1)^2} = \dfrac{3}{2} > 1,$$
 所以级数$\sum\limits_{n=1}^\infty \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1}$收敛. 
 
@@ -449,16 +449,16 @@ $$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 柯西判别法：$r = \varlimsup_{n\to\infty} \nroot[n]{x_n}$
+{\larger[2] \color{red} \ding{43}} Cauchy判别法：$r = \varlimsup_{n\to\infty} \nroot[n]{x_n}$
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80} $r < 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$r > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+  \text{\bfseries\color{red!80} $r < 1$则$\sum\limits_{n=1}^\infty x_n$收敛; ~~$r > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
 \end{empheq}
 
 \pause
 
-{\larger[2] \color{red} \ding{43}} 达朗贝尔判别法：$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}, \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}$
+{\larger[2] \color{red} \ding{43}} d'Alembert判别法：$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}, \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}$
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80} $\overline{r} < 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$\underline{r} > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+  \text{\bfseries\color{red!80} $\overline{r} < 1$则$\sum\limits_{n=1}^\infty x_n$收敛; ~~$\underline{r} > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
 \end{empheq}
 
 \end{frame}
@@ -467,19 +467,19 @@ $$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 拉比判别法：$r = \lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right)$
+{\larger[2] \color{red} \ding{43}} Raabe判别法：$r = \lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right)$
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80} $r > 1$则$\sum\limits_{n=1}^\infty x_n$收敛；~~$r < 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+  \text{\bfseries\color{red!80} $r > 1$则$\sum\limits_{n=1}^\infty x_n$收敛; ~~$r < 1$则$\sum\limits_{n=1}^\infty x_n$发散}
 \end{empheq}
 
 \pause
 
-拉比判别法本质上还是基于比较判别法, 但是相较于柯西判别法与达朗贝尔判别法, 对$\dfrac{x_n}{x_{n+1}}$的变化趋势进行了更精细的分析. 
+Raabe判别法本质上还是基于比较判别法, 但是相较于Cauchy判别法与d'Alembert判别法, 对$\dfrac{x_n}{x_{n+1}}$的变化趋势进行了更精细的分析. 
 
 \pause
 \vspace{0.6em}
 
-对拉比判别法失效的$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = 1$的情况, 可以通过进一步分析$\left[ n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) - 1 \right]$的“阶”的情况, 得到更加精细的判别法. 这类判别法可以一直“加细”下去, 但不会存在一种可以处理所有情况的判别法. 
+对Raabe判别法失效的$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = 1$的情况, 可以通过进一步分析$\left[ n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) - 1 \right]$的“阶”的情况, 得到更加精细的判别法. 这类判别法可以一直“加细”下去, 但不会存在一种可以处理所有情况的判别法. 
 
 \end{frame}
 
