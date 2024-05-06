@@ -357,26 +357,7 @@ $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_
 \begin{frame}{Raabe判别法的分析与证明}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.777]
-\draw[->] (-0.3,0) -- (8,0) node[right] {$x$} node[below right] {$(1/n)$};
-\draw[->] (0,-0.3) -- (0,7) node[above] {$y$};
-
-\draw[color = blue, dashed, thick] plot[id=t2, domain=0:3] function{(1 + x)**(1.5)} node[above] {$(1 + x)^t ~~ t > 1$};
-\draw[color = blue, dashed, thick] plot[id=t2, domain=0:4] function{(1 + x)**(1.3)};
-\draw[color = blue, dashed, thick] plot[id=t2, domain=0:1.8] function{(1 + x)**(2)};
-
-\draw[color = blue, dashed, thick] plot[id=t1, domain=0:6] function{(1 + x)**(0.5)} node[above right] {$(1 + x)^t$} node[right] {$0 < t < 1$};
-\draw[color = red, dashed, thick] plot[id=x2, domain=0:2.8] function{1 + 2 * x} node[above right] {$1 + qx$};
-\draw[color = themecolor, dashed, thick] plot[id=px, domain=0:6] function{1 + x} node[below right] {$1 + x$};
-
-\path[color=blue, bend right, ->] (8,6) edge node [midway, above, sloped] {\color{blue}$t$增加} (6,8);
-
-\begin{scope}[on background layer]
-\draw[black, dashed, fill=red!10] (0.8,2.8) circle (2.1);
-\end{scope}
-
-\node[draw = black, text width=0.45\textwidth, fill=cyan!30] at (8,4.6) {\smaller[1]\color{red}可以从函数图像上看到, $1 + qx$的值的确可能在自变量$x = 0$的某个领域内大于$(1 + x)^t$的值, $t > 1$};
-\end{tikzpicture}
+\input{tikz-figures/raabe-test-proof-func-plot}
 \end{center}
 
 \end{frame}
