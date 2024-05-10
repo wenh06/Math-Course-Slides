@@ -279,7 +279,7 @@ $$\left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert.$$
 
 \vspace{-1em}
 
-\only<5->{
+\only<6->{
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
   \text{\bfseries\color{red!80}希望： $\sum\limits_{k=n+1}^{m} a_k b_k \rightsquigarrow \left( \sum\limits_{k=n+1}^{m} b_k \right) \cdot \big( a_{n+1}, \cdots, a_m \text{ 相关的项} \big)$}
 \end{empheq}
@@ -323,9 +323,8 @@ $$\left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert.$$
 \begin{frame}{A-D判别法的分析与证明}
 
 (2). Dirichlet判别法：条件为$\sum\limits_{n=1}^{N} b_n$关于$N$有界, $a_n$单调趋于$0.$
-\vspace{-1em}
 \begin{align*}
-\sum\limits_{n=1}^{\infty} a_n ~ \text{单调趋于$0$} ~~ & {\color{red}\Longrightarrow} ~~
+a_n ~ \text{单调趋于$0$} ~~ & {\color{red}\Longrightarrow} ~~
 \only<1>{\phantom{\forall \varepsilon > 0, \exists N, \text{ 使得 } \forall n > N, \left\lvert a_n \right\rvert < \varepsilon.}}
 \only<2->{\forall \varepsilon > 0, \exists N, \text{ 使得 } \forall n > N, \left\lvert a_n \right\rvert < \varepsilon.} \\
 \only<3->{\sum\limits_{n=1}^{N} b_n ~ \text{关于$N$有界} ~~ & {\color{red}\Longrightarrow}} ~~ \only<4->{\exists M > 0, \text{ 使得 } \forall N \text{ 有 } \left\lvert \sum\limits_{n=1}^{N} b_n \right\rvert < {\color{red}M}}
@@ -386,6 +385,7 @@ Leibniz级数都收敛
 \end{empheq}
 
 \pause
+\vspace{0.6em}
 
 若令$b_n = (-1)^{n+1}, a_n = u_n,$ 那么它们满足Dirichlet判别法的条件
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
@@ -430,7 +430,7 @@ $$\sum\limits_{n=1}^{\infty} a_nb_n = \sum\limits_{n=1}^{\infty} c_nb_n + a \sum
 \pause
 \vspace{0.4em}
 
-\textbf{证明：} $\{a_n\}$单调趋于$0,$ 这一条件是Dirichlet判别法的一半, 自然希望证明另一半条件, 即$\sum\limits_{n=1}^N \sin nx$关于$N$有界.
+\textbf{证明：} $\{a_n\}$单调趋于$0,$ 这一条件是Dirichlet判别法的一半; 自然希望证明另一半条件, 即$\sum\limits_{n=1}^N \sin nx$关于$N$有界.
 
 \pause
 
@@ -447,7 +447,8 @@ $$\sum\limits_{n=1}^{\infty} a_nb_n = \sum\limits_{n=1}^{\infty} c_nb_n + a \sum
 \begin{frame}{A-D判别法的应用}
 
 \textbf{方法二：} 利用三角函数的和差化积、积化和差公式：
-{\smaller[1]
+{
+% \smaller[1]
 \begin{align*}
 2\sum\limits_{n=1}^N \sin nx & = \sin x + \left( \sin x + \sin 2x \right) + \cdots + \sin Nx \\
 & = \sin x + {\color{red} \sin \dfrac{3}{2}x} \cos \dfrac{1}{2}x + \cdots + {\color{red} \sin \dfrac{2N-1}{2}x} \cos \dfrac{1}{2}x + \sin Nx
@@ -457,12 +458,13 @@ $$\sum\limits_{n=1}^{\infty} a_nb_n = \sum\limits_{n=1}^{\infty} c_nb_n + a \sum
 两边同时乘以${\color{red} \sin \dfrac{1}{2}x},$ 再利用
 $$\sin \dfrac{1}{2}x \sin \sin \dfrac{2k-1}{2}x = \cos (k-1)x - \cos kx,$$
 相邻项交错相消, 有
-{\smaller[1]
+{
+% \smaller[1]
 \begin{align*}
 2\sin \dfrac{1}{2}x\sum\limits_{n=1}^N \sin nx
-% & = \sin \dfrac{1}{2}x \sin x + \cos \dfrac{1}{2}x \sum\limits_{k=2}^{N} \left( \cos (k-1)x - \cos kx \right) + \sin \dfrac{1}{2}x \sin Nx \\
-& = \sin \dfrac{1}{2}x \sin x + \cos \dfrac{1}{2}x \cos x - \cos \dfrac{1}{2}x \cos Nx + \sin \dfrac{1}{2}x \sin Nx \\
-& = \cos\dfrac{x}{2} - \cos \left(N + \dfrac{1}{2}\right) x
+= & \sin \dfrac{1}{2}x \sin x + \cos \dfrac{1}{2}x \cos x - \cos \dfrac{1}{2}x \cos Nx \\
+& + \sin \dfrac{1}{2}x \sin Nx
+= \cos\dfrac{x}{2} - \cos \left(N + \dfrac{1}{2}\right) x
 \end{align*}
 }
 

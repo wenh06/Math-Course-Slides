@@ -88,7 +88,7 @@
 
 显然, 正项级数$\sum\limits_{n=1}^\infty x_n$的部分和数列$\{S_n\}$是单调增加的, 即
 $$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1}, \quad n = 1, 2, \cdots.$$
-由数列的单调收敛原理, 立刻可以得到
+由数列的单调有界收敛定理, 立刻可以得到
 
 \end{frame}
 
@@ -169,13 +169,13 @@ $$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
 设级数$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$的部分和序列分别为$\{S_n\}$与$\{T_n\},$那么显然有
 $$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
 \pause
-于是当数列$\{T_n\}$有上界时, $\{S_n\}$也有上界; 当$\{S_n\}$无上界时, $\{T_n\}$必定也上界. 那么由{\color{red}正项级数的收敛原理}\tikzmark{mark1}
+于是当数列$\{T_n\}$有上界时, $\{S_n\}$也有上界; 当$\{S_n\}$无上界时, $\{T_n\}$必定也无上界. 那么由{\color{red}正项级数的收敛原理}\tikzmark{mark1}
 
 \pause
 
 \begin{tikzpicture}[remember picture, overlay]
-\node[rectangle, draw=black, fill=cyan!30, text width=0.35\textwidth] at ([xshift=40, yshift=-25]mark1) (mark1_to) {{\bfseries\smaller[2]正项级数收敛的{\color{red}充分必要条件}\color{themecolor}是它的部分和数列有上界}};
-\draw[->, color=black] (mark1_to.north) -- (mark1);
+\node[rectangle, draw=black, fill=cyan!30, text width=0.35\textwidth] at ([xshift=80, yshift=-25]mark1) (mark1_to) {{\bfseries\smaller[2]正项级数收敛的{\color{red}充分必要条件}\color{themecolor}是它的部分和数列有上界}};
+\draw[->, color=black] (mark1_to.north west) -- (mark1);
 \end{tikzpicture}
 
 \pause
@@ -223,7 +223,7 @@ $$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-
 
 \pause
 \begin{columns}
-  \begin{column}{0.47\textwidth}
+  \begin{column}{0.45\textwidth}
     \begin{tikzpicture}[scale=1.5, domain=0:3.1416/2]
     \draw[->] (-0.3,0) -- (2.2,0) node[right] {$x$};
     \draw[->] (0,-0.3) -- (0,2.2) node[above] {$f(x)$};
@@ -236,7 +236,7 @@ $$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-
     \draw[color = themecolor, dashed] (0, 1) node[left] {\smaller[1]$1$} -- (pi/2, 1);
     \end{tikzpicture}
   \end{column}
-  \begin{column}{0.51\textwidth}
+  \begin{column}{0.53\textwidth}
     从右图可看出, 当$x \in [0, \dfrac{\pi}{2}]$时, 成立不等式$\sin x \geqslant \dfrac{2}{\pi} x,$
     \pause
     所以当$n\geqslant 2$时有
@@ -251,7 +251,7 @@ $$\dfrac{n+{\color{red}3}}{2n^3-{\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3-
 
 \begin{frame}{比较判别法的极限形式}
 
-$x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n}$等于某个有限实数, 或是发散到$+\infty,$ 这也是我们经常能遇到的情况. 比较判别法在这种情况下, 有更精细一些的表达
+$x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n}$等于某个有限实数, 或是发散到$+\infty,$ 这也是我们经常能遇到的情况. 比较判别法在这种情况下, 有更精细一些的表达:
 
 \pause
 
@@ -261,7 +261,7 @@ $x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n
 $$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)$$
 \vspace*{-1.3em}
 \begin{enumerate}
-  \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$也收敛, $\sum\limits_{n=1}^\infty x_n$也收敛;
+  \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
   \item[(2)] 若$0 < \ell \leqslant +\infty,$ 则当$\sum\limits_{n=1}^\infty y_n$发散时, $\sum\limits_{n=1}^\infty x_n$也发散.
 \end{enumerate}
 所以当$0 < \ell < +\infty$时, $\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$有相同的敛散性.
@@ -290,7 +290,7 @@ $$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqs
 所以
 \vspace*{-1.6em}
 $$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.$$
-由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛.
+依据比较判别法的极限形式, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛.
 
 \end{frame}
 
@@ -312,11 +312,11 @@ $$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac
 
 \only<2->{
 \begin{thm}[积分判别法]
-设$f(x)$定义于$[a, +\infty),$ 且$f(x) \geqslant 0,$ 进一步假设$f(x)$在任意有限区间$[a, A]$上黎曼可积. 设$\{a_n\}$是单调增加且趋于$+\infty$的数列：
-\vspace*{-0.4em}
+设$f(x)$定义于$[a, +\infty),$ 且$f(x) \geqslant 0,$ 进一步假设$f(x)$在任意有限区间$[a, A]$上Riemann可积. 设$\{a_n\}$是单调增加且趋于$+\infty$的数列：
+% \vspace*{-0.4em}
 $$a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,$$
 令$u_n = \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=1}^\infty u_n$同时收敛或同时发散到$+\infty,$且有
-\vspace*{-1.6em}
+% \vspace*{-1.6em}
 $$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$$
 \end{thm}
 }

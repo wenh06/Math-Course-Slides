@@ -27,6 +27,8 @@
 
 \documentclass[10pt]{beamer}
 
+\geometry{paperwidth=140mm,paperheight=105mm}
+
 \input{colors}
 
 \usefonttheme{serif}
@@ -41,7 +43,7 @@
 \colorlet{themecolor}{cau-green-1}
 % \colorlet{themecolor}{zkblue}
 
-\mode<presentation> {
+\mode<presentation>{
 
 \ifUseLogo
 \usetheme{Berkeley}
@@ -50,11 +52,9 @@
 \logo{\includegraphics[height=1.5cm]{images/logo_cau_science_white.png}}
 % \logo{\includegraphics[height=1.55cm]{images/logo_buaa_math.jpg}}
 
-\setbeamercolor{subsection in toc}{fg=zkbackground}
+% \setbeamercolor{subsection in toc}{fg=zkbackground}
 % \setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
 \setbeamercolor{frametitle}{fg=white,bg=themecolor}
-
-
 
 \usecolortheme[named=themecolor]{structure}
 
@@ -74,6 +74,7 @@
 \setbeamercolor{background canvas}{bg=zkbackground}
 
 \setbeamercolor{palette sidebar secondary}{fg=themecolor, bg=white!80}
+\setbeamercolor{palette sidebar tertiary}{fg=themecolor, bg=white!80}
 % \setbeamercolor{subsection in sidebar}{fg=themecolor,bg=white!80}
 % \setbeamercolor{section in sidebar shaded}{fg=white!75}
 % \setbeamercolor{subsection in sidebar shaded}{fg=white!75}
@@ -115,6 +116,8 @@
 % \setbeamercolor{block header}{bg=themecolor!75,fg=themecolor}
 
 \fi
+
+% \usefonttheme[onlymath]{serif}
 
 %------------------------------------------
 }

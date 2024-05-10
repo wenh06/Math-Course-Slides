@@ -55,7 +55,7 @@
     当Achilles用了$t_1$秒时间, 跑完$S_1$米时, 乌龟已向前爬了$S_2$米; \\
     当Achilles再用$t_2$秒时间, 跑完$S_2$米时, 乌龟又向前爬了$S_3$米; \\
     $\cdots\cdots$\\
-    这样的过程可以一直继续下去, 因此Achilles {\color{red}永远}也追不上乌龟.
+    这样的过程可以一直继续下去, 因此Achilles~{\color{red}永远}~也追不上乌龟.
   \end{column}
 \end{columns}
 
@@ -77,7 +77,7 @@
 
 %------------------------------------------------
 
-\begin{frame}{一尺之捶, 日取其半, 万世不竭 |{\smaller[2] 《庄子·杂篇·天下》}}
+\begin{frame}{一尺之棰, 日取其半, 万世不竭 |{\smaller[2] 《庄子·杂篇·天下》}}
 
 \begin{center}
 \includegraphics[width=0.85\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
@@ -215,8 +215,8 @@ $$S_n = \begin{cases}
 \begin{frame}{数项级数的典型例子 | {\smaller $\zeta$}}
 
 $$\zeta(s) = \sum\limits_{n=1}^\infty \dfrac{1}{n^s} = 1 + \dfrac{1}{2^s} + \dfrac{1}{3^s} + \cdots + \dfrac{1}{n^s} + \cdots$$
-被称作$\zeta$函数, 是现代 \textbf{(解析) 数论}的中心研究对象之一. 上述定义式对实部大于$1$的复数都有意义, 并且可以解析延拓为整个复数域$\mathbb{C}$上的一个亚纯函数. 著名的黎曼猜想就是关于$\zeta(s)$的：
-% \begin{block}{黎曼猜想}
+被称作$\zeta$函数, 是现代 \textbf{(解析) 数论}的中心研究对象之一. 上述定义式对实部大于$1$的复数都有意义, 并且可以解析延拓为整个复数域$\mathbb{C}$上的一个亚纯函数. 著名的Riemann猜想就是关于$\zeta(s)$的：
+% \begin{block}{Riemann猜想}
 % \begin{center}
 % $\zeta(s)$的所有非平凡零点的实部都等于$\dfrac{1}{2}.$
 % \end{center}
@@ -245,10 +245,10 @@ $s > 1$时,  $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}$收敛;  \quad $s \leqslan
 \begin{frame}{Zeno悖论解惑}
 
 设乌龟速度$v_1$ (米/秒) 与 Achilles 速度$v_2$之比为 $q ( 0 < q < 1).$\\
-当 Achilles 跑完 $S_1$ 米时, 乌龟已向前爬了$S_2 {\color{red} = qS_1}$米; \\
-当 Achilles 跑完 $S_2$ 米时, 乌龟又向前爬了$S_3 {\color{red} = qS_2 = q^2S_1}$米; \\
+当 Achilles 跑完 $S_1$ 米时, 乌龟已向前爬了$S_2 ~ {\color{red} = qS_1}$米; \\
+当 Achilles 跑完 $S_2$ 米时, 乌龟又向前爬了$S_3 ~ {\color{red} = qS_2 = q^2S_1}$米; \\
 $\cdots\cdots$\\
-当 Achilles 跑完 $S_n$ 米时, 乌龟已向前爬了$S_{n+1} {\color{red} = q^nS_1}$米; \\
+当 Achilles 跑完 $S_n$ 米时, 乌龟已向前爬了$S_{n+1} ~ {\color{red} = q^nS_1}$米; \\
 $\cdots\cdots$\\
 
 \pause
@@ -256,7 +256,7 @@ $\cdots\cdots$\\
 
 将所有路程加起来, 有
 $$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-1}S_2 + \cdots = \dfrac{S_1}{1 - q}$$
-这{\color{red}无限段}路程之和是{\color{red}有限}的,也就是说, 当 Achilles 跑完路程$S = \dfrac{S_1}{1 - q}$ (即经过了{\color{red}有限}的时间$T = \dfrac{S_1}{(1-q)v_2}$秒) 时, 他已经追上了乌龟.
+这{\color{red}无限段}路程之和是{\color{red}有限}的,也就是说, 当 Achilles 跑完路程$S = \dfrac{S_1}{1 - q}$ (即经过了{\color{red}有限}的时间$T = \dfrac{S_1}{(1-q)v_2}$秒) 时, 他已经追上了乌龟!
 
 \end{frame}
 
@@ -280,7 +280,7 @@ $$\lim\limits_{n\to\infty} x_n = 0.$$
 \pause
 
 \textbf{证明：}
-  设$\sum\limits_{n=1}^\infty x_n = S,$ 则对级数部分和 $S_n = \sum\limits_{k=1}^k x_k$ 成立
+  设$\sum\limits_{n=1}^\infty x_n = S,$ 则对级数部分和 $S_n = \sum\limits_{k=1}^n x_k$ 成立
   $$\lim\limits_{n\to\infty} S_n = \lim\limits_{n\to\infty} S_{n-1} = S,$$
   于是得到
   $$\lim\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} (S_n - S_{n-1}) = \lim\limits_{n\to\infty} S_n - \lim\limits_{n\to\infty} S_{n-1} = 0.$$
@@ -294,7 +294,7 @@ $$\lim\limits_{n\to\infty} x_n = 0.$$
 % \begin{block}{注意}
 \begin{attnblock}
 $\lim\limits_{n\to\infty} x_n = 0$只是级数收敛的必要条件, 并{\color{red}不是充分条件}. 例如
-$$\zeta(1) = \lim\limits_{n\to\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots$$
+$$\zeta(1) = \sum\limits_{n=1}^{\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots$$
 就满足这一必要条件, 但它本身是发散的.
 \end{attnblock}
 
@@ -353,7 +353,7 @@ $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 
 \begin{frame}{收敛级数的加法结合律}
 
-在公式$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B$中取$\beta = 0,$ 那么可以得到收敛级数关于数乘的分配律
+在公式$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B$中取$\beta = 0,$ 那么可以得到{\color{red} 收敛级数关于数乘的分配律}
 $$\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\infty a_n,$$
 那么一个自然的问题是, 有限个实数(加法)运算的其他性质, 例如{\color{red}结合律、交换律}等, 对于级数而言是否还成立呢？
 
