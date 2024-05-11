@@ -99,7 +99,7 @@
 
 \pause
 
-以上两个例子, 我们遇到的都是无穷（{\color{red}可列}）多个数相加的情况, 称之为{\color{red}“数项级数”}. 那么数项级数有什么特点以及运算规律呢？这是我们接下来要学习的.
+以上两个例子, 我们遇到的都是无穷 (~{\color{red}可列}) 多个数相加的情况, 称之为{\color{red}“数项级数”}. 那么数项级数有什么特点以及运算规律呢？这是我们接下来要学习的.
 
 \end{frame}
 
@@ -134,7 +134,7 @@ $$x_1 + x_2 + \cdots + x_n + \cdots$$
 
 \begin{frame}{部分和数列}
 
-想法：我们考虑有限项（前$n$项）的和, 然后将无限求和定义为其{\color{red}极限}！
+想法：我们考虑有限项（前$n$项）的和, 然后将无限求和定义为其~{\color{red}极限}！
 
 \pause
 
@@ -189,7 +189,7 @@ $$\sum\limits_{n=1}^\infty q^{n-1} = 1 + q + q^2 + \cdots + q^n + \cdots$$
 是收敛的.
 \pause
 这是因为它的部分和数列通项为
-$$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - {\color{red}q^n}}{1 - q} ~~ \xrightarrow{\phantom{+} {\color{red}n \to \infty} \phantom{+}} ~~ \dfrac{1}{1 - q}$$
+$$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - ~ {\color{red}q^n}}{1 - q} ~~ \xrightarrow{\phantom{+} {\color{red}n \to \infty} \phantom{+}} ~~ \dfrac{1}{1 - q}$$
 
 \end{frame}
 
@@ -255,8 +255,8 @@ $\cdots\cdots$\\
 \vspace*{0.5em}
 
 将所有路程加起来, 有
-$$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-1}S_2 + \cdots = \dfrac{S_1}{1 - q}$$
-这{\color{red}无限段}路程之和是{\color{red}有限}的,也就是说, 当 Achilles 跑完路程$S = \dfrac{S_1}{1 - q}$ (即经过了{\color{red}有限}的时间$T = \dfrac{S_1}{(1-q)v_2}$秒) 时, 他已经追上了乌龟!
+$$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-1}S_1 + \cdots = \dfrac{S_1}{1 - q}$$
+这~{\color{red}无限段}路程之和是~{\color{red}有限}的,也就是说, 当 Achilles 跑完路程$S = \dfrac{S_1}{1 - q}$ (即经过了~{\color{red}有限}的时间$T = \dfrac{S_1}{(1-q)v_2}$秒) 时, 他已经追上了乌龟!
 
 \end{frame}
 
@@ -293,7 +293,7 @@ $$\lim\limits_{n\to\infty} x_n = 0.$$
 
 % \begin{block}{注意}
 \begin{attnblock}
-$\lim\limits_{n\to\infty} x_n = 0$只是级数收敛的必要条件, 并{\color{red}不是充分条件}. 例如
+$\lim\limits_{n\to\infty} x_n = 0$只是级数收敛的必要条件, 并~{\color{red}不是充分条件}. 例如
 $$\zeta(1) = \sum\limits_{n=1}^{\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots$$
 就满足这一必要条件, 但它本身是发散的.
 \end{attnblock}
@@ -316,7 +316,7 @@ $$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots
 $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 \end{thm}
 
-也就是说, 对{\color{red}收敛级数}可以进行加法以及数乘的运算.
+也就是说, 对~{\color{red}收敛级数}可以进行加法以及数乘的运算.
 
 \pause
 \vspace{0.5em}
@@ -353,14 +353,14 @@ $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 
 \begin{frame}{收敛级数的加法结合律}
 
-在公式$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B$中取$\beta = 0,$ 那么可以得到{\color{red} 收敛级数关于数乘的分配律}
+在公式$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B$中取$\beta = 0,$ 那么可以得到~{\color{red} 收敛级数关于数乘的分配律}
 $$\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\infty a_n,$$
-那么一个自然的问题是, 有限个实数(加法)运算的其他性质, 例如{\color{red}结合律、交换律}等, 对于级数而言是否还成立呢？
+那么一个自然的问题是, 有限个实数(加法)运算的其他性质, 例如~{\color{red}结合律、交换律}等, 对于级数而言是否还成立呢？
 
 \pause
 \vspace{1em}
 
-对于{\color{red}收敛级数}的加法结合律, 我们有肯定的回答：
+对于~{\color{red}收敛级数}的加法结合律, 我们有肯定的回答：
 
 \begin{thm}[数项级数的加法结合律]
 设级数$\sum\limits_{n=1}^\infty x_n$收敛, 则在它的求和表达式中任意添加括号后所得的级数仍然收敛, 且其和不变.
@@ -471,7 +471,7 @@ $$0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2 + \left( \dfra
 $$\sum\limits_{n=1}^\infty x_n := \text{它的部分和数列} \left\{ S_n = \sum\limits_{k=1}^n x_k \right\} \text{的极限}$$
 \pause
 \vspace{0.4em}
-\item[{\larger[2] \color{red} \ding{43}}] 数项级数收敛的{\color{red}必要条件}：$\lim\limits_{n\to\infty} x_n = 0.$
+\item[{\larger[2] \color{red} \ding{43}}] 数项级数收敛的~{\color{red}必要条件}：$\lim\limits_{n\to\infty} x_n = 0.$
 \pause
 \vspace{0.4em}
 \item[{\larger[2] \color{red} \ding{43}}] 收敛级数运算线性性：$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$

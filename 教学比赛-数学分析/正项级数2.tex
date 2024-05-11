@@ -41,7 +41,7 @@
 
 \begin{frame}{正项级数比较判别法存在的问题与改进方案}
 
-用比较判别法时, 先要对所考虑的级数的收敛性有一个大致估计, 进而通过放缩, 寻找一个{\color{red}敛散性已知或相对容易判断}的合适级数与之项比较.
+用比较判别法时, 先要对所考虑的级数的收敛性有一个大致估计, 进而通过放缩, 寻找一个~{\color{red}敛散性已知或相对容易判断}的合适级数与之项比较.
 \pause
 但就绝大多数情况而言, 这两个步骤都具有相当的难度, 因此, 我们希望有一些
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
@@ -337,11 +337,11 @@ $$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = 
 \pause
 
 \begin{thm}[Raabe判别法]
-设$\sum\limits_{n=1}^\infty x_n$是正项级数, $x_n \neq 0,$ 且$\lim\limits_{n\to\infty} n \left( {\color{red}\dfrac{x_n}{x_{n+1}}} - 1 \right) = r,$ 那么
+设$\sum\limits_{n=1}^\infty x_n$是正项级数, $x_n \neq 0,$ 且$\lim\limits_{n\to\infty} n \left( ~ {\color{red}\dfrac{x_n}{x_{n+1}}} - 1 \right) = r,$ 那么
 \vspace{-0.6em}
 \begin{itemize}
-  \item[(1).] 当${\color{red}r > 1}$时, 级数$\sum\limits_{n=1}^\infty x_n${\color{red}收敛};
-  \item[(2).] 当${\color{red}r < 1}$时, 级数$\sum\limits_{n=1}^\infty x_n${\color{red}发散}.
+  \item[(1).] 当~${\color{red}r > 1}$时, 级数$\sum\limits_{n=1}^\infty x_n$~{\color{red}收敛};
+  \item[(2).] 当~${\color{red}r < 1}$时, 级数$\sum\limits_{n=1}^\infty x_n$~{\color{red}发散}.
 \end{itemize}
 \end{thm}
 
@@ -357,7 +357,7 @@ $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) < q, ~~ \text{即} ~~ \dfrac{x_n}{x_
 $$n x_n \leqslant (n+1) x_{n+1}.$$
 \pause
 也就是说, 新数列$y_n := nx_n, n = 1, 2, \dots,$ 当$n \geqslant N$时是递增的, 因此有$n x_n \geqslant N x_N,$ 或写为
-$$x_n \geqslant N \cdot x_N \cdot {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqslant N.$$
+$$x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqslant N.$$
 于是, 根据比较判别法, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散可推出$\sum\limits_{n=1}^\infty x_n$也发散.
 
 \end{frame}
@@ -366,12 +366,12 @@ $$x_n \geqslant N \cdot x_N \cdot {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqs
 
 \begin{frame}{Raabe判别法的分析与证明}
 
-当$r > 1$时, 若沿用之前的分析步骤, 我们只能推断出$x_n ~ {\color{red} \leqslant} ~ N \cdot x_N \cdot {\color{red}\dfrac{1}{n}},$ 无法由比较判别法判定敛散性.
+当$r > 1$时, 若沿用之前的分析步骤, 我们只能推断出$x_n ~ {\color{red} \leqslant} ~ N \cdot x_N \cdot ~ {\color{red}\dfrac{1}{n}},$ 无法由比较判别法判定敛散性.
 
 \pause
 \vspace{0.6em}
 
-但是, 如果有$x_n < A \cdot \dfrac{1}{\color{red}n^t},$ $A > 0, {\color{red} t > 1},$ 对所有$n > N$成立, 那么可以使用比较判别法得到$\sum\limits_{n=1}^\infty x_n$的收敛性.
+但是, 如果有$x_n < A \cdot \dfrac{1}{\color{red}n^t},$ $A > 0, ~ {\color{red} t > 1},$ 对所有$n > N$成立, 那么可以使用比较判别法得到$\sum\limits_{n=1}^\infty x_n$的收敛性.
 
 \pause
 \vspace{0.6em}
