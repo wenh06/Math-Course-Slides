@@ -1,0 +1,397 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[第十一章\\
+Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章\quad Euclid 空间上的极限与连续}{第十一章 Euclid 空间上的极限与连续}} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[\S 11.1 Euclid 空间基本定理] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{\Large \bfseries \S 11.1 Euclid 空间上的基本定理}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{基本定义}
+
+%------------------------------------------------
+
+\begin{frame}{Euclid 空间}
+
+\begin{Def}
+$(\mathbb{R}, \langle \cdot, \cdot \rangle)$ 被称作 Euclid 空间 (内积空间), 其中
+\begin{gather*}
+\mathbb{R}^n = \left\{ (x_1, x_2, \dots, x_n) : ~ x_1, \dots, x_n \in \mathbb{R} \right\}, \\
+\langle x, y \rangle = \sum\limits_{i=1}^n x_i y_i = x y^T.
+\end{gather*}
+\end{Def}
+
+\pause
+
+设 $A$ 为 $n$ 阶正定阵, 则
+$$\langle x, y \rangle_A = xAy^T$$
+也给出了内积空间的结构.
+
+\pause
+\vspace{0.6em}
+
+一般地, $\mathbb{R}^n$ 上的内积指的是一个正定对称的双线性型
+$$(x, y) : \mathbb{R}^n \times \mathbb{R}^n \longrightarrow \mathbb{R}$$
+$(x, y) = xGy^T,$ $G$ 正定 (对称).
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Euclid 空间例子}
+
+\begin{align*}
+M_{n\times m}(\mathbb{R}) = \{ \text{所有} n\times m \text{实矩阵} \} & \rightarrow \mathbb{R}^{n\times m} \\
+\begin{pmatrix}
+    a_{11} & \cdots & a_{1m} \\
+    \vdots & & \vdots \\
+    a_{n1} & \cdots & a_{nm}
+\end{pmatrix} & \mapsto (a_{11}, \cdots, a_{1m}, a_{21}, \cdots, a_{nm})
+\end{align*}
+
+\pause
+
+那么 $\forall A, B \in M_{n\times m}(\mathbb{R}),$ 有
+$$\langle A, B \rangle = \operatorname{tr} (AB^T).$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[赋范空间]{范数与赋范线性空间}
+
+%------------------------------------------------
+
+\begin{frame}{范数与赋范线性空间}
+
+内积 $\longsquiggly$ 范数 \quad $\lVert x \rVert = \sqrt{\langle x, x \rangle}$
+
+\pause
+
+\begin{Def}
+设 $V$ 为 $\mathbb{R}$ 上线性空间, $V$ 上的一个范数指的是
+$$\lVert \cdot \rVert : ~ V \longleftarrow \mathbb{R}$$
+满足
+\begin{enumerate}
+    \item 正定性: $\lVert x \rVert \geqslant 0,$ 且 $\lVert x \rVert \geqslant 0$ 当且仅当 $x = 0;$
+    \item $\forall \lambda \in \mathbb{R}, \lVert \lambda x \rVert = \lvert \lambda \rvert \lVert x \rVert;$
+    \item 三角不等式: $\lVert x + y \rVert \leqslant \lVert x \rVert + \lVert y \rVert.$
+\end{enumerate}
+$(V, \lVert \cdot \rVert)$ 称为一个赋范线性空间.
+\end{Def}
+
+\pause
+
+\begin{prop}
+由内积诱导的映射 $x \mapsto \sqrt{\rangle x, x \rangle} = \lVert x \rVert$ 是一个范数, 并且满足平行四边形等式
+$$\lVert x + y \rVert^2 + \rVert x - y \rVert^2 = 2 ( \lVert x \rVert^2 + \lVert y \rVert^2 ).$$
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{范数与赋范线性空间}
+
+\begin{block}{范数的例子}
+$M_{n\times m}(\mathbb{R})$ 上由 $\langle A, B \rangle = \operatorname{tr} (AB^T)$ 对应的范数为
+$$\lVert A \rVert_F = \sqrt{\operatorname{tr} (AA^T)} = \sqrt{\sum\limits_{i, j} \lvert a_{ij} \rvert^2}$$
+称为矩阵的 Frobenius 范数.
+\end{block}
+
+\pause
+
+矩阵范数还有很多, 例如算子范数
+\vspace{-1em}
+$$
+A: ~ \mathbb{R}^{(m)} \rightarrow \mathbb{R}^{(n)}, ~~ x = \begin{pmatrix}
+x_1 \\ \vdots \\ x_m
+\end{pmatrix} \mapsto Ax,
+$$
+定义$\lVert A \rVert = \sup\limits_{x\neq 0} \dfrac{\lVert Ax \rVert}{\lVert x \rVert},$
+\pause
+或更一般的$\sup\limits_{x\neq 0} \dfrac{\lVert Ax \rVert_q}{\lVert x \rVert_p},$ 其中
+$$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p \right)^{1/p} ~ \text{为 $p$ 范数}.$$
+
+\pause
+
+{\color{red}注意}, 不是所有范数都可以由某个内积所诱导,
+\pause
+例如 $p$ 范数, $p\neq 2.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[度量空间]{度量空间}
+
+%------------------------------------------------
+
+\begin{frame}{度量空间}
+
+范数 $\longsquiggly$ 度量 \quad $d(x, y) = \lVert x - y \rVert$
+
+\pause
+\vspace{1em}
+
+度量满足
+\begin{enumerate}
+\item $d(x, y) \geqslant 0;$ 且 $d(x ,y) = 0$ 当且仅当 $x = y;$
+\item $d(x, y) = d(y, x);$
+\item 三角不等式 $d(x, y) \leqslant d(x, z) + d(y, z).$
+\end{enumerate}
+
+\pause
+\vspace{1em}
+
+不是所有度量都能由某个范数所诱导, 例如离散度量
+$$
+d(x, y) = \begin{cases}
+1, & x \neq y, \\ 0, & x = y
+\end{cases}
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{度量诱导的拓扑}
+
+度量 $\longsquiggly$ 拓扑 \quad (定义开集、闭集)
+
+\pause
+
+\begin{Def}[开集]
+集合 $E \subset \mathbb{R}^n$ 被称作开集, 若 $E$ 中所有的点都是{\color{red}内点}, 即 $\forall x \in E,$ {\color{red} 存在 $x$ 的邻域 $O(x, \delta), \delta > 0,$ 使得 $O(x, \delta) \subset E.$}
+$$\text{邻域} ~~ O(x, \delta) = \{ y: ~ d(x, y) < \delta \}.$$
+\end{Def}
+
+\pause
+\vspace{1em}
+
+去心邻域
+$$\mathring{O}(x, \delta) = \{ y: ~ 0 < d(x, y) < \delta \}.$$
+
+\pause
+\vspace{1em}
+
+\begin{Def}[闭集]
+集合 $E \subset \mathbb{R}^n$ 被称作闭集, 若它的补集 $\mathbb{R}^n \setminus E$ 是开集.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{度量诱导的拓扑}
+
+不是所有的拓扑都是由某个度量诱导的, 因为所有由度量诱导的拓扑都是 Hausdorff 的 (T2).
+
+\pause
+\vspace{1em}
+
+T2: $\forall x \neq y,$ 存在 $x$ 的邻域 $U(x),$ $y$ 的邻域 $U(y),$ 使得 $U(x) \cap U(y) = \emptyset.$
+
+\pause
+\vspace{1em}
+
+\begin{block}{所有由度量诱导的拓扑都是 Hausdorff 的证明}
+任取 $x \neq y,$ 则 $d = d(x, y) > 0.$ 取 $x$ 的邻域 $U(x) = O(x, d/3),$ $y$ 的邻域 $U(y) = O(y, d/3).$ 假设 $U(x) \cap U(y) \neq \emptyset,$ 任取 $z \in U(x) \cap U(y),$ 那么有
+$$d(x, z) < d/3, ~~ d(y, z) < d/3,$$
+于是根据三角不等式有
+$$d(x, y) \leqslant d(x, z) + d(y, z) < 2d/3 < d,$$
+矛盾. 因此必须有$U(x) \cap U(y) = \emptyset.$
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{其余部分类型的拓扑空间}
+
+\begin{itemize}
+\item T1 (Fréchet):
+
+$\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}并且} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not \in U(y).$
+\item T0 (Kolmogorov):
+
+$\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}或者} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not\in U(y).$
+\end{itemize}
+
+\pause
+
+\begin{block}{非 Hausdorff 拓扑空间的例子}
+Zariski拓扑
+\pause
+$k^n = \operatorname{Spec} k[x_1, \dots, x_n],$ $k$为代数闭域. 更一般地, 
+$$\operatorname{Spec} A = \{ A ~ \text{的所有素理想} ~ \mathfrak{p} \},$$
+$A$ 为一个交换环. $\operatorname{Spec} A$ 的所有闭集为
+$$V(\mathfrak{a}) = \{ \mathfrak{p} \in \operatorname{Spec} A: 
+\mathfrak{a} \subset \mathfrak{p} \}, ~~ \mathfrak{a} ~\text{为理想}.$$
+\pause
+若素理想 $\mathfrak{p}_1 \subsetneqq \mathfrak{p}_2,$ 那么任意包含点 $\mathfrak{p}_2$ 的开集必然也包含点 $\mathfrak{p}_1.$
+
+\pause
+
+这是因为, 设该包含点 $\mathfrak{p}_2$ 的开集是某个 $V(\mathfrak{a})$ 的补集, 那么 $\mathfrak{a} \not\subset \mathfrak{p}_2,$ 从而必然有 $\mathfrak{a} \not\subset \mathfrak{p}_1,$ 于是该开集包含 $\mathfrak{p}_1.$
+
+\pause
+
+这种情况下, $\operatorname{Spec}A$ 是 T0 拓扑空间.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Euclid 空间进一步的定义与性质}
+
+%------------------------------------------------
+
+\begin{frame}{收敛与极限}
+
+\begin{Def}
+设 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的点列, 若存在点 $a \in \mathbb{R}^n,$ 使得 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k \in K,$ 有
+$$d(x_k, a) = \lVert x_k - a \rVert < \varepsilon ~~ (\text{或}~ x_k \in O(a, \varepsilon)),$$
+则称点列 $\{x_k\}$ 收敛于 $a,$ 记为 $\lim\limits_{n\to\infty} x_k = a,$ $a$ 称为点列 $\{x_k\}$ 的极限.
+\end{Def}
+
+\pause
+
+\begin{thm}
+$\lim\limits_{n\to\infty} x_k = a$ 当且仅当 $\forall 1 \leqslant i \leqslant n, \lim\limits_{n\to\infty} x_i^k = a_i,$ 其中 $x_k = (x_1^k, \dots, x_n^k).$
+\end{thm}
+
+\pause
+
+由 $d(x_k, a) = \lVert x_k - a \rVert = \sqrt{\sum\limits_{i=1}^n (x_i^k - a_i)^2}$ 知
+\vspace{-0.5em}
+$$
+d(x_k, a) ~~ \begin{cases}
+\geqslant ~~ \lvert x_i^k - a_i \rvert, ~~ \forall 1 \leqslant i \leqslant n \\
+\leqslant ~~ \sum\limits_{i=1}^n \lvert x_i^k - a_i \rvert
+\end{cases}
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{更多点集拓扑相关的概念}
+
+之前引入开集这一概念时, 我们介绍了内点的概念. 接下来, 我们介绍更多点集拓扑相关的概念.
+
+\pause
+\vspace{1em}
+
+\begin{itemize}[<+->]
+\item 集合 $E \subset \mathbb{R}^n$ 的内点 $x:$ ~~ $\exists O(x, \delta) \subset E.$
+\item 集合 $E \subset \mathbb{R}^n$ 的外点 $x:$ ~~ $\exists O(x, \delta) \subset \mathbb{R}^n \setminus E.$
+\item 集合 $E \subset \mathbb{R}^n$ 的边界点 $x:$ ~~ $\forall O(x, \delta) \cap E \neq \emptyset,$ 但 $O(x, \delta) \not\in E.$ \par
+集合 $E \subset \mathbb{R}^n$ 的边界 $\partial E:$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的边界点} \}.$
+\item 集合 $E \subset \mathbb{R}^n$ 的孤立点 $x:$ ~~ $\exists O(x, \delta)$ 使得 $O(x, \delta) \cap E = \{x\}.$
+\item 集合 $E \subset \mathbb{R}^n$ 的聚点 (极限点) $x:$ ~~ $\forall \mathring{O}(x, \delta), \mathring{O}(x, \delta) \cap E \neq \emptyset.$ \par
+集合 $E \subset \mathbb{R}^n$ 的导集 $E':$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的极限点} \}.$
+\item 集合 $E \subset \mathbb{R}^n$ 的闭包 $\overline{E}:$ ~~ $E \cup E'.$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{聚点 (极限点)}
+
+\begin{thm}
+点 $x$ 是集合 $E$ 的聚点的充要条件是, 存在点列 $x_k \in E, x_k \neq x,$ 使得 $\lim\limits_{k\to\infty} x_k = x.$ 
+\end{thm}
+
+\pause
+
+\begin{proof}
+$\Longrightarrow:$ 由定义, 取 $\delta_1 = 1,$ 则 $\mathring{O}(x, \delta_1) \cap E \neq \emptyset,$
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{总结}
+
+%------------------------------------------------
+
+\begin{frame}{度量诱导的拓扑}
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\section{总结}
+
+%------------------------------------------------
+
+\begin{frame}{总结}
+
+{\larger[2] \color{red} \ding{43}} 待写
+
+\pause
+\vspace{0.8em}
+
+{\larger[2] \color{red} \ding{43}} 待写
+
+\pause
+\vspace{0.8em}
+
+{\larger[2] \color{red} \ding{43}} 待写
+
+\end{frame}
+
+%------------------------------------------------
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

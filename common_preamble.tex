@@ -75,6 +75,7 @@
 
 \setbeamercolor{palette sidebar secondary}{fg=themecolor, bg=white!80}
 \setbeamercolor{palette sidebar tertiary}{fg=themecolor, bg=white!80}
+\setbeamercolor{author in sidebar}{fg=white}
 % \setbeamercolor{subsection in sidebar}{fg=themecolor,bg=white!80}
 % \setbeamercolor{section in sidebar shaded}{fg=white!75}
 % \setbeamercolor{subsection in sidebar shaded}{fg=white!75}
@@ -190,7 +191,7 @@
 \usepackage[all,cmtip]{xy}
 \usepackage{dashbox}
 \usepackage{tikz}
-\usetikzlibrary{trees, arrows, matrix, fit, backgrounds}
+\usetikzlibrary{trees, arrows, matrix, fit, backgrounds, cd, positioning}
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage[justification = centering]{caption}
@@ -280,11 +281,8 @@
 \makeatother
 
 
-\newif\ifshowtoc
-\showtoctrue
-
 \AtBeginSection{%
-\ifshowtoc
+\ifShowTocEverySec
 \begin{frame}
     \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
 \end{frame}
@@ -338,3 +336,6 @@ colback=blue!30, boxrule=1pt,
 \setbeamercolor{block title}{bg=red!80,fg=white}
 \begin{block}{注意}}{\end{block}
 }
+
+
+\newcommand{\longsquiggly}{\xymatrix{{}\ar@{~>}[r]&{}}}
