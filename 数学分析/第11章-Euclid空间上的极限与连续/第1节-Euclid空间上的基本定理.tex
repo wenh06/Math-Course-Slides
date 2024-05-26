@@ -204,10 +204,15 @@ $$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p 
 
 度量满足
 \begin{enumerate}
-\item $d(x, y) \geqslant 0;$ 且 $d(x ,y) = 0$ 当且仅当 $x = y;$
-\item $d(x, y) = d(y, x);$
-\item 三角不等式 $d(x, y) \leqslant d(x, z) + d(y, z).$
+\item 非负性与非退化性: $d(x, y) \geqslant 0,$ 且 $d(x ,y) = 0$ 当且仅当 $x = y;$
+\item 对称性: $d(x, y) = d(y, x);$
+\item 三角不等式: $d(x, y) \leqslant d(x, z) + d(y, z).$
 \end{enumerate}
+
+\pause
+\vspace{1em}
+
+值得注意的是, 度量的非负性 $d(x, y) \geqslant 0$ 可以由三角不等式推出.
 
 \pause
 \vspace{1em}
@@ -218,6 +223,21 @@ d(x, y) = \begin{cases}
 1, & x \neq y, \\ 0, & x = y
 \end{cases}
 $$
+
+%------------------------------------------------
+
+\begin{frame}{更多度量空间的例子}
+
+闭区间 $[a, b] \subset \mathbb{R}$ 上连续函数空间 $C([a, b]),$ 之前在学习函数项级数 (函数列) 一致收敛性时就已经接触过如下的度量:
+$$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert.$$
+可以验证, 这是一个度量.
+
+\pause
+\vspace{1em}
+
+$C([a, b])$ 上还可以赋予其他度量, 例如
+$$d_p(f, g) = \left( \int_a^b \lvert f(x) - g(x) \rvert^p ~ \mathrm{d}x \right)^{1/p}.$$
+由 Minkowski 不等式易知, 这是一个度量.
 
 \end{frame}
 
@@ -340,6 +360,35 @@ d(x_k, a) ~~ \begin{cases}
 \leqslant ~~ \sum\limits_{i=1}^n \lvert x_i^k - a_i \rvert
 \end{cases}
 $$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy 收敛原理}
+
+\begin{Def}[$\mathbb{R}^n$ 中的基本点列 (Cauchy 点列)]
+设 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的点列, 若对于任意 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k, \ell > K,$ 有
+$$d(x_k, x_\ell) = \lVert x_k - x_\ell \rVert < \varepsilon,$$
+则称点列 $\{x_k\}$ 是基本点列 (Cauchy 点列).
+\end{Def}
+
+\pause
+
+\begin{thm}[Cauchy 收敛原理]
+$\mathbb{R}^n$ 中的点列 $\{x_k\}$ 收敛的充要条件是 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列.
+\end{thm}
+
+\pause
+
+由不等式
+$$
+d(x_k, x_\ell) ~~ \begin{cases}
+\geqslant ~~ \lvert x_i^k - x_i^\ell \rvert, ~~ \forall 1 \leqslant i \leqslant n \\
+\leqslant ~~ \sum\limits_{i=1}^n \lvert x_i^k - x_i^\ell \rvert
+\end{cases}
+$$
+知 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列的充要条件是 $\forall 1 \leqslant i \leqslant n, \{x_i^k\}$ 是 $\mathbb{R}$ 中的 Cauchy 列.
 
 \end{frame}
 
@@ -524,35 +573,231 @@ $\mathbb{R}^n$ 中任意多闭集的并不一定仍是闭集,
 
 \begin{frame}{闭矩体套定理}
 
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}{闭矩体套定理}
-
-\end{frame}
-
-%------------------------------------------------
-
-\section{总结}
-
-%------------------------------------------------
-
-\begin{frame}{总结}
-
-{\larger[2] \color{red} \ding{43}} 待写
+\begin{thm}[闭矩体套定理]
+设 $\{ \Delta_k \}$ 是 $\mathbb{R}^n$ 中的一列闭矩体, $\Delta_k = \{ x \in \mathbb{R}^n: ~ a_i^k \leqslant x_i \leqslant b_i^k, ~ 1 \leqslant i \leqslant n \},$ 且满足
+$$\Delta_1 \supset \Delta_2 \supset \cdots \supset \Delta_k \supset \cdots,$$
+或者写为
+$$a_i^1 \leqslant a_i^2 \leqslant \cdots \leqslant a_i^k \leqslant \cdots \leqslant b_i^k \leqslant \cdots \leqslant b_i^2 \leqslant b_i^1, ~~ \forall 1 \leqslant i \leqslant n,$$
+并且 $\lim\limits_{k\to\infty} (b_i^k - a_i^k) = 0, \forall 1 \leqslant i \leqslant n,$ 则存在唯一的点 $x \in \mathbb{R}^n,$ 使得 $x \in \bigcap\limits_{k=1}^{\infty} \Delta_k,$ 并且满足
+$$\lim\limits_{k\to\infty} a_i^k = \lim\limits_{k\to\infty} b_i^k = x_i, ~~ \forall 1 \leqslant i \leqslant n.$$
+\end{thm}
 
 \pause
-\vspace{0.8em}
 
-{\larger[2] \color{red} \ding{43}} 待写
-
-\pause
-\vspace{0.8em}
-
-{\larger[2] \color{red} \ding{43}} 待写
+只要对每一维度 (坐标) 应用闭区域套定理即可.
 
 \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cantor 闭区域套定理}
+
+闭矩体套定理的关键在于“闭集”和“序列包含关系”以及“直径趋于零”. 我们可以将这个定理推广到更一般的情况.
+
+\pause
+\vspace{1em}
+
+\begin{thm}[Cantor 闭区域套定理]
+设 $\{ E_k \}$ 是 $\mathbb{R}^n$ 中的一列非空闭集, 且满足
+$$E_1 \supset E_2 \supset \cdots \supset E_k \supset \cdots,$$
+以及 $\lim\limits_{k\to\infty} \operatorname{diam} E_k = 0,$ 其中 $\operatorname{diam} E_k = \sup\limits_{x, y \in E_k} \lVert x - y \rVert,$ 则存在唯一的点 $x \in \mathbb{R}^n,$ 使得 $x \in \bigcap\limits_{k=1}^{\infty} E_k.$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cantor 闭区域套定理证明}
+
+首先证明 $x$ 的存在性, 即 $\bigcap\limits_{k=1}^{\infty} E_k \neq \emptyset.$
+
+\pause
+
+由于每个 $E_k$ 都是非空闭集, 于是可以取到点列 $x_k \in E_k.$ 由于对任意 $p \geqslant 1,$ 有 $E_{k+p} \subset E_k,$
+于是 $x_{k+p} \in E_{k+p} \subset E_k,$ 从而有 $d(x_k, x_{k+p}) \leqslant \operatorname{diam} E_k,$
+这表明 $\{ x_k \}$ 是一个柯西列, 从而存在 $x \in \mathbb{R}^n,$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
+
+\pause
+
+由于对任意 $p \geqslant 1,$ 有 $x_{k+p} \in E_k,$ 那么 $x$ 是每个闭集 $E_k$ 的聚点,
+从而 $x \in \overline{E}_k = E_k,$ 即 $x \in \bigcap\limits_{k=1}^{\infty} E_k.$
+
+\pause
+\vspace{1em}
+
+接下来证明 $x$ 的唯一性.
+
+\pause
+
+假设存在另一点 $y \in \bigcap\limits_{k=1}^{\infty} E_k,$ 则 $y \in E_k,$
+从而 $d(x, y) \leqslant \operatorname{diam} E_k$ 对所有 $k$ 成立, 从而 $d(x, y) = 0,$ 即 $x = y.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Bolzano-Weierstra\ss 定理}
+
+\begin{thm}[Bolzano-Weierstra\ss 定理]
+设 $\{ x_k \}$ 是 $\mathbb{R}^n$ 中的有界点列, 则 $\{ x_k \}$ 必有收敛子列.
+\end{thm}
+
+\pause
+\vspace{1em}
+
+\begin{proof}
+由于 $\{ x_k \}$ 是 $\mathbb{R}^n$ 中的有界点列, 于是对每一个坐标 $x_i$ 的数列 $\{ x_i^k \}$ 都是有界的.
+
+\pause
+
+对数列 $\{ x_1^k\}$ 应用一维的 Bolzano-Weierstra\ss 定理, 可以找到一个收敛子列 $\{ x_1^{k_j} \}$ 收敛到 $a_1.$
+
+考虑数列 $\{ x_2^k\}$ 的相应子列 $\{ x_2^{k_j} \},$ 它也是有界的, 于是可以找到一个收敛子列 $\{ x_2^{k_{j_\ell}} \}$ 收敛到 $a_2.$
+$\{ x_1^k\}$ 相应的子列 $\{ x_1^{k_{j_\ell}} \}$ 是收敛数列 $\{ x_1^{k_j} \}$ 的子列, 于是 $\{ x_1^{k_{j_\ell}} \}$ 也收敛到 $a_1.$
+
+\pause
+
+于是可以归纳地找到  $\{ x_k \}$ 的一个子列, 收敛到 $a = (a_1, \dots, a_n).$
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{紧集}
+
+%------------------------------------------------
+
+\begin{frame}{紧集}
+
+我们要引入一个重要的概念, 即紧集. 紧性是拓扑空间中的一个重要性质.
+
+\pause
+\vspace{1em}
+
+\begin{Def}[开覆盖]
+设 $E$ 是拓扑空间 $V$ 中的一个子集, 若存在一族开集 $\{ G_{\alpha} \}_{\alpha \in I}$ 使得 $E \subset \bigcup\limits_{\alpha \in I} G_{\alpha},$ 则称 $\{ G_{\alpha} \}$ 是 $E$ 的一个开覆盖.
+\end{Def}
+
+\pause
+
+\begin{Def}[紧集]
+设 $E$ 是拓扑空间 $V$ 中的一个子集, 若 $E$ 的任意开覆盖 $\{ G_{\alpha} \}_{\alpha \in I}$ 都有有限子覆盖, 即存在有限个 $G_{\alpha_1}, \dots, G_{\alpha_p}$ 使得 $E \subset \bigcup\limits_{i=1}^p G_{\alpha_i},$ 则称 $E$ 是紧集.
+\end{Def}
+
+\pause
+
+\begin{Def}[局部紧空间]
+拓扑空间 $V$ 称为局部紧空间, 若 $V$ 中的每一点都有一个紧邻域, 即对每个 $x \in V,$ 存在 $x$ 的邻域 $U(x)$ 以及紧集 $K$ 使得 $x \in U(x) \subset K.$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{单点紧化}
+
+带有通常拓扑的 $\mathbb{R}^n$ 不是紧空间, 但是是一个局部紧空间. 对于一个一般的非紧的局部紧空间拓扑空间, 我们可以通过添加一个点来得到一个紧空间.
+
+\pause
+\vspace{1em}
+
+设 $V$ 是一个局部紧空间, 我们可以定义 $V$ 的单点紧化 $V^* = V \cup \{ \infty \},$ 其中 $\infty$ 是一个新的点.
+$V^*$ 中的开集由以下两类集合构成:
+
+\begin{itemize}
+\item $V$ 中的开集;
+\item $V^* \setminus CK = (V \setminus CK) \cup \{ \infty \},$ 其中 $CK$ 是 $V$ 中的 (闭的) 紧集.
+\end{itemize}
+
+\pause
+\vspace{1em}
+
+很容易验证, 以上定义的开集满足拓扑空间中开集需要满足的三个条件, 也就是说, 以上给出了 $V^*$ 的一个拓扑空间结构.
+
+并且可以验证, $V^*$ 是一个紧空间.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Heine-Borel 定理}
+
+\begin{thm}[Heine-Borel 定理]
+$\mathbb{R}^n$ 中的点集 $E$ 是紧集的充要条件是 $E$ 是有界闭集.
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+$\Longrightarrow:$ 若 $E$ 是紧集. 首先, 证明它是有界的.
+
+\pause
+
+我们取一个特殊的开覆盖, 即 $\{ O(x, 1) \}_{x \in E}.$ 由于 $E$ 是紧集, 于是存在有限个点 $x_1, \dots, x_p \in E,$ 使得 $E \subset \bigcup\limits_{i=1}^p O(x_i, 1),$ 于是 $E$ 是有界的.
+
+\pause
+\vspace{0.5em}
+
+接下来, 证明 $E$ 是闭集.
+
+\pause
+
+用反证法. 假设 $E$ 不是闭集, 则存在 $E$ 的聚点 $x,$ 且 $x \not\in E.$ 于是
+$$G_m = \mathbb{R}^n \setminus \overline{O(x, 1/m)} = \left\{ y \in \mathbb{R}^n: ~ d(x, y) > \dfrac{1}{m} \right\}, ~~ m \in \mathbb{N}$$
+构成了 $E$ 的一个开覆盖. 下面证明 $\{ G_m \}$ 没有 $E$ 的有限子覆盖.
+
+\pause
+
+由于 $x$ 是 $E$ 的聚点, 即存在 $x_k \in E, x_k \neq x,$ 且 $\lim\limits_{k\to\infty} x_k = x,$ 于是对任意 $m,$ 存在 $K_m$ 使得 $d(x, x_k) < 1/m, \forall k > K_m,$ 从而 $x_k \not\in G_m, \forall k > K_m.$ 这表明每个 $G_m$ 都只含有有限个 $x_k,$ 从而 $\{ G_m \}$ 的任意有限子覆盖都只含有有限个 $x_k,$ 从而不能覆盖 $E,$ 矛盾.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Heine-Borel 定理}
+
+$\Longleftarrow:$ 若 $E$ 是有界闭集. 我们用反证法证明 $E$ 是紧集.
+
+\pause
+\vspace{0.5em}
+
+假设 $E$ 不是紧集, 则存在 $E$ 的一个开覆盖 $\{ G_{\alpha} \}_{\alpha \in I},$ 使得任意有限个 $G_{\alpha_i}$ 不能覆盖 $E.$
+由于 $E$ 是有界的, 于是存在一个有界闭矩体 $\Delta_{(0)} = [-M, M]^n,$ 使得 $E \subset \Delta_{(0)}.$
+有界闭矩体 $\Delta_{(0)}$ 可以等分为 $2^n$ 个有界闭矩体 $\Delta_1, \dots, \Delta_{2^n}.$
+这 $2^n$ 个有界闭矩体中至少有一个, 记为 $\Delta_{(1)},$ 使得 $\Delta_{(1)} \cap E$ 不能被 $\{ G_{\alpha} \}_{\alpha \in I}$ 的有限个元素覆盖.
+于是我们取 $\Delta_{(1)}$ 作为新的有界闭矩体, 重复上述过程, 于是我们可以得到非空闭区域套
+$$E = E \cap \Delta_{(0)} \supset E \cap \Delta_{(1)} \supset \cdots \supset E \cap \Delta_{(k)} \supset \cdots,$$
+使得 $\Delta_{(k)}\cap E$ 不能被 $\{ G_{\alpha} \}_{\alpha \in I}$ 的有限个元素覆盖, 并且 $\lim\limits_{k\to\infty} \operatorname{diam} E \cap \Delta_{(k)} = 0.$
+
+\pause
+\vspace{0.5em}
+
+由 Cantor 闭区域套定理知, 存在唯一的点 $x \in \bigcap\limits_{k=1}^{\infty} (E \cap \Delta_{(k)}).$ 任取 $G_{\alpha}$ 使得 $x \in G_{\alpha},$ 由于 $G_{\alpha}$ 是开集, 于是存在 $O(x, \delta) \subset G_{\alpha}.$ 由于 $\lim\limits_{k\to\infty} \operatorname{diam} E \cap \Delta_{(k)} = 0,$ 从而存在正整数 $K,$ 使得 $E \cap \Delta_{(K)} \subset O(x, \delta) \subset G_{\alpha},$ 矛盾.
+
+\end{frame}
+
+%------------------------------------------------
+
+% \section{总结}
+
+% %------------------------------------------------
+
+% \begin{frame}{总结}
+
+% {\larger[2] \color{red} \ding{43}} 待写
+
+% \pause
+% \vspace{0.8em}
+
+% {\larger[2] \color{red} \ding{43}} 待写
+
+% \pause
+% \vspace{0.8em}
+
+% {\larger[2] \color{red} \ding{43}} 待写
+
+% \end{frame}
 
 %------------------------------------------------
 
