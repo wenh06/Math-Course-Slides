@@ -224,20 +224,24 @@ d(x, y) = \begin{cases}
 \end{cases}
 $$
 
+\end{frame}
+
 %------------------------------------------------
 
 \begin{frame}{更多度量空间的例子}
 
-闭区间 $[a, b] \subset \mathbb{R}$ 上连续函数空间 $C([a, b]),$ 之前在学习函数项级数 (函数列) 一致收敛性时就已经接触过如下的度量:
+闭区间 $[a, b] \subset \mathbb{R}$ 上连续函数空间 $C[a, b],$ 之前在学习函数项级数 (函数列) 一致收敛性时就已经接触过如下的度量:
 $$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert.$$
 可以验证, 这是一个度量.
 
 \pause
 \vspace{1em}
 
-$C([a, b])$ 上还可以赋予其他度量, 例如
+$C[a, b]$ 上还可以赋予其他度量, 例如
 $$d_p(f, g) = \left( \int_a^b \lvert f(x) - g(x) \rvert^p ~ \mathrm{d}x \right)^{1/p}.$$
 由 Minkowski 不等式易知, 这是一个度量.
+\pause
+并且进一步还有 $d_{\infty}(f,g) = d(f,g).$
 
 \end{frame}
 
@@ -258,7 +262,7 @@ $$\text{邻域} ~~ O(x, \delta) = \{ y: ~ d(x, y) < \delta \}.$$
 \vspace{1em}
 
 去心邻域
-$$\mathring{O}(x, \delta) = \{ y: ~ 0 < d(x, y) < \delta \}.$$
+$$\mathring{O}(x, \delta) = \{ y: ~ 0 < d(x, y) < \delta \} = O(x, \delta) \setminus \{x\}.$$
 
 \pause
 \vspace{1em}
@@ -323,7 +327,7 @@ $$V(\mathfrak{a}) = \{ \mathfrak{p} \in \operatorname{Spec} A:
 
 这种情况下, $\operatorname{Spec}A$ 是 T0 拓扑空间.
 
-若希望 $\operatorname{Spec}A$ T1 拓扑空间, 则需要 $\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \mathfrak{p}_n$ 这样素理想链的最大下标 $n$ 等于 $0,$ 也就是每个素理想都是极大理想.
+若希望 $\operatorname{Spec}A$ 是 T1 拓扑空间, 则需要 $\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \mathfrak{p}_n$ 这样素理想链的最大下标 $n$ (所谓的 Krull 维数) 等于 $0,$ 也就是每个素理想都是极大理想.
 \pause
 或者考虑极大谱 $\operatorname{Max} A = \{ A ~ \text{的所有极大理想} \},$ 这是一个 T1 拓扑空间.
 \end{block}
@@ -394,6 +398,35 @@ $$
 
 %------------------------------------------------
 
+\begin{frame}{Cauchy 收敛原理}
+
+{\color{red}注意}, 对一般的度量空间, Cauchy 收敛原理不一定成立. Cauchy 收敛原理成立的度量空间被称作是完备的.
+
+\vspace{1em}
+
+例如在绝对值度量下, $\mathbb{R}$ 是完备的, 但 $\mathbb{Q}$ 不是.
+
+\pause
+\vspace{1em}
+
+又例如区间$[a, b]$ 上连续函数空间 $C[a, b],$ 在度量
+$$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert$$
+下, 是一个完备的度量空间. 这正是一致收敛函数列极限函数连续性定理.
+
+\pause
+\vspace{1em}
+
+\begin{block}{思考}
+\begin{itemize}[<+->]
+\item $C[a, b]$ 在度量 $d_p(f, g) = \left( \int_a^b \lvert f(x) - g(x) \rvert^p ~ \mathrm{d}x \right)^{1/p}$ 下是否完备?
+\item $[a, b]$ 上 Riemann 可积函数空间 $\mathfrak{R}[a, b]$ 在度量 $d, d_p$ 下是否完备?
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{更多点集拓扑相关的概念}
 
 之前引入开集这一概念时, 我们介绍了内点的概念. 接下来, 我们介绍更多点集拓扑相关的概念.
@@ -443,18 +476,19 @@ $\Longleftarrow:$ 若 $\lim\limits_{k\to\infty} x_k = x,$ 且 $x_k \neq x,$ 则 
 \begin{frame}{闭集}
 
 \begin{prop}
-集合 $E$ 的闭包 $\overline{E}$ 闭集.
+集合 $E$ 的闭包 $\overline{E}$ 是闭集.
 \end{prop}
 
 \pause
 
-\begin{proof}
 只要证明 $\mathbb{R}^n \setminus \overline{E}$ 是开集即可.
 \pause
-$\forall x \in \mathbb{R}^n \setminus \overline{E},$ 则 $x$ 不是 $E$ 的聚点, 即存在 $\mathring{O}(x, \delta) \cap E = \emptyset,$ 即 $\mathring{O}(x, \delta) \subset \mathbb{R}^n \setminus E,$ 即 $\mathbb{R}^n \setminus \overline{E}$ 是开集.
-\end{proof}
+$\forall x \in \mathbb{R}^n \setminus \overline{E},$ 则 $x$ 不是 $E$ 的聚点, 即存在 $\mathring{O}(x, \delta) \cap E = \emptyset,$ 即 $\mathring{O}(x, \delta) \subset \mathbb{R}^n \setminus E,$ 于是
+$$O(x, \delta) = \mathring{O}(x, \delta) \cup \{x\} \subset \mathbb{R}^n \setminus E.$$
+因此 $\mathbb{R}^n \setminus \overline{E}$ 是开集.
 
 \pause
+\vspace{1em}
 
 \begin{prop}
 $E$ 为闭集的充要条件是 $E = \overline{E}.$
@@ -462,15 +496,13 @@ $E$ 为闭集的充要条件是 $E = \overline{E}.$
 
 \pause
 
-\begin{proof}
 $\Longleftarrow:$ 由上一命题可直接得到.
 
 \pause
 
 $\Longrightarrow:$ 只要证明 $E$ 的任意聚点 $x$ 都在 $E$ 中即可.
 \pause
-假设 $x \not\in E,$ 则 $x \in \mathbb{R}^n \setminus E,$ 由闭集定义知 $\mathbb{R}^n \setminus E$ 为开集, 即存在 $\mathring{O}(x, \delta) \subset \mathbb{R}^n \setminus E,$ 从而 $\mathring{O}(x, \delta) \cap E = \emptyset,$ 即 $x$ 不是 $E$ 的聚点, 矛盾.
-\end{proof}
+假设聚点 $x \not\in E,$ 则 $x \in \mathbb{R}^n \setminus E,$ 由闭集定义知 $\mathbb{R}^n \setminus E$ 为开集, 即存在 $O(x, \delta) \subset \mathbb{R}^n \setminus E,$ 并进一步有 $\mathring{O}(x, \delta) \subset \mathbb{R}^n \setminus E,$ 从而 $\mathring{O}(x, \delta) \cap E = \emptyset,$ 即 $x$ 不是 $E$ 的聚点, 矛盾.
 
 \end{frame}
 
@@ -492,7 +524,7 @@ $$d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y
 
 \pause
 
-对于 $\mathbb{R}^1,$ 开集的结构比较简单, 任意开集都可以表示为之多可数个开区间的并集. 这个结论以后我们会证明.
+对于 $\mathbb{R}^1,$ 开集的结构比较简单, 任意开集都可以表示为之多可数个开区间的并集. 这个结论我们学习后续课程的时候会证明.
 
 \pause
 
@@ -524,7 +556,7 @@ $$d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y
 \vspace{1em}
 
 \begin{thm}
-(1). $\{ E_{\alpha} \}_{\alpha \in I}$ 是 $V$ 上的一族开集, 则 $\bigcup\limits_{\alpha \in I} E_{\alpha}$ 仍然是开集. \par
+(1). 设 $\{ E_{\alpha} \}_{\alpha \in I}$ 是 $V$ 上的一族开集, 则 $\bigcup\limits_{\alpha \in I} E_{\alpha}$ 仍然是开集. \par
 (2). 若 $E_1, E_2, \dots, E_n$ 是 $V$ 上的有限多个开集, 则 $\bigcap\limits_{i=1}^n E_i$ 仍然是开集.
 \end{thm}
 
@@ -615,7 +647,7 @@ $$E_1 \supset E_2 \supset \cdots \supset E_k \supset \cdots,$$
 
 由于每个 $E_k$ 都是非空闭集, 于是可以取到点列 $x_k \in E_k.$ 由于对任意 $p \geqslant 1,$ 有 $E_{k+p} \subset E_k,$
 于是 $x_{k+p} \in E_{k+p} \subset E_k,$ 从而有 $d(x_k, x_{k+p}) \leqslant \operatorname{diam} E_k,$
-这表明 $\{ x_k \}$ 是一个柯西列, 从而存在 $x \in \mathbb{R}^n,$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
+这表明 $\{ x_k \}$ 是 $\mathbb{R}^n$ 中的一个 Cauchy 列, 从而存在 $x \in \mathbb{R}^n,$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
 
 \pause
 
@@ -717,6 +749,11 @@ $V^*$ 中的开集由以下两类集合构成:
 
 并且可以验证, $V^*$ 是一个紧空间.
 
+\pause
+\vspace{1em}
+
+紧集有一系列良好的性质, 接下来我们来讨论有关紧集的一些基本的结论.
+
 \end{frame}
 
 %------------------------------------------------
@@ -774,6 +811,50 @@ $$E = E \cap \Delta_{(0)} \supset E \cap \Delta_{(1)} \supset \cdots \supset E \
 \vspace{0.5em}
 
 由 Cantor 闭区域套定理知, 存在唯一的点 $x \in \bigcap\limits_{k=1}^{\infty} (E \cap \Delta_{(k)}).$ 任取 $G_{\alpha}$ 使得 $x \in G_{\alpha},$ 由于 $G_{\alpha}$ 是开集, 于是存在 $O(x, \delta) \subset G_{\alpha}.$ 由于 $\lim\limits_{k\to\infty} \operatorname{diam} E \cap \Delta_{(k)} = 0,$ 从而存在正整数 $K,$ 使得 $E \cap \Delta_{(K)} \subset O(x, \delta) \subset G_{\alpha},$ 矛盾.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Heine-Borel 定理}
+
+我们再加上集合 $E$ 是紧集的一个 (等价) 条件:
+\begin{center}
+$E$ 的任意无限子集在 $E$ 中必有聚点.
+\end{center}
+
+\pause
+\vspace{1em}
+
+我们来证明它与 $E$ 是有界闭集的等价性. 设 $S \subset E$ 是 $E$ 的无限子集.
+
+\pause
+\vspace{1em}
+
+假设 $E$ 是有界闭集, 那么从 $S$ 中任选一个可列子集 $\{ x_k \},$ 那么它也构成了一个没有重复元素的点列,
+由 Bolzano-Weierstra\ss 定理知 $\{ x_k \}$ 必有收敛子列, 假设收敛到 $x,$ 那么任取 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $d(x_k, x) < \varepsilon, \forall k > K,$ 即 $x_k \in O(x, \varepsilon)$ 对所有 $k > K$ 成立, 从而 $\mathring{O}(x, \varepsilon) \cap S \neq \emptyset,$ 即 $x$ 是 $S$ 的聚点. 由于 $E$ 是闭集, 从而 $x \in E.$
+
+\pause
+\vspace{1em}
+
+另一个方向, 只要证明 $E$ 有界集即可. 用反证法, 假设 $E$ 无界, 那么 $\forall k \in \mathbb{N},$ 存在 $x_k \in E,$ 使得 $\lVert x_k \rVert > k,$ 从而 $\{ x_k \}$ 是 $E$ 的无限子集, 但是它没有聚点, 矛盾.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Heine-Borel 定理}
+
+总结起来, 就是有如下的定理
+
+\begin{thm}
+设 $E \subset \mathbb{R}^n,$ 那么以下三个命题等价
+\begin{enumerate}
+\item $E$ 是有界闭集;
+\item $E$ 是紧集;
+\item $E$ 的任意无限子集在 $E$ 中必有聚点.
+\end{enumerate}
+\end{thm}
 
 \end{frame}
 
