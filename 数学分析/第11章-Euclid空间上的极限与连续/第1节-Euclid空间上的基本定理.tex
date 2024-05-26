@@ -44,6 +44,43 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 \begin{frame}{Euclid 空间}
 
+一维 $\longsquiggly$ 高维: ~~ 推广邻域、极限、连续、微分 (导数) 等概念
+
+\pause
+\vspace{1em}
+
+\begin{itemize}[<+->]
+\item 邻域: ~~ $O(x_0, \delta) = \{ x: ~ \lvert x - x_0 \rvert < \delta \}.$
+
+\item (序列、函数) 极限 $\lim\limits_{n\to\infty} x_n = a$:
+
+$$\forall \varepsilon > 0, ~ \text{存在正整数 $N$ 使得} ~ \forall n > N, ~ \text{有} ~ \lvert x_n - a \rvert < \varepsilon.$$
+
+\item 函数 $f$ 在一点 $x_0$ 处连续:
+
+$$\forall \varepsilon > 0, \exists \delta > 0, ~ \text{使得} ~ \forall \lvert x - x_0 \rvert < \delta, ~ \text{有} ~ \lvert f(x) - f(x_0) \rvert < \varepsilon.$$
+
+\item 微分: $f(x_0 + h) - f(x_0) = L(x_0)(h) + o(\lvert h \rvert),$ 其中 $L(x_0)$ 是 $h$ 的线性函数.
+\end{itemize}
+
+\pause
+\vspace{1em}
+
+主要问题:
+
+\begin{itemize}[<+->]
+\item 推广 $\lvert \cdot \rvert$ 到高维
+\item 推广线性函数到高维
+\end{itemize}
+
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Euclid 空间}
+
 \begin{Def}
 $(\mathbb{R}, \langle \cdot, \cdot \rangle)$ 被称作 Euclid 空间 (内积空间), 其中
 \begin{gather*}
@@ -464,8 +501,36 @@ $$d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y
 \item 有限多个闭集的并集仍然是闭集.
 \end{enumerate}
 
+\pause
+\vspace{1em}
+
+一般来说, $\mathbb{R}^n$ 中任意多开集的交不一定仍是开集,
+\pause
+例如 $(1 - 1 / n, 3 + 1 / n).$
+
+\pause
+
+$\mathbb{R}^n$ 中任意多闭集的并不一定仍是闭集,
+\pause
+例如 $[1 + 1 / n, 3 - 1 / n].$
+
 \end{frame}
 
+%------------------------------------------------
+
+\section[Euclid 空间基本定理]{Euclid 空间上的基本定理}
+
+%------------------------------------------------
+
+\begin{frame}{闭矩体套定理}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{闭矩体套定理}
+
+\end{frame}
 
 %------------------------------------------------
 
