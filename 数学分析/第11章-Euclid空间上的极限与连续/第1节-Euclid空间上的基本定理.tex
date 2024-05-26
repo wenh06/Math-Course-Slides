@@ -151,7 +151,7 @@ $(V, \lVert \cdot \rVert)$ 称为一个赋范线性空间.
 \pause
 
 \begin{prop}
-由内积诱导的映射 $x \mapsto \sqrt{\rangle x, x \rangle} = \lVert x \rVert$ 是一个范数, 并且满足平行四边形等式
+由内积诱导的映射 $x \mapsto \sqrt{\langle x, x \rangle} = \lVert x \rVert$ 是一个范数, 并且满足平行四边形等式
 $$\lVert x + y \rVert^2 + \rVert x - y \rVert^2 = 2 ( \lVert x \rVert^2 + \lVert y \rVert^2 ).$$
 \end{prop}
 
@@ -176,7 +176,7 @@ A: ~ \mathbb{R}^{(m)} \rightarrow \mathbb{R}^{(n)}, ~~ x = \begin{pmatrix}
 x_1 \\ \vdots \\ x_m
 \end{pmatrix} \mapsto Ax,
 $$
-定义$\lVert A \rVert = \sup\limits_{x\neq 0} \dfrac{\lVert Ax \rVert}{\lVert x \rVert},$
+定义$\lVert A \rVert = \sup\limits_{x\neq 0} \dfrac{\lVert Ax \rVert}{\lVert x \rVert} = \sup\limits_{\lVert x \rVert = 1} \lVert Ax \rVert,$
 \pause
 或更一般的$\sup\limits_{x\neq 0} \dfrac{\lVert Ax \rVert_q}{\lVert x \rVert_p},$ 其中
 $$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p \right)^{1/p} ~ \text{为 $p$ 范数}.$$
@@ -204,7 +204,7 @@ $$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p 
 
 度量满足
 \begin{enumerate}
-\item 非负性与非退化性: $d(x, y) \geqslant 0,$ 且 $d(x ,y) = 0$ 当且仅当 $x = y;$
+\item 非负性与非退化性: $d(x, y) \geqslant 0;$ 且 $d(x ,y) = 0$ 当且仅当 $x = y;$
 \item 对称性: $d(x, y) = d(y, x);$
 \item 三角不等式: $d(x, y) \leqslant d(x, z) + d(y, z).$
 \end{enumerate}
@@ -212,7 +212,7 @@ $$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p 
 \pause
 \vspace{1em}
 
-值得注意的是, 度量的非负性 $d(x, y) \geqslant 0$ 可以由三角不等式推出.
+值得注意的是, 度量的非负性 $d(x, y) \geqslant 0$ 可以由三角不等式推出 (取 $x = y$).
 
 \pause
 \vspace{1em}
@@ -301,17 +301,27 @@ $$d(x, y) \leqslant d(x, z) + d(y, z) < 2d/3 < d,$$
 
 \begin{frame}{其余部分类型的拓扑空间}
 
-\begin{itemize}
-\item T1 (Fréchet): $\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}并且} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not \in U(y).$
-\item T0 (Kolmogorov): $\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}或者} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not\in U(y).$
+\begin{itemize}[<+->]
+\item T1 (Fréchet):
+
+$\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}并且} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not \in U(y).$
+
+\vspace{1em}
+
+\item T0 (Kolmogorov):
+
+$\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}或者} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not\in U(y).$
 \end{itemize}
 
-\pause
+\end{frame}
 
-\begin{block}{非 Hausdorff 拓扑空间的例子}
+%------------------------------------------------
+
+\begin{frame}{非 Hausdorff 拓扑空间的例子}
+
 Zariski拓扑
 \pause
-$k^n = \operatorname{Spec} k[x_1, \dots, x_n],$ $k$为代数闭域. 更一般地,
+$k^n = \operatorname{Spec} k[x_1, \dots, x_n],$ $k$为代数闭域. 更一般地, 考虑素谱
 $$\operatorname{Spec} A = \{ A ~ \text{的所有素理想} ~ \mathfrak{p} \},$$
 $A$ 为一个交换环. $\operatorname{Spec} A$ 的所有闭集为
 $$V(\mathfrak{a}) = \{ \mathfrak{p} \in \operatorname{Spec} A:
@@ -323,14 +333,16 @@ $$V(\mathfrak{a}) = \{ \mathfrak{p} \in \operatorname{Spec} A:
 
 这是因为, 设包含点 $\mathfrak{p}_2$ 的开集是某个 $V(\mathfrak{a})$ 的补集, 那么 $\mathfrak{a} \not\subset \mathfrak{p}_2,$ 从而必然有 $\mathfrak{a} \not\subset \mathfrak{p}_1,$ 于是该开集包含 $\mathfrak{p}_1.$
 
-\pause
-
 这种情况下, $\operatorname{Spec}A$ 是 T0 拓扑空间.
 
-若希望 $\operatorname{Spec}A$ 是 T1 拓扑空间, 则需要 $\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \mathfrak{p}_n$ 这样素理想链的最大下标 $n$ (所谓的 Krull 维数) 等于 $0,$ 也就是每个素理想都是极大理想.
+\pause
+\vspace{1em}
+
+若希望 $\operatorname{Spec}A$ 是 T1 拓扑空间, 则需要 $A$ 中所有可能的素理想链
+$$\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \mathfrak{p}_n$$
+的最大下标 $n$ (所谓的 Krull 维数) 等于 $0,$ 也就是每个素理想都是极大理想.
 \pause
 或者考虑极大谱 $\operatorname{Max} A = \{ A ~ \text{的所有极大理想} \},$ 这是一个 T1 拓扑空间.
-\end{block}
 
 \end{frame}
 
@@ -405,6 +417,8 @@ $$
 \vspace{1em}
 
 例如在绝对值度量下, $\mathbb{R}$ 是完备的, 但 $\mathbb{Q}$ 不是.
+\pause
+正是由 $\mathbb{R}$ 的完备性, 我们有由划分对应的积分和给出的闭区间上有界函数 Riemann 可积的柯西收敛原理.
 
 \pause
 \vspace{1em}
