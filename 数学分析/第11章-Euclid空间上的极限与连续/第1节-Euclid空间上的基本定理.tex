@@ -138,11 +138,11 @@ $$\langle A, B \rangle = \operatorname{tr} (AB^T).$$
 
 \begin{Def}
 设 $V$ 为 $\mathbb{R}$ 上线性空间, $V$ 上的一个范数指的是
-$$\lVert \cdot \rVert : ~ V \longleftarrow \mathbb{R}$$
+$$\lVert \cdot \rVert : ~ V \longrightarrow \mathbb{R}$$
 满足
 \begin{enumerate}
     \item 正定性: $\lVert x \rVert \geqslant 0,$ 且 $\lVert x \rVert \geqslant 0$ 当且仅当 $x = 0;$
-    \item $\forall \lambda \in \mathbb{R}, \lVert \lambda x \rVert = \lvert \lambda \rvert \lVert x \rVert;$
+    \item 数乘相容性: $\forall \lambda \in \mathbb{R}, \lVert \lambda x \rVert = \lvert \lambda \rvert \lVert x \rVert;$
     \item 三角不等式: $\lVert x + y \rVert \leqslant \lVert x \rVert + \lVert y \rVert.$
 \end{enumerate}
 $(V, \lVert \cdot \rVert)$ 称为一个赋范线性空间.
@@ -371,15 +371,15 @@ $$\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \math
 \begin{frame}{收敛与极限}
 
 \begin{Def}
-设 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的点列, 若存在点 $a \in \mathbb{R}^n,$ 使得 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k \in K,$ 有
+设 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的点列, 若存在点 $a \in \mathbb{R}^n,$ 使得 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k > K,$ 有
 $$d(x_k, a) = \lVert x_k - a \rVert < \varepsilon ~~ (\text{或}~ x_k \in O(a, \varepsilon)),$$
-则称点列 $\{x_k\}$ 收敛于 $a,$ 记为 $\lim\limits_{n\to\infty} x_k = a,$ $a$ 称为点列 $\{x_k\}$ 的极限.
+则称点列 $\{x_k\}_{k\in\mathbb{N}}$ 收敛于 $a,$ 记为 $\lim\limits_{k\to\infty} x_k = a,$ $a$ 称为点列 $\{x_k\}_{k\in\mathbb{N}}$ 的极限.
 \end{Def}
 
 \pause
 
 \begin{thm}
-$\lim\limits_{n\to\infty} x_k = a$ 当且仅当 $\forall 1 \leqslant i \leqslant n, \lim\limits_{n\to\infty} x_i^k = a_i,$ 其中 $x_k = (x_1^k, \dots, x_n^k).$
+$\lim\limits_{k\to\infty} x_k = a$ 当且仅当 $\forall 1 \leqslant i \leqslant n, \lim\limits_{k\to\infty} x_i^k = a_i,$ 其中 $x_k = (x_1^k, \dots, x_n^k).$
 \end{thm}
 
 \pause
@@ -400,15 +400,15 @@ $$
 \begin{frame}{Cauchy 收敛原理}
 
 \begin{Def}[$\mathbb{R}^n$ 中的基本点列 (Cauchy 点列)]
-设 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的点列, 若对于任意 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k, \ell > K,$ 有
+设 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的点列, 若对于任意 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k, \ell > K,$ 有
 $$d(x_k, x_\ell) = \lVert x_k - x_\ell \rVert < \varepsilon,$$
-则称点列 $\{x_k\}$ 是基本点列 (Cauchy 点列).
+则称点列 $\{x_k\}_{k\in\mathbb{N}}$ 是基本点列 (Cauchy 点列).
 \end{Def}
 
 \pause
 
 \begin{thm}[Cauchy 收敛原理]
-$\mathbb{R}^n$ 中的点列 $\{x_k\}$ 收敛的充要条件是 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列.
+$\mathbb{R}^n$ 中的点列 $\{x_k\}_{k\in\mathbb{N}}$ 收敛的充要条件是 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列.
 \end{thm}
 
 \pause
@@ -420,7 +420,7 @@ d(x_k, x_\ell) ~~ \begin{cases}
 \leqslant ~~ \sum\limits_{i=1}^n \lvert x_i^k - x_i^\ell \rvert
 \end{cases}
 $$
-知 $\{x_k\}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列的充要条件是 $\forall 1 \leqslant i \leqslant n, \{x_i^k\}$ 是 $\mathbb{R}$ 中的 Cauchy 列.
+知 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列的充要条件是 $\forall 1 \leqslant i \leqslant n, \{x_i^k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}$ 中的 Cauchy 列.
 
 \end{frame}
 
@@ -467,7 +467,7 @@ $$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert$$
 \begin{itemize}[<+->]
 \item 集合 $E \subset \mathbb{R}^n$ 的内点 $x:$ ~~ $\exists O(x, \delta) \subset E.$
 \item 集合 $E \subset \mathbb{R}^n$ 的外点 $x:$ ~~ $\exists O(x, \delta) \subset \mathbb{R}^n \setminus E.$
-\item 集合 $E \subset \mathbb{R}^n$ 的边界点 $x:$ ~~ $\forall O(x, \delta) \cap E \neq \emptyset,$ 但 $O(x, \delta) \not\in E.$ \par
+\item 集合 $E \subset \mathbb{R}^n$ 的边界点 $x:$ ~~ $\forall O(x, \delta) \cap E \neq \emptyset,$ 但 $O(x, \delta) \not\subset E.$ \par
 集合 $E \subset \mathbb{R}^n$ 的边界 $\partial E:$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的边界点} \}.$
 \item 集合 $E \subset \mathbb{R}^n$ 的孤立点 $x:$ ~~ $\exists O(x, \delta)$ 使得 $O(x, \delta) \cap E = \{x\}.$
 \item 集合 $E \subset \mathbb{R}^n$ 的聚点 (极限点) $x:$ ~~ $\forall \mathring{O}(x, \delta), \mathring{O}(x, \delta) \cap E \neq \emptyset.$ \par
@@ -482,7 +482,7 @@ $$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert$$
 \begin{frame}{聚点 (极限点)}
 
 \begin{thm}
-点 $x$ 是集合 $E$ 的聚点的充要条件是, 存在点列 $x_k \in E, x_k \neq x,$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
+点 $x$ 是集合 $E$ 的聚点的充要条件是, 存在点列 $x_k \in E, x_k \neq x, k \in k\in\mathbb{N}$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
 \end{thm}
 
 \pause
@@ -492,7 +492,7 @@ $\Longrightarrow:$ 由定义, 取 $\delta_1 = 1,$ 则 $\mathring{O}(x, \delta_1)
 
 令 $\delta_2 = \dfrac{1}{2} d(x, x_1),$ 则 $\mathring{O}(x, \delta_2) \cap E \neq \emptyset,$ 所以可以取到 $x_2 \in E, x_2 \neq x$ 使得 $x_2 \in \mathring{O}(x, \delta_2) \cap E.$
 
-于是, 可以归纳地构造出一个点列 $\{x_k\}$ 使得 $0 < d(x, x_k) < \dfrac{1}{2} d(x, x_{k-1}),$ 从而有 $\lim\limits_{k\to\infty} d(x_k, x) = 0,$ 即有 $\lim\limits_{k\to\infty} x_k = x.$
+于是, 可以归纳地构造出一个点列 $\{x_k\}_{k\in\mathbb{N}}$ 使得 $0 < d(x, x_k) < \dfrac{1}{2} d(x, x_{k-1}),$ 从而有 $\lim\limits_{k\to\infty} d(x_k, x) = 0,$ 即有 $\lim\limits_{k\to\infty} x_k = x.$
 
 \pause
 
@@ -515,7 +515,13 @@ $\Longleftarrow:$ 若 $\lim\limits_{k\to\infty} x_k = x,$ 且 $x_k \neq x,$ 则 
 \pause
 $\forall x \in \mathbb{R}^n \setminus \overline{E},$ 则 $x$ 不是 $E$ 的聚点, 即存在 $\mathring{O}(x, \delta) \cap E = \emptyset,$ 即 $\mathring{O}(x, \delta) \subset \mathbb{R}^n \setminus E,$ 于是
 $$O(x, \delta) = \mathring{O}(x, \delta) \cup \{x\} \subset \mathbb{R}^n \setminus E.$$
-因此 $\mathbb{R}^n \setminus \overline{E}$ 是开集.
+
+\pause
+
+考虑 $x$ 的邻域 $O(x, \delta / 2) \subset O(x, \delta) \subset \mathbb{R}^n \setminus E,$
+假设 $O(x, \delta / 2)$ 含有 $E$ 的某个聚点 $z,$ 则 $\mathring{O}(z, \delta / 4) \cap E \neq \emptyset.$
+但另一方面显然又有 $\mathring{O}(z, \delta / 4) \subset O(x, \delta),$ 矛盾. 所以 $O(x, \delta / 2) \cap \overline{E} = \emptyset,$
+即 $O(x, \delta / 2) \subset \mathbb{R}^n \setminus \overline{E}.$ 因此 $\mathbb{R}^n \setminus \overline{E}$ 是开集.
 
 \pause
 \vspace{1em}
@@ -617,13 +623,13 @@ $$d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y
 
 一般来说, $\mathbb{R}^n$ 中任意多开集的交不一定仍是开集,
 \pause
-例如 $(1 - 1 / n, 3 + 1 / n).$
+例如 $(1 - 1 / k, 3 + 1 / k).$
 
 \pause
 
 $\mathbb{R}^n$ 中任意多闭集的并不一定仍是闭集,
 \pause
-例如 $[1 + 1 / n, 3 - 1 / n].$
+例如 $[1 + 1 / k, 3 - 1 / k].$
 
 \end{frame}
 
@@ -677,7 +683,7 @@ $$E_1 \supset E_2 \supset \cdots \supset E_k \supset \cdots,$$
 
 由于每个 $E_k$ 都是非空闭集, 于是可以取到点列 $x_k \in E_k.$ 由于对任意 $p \geqslant 1,$ 有 $E_{k+p} \subset E_k,$
 于是 $x_{k+p} \in E_{k+p} \subset E_k,$ 从而有 $d(x_k, x_{k+p}) \leqslant \operatorname{diam} E_k,$
-这表明 $\{ x_k \}$ 是 $\mathbb{R}^n$ 中的一个 Cauchy 列, 从而存在 $x \in \mathbb{R}^n,$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
+这表明 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的一个 Cauchy 列, 从而存在 $x \in \mathbb{R}^n,$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
 
 \pause
 
@@ -713,6 +719,20 @@ $$E_1 \supset E_2 \supset \cdots \supset E_k \supset \cdots,$$
 \end{column}
 \end{columns}
 
+\pause
+
+三角形 $\triangle ABC$ 的三条边的中线 $AA_1, BB_1, CC_1$ 显然在三角形内部. 考虑这三条边的中点构成的三角形 $\triangle A_1B_1C_1.$
+中线 $AA_1, BB_1, CC_1$ 与 三角形 $\triangle A_1B_1C_1$ 的三条边的三个交点 $A_2, B_2, C_2$ 分别是 $B_1C_1, A_1C_1, A_1B_2$ 的中点.
+从而知 $A_1A_2, B_1B_2, C_1C_2$ 是三角形 $\triangle A_1B_1C_1$ 的三条中线.
+
+\pause
+
+进一步考虑三角形 $\triangle A_2B_2C_2,$ 并重复上述过程, 可以归纳地得到一列三角形 (一个 $\mathbb{R}^2$ 中的闭区域套)
+$$\triangle ABC \supset \triangle A_1B_1C_1 \supset \triangle A_2B_2C_2 \supset \cdots$$
+满足$\lim\limits_{k \to \infty} \operatorname{diam} \triangle A_kB_kC_k = 0.$
+于是由 Cantor 闭区域套定理知, 存在唯一的公共点 $O$ 属于所有这些三角形. 三角形 $\triangle ABC$ 的三条边的中线两两之间的交点包含于每一个三角形 $\triangle A_kB_kC_k,$
+所以这些两两交点都是点 $O,$ 故三角形 $\triangle ABC$ 的三条边的中线 $AA_1, BB_1, CC_1$ 交于三角形内部的一点.
+
 \end{frame}
 
 %------------------------------------------------
@@ -720,14 +740,14 @@ $$E_1 \supset E_2 \supset \cdots \supset E_k \supset \cdots,$$
 \begin{frame}{Bolzano-Weierstra\ss 定理}
 
 \begin{thm}[Bolzano-Weierstra\ss 定理]
-设 $\{ x_k \}$ 是 $\mathbb{R}^n$ 中的有界点列, 则 $\{ x_k \}$ 必有收敛子列.
+设 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的有界点列, 则 $\{ x_k \}_{k\in\mathbb{N}}$ 必有收敛子列.
 \end{thm}
 
 \pause
 \vspace{1em}
 
 \begin{proof}
-由于 $\{ x_k \}$ 是 $\mathbb{R}^n$ 中的有界点列, 于是对每一个坐标 $x_i$ 的数列 $\{ x_i^k \}$ 都是有界的.
+由于 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的有界点列, 于是对每一个坐标 $x_i$ 的数列 $\{ x_i^k \}$ 都是有界的.
 
 \pause
 
@@ -738,7 +758,7 @@ $\{ x_1^k\}$ 相应的子列 $\{ x_1^{k_{j_\ell}} \}$ 是收敛数列 $\{ x_1^{k
 
 \pause
 
-于是可以归纳地找到  $\{ x_k \}$ 的一个子列, 收敛到 $a = (a_1, \dots, a_n).$
+于是可以归纳地找到  $\{ x_k \}_{k\in\mathbb{N}}$ 的一个子列, 收敛到 $a = (a_1, \dots, a_n).$
 \end{proof}
 
 \end{frame}
@@ -881,12 +901,12 @@ $E$ 的任意无限子集在 $E$ 中必有聚点.
 \vspace{1em}
 
 假设 $E$ 是有界闭集, 那么从 $S$ 中任选一个可列子集 $\{ x_k \},$ 那么它也构成了一个没有重复元素的点列,
-由 Bolzano-Weierstra\ss 定理知 $\{ x_k \}$ 必有收敛子列, 假设收敛到 $x,$ 那么任取 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $d(x_k, x) < \varepsilon, \forall k > K,$ 即 $x_k \in O(x, \varepsilon)$ 对所有 $k > K$ 成立, 从而 $\mathring{O}(x, \varepsilon) \cap S \neq \emptyset,$ 即 $x$ 是 $S$ 的聚点. 由于 $E$ 是闭集, 从而 $x \in E.$
+由 Bolzano-Weierstra\ss 定理知 $\{ x_k \}_{k\in\mathbb{N}}$ 必有收敛子列, 假设收敛到 $x,$ 那么任取 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $d(x_k, x) < \varepsilon, \forall k > K,$ 即 $x_k \in O(x, \varepsilon)$ 对所有 $k > K$ 成立, 从而 $\mathring{O}(x, \varepsilon) \cap S \neq \emptyset,$ 即 $x$ 是 $S$ 的聚点. 由于 $E$ 是闭集, 从而 $x \in E.$
 
 \pause
 \vspace{1em}
 
-另一个方向, 只要证明 $E$ 有界集即可. 用反证法, 假设 $E$ 无界, 那么 $\forall k \in \mathbb{N},$ 存在 $x_k \in E,$ 使得 $\lVert x_k \rVert > k,$ 从而 $\{ x_k \}$ 是 $E$ 的无限子集, 但是它没有聚点, 矛盾.
+另一个方向, 只要证明 $E$ 有界集即可. 用反证法, 假设 $E$ 无界, 那么 $\forall k \in \mathbb{N},$ 存在 $x_k \in E,$ 使得 $\lVert x_k \rVert > k,$ 从而 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $E$ 的无限子集, 但是它没有聚点, 矛盾.
 
 \end{frame}
 
