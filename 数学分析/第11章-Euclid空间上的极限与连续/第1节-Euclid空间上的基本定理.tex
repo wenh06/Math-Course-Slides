@@ -247,6 +247,10 @@ $$d_p(f, g) = \left( \int_a^b \lvert f(x) - g(x) \rvert^p ~ \mathrm{d}x \right)^
 
 %------------------------------------------------
 
+\section{拓扑空间}
+
+%------------------------------------------------
+
 \begin{frame}{度量诱导的拓扑}
 
 度量 $\longsquiggly$ 拓扑 \quad (定义开集、闭集)
@@ -343,6 +347,18 @@ $$\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \math
 的最大下标 $n$ (所谓的 Krull 维数) 等于 $0,$ 也就是每个素理想都是极大理想.
 \pause
 或者考虑极大谱 $\operatorname{Max} A = \{ A ~ \text{的所有极大理想} \},$ 这是一个 T1 拓扑空间.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{空间之间的关系}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.9]
+\input{tikz-figures/spaces-relations}
+\end{tikzpicture}
+\end{center}
 
 \end{frame}
 
@@ -677,6 +693,25 @@ $$E_1 \supset E_2 \supset \cdots \supset E_k \supset \cdots,$$
 
 假设存在另一点 $y \in \bigcap\limits_{k=1}^{\infty} E_k,$ 则 $y \in E_k,$
 从而 $d(x, y) \leqslant \operatorname{diam} E_k$ 对所有 $k$ 成立, 从而 $d(x, y) = 0,$ 即 $x = y.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cantor 闭区域套定理的应用}
+
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\begin{block}{问题}
+证明三角形 $\triangle ABC$ 的三条边的中线 $AA_1, BB_1, CC_1$ 交于三角形内部的一点.
+\end{block}
+\end{column}
+\begin{column}{0.55\textwidth}
+\begin{tikzpicture}[scale=0.777]
+\input{tikz-figures/cantor-intersection-thm-eg-triangle}
+\end{tikzpicture}
+\end{column}
+\end{columns}
 
 \end{frame}
 

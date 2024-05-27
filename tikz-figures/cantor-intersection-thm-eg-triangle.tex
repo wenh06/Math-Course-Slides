@@ -1,0 +1,51 @@
+% \begin{tikzpicture}
+
+% Coordinates of the vertices of the triangle ABC
+\coordinate (A) at (-1,3);
+\coordinate (B) at (-3,0);
+\coordinate (C) at (3,0);
+
+% Coordinates of the points A1, B1, C1 on the sides of the triangle
+\coordinate (A1) at ($(B)!0.5!(C)$);
+\coordinate (B1) at ($(A)!0.5!(C)$);
+\coordinate (C1) at ($(A)!0.5!(B)$);
+
+% Drawing the main triangle ABC
+\draw[thick] (A) -- (B) -- (C) -- cycle;
+
+% Drawing the segments AA1, BB1, CC1
+\draw[thick] (A) -- (A1);
+\draw[thick] (B) -- (B1);
+\draw[thick] (C) -- (C1);
+
+% Labelling the points
+\node[above] at (A) {$A$};
+\node[left] at (B) {$B$};
+\node[right] at (C) {$C$};
+
+\node[below] at (A1) {$A_1$};
+\node[right] at (B1) {$B_1$};
+\node[left] at (C1) {$C_1$};
+
+\only<2->{
+% Coordinates of A2, B2, C2, the intersections of the medians
+\coordinate (A2) at ($(B1)!0.5!(C1)$);
+\coordinate (B2) at ($(A1)!0.5!(C1)$);
+\coordinate (C2) at ($(A1)!0.5!(B1)$);
+
+% Drawing the triangle A2B2C2
+\draw[dashed] (A1) -- (B2) -- (C1);
+\draw[dashed] (B1) -- (C2) -- (A1);
+\draw[dashed] (C1) -- (A2) -- (B1);
+}
+
+\only<3+>{
+% Drawing the segments to A2, B2, C2
+\draw[dashed] (A2) -- (B2) -- (C2) -- cycle;
+
+\node[above right] at (A2) {$A_2$};
+\node[below] at (B2) {$B_2$};
+\node[below] at (C2) {$C_2$};
+}
+
+% \end{tikzpicture}
