@@ -191,6 +191,30 @@ $$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p 
 
 %------------------------------------------------
 
+\begin{frame}{范数的等价}
+
+\begin{Def}
+设 $\lVert \cdot \rVert_1, \lVert \cdot \rVert_2$ 是 $V$ 上的两个范数, 若存在正常数 $c_1, c_2$ 使得
+$$c_1 \lVert x \rVert_1 \leqslant \lVert x \rVert_2 \leqslant c_2 \lVert x \rVert_1, ~ \forall x \in V,$$
+则称 $\lVert \cdot \rVert_1$ 与 $\lVert \cdot \rVert_2$ 等价.
+\end{Def}
+
+\pause
+\vspace{1em}
+
+一个好消息是, $\mathbb{R}^n$ 上的所有范数都是等价的. 这将是在泛函分析课程中要证明的一个重要结论.
+
+这个结论的好处在于, 在 $\mathbb{R}^n$ 中的 $x \to x_0,$ 可以用任意一个更加方便的范数来代替原来的范数.
+
+\pause
+\vspace{1em}
+
+我们马上要用到两个范数等价的结论, 即向量的 $1$ 范数和 $2$ 范数等价, 证明也是非常简单的.
+
+\end{frame}
+
+%------------------------------------------------
+
 \section[度量空间]{度量空间}
 
 %------------------------------------------------
@@ -373,7 +397,7 @@ $$\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \math
 \begin{Def}
 设 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的点列, 若存在点 $a \in \mathbb{R}^n,$ 使得 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k > K,$ 有
 $$d(x_k, a) = \lVert x_k - a \rVert < \varepsilon ~~ (\text{或}~ x_k \in O(a, \varepsilon)),$$
-则称点列 $\{x_k\}_{k\in\mathbb{N}}$ 收敛于 $a,$ 记为 $\lim\limits_{k\to\infty} x_k = a,$ $a$ 称为点列 $\{x_k\}_{k\in\mathbb{N}}$ 的极限.
+则称点列 $\{x_k\}_{k\in\mathbb{N}}$ 收敛于 $a,$ 记为 $\lim\limits_{k\to\infty} x_k = a,$ $a$ 称为 $\{x_k\}_{k\in\mathbb{N}}$ 的极限.
 \end{Def}
 
 \pause
@@ -384,14 +408,14 @@ $\lim\limits_{k\to\infty} x_k = a$ 当且仅当 $\forall 1 \leqslant i \leqslant
 
 \pause
 
-由 $d(x_k, a) = \lVert x_k - a \rVert = \sqrt{\sum\limits_{i=1}^n (x_i^k - a_i)^2}$ 知
-\vspace{-0.5em}
-$$
-d(x_k, a) ~~ \begin{cases}
+有 $d(x_k, a) = \lVert x_k - a \rVert = \sqrt{\sum\limits_{i=1}^n (x_i^k - a_i)^2} \begin{cases}
 \geqslant ~~ \lvert x_i^k - a_i \rvert, ~~ \forall 1 \leqslant i \leqslant n \\
 \leqslant ~~ \sum\limits_{i=1}^n \lvert x_i^k - a_i \rvert
-\end{cases}
-$$
+\end{cases}$
+\pause
+以上再加上不等式 $\sum\limits_{i=1}^n \lvert x_i^k - a_i \rvert = \lVert x_k - a \rVert_1 \leqslant \sqrt{n} \lVert x_k - a \rVert$ 即可得 $1$ 范数与 $2$ 范数等价.
+\pause
+{\color{red}思考}: 如何得到与 $\infty$ 范数等价?
 
 \end{frame}
 

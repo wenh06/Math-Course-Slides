@@ -40,7 +40,37 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 %------------------------------------------------
 
-\begin{frame}{多元函数的例子}
+\begin{frame}{引例}
+
+多元函数顾名思义, 就是因变量 $y$ 依赖于多个自变量 $x_1, x_2, \ldots, x_n:$
+$$y = f(x_1, x_2, \ldots, x_n).$$
+
+\pause
+\vspace{0.5em}
+
+例如, 植物的生长速度 $y$ 可能依赖于温度 $x_1$, 湿度 $x_2$, 光照 $x_3$ 等因素;
+
+商品的价格 $y$ 可能依赖于生产成本 $x_1$, 市场需求 $x_2$, 政府政策 $x_3$ 等因素.
+
+\pause
+
+更多的例子来自于物理学, 工程学等邻域:
+
+\begin{itemize}
+\item 理想气体压强 $P$ 依赖于温度 $T$, 体积 $V:$ $P = f(T, V) = \frac{RT}{V}$;
+\item 电阻 $R$ 依赖于电阻率 $\rho$, 截面积 $A$, 长度 $l:$ $R = f(\rho, A, l) = \rho \frac{l}{A}$.
+\item 等等.
+\end{itemize}
+
+\pause
+\vspace{0.5em}
+
+以及一些抽象的例子:
+
+\begin{itemize}
+\item 二次型 $y = f(x_1, x_2, \ldots, x_n) = \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j$;
+\item 圆柱体的体积 $V = f(r, h) = \pi r^2 h$.
+\end{itemize}
     
 \end{frame}
 
@@ -50,8 +80,189 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 %------------------------------------------------
 
-\begin{frame}{Frame Title}
+\begin{frame}{多元函数的定义}
+
+\begin{Def}[多元函数]
+设 $D \subset \mathbb{R}^n$ 是 $n$ 维欧氏空间 $\mathbb{R}^n$ 中的一个非空集合, $D$ 到 $\mathbb{R}$ 的映射 $f: D \to \mathbb{R}$ 称为 $n$ 元函数, 记作
+$$y = f(x_1, x_2, \ldots, x_n), \quad (x_1, x_2, \ldots, x_n) \in D.$$
+\pause
+$D$ 称为函数 $f$ 的定义域,
+$$f(D) = \{f(x_1, x_2, \ldots, x_n): ~ (x_1, x_2, \ldots, x_n) \in D\}$$
+称为函数 $f$ 的值域.
+\pause
+$$\Gamma_f = \{(x_1, x_2, \ldots, x_n, f(x_1, x_2, \ldots, x_n)) \in \mathbb{R}^{n+1}: ~ (x_1, x_2, \ldots, x_n) \in D\}$$
+称为函数 $f$ 的图像.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数的例子}
+
+$z = f(x, y) = \sqrt{1 - \dfrac{x^2}{a^2} - \dfrac{y^2}{b^2}}$ 是一个二元函数, 其定义域为
+\pause
+$$D = \left\{ (x,y) \in \mathbb{R}^2 : ~ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} \leqslant 1 \right\}.$$
+
+\pause
+
+其图像为三维空间 $\mathbb{R}^3$ 中的一个上半椭球面, 如下图所示:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.84]
+\input{tikz-figures/multi-variate-func-eg}
+\end{tikzpicture}
+\end{center}
     
+\end{frame}
+
+%------------------------------------------------
+
+\section[多元函数的极限]{多元函数的极限}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数的极限}
+
+我们要把一元函数的极限 $\lim\limits_{x \to x_0} f(x) = A:$ 
+
+\begin{center}
+$\forall \varepsilon > 0, \exists \delta > 0,$ 使得对任意满足 $\lvert x - x_0 \rvert < \delta$ 的 $x$ 总有 $\lvert f(x) - A \rvert < \varepsilon$
+\end{center}
+
+推广到多元函数.
+\pause
+之前我们已经把序列的极限从一维推广到了高维, 函数极限的推广也是类似的.
+
+\begin{Def}[多元函数的极限]
+设 $D$ 是 $\mathbb{R}^n$ 中的一个非空开集, $x_0 = (x_1^0, x_2^0, \ldots, x_n^0) \in D$ 为一定点, $z = f(x)$ 是定义在 $D \setminus \{x_0\}$ 上的 $n$ 元函数. 如果存在常数 $A$, 对于任意给定的 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $x \in \mathring{O}(x_0, \delta) \cap D$ 时, 总有
+$$\lvert f(x) - A \rvert < \varepsilon,$$
+则称当 $x$ 趋于 $x_0$ 时函数 $f$ 收敛, 并称 $A$ 是函数 $f$ 当 $x \to x_0$ 时的 ($n$ 重) 极限, 记作
+$$\lim_{x \to x_0} f(x) = A, ~~ \text{或} ~~ f(x) \to A ~ (x \to x_0), ~~ \text{或} ~~ \lim_{\substack{x_1 \to x_1^0 \\ x_2 \to x_2^0 \\ \cdots \\ x_n \to x_n^0}} f(x) = A.$$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数极限的算例}
+
+\begin{eg}
+设 $f(x, y) = (x + y) \sin\dfrac{y}{x^2+y^2},$ 证明 $\lim\limits_{(x,y) \to (0,0)} f(x,y) = 0.$
+\end{eg}
+
+\pause
+
+我们用定义来证明. 我们需要估计
+\begin{align*}
+\lvert f(x,y) - 0 \rvert & = \lvert (x + y) \sin\dfrac{y}{x^2+y^2} \rvert \leqslant \lvert x + y \rvert \cdot 1 \\
+& \leqslant \lvert x \rvert + \lvert y \rvert = {\color{red}\lVert (x, y) \rVert_1} \\
+& \leqslant \sqrt{2} \cdot \sqrt{x^2 + y^2} = \sqrt{2} \cdot \lVert (x, y) \rVert_2.
+\end{align*}
+\pause
+{\color{red}注意}, 回忆一下我们讲过的 $\mathbb{R}^n$ 中范数的等价性.
+
+\pause
+\vspace{0.5em}
+
+以上估计说明, 对于任意给定的 $\varepsilon > 0$, 只要取 $\delta = \dfrac{\varepsilon}{\sqrt{2}}$, 当 $\lVert (x, y) \rVert_2 < \delta$ 时, 就有 $\lvert f(x,y) - 0 \rvert < \varepsilon.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数极限与一元函数极限的不同}
+
+在一维空间 $\mathbb{R}$ 中, 每一点 $x$ 处只有 2 个方向, 即正方向和负方向, 但在 $n$ 维空间 $\mathbb{R}^n$ 中, $n \geqslant 2,$ 每一点 $x$ 处有无穷多个方向.
+
+\pause
+
+一元函数在一点 $x_0$ 处由左右极限给出的收敛的充要条件:
+$$\lim\limits_{x \to x_0^-} f(x) = \lim\limits_{x \to x_0^+} f(x) = A$$
+在多元函数的情形, 类似条件可能不再成立.
+
+\begin{eg}
+考虑二元函数 $f(x, y) = \dfrac{xy}{x^2 + y^2}, (x, y) \neq (0, 0).$
+
+\pause
+\vspace{0.5em}
+
+当点 $(x, y)$ 沿着 $x$-轴趋于 $(0, 0)$ 时, 即 $(x, 0) \to (0, 0)$ 时, 有 $f(x, 0) \equiv 0.$
+
+当点 $(x, y)$ 沿着 $y$-轴趋于 $(0, 0)$ 时, 即 $(0, y) \to (0, 0)$ 时, 也有 $f(0, y) \equiv 0.$
+
+\pause
+\vspace{0.5em}
+
+但是, 当点 $(x, y)$ 沿着直线 $y = mx$ 趋于原点 $(0, 0)$ 时, 有
+$$f(x, x) = \dfrac{mx^2}{x^2 + m^2 x^2} = \dfrac{m}{1+m^2}.$$
+
+\pause
+
+因此, $\lim\limits_{(x, y) \to (0, 0)} f(x, y)$ 不存在.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数极限与一元函数极限的不同}
+
+问题: 是不是点 $x \in \mathbb{R}^n$ 沿着任意过原点的直线趋于原点 $O$ 时极限都存在且相等, 则函数 $f(x)$ 在原点 $O$ 处有极限?
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+考虑二元函数 $f(x, y) = \dfrac{(y^2 - x)^2}{x^2 + y^4}, (x, y) \neq (0, 0).$
+
+\pause
+\vspace{0.5em}
+
+当点 $(x, y)$ 沿着过原点的直线 $y = mx$ 趋于原点 $(0, 0)$ 时, 有
+$$\lim\limits_{\substack{x \to 0 \\ y = mx}} f(x, y) = \lim\limits_{x \to 0} \dfrac{(m^2 - 1)^2 x^2}{x^2 + m^4 x^4} = 1.$$
+同时, 当点 $(x, y)$ 沿着 $y$-轴趋于原点 $(0, 0)$ 时, 有 $f(0, y) \equiv 1.$ 也就是说, 点 $(x, y)$ 沿着过原点的任意直线趋于原点 $(0, 0)$ 时, 极限都是 1.
+
+\pause
+\vspace{0.5em}
+
+但是, 当点 $(x, y)$ 沿着过原点的抛物线 $x = y^2$ 趋于原点 $(0, 0)$ 时, 有 $f(y^2, y) \equiv 0.$ 因此, $\lim\limits_{(x, y) \to (0, 0)} f(x, y)$ 依然不存在.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数极限仍然保持的性质}
+
+\begin{itemize}[<+->]
+\item 唯一性: 设 $A, B$ 都是函数 $f(x)$ 当 $x \to x_0$ 时的极限, 那么由三角不等式
+$$\lvert A - B \rvert \leqslant \lvert f(x) - A \rvert + \lvert f(x) - B \rvert \to 0, \quad (x \to x_0),$$
+知 $A = B.$
+\item 局部有界性: 如果函数 $f(x)$ 当 $x \to x_0$ 时有极限 $A$, 那么存在 $\delta > 0$, 使得对于 $x \in \mathring{O}(x_0, \delta) \cap D$ 有
+$$\lvert f(x) - A \rvert \leqslant 1 ~~ \Longrightarrow ~~ \lvert f(x) \rvert \leqslant \lvert A \rvert + 1.$$
+\item 局部保号性: 如果函数 $f(x)$ 当 $x \to x_0$ 时有极限 $A > 0$, 那么存在 $\delta > 0$, 使得对于 $x \in \mathring{O}(x_0, \delta) \cap D$ 有
+$$\lvert f(x) - A \rvert \leqslant \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \dfrac{A}{2} > 0.$$
+对于 $A < 0$ 的情形也是类似的.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数极限仍然保持的性质}
+
+
+\begin{itemize}[<+->]
+\item 局部夹逼性: 如果函数 $g, h$ 当 $x \to x_0$ 时有极限 $A$, 且在某个去心邻域 $\mathring{O}(x_0, \delta) \cap D$ 上恒有$g(x) \leqslant f(x) \leqslant h(x),$ 那么函数 $f(x)$ 当 $x \to x_0$ 时也有极限 $A$.
+\item 四则运算法则: 设函数 $f(x), g(x)$ 当 $x \to x_0$ 时有极限 $A, B$, 则
+\begin{align*}
+& \lim_{x \to x_0} [f(x) \pm g(x)] = A \pm B, \\
+& \lim_{x \to x_0} [f(x) \cdot g(x)] = A \cdot B, \\
+& \lim_{x \to x_0} \dfrac{f(x)}{g(x)} = \dfrac{A}{B} \quad (B \neq 0).
+\end{align*}
+\end{itemize}
+
 \end{frame}
 
 %------------------------------------------------
