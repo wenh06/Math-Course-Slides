@@ -42,6 +42,7 @@
 \usepackage{lmodern}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
+\usepackage{scalefnt}
 
 % define theme color
 \colorlet{themecolor}{cau-green-1}
@@ -131,6 +132,27 @@
 %----------------------------------------------
 % watermark
 
+% add text watermark, the second argument is the text, the first argument is the scale with default value 2
+\newcommand{\addTextWatermark}[2][2]{
+  {
+    \scalefont{#1}
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=39, opacity=0.2, color=cyan] at (current page.center) {\textbf{#2}};
+    \end{tikzpicture}
+  }
+}
+
+% add mark of the number of class to the top right corner of the page at which the class finishes
+\newcommand{\markEndOfClass}[1]{
+  {
+    \scalefont{2}
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[opacity=0.5, draw=cyan, color=cyan, line width=3pt, inner sep=1.5pt, anchor=north east] at ([xshift=-3pt,yshift=-3pt]current page.north east) {\textbf{#1}};
+    \end{tikzpicture}
+  }
+}
+
+
 % \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{images/logo_buaa_math.jpg}};}
 
 % \usepackage[printwatermark]{xwatermark}
@@ -211,6 +233,8 @@
 % \usepackage{cleveref}
 \usepackage{cancel}
 \usepackage{pifont}
+\usepackage{multirow}
+\usepackage{caption}
 
 \newlength{\noleftmargin}
 \setlength{\noleftmargin}{-1in-\oddsidemargin}%

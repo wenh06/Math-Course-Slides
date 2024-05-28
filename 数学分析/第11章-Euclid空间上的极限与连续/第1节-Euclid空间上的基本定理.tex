@@ -193,6 +193,10 @@ $$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p 
 
 \begin{frame}{范数的等价}
 
+\ifHandout
+\addTextWatermark[2.5]{本页内容不作为考试要求}
+\fi
+
 \begin{Def}
 设 $\lVert \cdot \rVert_1, \lVert \cdot \rVert_2$ 是 $V$ 上的两个范数, 若存在正常数 $c_1, c_2$ 使得
 $$c_1 \lVert x \rVert_1 \leqslant \lVert x \rVert_2 \leqslant c_2 \lVert x \rVert_1, ~ \forall x \in V,$$
@@ -329,6 +333,10 @@ $$d(x, y) \leqslant d(x, z) + d(y, z) < 2d/3 < d,$$
 
 \begin{frame}{其余部分类型的拓扑空间}
 
+\ifHandout
+\addTextWatermark[2.5]{本页内容不作为考试要求}
+\fi
+
 \begin{itemize}[<+->]
 \item T1 (Fréchet):
 
@@ -346,6 +354,10 @@ $\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color
 %------------------------------------------------
 
 \begin{frame}{非 Hausdorff 拓扑空间的例子}
+
+\ifHandout
+\addTextWatermark[2.5]{本页内容不作为考试要求}
+\fi
 
 Zariski拓扑
 \pause
@@ -481,6 +493,45 @@ $$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert$$
 
 %------------------------------------------------
 
+\begin{frame}{不完备的度量空间}
+
+$C[a, b]$ 在度量 $d_p$ 下不完备.
+
+\pause
+\vspace{0.5em}
+
+例如 $[a, b] = [-1, 1],$ 考虑函数列
+$$f_n(x) = \begin{cases}
+-1, & x \in [-1, -1/n), \\
+nx, & x \in [-1/n, 1/n], \\
+1, & x \in (1/n, 1].
+\end{cases}$$
+那么 $\lVert f_n - f_{n+p} \rVert_p \leqslant \left(2 * \dfrac{1}{n}\right)^{1/p} \to 0, ~ (n \to \infty)$ 但极限函数 $f(x) = \operatorname{sgn}(x)$ 不在 $C[-1, 1]$ 中.
+
+\pause
+\vspace{1em}
+
+$[a, b]$ 上 Riemann 可积函数空间 $\mathfrak{R}[a, b]$ 在度量 $d_p$ 下也不完备.
+
+\pause
+\vspace{0.5em}
+
+例如 $[a, b] = [0, 1],$ 并将 $[0, 1]$ 上的所有有理数写为 $r_1, r_2, \dots,$ 考虑函数列
+$$f_n(x) = \begin{cases}
+1, & x \in {r_1, r_2, \dots, r_n}, \\
+0, & \text{其他}.
+\end{cases}$$
+那么 $\lVert f_n - f_{n+p} \rVert_p \equiv 0,$ 但极限函数 Dirichlet 函数不在 $\mathfrak{R}[0, 1]$ 中.
+
+\pause
+\vspace{0.5em}
+
+$\mathfrak{R}[a, b]$ 在度量 $d$ 下是完备的, 这正是一致收敛函数列极限函数可积性定理.
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{更多点集拓扑相关的概念}
 
 之前引入开集这一概念时, 我们介绍了内点的概念. 接下来, 我们介绍更多点集拓扑相关的概念.
@@ -489,7 +540,8 @@ $$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert$$
 \vspace{1em}
 
 \begin{itemize}[<+->]
-\item 集合 $E \subset \mathbb{R}^n$ 的内点 $x:$ ~~ $\exists O(x, \delta) \subset E.$
+\item 集合 $E \subset \mathbb{R}^n$ 的内点 $x:$ ~~ $\exists O(x, \delta) \subset E.$ \par
+集合 $E \subset \mathbb{R}^n$ 的内部 $E^0:$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的内点} \}.$
 \item 集合 $E \subset \mathbb{R}^n$ 的外点 $x:$ ~~ $\exists O(x, \delta) \subset \mathbb{R}^n \setminus E.$
 \item 集合 $E \subset \mathbb{R}^n$ 的边界点 $x:$ ~~ $\forall O(x, \delta) \cap E \neq \emptyset,$ 但 $O(x, \delta) \not\subset E.$ \par
 集合 $E \subset \mathbb{R}^n$ 的边界 $\partial E:$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的边界点} \}.$
@@ -506,7 +558,7 @@ $$d(f, g) = \sup\limits_{x \in [a, b]} \lvert f(x) - g(x) \rvert$$
 \begin{frame}{聚点 (极限点)}
 
 \begin{thm}
-点 $x$ 是集合 $E$ 的聚点的充要条件是, 存在点列 $x_k \in E, x_k \neq x, k \in k\in\mathbb{N}$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
+点 $x$ 是集合 $E$ 的聚点的充要条件是, 存在点列 $x_k \in E, x_k \neq x, k \in \mathbb{N}$ 使得 $\lim\limits_{k\to\infty} x_k = x.$
 \end{thm}
 
 \pause
@@ -520,7 +572,7 @@ $\Longrightarrow:$ 由定义, 取 $\delta_1 = 1,$ 则 $\mathring{O}(x, \delta_1)
 
 \pause
 
-$\Longleftarrow:$ 若 $\lim\limits_{k\to\infty} x_k = x,$ 且 $x_k \neq x,$ 则 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k \in K,$ 有 $0 < d(x_k, x) < \varepsilon,$ 即 $x_k \in \mathring{O}(x, \varepsilon) \cap E,$ 从而知 $\mathring{O}(x, \varepsilon) \cap E \neq \emptyset,$ 于是 $x$ 是 $E$ 的聚点.
+$\Longleftarrow:$ 若 $\lim\limits_{k\to\infty} x_k = x,$ 且 $x_k \neq x,$ 则 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k > K,$ 有 $0 < d(x_k, x) < \varepsilon,$ 即 $x_k \in \mathring{O}(x, \varepsilon) \cap E,$ 从而知 $\mathring{O}(x, \varepsilon) \cap E \neq \emptyset,$ 于是 $x$ 是 $E$ 的聚点.
 \end{proof}
 
 \end{frame}
@@ -603,13 +655,13 @@ $$d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y
 
 \begin{frame}{一般拓扑空间中的开集与闭集}
 
-对于一个一般空间 $V,$ 它的开集指的是满足以下条件的子集族:
+对于一个一般空间 $V,$ 它的开集指的是满足以下条件的子集族 $\mathscr{T}:$
 \begin{enumerate}
-\item $V$ 本身和空集 $\emptyset$ 都是开集;
-\item 任意多个开集的并集仍然是开集;
-\item 有限多个开集的交集仍然是开集.
+\item $V$ 本身和空集 $\emptyset$ 都属于 $\mathscr{T}$ (都是开集);
+\item 任意多个开集的并集仍然属于 $\mathscr{T}$ (是开集);
+\item 有限多个开集的交集仍然属于 $\mathscr{T}$ (是开集).
 \end{enumerate}
-给定了这样一个子集族, 就定义了 $V$ 上的一个拓扑空间的结构.
+给定了这样一个子集族 $\mathscr{T},$ 就定义了 $V$ 上的一个拓扑空间的结构.
 \pause
 我们下面验证之前定义的开集满足这些条件.
 
@@ -683,6 +735,12 @@ $$\lim\limits_{k\to\infty} a_i^k = \lim\limits_{k\to\infty} b_i^k = x_i, ~~ \for
 %------------------------------------------------
 
 \begin{frame}{Cantor 闭区域套定理}
+
+\ifHandout
+% do nothing
+\else
+\markEndOfClass{35}
+\fi
 
 闭矩体套定理的关键在于“闭集”和“序列包含关系”以及“直径趋于零”. 我们可以将这个定理推广到更一般的情况.
 
@@ -822,6 +880,10 @@ $\{ x_1^k\}$ 相应的子列 $\{ x_1^{k_{j_\ell}} \}$ 是收敛数列 $\{ x_1^{k
 
 \begin{frame}{单点紧化}
 
+\ifHandout
+\addTextWatermark[2.5]{本页内容不作为考试要求}
+\fi
+
 带有通常拓扑的 $\mathbb{R}^n$ 不是紧空间, 但是是一个局部紧空间. 对于一个一般的非紧的局部紧空间拓扑空间, 我们可以通过添加一个点来得到一个紧空间.
 
 \pause
@@ -840,7 +902,7 @@ $V^*$ 中的开集由以下两类集合构成:
 
 很容易验证, 以上定义的开集满足拓扑空间中开集需要满足的三个条件, 也就是说, 以上给出了 $V^*$ 的一个拓扑空间结构.
 
-并且可以验证, $V^*$ 是一个紧空间.
+并且可以验证, $V^*$ 是一个紧的 Hausdorff 空间.
 
 \pause
 \vspace{1em}

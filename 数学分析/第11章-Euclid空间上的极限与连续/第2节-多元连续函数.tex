@@ -53,6 +53,7 @@ $$y = f(x_1, x_2, \ldots, x_n).$$
 商品的价格 $y$ 可能依赖于生产成本 $x_1$, 市场需求 $x_2$, 政府政策 $x_3$ 等因素.
 
 \pause
+\vspace{0.5em}
 
 更多的例子来自于物理学, 工程学等邻域:
 
@@ -137,7 +138,7 @@ $\forall \varepsilon > 0, \exists \delta > 0,$ 使得对任意满足 $\lvert x -
 \begin{Def}[多元函数的极限]
 设 $D$ 是 $\mathbb{R}^n$ 中的一个非空开集, $x_0 = (x_1^0, x_2^0, \ldots, x_n^0) \in D$ 为一定点, $z = f(x)$ 是定义在 $D \setminus \{x_0\}$ 上的 $n$ 元函数. 如果存在常数 $A$, 对于任意给定的 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $x \in \mathring{O}(x_0, \delta) \cap D$ 时, 总有
 $$\lvert f(x) - A \rvert < \varepsilon,$$
-则称当 $x$ 趋于 $x_0$ 时函数 $f$ 收敛, 并称 $A$ 是函数 $f$ 当 $x \to x_0$ 时的 ($n$ 重) 极限, 记作
+则称当 $x$ 趋于 $x_0$ 时函数 $f$ 收敛, 并称 $A$ 是函数 $f$ 当 $x \to x_0$ 时的 {\color{red}($n$ 重) 极限}, 记作
 $$\lim_{x \to x_0} f(x) = A, ~~ \text{或} ~~ f(x) \to A ~ (x \to x_0), ~~ \text{或} ~~ \lim_{\substack{x_1 \to x_1^0 \\ x_2 \to x_2^0 \\ \cdots \\ x_n \to x_n^0}} f(x) = A.$$
 \end{Def}
 
@@ -236,7 +237,7 @@ $$\lim\limits_{\substack{x \to 0 \\ y = mx}} f(x, y) = \lim\limits_{x \to 0} \df
 \begin{frame}{多元函数极限仍然保持的性质}
 
 \begin{itemize}[<+->]
-\item 唯一性: 设 $A, B$ 都是函数 $f(x)$ 当 $x \to x_0$ 时的极限, 那么由三角不等式
+\item 唯一性: 设 $A, B$ 都是函数 $f(x)$ 当 $x \to x_0$ 时的极限, 由三角不等式
 $$\lvert A - B \rvert \leqslant \lvert f(x) - A \rvert + \lvert f(x) - B \rvert \to 0, \quad (x \to x_0),$$
 知 $A = B.$
 \item 局部有界性: 如果函数 $f(x)$ 当 $x \to x_0$ 时有极限 $A$, 那么存在 $\delta > 0$, 使得对于 $x \in \mathring{O}(x_0, \delta) \cap D$ 有
@@ -252,7 +253,6 @@ $$\lvert f(x) - A \rvert \leqslant \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \df
 
 \begin{frame}{多元函数极限仍然保持的性质}
 
-
 \begin{itemize}[<+->]
 \item 局部夹逼性: 如果函数 $g, h$ 当 $x \to x_0$ 时有极限 $A$, 且在某个去心邻域 $\mathring{O}(x_0, \delta) \cap D$ 上恒有$g(x) \leqslant f(x) \leqslant h(x),$ 那么函数 $f(x)$ 当 $x \to x_0$ 时也有极限 $A$.
 \item 四则运算法则: 设函数 $f(x), g(x)$ 当 $x \to x_0$ 时有极限 $A, B$, 则
@@ -261,7 +261,361 @@ $$\lvert f(x) - A \rvert \leqslant \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \df
 & \lim_{x \to x_0} [f(x) \cdot g(x)] = A \cdot B, \\
 & \lim_{x \to x_0} \dfrac{f(x)}{g(x)} = \dfrac{A}{B} \quad (B \neq 0).
 \end{align*}
+
+\item[] 大家可以自行证明四则运算法则.
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{累次极限}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限}
+
+从刚才的几个例子, 仅在二维的情形下, 我们就看到了 $\mathbb{R}^n \ni x \to x_0$ (函数行为) 的复杂性, 一维情形下的一些性质在高维空间中不能直接推广.
+
+\pause
+
+一个自然的问题是, 是否在{\color{red}一定条件下}, 我们可以逐坐标 (变量) 地考察极限, 每次只把当前变量当作一元函数, 而其他还未考察过的变量当作常数, 这样的极限可以等于多元函数的极限?
+
+这样的极限称作{\color{red}累次极限}. 注意, 它与我们考察坐标的顺序是有关系的.
+
+\pause
+
+\begin{Def}[二次极限]
+设 $D \subset \mathbb{R}^2$ 是一个非空开集, $(x_0, y_0) \in D$ 为一定点, $z = f(x, y)$ 是定义在 $D \setminus \{(x_0, y_0)\}$ 上的二元函数.
+如果对{\color{red}每个固定的 $y\neq y_0$}, 极限 $\lim\limits_{x \to x_0} f(x, y)$ 存在, 并且极限
+$$\lim_{y \to y_0} \lim_{x \to x_0} f(x, y)$$
+存在, 则称此极限为 $f(x, y)$ 在点 $(x_0, y_0)$ 处的先对 $x$ 后对 $y$ 的二次极限.
+
+\pause
+
+类似可以定义 $f(x, y)$ 在点 $(x_0, y_0)$ 处的先对 $y$ 后对 $x$ 的二次极限:
+$$\lim_{x \to x_0} \lim_{y \to y_0} f(x, y).$$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限与重极限}
+
+\begin{table}
+\centering
+\begin{tabular}{c@{\hskip 10pt}c@{\hskip 15pt}cc}
+& 二重极限 & \multicolumn{2}{c}{二次极限} \\
+& $\lim\limits_{\substack{x \to x_0\\y \to y_0}} f(x, y)$ & $\lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x, y)$ & $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x, y)$ \\[1ex]
+\only<2->{$(x + y) \sin\dfrac{y}{x^2+y^2}$ & $0$} & \only<4->{$0$ & $0$} \\[1ex]
+\only<5->{$\dfrac{xy}{x^2 + y^2}$ & {\color{red}\ding{55}} & $0$ & $0$} \\[1ex]
+\only<6->{$\dfrac{(y^2 - x)^2}{x^2 + y^4}$ & {\color{red}\ding{55}} & $1$ & $1$}
+\end{tabular}
+\end{table}
+
+\only<3->{
+固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} (x + y) \sin\dfrac{y}{x^2+y^2} = y \sin\dfrac{1}{y}.$ 再对 $y$ 取极限, 得到 $\lim\limits_{y \to 0} y \sin\dfrac{1}{y} = 0.$ 所以, 二次极限
+$$\lim_{y \to 0} \lim_{x \to 0} (x + y) \sin\dfrac{y}{x^2+y^2} = 0.$$
+}
+
+\only<7->{\color{red}二次极限存在不能保证二重极限存在!}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限与重极限}
+
+即使两个二次极限都存在, 也不能保证它们二者是相等的.
+
+\pause
+
+\begin{eg}[两个二次极限存在, 但不相等]
+只要对之前的例子稍作修改, 就可以得到这样的例子.
+\pause
+$$f(x, y) = \dfrac{(2y^2 - x)^2}{x^2 + y^4}, (x, y) \neq (0, 0).$$
+\pause
+固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = 4.$ 所以, $\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y) = 4.$
+
+\pause
+\vspace{0.5em}
+
+固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = 1.$ 所以, $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y) = 1.$
+
+\pause
+\vspace{0.5em}
+
+这个例子中, 二重极限也是不存在的.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限与重极限}
+
+但是, 二重极限存在时, 并不能保证二次极限一定存在.
+
+\pause
+
+\begin{eg}[二重极限存在, 但两个二次极限不存在]
+考虑函数
+$$f(x, y) = \begin{cases}
+(x^2 + y^2) \sin\dfrac{1}{x} \cos\dfrac{1}{y}, & x \neq 0 ~ \text{且} ~ y \neq 0, \\
+0, & x = 0 ~ \text{或} ~ y = 0.
+\end{cases}$$
+
+\pause
+
+由于 $\lvert f(x, y) \rvert \leqslant x^2 + y^2$, 所以 $\lim\limits_{(x,y) \to (0,0)} f(x, y) = 0.$
+
+\pause
+\vspace{0.5em}
+
+任意固定 $y\neq 0,$ 由于 $x \to 0$ 时, $y^2\cos\dfrac{1}{y}{\color{red}\sin\dfrac{1}{x}}$ 的极限不存在, ${\color{red}x^2\sin\dfrac{1}{x}}\cos\dfrac{1}{y}$ 的极限等于 $0,$ 所以 $\lim\limits_{x \to 0} f(x, y)$ 不存在, 那么二次极限 $\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y)$ 也不存在.
+
+\pause
+\vspace{0.5em}
+
+类似地, $\lim\limits_{y \to 0} f(x, y)$ 也不存在, 那么二次极限 $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y)$ 也不存在.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限与重极限}
+
+\begin{eg}[二重极限存在, 两个二次极限中有一个不存在]
+考虑函数
+$$f(x, y) = \begin{cases}
+y \sin\dfrac{1}{x}, & x \neq 0 ~ \text{且} ~ y \neq 0, \\
+0, & x = 0 ~ \text{或} ~ y = 0.
+\end{cases}$$
+
+\pause
+
+由于 $\lvert f(x, y) \rvert \leqslant \lvert y \rvert \leqslant \lVert (x, y) \rVert_1$, 所以 $\lim\limits_{(x,y) \to (0,0)} f(x, y) = 0.$
+
+\pause
+\vspace{0.5em}
+
+固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} y \sin\dfrac{1}{x} = y \sin\dfrac{1}{x}$ 不存在, 所以 $\lim\limits_{x \to 0} f(x, y)$ 不存在, 那么二次极限 $\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y)$ 也不存在.
+
+\pause
+\vspace{0.5em}
+
+固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} y \sin\dfrac{1}{x} = 0,$ 所以 $\lim\limits_{y \to 0} f(x, y) = 0.$ 于是, 二次极限 $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y) = 0.$
+
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+{\color{red}注意}, 马上我们会看到, {\color{red}不存在}这样的例子: 二重极限和某个二次极限都存在, 但二者不相等.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限与重极限}
+
+累次极限并不是简单地 $\mathbb{R}^n \ni x$ 沿某条曲线趋于 $x_0$ 时的极限, 而是“某一族”曲线趋于 $x_0$ 时的整体行为趋势, 所以累次极限与重极限并没有简单的“包含”关系.
+
+\pause
+\vspace{1em}
+
+但是, 在某些“好的”情况下, 二次极限与二重极限是相等的.
+
+\pause
+
+\begin{thm}
+若二元函数 $f(x, y)$ 在点 $(x_0, y_0)$ 存在二重极限 $\lim\limits_{(x,y) \to (x_0, y_0)} f(x, y) = A$, 且在 $(x_0, y_0)$ 的某个邻域内, 当 $x \neq x_0$ 时, 存在极限
+$$\lim_{y \to y_0} f(x, y) = \varphi(x),$$
+那么 $f(x, y)$ 在 $(x_0, y_0)$ 处的先对 $y$ 后对 $x$ 的二次极限存在, 且等于函数在该点的二重极限, 即
+$$\lim_{x \to x_0} \lim_{y \to y_0} f(x, y) = \lim_{x \to x_0} \varphi(x) = \lim_{(x,y) \to (x_0, y_0)} f(x, y) = A.$$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理证明}
+
+只需要证明 $\lim\limits_{x \to x_o} \varphi(x) = A$ 即可.
+
+\pause
+\vspace{0.5em}
+
+由条件: 二重极限 $\lim\limits_{(x,y) \to (x_0, y_0)} f(x, y) = A$ 知, 对于任意 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $\lVert (x, y) - (x_0, y_0) \rVert_2 < \delta$ 时, 有 $\lvert f(x, y) - A \rvert < \varepsilon / 2$. 如果有需要, 我们可以缩小 $\delta$ 使得在 $O((x_0, y_0), \delta)$ 内, 定理条件: 当 $x \neq x_0$ 时, 总存在极限 $\lim\limits_{y \to y_0} f(x, y) = \varphi(x)$ 满足.
+
+\pause
+\vspace{0.5em}
+
+于是在 $O((x_0, y_0), \delta)$ 内, 只要 $x\neq x_0,$ 可以对不等式 $\lvert f(x, y) - A \rvert < \varepsilon / 2$ 两边同时取 $y \to y_0$ 的极限, 得到
+$$\lvert \varphi(x) - A \rvert = \lim_{y \to y_0} \lvert f(x, y) - A \rvert \leqslant \varepsilon / 2 < \varepsilon.$$
+也就是说, 我们证明了, $\forall \varepsilon > 0, \exists \delta > 0,$ 当 $0 < \lVert x - x_0 \rVert_1 < \delta$ 时, 有 $\lvert \varphi(x) - A \rvert < \varepsilon.$
+即有 $\lim\limits_{x \to x_0} \varphi(x) = A.$
+
+\pause
+\vspace{0.5em}
+
+我们可以立即得到两个讨论:
+\begin{itemize}
+\item 若二重极限和某个二次极限都存在, 则二者必相等;
+\pause
+\item 若二次极限和两个二重极限都存在, 则三者必相等.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限与重极限所有可能的取值情况}
+
+\begin{table}
+\centering
+\begin{tabular}{c@{\hskip 15pt}cc}
+二重极限 & \multicolumn{2}{c}{二次极限} \\
+$\lim\limits_{\substack{x \to x_0\\y \to y_0}} f(x, y)$ & $\lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x, y)$ & $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x, y)$ \\[1ex]
+\only<2->{$A$ & $A$ & $A$} \\[1ex]
+\only<3->{$A$ & $A$ & {\color{red}\ding{55}}} \\[1ex]
+\only<4->{$A$ & {\color{red}\ding{55}} & $A$} \\[1ex]
+\only<5->{$A$ & {\color{red}\ding{55}} & {\color{red}\ding{55}}} \\[1ex]
+\only<6->{{\color{red}\ding{55}} & $A$ & $A$} \\[1ex]
+\only<7->{{\color{red}\ding{55}} & $A$ & ${\color{red}B}$} \\[1ex]
+\only<8->{{\color{red}\ding{55}} & {\color{red}\ding{55}} & $A$} \\[1ex]
+\only<9->{{\color{red}\ding{55}} & $A$ & {\color{red}\ding{55}}} \\[1ex]
+\only<10->{{\color{red}\ding{55}} & {\color{red}\ding{55}} & {\color{red}\ding{55}}} \\[1ex]
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{多元函数的连续性}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数的连续性}
+
+我们已经把函数的极限推广到了高维 (多元函数), 接下来我们把有关函数的连续性的概念也推广到高维.
+
+\pause
+
+\begin{Def}[多元函数的连续性]
+设 $D \subset \mathbb{R}^n$ 是一个非空集合, $f: D \to \mathbb{R}$ 是定义在 $D$ 上的 $n$ 元函数, $x_0 \in D$ 是一定点. 如果
+$$\lim_{x \to x_0} f(x) = f(x_0),$$
+则称函数 $f(x)$ 在点 $x_0$ 处连续.
+\pause
+如果函数 $f(x)$ 在 $D$ 的每一点都连续, 则称函数 $f(x)$ 在 $D$ 上连续.
+\end{Def}
+
+\pause
+
+\begin{remark}
+多元函数的连续性可以用 $\varepsilon - \delta$ 语言来表述:
+
+\pause
+
+\begin{center}
+$\forall \varepsilon > 0, \exists \delta > 0,$ 当 $\lVert x - x_0 \rVert < \delta$ 时, 有 $\lvert f(x) - f(x_0) \rvert < \varepsilon.$
+\end{center}
+
+\pause
+
+注意, 这里的 $\lVert \cdot \rVert$ 可以是 $\mathbb{R}^n$ 中的任意范数.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元连续函数的运算性质}
+
+设 $f, g: \mathbb{R}^n \to \mathbb{R}$ 为两个多元连续函数, $\varphi: \mathbb{R} \to \mathbb{R}$ 为一个一元连续函数, 则
+\begin{itemize}
+\item $f \pm g$ 也是连续函数;
+\item $f \cdot g$ 也是连续函数;
+\item 若 $g(x) \neq 0$, 则 $\dfrac{f}{g}$ 也是连续函数;
+\item $\varphi(f)$ 也是连续函数.
+\end{itemize}
+
+\pause
+
+这些运算性质的证明, 与一元函数相关的证明是类似的, 例如, 对于 $f \pm g$ 的情形, 有
+$$\lvert (f \pm g)(x) - (f \pm g)(x_0) \rvert \leqslant \lvert f(x) - f(x_0) \rvert + \lvert g(x) - g(x_0) \rvert.$$
+由$f, g$ 的连续性, 分别存在 $\delta_1, \delta_2$, 使得当 $\lVert x - x_0 \rVert < \delta_1$ 时, 有 $\lvert f(x) - f(x_0) \rvert < \varepsilon / 2$, 当 $\lVert x - x_0 \rVert < \delta_2$ 时, 有 $\lvert g(x) - g(x_0) \rvert < \varepsilon / 2$. 取 $\delta = \min\{\delta_1, \delta_2\}$, 则当 $\lVert x - x_0 \rVert < \delta$ 时, 有 $\lvert (f \pm g)(x) - (f \pm g)(x_0) \rvert < \varepsilon.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元连续函数的例子}
+
+\begin{eg}
+函数 $f(x, y) = \sin \sqrt{x^2 + y^2}$ 在 $\mathbb{R}^2$ 上连续.
+\end{eg}
+
+\pause
+
+一种方法是直接用定义进行验证.
+\pause
+任取 $(x_0, y_0) \in \mathbb{R}^2$, 对 $f$ 在这点附近的函数值增量有估计
+{\smaller[1]
+\begin{align*}
+& \lvert f(x, y) - f(x_0, y_0) \rvert \\
+= & \left\lvert \sin \sqrt{x^2 + y^2} - \sin \sqrt{x_0^2 + y_0^2} \right\rvert \\
+= & 2 \left\lvert \sin \dfrac{\sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2}}{2} \cos \dfrac{\sqrt{x^2 + y^2} + \sqrt{x_0^2 + y_0^2}}{2} \right\rvert \\
+\leqslant & 2 \left\lvert \sin\dfrac{\sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2}}{2} \right\rvert \cdot 1  \leqslant \sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2} \\
+\leqslant & \sqrt{(x - x_0)^2 + (y - y_0)^2} = \lVert (x, y) - (x_0, y_0) \rVert_2.
+\end{align*}
+}
+\pause
+那么 $\forall \varepsilon > 0,$ 取 $\delta = \varepsilon > 0,$ 当 $\lVert (x, y) - (x_0, y_0) \rVert_2 < \delta$ 时, 有 $\lvert f(x, y) - f(x_0, y_0) \rvert < \varepsilon.$
+
+\pause
+\vspace{0.5em}
+
+另一种方法是利用 $\varphi(u) = \sin \sqrt{u}, g(x, y) = x^2 + y^2$ 的连续性, 由复合函数的连续性知 $f(x, y) = \varphi(g(x, y))$ 也是连续的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元连续函数相关的算例}
+
+\begin{eg}
+计算极限 $\lim\limits_{(x,y) \to (1,0)} \dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}}$.
+\end{eg}
+
+\pause
+
+函数 $\ln(x+e^y)$ 与 $\sqrt{x^2 + y^2}$ 都是各自定义域上的连续函数, 所以 $\dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}}$ 也是连续函数. 又有
+\begin{gather*}
+\lim_{(x,y) \to (1,0)} \ln(x+e^y) = \ln(1+e^0) = \ln 2, \\
+\lim_{(x,y) \to (1,0)} \sqrt{x^2 + y^2} = \sqrt{1^2 + 0^2} = 1,
+\end{gather*}
+所以
+$$\lim_{(x,y) \to (1,0)} \dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}} = \dfrac{\ln 2}{1} = \ln 2.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元连续函数相关的算例}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{向量值函数}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数}
 
 \end{frame}
 
