@@ -15,6 +15,15 @@
 \Handouttrue
 \Handoutfalse
 
+\newif\ifHighContrast
+\HighContrastfalse
+\HighContrasttrue
+
+
+\ifHandout
+\HighContrastfalse
+\fi
+
 % https://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
 
 \input{common_preamble}
@@ -23,8 +32,8 @@
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \input{数学分析/第11章-Euclid空间上的极限与连续/第1节-Euclid空间上的基本定理}
-\input{数学分析/第11章-Euclid空间上的极限与连续/第2节-多元连续函数}
+\input{数学分析/第11章-Euclid空间上的极限与连续/第1节-Euclid空间上的基本定理}
+% \input{数学分析/第11章-Euclid空间上的极限与连续/第2节-多元连续函数}
 % \input{数学分析/第11章-Euclid空间上的极限与连续/第3节-连续函数的性质}
 
 

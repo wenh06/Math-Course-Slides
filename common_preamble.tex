@@ -26,9 +26,9 @@
 %---------------------------------
 
 \ifHandout
-\documentclass[10pt, handout]{beamer}
+\documentclass[11pt, handout]{beamer}
 \else
-\documentclass[10pt]{beamer}
+\documentclass[11pt]{beamer}
 \fi
 
 \geometry{paperwidth=140mm,paperheight=105mm}
@@ -54,7 +54,7 @@
 \usetheme{Berkeley}
 
 % add logo
-\logo{\includegraphics[height=1.5cm]{images/logo_cau_science_white.png}}
+\logo{\includegraphics[height=1.55cm]{images/logo_cau_science_white.png}}
 % \logo{\includegraphics[height=1.55cm]{images/logo_buaa_math.jpg}}
 
 % \setbeamercolor{subsection in toc}{fg=zkbackground}
@@ -71,11 +71,16 @@
 % \setbeamercolor{institute}{fg=tsinghua}
 % \setbeamercolor{date}{fg=tsinghua}
 % \setbeamercolor{normal text}{fg=tsinghua}
+\ifHighContrast
+\setbeamercolor{block body}{bg=themecolor!25,fg=black}
+\setbeamercolor{normal text}{fg=black}
+\else
 \setbeamercolor{block body}{bg=themecolor!25,fg=themecolor}
+\setbeamercolor{normal text}{fg=themecolor}
+\fi
 \setbeamercolor{author}{fg=themecolor}
 \setbeamercolor{institute}{fg=themecolor}
 \setbeamercolor{date}{fg=themecolor}
-\setbeamercolor{normal text}{fg=themecolor}
 \setbeamercolor{background canvas}{bg=zkbackground}
 
 \setbeamercolor{palette sidebar secondary}{fg=themecolor, bg=white!80}
@@ -137,7 +142,7 @@
   {
     \scalefont{#1}
     \begin{tikzpicture}[remember picture, overlay]
-      \node[rotate=39, opacity=0.2, color=cyan] at (current page.center) {\textbf{#2}};
+      \node[rotate=39, opacity=0.2, color=red] at (current page.center) {\textbf{#2}};
     \end{tikzpicture}
   }
 }
@@ -236,6 +241,7 @@
 \usepackage{multirow}
 \usepackage{caption}
 
+
 \newlength{\noleftmargin}
 \setlength{\noleftmargin}{-1in-\oddsidemargin}%
 
@@ -322,6 +328,12 @@
 \zhnumsetup{time=Chinese}
 
 % set fonts
+\newCJKfontfamily\jdlangzheng{JDLangZhengTi.TTF}[Extension = .ttf, Path=fonts/]
+\newCJKfontfamily\simfang{simfang.ttf}[Extension = .ttf, Path=fonts/]
+\newCJKfontfamily\simhei{simhei.ttf}[Extension = .ttf, Path=fonts/]
+\newCJKfontfamily\simkai{simkai.ttf}[Extension = .ttf, Path=fonts/]
+% \newCJKfontfamily\simsun{simsun.ttc}[Extension = .ttc, Path=fonts/]
+
 % \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simfang.ttf}
 % \setCJKmainfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
 % \setCJKsansfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
@@ -360,7 +372,11 @@ colback=blue!30, boxrule=1pt,
 }
 
 \newenvironment{attnblock}{%
+\ifHighContrast
+\setbeamercolor{block body}{bg=red!15,fg=black}
+\else
 \setbeamercolor{block body}{bg=red!15,fg=themecolor}
+\fi
 \setbeamercolor{block title}{bg=red!80,fg=white}
 \begin{block}{注意}}{\end{block}
 }
