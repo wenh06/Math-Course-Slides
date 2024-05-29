@@ -48,9 +48,9 @@ $$y = f(x_1, x_2, \ldots, x_n).$$
 \pause
 \vspace{0.5em}
 
-例如, 植物的生长速度 $y$ 可能依赖于温度 $x_1$, 湿度 $x_2$, 光照 $x_3$ 等因素;
+例如, 植物生长速度可能依赖于温度 $x_1$, 湿度 $x_2$, 光照 $x_3$ 等因素;
 
-商品的价格 $y$ 可能依赖于生产成本 $x_1$, 市场需求 $x_2$, 政府政策 $x_3$ 等因素.
+商品价格可能依赖于生产成本 $x_1$, 市场需求 $x_2$, 政府政策 $x_3$ 等因素.
 
 \pause
 \vspace{0.5em}
@@ -72,7 +72,7 @@ $$y = f(x_1, x_2, \ldots, x_n).$$
 \item 二次型 $y = f(x_1, x_2, \ldots, x_n) = \sum_{i=1}^n \sum_{j=1}^n a_{ij} x_i x_j$;
 \item 圆柱体的体积 $V = f(r, h) = \pi r^2 h$.
 \end{itemize}
-    
+
 \end{frame}
 
 %------------------------------------------------
@@ -84,14 +84,14 @@ $$y = f(x_1, x_2, \ldots, x_n).$$
 \begin{frame}{多元函数的定义}
 
 \begin{Def}[多元函数]
-设 $D \subset \mathbb{R}^n$ 是 $n$ 维欧氏空间 $\mathbb{R}^n$ 中的一个非空集合, $D$ 到 $\mathbb{R}$ 的映射 $f: D \to \mathbb{R}$ 称为 $n$ 元函数, 记作
+设 $D \subset \mathbb{R}^n$ 是 $n$ 维 Euclid 空间 $\mathbb{R}^n$ 中的一个非空集合, $D$ 到 $\mathbb{R}$ 的映射 $f: D \to \mathbb{R}$ 称为 $n$ 元函数, 记作
 $$y = f(x_1, x_2, \ldots, x_n), \quad (x_1, x_2, \ldots, x_n) \in D.$$
 \pause
 $D$ 称为函数 $f$ 的定义域,
 $$f(D) = \{f(x_1, x_2, \ldots, x_n): ~ (x_1, x_2, \ldots, x_n) \in D\}$$
 称为函数 $f$ 的值域.
 \pause
-$$\Gamma_f = \{(x_1, x_2, \ldots, x_n, f(x_1, x_2, \ldots, x_n)) \in \mathbb{R}^{n+1}: ~ (x_1, x_2, \ldots, x_n) \in D\}$$
+$$\Gamma_f = \{(x_1, x_2, \ldots, x_n, f(x)) \in \mathbb{R}^{n+1}: ~ x = (x_1, x_2, \ldots, x_n) \in D\}$$
 称为函数 $f$ 的图像.
 \end{Def}
 
@@ -114,7 +114,7 @@ $$D = \left\{ (x,y) \in \mathbb{R}^2 : ~ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} \le
 \input{tikz-figures/multi-variate-func-eg}
 \end{tikzpicture}
 \end{center}
-    
+
 \end{frame}
 
 %------------------------------------------------
@@ -125,15 +125,24 @@ $$D = \left\{ (x,y) \in \mathbb{R}^2 : ~ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} \le
 
 \begin{frame}{多元函数的极限}
 
-我们要把一元函数的极限 $\lim\limits_{x \to x_0} f(x) = A:$ 
+我们要把一元函数的极限 $\lim\limits_{x \to x_0} f(x) = A:$
 
 \begin{center}
-$\forall \varepsilon > 0, \exists \delta > 0,$ 使得对任意满足 $\lvert x - x_0 \rvert < \delta$ 的 $x$ 总有 $\lvert f(x) - A \rvert < \varepsilon$
+$\forall \varepsilon > 0, \exists \delta > 0,$ 使得对任意满足 $0 < \lvert x - x_0 \rvert < \delta$ 的 $x$ 总有 $\lvert f(x) - A \rvert < \varepsilon$
 \end{center}
 
 推广到多元函数.
+
 \pause
-之前我们已经把序列的极限从一维推广到了高维, 函数极限的推广也是类似的.
+\vspace{1em}
+
+之前我们已经把序列的极限从一维推广到了高维, 函数极限的推广也是类似的. 我们只需要将一维时候的 $\lvert x - x_0 \rvert$ 替换为 $n$ 维 Euclid 空间中的 $\lVert x - x_0 \rVert,$ 或是 $d(x, x_0)$ 即可.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数的极限}
 
 \begin{Def}[多元函数的极限]
 设 $D$ 是 $\mathbb{R}^n$ 中的一个非空开集, $x_0 = (x_1^0, x_2^0, \ldots, x_n^0) \in D$ 为一定点, $z = f(x)$ 是定义在 $D \setminus \{x_0\}$ 上的 $n$ 元函数. 如果存在常数 $A$, 对于任意给定的 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $x \in \mathring{O}(x_0, \delta) \cap D$ 时, 总有
@@ -156,7 +165,7 @@ $$\lim_{x \to x_0} f(x) = A, ~~ \text{或} ~~ f(x) \to A ~ (x \to x_0), ~~ \text
 
 我们用定义来证明. 我们需要估计
 \begin{align*}
-\lvert f(x,y) - 0 \rvert & = \lvert (x + y) \sin\dfrac{y}{x^2+y^2} \rvert \leqslant \lvert x + y \rvert \cdot 1 \\
+\lvert f(x,y) - 0 \rvert & = \left\lvert (x + y) \sin\dfrac{y}{x^2+y^2} \right\rvert \leqslant \lvert x + y \rvert \cdot 1 \\
 & \leqslant \lvert x \rvert + \lvert y \rvert = {\color{red}\lVert (x, y) \rVert_1} \\
 & \leqslant \sqrt{2} \cdot \sqrt{x^2 + y^2} = \sqrt{2} \cdot \lVert (x, y) \rVert_2.
 \end{align*}
@@ -181,6 +190,12 @@ $$\lim_{x \to x_0} f(x) = A, ~~ \text{或} ~~ f(x) \to A ~ (x \to x_0), ~~ \text
 一元函数在一点 $x_0$ 处由左右极限给出的收敛的充要条件:
 $$\lim\limits_{x \to x_0^-} f(x) = \lim\limits_{x \to x_0^+} f(x) = A$$
 在多元函数的情形, 类似条件可能不再成立.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数极限与一元函数极限的不同}
 
 \begin{eg}
 考虑二元函数 $f(x, y) = \dfrac{xy}{x^2 + y^2}, (x, y) \neq (0, 0).$
@@ -209,6 +224,12 @@ $$f(x, x) = \dfrac{mx^2}{x^2 + m^2 x^2} = \dfrac{m}{1+m^2}.$$
 
 \begin{frame}{多元函数极限与一元函数极限的不同}
 
+\ifHandout
+% do nothing
+\else
+\markEndOfClass{36}
+\fi
+
 问题: 是不是点 $x \in \mathbb{R}^n$ 沿着任意过原点的直线趋于原点 $O$ 时极限都存在且相等, 则函数 $f(x)$ 在原点 $O$ 处有极限?
 
 \pause
@@ -221,8 +242,8 @@ $$f(x, x) = \dfrac{mx^2}{x^2 + m^2 x^2} = \dfrac{m}{1+m^2}.$$
 \vspace{0.5em}
 
 当点 $(x, y)$ 沿着过原点的直线 $y = mx$ 趋于原点 $(0, 0)$ 时, 有
-$$\lim\limits_{\substack{x \to 0 \\ y = mx}} f(x, y) = \lim\limits_{x \to 0} \dfrac{(m^2 - 1)^2 x^2}{x^2 + m^4 x^4} = 1.$$
-同时, 当点 $(x, y)$ 沿着 $y$-轴趋于原点 $(0, 0)$ 时, 有 $f(0, y) \equiv 1.$ 也就是说, 点 $(x, y)$ 沿着过原点的任意直线趋于原点 $(0, 0)$ 时, 极限都是 1.
+$$\lim\limits_{\substack{x \to 0 \\ y = mx}} f(x, y) = \lim\limits_{x \to 0} \dfrac{{\color{red}x^2} ~ - 2m^2x^3 + m^4 x^4}{{\color{red}x^2} ~ + m^4 x^4} = 1.$$
+同时, 当点 $(x, y)$ 沿着 $y$-轴趋于原点 $(0, 0)$ 时, 有 $f(0, y) \equiv 1.$ 于是, 点 $(x, y)$ 沿着过原点的任意直线趋于原点 $(0, 0)$ 时, 极限都是 1.
 
 \pause
 \vspace{0.5em}
@@ -281,21 +302,32 @@ $$\lvert f(x) - A \rvert \leqslant \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \df
 
 一个自然的问题是, 是否在{\color{red}一定条件下}, 我们可以逐坐标 (变量) 地考察极限, 每次只把当前变量当作一元函数, 而其他还未考察过的变量当作常数, 这样的极限可以等于多元函数的极限?
 
-这样的极限称作{\color{red}累次极限}. 注意, 它与我们考察坐标的顺序是有关系的.
+这样的极限称作{\color{red}累次极限}. 注意, 它与我们考察坐标的顺序是相关的.
 
-\pause
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{累次极限}
 
 \begin{Def}[二次极限]
 设 $D \subset \mathbb{R}^2$ 是一个非空开集, $(x_0, y_0) \in D$ 为一定点, $z = f(x, y)$ 是定义在 $D \setminus \{(x_0, y_0)\}$ 上的二元函数.
 如果对{\color{red}每个固定的 $y\neq y_0$}, 极限 $\lim\limits_{x \to x_0} f(x, y)$ 存在, 并且极限
 $$\lim_{y \to y_0} \lim_{x \to x_0} f(x, y)$$
 存在, 则称此极限为 $f(x, y)$ 在点 $(x_0, y_0)$ 处的先对 $x$ 后对 $y$ 的二次极限.
+\end{Def}
 
 \pause
 
 类似可以定义 $f(x, y)$ 在点 $(x_0, y_0)$ 处的先对 $y$ 后对 $x$ 的二次极限:
 $$\lim_{x \to x_0} \lim_{y \to y_0} f(x, y).$$
-\end{Def}
+
+\pause
+\vspace*{0.5em}
+
+以及定义在一般 $n$ 维空间 $\mathbb{R}^n$ 中函数 $f$ 在某点 $(x_1^0, x_2^0, \dots, x_n^0) \in \mathbb{R}^n$ 处的累次极限
+\vspace*{-1em}
+$$\lim_{x_{i_1} \to x_{i_1}^0} \cdots \lim_{x_{i_n} \to x_{i_n}^0} f(x_1, \dots, x_n).$$
 
 \end{frame}
 
@@ -305,10 +337,10 @@ $$\lim_{x \to x_0} \lim_{y \to y_0} f(x, y).$$
 
 \begin{table}
 \centering
-\begin{tabular}{c@{\hskip 10pt}c@{\hskip 15pt}cc}
+\begin{tabular}{c@{\hskip 3pt}c@{\hskip 9pt}cc}
 & 二重极限 & \multicolumn{2}{c}{二次极限} \\
 & $\lim\limits_{\substack{x \to x_0\\y \to y_0}} f(x, y)$ & $\lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x, y)$ & $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x, y)$ \\[1ex]
-\only<2->{$(x + y) \sin\dfrac{y}{x^2+y^2}$ & $0$} & \only<4->{$0$ & $0$} \\[1ex]
+\only<2->{\smaller[1]$(x + y) \sin\dfrac{y}{x^2+y^2}$ & $0$} & \only<4->{$0$ & $0$} \\[1ex]
 \only<5->{$\dfrac{xy}{x^2 + y^2}$ & {\color{red}\ding{55}} & $0$ & $0$} \\[1ex]
 \only<6->{$\dfrac{(y^2 - x)^2}{x^2 + y^4}$ & {\color{red}\ding{55}} & $1$ & $1$}
 \end{tabular}
@@ -317,6 +349,7 @@ $$\lim_{x \to x_0} \lim_{y \to y_0} f(x, y).$$
 \only<3->{
 固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} (x + y) \sin\dfrac{y}{x^2+y^2} = y \sin\dfrac{1}{y}.$ 再对 $y$ 取极限, 得到 $\lim\limits_{y \to 0} y \sin\dfrac{1}{y} = 0.$ 所以, 二次极限
 $$\lim_{y \to 0} \lim_{x \to 0} (x + y) \sin\dfrac{y}{x^2+y^2} = 0.$$
+类似可算得 $\lim_{x \to 0} \lim_{y \to 0} (x + y) \sin\dfrac{y}{x^2+y^2} = 0.$
 }
 
 \only<7->{\color{red}二次极限存在不能保证二重极限存在!}
@@ -334,17 +367,19 @@ $$\lim_{y \to 0} \lim_{x \to 0} (x + y) \sin\dfrac{y}{x^2+y^2} = 0.$$
 \begin{eg}[两个二次极限存在, 但不相等]
 只要对之前的例子稍作修改, 就可以得到这样的例子.
 \pause
-$$f(x, y) = \dfrac{(2y^2 - x)^2}{x^2 + y^4}, (x, y) \neq (0, 0).$$
+$$f(x, y) = \dfrac{({\color{red}2} y^2 - x)^2}{x^2 + y^4}, (x, y) \neq (0, 0).$$
 \pause
-固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = 4.$ 所以, $\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y) = 4.$
+固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = \dfrac{(2y^2)^2}{y^4} = 4.$ 所以
+$$\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y) = 4.$$
 
 \pause
-\vspace{0.5em}
+\vspace*{-0.5em}
 
-固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = 1.$ 所以, $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y) = 1.$
+固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = 1.$ 所以
+$$\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y) = 1.$$
 
 \pause
-\vspace{0.5em}
+\vspace*{-0.5em}
 
 这个例子中, 二重极限也是不存在的.
 \end{eg}
@@ -378,7 +413,7 @@ $$f(x, y) = \begin{cases}
 \pause
 \vspace{0.5em}
 
-类似地, $\lim\limits_{y \to 0} f(x, y)$ 也不存在, 那么二次极限 $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y)$ 也不存在.
+类似地, $\lim\limits_{y \to 0} f(x, y)$ 也不存在, 故二次极限 $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y)$ 也不存在.
 \end{eg}
 
 \end{frame}
@@ -461,7 +496,7 @@ $$\lvert \varphi(x) - A \rvert = \lim_{y \to y_0} \lvert f(x, y) - A \rvert \leq
 \pause
 \vspace{0.5em}
 
-我们可以立即得到两个讨论:
+我们可以立即得到两个推论:
 \begin{itemize}
 \item 若二重极限和某个二次极限都存在, 则二者必相等;
 \pause
@@ -564,7 +599,7 @@ $$\lvert (f \pm g)(x) - (f \pm g)(x_0) \rvert \leqslant \lvert f(x) - f(x_0) \rv
 一种方法是直接用定义进行验证.
 \pause
 任取 $(x_0, y_0) \in \mathbb{R}^2$, 对 $f$ 在这点附近的函数值增量有估计
-{\smaller[1]
+% {\smaller[1]
 \begin{align*}
 & \lvert f(x, y) - f(x_0, y_0) \rvert \\
 = & \left\lvert \sin \sqrt{x^2 + y^2} - \sin \sqrt{x_0^2 + y_0^2} \right\rvert \\
@@ -572,8 +607,14 @@ $$\lvert (f \pm g)(x) - (f \pm g)(x_0) \rvert \leqslant \lvert f(x) - f(x_0) \rv
 \leqslant & 2 \left\lvert \sin\dfrac{\sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2}}{2} \right\rvert \cdot 1  \leqslant \sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2} \\
 \leqslant & \sqrt{(x - x_0)^2 + (y - y_0)^2} = \lVert (x, y) - (x_0, y_0) \rVert_2.
 \end{align*}
-}
-\pause
+% }
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元连续函数的例子}
+
 那么 $\forall \varepsilon > 0,$ 取 $\delta = \varepsilon > 0,$ 当 $\lVert (x, y) - (x_0, y_0) \rVert_2 < \delta$ 时, 有 $\lvert f(x, y) - f(x_0, y_0) \rvert < \varepsilon.$
 
 \pause
@@ -592,6 +633,7 @@ $$\lvert (f \pm g)(x) - (f \pm g)(x_0) \rvert \leqslant \lvert f(x) - f(x_0) \rv
 \end{eg}
 
 \pause
+\vspace{1em}
 
 函数 $\ln(x+e^y)$ 与 $\sqrt{x^2 + y^2}$ 都是各自定义域上的连续函数, 所以 $\dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}}$ 也是连续函数. 又有
 \begin{gather*}
@@ -606,6 +648,16 @@ $$\lim_{(x,y) \to (1,0)} \dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}} = \dfrac{\ln 2}{1}
 %------------------------------------------------
 
 \begin{frame}{多元连续函数相关的算例}
+
+\begin{eg}
+计算极限 $\lim\limits_{(x,y) \to (0,0)} \dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{\sqrt{x^2 + y^2}}.$
+\end{eg}
+
+\pause
+\vspace{1em}
+
+我们将原函数写成两个函数相乘的形式
+$$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{(y+1) \sqrt{x^2 + y^2}} \cdot (y+1).$$
 
 \end{frame}
 
