@@ -9,7 +9,8 @@
 
 \title[第十一章\\
 Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章\quad Euclid 空间上的极限与连续}{第十一章 Euclid 空间上的极限与连续}} % The short title appears at the bottom of every slide, the full title is only on the title page
-\author[\S 11.2 多元连续函数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+\author[\S 11.2\\
+多元连续函数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
 {\Large \bfseries \S 11.2 多元连续函数}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date, can be changed to a custom date
@@ -188,7 +189,7 @@ $$\lim_{x \to x_0} f(x) = A, ~~ \text{或} ~~ f(x) \to A ~ (x \to x_0), ~~ \text
 \pause
 
 一元函数在一点 $x_0$ 处由左右极限给出的收敛的充要条件:
-$$\lim\limits_{x \to x_0^-} f(x) = \lim\limits_{x \to x_0^+} f(x) = A$$
+$$\lim\limits_{x \to x_0-} f(x) = \lim\limits_{x \to x_0+} f(x) = A$$
 在多元函数的情形, 类似条件可能不再成立.
 
 \end{frame}
@@ -262,9 +263,9 @@ $$\lim\limits_{\substack{x \to 0 \\ y = mx}} f(x, y) = \lim\limits_{x \to 0} \df
 $$\lvert A - B \rvert \leqslant \lvert f(x) - A \rvert + \lvert f(x) - B \rvert \to 0, \quad (x \to x_0),$$
 知 $A = B.$
 \item 局部有界性: 如果函数 $f(x)$ 当 $x \to x_0$ 时有极限 $A$, 那么存在 $\delta > 0$, 使得对于 $x \in \mathring{O}(x_0, \delta) \cap D$ 有
-$$\lvert f(x) - A \rvert \leqslant 1 ~~ \Longrightarrow ~~ \lvert f(x) \rvert \leqslant \lvert A \rvert + 1.$$
+$$\lvert f(x) - A \rvert < 1 ~~ \Longrightarrow ~~ \lvert f(x) \rvert < \lvert A \rvert + 1.$$
 \item 局部保号性: 如果函数 $f(x)$ 当 $x \to x_0$ 时有极限 $A > 0$, 那么存在 $\delta > 0$, 使得对于 $x \in \mathring{O}(x_0, \delta) \cap D$ 有
-$$\lvert f(x) - A \rvert \leqslant \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \dfrac{A}{2} > 0.$$
+$$\lvert f(x) - A \rvert < \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \dfrac{A}{2} > 0.$$
 对于 $A < 0$ 的情形也是类似的.
 \end{itemize}
 
@@ -299,8 +300,11 @@ $$\lvert f(x) - A \rvert \leqslant \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \df
 从刚才的几个例子, 仅在二维的情形下, 我们就看到了 $\mathbb{R}^n \ni x \to x_0$ (函数行为) 的复杂性, 一维情形下的一些性质在高维空间中不能直接推广.
 
 \pause
+\vspace{0.5em}
 
 一个自然的问题是, 是否在{\color{red}一定条件下}, 我们可以逐坐标 (变量) 地考察极限, 每次只把当前变量当作一元函数, 而其他还未考察过的变量当作常数, 这样的极限可以等于多元函数的极限?
+
+\vspace{0.5em}
 
 这样的极限称作{\color{red}累次极限}. 注意, 它与我们考察坐标的顺序是相关的.
 
@@ -375,7 +379,7 @@ $$\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y) = 4.$$
 \pause
 \vspace*{-0.5em}
 
-固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = 1.$ 所以
+固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} \dfrac{(2y^2 - x)^2}{x^2 + y^4} = \lim\limits_{y \to 0} \dfrac{(- x)^2}{x^2} = 1.$ 所以
 $$\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y) = 1.$$
 
 \pause
@@ -436,12 +440,12 @@ y \sin\dfrac{1}{x}, & x \neq 0 ~ \text{且} ~ y \neq 0, \\
 \pause
 \vspace{0.5em}
 
-固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} y \sin\dfrac{1}{x} = y \sin\dfrac{1}{x}$ 不存在, 所以 $\lim\limits_{x \to 0} f(x, y)$ 不存在, 那么二次极限 $\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y)$ 也不存在.
+固定 $y \neq 0,$ 当 $x \to 0$ 时, $\lim\limits_{x \to 0} y ~ {\color{red}\sin\dfrac{1}{x}}$ 不存在, 所以 $\lim\limits_{x \to 0} f(x, y)$ 不存在, 那么二次极限 $\lim\limits_{y \to 0} \lim\limits_{x \to 0} f(x, y)$ 也不存在.
 
 \pause
 \vspace{0.5em}
 
-固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} y \sin\dfrac{1}{x} = 0,$ 所以 $\lim\limits_{y \to 0} f(x, y) = 0.$ 于是, 二次极限 $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y) = 0.$
+固定 $x \neq 0,$ 当 $y \to 0$ 时, $\lim\limits_{y \to 0} {\color{red}y} \sin\dfrac{1}{x} = 0,$ 所以 $\lim\limits_{y \to 0} f(x, y) = 0.$ 于是, 二次极限 $\lim\limits_{x \to 0} \lim\limits_{y \to 0} f(x, y) = 0.$
 
 \end{eg}
 
@@ -483,14 +487,14 @@ $$\lim_{x \to x_0} \lim_{y \to y_0} f(x, y) = \lim_{x \to x_0} \varphi(x) = \lim
 \pause
 \vspace{0.5em}
 
-由条件: 二重极限 $\lim\limits_{(x,y) \to (x_0, y_0)} f(x, y) = A$ 知, 对于任意 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $\lVert (x, y) - (x_0, y_0) \rVert_2 < \delta$ 时, 有 $\lvert f(x, y) - A \rvert < \varepsilon / 2$. 如果有需要, 我们可以缩小 $\delta$ 使得在 $O((x_0, y_0), \delta)$ 内, 定理条件: 当 $x \neq x_0$ 时, 总存在极限 $\lim\limits_{y \to y_0} f(x, y) = \varphi(x)$ 满足.
+由条件: 二重极限 $\lim\limits_{(x,y) \to (x_0, y_0)} f(x, y) = A$ 知, 对于任意 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $\lVert (x, y) - (x_0, y_0) \rVert < \delta$ 时, 有 $\lvert f(x, y) - A \rvert < \varepsilon / 2$. 如果有需要, 我们可以缩小 $\delta$ 使得在 $O((x_0, y_0), \delta)$ 内, 定理条件: 当 $x \neq x_0$ 时, 总存在极限 $\lim\limits_{y \to y_0} f(x, y) = \varphi(x)$ 满足.
 
 \pause
 \vspace{0.5em}
 
 于是在 $O((x_0, y_0), \delta)$ 内, 只要 $x\neq x_0,$ 可以对不等式 $\lvert f(x, y) - A \rvert < \varepsilon / 2$ 两边同时取 $y \to y_0$ 的极限, 得到
 $$\lvert \varphi(x) - A \rvert = \lim_{y \to y_0} \lvert f(x, y) - A \rvert \leqslant \varepsilon / 2 < \varepsilon.$$
-也就是说, 我们证明了, $\forall \varepsilon > 0, \exists \delta > 0,$ 当 $0 < \lVert x - x_0 \rVert_1 < \delta$ 时, 有 $\lvert \varphi(x) - A \rvert < \varepsilon.$
+也就是说, 我们证明了, $\forall \varepsilon > 0, \exists \delta > 0,$ 当 $0 < \lvert x - x_0 \rvert < \delta$ 时, 有 $\lvert \varphi(x) - A \rvert < \varepsilon.$
 即有 $\lim\limits_{x \to x_0} \varphi(x) = A.$
 
 \pause
@@ -541,7 +545,7 @@ $\lim\limits_{\substack{x \to x_0\\y \to y_0}} f(x, y)$ & $\lim\limits_{y \to y_
 \pause
 
 \begin{Def}[多元函数的连续性]
-设 $D \subset \mathbb{R}^n$ 是一个非空集合, $f: D \to \mathbb{R}$ 是定义在 $D$ 上的 $n$ 元函数, $x_0 \in D$ 是一定点. 如果
+设 $D \subset \mathbb{R}^n$ 是一个非空开集, $f: D \to \mathbb{R}$ 是定义在 $D$ 上的 $n$ 元函数, $x_0 \in D$ 是一定点. 如果
 $$\lim_{x \to x_0} f(x) = f(x_0),$$
 则称函数 $f(x)$ 在点 $x_0$ 处连续.
 \pause
@@ -657,7 +661,15 @@ $$\lim_{(x,y) \to (1,0)} \dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}} = \dfrac{\ln 2}{1}
 \vspace{1em}
 
 我们将原函数写成两个函数相乘的形式
-$$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{(y+1) \sqrt{x^2 + y^2}} \cdot (y+1).$$
+$$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{{\color{red}(y+1)} \sqrt{x^2 + y^2}} \cdot {\color{red}(y+1)}.$$
+这两个都是 $(0,0)$ 附近的连续函数, 并且当 $(x,y) \to (0,0)$ 时有
+$$
+(y+1) \sqrt{x^2 + y^2} \to 0
+\pause
+~~ \Longrightarrow ~~ \dfrac{\sin \left( {\color{red} (y+1) \sqrt{x^2 + y^2}} \right)}{\color{red} (y+1) \sqrt{x^2 + y^2}} \to 1
+$$
+\pause
+于是 $\lim\limits_{(x,y) \to (0,0)} \dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{\sqrt{x^2 + y^2}} = 1 \cdot 1 = 1.$
 
 \end{frame}
 
@@ -668,6 +680,239 @@ $$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{(y+1) \sqrt{x^2 + y^2}} \cd
 %------------------------------------------------
 
 \begin{frame}{向量值函数}
+
+多元函数是从定义域对一元函数的高维推广, 我们也可以进一步从值域出发, 对函数进行高维推广, 也就是所谓的向量值函数.
+
+\pause
+\vspace{1em}
+
+向量值函数其实我们之前已经接触过不少, 例如 (一元) 函数的参数表示
+$$
+\begin{cases}
+x = x(t), \\
+y = y(t),
+\end{cases} ~~ t \in [t_1, t_2]
+$$
+
+\pause
+
+它的本质是, 给出了到相应函数图像的映射 $\mathbb{R} \longrightarrow \Gamma_f \subset \mathbb{R}^2.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数}
+
+\begin{Def}[向量值函数]
+设 $D \subset \mathbb{R}^n$ 是一个非空集合, $D$ 到 $\mathbb{R}^n$ 的映射
+$$f: D \to \mathbb{R}^m$$
+称为 $n$ 元 $m$ 维向量值函数 (或多元函数组). $D$ 称为 $f$ 的定义域,
+$$f(D) = \left\{ f(x): ~ x \in D \right\}$$
+称为 $f$ 的值域.
+\end{Def}
+
+\pause
+\vspace{1em}
+
+一类最直接的例子就是多元函数 $\mathbb{R}^n \ni D \xrightarrow{f} \mathbb{R}$ 的图像映射:
+$$f: D \to \Gamma_f \subset \mathbb{R}^{n+1}, ~~ x \mapsto (x, f(x)).$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的坐标表示}
+
+记 $z = (z_1, z_2, \dots, z_m) = f(x_1, x_2, \dots, x_n),$ 每一个 $z_i$ 都是 $x_1, x_2, \dots, x_n$ 的函数, 于是可以写作
+$$z_i = f_i(x_1, x_2, \dots, x_n),$$
+即
+$$z = f(x) = \begin{pmatrix}
+f_1(x_1, x_2, \dots, x_n) \\
+f_2(x_1, x_2, \dots, x_n) \\
+\vdots \\
+f_m(x_1, x_2, \dots, x_n)
+\end{pmatrix}^T
+$$
+$f$ 也可写作向量的形式 $f = (f_1, f_2, \dots, f_m).$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的例子}
+
+考虑映射
+$$f: [0, +\infty) \times [0, 2\pi] \longrightarrow \mathbb{R}^3, ~~ (r, \theta) \mapsto (x, y, z),$$
+具体分量形式为
+$$
+\begin{cases}
+x = x(r, \theta) = r \cos\theta, \\
+y = y(r, \theta) = r \sin\theta, \\
+z = z(r, \theta) = r, \\
+\end{cases}
+~~ r \in [0, +\infty), \theta \in [0, 2\pi].
+$$
+
+这是一个二元三维向量值函数,
+\pause
+其值域为三维空间上的一张半圆锥面, 如下图所示:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.777]
+\begin{axis}[
+axis lines=center,
+axis on top,
+xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
+domain=0:2,
+y domain=0:2*pi,
+xmin=-2.5, xmax=2.5,
+ymin=-2.5, ymax=2.5,
+zmin=0.0, zmax=3
+]
+\addplot3 [
+    surf,
+    fill=themecolor,
+    % shader=interp,
+    opacity=0.5,
+    % mesh/colormap/blackwhite
+] ({x*cos(deg(y))},{x*sin(deg(y))},{x});
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的极限}
+
+我们接下来要推广极限和连续性的概念到向量值函数.
+
+\pause
+
+\begin{Def}[向量值函数的极限]
+设 $D \subset \mathbb{R}^n$ 是一个非空开集, $x_0 \in D$ 是一定点, $f: D \setminus \{x_0\} \to \mathbb{R}^m$ 是一个 $n$ 元 $m$ 维向量值函数, $A \in \mathbb{R}^m$ 为一个 $m$ 维向量. 如果对于任意的 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $0 < \lVert x - x_0 \rVert < \delta$ (或写作 $x \in \mathring{O}(x_0, \delta)$) 时, 有
+$$\lVert f(x) - A \rVert < \varepsilon, ~~ (\text{或写作} ~ f(x) \in O(A, \varepsilon)),$$
+则称 $A$ 为当 $x$ 趋于 $x_0$ 时 $f$ 的极限, 并称当 $x$ 趋于 $x_0$ 时 $f$ 收敛, 记为
+$$\lim_{x \to x_0} f(x) = A ~~ \text{或} ~ f(x) \to A (x \to x_0).$$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的连续}
+
+\begin{Def}[向量值函数的连续性]
+设 $D \subset \mathbb{R}^n$ 是一个非空开集, $x_0 \in D$ 是一定点, $f: D \to \mathbb{R}^m$ 是一个 $n$ 元 $m$ 维向量值函数. 如果 $f$ 满足
+$$\lim_{x \to x_0} f(x) = f(x_0),$$
+则称函数 $f(x)$ 在点 $x_0$ 处连续.
+\pause
+如果函数 $f(x)$ 在 $D$ 的每一点都连续, 则称函数 $f(x)$ 在 $D$ 上连续.
+\end{Def}
+
+\pause
+
+\begin{remark}
+向量值函数的连续性也可以用 $\varepsilon - \delta$ 语言来表述:
+
+\pause
+
+\begin{center}
+$\forall \varepsilon > 0, \exists \delta > 0,$ 当 $\lVert x - x_0 \rVert < \delta$ 时, 有 $\lVert f(x) - f(x_0) \rVert < \varepsilon.$
+\end{center}
+
+\pause
+
+或者
+
+\begin{center}
+$\forall \varepsilon > 0, \exists \delta > 0,$ 当 $x \in O(x_0, \delta)$ 时, 有 $f(x) \in O(f(x_0), \varepsilon).$
+\end{center}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数连续的一个充要条件}
+
+之前我们已经知道, 向量值函数有分量形式 $f = (f_1, f_2, \dots, f_m)$, 而一族向量长度趋于 $0$ 当且仅当每一个分量都趋于 $0$. 那么向量值函数的连绯性可以用分量函数的连续性来刻画:
+
+\pause
+\vspace{1em}
+
+\begin{thm}
+设 $D \subset \mathbb{R}^n$ 是一个非空开集, $x_0 \in D$ 是一定点, $f: D \to \mathbb{R}^m$ 是一个 $n$ 元 $m$ 维向量值函数.
+那么 $f$ 在 $x_0$ 处连续的充要条件是, $f$ 的每一个分量函数 $f_i: D \to \mathbb{R}$ 都在 $x_0$ 处连续.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数连续的复合}
+
+考虑向量值函数的复合
+$$D ~ (\subset \mathbb{R}^n) \xrightarrow{f} \Omega ~ (\subset \mathbb{R}^k) \xrightarrow{g} \mathbb{R}^m.$$
+可以定义复合函数 $g \circ f: D \to \mathbb{R}^m$ 为
+$$(g \circ f)(x) = g(f(x)).$$
+
+\pause
+\vspace{1em}
+
+与一元函数的情形类似, 函数连续性的复合性质也可以推广到向量值函数的复合上:
+
+\pause
+
+\begin{thm}
+设 $D \subset \mathbb{R}^n$ 是一个非空开集, $x_0 \in D$ 是一定点, $f: D \to \Omega \subset \mathbb{R}^k$ 是一个 $n$ 元 $k$ 维向量值函数, $g: \Omega \to \mathbb{R}^m$ 是一个 $k$ 元 $m$ 维向量值函数, 且 $f$ 在 $x_0$ 处连续, $g$ 在 $f(x_0)$ 处连续. 那么复合函数 $g \circ f$ 在 $x_0$ 处连续.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数连续的复合}
+
+以上是复合向量值函数某一点处的连续性, 我们有整个定义域上的连续性定理:
+
+\pause
+
+\begin{thm}
+设 $D \subset \mathbb{R}^n$ 是一个非空开集, $f: D \to \Omega \subset \mathbb{R}^k$ 是一个 $n$ 元 $k$ 维向量值函数, $g: \Omega \to \mathbb{R}^m$ 是一个 $k$ 元 $m$ 维向量值函数, 且 $f$ 在 $D$ 上连续, $g$ 在 $\Omega$ 上连续. 那么复合函数 $g \circ f$ 在 $D$ 上连续.
+\end{thm}
+
+\pause
+\vspace{1em}
+
+记 $\operatorname{pr}_i: \mathbb{R}^m \to \mathbb{R}$ 为第 $i$ 个分量投影函数, 即
+$$\operatorname{pr}_i(x_1, x_2, \dots, x_m) = x_i,$$
+它是一个连续函数, $f$ 的分量函数 $f_i$ 可写作复合
+$$f_i = \operatorname{pr}_i \circ f.$$
+那么若向量值函数 $f$ 在 $D$ 上连续, 则它的每个分量 $f_i$ 在 $D$ 上连续.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数连续性的其他运算性质}
+
+向量值函数连续性的其他运算性质列举如下:
+
+\pause
+\vspace{1em}
+
+设 $f, g: D ~ (\subset \mathbb{R}^n) \to \mathbb{R}^m$ 为两个 $n$ 元 $m$ 维向量值函数, 则
+
+\vspace{1em}
+
+\begin{itemize}
+\item $f \pm g$ 也是连续的向量值函数;
+\item $f \cdot g = \langle f, g \rangle$ 是连续的实值函数;
+\item $\varphi(f, g)$ 是连续的实值函数, 其中 $\varphi$ 是任意双线性型.
+\end{itemize}
 
 \end{frame}
 
