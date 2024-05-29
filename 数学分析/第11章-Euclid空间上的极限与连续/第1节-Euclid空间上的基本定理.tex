@@ -1024,7 +1024,7 @@ $E$ 的任意无限子集在 $E$ 中必有聚点.
 \pause
 \vspace{1em}
 
-我们来证明它与 $E$ 是有界闭集的等价性. 设 $S \subset E$ 是 $E$ 的无限子集.
+我们证明它与 $E$ 是有界闭集的等价性. 设 $S \subset E$ 是 $E$ 的无限子集.
 
 \pause
 \vspace{1em}
@@ -1035,7 +1035,7 @@ $E$ 的任意无限子集在 $E$ 中必有聚点.
 \pause
 \vspace{1em}
 
-另一个方向, 只要证明 $E$ 有界集即可. 用反证法, 假设 $E$ 无界, 那么 $\forall k \in \mathbb{N},$ 存在 $x_k \in E,$ 使得 $\lVert x_k \rVert > k,$ 从而 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $E$ 的无限子集, 但是它没有聚点, 矛盾.
+另一个方向, 只要证明 $E$ 有界集即可. 用反证法, 假设 $E$ 无界, 那么 $\forall k \in \mathbb{N},$ 存在 $x_k \in E,$ 使得 $\lVert x_k \rVert > \max\{k, \lVert x_{k-1} \rVert + 1\}$ (约定 $x_0$ 为 $E$ 中任意一点), 从而 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $E$ 的无限子集, 但是它没有聚点, 矛盾.
 
 \end{frame}
 
