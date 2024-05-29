@@ -9,7 +9,8 @@
 
 \title[第十一章\\
 Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章\quad Euclid 空间上的极限与连续}{第十一章 Euclid 空间上的极限与连续}} % The short title appears at the bottom of every slide, the full title is only on the title page
-\author[\S 11.2 多元连续函数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+\author[\S 11.2\\
+多元连续函数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
 {\Large \bfseries \S 11.2 多元连续函数}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date, can be changed to a custom date
@@ -658,6 +659,14 @@ $$\lim_{(x,y) \to (1,0)} \dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}} = \dfrac{\ln 2}{1}
 
 我们将原函数写成两个函数相乘的形式
 $$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{(y+1) \sqrt{x^2 + y^2}} \cdot (y+1).$$
+这两个都是 $(0,0)$ 附近的连续函数, 并且当 $(x,y) \to (0,0)$ 时有
+$$
+(y+1) \sqrt{x^2 + y^2} \to 0
+\pause
+~~ \Longrightarrow ~~ \dfrac{\sin \left( {\color{red} (y+1) \sqrt{x^2 + y^2}} \right)}{\color{red} (y+1) \sqrt{x^2 + y^2}} \to 1
+$$
+\pause
+于是 $\lim\limits_{(x,y) \to (0,0)} \dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{\sqrt{x^2 + y^2}} = 1 \cdot 1 = 1.$
 
 \end{frame}
 
@@ -668,6 +677,106 @@ $$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{(y+1) \sqrt{x^2 + y^2}} \cd
 %------------------------------------------------
 
 \begin{frame}{向量值函数}
+
+多元函数是从定义域对一元函数的高维推广, 我们也可以进一步从值域出发, 对函数进行高维推广, 也就是所谓的向量值函数.
+
+\pause
+\vspace{1em}
+
+向量值函数其实我们之前已经接触过不少, 例如 (一元) 函数的参数表示
+$$
+\begin{cases}
+x = x(t), \\
+y = y(t),
+\end{cases} ~~ t \in [t_1, t_2]
+$$
+
+\pause
+
+它的本质是, 给出了到相应函数图像的映射 $\mathbb{R} \longrightarrow \Gamma_f \subset \mathbb{R}^2.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数}
+
+\begin{Def}[向量值函数]
+设 $D \subset \mathbb{R}^n$ 是一个非空集合, $D$ 到 $\mathbb{R}^n$ 的映射
+$$f: D \to \mathbb{R}^m$$
+称为 $n$ 元 $m$ 维向量值函数 (或多元函数组). $D$ 称为 $f$ 的定义域,
+$$f(D) = \left\{ f(x): ~ x \in D \right\}$$
+称为 $f$ 的值域.
+\end{Def}
+
+\pause
+\vspace{1em}
+
+一类最直接的例子就是多元函数 $\mathbb{R}^n \ni D \xrightarrow{f} \mathbb{R}$ 的图像映射:
+$$f: D \to \Gamma_f \subset \mathbb{R}^{n+1}, ~~ x \mapsto (x, f(x)).$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的坐标表示}
+
+记 $z = (z_1, z_2, \dots, z_m) = f(x_1, x_2, \dots, x_n),$ 每一个 $z_i$ 都是 $x_1, x_2, \dots, x_n$ 的函数, 于是可以写作
+$$z_i = f_i(x_1, x_2, \dots, x_n),$$
+即
+$$z = f(x) = \begin{pmatrix}
+f_1(x_1, x_2, \dots, x_n) \\
+f_2(x_1, x_2, \dots, x_n) \\
+\vdots \\
+f_m(x_1, x_2, \dots, x_n)
+\end{pmatrix}^T
+$$
+$f$ 也可写作向量的形式 $f = (f_1, f_2, \dots, f_m).$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的例子}
+
+考虑映射
+$$f: [0, +\infty) \times [0, 2\pi] \longrightarrow \mathbb{R}^3, ~~ (r, \theta) \mapsto (x, y, z),$$
+具体分量形式为
+$$
+\begin{cases}
+x = x(r, \theta) = r \cos\theta, \\
+y = y(r, \theta) = r \sin\theta, \\
+z = z(r, \theta) = r, \\
+\end{cases}
+~~ r \in [0, +\infty), \theta \in [0, 2\pi].
+$$
+
+这是一个二元三维向量值函数,
+\pause
+其值域为三维空间上的一张半圆锥面, 如下图所示:
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+axis lines=center,
+axis on top,
+xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
+domain=0:2,
+y domain=0:2*pi,
+xmin=-2.5, xmax=2.5,
+ymin=-2.5, ymax=2.5,
+zmin=0.0, zmax=3
+]
+\addplot3 [
+    surf,
+    fill=themecolor,
+    % shader=interp,
+    opacity=0.5,
+    % mesh/colormap/blackwhite
+] ({x*cos(deg(y))},{x*sin(deg(y))},{x});
+\end{axis}
+\end{tikzpicture}
+\end{center}
 
 \end{frame}
 
