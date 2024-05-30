@@ -24,9 +24,17 @@
 \HighContrastfalse
 \fi
 
+\newif\ifPlainStyle
+\PlainStyletrue
+% \PlainStylefalse
+
 % https://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
 
+\ifPlainStyle
+\input{plain_preamble}
+\else
 \input{common_preamble}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body

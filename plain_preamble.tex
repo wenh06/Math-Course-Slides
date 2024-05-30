@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Overleaf settings
+% Compiler: XeLatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifHandout
+\documentclass[11pt, UTF8, handout]{beamer}
+\else
+\documentclass[11pt, UTF8]{beamer}
+\fi
+
+\geometry{paperwidth=140mm,paperheight=105mm}
+
+\mode<presentation>
+{
+  \usetheme{default}
+
+%  \setbeamercovered{transparent}
+%  \usecolortheme{seahorse}
+%  \usecolortheme{rose}
+%  \usefonttheme[onlylarge]{structuresmallcapsserif}
+%  \usefonttheme[onlysmall]{structurebold}
+}
+\usepackage{fancybox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% XeLatex等不需要的package
+% \usepackage{epstopdf}  % windows
+% \usepackage[english]{babel}  % windows
+% \usepackage{CJK}  % windows
+% \usepackage[latin1]{inputenc}  % windows
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{multimedia}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{cases}
+\usepackage{rotating}
+\usepackage{latexsym, bm, amsthm, amsmath}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%windows 字体定义%%%%%%%%%%%%%%%%%%%%%%
+% \newcommand{\song}{\CJKfamily{song}}  % windows
+% \newcommand{\hei}{\CJKfamily{hei}}  % windows
+% \newcommand{\fs}{\CJKfamily{fs}}  % windows
+% \newcommand{\kai}{\CJKfamily{kai}}  % windows
+
+%%%%%%%%%%%%%%%%%%%%%%
+% overleaf 字体定义
+\usepackage[slantfont,boldfont]{xeCJK}  % overleaf
+
+% set chn font
+
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
+
+% 仿宋 + 黑体
+% \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simfang.ttf}
+% \setCJKsansfont[Path = fonts/, BoldFont = simhei.ttf]{simfang.ttf}
+
+% 宋体 + 黑体
+% \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simsun.ttc}
+% \setCJKsansfont[Path = fonts/, BoldFont = simhei.ttf]{simsun.ttc}
+
+% 楷体 + 黑体
+% \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simkai.ttf}  % overleaf
+% \setCJKsansfont[Path = fonts/, BoldFont = simhei.ttf]{simkai.ttf}  % overleaf
+
+% 京东朗正体 + 黑体
+% \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{JDLangZhengTi.TTF}
+% \setCJKsansfont[Path = fonts/, BoldFont = simhei.ttf]{JDLangZhengTi.TTF}
+% overleaf
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 引用文献
+
+% 使 用nabib
+% \usepackage{cite}
+% \usepackage[square,authoryear]{natbib}
+
+% 使用 biblatex
+% \usepackage[bibstyle=authoryear]{biblatex}
+% \addbibresource{references.bib}
+
+\usepackage{bibentry}         %  full citation in the body of the text (turn off natbib if use it)
+\nobibliography*                   % no bib at the end
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\vi{{\operatorname{VI}}}
+\def\argmin{{\arg\min}}
+\def\MS{{\cal S}}
+\def\Z{{\cal Z}}
+\def\Y{{\cal Y}}
+\def\X{{\cal X}}
+\def\R{{\cal R}}
+% \def\R{{\mathbb{R}}}
+\def\B{{\cal B}}
+\def\st{\hbox{s.t.}}
+\def\la{\lambda}
+\def\u{{\mathbf{u}}}
+\def\q{{\mathbf{Q}}}
+\def\ba{\bar}
+\def\f{{\mathbf{F}}}
+\def\x{\mathbf{x}}
+\renewcommand\r{{\bf r}}
+\def \[{\begin{equation}}
+\def \]{\end{equation}}
+
+\def\qed{{\hfill\qedsymbol}}
+
+\newcommand{\green}[1]{{\color[rgb]{0,0.6,0}{#1}}}
+\newcommand{\blue}[1]{{\color[rgb]{0,0,1}{#1}}}
+\newcommand{\pink}[1]{{\color[rgb]{1,0,1}{#1}}}
+\newcommand{\red}[1]{{\color[rgb]{1,0,0}{#1}}}
+\definecolor{myblue}{rgb}{0,0,0.5}
+\definecolor{mygreen}{rgb}{0,0.5,0}
+\definecolor{myred}{rgb}{0.5,0,0}
+ \newcommand{\hdh}[1]{\noindent\bf{\color{blue}\shadowbox{#1}\vspace{1ex minus 1ex}}}
+ \newcommand{\hdg}[1]{\begin{center}\large\bf\color{myblue}\shadowbox{#1}\end{center}\vspace{1ex minus 1ex}}
+\renewcommand{\baselinestretch}{1.35}
+%\setlength{\fboxrule}{1pt}
+
+\graphicspath{{images/}}
+
+
+\newif\ifshowtoc
+
+\AtBeginSection{%
+\ifshowtoc
+\begin{frame}
+    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
+\end{frame}
+\fi
+}
+
+
+\newcommand{\case}{{\color{blue}$\blacktriangleright$\;}}
+
+\setbeamertemplate{caption}[numbered]
