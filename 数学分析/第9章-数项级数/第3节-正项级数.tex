@@ -1,0 +1,967 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[第九章\\
+数项级数]{\texorpdfstring{\LARGE \bfseries 第九章\quad 数项级数}{第九章 数项级数}} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[\smaller \S 9.3\\
+正项级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{\Large \bfseries \S 9.3 正项级数}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+\begin{frame}{引言}
+
+\begin{columns}
+  \begin{column}{0.51\textwidth}
+    \includegraphics[width=0.95\textwidth]{images/zeno-paradox.jpg}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
+  \end{column}
+\end{columns}
+
+\vspace*{0.9em}
+
+\begin{columns}
+  \begin{column}{0.51\textwidth}
+    \includegraphics[width=0.95\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    $\dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots$
+  \end{column}
+\end{columns}
+
+\pause
+\vspace*{0.9em}
+
+\begin{center}
+这些级数有共同的特点：通项都是正数！
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[收敛原理]{正项级数的收敛原理}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数的定义}
+
+\begin{Def}
+  如果级数$\sum\limits_{n=1}^\infty x_n$的通项都是非负实数, 即
+  $$x_n \geqslant 0, \quad n = 1, 2, \cdots,$$
+  则称此级数为\textbf{正项级数}.
+\end{Def}
+
+\pause
+
+显然, 正项级数$\sum\limits_{n=1}^\infty x_n$的部分和数列$\{S_n\}$是单调增加的, 即
+$$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1}, \quad n = 1, 2, \cdots.$$
+由数列的单调有界收敛定理, 立刻可以得到
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数的收敛原理}
+
+\begin{thm}[正项级数的收敛原理]
+\begin{center}
+正项级数收敛的充分必要条件是它的部分和数列有上界.
+\end{center}
+\end{thm}
+
+\pause
+\vspace*{0.4em}
+
+\textbf{例：} 考虑级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right].$ 容易看出它是一个正项级数.
+\pause
+它的部分和数列的通项为
+\begin{align*}
+  S_n & = \sum\limits_{k=2}^{n+1} \left[ \dfrac{1}{\nroot[k]{k}} \ln{\dfrac{k^2}{(k-1)(k+1)}} \right] ~ {\color{red}<} \sum\limits_{k=2}^{n+1} ~ {\color{red}\cancel{\dfrac{1}{\nroot[k]{k}}}} \ln{\left( \left.\dfrac{k}{k-1} \right/ \dfrac{k+1}{k} \right)} \\
+  & = \sum\limits_{k=2}^{n+1} \left( \ln{\dfrac{k}{k-1}} - \ln{\dfrac{k+1}{k}} \right) = \ln{2} - \ln{\dfrac{n+2}{n+1}} < \ln{2},
+\end{align*}
+所以正项级数$\sum\limits_{n=2}^\infty \left[ \dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} \right]$收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数的收敛原理}
+
+在这个例子中, 我们实际上使用了马上要介绍的“比较判别法”, 即使用了不等式
+$$\dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},$$
+$\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断. 可以通过判断它的收敛性, 进而得出$\sum\limits_{n=2}^\infty x_n$的收敛性.
+
+\pause
+\vspace*{1em}
+
+本节剩下的内容, 就是介绍一系列包括“比较判别法”在内的简便实用的判别正项级数敛散性的方法.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[比较判别法]{正项级数敛散性的比较判别法}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法}
+
+判断一个正项级数是否收敛, 最常用的方法是用一个已知敛散性的级数与它进行比较.
+
+\pause
+
+\begin{thm}[比较判别法]
+设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数, 若存在常数$A > 0,$ 使得
+$$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
+\vspace*{-1.6em}
+\begin{enumerate}
+  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
+  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时, $\sum\limits_{n=1}^\infty y_n$也发散.
+\end{enumerate}
+\end{thm}
+
+\pause
+\vspace*{-0.6em}
+
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 大的收敛, 则小的也收敛; \quad 小的发散, 则大的也发散. }
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的证明}
+
+设级数$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$的部分和序列分别为$\{S_n\}$与$\{T_n\},$那么显然有
+$$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
+\pause
+于是当数列$\{T_n\}$有上界时, $\{S_n\}$也有上界; 当$\{S_n\}$无上界时, $\{T_n\}$必定也无上界. 那么由~{\color{red}正项级数的收敛原理}\tikzmark{mark1}
+
+\pause
+
+\begin{tikzpicture}[remember picture, overlay]
+\node[rectangle, draw=black, fill=cyan!30, text width=0.35\textwidth] at ([xshift=80, yshift=-25]mark1) (mark1_to) {{\bfseries\smaller[2]正项级数收敛的~{\color{red}充分必要条件}~\color{themecolor}是它的部分和数列有上界}};
+\draw[->, color=black] (mark1_to.north west) -- (mark1);
+\end{tikzpicture}
+
+\pause
+
+\begin{enumerate}
+  \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
+  \item[(2)] 当$\sum\limits_{n=1}^\infty x_n$发散时, $\sum\limits_{n=1}^\infty y_n$也发散.
+\end{enumerate}
+
+\pause
+
+\begin{attnblock}
+由于改变级数有限个项的数值, 并不会改变它的敛散性, 所以比较判别法的条件可以放宽为：“存在正整数$N$与常数$A>0,$ 使得$x_n \leqslant Ay_n$对一切$n > N$成立”.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的应用示例}
+
+\begin{eg}
+  \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$的敛散性.
+  \end{center}
+\end{eg}
+
+\pause
+
+\textbf{解：} 容易看出, 当$n > 3$时成立
+$$\dfrac{n + ~{\color{red}3}}{2n^3 - ~ {\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3 - ~{\color{red}n^3}} = \dfrac{2}{n^2},$$
+由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$的收敛性 (值等于$\dfrac{\pi^2}{6}$), 知$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的应用示例}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性.
+ \end{center}
+\end{eg}
+
+\pause
+\begin{columns}
+  \begin{column}{0.45\textwidth}
+    \begin{tikzpicture}[scale=1.5, domain=0:3.1416/2]
+    \draw[->] (-0.3,0) -- (2.2,0) node[right] {$x$};
+    \draw[->] (0,-0.3) -- (0,2.2) node[above] {$f(x)$};
+
+    \draw[color = orange, dashed, thick] plot[id=x] function{x} node[above right] {$f(x) = x$};
+    \draw[color = blue, thick] plot[id=sin] function{sin(x)} node[above right] {$f(x) = \sin x$};
+    \draw[color = red, dashed, thick] plot[id=px] function{x * 2 / pi} node[below right] {$f(x) = \dfrac{2}{\pi}x$};
+    \draw[color = themecolor, dashed] (pi/2, 0) node[below] {\smaller[1]$\dfrac{\pi}{2}$} -- (pi/2, pi/2);
+    \draw[color = themecolor, dashed] (0, pi/2) node[left] {\smaller[1]$\dfrac{\pi}{2}$} -- (pi/2, pi/2);
+    \draw[color = themecolor, dashed] (0, 1) node[left] {\smaller[1]$1$} -- (pi/2, 1);
+    \end{tikzpicture}
+  \end{column}
+  \begin{column}{0.53\textwidth}
+    从右图可看出, 当$x \in [0, \dfrac{\pi}{2}]$时, 成立不等式$\sin x \geqslant \dfrac{2}{\pi} x,$
+    \pause
+    所以当$n\geqslant 2$时有
+    $$\sin\dfrac{\pi}{n} \geqslant \dfrac{2}{\pi} \cdot \dfrac{\pi}{n} = \dfrac{2}{n}.$$
+    由于$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散, 所以$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$也发散.
+  \end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法的极限形式}
+
+$x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n}$等于某个有限实数, 或是发散到$+\infty,$ 这也是我们经常能遇到的情况. 比较判别法在这种情况下, 有更精细一些的表达:
+
+\pause
+
+\begin{thm}[比较判别法的极限形式]
+设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数, 且
+\vspace*{-0.9em}
+$$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)$$
+\vspace*{-1.3em}
+\begin{enumerate}
+  \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
+  \item[(2)] 若$0 < \ell \leqslant +\infty,$ 则当$\sum\limits_{n=1}^\infty y_n$发散时, $\sum\limits_{n=1}^\infty x_n$也发散.
+\end{enumerate}
+所以当$0 < \ell < +\infty$时, $\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$有相同的敛散性.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{比较判别法极限形式的应用}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性.
+ \end{center}
+\end{eg}
+
+\pause
+
+\textbf{解：} 对通项有估计
+\begin{align*}
+  e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} & = \left[ 1 + \dfrac{1}{n^2} + \mathrm{o}\left(\dfrac{1}{n^2}\right) \right] - \left[ 1 - \dfrac{1}{2} \left(\dfrac{\pi}{n}\right)^2 + \mathrm{o}\left(\dfrac{1}{n^2}\right) \right] \\
+  & = \left( 1 + \dfrac{\pi^2}{2} \right) \dfrac{1}{n^2} + \mathrm{o}\left(\dfrac{1}{n^2}\right),
+\end{align*}
+\pause
+所以
+\vspace*{-1.6em}
+$$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.$$
+依据比较判别法的极限形式, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[积分判别法]{正项级数敛散性的积分判别法}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的积分判别法}
+
+\only<1>{
+无穷级数与我们上一章学习的反常积分有着密切的联系. 我们接下来要介绍一种判别法, 建立起二者敛散性分析的桥梁. 利用它, 我们可以通过反常积分的敛散性判别正项级数的敛散性, 反之亦然.
+
+\vspace{1em}
+
+我们很快会看到, 前面的很多例子中关于正项级数敛散性, 可以很快地通过某些反常积分的敛散性进行判断.
+}
+
+\only<2->{
+\begin{thm}[积分判别法]
+设$f(x)$定义于$[a, +\infty),$ 且$f(x) \geqslant 0,$ 进一步假设$f(x)$在任意有限区间$[a, A]$上Riemann可积. 设$\{a_n\}$是单调增加且趋于$+\infty$的数列：
+% \vspace*{-0.4em}
+$$a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,$$
+令$u_n = \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=1}^\infty u_n$同时收敛或同时发散到$+\infty,$且有
+% \vspace*{-1.6em}
+$$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$$
+\end{thm}
+}
+
+\only<3->{
+特别地, 当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n,$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=[a]+1}^\infty f(n)$具有相同的敛散性.
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的证明}
+设正项级数$\sum\limits_{n=1}^\infty u_n$的部分和数列为$\{S_n\},$ 那么对任意$A > a,$ 存在 (由$A$唯一确定的) 正整数$n$使得$a_n \leqslant A < a_{n+1},$ 于是有
+$$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.$$
+\pause
+若正项级数$\sum\limits_{n=1}^\infty u_n$收敛, 即数列$\{S_n\}$收敛时, 根据极限的夹逼性, $\int_a^A f(x) \mathrm{d} x$当$A \to +\infty$时也收敛, 且收敛到同一极限. \\
+若$\sum\limits_{n=1}^\infty u_n$发散到$+\infty,$ 由不等式$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x$可知反常积分$\int_a^{+\infty} f(x) \mathrm{d} x = \lim\limits_{A\to+\infty} \int_a^{A} f(x) \mathrm{d} x = +\infty.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的证明}
+
+当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n$时, 在闭区间$[n, n+1]$上有
+$$f(n+1) \leqslant f(x) \leqslant f(n),$$
+由定积分的保序性, 有不等式
+$$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mathrm{d} x \leqslant \int_{n}^{n+1} f(n) \mathrm{d} x = f(n).$$
+\pause
+由比较判别法 (使用两次) 知$\sum\limits_{n=[a]+1}^\infty f(n)$与$\sum\limits_{n=[a]+1}^\infty u_n$同时收敛或同时发散, 从而与反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$有相同的敛散性.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+我们先把之前用比较判别法做过的例题重新审视一遍.
+
+\pause
+\vspace*{0.6em}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$的敛散性.
+ \end{center}
+\end{eg}
+
+\pause
+\vspace{0.6em}
+
+\textbf{解：} 由于$f(x) = \sin\dfrac{\pi}{x}$在$[2, +\infty]$上非负单减, 所以$\int_2^{+\infty} f(x) \mathrm{d} x$与$\sum\limits_{n=2}^\infty \sin\dfrac{\pi}{n}$有相同的敛散性. 而
+\begin{align*}
+\int_2^{+\infty} f(x) \mathrm{d} x & = \int_2^{+\infty} \sin\dfrac{\pi}{x}~\mathrm{d} x = \int_{1/2}^{0} \sin\pi t~\mathrm{d}\dfrac{1}{t} = \int_0^{1/2} \dfrac{\sin\pi t}{t^2} \mathrm{d} t \\
+& \geqslant \int_0^{1/2} \dfrac{\frac{2}{\pi}t}{t^2} \mathrm{d} t = \dfrac{2}{\pi} {\color{red} \int_0^{1/2} \dfrac{1}{t} \mathrm{d} t} \quad \text{发散}
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+\begin{eg}
+ \begin{center}
+  判断正项级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$的敛散性.
+ \end{center}
+\end{eg}
+
+\pause
+\vspace{0.6em}
+
+\textbf{解：} 在$[0, 1]$区间上, $g(x) = e^{x^2} - \cos\pi x$是非负递增的, 因为很容易算得$g(0) = 0,$ 且 $g'(x) = 2xe^{x^2} + \pi \sin\pi x \geqslant 0.$ 于是
+$$f(x) = g(1/x) = e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x}$$
+为$[1, +\infty]$上单调递减的非负函数. 那么根据积分判别法, 我们约化到了判断反常积分$\int_1^{+\infty} f(x) \mathrm{d} x$的敛散性：
+$$
+\int_1^{+\infty} f(x) \mathrm{d} x = \int_1^{+\infty} \left( e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x} \right) \mathrm{d} x = \int_0^1 \dfrac{e^{t^2} - \cos\pi t}{t^2} \mathrm{d} t
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+在可能得奇点$0$附近, 有无穷小量的等价
+\begin{align*}
+e^{t^2} - \cos\pi t & = (e^{t^2} - 1) + (1 - \cos\pi t) = (e^{t^2} - 1) + 2 \sin^2 \dfrac{\pi t}{2} \\
+& \sim t^2 + 2 \cdot \left( \dfrac{\pi t}{2} \right)^2 = \left( 1 + \dfrac{\pi^2}{2} \right) t^2,
+\end{align*}
+即在$0$附近成立
+$$\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},$$
+于是原来的反常积分收敛, 进而知级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+目前我们都是利用积分判别法, 从反常积分的敛散性来判别相应正项级数的敛散性. 事实上, 我们也可以反其道而行之, 由已知敛散性的级数出发, 去判断某些反常积分的敛散性.
+
+\pause
+\vspace{0.6em}
+
+\begin{eg}
+ \begin{center}
+  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散.
+ \end{center}
+\end{eg}
+
+\pause
+\vspace{0.6em}
+
+\textbf{证明：} 取$a_n = n\pi, ~ n = 0, 1, 2, \dots,$ 那么
+\begin{align*}
+u_n & := \int_{n\pi}^{(n+1)\pi} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x} = \int_{0}^{\pi} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} \\
+& > \int_{0}^{{\color{red} \frac{1}{(n+1)\pi}}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t}
+\end{align*}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分判别法的应用}
+
+当$0 < t < \dfrac{1}{(n+1)\pi} < 1$时, 如下不等式恒成立：
+\vspace*{-0.6em}
+$$(n\pi + t)^2 \sin^2 t < (n + 1)^2 (\pi t)^2 < (n + 1)^2 \pi^2 \dfrac{1}{(n+1)^2\pi^2} = 1.$$
+于是
+\vspace*{-1.2em}
+$$u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} > \dfrac{1}{2\pi} \cdot \dfrac{1}{n+1}.$$
+由于$\sum\limits_{n=1}^\infty \dfrac{1}{n+1}$发散, 有比较判别法知$\sum\limits_{n=1}^\infty u_n$发散,又由积分判别法知, 反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散.
+
+\pause
+
+\begin{block}{思考题}
+ \begin{center}
+  证明反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^{\color{red}4}\sin^2 x}$收敛.
+ \end{center}
+\end{block}
+
+\end{frame}
+
+% %------------------------------------------------
+
+% \section{总结}
+
+% %------------------------------------------------
+
+% \begin{frame}{总结}
+
+% \begin{itemize}
+% \item[{\larger[2] \color{red} \ding{43}}] 正项级数的定义：通项都是非负实数的级数.
+% \pause
+% \vspace{0.8em}
+% \item[{\larger[2] \color{red} \ding{43}}] 正项级数的收敛原理：正项级数收敛的充分必要条件是它的部分和数列有上界.
+% \pause
+% \vspace{0.8em}
+% \item[{\larger[2] \color{red} \ding{43}}] 不等式形式的比较判别法、极限形式的比较判别法：通过通项之间的比较, 由已知敛散性或者敛散性容易判断的级数的敛散性, 导出我们感兴趣的级数的敛散性.
+% \pause
+% \vspace{0.8em}
+% \item[{\larger[2] \color{red} \ding{43}}] 积分判别法：建立了非负函数反常积分敛散性与正项级数敛散性之间的等价关系.
+% \pause
+% 特别地, 当函数有单调性 (单调递减) 时, 有
+% \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+%   \color{red!80} \int_a^{+\infty} f(x) \mathrm{d} x ~~ \text{收敛} ~~ \Longleftrightarrow ~~ \sum\limits_{n=[a]+1} f(n) ~~ \text{收敛}
+% \end{empheq}
+% \end{itemize}
+
+% \end{frame}
+
+%------------------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}{正项级数比较判别法存在的问题与改进方案}
+
+用比较判别法时, 先要对所考虑的级数的收敛性有一个大致估计, 进而通过放缩, 寻找一个~{\color{red}敛散性已知或相对容易判断}的合适级数与之项比较.
+\pause
+但就绝大多数情况而言, 这两个步骤都具有相当的难度, 因此, 我们希望有一些
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 仅针对级数自身元素 (通项) 进行分析的敛散性判别方法. }
+\end{empheq}
+
+\pause
+
+正项等比级数$\sum\limits_{n=1}^\infty q^n ~ (q > 0)$给我们很重要的启示：它的敛散性只依赖于其相邻两项之比, 即公比$q$是否小于$1.$
+
+\vspace{0.6em}
+
+\begin{columns}
+  \begin{column}{0.51\textwidth}
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/zeno-paradox.jpg}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
+  \end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数比较判别法存在的问题与改进方案}
+
+一个自然的想法是, 我们可以利用级数通项相邻前后两项之比$\dfrac{x_{n+1}}{x_n},$ 或者是这些比值前$n$项的“几何均值”$\nroot[n]{x_n}$ (这里约定了$x_0 = 1,$ $\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{x_1}{x_0} \cdot \dfrac{x_2}{x_1} \cdots \dfrac{x_n}{x_{n-1}}}$)进行敛散性的判别.
+
+\pause
+\vspace{1em}
+
+以上就是本节要讲的三个判别法的基本思想:
+
+\vspace{0.4em}
+\pause
+
+\begin{itemize}[<+->]
+    \item[\ding{43}] Cauchy 判别法
+    \item[\ding{43}] d'Alembert 判别法
+    \item[\ding{43}] Raabe 判别法
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Cauchy\\判别法]{正项级数敛散性的Cauchy判别法}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的Cauchy判别法}
+
+\begin{thm}[Cauchy判别法]
+设$\sum\limits_{n=1}^\infty x_n$是正项级数, $r = \varlimsup_{n\to\infty} \nroot[n]{x_n},$ 则
+\begin{itemize}
+  \item[(1).] 当$r < 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛;
+  \item[(2).] 当$r > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$发散;
+  \item[(3).] 当$r = 1$时, 判别法失效, 级数$\sum\limits_{n=1}^\infty x_n$可能收敛也可能发散.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy判别法的证明}
+
+(1). 当$r = \varlimsup_{n\to\infty} \nroot[n]{x_n} < 1$时, 由上极限的性质, 对任意满足$r < q < 1$的实数$q,$
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 存在正整数$N,$ 使得$\forall n > N,$ 都有$\nroot[n]{x_n} < q.$}
+\end{empheq}
+由比较判别法 (与$\sum\limits_{n=1}^\infty q^n$比较) 知$\sum\limits_{n=1}^\infty x_n$收敛.
+
+\pause
+\vspace*{0.6em}
+
+(2). 当$r > 1$时, 对任意满足$r > q > 1$的实数$q,$
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 有无穷多项$\nroot[n_k]{x_{n_k}}$满足$\nroot[n_k]{x_{n_k}} > q.$}
+\end{empheq}
+也就是说, 存在$\{x_n\}$的一个子列$\{x_{n_k}\},$ 成立
+$$x_{n_k} > q^{n_k} \to +\infty,$$
+不满足级数收敛的必要条件.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy判别法的证明}
+
+(3). 当$r = 1$时, 我们既能找到收敛的例子, 也能找到发散的例子.
+\pause
+最直接的就是$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}.$ 对于任何一个固定的实数$s,$ 有
+$$\zeta(s) = \lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\infty} \dfrac{1}{\nroot[n]{n}} \right)^s = 1.$$
+对于级数$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}$来说, 我们知道$s > 1$时它收敛; $s \leqslant 1$时它发散.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy判别法的应用}
+
+\begin{eg}
+\begin{center}
+  判断正项级数$\sum\limits_{n=1}^{\infty} \dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}$的敛散性.
+\end{center}
+\end{eg}
+
+\pause
+
+\textbf{解：} 由于
+\begin{align*}
+\varlimsup_{n\to\infty} \sqrt[\leftroot{-7}\uproot{20}n]{\dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}} & = \varlimsup_{n\to\infty} \left(\nroot[n]{n}\right)^3 \dfrac{\sqrt{2} + (-1)^n}{3} \\
+& = \dfrac{\sqrt{2} + 1}{3} < 1,
+\end{align*}
+根据Cauchy判别法知级数$\sum\limits_{n=1}^{\infty} \dfrac{n^3[\sqrt{2} + (-1)^n]^n}{3^n}$收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[d'Alembert\\判别法]{正项级数敛散性的d'Alembert判别法}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的d'Alembert判别法}
+
+\begin{thm}[d'Alembert判别法]
+设$\sum\limits_{n=1}^\infty x_n ~ (x_n \neq 0)$是正项级数, 则
+\begin{itemize}
+  \item[(1).] 当$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \overline{r} < 1$时, 级数$\sum\limits_{n=1}^\infty x_n$收敛;
+  \item[(2).] 当$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \underline{r} > 1$时, 级数$\sum\limits_{n=1}^\infty x_n$发散;
+  \item[(3).] 当$\overline{r} \geqslant 1$或$\underline{r} \leqslant 1$时, 判别法失效, 级数$\sum\limits_{n=1}^\infty x_n$可能收敛也可能发散.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的d'Alembert判别法}
+
+由于Cauchy判别法通项$\nroot[n]{x_n}$是d'Alembert判别法通项$\dfrac{x_{n+1}}{x_n}$的几何平均, 可以期待的是Cauchy判别法强于d'Alembert判别法.
+
+\pause
+\vspace*{0.4em}
+
+事实也的确如此. d'Alembert判别法可以通过如下的引理, 从Cauchy判别法推导出来.
+
+\pause
+\vspace*{0.4em}
+
+\begin{lem}
+设$\{x_n\}$是正项数列, 则
+$$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+\end{lem}
+
+\pause
+\vspace*{0.6em}
+
+当$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$时, 由引理中的不等式, 有$\varlimsup_{n\to\infty} \nroot[n]{x_n} < 1,$ 从而可以由Cauchy判别法推出收敛性;
+
+\pause
+\vspace*{0.6em}
+当$\underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$时, 由引理中的不等式, 有$\varlimsup_{n\to\infty} \nroot[n]{x_n} > 1,$ 从而可以由Cauchy判别法推出发散性.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理的证明}
+
+第一个不等式$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n}:$
+
+\pause
+\vspace{1em}
+
+由下极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} > \underline{r} - \varepsilon,$ 即有
+\vspace*{-0.5em}
+$$x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},$$
+从而有$\nroot[n]{x_n} > \sqrt[\leftroot{-6}\uproot{9}n]{(\underline{r} - \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立. 于是
+$$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \varliminf_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.$$
+由$\varepsilon$的任意性知
+$$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理的证明}
+
+第二个不等式$\varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n}$来自于上、下极限的性质. 下面我们来证明第三个不等式$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}:$
+
+\pause
+\vspace{1em}
+
+由上极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} < \overline{r} + \varepsilon,$ 即有
+\vspace*{-0.5em}
+$$x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},$$
+从而有$\nroot[n]{x_n} < \sqrt[\leftroot{-6}\uproot{9}n]{(\overline{r} + \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立. 于是
+$$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.$$
+由$\varepsilon$的任意性知
+$$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{d'Alembert判别法的应用}
+
+\begin{eg}
+\begin{center}
+判断正项级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$的敛散性.
+\end{center}
+\end{eg}
+
+\pause
+\vspace{1em}
+
+\textbf{解：} 令$x_n = \dfrac{n^n}{3^n\cdot n!},$ 那么有
+\begin{align*}
+\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} & = \varlimsup_{n\to\infty} \left[ \dfrac{(n+1)^{n+1}}{3^{n+1}\cdot (n+1)!} \cdot \dfrac{3^n\cdot n!}{n^n} \right] \\
+& = \lim_{n\to\infty} \dfrac{1}{3} \left( 1 + \dfrac{1}{n} \right)^n = \dfrac{e}{3} < 1,
+\end{align*}
+由d'Alembert判别法知级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$的收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy判别法与d'Alembert判别法的再比较}
+
+之前我们利用Cauchy判别法证明了d'Alembert判别法, 这表明了Cauchy判别法强于d'Alembert判别法, 即如果一个正项级数的敛散性能通过d'Alembert判别法判定, 则它一定能用Cauchy判别法来判定. 但反过来是不一定的：
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+考虑级数$\sum\limits_{n=1}^\infty x_n = \dfrac{1}{2} + \dfrac{1}{3} + \dfrac{1}{2^2} + \dfrac{1}{3^2} + \cdots,$ 通项为
+\vspace{-1em}
+$$x_{2n-1} = \dfrac{1}{2^n}, ~~ x_{2n} = \dfrac{1}{3^n}$$
+那么
+\begin{gather*}
+\varlimsup_{n\to\infty} \nroot[n]{x_n} = \lim_{n\to\infty} \sqrt[\leftroot{-6}\uproot{13}2n-1]{\frac{1}{2^n}} = \dfrac{1}{\sqrt{2}} \\
+\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim_{n\to\infty} \dfrac{3^n}{2^{n+1}} = +\infty, ~~ \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim_{n\to\infty} \dfrac{2^n}{3^n} = 0.
+\end{gather*}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy判别法与d'Alembert判别法的再比较}
+
+虽然Cauchy判别法强于d'Alembert判别法, 但并不是说d'Alembert判别法就无用武之地. 对某些具体的例子而言, 虽然两种判别法都适用, 但d'Alembert判别法可能比Cauchy判别法方便一些：
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+正项级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$收敛性的判定, 我们之前是用的d'Alembert判别法：
+$$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \dfrac{e}{3} < 1.$$
+\pause
+而
+$$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = \dfrac{n}{3} \cdot \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n!}}$$
+极限不太好求, 故不太方便适用Cauchy判别法.
+
+\pause
+\vspace{0.5em}
+
+当然, 如果你熟悉斯特林公式$n! \sim \sqrt{2\pi} n^{n+\frac{1}{2}} e^{-n} ~ (n\to\infty),$ 这个例子使用Cauchy判别法也是可行的.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Raabe\\判别法]{正项级数敛散性的Raabe判别法}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性的Raabe判别法}
+
+我们已经看到了, 基于比较判别法的Cauchy判别法与d'Alembert判别法都有无法处理的情况, 例如$\sum\limits_{n=1}^\infty \dfrac{1}{n^s}.$
+
+\pause
+\vspace{-0.6em}
+
+这是因为这两个判别法作为比较基准的是几何级数$\sum\limits_{n=1}^\infty q^n.$ 在判定级数收敛时, 要求级数的通项受到$q^n (0 < q < 1)$的控制; 而在判定级数发散时, 则是根据其通项不趋于$0.$ 这二者相去甚远. 为了弥补这一距离, 我们要引入新的一些判别方法：
+
+\pause
+
+\begin{thm}[Raabe判别法]
+设$\sum\limits_{n=1}^\infty x_n$是正项级数, $x_n \neq 0,$ 且$\lim\limits_{n\to\infty} n \left( ~ {\color{red}\dfrac{x_n}{x_{n+1}}} - 1 \right) = r,$ 那么
+\vspace{-0.6em}
+\begin{itemize}
+  \item[(1).] 当~${\color{red}r > 1}$时, 级数$\sum\limits_{n=1}^\infty x_n$~{\color{red}收敛};
+  \item[(2).] 当~${\color{red}r < 1}$时, 级数$\sum\limits_{n=1}^\infty x_n$~{\color{red}发散}.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Raabe判别法的分析与证明}
+
+当$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r < 1$时, 由极限的性质, 对任意满足$r < q < 1$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
+$$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) < q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} < 1 + \dfrac{q}{n} < 1 + \dfrac{1}{n},$$
+从而有
+$$n x_n \leqslant (n+1) x_{n+1}.$$
+\pause
+也就是说, 新数列$y_n := nx_n, n = 1, 2, \dots,$ 当$n \geqslant N$时是递增的, 因此有$n x_n \geqslant N x_N,$ 或写为
+$$x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqslant N.$$
+于是, 根据比较判别法, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散可推出$\sum\limits_{n=1}^\infty x_n$也发散.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Raabe判别法的分析与证明}
+
+当$r > 1$时, 若沿用之前的分析步骤, 我们只能推断出$x_n ~ {\color{red} \leqslant} ~ N \cdot x_N \cdot ~ {\color{red}\dfrac{1}{n}},$ 无法由比较判别法判定敛散性.
+
+\pause
+\vspace{0.6em}
+
+但是, 如果有$x_n < A \cdot \dfrac{1}{\color{red}n^t},$ $A > 0, ~ {\color{red} t > 1},$ 对所有$n > N$成立, 那么可以使用比较判别法得到$\sum\limits_{n=1}^\infty x_n$的收敛性.
+
+\pause
+\vspace{0.6em}
+
+我们还是从$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r > 1$出发,对任意满足$1 < q < r$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
+$$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n}.$$
+
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+  \text{\bfseries\color{red!80} 想方法将$1 + q\cdot\dfrac{1}{n}$与$\left(\dfrac{n+1}{n}\right)^t = \left(1 + \dfrac{1}{n}\right)^t$联系起来！}
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Raabe判别法的分析与证明}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.777]
+\input{tikz-figures/raabe-test-proof-func-plot}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Raabe判别法的分析与证明}
+
+首先, 比较$f(x) = 1 + qx$与$g(x) = (1 + x)^t$在$x = 0$处的导数值：
+$$
+\begin{cases}
+f'(x) = q \\
+g'(x) = t(1+x)^{t-1}
+\end{cases} ~~ \text{从而有} ~~
+\begin{cases}
+f'(0) = q \\
+g'(0) = t
+\end{cases}
+$$
+\pause
+那么, 我们只要进一步取$1 < t < q < r,$ 即有$f'(0) > g'(0).$ 由于$f'(x), g'(x)$的连续性, 以及$f(0) = g(0) = 1$知, 在$x = 0$的某个右半邻域$(0, \delta)$内, 恒有$f(x) > g(x).$
+
+\pause
+
+取正整数$N$充分大, 使得$N > \dfrac{1}{\delta},$ 那么$\forall n > N$有$\dfrac{1}{n} \in (0, \delta),$ 从而有
+$$\dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n} = f \left(\dfrac{1}{n}\right) = \left(\dfrac{1}{n}\right) = \left( 1 + \dfrac{1}{n} \right)^t = \left( \dfrac{n+1}{n} \right)^t,$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Raabe判别法的分析与证明}
+
+于是, 就有了我们希望得到的形式：
+$$n^t x_n > (n+1)^t x_{n+1} ~~ \text{对所有$n > N$成立. }$$
+新数列$y_n = n^t x_n$当$n > N$时关于$n$非增, 设$A > 0$为它的一个上界, 有
+$$A \geqslant y_n = n^t x_n ~~ (n > N),$$
+亦即
+$$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
+根据比较判别法, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^t}$收敛知$\sum\limits_{n=1}^\infty x_n$也收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Raabe判别法的应用}
+
+\begin{eg}
+\begin{center}
+判断级数$\sum\limits_{n=1}^\infty \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1}$的敛散性.
+\end{center}
+\end{eg}
+
+\pause
+% \vspace{0.6em}
+
+\textbf{解：} 记$x_n = \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1},$ 则
+$$\lim\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim\limits_{n\to\infty} \dfrac{(2n+1)^2}{(2n+2)(2n+3)} = 1.$$
+那么d'Alembert判别法 (以及Cauchy判别法) 都不适用了.
+\pause
+但是应用Raabe判别法, 可得
+$$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(6n+5)}{(2n+1)^2} = \dfrac{3}{2} > 1,$$
+所以级数$\sum\limits_{n=1}^\infty \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1}$收敛.
+
+\end{frame}
+
+% %------------------------------------------------
+
+% \section{总结}
+
+% %------------------------------------------------
+
+% \begin{frame}{总结}
+
+% {\larger[2] \color{red} \ding{43}} Cauchy判别法：$r = \varlimsup_{n\to\infty} \nroot[n]{x_n}$
+% \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+%   \text{\bfseries\color{red!80} $r < 1$则$\sum\limits_{n=1}^\infty x_n$收敛; ~~$r > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+% \end{empheq}
+
+% \pause
+
+% {\larger[2] \color{red} \ding{43}} d'Alembert判别法：$\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}, \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}$
+% \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+%   \text{\bfseries\color{red!80} $\overline{r} < 1$则$\sum\limits_{n=1}^\infty x_n$收敛; ~~$\underline{r} > 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+% \end{empheq}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}{总结}
+
+% {\larger[2] \color{red} \ding{43}} Raabe判别法：$r = \lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right)$
+% \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+%   \text{\bfseries\color{red!80} $r > 1$则$\sum\limits_{n=1}^\infty x_n$收敛; ~~$r < 1$则$\sum\limits_{n=1}^\infty x_n$发散}
+% \end{empheq}
+
+% \pause
+
+% Raabe判别法本质上还是基于比较判别法, 但是相较于Cauchy与d'Alembert判别法, 对$\dfrac{x_n}{x_{n+1}}$的变化趋势进行了更精细的分析.
+
+% \pause
+% \vspace{0.6em}
+
+% 对Raabe判别法失效的$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = 1$的情况, 可以通过进一步分析$\left[ n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) - 1 \right]$的“阶”的情况, 得到更加精细的判别法.
+% \pause
+% 这类判别法可以一直“加细”下去, 但不会存在一种可以处理所有情况的判别法.
+
+% \end{frame}
+
+%------------------------------------------------
+% % closing page
+% \begin{frame}
+% \HUGE{\centerline{\bfseries {\color{gray} The} {\color{zkblue} End}}}
+
+% \pause
+
+% \vspace{1.2em}
+
+% \Large{\centerline{\bfseries {\color{gray}Thank} \quad {\color{zkblue} You}}}
+
+% \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
