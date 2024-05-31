@@ -234,20 +234,18 @@ $$f(x, x) = \dfrac{mx^2}{x^2 + m^2 x^2} = \dfrac{m}{1+m^2}.$$
 问题: 是不是点 $x \in \mathbb{R}^n$ 沿着任意过原点的直线趋于原点 $O$ 时极限都存在且相等, 则函数 $f(x)$ 在原点 $O$ 处有极限?
 
 \pause
-\vspace{0.5em}
 
 \begin{eg}
 考虑二元函数 $f(x, y) = \dfrac{(y^2 - x)^2}{x^2 + y^4}, (x, y) \neq (0, 0).$
 
 \pause
-\vspace{0.5em}
 
 当点 $(x, y)$ 沿着过原点的直线 $y = mx$ 趋于原点 $(0, 0)$ 时, 有
 $$\lim\limits_{\substack{x \to 0 \\ y = mx}} f(x, y) = \lim\limits_{x \to 0} \dfrac{{\color{red}x^2} ~ - 2m^2x^3 + m^4 x^4}{{\color{red}x^2} ~ + m^4 x^4} = 1.$$
-同时, 当点 $(x, y)$ 沿着 $y$-轴趋于原点 $(0, 0)$ 时, 有 $f(0, y) \equiv 1.$ 于是, 点 $(x, y)$ 沿着过原点的任意直线趋于原点 $(0, 0)$ 时, 极限都是 1.
+同时, 当点 $(x, y)$ 沿着 $y$-轴 (即直线 $x = 0$) 趋于原点 $(0, 0)$ 时, 有 $f(0, y) \equiv 1.$ 于是, 点 $(x, y)$ 沿着过原点的任意直线趋于原点 $(0, 0)$ 时, 极限都是 1.
 
 \pause
-\vspace{0.5em}
+\vspace{0.4em}
 
 但是, 当点 $(x, y)$ 沿着过原点的抛物线 $x = y^2$ 趋于原点 $(0, 0)$ 时, 有 $f(y^2, y) \equiv 0.$ 因此, $\lim\limits_{(x, y) \to (0, 0)} f(x, y)$ 依然不存在.
 \end{eg}
@@ -302,7 +300,7 @@ $$\lvert f(x) - A \rvert < \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \dfrac{A}{2
 \pause
 \vspace{0.5em}
 
-一个自然的问题是, 是否在{\color{red}一定条件下}, 我们可以逐坐标 (变量) 地考察极限, 每次只把当前变量当作一元函数, 而其他还未考察过的变量当作常数, 这样的极限可以等于多元函数的极限?
+一个自然的问题是, 是否在{\color{red}一定条件下}, 我们可以逐坐标 (变量) 地考察极限, 每次只把当前变量当作自变量, 考虑相应的一元函数, 而其他还未考察过的变量当作常数, 这样的极限可以等于多元函数的极限?
 
 \vspace{0.5em}
 
@@ -487,12 +485,12 @@ $$\lim_{x \to x_0} \lim_{y \to y_0} f(x, y) = \lim_{x \to x_0} \varphi(x) = \lim
 \pause
 \vspace{0.5em}
 
-由条件: 二重极限 $\lim\limits_{(x,y) \to (x_0, y_0)} f(x, y) = A$ 知, 对于任意 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $\lVert (x, y) - (x_0, y_0) \rVert < \delta$ 时, 有 $\lvert f(x, y) - A \rvert < \varepsilon / 2$. 如果有需要, 我们可以缩小 $\delta$ 使得在 $O((x_0, y_0), \delta)$ 内, 定理条件: 当 $x \neq x_0$ 时, 总存在极限 $\lim\limits_{y \to y_0} f(x, y) = \varphi(x)$ 满足.
+由条件: 二重极限 $\lim\limits_{(x,y) \to (x_0, y_0)} f(x, y) = A$ 知, 对于任意 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $0 < \lVert (x, y) - (x_0, y_0) \rVert < \delta$ 时, 有 $\lvert f(x, y) - A \rvert < \varepsilon / 2$. 如果有需要, 我们可以缩小 $\delta$ 使得在 $\mathring{O}((x_0, y_0), \delta)$ 内, 定理条件: 当 $x \neq x_0$ 时, 总存在极限 $\lim\limits_{y \to y_0} f(x, y) = \varphi(x)$ 满足.
 
 \pause
 \vspace{0.5em}
 
-于是在 $O((x_0, y_0), \delta)$ 内, 只要 $x\neq x_0,$ 可以对不等式 $\lvert f(x, y) - A \rvert < \varepsilon / 2$ 两边同时取 $y \to y_0$ 的极限, 得到
+于是在 $\mathring{O}((x_0, y_0), \delta)$ 内, 只要 $x\neq x_0,$ 可以对不等式 $\lvert f(x, y) - A \rvert < \varepsilon / 2$ 两边同时取 $y \to y_0$ 的极限, 得到
 $$\lvert \varphi(x) - A \rvert = \lim_{y \to y_0} \lvert f(x, y) - A \rvert \leqslant \varepsilon / 2 < \varepsilon.$$
 也就是说, 我们证明了, $\forall \varepsilon > 0, \exists \delta > 0,$ 当 $0 < \lvert x - x_0 \rvert < \delta$ 时, 有 $\lvert \varphi(x) - A \rvert < \varepsilon.$
 即有 $\lim\limits_{x \to x_0} \varphi(x) = A.$
@@ -661,11 +659,7 @@ $$\lim_{(x,y) \to (1,0)} \dfrac{\ln(x+e^y)}{\sqrt{x^2 + y^2}} = \dfrac{\ln 2}{1}
 \vspace{1em}
 
 我们将原函数写成两个函数相乘的形式
-<<<<<<< HEAD
 $$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{{\color{red}(y+1)} \sqrt{x^2 + y^2}} \cdot {\color{red}(y+1)}.$$
-=======
-$$\dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{(y+1) \sqrt{x^2 + y^2}} \cdot (y+1).$$
->>>>>>> origin/overleaf-2024-05-29-1318
 这两个都是 $(0,0)$ 附近的连续函数, 并且当 $(x,y) \to (0,0)$ 时有
 $$
 (y+1) \sqrt{x^2 + y^2} \to 0
@@ -701,6 +695,11 @@ $$
 \pause
 
 它的本质是, 给出了到相应函数图像的映射 $\mathbb{R} \longrightarrow \Gamma_f \subset \mathbb{R}^2.$
+
+\pause
+\vspace{1em}
+
+例如物理中的矢量场, 包括速度场, 引力场等; 以及之后要学习的, 一个多元函数的梯度场等, 都可以视作向量值函数.
 
 \end{frame}
 
@@ -763,11 +762,7 @@ $$
 其值域为三维空间上的一张半圆锥面, 如下图所示:
 
 \begin{center}
-<<<<<<< HEAD
 \begin{tikzpicture}[scale=0.777]
-=======
-\begin{tikzpicture}
->>>>>>> origin/overleaf-2024-05-29-1318
 \begin{axis}[
 axis lines=center,
 axis on top,
@@ -789,7 +784,6 @@ zmin=0.0, zmax=3
 \end{tikzpicture}
 \end{center}
 
-<<<<<<< HEAD
 \end{frame}
 
 %------------------------------------------------
@@ -923,8 +917,6 @@ $$f_i = \operatorname{pr}_i \circ f.$$
 \item $\varphi(f, g)$ 是连续的实值函数, 其中 $\varphi$ 是任意双线性型.
 \end{itemize}
 
-=======
->>>>>>> origin/overleaf-2024-05-29-1318
 \end{frame}
 
 %------------------------------------------------
