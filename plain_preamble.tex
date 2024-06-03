@@ -55,6 +55,8 @@
 \usepackage{xcolor}
 \usepackage{adjustbox}
 \usepackage{pdfpages}
+\usepackage{tikz}
+\usetikzlibrary{trees, arrows.meta, matrix, fit, backgrounds, cd, positioning, intersections, calc}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%windows 字体定义%%%%%%%%%%%%%%%%%%%%%%
 % \newcommand{\song}{\CJKfamily{song}}  % windows
@@ -68,9 +70,9 @@
 
 % set chn font
 
-\setCJKmainfont{Noto Serif CJK SC}
-\setCJKsansfont{Noto Sans CJK SC}
-\setCJKmonofont{Noto Sans Mono CJK SC}
+% \setCJKmainfont{Noto Serif CJK SC}
+% \setCJKsansfont{Noto Sans CJK SC}
+% \setCJKmonofont{Noto Sans Mono CJK SC}
 
 % 仿宋 + 黑体
 % \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simfang.ttf}
@@ -108,27 +110,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\vi{{\operatorname{VI}}}
-\def\argmin{{\arg\min}}
-\def\MS{{\cal S}}
-\def\Z{{\cal Z}}
-\def\Y{{\cal Y}}
-\def\X{{\cal X}}
-\def\R{{\cal R}}
-% \def\R{{\mathbb{R}}}
-\def\B{{\cal B}}
-\def\st{\hbox{s.t.}}
-\def\la{\lambda}
-\def\u{{\mathbf{u}}}
-\def\q{{\mathbf{Q}}}
-\def\ba{\bar}
-\def\f{{\mathbf{F}}}
-\def\x{\mathbf{x}}
-\renewcommand\r{{\bf r}}
-\def \[{\begin{equation}}
-\def \]{\end{equation}}
 
-\def\qed{{\hfill\qedsymbol}}
 
 \newcommand{\green}[1]{{\color[rgb]{0,0.6,0}{#1}}}
 \newcommand{\blue}[1]{{\color[rgb]{0,0,1}{#1}}}
@@ -142,20 +124,5 @@
 \renewcommand{\baselinestretch}{1.35}
 %\setlength{\fboxrule}{1pt}
 
-\graphicspath{{images/}}
-
-
-\newif\ifshowtoc
-
-\AtBeginSection{%
-\ifshowtoc
-\begin{frame}
-    \tableofcontents[currentsection, subsectionstyle=show/hide/hide]
-\end{frame}
-\fi
-}
-
-
-\newcommand{\case}{{\color{blue}$\blacktriangleright$\;}}
 
 \setbeamertemplate{caption}[numbered]

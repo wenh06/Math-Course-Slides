@@ -1,249 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Beamer Presentation
-% LaTeX Template
-% Version 1.0 (10/11/12)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Overleaf settings
-% Compiler: XeLatex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeatletter
-\@ifundefined{ifUseLogo}{%
-  \newif\ifUseLogo
-}{}
-\makeatother
-
-%---------------------------------
-%	PACKAGES AND THEMES
-%---------------------------------
-
-\ifHandout
-\documentclass[11pt, handout]{beamer}
-\else
-\documentclass[11pt]{beamer}
-\fi
-
-\geometry{paperwidth=140mm,paperheight=105mm}
-
-\input{colors}
-
-\usefonttheme{serif}
-
-\usepackage{arydshln}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usepackage{scalefnt}
-
-% define theme color
-\colorlet{themecolor}{cau-green-1}
-% \colorlet{themecolor}{zkblue}
-
-\mode<presentation>{
-
-\ifUseLogo
-\usetheme{Berkeley}
-
-% add logo
-\logo{\includegraphics[height=1.55cm]{images/logo_cau_science_white.png}}
-% \logo{\includegraphics[height=1.55cm]{images/logo_buaa_math.jpg}}
-
-% \setbeamercolor{subsection in toc}{fg=zkbackground}
-% \setbeamercolor{frametitle}{fg=zkblue,bg=zkblue}
-\setbeamercolor{frametitle}{fg=white,bg=themecolor}
-
-\usecolortheme[named=themecolor]{structure}
-
-\setbeamercolor{section in head/foot}{fg=white}
-% \setbeamercolor{subsection in toc}{fg=tsinghua!35}
-% \setbeamercolor{frametitle}{fg=tsinghua,bg=tsinghua!20}
-% \setbeamercolor{block body}{bg=tsinghua!5,fg=tsinghua}
-% \setbeamercolor{author}{fg=tsinghua}
-% \setbeamercolor{institute}{fg=tsinghua}
-% \setbeamercolor{date}{fg=tsinghua}
-% \setbeamercolor{normal text}{fg=tsinghua}
-\ifHighContrast
-\setbeamercolor{block body}{bg=themecolor!25,fg=black}
-\setbeamercolor{normal text}{fg=black}
-\else
-\setbeamercolor{block body}{bg=themecolor!25,fg=themecolor}
-\setbeamercolor{normal text}{fg=themecolor}
-\fi
-\setbeamercolor{author}{fg=themecolor}
-\setbeamercolor{institute}{fg=themecolor}
-\setbeamercolor{date}{fg=themecolor}
-\setbeamercolor{background canvas}{bg=zkbackground}
-
-\setbeamercolor{palette sidebar secondary}{fg=themecolor, bg=white!80}
-\setbeamercolor{palette sidebar tertiary}{fg=themecolor, bg=white!80}
-\setbeamercolor{author in sidebar}{fg=white}
-% \setbeamercolor{subsection in sidebar}{fg=themecolor,bg=white!80}
-% \setbeamercolor{section in sidebar shaded}{fg=white!75}
-% \setbeamercolor{subsection in sidebar shaded}{fg=white!75}
-
-% \setbeamercolor{section in sidebar shaded}{fg=white!75}
-% \setbeamercolor{subsection in sidebar shaded}{fg=white!75}
-
-\setbeamerfont{title in sidebar}{size=\scriptsize}
-\setbeamerfont{author in sidebar}{size=\scriptsize}
-\setbeamerfont{section in sidebar}{size=\scriptsize}
-
-
-% \setbeamercolor{section in toc}{fg=jdred,bg=white}
-
-%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
-%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
-
-%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
-
-% page number in the left side bar
-% https://tex.stackexchange.com/questions/332895/slide-number-in-the-sidebar-of-paloalto-theme-in-beamer
-
-\addtobeamertemplate{footline}
-{
-   \usebeamercolor[fg]{author in sidebar}
-   \vskip-1cm\hskip4pt
-   {\bfseries\color{white}\fontsize{8pt}{8pt}\selectfont \insertframenumber\,/\,\inserttotalframenumber\kern1em\vskip2pt}
-}
-
-\else
-% candidates: Goettingen, Hannover, and
-% https://www.overleaf.com/latex/templates/usc-ssi-beamer-template/vzxfnyxptkyd
-
-\usetheme[width=.1\paperwidth]{AAUsidebar} %left column
-
-
-% \setbeamercolor{subsection in toc}{fg=zkbackground}
-% \setbeamercolor{frametitle}{fg=themecolor,bg=zkbackground}
-% \setbeamercolor{block header}{bg=themecolor!75,fg=themecolor}
-
-\fi
-
-% \usefonttheme[onlymath]{serif}
-
-%------------------------------------------
-}
-
-
-%----------------------------------------------
-% watermark
-
-% add text watermark, the second argument is the text, the first argument is the scale with default value 2
-\newcommand{\addTextWatermark}[2][2]{
-  {
-    \scalefont{#1}
-    \begin{tikzpicture}[remember picture, overlay]
-      \node[rotate=39, opacity=0.2, color=red] at (current page.center) {\textbf{#2}};
-    \end{tikzpicture}
-  }
-}
-
-% add mark of the number of class to the top right corner of the page at which the class finishes
-\newcommand{\markEndOfClass}[1]{
-  {
-    \scalefont{2}
-    \begin{tikzpicture}[remember picture, overlay]
-      \node[opacity=0.5, draw=cyan, color=cyan, line width=3pt, inner sep=1.5pt, anchor=north east] at ([xshift=-3pt,yshift=-3pt]current page.north east) {\textbf{#1}};
-    \end{tikzpicture}
-  }
-}
-
-
-% \setbeamertemplate{background}{\tikz[overlay,remember picture]\node[opacity=0.4]at (current page.center){\includegraphics[width=0.8\textwidth, angle=45]{images/logo_buaa_math.jpg}};}
-
-% \usepackage[printwatermark]{xwatermark}
-% \newsavebox\mybox
-% \savebox\mybox{\tikz[color=cyan,opacity=0.2]\node{WEN HAO};}
-% \newwatermark*[
-%   allpages,
-%   angle=45,
-%   scale=4,
-%   xpos=0,
-%   ypos=5
-% ]{\usebox\mybox}
-
-% \newwatermark*[
-%   allpages,
-%   angle=45,
-%   scale=4,
-%   xpos=50,
-%   ypos=5
-% ]{\usebox\mybox}
-
-% \newwatermark*[
-%   allpages,
-%   angle=45,
-%   scale=4,
-%   xpos=-40,
-%   ypos=20
-% ]{\usebox\mybox}
-
-%----------------------------------------------
-
-% page number in the bottom navigation bar
-% https://tex.stackexchange.com/questions/137022/how-to-insert-page-number-in-beamer-navigation-symbols
-% \addtobeamertemplate{navigation symbols}{}{%
-%     \usebeamerfont{footline}%
-%     \usebeamercolor[fg]{footline}%
-%     \hspace{1em}%
-%     \insertframenumber/\inserttotalframenumber
-% }
-
-
-%----------------------------------------------
-% title page and frametitle settings
-
-% \input{new-titlepage}
-% \input{new-frametitle}
-
-
-%----------------------------------------------
-
-\usepackage[BoldFont,SlantFont]{xeCJK}
-
-\usepackage{graphicx} % Allows including images
-\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
-
-\usepackage{latexsym,amscd,color}
-\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
-\usepackage{enumerate,euscript}
-\usepackage{amssymb,url,xspace}
-\usepackage{mathtools}
-\usepackage{tikz-cd}
-\usepackage[all,cmtip]{xy}
-\usepackage{dashbox}
-\usepackage{tikz}
-\usetikzlibrary{trees, arrows.meta, matrix, fit, backgrounds, cd, positioning, intersections, calc}
-\usepackage{xcolor}
-\usepackage{float}
-\usepackage[justification = centering]{caption}
-\usepackage{multicol}
-\usepackage{xtab}
-\usepackage{cases}
-\usepackage{systeme}
-% \usepackage{arydshln}  % conflict with kbordermatrix
-% \usepackage{kbordermatrix}  % TODO: replace with nicematrix
-% https://tex.stackexchange.com/questions/328072/conflict-between-kbordermatrix-and-arydshln
-\usepackage[ruled,vlined]{algorithm2e}
-\usepackage{calc}
-% \usepackage{cleveref}
-\usepackage{cancel}
-\usepackage{pifont}
-\usepackage{multirow}
-\usepackage{caption}
-
-
-\newlength{\noleftmargin}
-\setlength{\noleftmargin}{-1in-\oddsidemargin}%
+\graphicspath{{images/}}
 
 \tikzset{%
   highlight/.style={rectangle,rounded corners,fill=red!15,draw,
@@ -283,6 +39,28 @@
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator*{\argmax}{\arg\!\max}
 
+\def\vi{{\operatorname{VI}}}
+\def\argmin{{\arg\min}}
+\def\MS{{\cal S}}
+\def\Z{{\cal Z}}
+\def\Y{{\cal Y}}
+\def\X{{\cal X}}
+\def\R{{\cal R}}
+% \def\R{{\mathbb{R}}}
+\def\B{{\cal B}}
+\def\st{\hbox{s.t.}}
+\def\la{\lambda}
+\def\u{{\mathbf{u}}}
+\def\q{{\mathbf{Q}}}
+\def\ba{\bar}
+\def\f{{\mathbf{F}}}
+\def\x{\mathbf{x}}
+\renewcommand\r{{\bf r}}
+\def \[{\begin{equation}}
+\def \]{\end{equation}}
+
+\def\qed{{\hfill\qedsymbol}}
+
 \newcommand*{\nroot}[2][2]{\sqrt[\leftroot{-3}\uproot{3}#1]{#2}}
 
 
@@ -309,11 +87,9 @@
 \newtheorem{observation}[thm]{Observation}
 \newtheorem*{convention}{Convention}
 
-
 \makeatletter
 \newcommand\HUGE{\@setfontsize\Huge{35}{46}}
 \makeatother
-
 
 \AtBeginSection{%
 \ifShowTocEverySec
@@ -322,7 +98,6 @@
 \end{frame}
 \fi
 }
-
 
 \usepackage{zhnumber}
 \zhnumsetup{time=Chinese}
@@ -365,21 +140,6 @@ enhanced, colframe=blue!30!black,
 colback=blue!30, boxrule=1pt,
 #1}
 
-\newenvironment{variableblock}[3]{%
-\setbeamercolor{block body}{#2}
-\setbeamercolor{block title}{#3}
-\begin{block}{#1}}{\end{block}
-}
-
-\newenvironment{attnblock}{%
-\ifHighContrast
-\setbeamercolor{block body}{bg=red!15,fg=black}
-\else
-\setbeamercolor{block body}{bg=red!15,fg=themecolor}
-\fi
-\setbeamercolor{block title}{bg=red!80,fg=white}
-\begin{block}{注意}}{\end{block}
-}
-
-
 \newcommand{\longsquiggly}{\xymatrix{{}\ar@{~>}[r]&{}}}
+
+\newcommand{\case}{{\color{blue}$\blacktriangleright$\;}}
