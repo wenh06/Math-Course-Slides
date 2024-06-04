@@ -745,6 +745,13 @@ $f$ 也可写作向量的形式 $f = (f_1, f_2, \dots, f_m).$
 
 \begin{frame}{向量值函数的例子}
 
+
+\ifHandout
+% do nothing
+\else
+\markEndOfClass{37}
+\fi
+
 考虑映射
 $$f: [0, +\infty) \times [0, 2\pi] \longrightarrow \mathbb{R}^3, ~~ (r, \theta) \mapsto (x, y, z),$$
 具体分量形式为
@@ -783,6 +790,21 @@ zmin=0.0, zmax=3
 \end{axis}
 \end{tikzpicture}
 \end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的例子}
+
+设 $A, B \in M_{n\times m}(\mathbb{R}) \cong \mathbb{R}^{nm}$ 是两个 $n\times m$ 的矩阵. 那么
+$$\varphi: [0, 1] \longrightarrow M_{n\times m}(\mathbb{R}), ~~ tB + (1-t)A$$
+是一个一元 $n\times m$ 维向量值函数.
+
+\pause
+\vspace{1em}
+
+从几何上看, 它是连接 $A, B$ 两点的“直线”. 之后会看到, 类似这样的向量值函数被称作是 Euclid 空间中的道路.
 
 \end{frame}
 

@@ -43,13 +43,23 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 \begin{frame}{回忆: 闭区间上一元连续函数性质}
 
-我们回忆一下定义在闭区间 (紧集) $[a, b]$ 上一元连续函数 $f(x)$ 的主要性质:
+我们回忆一下定义在闭区间 (紧集) $[a, b]$ 上一元连续函数 $f(x)$ 的主要性质 (定理):
 
 \pause
+\vspace{1em}
 
-\begin{enumerate}
-\item 
+\begin{enumerate}[<+->]
+\item 有界性定理: 若 $f(x)$ 在 $[a, b]$ 上连续, 则 $f(x)$ 在 $[a, b]$ 上有界.
+\item 最值定理: 若 $f(x)$ 在 $[a, b]$ 上连续, 则 $f(x)$ 在 $[a, b]$ 能取到最大值与最小值, 即存在 $\xi$ 和 $\eta \in [a, b],$ 使得 $\forall x \in [a, b],$ 有
+$$f(\xi) \leqslant f(x) \leqslant f(\eta).$$
+\item 零点存在定理: 若 $f(x)$ 在 $[a, b]$ 上连续, 且 $f(a) \cdot f(b) < 0,$ 则必存在 $\xi \in [a, b],$ 使得 $f(\xi) = 0.$
+\item 介值 (中间值) 定理: 若 $f(x)$ 在 $[a, b]$ 上连续, 则 $f(x)$ 能取到最大值与最小值之间的任何一个值.
 \end{enumerate}
+
+\pause
+\vspace{1em}
+
+我们接下来看这些性质能否推广到高维.
 
 \end{frame}
 
@@ -59,9 +69,223 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 %------------------------------------------------
 
-\begin{frame}{}
+\begin{frame}{函数连续概念的推广}
 
+\begin{Def}
+设 $K\subset \mathbb{R}^n$ 是非空子集, $f: K \longrightarrow \mathbb{R}^m$ 为映射 (向量值函数, $n$ 元 $m$ 维函数), $x_o \in K.$ 若对任意给定的 $\varepsilon > 0,$ 存在 $\delta > 0,$ 使得当 $x \in O(x_0, \delta) ~ {\color{red} \cap K}$ 时, 成立
+$$\lVert f(x) - f(x_0) \rVert < \varepsilon ~~ (\text{或} ~ f(x) \in O(f(x_0), \varepsilon)),$$
+则称 $f$ 在点 $x_0$ 处连续.
 
+\pause
+
+若 $f$ 在 $K$ 的每点处都连续, 则称 $f$ 在 $K$ 上连续.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{子空间拓扑}
+
+回忆: 一个拓扑空间, 指的是一个集合 $V$, 以及它的一个子集族 (它的开集) $\mathscr{T}:$
+\begin{enumerate}
+\item $V$ 本身和空集 $\emptyset$ 都属于 $\mathscr{T}$ (都是开集);
+\item 任意多个开集的并集仍然属于 $\mathscr{T}$ (是开集);
+\item 有限多个开集的交集仍然属于 $\mathscr{T}$ (是开集).
+\end{enumerate}
+也称 $\mathscr{T}$ 定义了 $V$ 上的一个拓扑空间的结构.
+
+\pause
+\vspace{1em}
+
+设 $K \subset V$ 是一个非空子集, 那么
+$$\mathscr{T}_{K} := \{ E \subset K: ~ \text{存在} ~ G \in \mathscr{T} ~ \text{使得} ~ E = G \cap K \}$$
+定义了 $K$ 上的一个拓扑空间的结构, 称为 $(V, \mathscr{T})$ 的子空间拓扑 (诱导拓扑).
+
+\pause
+\vspace{1em}
+
+之前定义的映射 $f$ 在一般的一个非空子集 $K \subset \mathbb{R}^n$ 上的连续性, 可以视为子空间拓扑下的连续性.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{函数连续性质推广}
+
+闭区间 ~~ $\longsquiggly$ ~~ 有界闭集 (紧集)
+
+\pause
+\vspace{1em}
+
+闭区间上连续函数的4条性质可以归结为
+\pause
+$$f([a, b]) = [f_{\min}, f_{\max}]$$
+
+\pause
+\vspace{1em}
+
+\begin{thm}
+连续映射将紧集映 (有界闭集) 射为紧集 (有界闭集).
+\end{thm}
+
+\pause
+\vspace{1em}
+
+\begin{attnblock}
+(无界) 闭集在连续映射下的像一般不是闭集. 例如 $f(x) = \dfrac{1}{1 + x^2},$ 闭集 $\mathbb{R}$ (或者取 $[0, +\infty)$) 的像为 $(0, 1].$
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理证明}
+
+回忆: 紧集的几个等价描述
+\begin{enumerate}
+\item $K$ 是有界闭集;
+\item $K$ 是紧集 (任意开覆盖可选出有限子覆盖);
+\only<1>{
+\item $K$ 的任意无限子集在 $K$ 中必有聚点.
+}
+\only<2->{\color{red}
+\item $K$ 的任意无限子集在 $K$ 中必有聚点.
+}
+\end{enumerate}
+
+\pause
+\vspace{0.5em}
+
+设 $f(K)$ 不是有限集, 否则结论直接成立. 我们证明 $f(K)$ 的任意无限子集 $E$ 在 $f(K)$ 中必有聚点.
+
+\pause
+\vspace{0.5em}
+
+注意到 $f^{-1}(E)$ 是 $K$ 的无限子集, 否则 $E$ 本身是一个有限集. 那么由 $K$ 的紧性知它的无限子集 $f^{-1}(E)$ 在 $K$ 中有聚点 $x.$ 那么存在 $f^{-1}(E)$ 中的点列 $\{x_k\}_{k \in \mathbb{N}},$ 使得 $\lim\limits_{k \to \infty} x_k = x.$ 那么由 $f$ 的连续性有
+$$\lim\limits_{k \to \infty} f(x_k) = f(x).$$
+注意, 以上的 $f(x_k), k \in \mathbb{N}$ 中没有重复的点. 于是我们证明了 $f(K) \ni f(x)$ 是 $f(K)$ 的聚点.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理的另一种证明}
+
+一般拓扑空间中的连续映射: 任意开集的原像是开集.
+
+\pause
+\vspace{1em}
+
+任取像集的开覆盖 $f(K) \subset \bigcup\limits_{\alpha \in I} U_{\alpha}.$ 由于 $f$ 连续, 那么 $f^{-1}(U_{\alpha})$ 都是 $\mathbb{R}^n$ 中的开集, 于是有相应的 $K$ 的开覆盖
+$$K \subset \bigcup\limits_{\alpha \in I} f^{-1}(U_{\alpha}).$$
+\pause
+由于 $K$ 是紧集, 所以可以从中选取有限覆盖
+$$K \subset \bigcup\limits_{i=1}^p f^{-1}(U_{\alpha_i}),$$
+那么对应地有
+$$f(K) \subset f\left(\bigcup\limits_{i=1}^p f^{-1}(U_{\alpha_i}) \right) = \bigcup\limits_{i=1}^p U_{\alpha_i}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一般拓扑空间中的连续函数}
+
+\begin{Def}
+设 $(V_1, \mathscr{T}_1), (V_2, \mathscr{T}_2)$ 是两个拓扑空间, $\mathscr{T}_1, \mathscr{T}_2$ 分别是其上的开集族,
+$$f: V_1 \rightarrow V_2$$
+是一个映射. 若对于点 $f(x) \in V_2$ 的任意领域 $U(f(x)) \subset V_2,$ 存在点 $x \in V_1$ 的邻域 $U(x) \subset V_1,$ 使得 $f(U(x)) \subset U(f(x)),$ 则称 $f$ 在点 $x \in V_1$ 处连续.
+\end{Def}
+
+\pause
+\vspace{0.5em}
+
+对一般的拓扑空间 $V$ 来说, 点 $x \in V$ 的邻域指包含 $x$ 的一个开集.
+
+\pause
+\vspace{0.5em}
+
+\begin{thm}
+设 $f: V_1 \rightarrow V_2$ 是两个拓扑空间的映射, 那么 $f$ 连续的充要条件是, $V_2$ 中任意开集 (闭集) 在 $V_1$ 中的原像是开集 (闭集).
+\end{thm}
+
+% \ifHandout
+% \addTextWatermark[2.5]{本页内容不作为考试要求}
+% \fi
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{函数连续性质推广}
+
+\begin{thm}
+连续映射将紧集映 (有界闭集) 射为紧集 (有界闭集).
+\end{thm}
+几个推论可以列举如下:
+
+\pause
+
+\begin{thm}[有界性定理]
+若 $f$ 是定义在 $\mathbb{R}^n$ 中紧集 $K$ 上的连续 (向量值) 函数, 则 $f(K)$ 是有界集.
+\end{thm}
+
+\pause
+
+\begin{thm}[最值定理]
+若 $f$ 是定义在 $\mathbb{R}^n$ 中紧集 $K$ 上的连续函数, 则 $f$ 在 $K$ 上能取到最大值与最小值, 即存在 $\xi$ 与 $\eta \in K,$ 使得任意 $x \in K$ 有
+$$f(\xi) \leqslant f(x) \leqslant f(\eta).$$
+\end{thm}
+\pause
+对于向量值函数, 相应的结论可以替换为 $\lVert f \rVert$ 在 $K$ 上能取到最大值与最小值.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致连续性}
+
+\begin{Def}[一致连续映射]
+设 $K \subset \mathbb{R}^n$ 为非空子集, $f: K \to \mathbb{R}^m$ 为映射. 若对任意给定的 $\varepsilon > 0,$ 存在 $\delta > 0,$ 使得
+$$\lVert f(x_1) - f(x_2) \rVert < \varepsilon$$
+对 $K$ 中所有满足 $\lVert x_1 - x_2 \rVert < \delta$ 的 $x_1, x_2$ 都成立, 则称 $f$ 在 $K$ 上一致连续.
+\end{Def}
+
+\pause
+\vspace{1em}
+
+和一元函数类似, 从定义可看出一致连续的映射必定也是连续的, 反之不成立. 例如
+$$f: \mathbb{R}^2 \setminus \{(x, y): xy = 0\} \rightarrow \mathbb{R}^2, ~ (x,y) \mapsto (1 / x, 1 / y).$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致连续性}
+
+\begin{thm}
+设 $K \subset \mathbb{R}^n$ 为紧集, $f: K \to \mathbb{R}^m$ 为连续映射, 则 $f$ 在 $K$ 上一致连续.
+\end{thm}
+
+\pause
+\vspace{1em}
+
+由于$f: K \to \mathbb{R}^m$ 连续, 所以对任意的 $a \in K$, 以及任意的 $\varepsilon > 0,$ 存在$\delta(a) > 0,$ 使得 $\forall x \in O(a, \delta(a)),$ 都有 $\lVert f(x) - f(a) \rVert < \varepsilon.$ $\{ O(a, \delta(a)/2) \}_{a \in K}$ 构成了紧集 $K$ 的一个开覆盖, 从而可以选出有限覆盖 $O(a_i, \delta(a_i)/2),$ $i = 1, \dots, p.$
+\pause
+令
+$$\delta = \min\limits_{1\leqslant i \leqslant p} \delta(a_i) / 2.$$
+任取满足 $\lVert x_1 - x_2 \rVert < \delta$ 的 $x_1, x_2 \in K.$ 设 $x_1 \in O(a_i, \delta(a_i)/2),$ 那么由三角不等式
+$$\lVert x_2 - a_i \rVert \leqslant \lVert x_2 - x_1 \rVert + \lVert x_1 - a_i \rVert \leqslant \delta + \delta(a_i)/2 < \delta(a_i)$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致连续性}
+
+所以 $x_2 \in O(a_i, \delta(a_i)),$ 即 $\lVert f(x_2) - f(a_i) \rVert < \varepsilon.$ 再一次利用三角不等式有
+$$\lVert f(x_1) - f(x_2) \rVert \leqslant \lVert f(x_1) - f(a_i) \rVert + \lVert f(x_2) - f(a_i) \rVert < 2\varepsilon.$$
+这便证明了 $f$ 在 $K$ 上的一致连续性.
 
 \end{frame}
 
@@ -71,9 +295,37 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 %------------------------------------------------
 
-\begin{frame}{连通集}
+\begin{frame}{道路连通集的概念}
 
+\begin{Def}[道路连通集]
+设 $E \subset \mathbb{R}^n$ 是非空子集, 若连续映射
+$$\gamma: [0, 1] \longrightarrow \mathbb{R}^n$$
+的值域落在 $E$ 中, 即满足 $\gamma([0, 1]) \subset E,$ 则称 $\gamma$ 为 $E$ 中的道路, $\gamma(0)$ 与 $\gamma(1)$ 分别称为道路的起点与终点.
+\end{Def}
 
+\pause
+\vspace{1em}
+
+\begin{Def}
+若非空集合 $E \subset \mathbb{R}^n$ 中任意两点 $x, y$ 都存在以 $x$ 为起点, 以 $y$ 为终点的 $E$ 中的道路, 则称 $E$ 是 (道路) 连通集.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{道路连通集的例子}
+
+设 $A, B \in M_{n\times n}(\mathbb{R}) \cong \mathbb{R}^{n^2}$ 是两个 $n\times n$ 的矩阵. 那么
+$$\gamma: [0, 1] \longrightarrow M_{n\times m}(\mathbb{R}), ~~ tB + (1-t)A$$
+是 $M_{n\times n}(\mathbb{R})$ 中连接 $A, B$ 的道路. 于是 $M_{n\times n}(\mathbb{R})$ 是道路连通的.
+
+\pause
+\vspace{1em}
+
+但是
+$$\operatorname{GL}_n(\mathbb{R}) := \{A \in M_{n\times n}(\mathbb{R}): ~ \det A \neq 0\}$$
+不是道路连通的.
 
 \end{frame}
 
@@ -81,7 +333,42 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 \begin{frame}{一般拓扑空间内的连通集}
 
+我们有更一般的连通集 (拓扑空间) 的概念.
 
+\pause
+
+\begin{Def}[连通的拓扑空间]
+设 $(V, \mathscr{T})$ 为拓扑空间, 若 $(V, \mathscr{T})$ 中没有除 $V$ 以及 $\emptyset$ 以外的开-闭集.
+\end{Def}
+
+\pause
+
+或者等价地说, $X$ 不能表示为两个非空不交的开子集 (闭子集) 的并.
+
+\pause
+\vspace{1em}
+
+\begin{Def}[一般拓扑空间内的连通集]
+拓扑空间 $(V, \mathscr{T})$ 的子集 $E$ 称为连通集, 若对 $E$ 赋予 $V$ 的子空间拓扑 $\mathscr{T}_E$, $(E, \mathscr{T}_E)$ 是连通的拓扑空间.
+\end{Def}
+
+\ifHandout
+\addTextWatermark[2.5]{本页内容不作为考试要求}
+\fi
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{连通但不道路连通集合的例子}
+
+设 $E \subset \mathbb{R}^2$ 是由函数 $x \mapsto \sin \dfrac{1}{x}$ $(x \neq 0)$ 的图像, 并上 $y$ 轴上的区间
+$$\{(x,y): ~ x = 0, \lvert y \rvert \leqslant 1\},$$
+那么 $E$ 是 $\mathbb{R}^2$ 中连通集, 但不是道路连通的.
+
+\ifHandout
+\addTextWatermark[2.5]{本页内容不作为考试要求}
+\fi
 
 \end{frame}
 
@@ -91,7 +378,7 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{连通集上的连续映射}
 
 
 
