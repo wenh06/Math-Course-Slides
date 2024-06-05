@@ -90,8 +90,8 @@ $$\lVert f(x) - f(x_0) \rVert < \varepsilon ~~ (\text{或} ~ f(x) \in O(f(x_0), 
 回忆: 一个拓扑空间, 指的是一个集合 $V$, 以及它的一个子集族 (它的开集) $\mathscr{T}:$
 \begin{enumerate}
 \item $V$ 本身和空集 $\emptyset$ 都属于 $\mathscr{T}$ (都是开集);
-\item 任意多个开集的并集仍然属于 $\mathscr{T}$ (是开集);
-\item 有限多个开集的交集仍然属于 $\mathscr{T}$ (是开集).
+\item 任意多个 $\mathscr{T}$ 中元素的并集仍然属于 $\mathscr{T}$ (是开集);
+\item 有限多个 $\mathscr{T}$ 中元素的交集仍然属于 $\mathscr{T}$ (是开集).
 \end{enumerate}
 也称 $\mathscr{T}$ 定义了 $V$ 上的一个拓扑空间的结构.
 
@@ -162,9 +162,9 @@ $$f([a, b]) = [f_{\min}, f_{\max}]$$
 \pause
 \vspace{0.5em}
 
-注意到 $f^{-1}(E)$ 是 $K$ 的无限子集, 否则 $E$ 本身是一个有限集. 那么由 $K$ 的紧性知它的无限子集 $f^{-1}(E)$ 在 $K$ 中有聚点 $x.$ 那么存在 $f^{-1}(E)$ 中的点列 $\{x_k\}_{k \in \mathbb{N}},$ 使得 $\lim\limits_{k \to \infty} x_k = x.$ 那么由 $f$ 的连续性有
+注意到 $f^{-1}(E)$ 是 $K$ 的无限子集, 否则 $E$ 本身是一个有限集. 令 $S \subset \mathbb{R}^n$ 为 $E$ 中每点在 $f$ 下的原像集中任取一点构成的集合. 那么 $S$ 是无限集, 由 $K$ 的紧性知 $S$ 在 $K$ 中有聚点 $x.$ 那么存在 $S$ 中的点列 $\{x_k\}_{k \in \mathbb{N}},$ 使得 $\lim\limits_{k \to \infty} x_k = x.$ 那么由 $f$ 的连续性有
 $$\lim\limits_{k \to \infty} f(x_k) = f(x).$$
-注意, 以上的 $f(x_k), k \in \mathbb{N}$ 中没有重复的点. 于是我们证明了 $f(K) \ni f(x)$ 是 $f(K)$ 的聚点.
+注意, 根据 $S$ 的取法, 以上的 $f(x_k) \in E, k \in \mathbb{N}$ 中没有重复的点, 那么任意去心邻域 $\mathring{O}(f(x), \delta) \cap f(S) \neq \emptyset.$ 于是我们证明了 $f(K) \ni f(x)$ 是 $f(K)$ 的聚点.
 
 \end{frame}
 
@@ -194,7 +194,7 @@ $$f(K) \subset f\left(\bigcup\limits_{i=1}^p f^{-1}(U_{\alpha_i}) \right) = \big
 \begin{Def}
 设 $(V_1, \mathscr{T}_1), (V_2, \mathscr{T}_2)$ 是两个拓扑空间, $\mathscr{T}_1, \mathscr{T}_2$ 分别是其上的开集族,
 $$f: V_1 \rightarrow V_2$$
-是一个映射. 若对于点 $f(x) \in V_2$ 的任意领域 $U(f(x)) \subset V_2,$ 存在点 $x \in V_1$ 的邻域 $U(x) \subset V_1,$ 使得 $f(U(x)) \subset U(f(x)),$ 则称 $f$ 在点 $x \in V_1$ 处连续.
+是一个映射. 若对于点 $f(x) \in V_2$ 的任意邻域 $U(f(x)) \subset V_2,$ 存在点 $x \in V_1$ 的邻域 $U(x) \subset V_1,$ 使得 $f(U(x)) \subset U(f(x)),$ 则称 $f$ 在点 $x \in V_1$ 处连续.
 \end{Def}
 
 \pause
@@ -209,9 +209,26 @@ $$f: V_1 \rightarrow V_2$$
 设 $f: V_1 \rightarrow V_2$ 是两个拓扑空间的映射, 那么 $f$ 连续的充要条件是, $V_2$ 中任意开集 (闭集) 在 $V_1$ 中的原像是开集 (闭集).
 \end{thm}
 
-% \ifHandout
-% \addTextWatermark[2.5]{本页内容不作为考试要求}
-% \fi
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一般拓扑空间中的连续函数等价性条件定理证明}
+
+充分性: 任取点 $x \in V_1,$ 并任取 $f(x)$ 的邻域 $U(f(x)) \subset V_2,$ 由条件, 开集 $U(f(x))$ 的原像 $f^{-1}(U(f(x))) =: U(x)$ 是 $V_1$ 中的开集, 并且显然有 $x \in U(x),$ 即 $U(x)$ 是 $x$ 的一个邻域. 于是
+$$f(U(x)) = f \left( f^{-1}(U(f(x))) \right) \subset U(f(x)).$$
+这便证明了 $f$ 在 $x$ 处连续.
+
+\pause
+\vspace{1em}
+
+必要性: 任取 $V_2$ 中开集 $U.$ 若 $U \cap f(V_1) = \emptyset,$ 那么 $f^{-1}(U) = \emptyset$ 是 $V_1$ 中开集. 若 $U \cap f(V_1) \neq \emptyset,$ 那么 $f^{-1}(U)$ 是 $V_1$ 的非空子集. 任取其中一点 $x \in f^{-1}(U),$ 由 $f$ 在这点的连续性知, 任取 $f(x) \in V_2$ 的邻域 $U(f(x)) \subset U,$ 存在 $x$ 的邻域 $U(x),$ 使得 $f(U(x)) \subset U(f(x)),$ 即有
+$$U(x) \subset f^{-1}(U(f(x))) \subset f^{-1}(U),$$
+从而有 $\bigcup\limits_{x \in f^{-1}(U)} U(x) \subset f^{-1}(U).$ 相反的包含关系是显然的, 于是 $f^{-1}(U) = \bigcup\limits_{x \in f^{-1}(U)} U(x)$ 是 $V_1$ 中的开集的并集, 从而也是开集.
+
+\ifHandout
+\addTextWatermark[2.5]{本页内容不作为考试要求}
+\fi
 
 \end{frame}
 
@@ -283,6 +300,12 @@ $$\lVert x_2 - a_i \rVert \leqslant \lVert x_2 - x_1 \rVert + \lVert x_1 - a_i \
 
 \begin{frame}{一致连续性}
 
+\ifHandout
+% do nothing
+\else
+\markEndOfClass{37}
+\fi
+
 所以 $x_2 \in O(a_i, \delta(a_i)),$ 即 $\lVert f(x_2) - f(a_i) \rVert < \varepsilon.$ 再一次利用三角不等式有
 $$\lVert f(x_1) - f(x_2) \rVert \leqslant \lVert f(x_1) - f(a_i) \rVert + \lVert f(x_2) - f(a_i) \rVert < 2\varepsilon.$$
 这便证明了 $f$ 在 $K$ 上的一致连续性.
@@ -327,6 +350,53 @@ $$\gamma: [0, 1] \longrightarrow M_{n\times m}(\mathbb{R}), ~~ tB + (1-t)A$$
 $$\operatorname{GL}_n(\mathbb{R}) := \{A \in M_{n\times n}(\mathbb{R}): ~ \det A \neq 0\}$$
 不是道路连通的.
 
+\pause
+\vspace{1em}
+
+\begin{block}{思考}
+\begin{itemize}[<+->]
+  \item $\operatorname{GL}_n^+(\mathbb{R}) = \{A \in M_{n\times n}(\mathbb{R}): ~ \det A > 0\}$ 是道路连通的吗?
+  \item $\operatorname{SL}_n(\mathbb{R}) = \{A \in M_{n\times n}(\mathbb{R}): ~ \det A = 1\}$ 是道路连通的吗?
+  \item $\operatorname{GL}_n(\mathbb{C}) = \{A \in M_{n\times n}(\mathbb{C}): ~ \det A \neq 0\}$ 是道路连通的吗?
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{道路连通集的基本性质}
+
+\begin{prop}
+$\mathbb{R}^n$ 中的道路连通集不能表示为两个非空不交的开集的并.
+\end{prop}
+
+\pause
+\vspace{1em}
+
+假设 $G_1, G_2$ 是 $\mathbb{R}^n$ 中的两个非空不交的开集, 且 $E = G_1 \cup G_2$ 是道路连通的. 任取 $x \in G_1, y \in G_2,$ 由 $E$ 的道路连通性, 存在道路 $\gamma: [0, 1] \to E,$ 使得 $\gamma(0) = x, \gamma(1) = y.$ 令 $t_1 = \dfrac{1}{2},$ 若 $\gamma(t_1) \in G_1,$ 则取 $t_2 = \dfrac{t_1 + 1}{2},$ 否则取 $t_2 = \dfrac{t_1}{2}.$ 重复这个过程, 得到 $\mathbb{R}$ 中的一个 Cauchy 列 $\{t_k\}_{k \in \mathbb{N}},$ 记它的极限为 $t^*\in [0, 1].$ 由 $\gamma$ 的连续性知 $\gamma(t^*) \in E = G_1 \cup G_2.$
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{道路连通集的基本性质}
+
+假设 $\gamma(t^*) \in G_1,$ 那么由于 $G_1$ 是开集, 存在 $\varepsilon > 0,$ 使得 $O(\gamma(t^*), \varepsilon) \subset G_1.$ 由 $\gamma$ 的连续性, 存在正整数 $K,$ 使得 $\forall k > K,$ 有 $\gamma(t_k) \in O(\gamma(t^*), \varepsilon).$
+
+\vspace{0.5em}
+
+$1^{\circ}$ 若 $1 \leqslant k \leqslant K,$ $\gamma(t_k) \in G_1,$ 那么按照我们的取法, 有 $t_{k+1} = \dfrac{t_k + 1}{2},$ 从而 $t^* = 1,$ 这与 $\gamma(t^*) \in G_1$ 矛盾.
+
+\vspace{0.5em}
+
+$2^{\circ}$ 记$N$ 为使得 $\gamma(t_N) \in G_2$ 的最小的 $N,$ 那么按照我们的取法, 当 $k$ 充分大时, 有 $t_{k+1} = \dfrac{t_k + t_N}{2}.$ 从而 $t^* = t_N,$ 这也与 $\gamma(t^*) \in G_1$ 矛盾.
+
+\vspace{0.5em}
+
+于是, 必有 $\gamma(t^*) \not\in G_1.$ 类似可证 $\gamma(t^*) \not\in G_2.$ 这便证明了 $E$ 必然不是道路连通的. 于是, 道路连通集必然不能表示为两个非空不交的开集的并.
+
 \end{frame}
 
 %------------------------------------------------
@@ -362,9 +432,19 @@ $$\operatorname{GL}_n(\mathbb{R}) := \{A \in M_{n\times n}(\mathbb{R}): ~ \det A
 
 \begin{frame}{连通但不道路连通集合的例子}
 
-设 $E \subset \mathbb{R}^2$ 是由函数 $x \mapsto \sin \dfrac{1}{x}$ $(x \neq 0)$ 的图像, 并上 $y$ 轴上的区间
+设 $E \subset \mathbb{R}^2$ 是由函数 $x \mapsto \sin \dfrac{1}{x}$ $(x > 0)$ 的图像, 并上 $y$ 轴上的区间
 $$\{(x,y): ~ x = 0, \lvert y \rvert \leqslant 1\},$$
 那么 $E$ 是 $\mathbb{R}^2$ 中连通集, 但不是道路连通的.
+
+\pause
+\vspace{1em}
+
+假设 $E = G_1 \cup G_2$ 可以表示为两个非空不交的开集的并, 那么由于 $\{(x,y): ~ x = 0, \lvert y \rvert \leqslant 1\}$ 是道路连通的, 它必然完全包含在 $G_1$ 或 $G_2$ 中.
+
+\pause
+\vspace{0.5em}
+
+假设 $\{(x,y): ~ x = 0, \lvert y \rvert \leqslant 1\} \subset G_1,$ $G_1 = S_1 \cap E,$ 那么 $S_1$ 是 $\mathbb{R}^2$ 中的开集. 由于 $(0, 0)$ 是 $S_1$ 的内点, 同时又是函数 $x \mapsto \sin \dfrac{1}{x}$ $(x \neq 0)$ 的图像的聚点, 那么 $S_1$ 必然与 $x \mapsto \sin \dfrac{1}{x}$ $(x > 0)$ 的图像交非空. 又由函数图像的道路连通性, 若它不完全包含于 $S_1$ 中, 那么该道路连通集就可以表示为两个非空不交的开集的并. 于是, 我们证明了 $E$ 必然等于 $G_1,$ 这与假设矛盾.
 
 \ifHandout
 \addTextWatermark[2.5]{本页内容不作为考试要求}
@@ -380,10 +460,31 @@ $$\{(x,y): ~ x = 0, \lvert y \rvert \leqslant 1\},$$
 
 \begin{frame}{连通集上的连续映射}
 
+\begin{thm}
+连续映射将道路连通集映为道路连通集.
+\end{thm}
 
+\pause
+\vspace{1em}
+
+设 $D \subset \mathbb{R}^n$ 是道路连通集, $f: D \to \mathbb{R}^m$ 是连续映射. 任取 $x, y \in D,$ 由 $D$ 的道路连通性, 存在道路 $\gamma: [0, 1] \to D,$ 使得 $\gamma(0) = x, \gamma(1) = y.$ 于是复合映射 $f \circ \gamma: [0, 1] \to \mathbb{R}^m$ 是连续映射, 且 $(f \circ \gamma)(0) = f(x), (f \circ \gamma)(1) = f(y).$ 即 $f \circ \gamma$ 是 $f(D)$ 中连接 $f(x), f(y)$ 的道路. 由 $x, y$ 的任意性, $f(D)$ 是道路连通的.
 
 \end{frame}
 
+%------------------------------------------------
+
+\begin{frame}{连通集上的连续映射}
+
+\begin{cor}
+连续函数将道路连通的紧集映射为闭区间.
+\end{cor}
+
+\pause
+\vspace{1em}
+
+由之前的定理, 连续映射将道路连通的紧集映为 $\mathbb{R}$ 中道路连通的紧集, 即闭区间.
+
+\end{frame}
 
 %------------------------------------------------
 
