@@ -1,0 +1,160 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[数分II\\
+复习]{\texorpdfstring{\Huge \bfseries 数学分析II复习}{数学分析II复习}} % The short title appears at the bottom of every slide, the full title is only on the title page
+% \author[\S 11.3\\
+% 多元连续函数性质] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+% {\Large \bfseries \S 11.3 多元连续函数的性质}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{定积分}
+
+%------------------------------------------------
+
+\begin{frame}{可积性与积分的定义}
+
+基本考察对象: 定义在闭区间上的函数 $f: [a, b] \longrightarrow \mathbb{R}$
+
+\pause
+
+\begin{itemize}[<+->]
+\item 带标志点的划分:
+\begin{alignat*}{8}
+P & : a = x_0 & < & ~ x_1 & < & ~ x_2 & ~ < & ~ \cdots & ~ < & ~ x_n = b \\
+& & \uparrow & & \uparrow & & \uparrow & & \uparrow & \\
+\xi & : & ~ \xi_1 & & ~ \xi_2 & & ~ \xi_3 & ~ \cdots & ~ \xi_n &
+\end{alignat*}
+$\Delta_i = [x_{i-1}, x_i], ~ \Delta x_i = x_i - x_{i-1}, ~ \lambda(P) = \max_{1 \leqslant i \leqslant n} \Delta x_i$
+\item 积分和: $S(f; P; \xi) = \sum\limits_{i=1}^n f(\xi) \Delta x_i.$
+\item Darboux 大和: $\overline{S}(f; P) = \sum\limits_{i=1}^n \sup_{t\in\Delta_i} f(t) \cdot \Delta x_i$ \par
+Darboux 小和: $\underline{S}(f; P) = \sum\limits_{i=1}^n \inf_{t\in\Delta_i} f(t) \cdot \Delta x_i$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可积性与积分的定义}
+
+\begin{Def}[函数 Riemann 可积]
+极限 $\lim\limits_{\lambda(P) \to 0} S(f; P; \xi) = I \in \mathbb{R}$ 存在, 则称 $f$ 在 $[a, b]$ 上 Riemann 可积, 记作
+$$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可积函数的性质与判别}
+
+必要条件: $f(x)$ 有界.
+
+\pause
+\vspace{1em}
+
+等价 (充要) 条件:
+\begin{enumerate}
+    \item Cauchy 收敛原理:
+    \item Darboux 和:
+    \item 振幅: 
+    \item Lebesgue 判别法: 几乎处处连续.
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{反常积分}
+
+%------------------------------------------------
+
+\begin{frame}{待写}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{待写}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{数项级数}
+
+%------------------------------------------------
+
+\begin{frame}{待写}
+
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{函数项级数}
+
+%------------------------------------------------
+
+\begin{frame}{待写}
+
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Euclid 空间}
+
+%------------------------------------------------
+
+\begin{frame}{待写}
+
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{待写}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
