@@ -45,16 +45,18 @@
 
 \begin{frame}{可积性与积分的定义}
 
-基本考察对象: 定义在闭区间上的函数 $f: [a, b] \longrightarrow \mathbb{R}$
+基本考察对象: 定义在闭区间上函数 $f: [a, b] \longrightarrow \mathbb{R}$
+\pause
+$\longsquiggly$ $\mathcal{R}[a,b].$
 
 \pause
 
 \begin{itemize}[<+->]
-\item 带标志点的划分 $(P, \xi):$
+\item {\color{red}带标志点的}划分 $(P, {\color{red}\xi}):$
 \begin{alignat*}{8}
 P & : a = x_0 & < & ~ x_1 & < & ~ x_2 & ~ < & ~ \cdots & ~ < & ~ x_n = b \\
 & & \uparrow & & \uparrow & & \uparrow & & \uparrow & \\
-\xi & : & ~ \xi_1 & & ~ \xi_2 & & ~ \xi_3 & ~ \cdots & ~ \xi_n &
+{\color{red}\xi} & : & ~ {\color{red}\xi_1} & & ~ {\color{red}\xi_2} & & ~ {\color{red}\xi_3} & ~ \cdots & ~ {\color{red}\xi_n} &
 \end{alignat*}
 $\Delta_i = [x_{i-1}, x_i], ~ \Delta x_i = x_i - x_{i-1}, ~ \lambda(P) = \max_{1 \leqslant i \leqslant n} \Delta x_i$
 \item 积分和: $S(f; P; \xi) = \sum\limits_{i=1}^n f(\xi) \Delta x_i.$
@@ -86,24 +88,80 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 
 等价 (充要) 条件:
 \begin{enumerate}[<+->]
-    \item Cauchy 收敛原理: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意带标志点的划分 $(P_1, \xi_1), (P_1, \xi_1),$ 若满足 $\lambda(P_1) < \delta, \lambda(P_2) < \delta,$ 总有
-    $$\lvert S(f; P_1; \xi_1) - S(f; P_2; \xi_2) \rvert < \varepsilon.$$
-    \item Darboux 和: $\lim\limits_{\lambda(P) \to 0} S(f; P) =: \overline{\int}_a^b f(x) \mathrm{d} x = \underline{\int}_a^b f(x) \mathrm{d} x := \lim\limits_{\lambda(P) \to 0} s(f; P).$
-    \item 振幅: 
-    \item Lebesgue 判别法: 几乎处处连续.
+\item Cauchy 收敛原理: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意带标志点的划分 $(P_1, \xi_1), (P_2, \xi_2),$ 若满足 $\lambda(P_1) < \delta, \lambda(P_2) < \delta,$ 总有
+$$\lvert S(f; P_1; \xi_1) - S(f; P_2; \xi_2) \rvert < \varepsilon.$$
+\item Darboux 和: $\lim\limits_{\lambda(P) \to 0} \overline{S}(f; P) =: \overline{\int}_a^b f(x) \mathrm{d} x = \underline{\int}_a^b f(x) \mathrm{d} x := \lim\limits_{\lambda(P) \to 0} \underline{S}(f; P).$
+\item 振幅: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意满足 $\lambda(P) < \delta$ 的划分 $P$ 总有
+$\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\omega(f; \Delta_i) := \sup\limits_{t_1, t_2 \in \Delta_i} \lvert f(t_1) - f(t_2) \rvert.$
+\item Lebesgue 判别法: 几乎处处连续 (不连续点集是零测集).
 \end{enumerate}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{定积分的 (运算) 性质}
+\begin{frame}{闭区间上典型的可积函数}
+
+\begin{itemize}[<+->]
+\item 连续函数 (所有初等函数)
+\item 单调函数
+\item $[0, 1]$ 上的 Riemann 函数 $R(x) = \begin{cases}
+  \dfrac{1}{q}, & x = \dfrac{p}{q} ~ \text{为既约分数;}\\
+  0, & x ~ \text{为无理数.}
+\end{cases}$
+\end{itemize}
+
+\pause
+\vspace{1em}
+
+典型的不可积函数:
+
+\begin{itemize}
+\item $[0, 1]$ 上的 Dirichlet 函数 $D(x) = \begin{cases}
+  1, & x ~ \text{为有理数;}\\
+  0, & x ~ \text{为无理数.}
+\end{cases}$
+\item 无界函数, 例如 $f(x) = \begin{cases}
+  \dfrac{1}{x}, & x \in (0, 1];\\
+  0, & x = 0.
+\end{cases}$
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}{定积分的 (运算) 性质}
+
+关于被积区间的
+\pause
+\begin{enumerate}[<+->]
+\item 区间 (有限) 可积性: $\int_a^b f(x) \mathrm{d} x = \int_a^c f(x) \mathrm{d} x + \int_c^b f(x) \mathrm{d} x.$
+\end{enumerate}
+
+\pause
+
+关于被积函数的
+\pause
+\begin{enumerate}[<+->]
+\item 线性性:
+$$\int_a^b (\alpha g(x) + \beta f(x)) \mathrm{d} x = \alpha \int_a^b g(x)  \mathrm{d} x + \beta \int_a^b f(x) \mathrm{d} x.$$
+\item 乘积可积性: $f, g \in \mathcal{R}[a, b] \Longrightarrow f \cdot g \in \mathcal{R}[a, b].$
+\item 保序性: $f \leqslant g \Longrightarrow \int_a^b f(x) \mathrm{d} x \leqslant \int_a^b g(x) \mathrm{d} x.$
+\item 绝对可积性: $f \in \mathcal{R}[a, b] \Longrightarrow \lvert f \rvert \in \mathcal{R}[a, b]$ (反之不成立), 且有
+$$\left\lvert \int_a^b f(x) \mathrm{d} x \right\rvert \leqslant \int_a^b \lvert f(x) \rvert \mathrm{d} x.$$
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分中值定理}
+
+\begin{enumerate}[<+->]
+\item 积分第一中值定理: $f, g \in \mathcal{R}[a, b],$ $g$ 不变号, 那么存在 $\inf_{x \in [a,b]} f(x) \leqslant \eta \sup_{x \in [a,b]} f(x),$ 使得 $\int_a^b f(x) g(x) \mathrm{d} x = \eta \int_a^b g(x) \mathrm{d} x.$
+\item 积分第二中值定理
+\end{enumerate}
 
 \end{frame}
 
