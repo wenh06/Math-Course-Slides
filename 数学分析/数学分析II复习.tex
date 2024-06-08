@@ -50,7 +50,7 @@
 \pause
 
 \begin{itemize}[<+->]
-\item 带标志点的划分:
+\item 带标志点的划分 $(P, \xi):$
 \begin{alignat*}{8}
 P & : a = x_0 & < & ~ x_1 & < & ~ x_2 & ~ < & ~ \cdots & ~ < & ~ x_n = b \\
 & & \uparrow & & \uparrow & & \uparrow & & \uparrow & \\
@@ -58,8 +58,8 @@ P & : a = x_0 & < & ~ x_1 & < & ~ x_2 & ~ < & ~ \cdots & ~ < & ~ x_n = b \\
 \end{alignat*}
 $\Delta_i = [x_{i-1}, x_i], ~ \Delta x_i = x_i - x_{i-1}, ~ \lambda(P) = \max_{1 \leqslant i \leqslant n} \Delta x_i$
 \item 积分和: $S(f; P; \xi) = \sum\limits_{i=1}^n f(\xi) \Delta x_i.$
-\item Darboux 大和: $\overline{S}(f; P) = \sum\limits_{i=1}^n \sup_{t\in\Delta_i} f(t) \cdot \Delta x_i$ \par
-Darboux 小和: $\underline{S}(f; P) = \sum\limits_{i=1}^n \inf_{t\in\Delta_i} f(t) \cdot \Delta x_i$
+\item Darboux 大和: $\overline{S}(f; P) = \sum\limits_{i=1}^n \sup_{t\in\Delta_i} f(t) \cdot \Delta x_i =: \sum\limits_{i=1}^n M_i(f) \cdot \Delta x_i$ \par
+Darboux 小和: $\underline{S}(f; P) = \sum\limits_{i=1}^n \inf_{t\in\Delta_i} f(t) \cdot \Delta x_i =: \sum\limits_{i=1}^n m_i(f) \cdot \Delta x_i$
 \end{itemize}
 
 \end{frame}
@@ -85,12 +85,37 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 \vspace{1em}
 
 等价 (充要) 条件:
-\begin{enumerate}
-    \item Cauchy 收敛原理:
-    \item Darboux 和:
+\begin{enumerate}[<+->]
+    \item Cauchy 收敛原理: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意带标志点的划分 $(P_1, \xi_1), (P_1, \xi_1),$ 若满足 $\lambda(P_1) < \delta, \lambda(P_2) < \delta,$ 总有
+    $$\lvert S(f; P_1; \xi_1) - S(f; P_2; \xi_2) \rvert < \varepsilon.$$
+    \item Darboux 和: $\lim\limits_{\lambda(P) \to 0} S(f; P) =: \overline{\int}_a^b f(x) \mathrm{d} x = \underline{\int}_a^b f(x) \mathrm{d} x := \lim\limits_{\lambda(P) \to 0} s(f; P).$
     \item 振幅: 
     \item Lebesgue 判别法: 几乎处处连续.
 \end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的 (运算) 性质}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的 (运算) 性质}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的计算}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的应用}
 
 \end{frame}
 
@@ -100,7 +125,7 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{敛散性判别法}
 
 
 \end{frame}
@@ -118,9 +143,22 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{正项级数敛散性判别法}
 
 
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一般级数敛散性判别法}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无穷乘积}
 
 \end{frame}
 
@@ -130,7 +168,23 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{一致收敛性及判别法}
+
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛级数的分析性质}
+
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数}
 
 
 
@@ -142,7 +196,7 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{Euclid 空间结构}
 
 
 
@@ -150,7 +204,14 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{紧集上的连续函数}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{道路连通性}
+
 
 
 \end{frame}
