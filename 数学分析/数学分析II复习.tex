@@ -505,6 +505,7 @@ $$\int_a^\omega f(x) ~ \mathrm{d} x ~ \text{收敛} ~~ \Longleftrightarrow ~ \in
 \item $\ell = 0$:
 \pause
 归结为 $0 \leqslant f(x) \leqslant g(x);$
+\pause
 \item $\ell = +\infty$:
 \pause
 归结为 $0 \leqslant g(x) \leqslant f(x);$
@@ -1270,6 +1271,31 @@ $$f^{(k)}(0) = \lim\limits_{x\to 0} \dfrac{f^{(k-1)}(x) - f^{(k-1)}(0)}{x-0} = 0
 假设 $f(x)$ 在 $x = 0$ 处有幂级数展开, 那么该幂级数每一项的系数都是 $0,$ 因此幂级数展开为 $0,$ 与 $f(x)$ 不符.
 \pause
 这里, $f(x)$ 的 $n$ 阶 Taylor 公式余项 $r_n(x) = f(x)$ 对任意 $x \neq 0$ 都不趋于 $0$ (等于与 $n$ 无关的常数), 由此也可以看出 $f(x)$ 在 $x = 0$ 处没有幂级数展开.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数的 Abel 求和法}
+
+\begin{Def}[Abel 求和法]
+若 $\lim\limits_{x \to 1-} \sum\limits_{n=1}^\infty a_n x^n = A$ 为一个有限实数, 则称数项级数 $\sum\limits_{n=1}^\infty a_n$ 是 Abel 意义下可和的, 并定义
+$$\sum\limits_{n=1}^\infty a_n = \lim\limits_{x \to 1-} \sum\limits_{n=1}^\infty a_n x^n = A.$$
+\end{Def}
+
+\pause
+
+若数项级数 $\sum\limits_{n=1}^\infty a_n$ 是 Cesàro 意义下可和的, 那么它也是 Abel 意义下可和的, 且两种求和结果相同:
+
+\begin{thm}[Frobeinus]
+若数项级数 $\sum\limits_{n=1}^\infty a_n$ 在 Cesàro $(c, 1)$ 意义的和为 $A \in \mathbb{R},$ 即 $\lim\limits_{n\to\infty} a_n = A ~ (c, 1),$ 那么它在 Abel 意义下的和也为 $A.$
+\end{thm}
+
+% 证明的关键是, 在 $(-1, 1)$ 上恒有:
+% \begin{itemize}
+% \item $\sum\limits_{n=1}^\infty a_n x^n = (1 - x)^2 \sum\limits_{n=1}^\infty n \sigma_n x^n;$
+% \item $1 = (1 - x)^2 \sum\limits_{n=1}^\infty (n+1) x^n.$
+% \end{itemize}
 
 \end{frame}
 
