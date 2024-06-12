@@ -72,7 +72,7 @@ Darboux 小和: $\underline{S}(f; P) = \sum\limits_{i=1}^n \inf_{t\in\Delta_i} f
 
 \begin{Def}[函数 Riemann 可积]
 极限 $\lim\limits_{\lambda(P) \to 0} S(f; P; \xi) = I \in \mathbb{R}$ 存在, 则称 $f$ 在 $[a, b]$ 上 Riemann 可积, 记作
-$$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
+$$\int_a^b f(x) ~ \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 \end{Def}
 
 \end{frame}
@@ -87,13 +87,14 @@ $$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 \vspace{1em}
 
 等价 (充要) 条件:
+\pause
 \begin{enumerate}[<+->]
 \item Cauchy 收敛原理: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意带标志点的划分 $(P_1, \xi_1), (P_2, \xi_2),$ 若满足 $\lambda(P_1) < \delta, \lambda(P_2) < \delta,$ 总有
 $$\lvert S(f; P_1; \xi_1) - S(f; P_2; \xi_2) \rvert < \varepsilon.$$
-\item Darboux 和条件: $\lim\limits_{\lambda(P) \to 0} \overline{S}(f; P) =: \overline{\int}_a^b f(x) \mathrm{d} x = \underline{\int}_a^b f(x) \mathrm{d} x := \lim\limits_{\lambda(P) \to 0} \underline{S}(f; P).$
+\item Darboux 和条件: $\lim\limits_{\lambda(P) \to 0} \overline{S}(f; P) =: \overline{\int}_a^b f(x) ~ \mathrm{d} x = \underline{\int}_a^b f(x) ~ \mathrm{d} x := \lim\limits_{\lambda(P) \to 0} \underline{S}(f; P).$
 \item 振幅条件: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意满足 $\lambda(P) < \delta$ 的划分 $P$ 总有
 $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\omega(f; \Delta_i) := \sup\limits_{t_1, t_2 \in \Delta_i} \lvert f(t_1) - f(t_2) \rvert.$
-\item Lebesgue 判别法: 几乎处处连续 (不连续点集是零测集).
+\item Lebesgue 判别法: $f(x)$ 有界, 且几乎处处连续 (不连续点集是零测集).
 \end{enumerate}
 
 \end{frame}
@@ -102,9 +103,11 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 
 \begin{frame}{闭区间上典型的可积函数}
 
-\begin{itemize}[<+->]
-\item 连续函数 (所有初等函数) ~ \reflectbox{$\longsquiggly$} ~ 蕴含有界性
+\begin{itemize}
+\item 连续函数 (所有初等函数) ~ \reflectbox{$\longsquiggly$} ~ 蕴含有界性\
+\pause
 \item 单调函数 ~ \reflectbox{$\longsquiggly$} ~ 蕴含有界性
+\pause
 \item $[0, 1]$ 上的 Riemann 函数 $R(x) = \begin{cases}
   \dfrac{1}{q}, & x = \dfrac{p}{q} ~ \text{为既约分数;}\\
   0, & x ~ \text{为无理数或} ~ x = 0.
@@ -115,8 +118,9 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 \vspace{1em}
 
 典型的不可积函数:
+\pause
 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item $[0, 1]$ 上的 Dirichlet 函数 $D(x) = \begin{cases}
   1, & x ~ \text{为有理数;}\\
   0, & x ~ \text{为无理数.}
@@ -135,8 +139,8 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 
 关于被积区间的
 \pause
-\begin{enumerate}[<+->]
-\item 区间 (有限) 可积性: $\int_a^b f(x) \mathrm{d} x = \int_a^c f(x) \mathrm{d} x + \int_c^b f(x) \mathrm{d} x.$
+\begin{enumerate}
+\item 区间 (有限) 可加性: $\int_a^b f(x) ~ \mathrm{d} x = \int_a^c f(x) ~ \mathrm{d} x + \int_c^b f(x) ~ \mathrm{d} x.$
 \end{enumerate}
 
 \pause
@@ -146,11 +150,11 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 \begin{enumerate}[<+->]
 \setcounter{enumi}{1}
 \item 线性性:
-$$\int_a^b (\alpha g(x) + \beta f(x)) \mathrm{d} x = \alpha \int_a^b g(x)  \mathrm{d} x + \beta \int_a^b f(x) \mathrm{d} x.$$
+$$\int_a^b (\alpha g(x) + \beta f(x)) ~ \mathrm{d} x = \alpha \int_a^b g(x) ~ \mathrm{d} x + \beta \int_a^b f(x) ~ \mathrm{d} x.$$
 \item 乘积可积性: $f, g \in \mathcal{R}[a, b] \Longrightarrow f \cdot g \in \mathcal{R}[a, b].$
-\item 保序性: $f \leqslant g \Longrightarrow \int_a^b f(x) \mathrm{d} x \leqslant \int_a^b g(x) \mathrm{d} x.$
+\item 保序性: $f \leqslant g \Longrightarrow \int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b g(x) ~ \mathrm{d} x.$
 \item 绝对可积性: $f \in \mathcal{R}[a, b] \Longrightarrow \lvert f \rvert \in \mathcal{R}[a, b]$ ({\color{red}反之不成立}), 且有
-$$\left\lvert \int_a^b f(x) \mathrm{d} x \right\rvert \leqslant \int_a^b \lvert f(x) \rvert \mathrm{d} x.$$
+$$\left\lvert \int_a^b f(x) ~ \mathrm{d} x \right\rvert \leqslant \int_a^b \lvert f(x) \rvert ~ \mathrm{d} x.$$
 \end{enumerate}
 
 \end{frame}
@@ -161,12 +165,13 @@ $$\left\lvert \int_a^b f(x) \mathrm{d} x \right\rvert \leqslant \int_a^b \lvert 
 
 \begin{itemize}
 \item 积分第一中值定理: $f, g \in \mathcal{R}[a, b],$ {\color{red}$g$ 不变号}, 那么存在 $\inf_{x \in [a,b]} f(x) \leqslant \eta \leqslant \sup_{x \in [a,b]} f(x),$ 使得
-$$\int_a^b f(x) g(x) \mathrm{d} x = \eta \int_a^b \colorbox{orange}{g(x)} \mathrm{d} x.$$
+$$\int_a^b f(x) g(x) ~ \mathrm{d} x = \eta \int_a^b \colorbox{orange}{g(x)} ~ \mathrm{d} x.$$
+\pause
 \item 积分第二中值定理: $f, g \in \mathcal{R}[a, b],$ {\color{red}$g$ 单调}, 那么存在 $\xi \in [a, b],$ 使得
-$$\int_a^b f(x) g(x) \mathrm{d} x = \colorbox{orange}{g(a)} \int_a^\xi f(x) \mathrm{d} x + \colorbox{orange}{g(b)} \int_{\xi}^b f(x) \mathrm{d} x.$$
+$$\int_a^b f(x) g(x) ~ \mathrm{d} x = \colorbox{orange}{g(a)} \int_a^\xi f(x) ~ \mathrm{d} x + \colorbox{orange}{g(b)} \int_{\xi}^b f(x) ~ \mathrm{d} x.$$
 \pause
 等价形式: $f, g \in \mathcal{R}[a, b],$ {\color{red}$g$ 非负不增}, 那么存在 $\xi' \in [a, b],$ 使得
-$$\int_a^b f(x) g(x) \mathrm{d} x = \colorbox{orange}{g(a)} \int_a^{\xi'} f(x) \mathrm{d} x.$$
+$$\int_a^b f(x) g(x) ~ \mathrm{d} x = \colorbox{orange}{g(a)} \int_a^{\xi'} f(x) ~ \mathrm{d} x.$$
 \end{itemize}
 
 \end{frame}
@@ -176,7 +181,7 @@ $$\int_a^b f(x) g(x) \mathrm{d} x = \colorbox{orange}{g(a)} \int_a^{\xi'} f(x) \
 \begin{frame}{几个重要不等式}
 
 \begin{itemize}[<+->]
-\item H\"older 不等式: $f, g \in C[a, b]$ (更一般 $\mathcal{R}[a, b]$), $1 \leqslant p, q \leqslant +\infty,$ $\dfrac{1}{p} + \dfrac{1}{q} = 1,$ 记 $\lVert f \rVert_p = \left( \int_a^b \lvert f(x) \rvert^p \mathrm{d} x \right)^{1/p},$ 那么
+\item H\"older 不等式: $f, g \in C[a, b]$ (更一般 $\mathcal{R}[a, b]$), $1 \leqslant p, q \leqslant +\infty,$ $\dfrac{1}{p} + \dfrac{1}{q} = 1,$ 记 $\lVert f \rVert_p = \left( \int_a^b \lvert f(x) \rvert^p ~ \mathrm{d} x \right)^{1/p},$ 那么
 $$\lVert f \cdot g \rVert_1 \leqslant \lVert f \rVert_p \cdot \lVert g \rVert_q.$$
 \item Minkowski 不等式: $f, g \in \mathcal{R}[a, b]$, $1 \leqslant p \leqslant +\infty,$ 那么
 $$\lVert f + g \rVert_p \leqslant \lVert f \rVert_p + \lVert g \rVert_p.$$
@@ -190,24 +195,20 @@ $$\lVert f + g \rVert_p \leqslant \lVert f \rVert_p + \lVert g \rVert_p.$$
 
 \begin{thm}[微积分基本定理 (Newton-Leibniz 公式)]
 设 $f(x) \in C[a, b],$ $F(x)$ 是 $f(x)$ 在 $[a, b]$ 上的一个{\color{red}原函数}, 那么
-$$\int_a^b f(x) \mathrm{d} x = F(b) - F(a).$$
+$$\int_a^b f(x) ~ \mathrm{d} x = F(b) - F(a).$$
 \end{thm}
 
 \pause
 
-典型例子: $I = \int_0^2 \dfrac{(x-1)^2 + 1}{(x-1)^2 + x^2(x-2)^2} \mathrm{d} x$
+典型例子: $I = \int_0^2 \dfrac{(x-1)^2 + 1}{(x-1)^2 + x^2(x-2)^2} ~ \mathrm{d} x$
 
 \pause
 
 $$I \begin{cases}
-\colorbox{red}{$\neq \int_0^2$} \arctan \dfrac{x(x-2)}{x-1} \mathrm{d} x \\
+\colorbox{red}{$\neq \int_0^2$} \arctan \dfrac{x(x-2)}{x-1} ~ \mathrm{d} x \\
 \pause
-= \left( \int_0^1 + \int_1^2 \right) \left( \arctan \dfrac{x(x-2)}{x-1} \mathrm{d} x \right)
+= \left( \int_0^1 + \int_1^2 \right) \left( \arctan \dfrac{x(x-2)}{x-1} ~ \mathrm{d} x \right)
 \end{cases}$$
-
-\begin{block}{变上限积分}
-$f(x) \in \mathcal{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(x) ~ \mathrm{d} x,$ $x \in [a, b].$
-\end{block}
 
 \end{frame}
 
@@ -216,20 +217,20 @@ $f(x) \in \mathcal{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(x) ~ \mathrm{d}
 \begin{frame}{来自不定积分的计算方法}
 
 \begin{itemize}[<+->]
-\item 分部积分法: $\int_a^b u(x) \mathrm{d} v(x) = \left. \left[ u(x)v(x) \right] \right|_a^b - \int_a^b v(x) \mathrm{d} u(x).$
+\item 分部积分法: $\int_a^b u(x) ~ \mathrm{d} v(x) = \left. \left[ u(x)v(x) \right] \right|_a^b - \int_a^b v(x) ~ \mathrm{d} u(x).$
 \vspace{1em}
-\item 换元积分法: $\int_a^b f(x) \mathrm{d} x = \int_\alpha^\beta f(\varphi(t)) \varphi'(t) \mathrm{d} t.$
+\item 换元积分法: $\int_a^b f(x) ~ \mathrm{d} x = \int_\alpha^\beta f(\varphi(t)) \varphi'(t) ~ \mathrm{d} t.$
 \end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{一些特殊的定积分}
+\begin{frame}{一些常见的定积分}
 
 \begin{itemize}[<+->]
 \item 奇函数, 偶函数在关于原点对称区间上的积分
-\item 周期函数积分: $\int_a^{a+T} f(x) \mathrm{d} x = $ 与 $a$ 无关的常数
+\item 周期函数积分: $\int_a^{a+T} f(x) ~ \mathrm{d} x = $ 与 $a$ 无关的常数
 \item 正交函数系: $\int_a^b f_k(x)f_j(x) ~ \mathrm{d} x = \begin{cases}
   0, & k \neq j, \\
   \int_a^b f_k^2(x) ~ \mathrm{d} x > 0, & k = j.
@@ -245,7 +246,7 @@ $f(x) \in \mathcal{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(x) ~ \mathrm{d}
 
 %------------------------------------------------
 
-\begin{frame}{基本积分表}
+\begin{frame}{(不定积分) 基本积分表}
 
 {\smaller[2]
 $$
@@ -260,12 +261,29 @@ $$
 \int \sec x ~ \mathrm{d} x = \ln \lvert \sec x + \tan x \rvert + C & \int \csc x ~ \mathrm{d} x = \ln \lvert \csc x - \cot x \rvert + C \\
 \int \operatorname{sh} x ~ \mathrm{d} x = \operatorname{ch} x + C & \int \operatorname{ch} x ~ \mathrm{d} x = \operatorname{sh} x + C \\
 \int \dfrac{\mathrm{d} x}{x^2 - a^2} = \dfrac{1}{2a} \ln \left\lvert \dfrac{x-a}{x+a} \right\rvert + C & \int \dfrac{\mathrm{d} x}{x^2+a^2} = \dfrac{1}{a} \arctan \dfrac{x}{a} + C \\
-\int \dfrac{\mathrm{d} x}{\sqrt{a^2-x^2}} = \arcsin \dfrac{x}{a} + C & \int \dfrac{~ \mathrm{d} x}{\sqrt{x^2 \pm a^2}} = \ln \lvert x \pm \sqrt{x^2 \pm a^2} \rvert + C \\
+\int \dfrac{\mathrm{d} x}{\sqrt{a^2-x^2}} = \arcsin \dfrac{x}{a} + C & \int \dfrac{\mathrm{d} x}{\sqrt{x^2 \pm a^2}} = \ln \left\lvert x \pm \sqrt{x^2 \pm a^2} \right\rvert + C \\
 \multicolumn{2}{l}{\int \sqrt{a^2 - x^2} ~ \mathrm{d} x = \dfrac{x}{2} \sqrt{a^2 - x^2} + \dfrac{a^2}{2} \arcsin \dfrac{x}{a} + C} \\
-\multicolumn{2}{l}{\int \sqrt{x^2 \pm a^2} ~ \mathrm{d} x = \dfrac{x}{2} \sqrt{x^2 \pm a^2} \pm \dfrac{a^2}{2} \ln \lvert x + \sqrt{x^2 \pm a^2} \rvert + C}
+\multicolumn{2}{l}{\int \sqrt{x^2 \pm a^2} ~ \mathrm{d} x = \dfrac{x}{2} \sqrt{x^2 \pm a^2} \pm \dfrac{a^2}{2} \ln \left\lvert x + \sqrt{x^2 \pm a^2} \right\rvert + C}
 \end{array}
 $$
 }
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的计算}
+
+\begin{block}{变上限积分}
+$f(x) \in \mathcal{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(t) ~ \mathrm{d} t,$ $x \in [a, b].$
+\end{block}
+
+\pause
+
+\begin{itemize}[<+->]
+\item 若 $f(x) \in C^{(k)}[a, b],$ 则 $F(x) \in C^{(k+1)}[a, b].$
+\item $\dfrac{\mathrm{d}}{\mathrm{d} x} \left( \int_a^{\varphi(x)} f(t) ~ \mathrm{d} t \right) = f(\varphi(x)) \varphi'(x).$
+\end{itemize}
 
 \end{frame}
 
@@ -280,12 +298,12 @@ $$\int_a^b (f(x) - g(x)) ~ \mathrm{d}x$$
 极坐标下曲线 $r = r(\theta)$ 与极径 $\theta = \alpha, \theta = \beta$ 围成区域面积
 $$\dfrac{1}{2} \int_{\alpha}^{\beta} r^2(\theta) ~ \mathrm{d} \theta$$
 \pause
-\item 曲线弧长: $\ell = \int_a^b \sqrt{1 + (f'(x))^2} \mathrm{d} x$ \par
+\item 曲线弧长: $\ell = \int_a^b \sqrt{1 + (f'(x))^2} ~ \mathrm{d} x$ \par
 \pause
 参数方程 $x = x(t), y = y(t)$ 下曲线弧长:
-$$\ell = \int_{\alpha}^{\beta} \sqrt{(x'(t))^2 + (y'(t))^2} \mathrm{d} t$$
+$$\ell = \int_{\alpha}^{\beta} \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d} t$$
 \pause
-极坐标下曲线弧长: $\ell = \int_{\alpha}^{\beta} \sqrt{r^2(\theta) + (r'(\theta))^2} \mathrm{d} \theta$
+极坐标下曲线弧长: $\ell = \int_{\alpha}^{\beta} \sqrt{r^2(\theta) + (r'(\theta))^2} ~ \mathrm{d} \theta$
 \end{itemize}
 
 \end{frame}
@@ -295,18 +313,18 @@ $$\ell = \int_{\alpha}^{\beta} \sqrt{(x'(t))^2 + (y'(t))^2} \mathrm{d} t$$
 \begin{frame}{定积分的应用}
 
 \begin{itemize}
-\item 几何体 (平面 $x = a, x = b$ 之间, 截面积 $A(x)$) 体积: $\int_a^b A(x) \mathrm{d} x$ \par
+\item 几何体 (平面 $x = a, x = b$ 之间, 截面积 $A(x)$) 体积: $\int_a^b A(x) ~ \mathrm{d} x$ \par
 \pause
-旋转体 ($y = f(x)$ 绕 $x$ 轴旋转) 体积: $\pi \int_a^b f^2(x) \mathrm{d} x$ \par
+旋转体 ($y = f(x)$ 绕 $x$ 轴旋转) 体积: $\pi \int_a^b f^2(x) ~ \mathrm{d} x$ \par
 \pause
 由参数方程 $x = x(t), y = y(t)$ 给出曲线绕 $x$ 轴旋转体积:
-$$\pi \int_{\alpha}^{\beta} y^2(t) \lvert x'(t) \rvert \mathrm{d} t$$
+$$\pi \int_{\alpha}^{\beta} y^2(t) \cdot \lvert x'(t) \rvert ~ \mathrm{d} t$$
 \pause
 \vspace{-1em}
-\item 旋转曲面面积: $2\pi \int_a^b f(x) ~ \mathrm{d} \ell = 2\pi \int_a^b f(x) \sqrt{1 + (f'(x))^2} \mathrm{d} x$ \par
+\item 旋转曲面面积: $2\pi \int_a^b f(x) ~ \mathrm{d} \ell = 2\pi \int_a^b f(x) \sqrt{1 + (f'(x))^2} ~ \mathrm{d} x$ \par
 \pause
 由参数方程 $x = x(t), y = y(t)$ 给出曲线绕 $x$ 轴旋转曲面面积:
-$$2\pi \int_{\alpha}^{\beta} y(t) \sqrt{(x'(t))^2 + (y'(t))^2} \mathrm{d} t$$
+$$2\pi \int_{\alpha}^{\beta} y(t) \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d} t$$
 \pause
 \vspace{-1em}
 \item 曲率: $\kappa = \left\lvert \dfrac{\mathrm{d} \theta}{\mathrm{d} \ell} \right\rvert = \dfrac{\lvert f''(x) \rvert}{(1 + (f'(x))^2)^{3/2}} = \left\lvert \dfrac{x'(t)y''(t) - y'(t)x''(t)}{((x'(t))^2 + (y'(t))^2)^{3/2}} \right\rvert$
@@ -322,7 +340,7 @@ $$2\pi \int_{\alpha}^{\beta} y(t) \sqrt{(x'(t))^2 + (y'(t))^2} \mathrm{d} t$$
 将 $[a, b]$ 区间 $n$ 等分 $x_i = a + \dfrac{k}{n}(b-a),$ 记
 $$p_n(x) = \sum\limits_{k=0}^n f(x_k) L_k(x) = \sum\limits_{k=0}^n f(x_k) \prod\limits_{j=0, j\neq k}^n \dfrac{x-x_j}{x_k-x_j}$$
 为 $f(x)$ 的 $n$ 次 Lagrange 插值多项式, 那么
-$$\int_a^b f(x) \mathrm{d} x \approx \int_a^b p_n(x) \mathrm{d} x = \sum\limits_{k=0}^n f(x_k) {\color{red}\int_a^b L_k(x) \mathrm{d} x} = \sum\limits_{k=0}^n f(x_k) {\color{red}\omega_k}.$$
+$$\int_a^b f(x) ~ \mathrm{d} x \approx \int_a^b p_n(x) ~ \mathrm{d} x = \sum\limits_{k=0}^n f(x_k) {\color{red}\int_a^b L_k(x) ~ \mathrm{d} x} = \sum\limits_{k=0}^n f(x_k) {\color{red}\omega_k}.$$
 \end{block}
 
 \pause
@@ -330,7 +348,7 @@ $$\int_a^b f(x) \mathrm{d} x \approx \int_a^b p_n(x) \mathrm{d} x = \sum\limits_
 \begin{itemize}
 \item $n$ 步 Newton-Cotes 求积分公式代数精度为 $n.$
 \item $n=2k$ 步 Newton-Cotes 求积分公式代数精度为 $n+1.$
-\item $\omega_k = \dfrac{b-a}{n} \int_0^n \prod\limits_{j=0, j\neq k}^n \dfrac{x-j}{k-j} \mathrm{d} x$ 与 $f$ 无关.
+\item $\omega_k = \dfrac{b-a}{n} \int_0^n \prod\limits_{j=0, j\neq k}^n \dfrac{x-j}{k-j} ~ \mathrm{d} x$ 与 $f$ 无关.
 \end{itemize}
 
 \end{frame}
@@ -341,12 +359,12 @@ $$\int_a^b f(x) \mathrm{d} x \approx \int_a^b p_n(x) \mathrm{d} x = \sum\limits_
 
 \begin{itemize}[<+->]
 \item $n = 1$ (梯形公式):
-$$\int_a^b f(x) \mathrm{d} x \approx \dfrac{b-a}{2} \left( f(a) + f(b) \right)$$
+$$\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{2} \left( f(a) + f(b) \right)$$
 \item $n = 2$ (Simpson 公式, 抛物形公式):
-$$\int_a^b f(x) \mathrm{d} x \approx \dfrac{b-a}{6} \left( f(a) + 4f\left( \dfrac{a+b}{2} \right) + f(b) \right)$$
+$$\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{6} \left( f(a) + 4f\left( \dfrac{a+b}{2} \right) + f(b) \right)$$
 \item $n = 4$ (Cotes 公式):
 \begin{multline*}
-\int_a^b f(x) \mathrm{d} x \approx \dfrac{b-a}{90} \left( 7f(a) + 32f\left( \dfrac{3a+b}{4} \right) \right. \\
+\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{90} \left( 7f(a) + 32f\left( \dfrac{3a+b}{4} \right) \right. \\
 + \left. 12f\left( \dfrac{a+b}{2} \right) + 32f\left( \dfrac{a+3b}{4} \right) + 7f(b) \right)
 \end{multline*}
 \end{itemize}
@@ -361,20 +379,21 @@ $$\int_a^b f(x) \mathrm{d} x \approx \dfrac{b-a}{6} \left( f(a) + 4f\left( \dfra
 
 \begin{frame}{反常积分定义}
 
-\begin{itemize}[<+->]
+\begin{itemize}
 \item 无穷区间
-$$\int_a^{+\infty} f(x) \mathrm{d} x = \lim\limits_{A \to +\infty} \int_a^A f(x) \mathrm{d} x$$
+$$\int_a^{+\infty} f(x) ~ \mathrm{d} x = \lim\limits_{A \to +\infty} \int_a^A f(x) ~ \mathrm{d} x$$
 \item 无界函数
-$$\int_a^b f(x) \mathrm{d} x = \lim\limits_{\delta \to 0+} \int_a^{b-\delta} f(x) \mathrm{d} x$$
+$$\int_a^b f(x) ~ \mathrm{d} x = \lim\limits_{\delta \to 0+} \int_a^{b-\delta} f(x) ~ \mathrm{d} x$$
 \end{itemize}
 \pause
 若极限存在, 则称反常积分收敛, 否则发散. 以上两种类型积分可以通过 $x \leftrightarrow \dfrac{1}{x}$ 相互转化, 于是可以统一记为
-$$\int_a^\omega f(x) \mathrm{d} x, ~~ \omega ~ \text{是奇点或 $\infty$}$$
+$$\int_a^\omega f(x) ~ \mathrm{d} x, ~~ \omega ~ \text{是奇点或 $\infty$}$$
 
 \pause
+\vspace{-0.5em}
 
 \begin{attnblock}
-反常积分不是 Riemann 积分, 而是它的一种推广. 当 $f \in \mathcal{R}[a, b],$ 若把 $\int_a^b f(x) \mathrm{d} x$ 视作反常积分, 则它的值等于 Riemann 积分的值.
+反常积分不是 Riemann 积分, 而是它的一种推广. 当 $f \in \mathcal{R}[a, b],$ 若把 $\int_a^b f(x) ~ \mathrm{d} x$ 视作反常积分, 则它的值等于 Riemann 积分的值.
 \end{attnblock}
 
 \end{frame}
@@ -384,20 +403,20 @@ $$\int_a^\omega f(x) \mathrm{d} x, ~~ \omega ~ \text{是奇点或 $\infty$}$$
 \begin{frame}{反常积分定义}
 
 积分上下限都是奇点或 $\pm\infty:$
-$$\int_{\omega_1}^{\omega_2} f(x) \mathrm{d} x = \lim\limits_{\substack{a \to \omega_1+ \\ b \to \omega_2-}} \int_a^b f(x) \mathrm{d} x$$
+$$\int_{\omega_1}^{\omega_2} f(x) ~ \mathrm{d} x = \lim\limits_{\substack{a \to \omega_1+ \\ b \to \omega_2-}} \int_a^b f(x) ~ \mathrm{d} x$$
 
 \pause
 
-被积区间含有被积函数多个奇点 $a < \omega_1 < \dots < \omega_k < \omega:$
-$$\int_a^{\omega} f(x) \mathrm{d} x = \int_a^{\omega_1} f(x) \mathrm{d} x + \cdots + \int_{\omega_n}^{\omega} f(x) \mathrm{d} x.$$
+被积区间含有被积函数多个奇点 $a < \omega_1 < \dots < \omega_n < \omega:$
+$$\int_a^{\omega} f(x) ~ \mathrm{d} x = \int_a^{\omega_1} f(x) ~ \mathrm{d} x + \cdots + \int_{\omega_n}^{\omega} f(x) ~ \mathrm{d} x.$$
 
 \pause
 
 Cauchy 主值
 \begin{gather*}
-\text{(cpv)}\int_{-\infty}^{+\infty} f(x) \mathrm{d} x = \lim\limits_{A \to +\infty} \int_{-A}^A f(x) \mathrm{d} x \\
-\text{(cpv)}\int_{\omega_1}^{\omega_2} f(x) \mathrm{d} x = \lim\limits_{\delta \to 0+} \int_{\omega_1+\delta}^{\omega_2-\delta} f(x) \mathrm{d} x \\
-\text{(cpv)}\int_{a}^{b} f(x) \mathrm{d} x = \lim\limits_{\delta \to 0+} \left( \int_a^{\omega-\delta} f(x) \mathrm{d} x + \int_{\omega+\delta}^{b} f(x) \mathrm{d} x \right)
+\text{(cpv)}\int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x = \lim\limits_{A \to +\infty} \int_{-A}^A f(x) ~ \mathrm{d} x \\
+\text{(cpv)}\int_{\omega_1}^{\omega_2} f(x) ~ \mathrm{d} x = \lim\limits_{\delta \to 0+} \int_{\omega_1+\delta}^{\omega_2-\delta} f(x) ~ \mathrm{d} x \\
+\text{(cpv)}\int_{a}^{b} f(x) ~ \mathrm{d} x = \lim\limits_{\delta \to 0+} \left( \int_a^{\omega-\delta} f(x) ~ \mathrm{d} x + \int_{\omega+\delta}^{b} f(x) ~ \mathrm{d} x \right)
 \end{gather*}
 
 \end{frame}
@@ -421,10 +440,11 @@ Cauchy 主值
 \begin{itemize}
 \item 乘积可积性.
 \pause
-反例: $f(x) = g(x) = x^{-1/2},$ 区间 $[0, 1]$ 上的反常积分 $\int_0^1 f(x)g(x) \mathrm{d} x$ 发散, 但 $\int_0^1 x^{-1/2} \mathrm{d} x$ 收敛.
+反例: $f(x) = g(x) = x^{-1/2},$ 区间 $[0, 1]$ 上的反常积分 $\int_0^1 f(x)g(x) ~ \mathrm{d} x$ 发散, 但 $\int_0^1 x^{-1/2} ~ \mathrm{d} x$ 收敛.
+\pause
 \item 绝对可积性.
 \pause
-反例: $f(x) = \dfrac{\sin x}{x},$ 区间 $[0, +\infty)$ 上的反常积分 $\int_0^{+\infty} \lvert f(x) \rvert \mathrm{d} x$ 发散, 但 $\int_0^{+\infty} f(x) \mathrm{d} x$ 收敛.
+反例: $f(x) = \dfrac{\sin x}{x},$ 区间 $[0, +\infty)$ 上的反常积分 $\int_0^{+\infty} \lvert f(x) \rvert ~ \mathrm{d} x$ 发散, 但 $\int_0^{+\infty} f(x) ~ \mathrm{d} x$ 收敛.
 \end{itemize}
 
 \end{frame}
@@ -437,7 +457,7 @@ Cauchy 主值
 定积分 (Riemann 积分) 的绝对可积性
 $$f(x) \in \mathcal{R}[a, b] ~~ \substack{\Longrightarrow \\ \centernot\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathcal{R}[a, b]$$
 在反常积分中正好反过来了:
-$$\int_a^\omega \lvert f(x) \rvert \mathrm{d} x \text{ 收敛} ~~ \substack{\Longrightarrow \\ \centernot\Longleftarrow} ~~ \int_a^\omega f(x) \mathrm{d} x \text{ 收敛}.$$
+$$\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{\Longrightarrow \\ \centernot\Longleftarrow} ~~ \int_a^\omega f(x) ~ \mathrm{d} x ~ \text{ 收敛}.$$
 \end{attnblock}
 
 \pause
@@ -448,8 +468,8 @@ $$\int_a^\omega \lvert f(x) \rvert \mathrm{d} x \text{ 收敛} ~~ \substack{\Lon
 
 \begin{Def}
 \begin{itemize}[<+->]
-\item 条件收敛: $\int_a^\omega f(x) \mathrm{d} x$ 收敛, 但 $\int_a^\omega \lvert f(x) \rvert \mathrm{d} x$ 发散.
-\item 绝对收敛: $\int_a^\omega \lvert f(x) \rvert \mathrm{d} x$ 收敛.
+\item 条件收敛: $\int_a^\omega f(x) ~ \mathrm{d} x$ 收敛, 但 $\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x$ 发散.
+\item 绝对收敛: $\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x$ 收敛.
 \end{itemize}
 \end{Def}
 
@@ -550,7 +570,7 @@ $$\int_a^\omega f(x) ~ \mathrm{d} x ~ \text{收敛} ~ \Longleftrightarrow ~ \int
 \begin{thm}[A-D 判别法]
 若下列两个条件之一满足, 则 $\int_a^\omega f(x)g(x) ~ \mathrm{d} x$ 收敛:
 \pause
-\begin{itemize}
+\begin{itemize}[<+->]
 \item Abel 判别法: $\int_a^\omega f(x) ~ \mathrm{d} x$ 收敛, $g(x)$ 在 $[a, \omega)$ 上单调有界;
 \item Dirichlet 判别法: $\int_a^A f(x) ~ \mathrm{d} x$ 关于 $A \in [a, \omega)$ 有界, $g(x)$ 在 $[a, \omega)$ 上单调, 且 $\lim\limits_{x \to \omega} g(x) = 0.$
 \end{itemize}
@@ -587,10 +607,10 @@ $$\sum\limits_{n=1}^\infty x_n = \lim\limits_{n\to\infty} \sum\limits_{k=1}^n x_
 
 \begin{itemize}[<+->]
 \item 几何级数 $\sum\limits_{n=1}^\infty q^{n-1}.$ \par
-前 $n$ 项和 ($q \neq 0$ 时) 为 $\dfrac{1-q^n}{1-q},$ 所以 $\lvert q \rvert < 1$ 时收敛, 否则发散.
+前 $n$ 项和 ($q \neq 1$ 时) 为 $\dfrac{1-q^n}{1-q},$ 所以 $\lvert q \rvert < 1$ 时收敛, 否则发散.
 \item 调和级数 (Riemann $\zeta$) $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}.$
 \begin{itemize}
-\item $s > 1$ 时, $\sum\limits_{n=2^k}^{2^{k+1}-1} \dfrac{1}{n^s} < \sum\limits_{k=2^k}^{2^{k+1}-1} \dfrac{1}{(2^k)^s} = \left(\dfrac{1}{2^{s-1}}\right)^k,$ 所以部分和 $\sum\limits_{n=1}^{2^{k+1}-1} \dfrac{1}{n^s} < \dfrac{1-q^k}{1-q}, 0 < q = \dfrac{1}{2^{s-1}} < 1,$ 级数收敛.
+\item $s > 1$ 时, $\sum\limits_{n=2^k}^{2^{k+1}-1} \dfrac{1}{n^s} < \sum\limits_{n=2^k}^{2^{k+1}-1} \dfrac{1}{(2^k)^s} = \left(\dfrac{1}{2^{s-1}}\right)^k,$ 所以部分和 $\sum\limits_{n=1}^{2^{k+1}-1} \dfrac{1}{n^s} < \dfrac{1-q^k}{1-q}, 0 < q = \dfrac{1}{2^{s-1}} < 1,$ 级数收敛.
 \item $s \leqslant 1$ 时, $\sum\limits_{n=2^k+1}^{2^{k+1}} \dfrac{1}{n^s} > \sum\limits_{n=2^k+1}^{2^{k+1}} \dfrac{1}{2^k+1} = \dfrac{1}{2},$ 所以部分和 $\sum\limits_{n=1}^{2^{k+1}} \dfrac{1}{n^s} > 1 + \dfrac{k}{2},$ 级数发散.
 \end{itemize}
 \end{itemize}
@@ -691,7 +711,7 @@ $$\text{正项级数} ~ \sum\limits_{n=1}^{\infty} x_n ~ \text{收敛} ~~ \Longl
 \begin{frame}{正项级数敛散性判别法}
 
 \begin{thm}[比较判别法的极限形式]
-设 $\sum\limits_{n=1}^{\infty} x_n, \sum\limits_{n=1}^{\infty} y_n$ 是两个 (正项) 级数, 若 $\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell,$ 那么
+设 $\sum\limits_{n=1}^{\infty} x_n, \sum\limits_{n=1}^{\infty} y_n$ 是两个正项级数, 若 $\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell,$ 那么
 \begin{itemize}
 \item $\ell = 0$:
 \pause
@@ -769,13 +789,13 @@ $$\varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf\limit
 
 设 $f(x)$ 是定义在 $[a, +\infty)$ 上的非负函数, 且在任意有限区间 $[a, A]$ 上 Riemann 可积. 设 $\{a_n\}$ 是单调增加且趋于 $+\infty$ 的数列：
 $$a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,$$
-令 $u_n = \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$ 那么反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 与正项级数 $\sum\limits_{n=1}^\infty u_n$ 同时收敛或同时发散到 $+\infty,$ 且有
+令 $u_n = \int_{a_n}^{a_{n+1}} f(x) ~ \mathrm{d} x.$ 那么反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 与正项级数 $\sum\limits_{n=1}^\infty u_n$ 同时收敛或同时发散到 $+\infty,$ 且有
 \vspace{-1em}
-$$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$$
+$$\int_a^{+\infty} f(x) ~ \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) ~ \mathrm{d} x.$$
 
 \pause
 
-特别地, 当 $f(x)$ 单减, 且取 $a_n = n,$ 那么反常积分 $\int_a^{+\infty} f(x) \mathrm{d} x$ 与正项级数$\sum\limits_{n=[a]+1}^\infty f(n)$ 具有相同的敛散性. (注意, 一般没有值相等的关系了)
+特别地, 当 $f(x)$ 单减, 且取 $a_n = n,$ 那么反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 与正项级数$\sum\limits_{n=[a]+1}^\infty f(n)$ 具有相同的敛散性. (注意, 一般没有值相等的关系了)
 
 \end{frame}
 
@@ -810,8 +830,8 @@ $$\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ 0 < a_n \searrow 0.$
 \pause
 
 \begin{itemize}[<+->]
-\item 正方形乘积: $\lim\limits_{n\to\infty} d_n = \sum\limits_{\color{red} 1 \leqslant i, j \leqslant n} a_i b_j;$
-\item Cauchy 乘积 (卷积): $\lim\limits_{n\to\infty} c_n = \sum\limits_{\color{red} i+j=n} a_i b_j.$
+\item 正方形乘积: $\lim\limits_{n\to\infty} d_n = \lim\limits_{n\to\infty} \sum\limits_{\color{red} 1 \leqslant i, j \leqslant n} a_i b_j;$
+\item Cauchy 乘积 (卷积): $\lim\limits_{n\to\infty} c_n = \lim\limits_{n\to\infty} \sum\limits_{\color{red} i+j=n} a_i b_j.$
 \end{itemize}
 
 \pause
@@ -993,7 +1013,7 @@ $$d(f, g) = \sup\limits_{x \in D} \lvert f(x) - g(x) \rvert.$$
 \vspace{-0.5em}
 那么
 \vspace{-0.5em}
-$$S_n(x) \xRightarrow{D} S(x) ~~ \Longleftrightarrow ~~ d(S_n(x), S(x)) \to 0 (n \to \infty).$$
+$$S_n(x) \xRightarrow{D} S(x) ~~ \Longleftrightarrow ~~ d(S_n(x), S(x)) \to 0 ~ (n \to \infty).$$
 \end{thm}
 
 \pause
@@ -1062,7 +1082,7 @@ $$\lim\limits_{n\to\infty} S_n(x_n) - S(x_n) = 0.$$
 \begin{itemize}[<+->]
 \item 若 $S_n(x)$ 在 $D$ 上连续, 那么 $S(x)$ 在 $D$ 上连续;
 \item 若 $S_n(x)$ 在 $D$ 上 Riemann 可积, 那么 $S(x)$ 在 $D$ 上 Riemann 可积, 且有
-$$\int_a^b S(x) \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b S_n(x) \mathrm{d} x$$
+$$\int_a^b S(x) ~ \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b S_n(x) ~ \mathrm{d} x$$
 \end{itemize}
 
 \pause
@@ -1073,7 +1093,7 @@ $$\int_a^b S(x) \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b S_n(x) \mathrm{
 
 函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 替换为函数项级数 $\sum\limits_{n=1}^\infty a_n(x)$ 可得相关结论:
 \begin{itemize}
-\item 逐项积分: $\int_a^b \sum\limits_{n=1}^\infty a_n(x) \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b a_n(x) \mathrm{d} x;$
+\item 逐项积分: $\int_a^b \sum\limits_{n=1}^\infty a_n(x) ~ \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b a_n(x) ~ \mathrm{d} x;$
 \item 逐项微分: $\left( \sum\limits_{n=1}^\infty a_n(x) \right)' = \sum\limits_{n=1}^\infty a_n'(x).$
 \end{itemize}
 
@@ -1201,9 +1221,9 @@ $$\varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf\limit
 \begin{thm}[逐项可积性]
 设 $a, b$ 是幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 收敛域中的两点, 那么
 \vspace{-0.7em}
-$$\int_a^b \sum\limits_{n=0}^\infty a_n x^n \mathrm{d} x = \sum\limits_{n=0}^\infty \int_a^b a_n x^n \mathrm{d} x = \sum\limits_{n=0}^\infty \dfrac{a_n}{n+1} (b^{n+1} - a^{n+1}).$$
+$$\int_a^b \sum\limits_{n=0}^\infty a_n x^n ~ \mathrm{d} x = \sum\limits_{n=0}^\infty \int_a^b a_n x^n ~ \mathrm{d} x = \sum\limits_{n=0}^\infty \dfrac{a_n}{n+1} (b^{n+1} - a^{n+1}).$$
 % \vspace{-0.5em}
-特别地, 取 $a = 0, b = x,$ 有 $\int_0^x \sum\limits_{n=0}^\infty a_n t^n \mathrm{d} t = \sum\limits_{n=0}^\infty \dfrac{a_n}{n+1} x^{n+1}.$
+特别地, 取 $a = 0, b = x,$ 有 $\int_0^x \sum\limits_{n=0}^\infty a_n t^n ~ \mathrm{d} t = \sum\limits_{n=0}^\infty \dfrac{a_n}{n+1} x^{n+1}.$
 \end{thm}
 
 \pause
