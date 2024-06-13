@@ -795,7 +795,7 @@ zmin=0.0, zmax=3
 
 %------------------------------------------------
 
-\begin{frame}{向量值函数的例子}
+\begin{frame}{向量值函数的例子 -- 道路}
 
 设 $A, B \in M_{n\times m}(\mathbb{R}) \cong \mathbb{R}^{nm}$ 是两个 $n\times m$ 的矩阵. 那么
 $$\varphi: [0, 1] \longrightarrow M_{n\times m}(\mathbb{R}), ~~ tB + (1-t)A$$
@@ -805,6 +805,94 @@ $$\varphi: [0, 1] \longrightarrow M_{n\times m}(\mathbb{R}), ~~ tB + (1-t)A$$
 \vspace{1em}
 
 从几何上看, 它是连接 $A, B$ 两点的“直线”. 之后会看到, 类似这样的向量值函数被称作是 Euclid 空间中的道路.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的例子 -- 方阵函数}
+
+方阵函数 $f: M_{n\times n}(\mathbb{R}) \to M_{n\times n}(\mathbb{R}).$
+
+\pause
+\vspace{0.6em}
+
+\begin{itemize}
+\item 首先, 若 $f(x) = a_0 + a_1 x + \cdots + a_n x^n$ 是多项式, 那么可以对方阵 $A \in M_{n\times n}(\mathbb{R})$ 定义 $f(A) = a_0 I + a_1 A + \cdots + a_n A^n.$
+\pause
+\vspace{0.6em}
+\item 对于更一般的函数, 例如 $f(x) = e^x$, $f(x) = \sin x$, $f(x) = \sqrt{x}$ 等, 也可以定义相应的向量值函数.
+
+\pause
+
+在复数域 $\mathbb{C}$ 上, 实方阵有 Jordan 标准形 $A = P\operatorname{diag}(J_1, \dots, J_s)P^{-1},$ $J_i = \lambda_i I_{n_i} + N_{n_i}$, 其中 $N_{n_i} =$
+% {
+% \smaller[4]
+% $\begin{pmatrix}
+% 0 & & & \\
+% 1 & \ddots & & \\
+% & \ddots & \ddots & \\
+% & & 1 & 0
+% \end{pmatrix}$
+% },
+$\left[\begin{smallmatrix}
+0 & & & \\
+1 & \ddots & & \\
+& \ddots & \ddots & \\
+& & 1 & 0
+\end{smallmatrix}\right],$
+那么对于多项式 $f,$ 有
+\begin{gather*}
+f(A) = P\operatorname{diag}(f(J_1), \dots, f(J_s))P^{-1}, \\
+f(J_i) = f(\lambda_i) I_{n_i} + f'(\lambda_i) N_{n_i} + \cdots + \dfrac{f^{(n_i-1)}(\lambda_i)}{n_i!} N_{n_i}^{n_i-1}.
+\end{gather*}
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的例子 -- 方阵函数}
+
+对于在一个比较大区域内有较高阶 Taylor 展开, 甚至幂级数展开的函数, 也可以通过
+\begin{gather*}
+f(A) = P\operatorname{diag}(f(J_1), \dots, f(J_s))P^{-1}, \\
+f(J_i) = f(\lambda_i) I_{n_i} + f'(\lambda_i) N_{n_i} + \cdots + \dfrac{f^{(n_i-1)}(\lambda_i)}{n_i!} N_{n_i}^{n_i-1}.
+\end{gather*}
+定义相应的向量值函数.
+
+\pause
+\vspace{1em}
+
+设 $A$ 的极小多项式为 $m_A(\lambda) = (\lambda-\lambda_1)^{k_1} \cdots (\lambda-\lambda_r)^{k_r}$, 那么 $f(A)$ 完全由
+$$\left\{ f^{(j)}(\lambda_i): ~ 1 \leq i \leq r, 0 \leq j \leq k_i-1 \right\}$$
+唯一确定. 此时有唯一的次数小于 $\deg m_A(\lambda)$ 的多项式 $f^*(\lambda)$ 使得 $f^{(j)}(\lambda_i) = f^{*(j)}(\lambda_i)$,
+称为 $f$ 对 $A$ 的代表多项式, 或者 Lagrange-Sylvester 插值多项式, 并且有 $f(A) = f^*(A)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{向量值函数的例子 -- 方阵函数}
+
+对于 $f$ 有幂级数展开 $f(x) = \sum\limits_{n=0}^{\infty} a_n x^n$, 那么 $f(A)$ 可以定义为 $f(A) = \sum\limits_{n=0}^{\infty} a_n A^n,$ 收敛当且仅当每个矩阵元素对应的序列均收敛.
+
+\pause
+
+\begin{itemize}
+\item 若 $\sum\limits_{n=0}^{\infty} a_n A^n = B$ 收敛, 则 $B = f^*(A)$;
+\pause
+\item 若 $\sum\limits_{n=0}^{\infty} a_n x^n$ 收敛半径为 $R$, 且 $A$ 的所有复特征值 $\lvert \lambda_i \rvert < R$, 则 $f(A)$ 收敛; 若有某个特征值 $\lvert \lambda_i \rvert > R$, 则 $f(A)$ 发散.
+\end{itemize}
+
+\pause
+
+一些具体的例子:
+\begin{itemize}
+\item $e^A = \sum\limits_{n=0}^{\infty} \dfrac{A^n}{n!},$ 收敛半径 $R = +\infty;$
+\item $\sin A = \sum\limits_{n=0}^{\infty} \dfrac{(-1)^n A^{2n+1}}{(2n+1)!},$ 收敛半径 $R = +\infty;$
+\item $\log A = \sum\limits_{n=1}^{\infty} \dfrac{(-1)^{n-1}}{n} (I-A)^n,$ 收敛半径 $R = 1.$
+\end{itemize}
 
 \end{frame}
 
