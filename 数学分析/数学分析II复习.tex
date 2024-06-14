@@ -815,7 +815,7 @@ Leibniz 级数 $\sum\limits_{n=1}^\infty (-1)^{n-1} u_n,$ 其中 $0 < u_n \searr
 \item Abel 判别法：
 $$\sum\limits_{n=1}^{\infty} b_n ~ \text{收敛}, ~~~ a_n ~ \text{单调有界}.$$
 \item Dirichlet 判别法：
-$$\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ 0 < a_n \searrow 0.$$
+$$\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ a_n \searrow 0.$$
 \end{itemize}
 \end{thm}
 
@@ -829,8 +829,9 @@ $$\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ 0 < a_n \searrow 0.$
 
 \pause
 
-\begin{itemize}[<+->]
+\begin{itemize}
 \item 正方形乘积: $\lim\limits_{n\to\infty} d_n = \lim\limits_{n\to\infty} \sum\limits_{\color{red} 1 \leqslant i, j \leqslant n} a_i b_j;$
+\pause
 \item Cauchy 乘积 (卷积): $\lim\limits_{n\to\infty} c_n = \lim\limits_{n\to\infty} \sum\limits_{\color{red} i+j=n} a_i b_j.$
 \end{itemize}
 
@@ -854,7 +855,7 @@ $$\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ 0 < a_n \searrow 0.$
 
 \begin{gather*}
 \sum\limits_{n=1}^\infty a_n, \quad s_n = \sum\limits_{k=1}^n a_k, \quad \sigma_n^{(1)} = \sigma_n = \dfrac{s_1 + \cdots + s_n}{n}\\
-\sigma_n^{(r)} = \dfrac{\sigma_1 + \cdots + \sigma_n}{n}, \dots
+\sigma_n^{(r)} = \dfrac{\sigma_1^{(r-1)} + \cdots + \sigma_n^{(r-1)}}{n}, \dots
 \end{gather*}
 
 \pause
@@ -907,11 +908,14 @@ $$\prod\limits_{n=1}^\infty p_n = \lim\limits_{n\to\infty} \prod\limits_{k=1}^n 
 \begin{frame}{无穷乘积收敛性的判别}
 
 \begin{block}{必要条件}
-\begin{itemize}[<+->]
+\begin{itemize}
 \item $\lim\limits_{n\to\infty} p_n = 1;$
-\item $\lim\limits_{m\to\infty} \prod\limits_{n=m+1}^\infty p_n$ 收敛.
+\pause
+\item $\lim\limits_{m\to\infty} \prod\limits_{n=m+1}^\infty p_n = 1.$
 \end{itemize}
 \end{block}
+
+\pause
 
 \begin{block}{级数判别}
 假设收敛必要条件满足 $\lim\limits_{n\to\infty} p_n = 1,$ 即 $p_n = 1 + a_n,$ $a_n \to 0,$ 那么形式上有
@@ -1065,7 +1069,7 @@ $$\lim\limits_{n\to\infty} S_n(x_n) - S(x_n) = 0.$$
 \end{itemize}
 \item Dirichlet 判别法：
 \begin{itemize}
-\item $S_n(x) := \sum\limits_{n=1}^\infty b_n(x)$ 在 $D$ 上一致有界;
+\item $S_n(x) := \sum\limits_{k=1}^n b_k(x)$ 在 $D$ 上一致有界;
 \item $\{a_n(x)\}_{n\in\mathbb{N}}$ 在 $D$ 每点关于 $n$ 单调, 且在 $D$ 上一致收敛到 $0.$
 \end{itemize}
 \end{itemize}
@@ -1079,10 +1083,11 @@ $$\lim\limits_{n\to\infty} S_n(x_n) - S(x_n) = 0.$$
 
 设函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 在 $D = [a, b]$ 上一致收敛到 $S(x),$ 那么
 \pause
-\begin{itemize}[<+->]
+\begin{itemize}
 \item 若 $S_n(x)$ 在 $D$ 上连续, 那么 $S(x)$ 在 $D$ 上连续;
+\pause
 \item 若 $S_n(x)$ 在 $D$ 上 Riemann 可积, 那么 $S(x)$ 在 $D$ 上 Riemann 可积, 且有
-$$\int_a^b S(x) ~ \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b S_n(x) ~ \mathrm{d} x$$
+$$\int_a^b S(x) ~ \mathrm{d} x = \lim\limits_{n\to\infty} \int_a^b S_n(x) ~ \mathrm{d} x$$
 \end{itemize}
 
 \pause
@@ -1131,7 +1136,7 @@ $$\int_a^b S(x) ~ \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b S_n(x) ~ \mat
 $$\varphi_0(x) = \begin{cases} x, & x \in [0, 1/2) \\ 1-x, & x \in [1/2, 1) \end{cases} \quad \text{以 $1$ 为周期延拓至 $\mathbb{R}$}.$$
 \item Teiji Takagi: $f(x) = \sum\limits_{n=1}^\infty \dfrac{\varphi(2^n x)}{2^n}.$
 \item Generalized Van der Waerden-Takagi:
-$$f(x) = \sum\limits_{n=1}^\infty a^n \varphi(b^n x), ~~ \text{其中} ~ 0 < a < 1, ab \geqslant 1.$$
+$$f(x) = \sum\limits_{n=1}^\infty a^n \varphi(b^n x), ~~ \text{其中} ~ 0 < a < 1, b \in \mathbb{N}, ab \geqslant 1.$$
 \end{itemize}
 
 \end{frame}
@@ -1289,7 +1294,7 @@ $$f(x) = f(x_0) + f'(x_0)(x-x_0) + \cdots + \dfrac{f^{(n)}(x_0)}{n!} (x-x_0)^n +
 
 $$f(x) = \begin{cases} \exp(-1/x^2), & x \neq 0 \\ 0, & x = 0 \end{cases}.$$
 \pause
-可以算得, $x \neq 0$ 时,
+可以归纳地算得, $x \neq 0$ 时,
 $$f^{(k)}(x) = \exp(-1/x^2) \cdot \left( \text{$\dfrac{1}{x}$ 的多项式} \right),$$
 由此可以归纳地通过定义算得
 $$f^{(k)}(0) = \lim\limits_{x\to 0} \dfrac{f^{(k-1)}(x) - f^{(k-1)}(0)}{x-0} = 0.$$
