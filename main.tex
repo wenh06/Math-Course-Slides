@@ -27,6 +27,21 @@
 \PlainStyletrue
 \PlainStylefalse
 
+
+\ifHandout
+\documentclass[11pt, handout]{beamer}
+\else
+\documentclass[11pt]{beamer}
+\fi
+
+\input{colors}
+
+% define theme color
+% \colorlet{themecolor}{cau-green-1}
+\colorlet{themecolor}{blueNSFC}
+% \colorlet{themecolor}{zkblue}
+
+
 % https://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
 
 \ifPlainStyle
@@ -65,7 +80,7 @@
 % \input{数学分析/第10章-函数项级数/第4节-函数的幂级数展开}
 % \input{数学分析/第10章-函数项级数/第5节-用多项式逼近连续函数}
 
-% \input{数学分析/第11章-Euclid空间上的极限与连续/第1节-Euclid空间上的基本定理}
+\input{数学分析/第11章-Euclid空间上的极限与连续/第1节-Euclid空间上的基本定理}
 % \input{数学分析/第11章-Euclid空间上的极限与连续/第2节-多元连续函数}
 % \input{数学分析/第11章-Euclid空间上的极限与连续/第3节-连续函数的性质}
 
@@ -73,7 +88,7 @@
 
 %-------------------- 实变函数 --------------------------------
 
-\input{实变函数/第1章-集与点集/第1节-集及其运算}
+% \input{实变函数/第1章-集与点集/第1节-集及其运算}
 
 
 %-------------------- 教学比赛 --------------------------------

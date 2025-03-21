@@ -15,17 +15,17 @@
 % Compiler: XeLatex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifHandout
-\documentclass[11pt, UTF8, handout]{beamer}
-\else
-\documentclass[11pt, UTF8]{beamer}
-\fi
+% \ifHandout
+% \documentclass[11pt, UTF8, handout]{beamer}
+% \else
+% \documentclass[11pt, UTF8]{beamer}
+% \fi
 
 \geometry{paperwidth=140mm,paperheight=105mm}
 
 \mode<presentation>
 {
-  \usetheme{default}
+\usetheme{default}
 
 %  \setbeamercovered{transparent}
 %  \usecolortheme{seahorse}
@@ -118,8 +118,8 @@
 \definecolor{myblue}{rgb}{0,0,0.5}
 \definecolor{mygreen}{rgb}{0,0.5,0}
 \definecolor{myred}{rgb}{0.5,0,0}
- \newcommand{\hdh}[1]{\noindent\bf{\color{blue}\shadowbox{#1}\vspace{1ex minus 1ex}}}
- \newcommand{\hdg}[1]{\begin{center}\large\bf\color{myblue}\shadowbox{#1}\end{center}\vspace{1ex minus 1ex}}
+\newcommand{\hdh}[1]{\noindent\bf{\color{blue}\shadowbox{#1}\vspace{1ex minus 1ex}}}
+\newcommand{\hdg}[1]{\begin{center}\large\bf\color{myblue}\shadowbox{#1}\end{center}\vspace{1ex minus 1ex}}
 \renewcommand{\baselinestretch}{1.35}
 %\setlength{\fboxrule}{1pt}
 
