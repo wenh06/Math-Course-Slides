@@ -35,6 +35,163 @@
 % \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 % \end{frame}
 
+%------------------------------------------------
+ 
+\section{定积分概念的导出背景}
+
+%------------------------------------------------
+ 
+% \begin{frame}
+% \frametitle{历史背景与几何原型}
+% \begin{block}{核心问题}
+% 如何求曲边梯形的面积？
+% \begin{itemize}
+%     \item 直线图形面积 $\rightarrow$ 曲线图形面积
+%     \item 有限分割：将曲边梯形分割为窄曲边梯形
+%     \item 局部近似：用矩形面积近似代替窄曲边梯形
+%     \item 极限过程：通过无限细分实现精确化
+% \end{itemize}
+% \end{block}
+ 
+% \end{frame}
+
+%------------------------------------------------
+ 
+\begin{frame}
+
+{\larger[2]
+问题:
+
+\vspace{1em}
+
+\begin{itemize}[<+->]
+\item 这个极限过程是什么?
+\vspace{0.5em}
+\item 是否总有极限?
+\vspace{0.5em}
+\item 有没有别的积分方式?
+\end{itemize}
+}
+ 
+\end{frame}
+
+%------------------------------------------------
+
+\section{定积分的严格定义}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{闭区间上的划分}
+
+\begin{Def}[划分, partition]
+设闭区间 $[a,b] \subset \mathbb{R},$ 称有限点集$P = \{x_0,x_1,\dots,x_n\}$ 为闭区间的一个\alert{划分}, 若满足:
+\begin{equation*}
+a = x_0 < x_1 < \cdots < x_{n-1} < x_n = b 
+\end{equation*}
+每个子区间 $[x_{k-1},x_k]$ 的长度记为 $\Delta x_k = x_k - x_{k-1},$ $k=1,2,\dots,n$
+\end{Def}
+ 
+\begin{Def}[带标志点的划分, Tagged Partition]
+对任意划分 $P = \{x_0,x_1,\dots,x_n\},$ 若在每个子区间 $[x_{k-1},x_k]$ 中选取一点 $\xi_k \in [x_{k-1},x_k],$ 则称有序对
+\[
+(P,\xi) = (\{x_k\}_{k=0}^n,\ \{\xi_k\}_{k=1}^n)
+\]
+为\alert{带标志点的划分}，其中 $\xi = \{\xi_1,\dots,\xi_n\}$ 称为标志点集.
+\end{Def}
+
+\end{frame}
+ 
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{闭区间上的划分}
+
+$$
+\begin{array}{cccccccccccc}
+P: ~~ & a=x_0 & < & x_1 & < & x_2 & < & \cdots & < & x_{n-1} & < & x_n = b \\
+\xi: ~~ & & \xi_1 & & \xi_2 & & \xi_3 & \cdots & \xi_{n-1} & & \xi_n
+\end{array}
+$$
+
+\pause
+
+\begin{block}{划分相关的一些记号}
+\begin{itemize}
+\item 划分的\alert{模} (norm) 或\alert{细度} (mesh): $\lambda(P) = \max\limits_{1 \leq k \leq n} \Delta x_k$
+\item 积分和 (黎曼和)：$S(f; P,\xi) = \sum_{k=1}^n f(\xi_k)\Delta x_k$
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{attnblock}
+划分的精细程度由模 $\lambda(P)$ 控制, 当 $\lambda(P) \to 0$ 时所有子区间同步收缩, 这是黎曼可积的关键条件.
+\end{attnblock}
+
+\end{frame}
+ 
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{关于滤子基的极限}
+
+\end{frame}
+ 
+%------------------------------------------------
+ 
+\begin{frame}
+\frametitle{黎曼可积与黎曼积分}
+
+\begin{Def}[函数黎曼可积及其黎曼积分]
+设函数 $f$ 是定义在 $[a,b]$ 上的 (有界) 函数, 若关于 $\lambda(P) \to 0$ 的极限存在：
+\begin{equation*}
+\lim_{\lambda(P) \to 0} S(f; P,\xi) = \lim_{\lambda(P) \to 0} \sum_{k=1}^n f(\xi_k)\Delta x_k = I,
+\end{equation*}
+则称 $f$ 在 $[a,b]$ 上黎曼可积, 实数 $I$ 称为 $f$ 在 $[a, b]$ 上的黎曼积分 (定积分), 记作：
+\begin{equation*}
+I = \int_a^b f(x)dx
+\end{equation*}
+
+% \small
+% \[
+% \forall~\varepsilon > 0, ~ \exists~\delta>0, ~ \text{当分割细度} ~ \lambda(P) <\delta \Longrightarrow \left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| < \varepsilon
+% \]
+% \normalsize
+% 则称 $f$ 在 $[a,b]$ 上黎曼可积, 
+\end{Def}
+ 
+% \begin{itemize}
+% \item 分割的任意性：分点与取样点均任意选取
+% \item 积分和的独立性：与分割方式和取样点选择无关
+% \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{达布和与可积条件}
+ 
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{达布上下和}
+\begin{block}{关键概念}
+\begin{itemize}
+\item 分割 $P$ 的达布上和：$\overline{S}(P;f) = \sum_{i=1}^n M_i\Delta x_i$
+\item 达布下和：$\underline{S}(P;f) = \sum_{i=1}^n m_i\Delta x_i$
+\item 达布上、下积分：$\overline{\int}_a^b f = \inf_P U(P,f)$，$\underline{\int}_a^b f = \sup_P L(P,f)$
+\end{itemize}
+\end{block}
+ 
+\begin{thm}[可积充要条件]
+函数 $f$ 在 $[a,b]$ 上可积的充要条件是：
+$$
+\forall \varepsilon > 0,~\exists~\text{分割}~P,\ 使得~\overline{S}(P,f) - \underline{S}(P,f) < \varepsilon
+$$
+\end{thm}
+\end{frame}
+
 %-----------------------------------
 %	PRESENTATION SLIDES
 %-----------------------------------
