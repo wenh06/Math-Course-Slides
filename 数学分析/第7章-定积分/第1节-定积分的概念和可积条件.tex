@@ -41,19 +41,96 @@
 
 %------------------------------------------------
  
-% \begin{frame}
-% \frametitle{历史背景与几何原型}
-% \begin{block}{核心问题}
-% 如何求曲边梯形的面积？
-% \begin{itemize}
-%     \item 直线图形面积 $\rightarrow$ 曲线图形面积
-%     \item 有限分割：将曲边梯形分割为窄曲边梯形
-%     \item 局部近似：用矩形面积近似代替窄曲边梯形
-%     \item 极限过程：通过无限细分实现精确化
-% \end{itemize}
-% \end{block}
+\begin{frame}
+\frametitle{定积分概念的引入}
+
+求 \alert{(不规则) 区域面积}, 曲线长等
+
+\pause
+
+\begin{eg}
+求抛物线 $y = x^2$ 以及直线 $y = 0, x = 1$ 围成的区域面积 $S.$
+\end{eg}
+
+\pause
+
+\begin{columns}
+\begin{column}[T]{0.4\textwidth}
+\begin{tikzpicture}[scale=2.3,declare function={f(\x)=\x*\x;}]
+% 坐标系
+\draw[->,thick] (-0.5,0) -- (1.5,0) node[right] {$x$};
+\draw[->,thick] (0,-0.5) -- (0,1.5) node[above] {$y$};
+\node[below left] at (0,0) {\scriptsize $O$};
  
-% \end{frame}
+% 填充区域（闭区域）
+\fill[gray!70] 
+    (0,0) -- 
+    plot[domain=0:1,samples=50,smooth] (\x,{f(\x)}) 
+    -- (1,0) -- cycle;
+
+% 关键曲线绘制
+\draw[blue,thick] plot[domain=-0.3:1.2,samples=50,smooth] (\x,{f(\x)}) 
+    node[above] {\scriptsize $y=x^2$};
+\draw[blue,thick] (1,0) -- (1,1) node[right, yshift=-3pt] {\scriptsize $x=1$};
+
+% 刻度标签
+\draw (1,0) node[below] {\scriptsize $1$} -- (1,0.05);
+\draw (0,1) node[left] {\scriptsize $1$} -- (0.05,1);
+
+\newcommand{\xleft}{0.6}   % 子区间左端点 x_{i-1}
+\newcommand{\xright}{0.8}  % 子区间右端点 x_i
+\newcommand{\xmid}{0.69}   % 标志点 ξ_i ∈ [x_{i-1},x_i]
+
+\only<4>{
+
+\draw (\xleft,0) node[below] {\scriptsize $x_{i-1}$} -- (\xleft,0.05);
+\draw (\xright,0) node[below] {\scriptsize $x_i$} -- (\xright,0.05);
+}
+\only<5->{
+\fill[red!30,opacity=0.5] (\xleft,0) rectangle (\xright,{f(\xmid)});
+\draw[red,thick] (\xleft,0) -- (\xleft,{f(\xmid)}) -- (\xright,{f(\xmid)}) -- (\xright,0);
+\draw[<->,purple] (\xleft,-0.2) -- node[below] {\small$\Delta x_i$} (\xright,-0.2);
+% \draw[->,blue] (\xmid,0) -- node[right] {\small$f(\xi_i)$} (\xmid,{f(\xmid)});
+\node[below] at (\xleft,0) {\scriptsize $x_{i-1}$};
+\node[below] at (\xright,0) {\scriptsize $x_i$};
+% \node[below] at (\xmid,0) {\scriptsize$\xi_i$};
+\node[above] at (\xmid, {f(\xmid)}) {\scriptsize$(\xi_i, f(\xi_i))$};
+}
+\end{tikzpicture}
+\end{column}
+
+\pause
+
+\begin{column}[T]{0.58\textwidth}
+\only<4-5>{
+\ding{172}分割:
+$$[0, 1] ~~ \rightsquigarrow ~~ \begin{array}{cccccc}
+0 & \frac{1}{n} & \frac{2}{n} & \cdots & \frac{n-1}{n} & 1 \\
+x_0 & x_1 & x_2 & \cdots & x_{n-1} & x_n
+\end{array}$$
+}
+\only<5-6>{
+\ding{173}近似: 第 $i$ 小块面积近似为
+$$f(\xi_i) \cdot \Delta x_i = \xi_i^2 \cdot \frac{1}{n}$$
+}
+\only<6->{
+\ding{174}求和:
+$$S \approx \sum_{i=1}^n f(\xi_i) \cdot \Delta x_i = \frac{1}{n} \sum_{i=1}^n \xi_i^2$$
+}
+\only<7>{
+\ding{175}取极限: $\displaystyle \frac{1}{n} \sum_{i=1}^n \xi_i^2 ~ \longrightarrow ~ ?$
+}
+\only<8->{
+\ding{175}取极限: $\displaystyle \frac{1}{n} \sum_{i=1}^n \xi_i^2 ~ \longrightarrow ~ \frac{1}{3}$
+
+\vspace{1em}
+
+\hspace{1em} \alert{提示:} $\frac{i-1}{n} \leqslant \xi_i \leqslant \frac{i}{n}$
+}
+\end{column}
+\end{columns}
+ 
+\end{frame}
 
 %------------------------------------------------
  
@@ -64,7 +141,8 @@
 
 \vspace{1em}
 
-\begin{itemize}[<+->]
+% \begin{itemize}[<+->]
+\begin{itemize}
 \item 这个极限过程是什么?
 \vspace{0.5em}
 \item 是否总有极限?
@@ -92,7 +170,7 @@ a = x_0 < x_1 < \cdots < x_{n-1} < x_n = b
 每个子区间 $[x_{k-1},x_k]$ 的长度记为 $\Delta x_k = x_k - x_{k-1},$ $k=1,2,\dots,n$
 \end{Def}
  
-\begin{Def}[带标志点的划分, Tagged Partition]
+\begin{Def}[带标志点的划分, tagged partition]
 对任意划分 $P = \{x_0,x_1,\dots,x_n\},$ 若在每个子区间 $[x_{k-1},x_k]$ 中选取一点 $\xi_k \in [x_{k-1},x_k],$ 则称有序对
 \[
 (P,\xi) = (\{x_k\}_{k=0}^n,\ \{\xi_k\}_{k=1}^n)
@@ -126,7 +204,7 @@ $$
 \pause
 
 \begin{attnblock}
-划分的精细程度由模 $\lambda(P)$ 控制, 当 $\lambda(P) \to 0$ 时所有子区间同步收缩, 这是黎曼可积的关键条件.
+划分的精细程度由模 $\lambda(P)$ 控制, 当 $\lambda(P) \to 0$ 时所有子区间同步收缩, 这将是黎曼可积的关键条件.
 \end{attnblock}
 
 \end{frame}
@@ -160,11 +238,52 @@ I = \int_a^b f(x)dx
 % \normalsize
 % 则称 $f$ 在 $[a,b]$ 上黎曼可积, 
 \end{Def}
+
+\pause
+
+$[a,b]$ 上黎曼可积函数全体构成的\alert{集合}记为 $\mathcal{R}[a,b].$
  
 % \begin{itemize}
 % \item 分割的任意性：分点与取样点均任意选取
 % \item 积分和的独立性：与分割方式和取样点选择无关
 % \end{itemize}
+
+\end{frame}
+ 
+%------------------------------------------------
+ 
+\begin{frame}
+\frametitle{关于黎曼可积的一些注记}
+
+\begin{itemize}[<+->]
+\item 若积分和极限存在, 那么它既与划分的分点 $x_0, x_1 ,\dots, x_n$ 无关, 也与标志点 $\xi_1, \dots, \xi_n$ 的选取无关.
+
+用 $\varepsilon-\delta$ 语言去写, 即 $\forall~\varepsilon > 0, ~ \exists~\delta > 0,$ 对$[a,b]$ 区间的任意划分 $P,$ 只要分割细度 $\lambda(P) < \delta,$ 总有 
+$$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| < \varepsilon.$$
+\item 柯西准则: $\forall~\varepsilon > 0, ~ \exists~\delta > 0,$ 对$[a,b]$ 区间的任意带标志点的划分 $(P, \xi), (P', \xi')$ 只要分割细度 $\lambda(P), \lambda(P') < \delta,$ 总有
+$$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - \sum_{i=1}^{n'} f(\xi_i')\Delta x_i' \right| < \varepsilon.$$
+
+\pause
+
+\alert{注意:} 函数黎曼可积的柯西准则依赖于实数域 $\mathbb{R}$ 的完备性.
+\end{itemize}
+
+\end{frame}
+ 
+%------------------------------------------------
+ 
+\begin{frame}
+\frametitle{一些典型的例子}
+
+\begin{eg}[黎曼不可积函数的例子]
+$[0, 1]$ 区间上的狄利克雷函数
+$$
+D(x) = \begin{cases}
+1, & x \in \mathbb{Q} \cap [0, 1],\\
+0, & x \in [0, 1] \setminus \mathbb{Q}.
+\end{cases}
+$$
+\end{eg}
 
 \end{frame}
 
