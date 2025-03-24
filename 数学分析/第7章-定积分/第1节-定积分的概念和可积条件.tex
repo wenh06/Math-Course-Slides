@@ -35,6 +35,10 @@
 % \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 % \end{frame}
 
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
 %------------------------------------------------
  
 \section{定积分概念的导出背景}
@@ -285,6 +289,32 @@ D(x) = \begin{cases}
 $$
 \end{eg}
 
+\pause
+
+事实上, 对任意划分 $P,$ 以及其中任意一个小区间 $[x_{i-1}, x_i],$ 都存在有理数 $\xi_i,$ 以及无理数 $\xi'_i$ 落在区间 $[x_{i-1}, x_i]$ 中, 相应的积分和
+\begin{gather*}
+S(D; P, \xi) = \sum_{i=1}^n D(\xi_i) \cdot \Delta x_i = \sum_{i=1}^n 1 \cdot \Delta x_i = 1, \\
+S(D; P, \xi') = \sum_{i=1}^n D(\xi'_i) \cdot \Delta x_i = \sum_{i=1}^n 0 \cdot \Delta x_i = 0
+\end{gather*}
+
+\end{frame}
+ 
+%------------------------------------------------
+ 
+\begin{frame}
+\frametitle{一些典型的例子}
+
+\begin{question}
+$[0, 1]$ 区间上的黎曼函数
+$$
+R(x) = \begin{cases}
+\frac{1}{p}, & x = \frac{q}{p} \in \mathbb{Q} \cap (0, 1),\\
+0, & x \in ((0, 1) \setminus \mathbb{Q}) \cup \{0, 1\}
+\end{cases}
+$$
+是否黎曼可积? 这里的 $x = q/p$ 指的是写成既约分数的形式.
+\end{question}
+
 \end{frame}
 
 %------------------------------------------------
@@ -311,8 +341,14 @@ $$
 \end{thm}
 \end{frame}
 
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+%------------------------------------------------
+
+\section{达布和与可积条件}
+ 
+%------------------------------------------------
+
+\begin{frame}
+
+\end{frame}
 
 \end{document}

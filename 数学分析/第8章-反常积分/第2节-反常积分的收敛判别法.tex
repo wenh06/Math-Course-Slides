@@ -9,9 +9,9 @@
 
 \title[第八章\\
 反常积分]{\texorpdfstring{\LARGE \bfseries 第八章\quad 反常积分}{第八章 反常积分}} % The short title appears at the bottom of every slide, the full title is only on the title page
-\author[\smaller \S 8.1\\
+\author[\smaller \S 8.2\\
 收敛判别法] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
-{\Large \bfseries \S 8.1 反常积分的收敛判别法}
+{\Large \bfseries \S 8.2 反常积分的收敛判别法}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date, can be changed to a custom date
 \date{}
@@ -38,5 +38,140 @@
 %-----------------------------------
 %	PRESENTATION SLIDES
 %-----------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{equation*}
+\int_a^{\omega} f(x) ~ \mathrm{d} x
+\end{equation*}
+
+有时候, 我们不需要 (往往也不容易) 计算某个反常积分的值, 但需要 (\alert{定性地}) 判断它是否收敛, 所以我们发展处一系列判别法, 来判断一个反常积分的敛散性.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{反常积分的柯西收敛原理}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{柯西收敛原理}
+
+由于反常积分定义是用极限表达的, 最基本的判别准则为
+
+\begin{thm}[柯西收敛原理]
+反常积分 $\displaystyle \int_a^{\omega} f(x) ~ \mathrm{d} x$ 收敛 ($\omega$ 是无穷或者 $f(x)$ 的奇点) 的充要条件是: $\forall~\varepsilon > 0,$
+\begin{itemize}
+\item $\omega$ 是无穷: $\exists ~ X > a,$ 使得 $\forall c_2 > c_1 > X,$
+\item $\omega$ 是奇点: $\exists ~ \delta > 0,$ 使得 $\forall \omega > c_2 > c_1 > \omega - \delta,$
+\end{itemize}
+有 $\displaystyle \left| \int_{c_1}^{c_2} f(x) ~ \mathrm{d}x \right| < \varepsilon.$
+\end{thm}
+
+\pause
+
+% \alert{关键在于}, $\displaystyle \left| \int_{c_1}^{c_2} f(x) ~ \mathrm{d}x \right|$ 的估计.
+
+\begin{eg}
+讨论 $\displaystyle \int_a^{+\infty} \dfrac{1}{\nroot[n]{x^4 + 3x^3 + 5x^2 + 2x - 1}} ~ \mathrm{d} x$ 的敛散性
+\end{eg}
+
+\alert{提示:} 对充分大的 $x,$ 对分母进行放缩, 进而控制 $\displaystyle \left| \int_{c_1}^{c_2} f(x) ~ \mathrm{d}x \right|.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{question}
+之前判断函数是否黎曼可积时, 利用振幅判别法, 有
+\begin{equation*}
+f(x) \in \mathcal{R}[a, b] \quad \stackanchor[6pt]{$\Longrightarrow$}{$\bcancel{\Longleftarrow}$} \quad |f(x)| \in \mathcal{R}[a, b]
+\end{equation*}
+那么反常积分的情况如何?
+\end{question}
+
+\pause
+
+一方面, 有 $\displaystyle \left| \int_{c_1}^{c_2} f(x) ~ \mathrm{d}x \right| \leqslant \int_{c_1}^{c_2} |f(x)| ~ \mathrm{d}x,$ 那么由\alert{柯西收敛原理}知
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\text{$f(x)$ 反常积分收敛 $\Longleftarrow$ $|f(x)|$ 反常积分收敛}
+\end{empheq}
+
+\pause
+
+另一方面, 考虑函数定义在 $[1, +\infty)$ 上的函数 $f(x) = (-1)^{[x]+1} \frac{1}{[x]},$ 可知
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\text{$f(x)$ 反常积分收敛 $\bcancel{\Longrightarrow}$ $|f(x)|$ 反常积分收敛}
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\frametitle{绝对可积与条件可积函数}
+ 
+\begin{block}{绝对可积（绝对收敛）}
+设函数 $f(x)$ 在 $[a, \omega)$ 上\emph{局部可积} (即在每个闭区间 $[a, b] \subset [a, \omega)$ 上黎曼可积), 若反常积分
+\begin{equation*}
+\int_a^{+\infty} |f(x)|dx\ \text{收敛}
+\end{equation*}
+则称 $f(x)$ 在 $[a, \omega)$ 上\alert{绝对可积}, 称反常积分 $\int_a^{\omega}f(x) ~ \mathrm{d} x$ \alert{绝对收敛}.
+\end{block}
+ 
+\begin{block}{条件可积（条件收敛）}
+若 $\int_a^{\omega}f(x) ~ \mathrm{d} x$ 收敛，但$\int_a^{\omega}|f(x)| ~ \mathrm{d} x$ 发散，则称 $f(x)$ \alert{条件可积}, 称反常积分 $\int_a^{\omega}f(x) ~ \mathrm{d} x$ \alert{条件收敛}.
+\end{block}
+
+\pause
+
+\alert{注意:} 条件收敛与绝对收敛下, 反常积分 $\displaystyle \int_a^{\omega}f(x) ~ \mathrm{d} x$ 都是收敛的.
+ 
+\end{frame}
+
+%------------------------------------------------
+
+\section{非负函数反常积分的收敛判别法}
+
+\begin{frame}
+\frametitle{比较判别法}
+
+先来看最简单的情况, 即被积函数 $f(x)$ 是非负函数.
+
+\pause
+
+\begin{thm}[比较判别法]
+设函数 $f(x), \varphi(x)$ 在 $[a, \omega)$ 上局部可积, 并且在 $[a, \omega)$ 上恒有 $0 \leqslant f(x) \leqslant \varphi(x),$ 那么
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{一般函数反常积分的收敛判别法}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{无界函数反常积分的收敛判别法}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\end{frame}
+
+%------------------------------------------------
 
 \end{document}
