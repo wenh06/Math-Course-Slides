@@ -1,5 +1,4 @@
-% \usepackage[dvipsnames]{xcolor}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{centernot}
 
 \graphicspath{{images/}}
@@ -90,6 +89,21 @@
 \newtheorem{observation}[thm]{观察}
 \newtheorem*{convention}{约定}
 
+
+\AtBeginEnvironment{eg}{%
+  \setbeamercolor{block title}{use=example text,fg=white,bg=cau-green-1!50!black}
+  \setbeamercolor{block body}{parent=normal text,use=block title example,bg=cau-green-1!10}
+}
+\AtBeginEnvironment{question}{%
+  \setbeamercolor{block title}{use=example text,fg=white,bg=Lavender!50!black}
+  \setbeamercolor{block body}{parent=normal text,use=block title example,bg=Lavender!10}
+}
+\AtBeginEnvironment{Def}{%
+  \setbeamercolor{block title}{use=example text,fg=white,bg=craneorange!50!black}
+  \setbeamercolor{block body}{parent=normal text,use=block title example,bg=craneorange!10}
+}
+
+
 \makeatletter
 \newcommand\HUGE{\@setfontsize\Huge{35}{46}}
 \makeatother
@@ -110,6 +124,7 @@
 \newCJKfontfamily\simfang{simfang.ttf}[Extension = .ttf, Path=fonts/]
 \newCJKfontfamily\simhei{simhei.ttf}[Extension = .ttf, Path=fonts/]
 \newCJKfontfamily\simkai{simkai.ttf}[Extension = .ttf, Path=fonts/]
+\newCJKfontfamily\fzsong{song_fangzheng.TTF}[Extension = .TTF, Path=fonts/]
 % \newCJKfontfamily\simsun{simsun.ttc}[Extension = .ttc, Path=fonts/]
 
 % \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simfang.ttf}
@@ -117,7 +132,9 @@
 % \setCJKsansfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
 % \setCJKmonofont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
 
-\setCJKmainfont[Path = fonts/, AutoFakeBold=3.5, ItalicFont=JDLangZhengTi.ttf]{simhei.ttf}
+% \setCJKmainfont[Path = fonts/, AutoFakeBold=3.5, ItalicFont=JDLangZhengTi.ttf]{simhei.ttf}
+% \setCJKmainfont[Path = fonts/, AutoFakeBold=3.5, ItalicFont=simhei.ttf]{song_fangzheng.TTF}
+\setCJKmainfont[Path = fonts/, AutoFakeBold=3.5, ItalicFont=simkai.ttf]{simhei.ttf}
 \setCJKsansfont[Path = fonts/, AutoFakeBold=3.5]{simhei.ttf}
 \setCJKmonofont[Path = fonts/]{simhei.ttf}
 
