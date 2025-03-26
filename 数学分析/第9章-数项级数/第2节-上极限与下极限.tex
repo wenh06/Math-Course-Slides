@@ -32,4 +32,84 @@
 %	PRESENTATION SLIDES
 %-----------------------------------
 
+\begin{frame}
+
+\begin{center}
+\begin{tikzpicture}[
+scale=1.5,
+x=0.7cm,y=1.2cm,
+declare function={
+    damped_wave(\x)=exp(-0.2*\x)*sin(deg(\x*3));  % 阻尼振动函数
+    upper_env(\x)=exp(-0.2*\x);  % 上包络线
+    lower_env(\x)=-exp(-0.2*\x);  % 下包络线
+}
+]
+ 
+% 绘制坐标轴
+\draw[->] (-0.5,0) -- (6.5,0) node[right] {$x$};
+\draw[->] (0,-1.2) -- (0,1.5) node[above] {$y$};
+
+% 绘制阻尼振动曲线（蓝色实线）
+\draw[blue,thick,samples=100,smooth] 
+    plot[domain=0:6] (\x,{damped_wave(\x)});
+ 
+% 绘制包络线（红色虚线）
+\draw[red,dashed,samples=50] 
+    plot[domain=0:6] (\x,{upper_env(\x)})
+    plot[domain=0:6] (\x,{lower_env(\x)});
+\end{tikzpicture}
+\end{center}
+
+\vspace*{2em}
+
+我们引入比 (序列) 极限更弱一些的概念, 即所谓的\alert{上、下极限}.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[定义]{上、下极限的定义}
+
+%------------------------------------------------
+
+\begin{frame}{数列的极限点}
+
+\begin{Def}
+在有界数列 $\{x_n\}$ 中, 若存在一个子列 $\{x_{n_k}\},$ 使得 $\lim\limits_{k \to \infty} x_{n_k} = \xi,$ 则称 $\xi$ 为数列 $\{x_n\}$ 的一个\alert{极限点}.
+\end{Def}
+
+\pause
+
+极限点的概念可以等价地定义为: $\xi$ 的任意邻域中都包含 $\{x_n\}$ 中的无穷多项.记
+$$E = \{ \xi\in\mathbb{R} ~:~ \xi \text{ 是 $\{x_n\}$ 的极限点} \},$$
+对于有界数列, 由于它总有收敛子列, 因此 $E$ 非空.
+
+\begin{attnblock}
+数列极限点的概念要与点集拓扑中极限点的概念相区别. 点集拓扑中, 一个点 $\xi$ 是集合 $S$ 的极限点, 若 $\xi$ 的任意去心邻域与 $S$ 的交非空.
+\pause
+二者的唯一区别在于, 当 $\xi$ 本身在 $\{x_n\}$ 中出现无穷多次时, $\xi$ 是 $\{x_n\}$ 的极限点, 但可能只是相应点集的孤立点.
+
+数列极限点与点集拓扑中附着点 (adhere point) 的概念更接近.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[运算]{上、下极限的运算}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\end{frame}
+
+%------------------------------------------------
+
 \end{document}

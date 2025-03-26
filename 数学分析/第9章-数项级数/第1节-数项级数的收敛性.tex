@@ -473,6 +473,105 @@ $$\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M,$$
 
 %------------------------------------------------
 
+\begin{frame}{黎曼重排定理证明思路}
+
+约定记号: $a_n^+ := \max\{0, a_n\}, ~ a_n^- := \min\{0, a_n\}$
+
+\begin{block}{主要利用}
+\begin{itemize}
+\item $\sum\limits_{n=1}^{\infty} a_n^+ = + \infty,$ 从而 $\sum\limits_{n=1}^{N} a_n^+$ 可以任意大;
+\item $\sum\limits_{n=1}^{\infty} a_n^- = - \infty,$ 从而 $\sum\limits_{n=1}^{N} a_n^-$ 可以任意小;
+\item $a_n \to 0.$
+\end{itemize}
+\end{block}
+
+\pause
+
+$1^{\circ}$ 首先来说明 $\sum\limits_{n=1}^{\infty} a_n^+ = + \infty,$ 且 $\sum\limits_{n=1}^{\infty} a_n^- = - \infty:$
+
+{\smaller
+发散 $\leftsquigarrow$ $\sum\limits_{n=1}^{N} |a_n| = \sum\limits_{n=1}^{N} a_n^+ - \sum\limits_{n=1}^{N} a_n^-$ $\Longrightarrow$ $\sum\limits_{n=1}^{\infty} a_n^+$ 与 $\sum\limits_{n=1}^{\infty} a_n^-$ \alert{至少一个发散}
+
+收敛 $\leftsquigarrow$ $\sum\limits_{n=1}^{N} a_n = \sum\limits_{n=1}^{N} a_n^+ + \sum\limits_{n=1}^{N} a_n^-$ $\Longrightarrow$ $\sum\limits_{n=1}^{\infty} a_n^+$ 与 $\sum\limits_{n=1}^{\infty} a_n^-$ \alert{同时收敛或发散}
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{黎曼重排定理证明思路}
+
+$2^{\circ}$ 任取 $M \in \mathbb{R}_{\geqslant 0},$ 存在 $\mathbb{N}$ 的置换 $\sigma,$ 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M:$
+
+\pause
+
+令 $p_1 = \min \left\{ p ~ : ~ \sum\limits_{n=1}^p a_n^+ > M \right\}$ (\alert{注意这是非空集});
+
+\pause
+
+令 $q_1 = \min \left\{ q ~ : ~ \sum\limits_{n=1}^{{\color{red} p_1}} a_n^+ + \sum\limits_{n=1}^{q} a_n^- < M \right\}$ (\alert{也非空});
+
+\pause
+
+于是可以归纳地取到 $p_2, q_2, p_3, q_3, \dots$ 使得
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{align*}
+p_k & = \min \left\{ p ~ : ~ \sum\limits_{n=1}^{p} a_n^+ + \sum\limits_{n=1}^{{\color{red} q_{k-1}}} a_n^- > M \right\} \\
+q_k & = \min \left\{ q ~ : ~ \sum\limits_{n=1}^{{\color{red} p_{k-1}}} a_n^+ + \sum\limits_{n=1}^{q} a_n^- < M \right\}
+\end{empheq}
+并且有 $p_{k-1} < p_k, q_{k-1} < q_k.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{黎曼重排定理证明思路}
+
+考虑序列~~$\dots, {\color{red} a_{q_k}^-}, {\color{cyan} a_{p_k+1}^+, \dots}, {\color{red} a_{p_{k+1}}^+}, {\color{cyan} a_{q_k+1}^-, \dots}, {\color{red} a_{q_{k+1}}^-}, {\color{cyan} a_{p_{k+1}+1}^+, \dots}$
+
+\begin{center}
+\begin{tikzpicture}[
+scale=0.78,
+% dot/.style={mark=*, mark size=1.5mm, only marks},
+]
+\draw[->] (-0.8, -2.5) -- (-0.8,2.5) node[anchor=south] {$\widetilde{S}_N$};
+\draw[dashed, thick] (-0.5,0) -- (12.5, 0) node[right] {$M$};
+% \foreach \p in {(0,0.4), (1,-2), (2,-1.5), (5,-0.5), (6,1.5), (7, 1.2), (10, 0.3), (11, -1.1), (12, -0.8)}
+%     \fill \p circle(.09);
+\draw[thin] 
+    (0,0.4) node[fill,circle,inner sep=2pt]{} % 第一个点
+    \foreach \x/\y [remember=\x as \lastx, remember=\y as \lasty] in {1/-2,2/-1.5,5/-0.5,6/1.5,7/1.2,10/0.3,11/-1.1,12/-0.8} {
+        -- (\x,\y) node[fill,circle,inner sep=2pt]{}
+    };
+% \node[anchor=north] at (1,-2) {\smaller \color{red} $a_{q_k}^-$};
+% \node[anchor=north] at (2,-1.5) {\smaller $a_{p_k+1}^+$};
+% \node[anchor=east] at (6,1.5) {\smaller \color{red} $a_{p_{k+1}}^+$};
+% \node[above] at (7, 1.2) {\smaller $a_{q_k+1}^-$};
+% \node[anchor=north] at (11, -1.1) {\smaller \color{red} $a_{q_{k+1}}^-$};
+% \node[anchor=west] at (12, -0.8) {\smaller $a_{p_{k+1}+1}^+$};
+
+\draw[dashed, thin] (1,-2) -- (1,2) node[anchor=south]  {\smaller[3] \color{red} $a_{q_k}^-$};
+\draw[dashed, thin] (2,-1.5) -- (2,2) node[anchor=south] {\smaller[3] $a_{p_k+1}^+$};
+\draw[dashed, thin] (6,1.5) -- (6,2) node[anchor=south] {\smaller[3] \color{red} $a_{p_{k+1}}^+$};
+\draw[dashed, thin] (7, 1.2) -- (7,2) node[above] {\smaller $a_{q_k+1}^-$};
+\draw[dashed, thin] (11, -1.1) -- (11,2) node[anchor=south] {\smaller[3] \color{red} $a_{q_{k+1}}^-$};
+\draw[dashed, thin] (12, -0.8) -- (12,2) node[anchor=south] {\smaller[3] $a_{p_{k+1}+1}^+$};
+
+\node[anchor=south] at (4,2) {$\cdots\cdots$};
+\node[anchor=south] at (9,2) {$\cdots\cdots$};
+
+\draw[thick, decorate, decoration={brace, amplitude=8pt, mirror}]
+    (2,-1.8) -- (11,-1.8) node[midway, yshift=-16pt] {\smaller $|\widetilde{S}_N - M| \leqslant \max\{|a_{q_k}^-|, |a_{p_{k+1}}^+|, |a_{q_{k+1}}^-|\} \to 0$} ;
+
+% \draw[pattern=fivepointed stars] (2,-1.5) -- (5,-0.5);
+\end{tikzpicture}
+\end{center}
+
+把序列中的 $0$ 去掉, 即得到 $a_1, a_2, \dots, a_n, \dots$ 的一个置换.
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{应用例题}
 
 \begin{eg}
@@ -489,6 +588,28 @@ $$\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M,$$
 \pause
 $\cdots\cdots$ 以此类推, 长期服药后, 患者体内药量为
 $$0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2 + \left( \dfrac{4}{5} \right)^3 + \cdots \right) = 0.25 \text{(mg)}.$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{应用例题}
+
+\begin{eg}
+\begin{center}
+计算级数 $\sum\limits_{n=1}^\infty \arctan \frac{1}{2n^2}.$
+\end{center}
+\end{eg}
+
+\alert{提示:} $\tan(\theta_1 - \theta_2) = \frac{\tan\theta_1 - \tan\theta_2}{1 + \tan\theta_1 \tan\theta_2}$
+
+\pause
+\vspace*{1em}
+
+{\smaller[1] $\arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} = \arctan\frac{\frac{1}{2n-1} - \frac{1}{2n+1}}{1 + \frac{1}{(2n+1)(2n-1)}} = \arctan\frac{1}{2n^2},$}
+
+所以
+$$\sum\limits_{n=1}^\infty \arctan \frac{1}{2n^2} = \sum\limits_{n=1}^\infty \left( \arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} \right) = \frac{\pi}{4}.$$
 
 \end{frame}
 
