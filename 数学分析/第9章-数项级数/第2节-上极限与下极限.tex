@@ -96,7 +96,20 @@ $$E = \{ \xi\in\mathbb{R} ~:~ \xi \text{ 是 $\{x_n\}$ 的极限点} \},$$
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{极限点集性质}
+
+$\{x_n\}$ 极限点集 $E = \{ \xi\in\mathbb{R} ~:~ \xi \text{ 是 $\{x_n\}$ 的极限点} \}$ 有如下性质
+
+\begin{thm}
+\begin{center}
+$E$ 的上确界 $H$ 与下确界 $h$ 均属于 $E.$
+\end{center}
+\end{thm}
+
+\pause
+\vspace{1em}
+
+证明: 由于 $H = \sup E,$ 那么 $\forall~\varepsilon > 0,$ 存在 $\xi \in E$ 使得 $0 \leqslant H - \xi < \varepsilon.$ 又由于 $\xi \in E$ 为 $\{x_n\}$ 的极限点, 因此 $\xi$ 的邻域 $(\xi - \delta, \xi + \delta)$ 中包含 $\{x_n\}$ 的无穷多项, 这里 $\delta = \frac{\xi - (H - \varepsilon)}{2}.$
 
 \end{frame}
 
