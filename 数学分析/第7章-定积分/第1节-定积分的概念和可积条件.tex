@@ -40,11 +40,11 @@
 %-----------------------------------
 
 %------------------------------------------------
- 
+
 \section{定积分概念的导出背景}
 
 %------------------------------------------------
- 
+
 \begin{frame}
 \frametitle{定积分概念的引入}
 
@@ -65,15 +65,15 @@
 \draw[->,thick] (-0.5,0) -- (1.5,0) node[right] {$x$};
 \draw[->,thick] (0,-0.5) -- (0,1.5) node[above] {$y$};
 \node[below left] at (0,0) {\scriptsize $O$};
- 
+
 % 填充区域（闭区域）
-\fill[gray!70] 
-    (0,0) -- 
-    plot[domain=0:1,samples=50,smooth] (\x,{f(\x)}) 
+\fill[gray!70]
+    (0,0) --
+    plot[domain=0:1,samples=50,smooth] (\x,{f(\x)})
     -- (1,0) -- cycle;
 
 % 关键曲线绘制
-\draw[blue,thick] plot[domain=-0.3:1.2,samples=50,smooth] (\x,{f(\x)}) 
+\draw[blue,thick] plot[domain=-0.3:1.2,samples=50,smooth] (\x,{f(\x)})
     node[above] {\scriptsize $y=x^2$};
 \draw[blue,thick] (1,0) -- (1,1) node[right, yshift=-3pt] {\scriptsize $x=1$};
 
@@ -133,11 +133,11 @@ $$S \approx \sum_{i=1}^n f(\xi_i) \cdot \Delta x_i = \frac{1}{n} \sum_{i=1}^n \x
 }
 \end{column}
 \end{columns}
- 
+
 \end{frame}
 
 %------------------------------------------------
- 
+
 \begin{frame}
 
 {\larger[2]
@@ -154,7 +154,7 @@ $$S \approx \sum_{i=1}^n f(\xi_i) \cdot \Delta x_i = \frac{1}{n} \sum_{i=1}^n \x
 \item 有没有别的积分方式?
 \end{itemize}
 }
- 
+
 \end{frame}
 
 %------------------------------------------------
@@ -169,11 +169,11 @@ $$S \approx \sum_{i=1}^n f(\xi_i) \cdot \Delta x_i = \frac{1}{n} \sum_{i=1}^n \x
 \begin{Def}[划分, partition]
 设闭区间 $[a,b] \subset \mathbb{R},$ 称有限点集$P = \{x_0,x_1,\dots,x_n\}$ 为闭区间的一个\alert{划分}, 若满足:
 \begin{equation*}
-a = x_0 < x_1 < \cdots < x_{n-1} < x_n = b 
+a = x_0 < x_1 < \cdots < x_{n-1} < x_n = b
 \end{equation*}
 每个子区间 $[x_{k-1},x_k]$ 的长度记为 $\Delta x_k = x_k - x_{k-1},$ $k=1,2,\dots,n$
 \end{Def}
- 
+
 \begin{Def}[带标志点的划分, tagged partition]
 对任意划分 $P = \{x_0,x_1,\dots,x_n\},$ 若在每个子区间 $[x_{k-1},x_k]$ 中选取一点 $\xi_k \in [x_{k-1},x_k],$ 则称有序对
 \[
@@ -183,7 +183,7 @@ a = x_0 < x_1 < \cdots < x_{n-1} < x_n = b
 \end{Def}
 
 \end{frame}
- 
+
 %------------------------------------------------
 
 \begin{frame}
@@ -212,16 +212,16 @@ $$
 \end{attnblock}
 
 \end{frame}
- 
+
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{关于滤子基的极限}
 
 \end{frame}
- 
+
 %------------------------------------------------
- 
+
 \begin{frame}
 \frametitle{黎曼可积与黎曼积分}
 
@@ -240,29 +240,29 @@ I = \int_a^b f(x)dx
 % \forall~\varepsilon > 0, ~ \exists~\delta>0, ~ \text{当分割细度} ~ \lambda(P) <\delta \Longrightarrow \left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| < \varepsilon
 % \]
 % \normalsize
-% 则称 $f$ 在 $[a,b]$ 上黎曼可积, 
+% 则称 $f$ 在 $[a,b]$ 上黎曼可积,
 \end{Def}
 
 \pause
 
 $[a,b]$ 上黎曼可积函数全体构成的\alert{集合}记为 $\mathcal{R}[a,b].$
- 
+
 % \begin{itemize}
 % \item 分割的任意性：分点与取样点均任意选取
 % \item 积分和的独立性：与分割方式和取样点选择无关
 % \end{itemize}
 
 \end{frame}
- 
+
 %------------------------------------------------
- 
+
 \begin{frame}
 \frametitle{关于黎曼可积的一些注记}
 
 \begin{itemize}[<+->]
 \item 若积分和极限存在, 那么它既与划分的分点 $x_0, x_1 ,\dots, x_n$ 无关, 也与标志点 $\xi_1, \dots, \xi_n$ 的选取无关.
 
-用 $\varepsilon-\delta$ 语言去写, 即 $\forall~\varepsilon > 0, ~ \exists~\delta > 0,$ 对$[a,b]$ 区间的任意划分 $P,$ 只要分割细度 $\lambda(P) < \delta,$ 总有 
+用 $\varepsilon-\delta$ 语言去写, 即 $\forall~\varepsilon > 0, ~ \exists~\delta > 0,$ 对$[a,b]$ 区间的任意划分 $P,$ 只要分割细度 $\lambda(P) < \delta,$ 总有
 $$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| < \varepsilon.$$
 \item 柯西准则: $\forall~\varepsilon > 0, ~ \exists~\delta > 0,$ 对$[a,b]$ 区间的任意带标志点的划分 $(P, \xi), (P', \xi')$ 只要分割细度 $\lambda(P), \lambda(P') < \delta,$ 总有
 $$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - \sum_{i=1}^{n'} f(\xi_i')\Delta x_i' \right| < \varepsilon.$$
@@ -273,9 +273,9 @@ $$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - \sum_{i=1}^{n'} f(\xi_i')\Delta x_i' \
 \end{itemize}
 
 \end{frame}
- 
+
 %------------------------------------------------
- 
+
 \begin{frame}
 \frametitle{一些典型的例子}
 
@@ -298,9 +298,9 @@ S(D; P, \xi') = \sum_{i=1}^n D(\xi'_i) \cdot \Delta x_i = \sum_{i=1}^n 0 \cdot \
 \end{gather*}
 
 \end{frame}
- 
+
 %------------------------------------------------
- 
+
 \begin{frame}
 \frametitle{一些典型的例子}
 
@@ -320,7 +320,7 @@ $$
 %------------------------------------------------
 
 \section{达布和与可积条件}
- 
+
 %------------------------------------------------
 
 \begin{frame}
@@ -332,7 +332,7 @@ $$
 \item 达布上、下积分：$\overline{\int}_a^b f = \inf_P U(P,f)$，$\underline{\int}_a^b f = \sup_P L(P,f)$
 \end{itemize}
 \end{block}
- 
+
 \begin{thm}[可积充要条件]
 函数 $f$ 在 $[a,b]$ 上可积的充要条件是：
 $$
@@ -344,7 +344,7 @@ $$
 %------------------------------------------------
 
 \section{达布和与可积条件}
- 
+
 %------------------------------------------------
 
 \begin{frame}

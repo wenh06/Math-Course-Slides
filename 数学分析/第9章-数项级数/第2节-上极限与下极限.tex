@@ -44,17 +44,17 @@ declare function={
     lower_env(\x)=-exp(-0.2*\x);  % 下包络线
 }
 ]
- 
+
 % 绘制坐标轴
 \draw[->] (-0.5,0) -- (6.5,0) node[right] {$x$};
 \draw[->] (0,-1.2) -- (0,1.5) node[above] {$y$};
 
 % 绘制阻尼振动曲线（蓝色实线）
-\draw[blue,thick,samples=100,smooth] 
+\draw[blue,thick,samples=100,smooth]
     plot[domain=0:6] (\x,{damped_wave(\x)});
- 
+
 % 绘制包络线（红色虚线）
-\draw[red,dashed,samples=50] 
+\draw[red,dashed,samples=50]
     plot[domain=0:6] (\x,{upper_env(\x)})
     plot[domain=0:6] (\x,{lower_env(\x)});
 \end{tikzpicture}
