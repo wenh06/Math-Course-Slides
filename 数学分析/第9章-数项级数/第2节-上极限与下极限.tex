@@ -96,9 +96,9 @@ $$E = \{ \xi\in\mathbb{R} ~:~ \xi \text{ 是 $\{x_n\}$ 的极限点} \},$$
 
 %------------------------------------------------
 
-\begin{frame}{极限点集性质}
+\begin{frame}{极限点集 $E$ 的性质}
 
-$\{x_n\}$ 极限点集 $E = \{ \xi\in\mathbb{R} ~:~ \xi \text{ 是 $\{x_n\}$ 的极限点} \}$ 有如下性质
+% $\{x_n\}$ 极限点集 $E = \{ \xi\in\mathbb{R} ~:~ \xi \text{ 是 $\{x_n\}$ 的极限点} \}$ 有如下性质
 
 \begin{thm}
 \begin{center}
@@ -110,6 +110,146 @@ $E$ 的上确界 $H$ 与下确界 $h$ 均属于 $E.$
 \vspace{1em}
 
 证明: 由于 $H = \sup E,$ 那么 $\forall~\varepsilon > 0,$ 存在 $\xi \in E$ 使得 $0 \leqslant H - \xi < \varepsilon.$ 又由于 $\xi \in E$ 为 $\{x_n\}$ 的极限点, 因此 $\xi$ 的邻域 $(\xi - \delta, \xi + \delta)$ 中包含 $\{x_n\}$ 的无穷多项, 这里 $\delta = \frac{\xi - (H - \varepsilon)}{2}.$
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+
+\draw[-Stealth] (0,0) -- (5,0);
+\coordinate (he) at (1,0);
+\node[below, yshift=-4] at (he) {\smaller $H-\varepsilon$};
+\coordinate (h) at (4,0);
+\node[below, yshift=-4] at (h) {\smaller $H$};
+
+\draw (he) arc (180:140:0.2);
+\draw (he) arc (180:220:0.2);
+% \draw (h) arc (0:40:0.2);
+% \draw (h) arc (0:-40:0.2);
+\draw[thick] (h) -- (4, 0.1);
+
+\coordinate (xi) at (1.7,0);
+\node[below] at (xi) {\smaller $\xi$};
+
+\draw (xi) ++ (-0.3,0) arc (180:140:0.1);
+\draw (xi) ++ (-0.3,0) arc (180:220:0.1);
+\draw (xi) ++ (0.3,0) arc (0:40:0.1);
+\draw (xi) ++ (0.3,0) arc (0:-40:0.1);
+\draw[thick] (xi) -- (1.7, 0.1) node[above] {\smaller $O(\xi, \delta)$};
+
+\end{tikzpicture}
+\end{center}
+
+由于 $O(\xi, \delta) \subset O(H, \varepsilon),$ 因此 $H$ 的 $\varepsilon$ 邻域也包含 $\{x_n\}$ 的无穷多项. 由于 $\varepsilon$ 是任取的, 因此 $H$ 也是 $\{x_n\}$ 的极限点, 即 $H \in E.$
+
+\pause
+
+\begin{cor}
+$E$ 存在最大值与最小值, 分别为上确界 $H$ 与下确界 $h.$
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{上、下极限的定义}
+
+\begin{Def}
+$E$ 的最大值 $H = \max E$ 称为数列 $\{x_n\}$ 的上极限, 记为 $\varlimsup\limits_{n\to\infty} x_n;$
+
+$E$ 的最小值 $h = \min E$ 称为数列 $\{x_n\}$ 的下极限, 记为 $\varliminf\limits_{n\to\infty} x_n.$
+\end{Def}
+
+\pause
+\vspace*{1em}
+
+上、下极限更普遍的定义是
+\begin{equation*}
+\varlimsup_{n\to\infty} x_n = \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k; \quad \varliminf\limits_{n\to\infty} x_n = \sup_{n \geqslant 1} \newinf_{k \geqslant n} x_k.
+\end{equation*}
+
+\pause
+
+接下来我们证明这两个定义等价. 我们证明 $\displaystyle H = \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k,$ 另一个的证明是类似的. 记 $a_n = \sup\limits_{k \geqslant n} x_k,$ 那么 $\{ a_n \}$ 是一个不增的数列.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{上、下极限等价定义}
+
+{\smaller
+
+$1^\circ$ $H \leqslant \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k:$
+
+\pause
+
+任取 $\xi \in E,$ 那么存在 $\{x_n\}$ 的子列 $\{x_{n_k}\},$ 使得 $\lim\limits_{k\to\infty} x_{n_k} = \xi.$ $\forall ~ n \in \mathbb{N},$ 存在正整数 $K,$ 使得任意 $k \geqslant K,$ $n_k \geqslant n,$ 于是 $x_{n_k} \leqslant a_n = \sup\limits_{k \geqslant n} x_k$ 对所有 $k \geqslant K$ 成立. 对 $k$ 取极限即有 $\xi \leqslant a_n.$
+\pause
+由于这是对所有 $n$ 都成立的, 于是有 $\xi \leqslant \inf\limits_{n \geqslant 1}a_n.$ 由于 $\xi$ 是任取的, 所以 $\displaystyle H = \max E \leqslant \inf_{n \geqslant 1}a_n = \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k.$
+
+\pause
+\vspace*{0.5em}
+
+$2^\circ$ $H \geqslant \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k:$
+
+\pause
+
+记 $\displaystyle I = \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k,$ 那么由下确界的性质, $\forall~\varepsilon > 0,$ 存在正整数 $N(\varepsilon),$ 使得 $\displaystyle I \leqslant \sup_{k \geqslant N(\varepsilon)} x_k = a_{N(\varepsilon)} < I + \varepsilon.$ 由上确界的性质, 存在另一个正整数 $n(\varepsilon) \geqslant N(\varepsilon),$ 使得 $\displaystyle a_{N(\varepsilon)} \geqslant x_{n(\varepsilon)} > a_{N(\varepsilon)} - \varepsilon.$
+
+\begin{center}
+\begin{tikzpicture}[scale=1.3]
+
+\draw[-Stealth] (-1,0) -- (7,0);
+\draw[thick] (0, 0) node[below] {\smaller $I - \varepsilon$} -- (0, 0.1);
+\draw[thick] (1, 0) node[below] {\smaller $a_{N(\varepsilon)} - \varepsilon$} -- (1, 0.1);
+\draw[thick] (3, 0) node[below] {\smaller $I$} -- (3, 0.1);
+\draw[thick] (4, 0) node[below] {\smaller $a_{N(\varepsilon)}$} -- (4, 0.1);
+\draw[thick] (6, 0) node[below] {\smaller $I + \varepsilon$} -- (6, 0.1);
+\node at (2.5, 0) {{\color{red} \XSolid}};
+\node[above] at (2.5, 0.1) {{\color{red} $x_{n(\varepsilon)}$}};
+\end{tikzpicture}
+\end{center}
+
+有 $I - \varepsilon < x_{n(\varepsilon)} < I + \varepsilon.$ 分别取 $\varepsilon = 1, \frac{1}{2}, \frac{1}{3}, \dots, \frac{1}{t}, \dots,$ 可得子列 $\{x_{n_t}\}$ 收敛到 $I.$ 这里 $n_t = n(\frac{1}{t}),$ (注意, 可以做到下标 $n_t$ 不重复) 于是 $E \ni I \leqslant \max E.$
+
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{由上、下极限给出的有界数列收敛充要条件}
+
+\begin{thm}
+设 $\{x_n\}$ 是有界数列, 则其收敛的充要条件为 $\displaystyle \varlimsup_{n\to\infty} x_n = \varliminf_{n\to\infty} x_n.$
+\end{thm}
+
+\pause
+\vspace*{-1em}
+
+\begin{align*}
+\text{$\{x_n\}$ 收敛} ~~ & \Longrightarrow ~~ \text{所有子列都收敛到同一个值} \\
+& \Longrightarrow ~~ \text{$E$ 只含有一个元素} \\
+& \Longrightarrow ~~ \varlimsup_{n\to\infty} x_n = \max E = \min E= \varliminf_{n\to\infty} x_n
+\end{align*}
+
+\pause
+\vspace*{-2em}
+
+\begin{align*}
+\text{$\{x_n\}$ 不收敛} ~~ & {\color{red} \Longrightarrow} ~~ \text{存在至少两个子列收敛到不同的值} \\
+& \Longrightarrow ~~ \text{$E$ 只至少含有两个个元素} \\
+& \Longrightarrow ~~ \varlimsup_{n\to\infty} x_n = \max E > \min E= \varliminf_{n\to\infty} x_n
+\end{align*}
+
+\pause
+
+\alert{注意:} 红色的箭头 ${\color{red} \Longrightarrow}$ 用到了如下的结论: 若\alert{有界}数列 $\{x_n\}$ 所有收敛子列都收敛到同一个值, 那么 $\{x_n\}$ 本身是收敛的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无界数列的上、下极限}
 
 \end{frame}
 
