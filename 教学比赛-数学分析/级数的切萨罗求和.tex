@@ -93,7 +93,7 @@ Tauber型定理在数论中处理有关Dirichlet级数 (Riemann $\zeta$-函数, 
 \begin{frame}{Cesàro意义下可和的级数}
 
 \begin{Def}[Cesàro意义下可和的级数]
-设 $s_n = \sum\limits_{k=1}^{n} a_k$ 是数项级数 $\sum\limits_{n=1}^{\infty} a_n$ 的前 $n$ 项和, 记 ~ {\color{red}$\sigma_n = \dfrac{1}{n} \sum\limits_{k=1}^{n} s_k$}. 若 ~ {\color{red}$\lim\limits_{n\to\infty} \sigma_n = A \in \mathbb{R}$}, 则称级数 $\sum\limits_{n=1}^{\infty} a_n$ 在Cesàro意义下可和, 或者更准确的说是在 $(c, 1)$ 的意义下可和, 并记为 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1).$
+设 $s_n = \sum\limits_{k=1}^{n} a_k$ 是数项级数 $\sum\limits_{n=1}^{\infty} a_n$ 的前 $n$ 项和, 记 {\color{red}$\sigma_n = \dfrac{1}{n} \sum\limits_{k=1}^{n} s_k$}. 若 {\color{red}$\lim\limits_{n\to\infty} \sigma_n = A \in \mathbb{R}$}, 则称级数 $\sum\limits_{n=1}^{\infty} a_n$ 在Cesàro意义下可和, 或者更准确的说是在 $(c, 1)$ 的意义下可和, 并记为 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1).$
 \end{Def}
 
 \pause
@@ -288,7 +288,7 @@ $$\lim\limits_{n \to \infty} (n - 1) a_n = 0.$$
 
 \vspace*{1em}
 
-注意: 这里关于 $a_n$ 趋于 $0$ 速度的假设, 我们从 ~ ${\color{red} \lim\limits_{n\to\infty} n a_n = 0},$ 减弱为了: 存在正实数 $M,$ 使得对任意自然数 $n$ 有 ~ ${\color{red} \rvert n a_n \rvert \leqslant M}.$
+注意: 这里关于 $a_n$ 趋于 $0$ 速度的假设, 我们从 ${\color{red} \lim\limits_{n\to\infty} n a_n = 0},$ 减弱为了: 存在正实数 $M,$ 使得对任意自然数 $n$ 有 ${\color{red} \rvert n a_n \rvert \leqslant M}.$
 
 \end{frame}
 
@@ -296,7 +296,7 @@ $$\lim\limits_{n \to \infty} (n - 1) a_n = 0.$$
 
 \begin{frame}{增强的Tauber型定理的分析与证明}
 
-除了已知条件:当 $n\to\infty$ 时 $a_n = \mathrm{O} \left( \dfrac{1}{n} \right),$ 即存在正实数 $M,$ 使得对任意自然数 $n$ 有 ~ ${\color{red} \rvert n a_n \rvert \leqslant M}$ 之外, 我们所拥有的条件是 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1),$ 即 $\lim\limits_{n\to\infty} \sigma_n = A,$ 这等价于 $\forall \varepsilon > 0,$ 存在自然数 $N$ 使得 ~ ${\color{red} \forall n > m > N, \lvert \sigma_n - \sigma_m \vert < \varepsilon}.$
+除了已知条件: 当 $n\to\infty$ 时 $a_n = \mathrm{O} \left( \dfrac{1}{n} \right),$ 即存在正实数 $M,$ 使得对任意自然数 $n$ 有 ${\color{red} \rvert n a_n \rvert \leqslant M}$ 之外, 我们所拥有的条件是 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1),$ 即 $\lim\limits_{n\to\infty} \sigma_n = A,$ 这等价于 $\forall \varepsilon > 0,$ 存在自然数 $N$ 使得 ${\color{red} \forall n > m > N, \lvert \sigma_n - \sigma_m \vert < \varepsilon}.$
 
 \pause
 \vspace*{0.4em}
@@ -309,7 +309,7 @@ $$s_n = \sigma_n + \sum\limits_{k = 1}^n \dfrac{(k-1)a_k}{n}.$$
 \vspace*{0.4em}
 
 \begin{attnblock}
-很多判别法、计算公式, 例如 L'Hopital 法则, Stolz 公式, 包括后面要学的一致收敛的函数项级数的逐项微分、积分的结论, 相关条件都是一种充分性条件, 远 ~ \textbf{\color{red}不是必要条件}.
+很多判别法、计算公式, 例如 L'Hopital 法则, Stolz 公式, 包括后面要学的一致收敛的函数项级数的逐项微分、积分的结论, 相关条件都是一种充分性条件, 远 \textbf{\color{red}不是必要条件}.
 \end{attnblock}
 
 \end{frame}
@@ -336,12 +336,12 @@ $$s_n - \sigma_n = s_n - \dfrac{1}{n} \sum\limits_{k = 1}^n s_k.$$
 \begin{align*}
   \sigma_n - \sigma_m & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^m s_k \\
   & = \dfrac{1}{n} \sum\limits_{k=1}^n s_k - \dfrac{1}{m} \sum\limits_{k=1}^{n} s_k + \dfrac{1}{m} \sum\limits_{k=m+1}^{n} s_k \\
-  & = \dfrac{m - n}{nm} ~ {\color{red}
+  & = \dfrac{m - n}{nm} {\color{red}
   \sum\limits_{k=1}^n s_k} + \dfrac{1}{m} \sum\limits_{k=m+1}^{n} s_k.
 \end{align*}
 
 另一方面, 有
-$$s_n - \sigma_n = s_n - \dfrac{1}{n} ~ {\color{red} \sum\limits_{k = 1}^n s_k}.$$
+$$s_n - \sigma_n = s_n - \dfrac{1}{n} {\color{red} \sum\limits_{k = 1}^n s_k}.$$
 }
 
 \end{frame}
@@ -353,7 +353,7 @@ $$s_n - \sigma_n = s_n - \dfrac{1}{n} ~ {\color{red} \sum\limits_{k = 1}^n s_k}.
 两式通分相减, 有
 \begin{align*}
 & (s_n - \sigma_n) - \dfrac{m}{n - m}(\sigma_n - \sigma_m) \\
-& = s_n - ~ {\color{red} \cancel{\dfrac{1}{n} \sum\limits_{k = 1}^n s_k}} + ~ {\color{red} \cancel{\dfrac{1}{n} \sum\limits_{k=1}^n s_k}} - \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} s_k \\
+& = s_n - {\color{red} \cancel{\dfrac{1}{n} \sum\limits_{k = 1}^n s_k}} + {\color{red} \cancel{\dfrac{1}{n} \sum\limits_{k=1}^n s_k}} - \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} s_k \\
 & = s_n - \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} s_k = \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k).
 \end{align*}
 
@@ -361,7 +361,7 @@ $$s_n - \sigma_n = s_n - \dfrac{1}{n} ~ {\color{red} \sum\limits_{k = 1}^n s_k}.
 \vspace*{1em}
 
 整理一下, 有
-$$s_n - \sigma_n = ~ \underbrace{\color{cyan}\dfrac{m}{n - m}(\sigma_n - \sigma_m)}_{\text{\ding{172}}} + ~ \underbrace{\color{magenta} \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k)}_{\text{\ding{173}}}.$$
+$$s_n - \sigma_n = \underbrace{\color{cyan}\dfrac{m}{n - m}(\sigma_n - \sigma_m)}_{\text{\ding{172}}} + \underbrace{\color{magenta} \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k)}_{\text{\ding{173}}}.$$
 
 \end{frame}
 
@@ -373,21 +373,20 @@ $$s_n - \sigma_n = ~ \underbrace{\color{cyan}\dfrac{m}{n - m}(\sigma_n - \sigma_
 {\smaller
 \begin{multline*}
 \lvert s_n - s_k \rvert = \lvert a_{k+1} + \cdots + a_n \rvert \\
-\leqslant \dfrac{M}{k+1} + \cdots \dfrac{M}{n} \leqslant \dfrac{(n-k)M}{k+1} \leqslant \dfrac{(n-m-1)M}{m+1}
+\leqslant \dfrac{M}{k+1} + \cdots \dfrac{M}{n} \leqslant \dfrac{(n-k)M}{k+1} \leqslant \dfrac{(n-m-1)M}{m+1}.
 \end{multline*}
 }
 于是
 {\smaller
 $$
-\left\lvert \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k) \right\rvert \leqslant \dfrac{1}{n-m} (n-m) \dfrac{n-m-1}{m+1} M = \dfrac{n-m-1}{m+1} M
+\left\lvert \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k) \right\rvert \leqslant \dfrac{1}{n-m} (n-m) \dfrac{n-m-1}{m+1} M < \dfrac{n-m}{m} M.
 $$
 }
 
 \pause
 
-我们希望有 $\dfrac{n-m-1}{m+1} < \varepsilon$ 可推出 $m > \dfrac{n}{1 + \varepsilon} - 1.$ 取
-$$\color{red} m = \left[ \dfrac{n}{1 + \varepsilon} \right] < n,$$
-即有 $\lvert \text{\ding{173}} \rvert < M \varepsilon.$
+我们希望有 $\dfrac{n-m}{m} < \dfrac{\varepsilon}{2M},$ 即 $m > \dfrac{n}{1 + \frac{\varepsilon}{2M}}.$ 取 $n$ 足够大, 使得 $n - \dfrac{n}{1 + \frac{\varepsilon}{2M}} > 2,$ 或者等价地, 取 $\color{red} n > \dfrac{2(2M + \varepsilon)}{\varepsilon}$, 即可确保能取到整数 $\color{red} m \in \left[ \dfrac{n}{1 + \frac{\varepsilon}{2M}}, n \right]$,
+即有 $\lvert \text{\ding{173}} \rvert < \dfrac{\varepsilon}{2}.$
 
 \end{frame}
 
@@ -395,15 +394,22 @@ $$\color{red} m = \left[ \dfrac{n}{1 + \varepsilon} \right] < n,$$
 
 \begin{frame}{增强的Tauber型定理的分析与证明}
 
-对于 $\text{\ding{172}} = \dfrac{m}{n - m}(\sigma_n - \sigma_m),$ 从 $m = \left[ \dfrac{n}{1 + \varepsilon} \right] \leqslant \dfrac{n}{1 + \varepsilon},$ 有 $m \varepsilon + m \leqslant n,$ 从而有 $\dfrac{m}{n - m} \leqslant \dfrac{1}{\varepsilon}.$ 于是
-$$\lvert \text{\ding{172}} \rvert = \left\lvert \dfrac{m}{n - m}(\sigma_n - \sigma_m) \right\rvert \leqslant \dfrac{1}{\varepsilon} \left\lvert \sigma_n - \sigma_m \right\rvert.$$
-若取 $N$ 充分大, 使得 $\forall n > m > N$ 都有 $\left\lvert \sigma_n - \sigma_m \right\rvert < ~ {\color{red} \varepsilon^2},$ 那么
-$$\left\lvert s_n - \sigma_n \right\rvert \leqslant \lvert \text{\ding{172}} \rvert + \lvert \text{\ding{173}} \rvert < \varepsilon + M \varepsilon = (M+1)\varepsilon.$$
+对于 $\text{\ding{172}} = \dfrac{m}{n - m}(\sigma_n - \sigma_m),$ 由于已有 $\dfrac{n-m}{m} < \dfrac{\varepsilon}{2M},$ 即 $\dfrac{m}{n-m} > \dfrac{2M}{\varepsilon},$ 进一步要求 $\dfrac{2M}{\varepsilon} < \dfrac{m}{n-m} < \dfrac{4M}{\varepsilon},$ 即 $m < \dfrac{n}{1 + \frac{\varepsilon}{4M}}.$
+\pause
+这样的整数 $m$ 总是可以取到的, 只要保证 $\dfrac{n}{1 + \frac{\varepsilon}{4M}} - \dfrac{n}{1 + \frac{\varepsilon}{2M}} > 2$ 即可, 即 $\color{red} n > \dfrac{8M}{\varepsilon}\left(1 + \frac{\varepsilon}{4M}\right)\left(1 + \frac{\varepsilon}{2M}\right)$.
+\pause
+于是
+$$\lvert \text{\ding{172}} \rvert = \left\lvert \dfrac{m}{n - m}(\sigma_n - \sigma_m) \right\rvert \leqslant \dfrac{4M}{\varepsilon} \left\lvert \sigma_n - \sigma_m \right\rvert.$$
+若取 $N$ 充分大, 使得 $\forall n > m > N$ 都有 $\left\lvert \sigma_n - \sigma_m \right\rvert < {\color{red} \dfrac{\varepsilon^2}{8M}},$ 那么
+$$\left\lvert s_n - \sigma_n \right\rvert \leqslant \lvert \text{\ding{172}} \rvert + \lvert \text{\ding{173}} \rvert < \varepsilon.$$
 
 \pause
-\vspace{1em}
+% \vspace{1em}
 
-将上述思考、分析过程整理、调整顺序之后, 即是完整的证明.
+注意这里的关键是 $m, n$ 的取法, 满足 $n$ 充分大, 且
+$$\dfrac{n}{1 + \frac{\varepsilon}{2M}} < m < \dfrac{n}{1 + \frac{\varepsilon}{4M}} < n.$$
+
+% 将上述思考、分析过程整理、调整顺序之后, 即是完整的证明.
 
 \end{frame}
 
@@ -433,7 +439,7 @@ $$a_n = s_n - s_{n-1} = \mathrm{o}\left(\dfrac{1}{n}\right) \text{ 或 } \mathrm
 \begin{itemize}
 \item[{\larger[2] \color{red} \ding{43}}] Cesàro $(c, r)$ 意义下可和的级数 $\sum\limits_{n=1}^\infty a_n:$
 \begin{align*}
-  & (c, 0): \quad s_n = \dfrac{1}{n} \sum\limits_{k=1}^n a_n \text{ 收敛} \\
+  & (c, 0): \quad s_n = \sum\limits_{k=1}^n a_n \text{ 收敛} \\
   & (c, 1): \quad \sigma_n = \dfrac{1}{n} \sum\limits_{k=1}^n s_n \text{ 收敛} \\
   & \phantom{++++++} \vdots
 \end{align*}
