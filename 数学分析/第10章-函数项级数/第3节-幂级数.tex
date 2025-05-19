@@ -32,4 +32,217 @@
 %	PRESENTATION SLIDES
 %-----------------------------------
 
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{回顾}
+
+我们之前考虑过如下的例子:
+
+设 $\displaystyle \sum_{n=0}^{\infty} a_n$ 收敛, 考虑函数项级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n:$
+
+\begin{itemize}
+\item 问题一: 它的收敛域 $D$ 是什么? \pause ~ $\rightsquigarrow$ $(-1, 1] \subset D.$
+\pause
+\item 问题二: 在收敛域上是否 (内闭) 一致收敛?
+\end{itemize}
+
+\pause
+\vspace{1em}
+
+这一节我们主要考察具有上述特殊形式 (通项为单项式) 的函数项级数, 并回答以上两个问题.
+
+\pause
+
+\begin{Def}[幂级数]
+称形如 $\displaystyle \sum_{n=0}^{\infty} a_n (x - x_0)^n$ 的函数项级数为幂级数.
+\end{Def}
+
+\alert{注意}, 我们通常考虑 $x_0 = 0$ 的幂级数, 因为 $x \mapsto x - x_0$ 即可简单地将相关结论推广至 $x_0 \neq 0$ 的情形.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{幂级数的收敛半径}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Cauchy-Hadamard 定理}
+
+幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 对于固定的 $x,$ 由数项级数敛散性的 Cauchy 判别法, 有
+\begin{equation*}
+\varlimsup_{n\to\infty} \nroot[n]{|a_n x^n|} = |x| \cdot \varlimsup_{n\to\infty} \nroot[n]{|a_n|} ~ \begin{cases}
+< 1 ~ \text{时 (绝对) 收敛}, \\ > 1 ~ \text{时发散}.
+\end{cases}
+\end{equation*}
+于是, $\displaystyle |x| < 1 \left/ \varlimsup_{n\to\infty} \nroot[n]{|a_n|} \right.$ 时, 幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ (绝对) 收敛. 即有
+
+\pause
+
+\begin{thm}[Cauchy-Hadamard 定理]
+令 $\displaystyle A = \varlimsup_{n\to\infty} \nroot[n]{|a_n|},$ $R = \begin{cases}
++\infty, & A = 0, \\ 1/A, & A \in (0, +\infty), \\ 0, & A = +\infty,
+\end{cases}$ 则幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 当 $|x| < R ~ (R > 0)$ 时绝对收敛; 当 $|x| > R$ 时发散. $R$ 称为幂级数的\alert{收敛半径}.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+\begin{eg}
+分别求幂级数 $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n}$ 与 $\displaystyle \sum_{n=1}^{\infty} \dfrac{(-1)^{n+1}}{n}x^n$ 的收敛半径以及收敛域.
+\end{eg}
+
+\pause
+
+(1) $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n}$ 的收敛半径为
+$$
+1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n}} \right. = 1
+$$
+\pause
+分别代入 $x = -1, 1$ 可得收敛域为 $[-1, 1).$
+
+\pause
+
+(2) $\displaystyle \sum_{n=1}^{\infty} \dfrac{(-1)^{n+1}}{n}x^n$ 的收敛半径为
+$$
+1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n}} \right. = 1
+$$
+\pause
+收敛域为 $(-1, 1].$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+\begin{eg}
+求幂级数 $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n!}$ 的收敛半径以及收敛域.
+\end{eg}
+
+\pause
+
+$\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n!}$ 的收敛半径为
+$$
+1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n!}} \right. = +\infty,
+$$
+\pause
+所以收敛域等于 $\mathbb{R}.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+\begin{eg}
+考察幂级数 $\displaystyle \sum_{n=1}^{\infty} \dfrac{(2 + (-1)^n)^n}{n} \left( x - \frac{1}{2} \right)^n$ 的收敛情况.
+\end{eg}
+
+\pause
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{d'Alembert 判别法}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{幂级数的分析性质}
+
+%------------------------------------------------
+
+\begin{frame}
+
+Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
+\begin{itemize}
+\item 幂级数的收敛域
+\item 幂级数在收敛域内的分析性质
+\end{itemize}
+建立了一系列的定理.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Abel 第一定理}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Abel 第二定理}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{和函数连续性}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{逐项可积性}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{逐项可导性}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{关于数项级数 Cauchy 乘积的扩展结论}
+
+之前讲数项级数的乘法时, 我们证明了若 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n$ 中至少一个绝对收敛时, 它们的 Cauchy 乘积 $\displaystyle \sum\limits_{n=2}^{\infty} \sum\limits_{k=1}^{n-1} a_k b_{n-k} = \sum\limits_{n=2}^{\infty} c_n$ 收敛, \pause
+并且看到了 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n$ 都只是条件收敛, 而$\displaystyle \sum\limits_{n=2}^{\infty} c_n$ 发散的例子:
+$$
+a_n = b_n = \dfrac{(-1)^{n+1}}{\sqrt{n}}.
+$$
+\pause
+我们接下来证明
+\begin{prop}
+若 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n, \sum\limits_{n=2}^{\infty} c_n$ 都收敛, 那么 $\displaystyle \sum\limits_{n=2}^{\infty} c_n = \left( \sum\limits_{n=1}^{\infty} a_n \right) \left( \sum\limits_{n=1}^{\infty} b_n \right).$
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{关于数项级数 Cauchy 乘积的扩展结论}
+
+证明: 定义幂级数
+$$
+f(x) = \sum\limits_{n=1}^{\infty} a_n x^n, ~~
+g(x) = \sum\limits_{n=1}^{\infty} b_n x^n, ~~
+h(x) = \sum\limits_{n=1}^{\infty} c_{n+1} x^n.
+$$
+由 Abel 第二定理, $f,g,h$ 在 $[0, 1]$ 上一致收敛, 从而连续. 又由 Cauchy-Hadamard 定理 (或者 Abel 第一定理), $\forall ~ |x| < 1,$ $f(x),g(x),h(x)$ 绝对收敛, 于是有等式
+
+\end{frame}
+
+%------------------------------------------------
+
 \end{document}
