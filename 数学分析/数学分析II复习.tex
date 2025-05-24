@@ -1322,11 +1322,25 @@ $$\sum\limits_{n=1}^\infty a_n = \lim\limits_{x \to 1-} \sum\limits_{n=1}^\infty
 若数项级数 $\sum\limits_{n=1}^\infty a_n$ 在 Cesàro $(c, 1)$ 意义的和为 $A \in \mathbb{R},$ 即 $\lim\limits_{n\to\infty} a_n = A ~ (c, 1),$ 那么它在 Abel 意义下的和也为 $A.$
 \end{thm}
 
-% 证明的关键是, 在 $(-1, 1)$ 上恒有:
-% \begin{itemize}
-% \item $\sum\limits_{n=1}^\infty a_n x^n = (1 - x)^2 \sum\limits_{n=1}^\infty n \sigma_n x^n;$
-% \item $1 = (1 - x)^2 \sum\limits_{n=1}^\infty (n+1) x^n.$
-% \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数的 Abel 求和法}
+
+证明的关键是, 在 $(-1, 1)$ 上恒有:
+\begin{itemize}
+\item $\sum\limits_{n=1}^\infty a_n x^n = (1 - x)^2 \sum\limits_{n=1}^\infty n \sigma_n x^n;$
+\item $1 = (1 - x)^2 \sum\limits_{n=1}^\infty (n+1) x^n.$
+\end{itemize}
+
+\pause
+\vspace{0.5em}
+
+简单来说, 就是有集合 (空间) 的包含关系:
+\begin{equation*}
+\{\text{Abel 可和级数}\} {\color{magenta} \supsetneqq } \{(c,r) ~ \text{可和级数}\} \supsetneqq \cdots \supsetneqq \{(c,1) ~ \text{可和级数}\} \supsetneqq \{\text{通常可和级数}\}
+\end{equation*}
 
 \end{frame}
 

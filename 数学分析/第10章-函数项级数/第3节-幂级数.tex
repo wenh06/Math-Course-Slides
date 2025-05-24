@@ -215,7 +215,7 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \begin{frame}
 \frametitle{关于数项级数 Cauchy 乘积的扩展结论}
 
-之前讲数项级数的乘法时, 我们证明了若 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n$ 中至少一个绝对收敛时, 它们的 Cauchy 乘积 $\displaystyle \sum\limits_{n=2}^{\infty} \sum\limits_{k=1}^{n-1} a_k b_{n-k} = \sum\limits_{n=2}^{\infty} c_n$ 收敛, \pause
+之前讲数项级数的乘法时, 我们证明了若 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n$ 中至少一个绝对收敛时, 它们的 Cauchy 乘积 $\displaystyle \sum\limits_{n=2}^{\infty} {\color{magenta}\sum\limits_{k=1}^{n-1} a_k b_{n-k}} = \sum\limits_{n=2}^{\infty} {\color{magenta}c_n}$ 收敛, \pause
 并且看到了 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n$ 都只是条件收敛, 而$\displaystyle \sum\limits_{n=2}^{\infty} c_n$ 发散的例子:
 $$
 a_n = b_n = \dfrac{(-1)^{n+1}}{\sqrt{n}}.
@@ -223,7 +223,7 @@ $$
 \pause
 我们接下来证明
 \begin{prop}
-若 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n, \sum\limits_{n=2}^{\infty} c_n$ 都收敛, 那么 $\displaystyle \sum\limits_{n=2}^{\infty} c_n = \left( \sum\limits_{n=1}^{\infty} a_n \right) \left( \sum\limits_{n=1}^{\infty} b_n \right).$
+若 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n, \sum\limits_{n=2}^{\infty} c_n$ 都收敛, 那么 $\displaystyle \sum\limits_{n=2}^{\infty} c_n = \left( \sum\limits_{n=1}^{\infty} a_n \right) \cdot \left( \sum\limits_{n=1}^{\infty} b_n \right).$
 \end{prop}
 
 \end{frame}
