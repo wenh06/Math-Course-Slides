@@ -192,6 +192,145 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{级数求和的 Abel 方法}
+
+之前, 我们已经证明了: 若数项级数 $\displaystyle \sum_{n=1}^\infty a_n$ 收敛, 则幂级数 $\displaystyle \sum_{n=1}^\infty a_n x^n$ 的收敛半径 $R \geqslant 1,$ 且收敛域包含 $(-1, 1].$ 于是由 Abel 第二定理, $\displaystyle \sum_{n=1}^\infty a_n x^n$ 在 $[0, 1]$ 上一致收敛, 从而连续, 于是成立
+$$
+\sum_{n=1}^\infty a_n = \lim_{x \to 1^-} \sum_{n=1}^{\infty} a_n x^n
+$$
+
+\pause
+
+但是, 有时当上式左边发散, 即级数 $\displaystyle \sum_{n=1}^\infty a_n$ 发散时, 右边 (左极限) 却是有意义的.
+\pause
+例如 $a_n = (-1)^n,$ 左边是一个发散的级数, 但
+\begin{equation*}
+\text{右边} = \lim_{x \to 1^-} \sum_{n=1}^{\infty} (-1)^n x^n = \lim_{x \to 1^-} \dfrac{1}{1 + x} = \dfrac{1}{2}.
+\end{equation*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{级数求和的 Abel 方法}
+
+\begin{Def}[Abel 可和级数]
+若极限 $\displaystyle \lim_{x \to 1^-} \sum_{n=1}^{\infty} a_n x^n = A$ 存在, 为有限实数, 则称数项级数 $\displaystyle \sum_{n=1}^\infty a_n$ 是 Abel 意义下可和的, 并称它的 Abel 意义下的和为 $A.$
+\end{Def}
+
+\pause
+\vspace{1em}
+
+\begin{prop}
+若数项级数 $\displaystyle \sum_{n=1}^\infty a_n$ 在 Cesàro $(c, 1)$ 意义下的和为 $A \in \mathbb{R},$ 那么它在 Abel 意义下也是可和的, 且和也是 $A.$
+\end{prop}
+
+\pause
+
+简单来说, 就是
+$$
+\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ ~ 证明}
+
+由于 $\displaystyle \sigma_n = \dfrac{1}{n} \sum_{k=1}^{n} S_k$ 极限为 $A,$ 所以
+$$
+\varlimsup_{n\to\infty} \nroot[n]{|n \sigma_n|} = \sqrt[\leftroot{-1}\uproot{18}n]{\sum_{k=1}^{n} S_k} = 1,
+$$
+即幂级数 $\displaystyle \sum_{n=1}^{\infty} n \sigma_n x^n$ 收敛半径为 $1.$
+\pause
+对于任意的 $|x| < 1,$ 上述幂级数绝对收敛, 因此有
+\begin{align*}
+\sum_{n=1}^{\infty} n \sigma_n x^n & = \sum_{n=1}^{\infty} \left( \sum_{k=1}^{n} S_k \right) x^n = \sum_{n=1}^{\infty} \left( S_1 + S_2 + \cdots + S_n \right) x^n \\
+& = S_1 x (1 + x + x^2 + \cdots) + S_2 x^2 (1 + x + x^2 + \cdots) + \cdots \\
+& = \sum_{n=1}^{\infty} S_n x^n \dfrac{1}{1-x}
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ ~ 证明}
+
+上式也表明了 $\displaystyle \sum_{n=1}^{\infty} S_n x^n$ 收敛半径 $\geqslant 1,$ 故在 $|x| < 1$ 范围内绝对收敛. 于是类似地有
+\begin{align*}
+\sum_{n=1}^{\infty} S_n x^n & = \sum_{n=1}^{\infty} \left( a_1 + a_2 + \cdots + a_n \right) x^n = \sum_{n=1}^{\infty} a_n x^n (1 + x + x^2 + \cdots) \\
+& = \sum_{n=1}^{\infty} a_n x^n \dfrac{1}{1-x}.
+\end{align*}
+那么 $\displaystyle \sum_{n=1}^{\infty} n \sigma_n x^n = \dfrac{1}{(1-x)^2} \sum_{n=1}^{\infty} a_n x^n$ 对 $|x| < 1$ 恒成立.
+
+\pause
+
+接下来, 我们要证明
+$$
+\lim_{x\to 1-} (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n = \lim_{x\to 1-} \sum_{n=1}^{\infty} a_n x^n = A.
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ ~ 证明}
+
+对定义在 $|x| < 1$ 上的幂级数展开 $\displaystyle (1-x)^{-1} = \sum_{n=0}^\infty x^n$ 用应用逐项求导定理, 有$\displaystyle (1-x)^{-2} = \sum_{n=0}^\infty (n+1) x^n,$ 那么
+\begin{align*}
+& (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n - A \\
+= & (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n - (1-x)^2 \sum_{n=0}^\infty (n+1) x^n A \\
+= & (1-x)^2 \sum_{n=1}^{\infty} (n \sigma_n - (n+1)A) x^n - (1-x)^2 A \\
+= & (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n - (1-x)^2 \sum_{n=1}^{\infty} A x^n - (1-x)^2 A
+\end{align*}
+上式后两项关于 $x \to 1-$ 的极限很容易看出都是 $0.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ ~ 证明}
+
+我们最终约化到了证明第一项 $\displaystyle (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n$ 关于 $x \to 1-$ 的极限也是 $0.$
+
+由于 $\sigma_n \to A,$ 所以 $\varepsilon > 0, ~ \exists N,$ 使得 $\forall n > N,$ 有 $|\sigma_n - A| < \varepsilon / 2.$ 记 $\displaystyle M = \max_{1 \leqslant n \leqslant N} n |\sigma_n - A|,$ 那么有
+{\smaller[1]
+\begin{align*}
+\left\lvert (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n \right\rvert & \leqslant \sum_{n=1}^{\infty} n |\sigma_n - A| (1-x)^2x^n \\
+& = \sum_{n=1}^{N} n |\sigma_n - A| (1-x)^2x^n + \sum_{n=N+1}^{\infty} n |\sigma_n - A|(1-x)^2x^n \\
+& \leqslant M \sum_{n=1}^{N} (1-x)^2x^n + \dfrac{\varepsilon}{2} \sum_{n=N+1}^{\infty} n (1-x)^2x^n \\
+& \leqslant M x(1-x)(1-x^N) + \dfrac{\varepsilon}{2} \sum_{n=0}^{\infty} (n + 1) (1-x)^2x^n \\
+& \leqslant M(1 - x) + \dfrac{\varepsilon}{2}.
+\end{align*}
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ ~ 证明}
+
+对取定的 $\varepsilon,$ 任取 $1 - \dfrac{\varepsilon}{2M} < x < 1,$ 即有
+$$
+\left\lvert (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n \right\rvert \leqslant M(1 - x) + \dfrac{\varepsilon}{2} < \varepsilon,
+$$
+这样, 我们就证明了
+$$
+\lim_{x\to 1-} \sum_{n=1}^{\infty} a_n x^n = \lim_{x\to 1-} (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n = A.
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{和函数连续性}
 
 \end{frame}
