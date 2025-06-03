@@ -34,8 +34,188 @@
 
 %------------------------------------------------
 
+\section{一致收敛的判别}
+
+%------------------------------------------------
+
 \begin{frame}
 \frametitle{待写}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{一致收敛函数的分析性质}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{待写}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{处处不可导的连续函数}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\begin{itemize}[<+->]
+\item Weierstraß:
+$$f(x) = \sum_{n=0}^\infty a^n \cos(b^n\pi x), ~~ 0 < a < 1, ~ b ~ \text{奇数}, ~ ab > 1 + \frac{3}{2}\pi.$$
+\item van der Waerden:
+$$f(x) = \sum_{n=0}^\infty \dfrac{\varphi(10^n x)}{10^n}, ~~ \varphi(x) = \operatorname{dist}(x, \mathbb{Z}) = \min_{z \in \mathbb{Z}} | x - z |.$$
+\item Takagi:
+$$f(x) = \sum_{n=0}^\infty \dfrac{\varphi({\color{red}2}^n x)}{{\color{red}2}^n}.$$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Generalized van der Waerden - Takagi 函数}
+
+将 van der Waerden 定义的函数与 Takagi 定义的函数一般化, 得到所谓的 Generalized van der Waerden - Takagi (GWT) 函数:
+$$f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x), ~~ 0 < a < 1, b \in \mathbb{N}, ab \geqslant 1.$$
+
+\pause
+
+该函数满足如下性质:
+\begin{itemize}
+\item 性质一: 若 $0 < a < 1,$ 那么 $\displaystyle f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x)$ 在 $\mathbb{R}$ 上一致收敛.
+\item 性质二: 若 $0 < a < 1, b \in \mathbb{N}, ab \geqslant 1,$ 则 $\displaystyle f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x)$ 在 $\mathbb{R}$ 上处处不可导.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{GWT 函数连续性}
+
+性质一的证明: 由于 $0 \leqslant \varphi(x) \leqslant 1/2,$
+所以 $0 \leqslant a^n \varphi(b^n x) \leqslant a^n/2.$ 由于正项级数 $\displaystyle \sum_{n=0}^{\infty} a^n$ 收敛,
+于是由 Weierstraß 判别法, 函数项级数 $\displaystyle \sum_{n=0}^{\infty} a^n \varphi(b^n x)$ 一致收敛. \qed
+
+\pause
+\vspace{1em}
+
+由一致收敛函数项级数的连续性定理, 性质一有如下的直接推论:
+
+\begin{cor}
+若 $0 < a < 1,$ 那么 $\displaystyle f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x)$ 在 $\mathbb{R}$ 上连续.
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{GWT 函数处处不可导}
+
+性质二的证明需要用到如下引理:
+
+\begin{lem}
+设 $g(x)$ 为定义在 $\mathbb{R}$ 上函数, 若 $g(x)$ 在某点 $x_0$ 处可导, 导数值等于 $A,$ 那么对于任意的序列 $u_n, v_n,$ 若满足 $u_n \leqslant x_0 \leqslant v_n,$ 且 $\displaystyle \lim_{n\to\infty} u_n = \lim_{n\to\infty} v_n = x_0,$ 那么必有 $\displaystyle \lim_{n\to\infty} \dfrac{g(u_n) - g(v_n)}{u_n - v_n} = A.$
+\end{lem}
+
+\pause
+
+证明: 记 $h_{1,n} = x_0 - u_n,$ $h_{2,n} = v_n - x_0,$ 那么 $h_{1,n}, h_{2,n} \geqslant 0$ 且 $h_{1,n} \to 0,$ $h_{2,n} \to 0.$ 由于 $g(x)$ 在点 $x_0$ 处可导, 所以在 $x_0$ 附近有
+\begin{equation*}
+g(x) = g(x_0) + A (x - x_0) + o(|x - x_0|),
+\end{equation*}
+那么
+\begin{align*}
+\lim_{n\to\infty} \dfrac{g(u_n) - g(v_n)}{u_n - v_n} & = \lim_{n\to\infty} \dfrac{A (h_{1,n} + h_{2,n}) + o(h_{1,n}) + o(h_{1,n})}{h_{1,n} + h_{2,n}} \\
+& = A + \lim_{n\to\infty} \dfrac{o(h_{1,n}) + o(h_{1,n})}{h_{1,n} + h_{2,n}} \\
+& = A + 0 = A.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{GWT 函数处处不可导}
+
+由于 $\varphi(x)$ 是周期为 $1$ 的函数, 所以 $f$ 也以 $1$ 为周期, 所以只要对任意 $x \in [0, 1)$ 证明 $f$ 在 $x$ 处不可导即可. 由引理, 希望可以选取序列 $u_n \rightarrow x \leftarrow v_n,$ 使得
+\begin{equation*}
+\dfrac{f(u_n) - f(v_n)}{u_n - v_n}
+= \dfrac{\sum\limits_{m=0}^{\infty} a^m (\varphi(b^m u_n) - \varphi(b^m v_n))}{u_n - v_n}
+\end{equation*} 
+发散.
+
+\pause
+\vspace{1em}
+
+由于 $2 b^n x$ 是非负实数, 所以存在非负整数 $k_n,$ 使得 $k_n \leqslant 2 b^n x < k_n + 1,$ 即
+\begin{equation*}
+\dfrac{k_n}{2 b^n} \leqslant x < \dfrac{k_n + 1}{2 b^n}.
+\end{equation*}
+取 $u_n = \dfrac{k_n}{2 b^n}, v_n = \dfrac{k_n + 1}{2 b^n}.$ 对于和式 $\displaystyle \sum\limits_{m=0}^{\infty} a^m (\varphi(b^m u_n) - \varphi(b^m v_n)),$ 分为 $0 \leqslant m < n$ 以及 $m \geqslant n$ 两部分讨论.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{GWT 函数处处不可导}
+
+$1^{\circ}$ 当 $0 \leqslant m < n$ 时, 由于
+\begin{equation*}
+b^m u_n = \dfrac{k_n}{2} \cdot \dfrac{1}{b^{n-m}}, ~~ b^m v_n = \dfrac{k_n + 1}{2} \cdot \dfrac{1}{b^{n-m}},
+\end{equation*}
+从而存在非负整数 $z \in \mathbb{Z}_{\geqslant 0},$ 使得 $b^m u_n, b^m v_n$ 同时属于 $[z, z+1/2]$ 或 $[z+1/2, z+1],$ 那么
+\begin{equation*}
+\varphi(b^m u_n) - \varphi(b^m v_n) = \pm (b^m u_n - b^m v_n) = \pm \dfrac{1}{2 b^{n-m}},
+\end{equation*}
+从而有
+\begin{equation*}
+\dfrac{a^m (\varphi(b^m u_n) - \varphi(b^m v_n))}{u_n - v_n}
+= \pm a^m \dfrac{1}{2 b^{n-m}} \left/ \left( \dfrac{1}{2 b^n}\right) \right.
+= \pm (ab)^m.
+\end{equation*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{GWT 函数处处不可导}
+
+$2^{\circ}$ 当 $m \geqslant n$ 时, 有
+\begin{equation*}
+b^m u_n = \dfrac{b^{m-n} \cdot k_n}{2}, ~~ b^m v_n = \dfrac{b^{m-n} \cdot (k_n+1)}{2}.
+\end{equation*}
+由于 $b$ 为偶数, 若 $m > n,$ 则 $b^m u_n, b^m v_n$ 都是整数;
+若 $m = n,$ 则 $b^m u_n = \dfrac{k_n}{2}, b^m v_n = \dfrac{k_n + 1}{2}$ 其中一个为整数,
+另一个为半整数 (即 $\dfrac{1}{2} +$ 整数). 于是
+\begin{equation*}
+\dfrac{a^m (\varphi(b^m u_n) - \varphi(b^m v_n))}{u_n - v_n}
+= \begin{cases}
+    0, & \text{当 } m > n \text{ 时}, \\
+    \dfrac{\pm a^m / 2}{1 / (2 b^{m})} = \pm (ab)^m, & \text{当 } m = n \text{ 时}.
+\end{cases}
+\end{equation*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{GWT 函数处处不可导}
+
+综合 $1^{\circ}$ 和 $2^{\circ}$ 有
+\begin{equation*}
+\dfrac{f(u_n) - f(v_n)}{u_n - v_n}
+= \dfrac{\sum\limits_{m=0}^{\infty} a^m (\varphi(b^m u_n) - \varphi(b^m v_n))}{u_n - v_n}
+= \sum\limits_{m=1}^n \left( \pm (ab)^m \right).
+\end{equation*}
+由于 $ab \geqslant 1,$ 所以 $\displaystyle \lim\limits_{n\to\infty} \sum\limits_{m=1}^n \left( \pm (ab)^m \right) = \sum\limits_{m=1}^{\infty} \left( \pm (ab)^m \right)$ 发散. 于是, 由引理知 Generalized van der Waerden - Takagi 函数处处不可导.
 
 \end{frame}
 
