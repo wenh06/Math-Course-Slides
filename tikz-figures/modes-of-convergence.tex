@@ -1,0 +1,38 @@
+\begin{tikzpicture}[
+% scale=1,
+draw=black,
+text=black,
+transform shape
+]
+
+\node (uniform) at (-12, -4) {$\text{({\color{cyan}近})一致收敛}$};
+\node (ae) at (-7,0) {$\text{({\color{magenta}子列})几乎处处收敛}$};
+\node (measure) at (5, 0) {$\text{依测度收敛}$};
+\node (norm) at (-3, -4) {$\text{强收敛（依范数收敛）}$};
+\node (weak) at (-3, -8) {$\text{弱收敛}$};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=0.5em}] (uniform) -- (ae) node[sloped, anchor=center, midway, below] {$\checkmark$};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=-0.5em}] (ae) -- (uniform) node[sloped, anchor=center, midway, above] {{\color{red}$\boldsymbol{\times}$}, ~~ {\color{cyan} Egorov ($m E < \infty$)}};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={yshift=0.3em}] (ae) -- (measure) node[sloped, anchor=center, midway, above] {{\color{red}$\boldsymbol{\times}$}, ~~ $m E < \infty$};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={yshift=-0.3em}] (measure) -- (ae) node[sloped, anchor=center, midway, below] {{\color{red}$\boldsymbol{\times}$}, ~~ {\color{magenta} Riesz ($m E < \infty$)}};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=0.5em}] (norm) -- (ae) node[sloped, anchor=center, midway, above] {\color{red}$\boldsymbol{\times}$};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=-0.5em}] (ae) -- (norm) node[sloped, anchor=center, midway, below] {{\color{red}$\boldsymbol{\times}$}, ~ $\lVert f_n \rVert_p \to \lVert f \rVert_p$};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=-0.8em}] (norm) -- (measure) node[sloped, anchor=center, midway, above] {$\checkmark$};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=0.8em}] (measure) -- (norm) node[sloped, anchor=center, midway, below] {{\color{red}$\boldsymbol{\times}$}, ~~ $\text{\smaller 等度绝对连续积分}$ ($m E < \infty$)};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=-0.3em}] (norm) -- (weak) node[midway, left] {$\checkmark$};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=0.3em}] (weak) -- (norm) node[midway, right] {\color{red}$\boldsymbol{\times}$};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={yshift=-0.3em}] (uniform) -- (weak) node[sloped, anchor=center, midway, below] {{\color{red}$\boldsymbol{\times}$}, ~~ $m E < \infty$};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={yshift=0.3em}] (weak) -- (uniform) node[sloped, anchor=center, midway, above] {\color{red}$\boldsymbol{\times}$};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={yshift=0.3em}] (uniform) -- (norm) node[sloped, anchor=center, midway, above] {{\color{red}$\boldsymbol{\times}$}, ~~ $m E < \infty$};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={yshift=-0.3em}] (norm) -- (uniform) node[sloped, anchor=center, midway, below] {{\color{red}$\boldsymbol{\times}$}};
+
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=0.7em}] (measure) -- (weak) node[sloped, anchor=center, midway, above] {{\color{red}$\boldsymbol{\times}$}};
+\draw[arrows={-{Stealth[length=3mm, width=2mm]}}, transform canvas={xshift=1.6em}] (weak) -- (measure) node[sloped, anchor=center, midway, below] {{\color{red}$\boldsymbol{\times}$}};
+
+\end{tikzpicture}
