@@ -83,7 +83,28 @@
 
 %------------------------------------------------
 
-\begin{frame}{Cantor 三分集的构造及性质}
+\begin{frame}{Cantor 三分集的构造}
+
+{\smaller[1]
+\begin{align*}
+F_1 & = F_{11} \cup F_{12} = \left[ 0, \dfrac{1}{3} \right] \cup \left[ \dfrac{2}{3}, 1 \right], \\
+I_1 & = I_{11} = \left( \dfrac{1}{3}, \dfrac{2}{3} \right), \\
+F_2 & = F_{21} \cup F_{22} \cup F_{23} \cup F_{24} = \left[ 0, \dfrac{1}{9} \right] \cup \left[ \dfrac{2}{9}, \dfrac{1}{3} \right] \cup \left[ \dfrac{2}{3}, \dfrac{7}{9} \right] \cup \left[ \dfrac{8}{9}, 1 \right], \\
+I_2 & = I_{21} \cup I_{22} = \left( \dfrac{1}{9}, \dfrac{2}{9} \right) \cup \left( \dfrac{7}{9}, \dfrac{8}{9} \right), \\
+& \vdots \\
+F_n & = F_{n1} \cup F_{n2} \cup \cdots \cup F_{n2^{n}}, \\
+I_n & = I_{n1} \cup I_{n2} \cup \cdots \cup I_{n2^{n-1}}, \\
+& \vdots \\
+G_0 & = \bigcup_{n=1}^{\infty} I_n, \\
+P_0 & = \mathscr{C} G_0 = \bigcap_{n=1}^{\infty} F_n \longleftarrow \text{(康托三分集)}.
+\end{align*}
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cantor 三分集的性质}
 
 \end{frame}
 
@@ -320,10 +341,44 @@ AC([a, b]) & = [a, b] \text{ 区间上绝对连续函数}.
 \input{tikz-figures/modes-of-convergence}
 \end{adjustbox}
 
-\pause
+$A \xrightarrow{{\color{red} \boldsymbol{\times}}} B$ 表示 $A$ 不蕴含 (不能推出) $B,$ 如果 $\color{red} \times$ 之后有注释, 则表示在某些条件下成立, 相应的结论也可能会弱一些 (对应括号中同颜色的文字). $A \xrightarrow{\checkmark} B$ 表示 $A$ 蕴含 $B.$ 还有要注意的是, 讨论蕴含关系时, 都是在某个空间中进行讨论的, 例如, $L^p$ 空间等.
 
-一些典型的反例:
+\end{frame}
 
+%------------------------------------------------
+
+\begin{frame}{各种意义下收敛的关系 | {\smaller[1] 一些典型的反例}}
+
+\begin{itemize}[<+->]
+\item 几乎处处收敛但不依测度收敛的例子 (注意, 必须有 $m E = \infty$):
+$$f_n(x) = \chi_{[n, n + 1]}(x), \quad n \in \mathbb{N}.$$
+
+\item 依测度收敛但不几乎处处收敛的例子: $E = [0, 1],$
+$$f_n(x) = \chi_{\left[ \frac{i}{2^k}, \frac{i + 1}{2^k} \right]}(x), \quad n = 2^k + i, \quad 0 \leqslant i < 2^k.$$
+以上也是强收敛但不几乎处处收敛的例子.
+
+\item 依测度收敛但不强收敛的例子 (稍微修改上例):
+$$f_n(x) = {\color{red} 2^k} \chi_{\left[ \frac{i}{2^k}, \frac{i + 1}{2^k} \right]}(x), \quad n = 2^k + i, \quad 0 \leqslant i < 2^k.$$
+依测度收敛 (到 $0$) 但不弱收敛的例子 (取 $g(x) = 1$).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{各种意义下收敛的关系 | {\smaller[1] 一些典型的反例}}
+
+\begin{itemize}[<+->]
+\item 一致收敛但不弱收敛 (也不强收敛) 的例子 (必须有 $m E = \infty$):
+$$f_n(x) = \dfrac{1}{n} \chi_{[1, e^n]}(x).$$
+容易验证 $f_n(x)$ 一致收敛到 $0.$ 设 $p, q > 1$ 为共轭数, 则 $f_n \in L^p(\mathbb{R}).$ 取 $\displaystyle g(x) = \dfrac{\chi_{[1, +\infty)}(x)}{x},$ 则 $g \in L^q(\mathbb{R}),$ 但是 $\displaystyle \int_{\mathbb{R}} f_n(x) g(x) ~ \mathrm{d} x = \dfrac{1}{n} \int_{1}^{e^n} \dfrac{1}{x} ~ \mathrm{d} x = 1.$
+
+\item 弱收敛但不一致收敛的例子: $E = [0, 1),$
+$$f_n(x) = x^n, \quad n \in \mathbb{N}.$$
+
+\item 弱收敛但不强收敛的例子: $E = (0, \pi),$
+$$f_n(x) = \sin(nx), \quad n \in \mathbb{N}.$$
+\end{itemize}
 
 \end{frame}
 
