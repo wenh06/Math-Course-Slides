@@ -89,10 +89,10 @@ $$\int_a^b f(x) ~ \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).$$
 等价 (充要) 条件:
 \pause
 \begin{enumerate}[<+->]
-\item Cauchy 收敛原理: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意带标志点的划分 $(P_1, \xi_1), (P_2, \xi_2),$ 若满足 $\lambda(P_1) < \delta, \lambda(P_2) < \delta,$ 总有
+\item Cauchy 收敛原理: $\forall~\varepsilon > 0, \exists \delta > 0,$ 使得任意带标志点的划分 $(P_1, \xi_1), (P_2, \xi_2),$ 若满足 $\lambda(P_1) < \delta, \lambda(P_2) < \delta,$ 总有
 $$\lvert S(f; P_1; \xi_1) - S(f; P_2; \xi_2) \rvert < \varepsilon.$$
 \item Darboux 和条件: $\lim\limits_{\lambda(P) \to 0} \overline{S}(f; P) =: \overline{\int}_a^b f(x) ~ \mathrm{d} x = \underline{\int}_a^b f(x) ~ \mathrm{d} x := \lim\limits_{\lambda(P) \to 0} \underline{S}(f; P).$
-\item 振幅条件: $\forall \varepsilon > 0, \exists \delta > 0,$ 使得任意满足 $\lambda(P) < \delta$ 的划分 $P$ 总有
+\item 振幅条件: $\forall~\varepsilon > 0, \exists \delta > 0,$ 使得任意满足 $\lambda(P) < \delta$ 的划分 $P$ 总有
 $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\omega(f; \Delta_i) := \sup\limits_{t_1, t_2 \in \Delta_i} \lvert f(t_1) - f(t_2) \rvert.$
 \item Lebesgue 判别法: $f(x)$ 有界, 且几乎处处连续 (不连续点集是零测集).
 \end{enumerate}
@@ -485,7 +485,7 @@ $$\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{
 \vspace{1em}
 
 \begin{itemize}
-\item 定义判别: 找到实数 $I,$ 使得 $\forall \varepsilon > 0,$ 存在 $\omega$ 的邻域 \colorbox{orange}{$U(\omega)$} 使得对所有 $b \in U(\omega)$ 都有 $\left\lvert \int_a^b f(x) ~ \mathrm{d} x - I \right\rvert < \varepsilon.$
+\item 定义判别: 找到实数 $I,$ 使得 $\forall~\varepsilon > 0,$ 存在 $\omega$ 的邻域 \colorbox{orange}{$U(\omega)$} 使得对所有 $b \in U(\omega)$ 都有 $\left\lvert \int_a^b f(x) ~ \mathrm{d} x - I \right\rvert < \varepsilon.$
 
 \pause
 
@@ -494,7 +494,7 @@ $$\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{
 (\omega - \delta, \omega), & \omega ~ \text{是 $f(x)$ 奇点.}
 \end{cases}$
 \pause
-\item Cauchy 收敛原理: $\forall \varepsilon > 0,$ 存在 $\omega$ 的邻域 $U(\omega)$ 使得对所有 $b_1, b_2 \in U(\omega)$ 都有 $\left\lvert \int_{b_1}^{b_2} f(x) ~ \mathrm{d} x \right\rvert < \varepsilon.$
+\item Cauchy 收敛原理: $\forall~\varepsilon > 0,$ 存在 $\omega$ 的邻域 $U(\omega)$ 使得对所有 $b_1, b_2 \in U(\omega)$ 都有 $\left\lvert \int_{b_1}^{b_2} f(x) ~ \mathrm{d} x \right\rvert < \varepsilon.$
 \end{itemize}
 
 \pause
@@ -622,8 +622,8 @@ $$\sum\limits_{n=1}^\infty x_n = \lim\limits_{n\to\infty} \sum\limits_{k=1}^n x_
 \begin{frame}{数项级数敛散性的判别与分类}
 
 \begin{itemize}[<+->]
-\item 定义判别: 找到实数 $A,$ 使得 $\forall \varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $n > N,$ 有 $\left\lvert \sum\limits_{k=1}^n x_k - A \right\rvert < \varepsilon.$
-\item Cauchy 收敛原理: $\forall \varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $m > n > N,$ 有 $\left\lvert \sum\limits_{k=n}^m x_k \right\rvert < \varepsilon.$
+\item 定义判别: 找到实数 $A,$ 使得 $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $n > N,$ 有 $\left\lvert \sum\limits_{k=1}^n x_k - A \right\rvert < \varepsilon.$
+\item Cauchy 收敛原理: $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $m > n > N,$ 有 $\left\lvert \sum\limits_{k=n}^m x_k \right\rvert < \varepsilon.$
 \end{itemize}
 
 % \pause
@@ -682,7 +682,7 @@ $$(1 - 1) + (1 - 1) + \cdots = 0 ~~ \text{但} ~ \sum\limits_{n=1}^{\infty} (-1)
 
 对条件收敛级数, 有 Riemann 重排定理:
 \begin{thm}[Riemann 重排定理]
-设 $\sum\limits_{n=1}^{\infty} x_n$ 条件收敛, 那么 $\forall M \in \mathbb{R} \cup \{ \pm \infty \},$ 存在 $\mathbb{N}$ 的轮换 $\sigma$ ($\mathbb{N} \to \mathbb{N}$ 的一一映射), 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M;$ 存在 $\sigma'$ 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma'(n)}$ 发散且 $\neq \pm\infty.$
+设 $\sum\limits_{n=1}^{\infty} x_n$ 条件收敛, 那么 $\forall~M \in \mathbb{R} \cup \{ \pm \infty \},$ 存在 $\mathbb{N}$ 的轮换 $\sigma$ ($\mathbb{N} \to \mathbb{N}$ 的一一映射), 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M;$ 存在 $\sigma'$ 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma'(n)}$ 发散且 $\neq \pm\infty.$
 \end{thm}
 
 \end{frame}
@@ -1023,7 +1023,7 @@ $$S_n(x) \xRightarrow{D} S(x) ~~ \Longleftrightarrow ~~ d(S_n(x), S(x)) \to 0 ~ 
 \pause
 
 \begin{thm}[Cauchy 收敛原理]
-定义在 $D$ 上的函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 一致收敛当且仅当 $\forall \varepsilon > 0,$ 存在正整数 $N,$ 使得对所有 $m > n > N$ 有
+定义在 $D$ 上的函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 一致收敛当且仅当 $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得对所有 $m > n > N$ 有
 $$d(S_n(x), S_m(x)) < \varepsilon.$$
 \end{thm}
 

@@ -272,8 +272,8 @@ $$\left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert.$$
 \vspace{-1em}
 \begin{align*}
 \sum\limits_{n=1}^{\infty} b_n ~ \text{收敛} ~~ & ~ {\color{red}\Longrightarrow} ~~
-\only<2>{\phantom{\forall \varepsilon > 0, \exists N, \text{ 使得 } \forall m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.}}
-\only<3->{\forall \varepsilon > 0, \exists N, \text{ 使得 } \forall m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.} \\
+\only<2>{\phantom{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.}}
+\only<3->{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.} \\
 \only<4->{a_n ~ \text{单调有界} ~~ & ~ {\color{red}\Longrightarrow}} ~~ \only<5->{\exists M > 0, \text{ 使得 } \lvert a_n \rvert < M \text{ 对所有$n$成立}}
 \end{align*}
 
@@ -325,9 +325,9 @@ $$\left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert.$$
 (2). Dirichlet判别法：条件为$\sum\limits_{n=1}^{N} b_n$关于$N$有界, $a_n$单调趋于$0.$
 \begin{align*}
 a_n ~ \text{单调趋于$0$} ~~ & {\color{red}\Longrightarrow} ~~
-\only<1>{\phantom{\forall \varepsilon > 0, \exists N, \text{ 使得 } \forall n > N, \left\lvert a_n \right\rvert < \varepsilon.}}
-\only<2->{\forall \varepsilon > 0, \exists N, \text{ 使得 } \forall n > N, \left\lvert a_n \right\rvert < \varepsilon.} \\
-\only<3->{\sum\limits_{n=1}^{N} b_n ~ \text{关于$N$有界} ~~ & {\color{red}\Longrightarrow}} ~~ \only<4->{\exists M > 0, \text{ 使得 } \forall N \text{ 有 } \left\lvert \sum\limits_{n=1}^{N} b_n \right\rvert < ~ {\color{red}M}}
+\only<1>{\phantom{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~n > N, \left\lvert a_n \right\rvert < \varepsilon.}}
+\only<2->{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~n > N, \left\lvert a_n \right\rvert < \varepsilon.} \\
+\only<3->{\sum\limits_{n=1}^{N} b_n ~ \text{关于$N$有界} ~~ & {\color{red}\Longrightarrow}} ~~ \only<4->{\exists M > 0, \text{ 使得 } \forall~N \text{ 有 } \left\lvert \sum\limits_{n=1}^{N} b_n \right\rvert < ~ {\color{red}M}}
 \end{align*}
 
 \only<5->{
@@ -373,47 +373,47 @@ $$m a_1 \leqslant \sum\limits_{k=1}^n a_kb_k \leqslant M a_1$$
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的几个注记}
+\begin{frame}{A-D 判别法的几个注记}
 
-1. 回过头来看Leibniz判别法：
+1. 回过头来看 Leibniz 判别法：
 \begin{center}
-Leibniz级数都收敛
+Leibniz 级数都收敛
 \end{center}
 \pause
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80}Leibniz级数： $\sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n \text{ 单调减小, 且 } u_n \to 0.$}
+\text{\bfseries\color{red!80}Leibniz级数： $\sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n \text{ 单调减小, 且 } u_n \to 0.$}
 \end{empheq}
 
 \pause
 \vspace{0.6em}
 
-若令$b_n = (-1)^{n+1}, a_n = u_n,$ 那么它们满足Dirichlet判别法的条件
+若令 $b_n = (-1)^{n+1}, a_n = u_n,$ 那么它们满足 Dirichlet 判别法的条件
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-  \color{red!80} \sum\limits_{n=1}^{N} b_n ~ \text{关于$N$有界}, ~~~ a_n ~ \text{单调趋于$0$}
+\color{red!80} \sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ a_n ~ \text{单调趋于 $0$}
 \end{empheq}
 
 \pause
 
-也就是说, Leibniz判别法可以由Dirichlet判别法导出, 可视为是Dirichlet判别法的一个特例.
+也就是说, Leibniz 判别法可以由 Dirichlet 判别法导出, 可视为是 Dirichlet 判别法的一个特例.
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的几个注记}
+\begin{frame}{A-D 判别法的几个注记}
 
-2. Abel判别法可以由Dirichlet判别法导出：
-
-\pause
-\vspace{0.8em}
-
-事实上, 若Abel判别法的条件成立：$\sum\limits_{n=1}^{\infty} b_n$收敛, $a_n$单调有界. \par
-由数列的单调有界定理, $a_n$收敛于某个实数$a = \lim\limits_{n\to\infty} a_n.$ 那么$c_n : = a_n - a$就构成了一个单调趋于$0$的数列.
+2. Abel 判别法可以由 Dirichlet 判别法导出：
 
 \pause
 \vspace{0.8em}
 
-另一方面, 由于$\sum\limits_{n=1}^{\infty} b_n$收敛, 那么$\sum\limits_{n=1}^{N} b_n$显然关于$N$有界. 于是, 根据Dirichlet判别法, $\sum\limits_{n=1}^{\infty} c_nb_n$收敛, 从而知
+事实上, 若 Abel 判别法的条件成立: $\sum\limits_{n=1}^{\infty} b_n$ 收敛, $a_n$ 单调有界. \par
+由数列的单调有界定理, $a_n$ 收敛于某个实数 $a = \lim\limits_{n\to\infty} a_n.$ 那么 $c_n : = a_n - a$ 就构成了一个单调趋于 $0$ 的数列.
+
+\pause
+\vspace{0.8em}
+
+另一方面, 由于 $\sum\limits_{n=1}^{\infty} b_n$ 收敛, 那么 $\sum\limits_{n=1}^{N} b_n$ 显然关于 $N$ 有界. 于是, 根据 Dirichlet 判别法, $\sum\limits_{n=1}^{\infty} c_nb_n$ 收敛, 从而知
 $$\sum\limits_{n=1}^{\infty} a_nb_n = \sum\limits_{n=1}^{\infty} c_nb_n + a \sum\limits_{n=1}^{\infty} b_n$$
 也是收敛的.
 
@@ -421,20 +421,20 @@ $$\sum\limits_{n=1}^{\infty} a_nb_n = \sum\limits_{n=1}^{\infty} c_nb_n + a \sum
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的应用}
+\begin{frame}{A-D 判别法的应用}
 
 \begin{eg}
-设数列$\{a_n\}$单调趋于$0,$ 则$\forall x \in \mathbb{R},$ 级数$\sum\limits_{n=1}^\infty a_n \sin nx$收敛.
+设数列 $\{a_n\}$ 单调趋于 $0,$ 则 $\forall~x \in \mathbb{R},$ 级数 $\sum\limits_{n=1}^\infty a_n \sin nx$ 收敛.
 \end{eg}
 
 \pause
 \vspace{0.4em}
 
-\textbf{证明：} $\{a_n\}$单调趋于$0,$ 这一条件是Dirichlet判别法的一半; 自然希望证明另一半条件, 即$\sum\limits_{n=1}^N \sin nx$关于$N$有界.
+\textbf{证明:} $\{a_n\}$ 单调趋于 $0,$ 这一条件是 Dirichlet 判别法的一半; 自然希望证明另一半条件, 即 $\sum\limits_{n=1}^N \sin nx$ 关于 $N$ 有界.
 
 \pause
 
-\textbf{方法一：} 利用$\sin nx = \dfrac{e^{inx} - e^{-inx}}{2i},$ 可以将$\sum\limits_{n=1}^N \sin nx$表示为两个等比数列求和 ($x \neq 2k\pi$)：
+\textbf{方法一:} 利用 $\sin nx = \dfrac{e^{inx} - e^{-inx}}{2i},$ 可以将 $\sum\limits_{n=1}^N \sin nx$ 表示为两个等比数列求和 ($x \neq 2k\pi$)：
 \begin{align*}
 \sum\limits_{n=1}^N \sin nx & = \dfrac{1}{2i} \left( \sum\limits_{n=1}^N \left(e^{ix}\right)^n - \sum\limits_{n=1}^N \left(e^{-ix}\right)^n \right) \\
 & = \dfrac{1}{2\sin\frac{x}{2}} \left( \cos\dfrac{x}{2} - \cos \left(N + \dfrac{1}{2}\right) x \right)
@@ -444,9 +444,9 @@ $$\sum\limits_{n=1}^{\infty} a_nb_n = \sum\limits_{n=1}^{\infty} c_nb_n + a \sum
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的应用}
+\begin{frame}{A-D 判别法的应用}
 
-\textbf{方法二：} 利用三角函数的和差化积、积化和差公式：
+\textbf{方法二:} 利用三角函数的和差化积、积化和差公式：
 {
 % \smaller[1]
 \begin{align*}
@@ -455,7 +455,7 @@ $$\sum\limits_{n=1}^{\infty} a_nb_n = \sum\limits_{n=1}^{\infty} c_nb_n + a \sum
 \end{align*}
 }
 \pause
-两边同时乘以~${\color{red} \sin \dfrac{1}{2}x},$ 再利用
+两边同时乘以 ${\color{red} \sin \dfrac{1}{2}x},$ 再利用
 $$\sin \dfrac{1}{2}x \sin \sin \dfrac{2k-1}{2}x = \cos (k-1)x - \cos kx,$$
 相邻项交错相消, 有
 {
@@ -472,16 +472,16 @@ $$\sin \dfrac{1}{2}x \sin \sin \dfrac{2k-1}{2}x = \cos (k-1)x - \cos kx,$$
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的应用}
+\begin{frame}{A-D 判别法的应用}
 
-总之, 当$x \neq 2k\pi$时, 有
+总之, 当 $x \neq 2k\pi$ 时, 有
 $$\sum\limits_{n=1}^N \sin nx = \dfrac{1}{2\sin\frac{x}{2}} \left( \cos\dfrac{x}{2} - \cos \left(N + \dfrac{1}{2}\right) x \right),$$
-对于固定的$x,$ 上式关于$N$显然是有界的, $\dfrac{1}{\left\lvert \sin\frac{x}{2} \right\rvert}$即为它的一个界. 于是, 根据Dirichlet判别法, $\sum\limits_{n=1}^\infty a_n \sin nx$收敛.
+对于固定的 $x,$ 上式关于 $N$ 显然是有界的, $\dfrac{1}{\left\lvert \sin\frac{x}{2} \right\rvert}$ 即为它的一个界. 于是, 根据 Dirichlet 判别法, $\sum\limits_{n=1}^\infty a_n \sin nx$ 收敛.
 
 \pause
 \vspace{0.6em}
 
-当$x = 2k\pi$时, $\sum\limits_{n=1}^\infty a_n \sin nx$的每一项都是$0,$ 显然也是收敛的.
+当 $x = 2k\pi$ 时, $\sum\limits_{n=1}^\infty a_n \sin nx$ 的每一项都是 $0,$ 显然也是收敛的.
 
 \end{frame}
 
@@ -499,14 +499,14 @@ $$\left\lvert x_{n+1} + x_{n+2} + \cdots + x_m \right\rvert = \left\lvert \sum\l
 \pause
 
 {\larger[2] \color{red} \ding{43}} Leibniz判别法：Leibniz级数都收敛.
-$$\text{Leibniz级数：} \sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n \text{ 单调减小, 且 } u_n \to 0.$$
+$$\text{Leibniz级数:}~\sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n \text{ 单调减小, 且 } u_n \to 0.$$
 
 \pause
 
-{\larger[2] \color{red} \ding{43}} A-D判别法 ($\sum\limits_{n=1}^{\infty} a_n b_n$收敛的充分条件)：
+{\larger[2] \color{red} \ding{43}} A-D 判别法 ($\sum\limits_{n=1}^{\infty} a_n b_n$收敛的充分条件)：
 \begin{align*}
-\text{Abel判别法：} & \sum\limits_{n=1}^{\infty} b_n ~ \text{收敛}, ~ a_n ~ \text{单调有界} \\
-\text{Dirichlet判别法：} & \sum\limits_{n=1}^{N} b_n ~ \text{关于$N$有界}, ~ a_n ~ \text{单调趋于$0$}
+\text{Abel判别法:} ~ & \sum\limits_{n=1}^{\infty} b_n ~ \text{收敛}, ~ a_n ~ \text{单调有界} \\
+\text{Dirichlet判别法:} ~ & \sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~ a_n ~ \text{单调趋于 $0$}
 \end{align*}
 
 \end{frame}

@@ -113,7 +113,7 @@
 
 (1). 当$r = \varlimsup_{n\to\infty} \nroot[n]{x_n} < 1$时, 由上极限的性质, 对任意满足$r < q < 1$的实数$q,$
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80} 存在正整数$N,$ 使得$\forall n > N,$ 都有$\nroot[n]{x_n} < q.$}
+\text{\bfseries\color{red!80} 存在正整数$N,$ 使得$\forall~n > N,$ 都有$\nroot[n]{x_n} < q.$}
 \end{empheq}
 由比较判别法 (与$\sum\limits_{n=1}^\infty q^n$比较) 知$\sum\limits_{n=1}^\infty x_n$收敛.
 
@@ -221,7 +221,7 @@ $$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty}
 \pause
 \vspace{1em}
 
-由下极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} > \underline{r} - \varepsilon,$ 即有
+由下极限的性质, $\forall~\varepsilon > 0,$ 存在正整数$N,$ 使得$\forall~n > N$成立$\dfrac{x_{n+1}}{x_n} > \underline{r} - \varepsilon,$ 即有
 \vspace*{-0.5em}
 $$x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},$$
 从而有$\nroot[n]{x_n} > \sqrt[\leftroot{-6}\uproot{9}n]{(\underline{r} - \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立. 于是
@@ -240,7 +240,7 @@ $$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf_{n
 \pause
 \vspace{1em}
 
-由上极限的性质, $\forall \varepsilon > 0,$ 存在正整数$N,$ 使得$\forall n > N$成立$\dfrac{x_{n+1}}{x_n} < \overline{r} + \varepsilon,$ 即有
+由上极限的性质, $\forall~\varepsilon > 0,$ 存在正整数$N,$ 使得$\forall~n > N$成立$\dfrac{x_{n+1}}{x_n} < \overline{r} + \varepsilon,$ 即有
 \vspace*{-0.5em}
 $$x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},$$
 从而有$\nroot[n]{x_n} < \sqrt[\leftroot{-6}\uproot{9}n]{(\overline{r} + \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立. 于是
@@ -351,13 +351,13 @@ $$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = 
 
 \begin{frame}{Raabe判别法的分析与证明}
 
-当$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r < 1$时, 由极限的性质, 对任意满足$r < q < 1$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
+当$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r < 1$时, 由极限的性质, 对任意满足$r < q < 1$的实数$q,$ 都存在正整数$N,$ 使得$\forall~n \geqslant N$都有
 $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) < q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} < 1 + \dfrac{q}{n} < 1 + \dfrac{1}{n},$$
 从而有
 $$n x_n \leqslant (n+1) x_{n+1}.$$
 \pause
 也就是说, 新数列$y_n := nx_n, n = 1, 2, \dots,$ 当$n \geqslant N$时是递增的, 因此有$n x_n \geqslant N x_N,$ 或写为
-$$x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall n \geqslant N.$$
+$$x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall~n \geqslant N.$$
 于是, 根据比较判别法, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散可推出$\sum\limits_{n=1}^\infty x_n$也发散.
 
 \end{frame}
@@ -376,7 +376,7 @@ $$x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall n \ge
 \pause
 \vspace{0.6em}
 
-我们还是从$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r > 1$出发,对任意满足$1 < q < r$的实数$q,$ 都存在正整数$N,$ 使得$\forall n \geqslant N$都有
+我们还是从$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r > 1$出发,对任意满足$1 < q < r$的实数$q,$ 都存在正整数$N,$ 使得$\forall~n \geqslant N$都有
 $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n}.$$
 
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
@@ -417,7 +417,7 @@ $$
 
 \pause
 
-取正整数$N$充分大, 使得$N > \dfrac{1}{\delta},$ 那么$\forall n > N$有$\dfrac{1}{n} \in (0, \delta),$ 从而有
+取正整数$N$充分大, 使得$N > \dfrac{1}{\delta},$ 那么$\forall~n > N$有$\dfrac{1}{n} \in (0, \delta),$ 从而有
 $$\dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n} = f \left(\dfrac{1}{n}\right) = \left(\dfrac{1}{n}\right) = \left( 1 + \dfrac{1}{n} \right)^t = \left( \dfrac{n+1}{n} \right)^t,$$
 
 \end{frame}

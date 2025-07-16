@@ -218,6 +218,8 @@ $$
 \begin{frame}
 \frametitle{关于滤子基的极限}
 
+待写
+
 \end{frame}
 
 %------------------------------------------------
@@ -269,7 +271,7 @@ $$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - \sum_{i=1}^{n'} f(\xi_i')\Delta x_i' \
 
 \pause
 
-\alert{注意:} 函数黎曼可积的柯西准则依赖于实数域 $\mathbb{R}$ 的完备性.
+\alert{注意:} 函数黎曼可积的柯西准则依赖于实数域 $\mathbb{R}$ 的\alert{完备性}.
 \end{itemize}
 
 \end{frame}
@@ -312,8 +314,13 @@ R(x) = \begin{cases}
 0, & x \in ((0, 1) \setminus \mathbb{Q}) \cup \{0, 1\}
 \end{cases}
 $$
-是否黎曼可积? 这里的 $x = q/p$ 指的是写成既约分数的形式.
+是否黎曼可积? 这里的 $x = \frac{q}{p}$ 指的是写成既约分数的形式.
 \end{question}
+
+\pause
+\vspace{1em}
+
+提示: 满足 $p < \left\lceil \frac{1}{\varepsilon} \right\rceil$ 的既约分数 $\frac{q}{p}$ 只有有限多个, 所以 $R(x)$ 在所有的无理点处连续.
 
 \end{frame}
 
@@ -324,7 +331,7 @@ $$
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{达布上下和}
+\frametitle{达布 (上、下) 和}
 \begin{block}{关键概念}
 \begin{itemize}
 \item 分割 $P$ 的达布上和：$\overline{S}(P;f) = \sum_{i=1}^n M_i\Delta x_i$
@@ -333,17 +340,37 @@ $$
 \end{itemize}
 \end{block}
 
+\pause
+
 \begin{thm}[可积充要条件]
 函数 $f$ 在 $[a,b]$ 上可积的充要条件是：
 $$
-\forall \varepsilon > 0,~\exists~\text{分割}~P,\ 使得~\overline{S}(P,f) - \underline{S}(P,f) < \varepsilon
+\forall~\varepsilon > 0, ~\exists~\text{分割}~P,\ 使得~\overline{S}(P,f) - \underline{S}(P,f) < \varepsilon
 $$
 \end{thm}
 \end{frame}
 
 %------------------------------------------------
 
-\section{达布和与可积条件}
+\begin{frame}
+\frametitle{达布和的性质}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{振幅与可积条件}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{待写}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{函数黎曼可积的勒贝格判别法}
 
 %------------------------------------------------
 

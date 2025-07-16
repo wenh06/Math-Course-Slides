@@ -53,10 +53,10 @@ Euclid空间上的极限与连续]{\texorpdfstring{\LARGE \bfseries 第十一章
 \item 邻域: ~~ $O(x_0, \delta) = \{ x: ~ \lvert x - x_0 \rvert < \delta \}.$
 
 \item (序列、函数) 极限 $\lim\limits_{n\to\infty} x_n = a$:
-$$\forall \varepsilon > 0, ~ \text{存在正整数 $N$ 使得} ~ \forall n > N, ~ \text{有} ~ \lvert x_n - a \rvert < \varepsilon.$$
+$$\forall~\varepsilon > 0, ~ \text{存在正整数 $N$ 使得} ~ \forall~n > N, ~ \text{有} ~ \lvert x_n - a \rvert < \varepsilon.$$
 
 \item 函数 $f$ 在一点 $x_0$ 处连续:
-$$\forall \varepsilon > 0, \exists \delta > 0, ~ \text{使得} ~ \forall \lvert x - x_0 \rvert < \delta, ~ \text{有} ~ \lvert f(x) - f(x_0) \rvert < \varepsilon.$$
+$$\forall~\varepsilon > 0, \exists \delta > 0, ~ \text{使得} ~ \forall~\lvert x - x_0 \rvert < \delta, ~ \text{有} ~ \lvert f(x) - f(x_0) \rvert < \varepsilon.$$
 
 \item 微分: $f(x_0 + h) - f(x_0) = L(x_0)(h) + o(\lvert h \rvert),$ 其中 $L(x_0)$ 是 $h$ 的线性函数.
 \end{itemize}
@@ -115,7 +115,7 @@ M_{n\times m}(\mathbb{R}) = \{ \text{所有} n\times m \text{实矩阵} \} & \ri
 
 \pause
 
-那么 $\forall A, B \in M_{n\times m}(\mathbb{R}),$ 有
+那么 $\forall~A, B \in M_{n\times m}(\mathbb{R}),$ 有
 $$\langle A, B \rangle = \operatorname{tr} (AB^T).$$
 
 \end{frame}
@@ -138,7 +138,7 @@ $$\lVert \cdot \rVert : ~ V \longrightarrow \mathbb{R}, ~~ \text{满足:}$$
 \vspace{-2em}
 \begin{enumerate}
     \item 正定性: $\lVert x \rVert \geqslant 0,$ 且 $\lVert x \rVert \geqslant 0$ 当且仅当 $x = 0;$
-    \item 数乘相容性: $\forall \lambda \in \mathbb{R}, \lVert \lambda x \rVert = \lvert \lambda \rvert \lVert x \rVert;$
+    \item 数乘相容性: $\forall~\lambda \in \mathbb{R}, \lVert \lambda x \rVert = \lvert \lambda \rvert \lVert x \rVert;$
     \item 三角不等式: $\lVert x + y \rVert \leqslant \lVert x \rVert + \lVert y \rVert.$
 \end{enumerate}
 $(V, \lVert \cdot \rVert)$ 称为一个赋范线性空间.
@@ -191,7 +191,7 @@ $$\lVert x \rVert_p = \left( \lvert x_1 \rvert^p + \cdots + \lvert x_n \rvert^p 
 
 \begin{Def}
 设 $\lVert \cdot \rVert_1, \lVert \cdot \rVert_2$ 是 $V$ 上的两个范数, 若存在正常数 $c_1, c_2$ 使得
-$$c_1 \lVert x \rVert_1 \leqslant \lVert x \rVert_2 \leqslant c_2 \lVert x \rVert_1, ~ \forall x \in V,$$
+$$c_1 \lVert x \rVert_1 \leqslant \lVert x \rVert_2 \leqslant c_2 \lVert x \rVert_1, ~ \forall~x \in V,$$
 则称 $\lVert \cdot \rVert_1$ 与 $\lVert \cdot \rVert_2$ 等价.
 \end{Def}
 
@@ -282,7 +282,7 @@ $$d_p(f, g) = \left( \int_a^b \lvert f(x) - g(x) \rvert^p ~ \mathrm{d}x \right)^
 \pause
 
 \begin{Def}[开集]
-集合 $E \subset \mathbb{R}^n$ 被称作开集, 若 $E$ 中所有的点都是{\color{red}内点}, 即 $\forall x \in E,$ {\color{red} 存在 $x$ 的邻域 $O(x, \delta), \delta > 0,$ 使得 $O(x, \delta) \subset E.$}
+集合 $E \subset \mathbb{R}^n$ 被称作开集, 若 $E$ 中所有的点都是{\color{red}内点}, 即 $\forall~x \in E,$ {\color{red} 存在 $x$ 的邻域 $O(x, \delta), \delta > 0,$ 使得 $O(x, \delta) \subset E.$}
 $$\text{邻域} ~~ O(x, \delta) = \{ y: ~ d(x, y) < \delta \}.$$
 \end{Def}
 
@@ -310,7 +310,7 @@ $$\mathring{O}(x, \delta) = \{ y: ~ 0 < d(x, y) < \delta \} = O(x, \delta) \setm
 \pause
 \vspace{1em}
 
-T2: $\forall x \neq y,$ 存在 $x$ 的邻域 $U(x),$ $y$ 的邻域 $U(y),$ 使得 $U(x) \cap U(y) = \emptyset.$
+T2: $\forall~x \neq y,$ 存在 $x$ 的邻域 $U(x),$ $y$ 的邻域 $U(y),$ 使得 $U(x) \cap U(y) = \emptyset.$
 
 \pause
 \vspace{1em}
@@ -332,13 +332,13 @@ $$d(x, y) \leqslant d(x, z) + d(y, z) < 2d/3 < d,$$
 \begin{itemize}[<+->]
 \item T1 (Fréchet):
 
-$\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}并且} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not \in U(y).$
+$\forall~x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}并且} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not \in U(y).$
 
 \vspace{1em}
 
 \item T0 (Kolmogorov):
 
-$\forall x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}或者} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not\in U(y).$
+$\forall~x \neq y,$ 存在 $x$ 的邻域 $U(x)$ 使得 $y \not\in U(x),$ {\color{red}或者} 存在 $y$ 的邻域 $U(y)$ 使得 $x \not\in U(y).$
 \end{itemize}
 
 \ifHandout
@@ -403,7 +403,7 @@ $$\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \math
 \begin{frame}{收敛与极限}
 
 \begin{Def}
-设 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的点列, 若存在点 $a \in \mathbb{R}^n,$ 使得 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k > K,$ 有
+设 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的点列, 若存在点 $a \in \mathbb{R}^n,$ 使得 $\forall~\varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall~k > K,$ 有
 $$d(x_k, a) = \lVert x_k - a \rVert < \varepsilon ~~ (\text{或}~ x_k \in O(a, \varepsilon)),$$
 则称点列 $\{x_k\}_{k\in\mathbb{N}}$ 收敛于 $a,$ 记为 $\lim\limits_{k\to\infty} x_k = a,$ $a$ 称为 $\{x_k\}_{k\in\mathbb{N}}$ 的极限.
 \end{Def}
@@ -411,7 +411,7 @@ $$d(x_k, a) = \lVert x_k - a \rVert < \varepsilon ~~ (\text{或}~ x_k \in O(a, \
 \pause
 
 \begin{thm}
-$\lim\limits_{k\to\infty} x_k = a$ 当且仅当 $\forall 1 \leqslant i \leqslant n, \lim\limits_{k\to\infty} x_i^k = a_i,$ 其中 $x_k = (x_1^k, \dots, x_n^k).$
+$\lim\limits_{k\to\infty} x_k = a$ 当且仅当 $\forall~1 \leqslant i \leqslant n, \lim\limits_{k\to\infty} x_i^k = a_i,$ 其中 $x_k = (x_1^k, \dots, x_n^k).$
 \end{thm}
 
 \end{frame}
@@ -422,7 +422,7 @@ $\lim\limits_{k\to\infty} x_k = a$ 当且仅当 $\forall 1 \leqslant i \leqslant
 
 由不等式
 $$d(x_k, a) = \lVert x_k - a \rVert = \sqrt{\sum\limits_{i=1}^n (x_i^k - a_i)^2} \begin{cases}
-\geqslant ~~ \lvert x_i^k - a_i \rvert, ~~ \forall 1 \leqslant i \leqslant n \\
+\geqslant ~~ \lvert x_i^k - a_i \rvert, ~~ \forall~1 \leqslant i \leqslant n \\
 \leqslant ~~ \sum\limits_{i=1}^n \lvert x_i^k - a_i \rvert
 \end{cases}$$
 由夹逼准则即可知定理成立.
@@ -441,7 +441,7 @@ $$d(x_k, a) = \lVert x_k - a \rVert = \sqrt{\sum\limits_{i=1}^n (x_i^k - a_i)^2}
 \begin{frame}{Cauchy 收敛原理}
 
 \begin{Def}[$\mathbb{R}^n$ 中的基本点列 (Cauchy 点列)]
-设 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的点列, 若对于任意 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k, \ell > K,$ 有
+设 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的点列, 若对于任意 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall~k, \ell > K,$ 有
 $$d(x_k, x_\ell) = \lVert x_k - x_\ell \rVert < \varepsilon,$$
 则称点列 $\{x_k\}_{k\in\mathbb{N}}$ 是基本点列 (Cauchy 点列).
 \end{Def}
@@ -456,11 +456,11 @@ $\mathbb{R}^n$ 中的点列 $\{x_k\}_{k\in\mathbb{N}}$ 收敛的充要条件是 
 
 由不等式$
 d(x_k, x_\ell) ~~ \begin{cases}
-\geqslant ~~ \lvert x_i^k - x_i^\ell \rvert, ~~ \forall 1 \leqslant i \leqslant n \\
+\geqslant ~~ \lvert x_i^k - x_i^\ell \rvert, ~~ \forall~1 \leqslant i \leqslant n \\
 \leqslant ~~ \sum\limits_{i=1}^n \lvert x_i^k - x_i^\ell \rvert
 \end{cases}
 $
-知 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列的充要条件是 $\forall 1 \leqslant i \leqslant n, \{x_i^k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}$ 中的 Cauchy 列.
+知 $\{x_k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的 Cauchy 列的充要条件是 $\forall~1 \leqslant i \leqslant n, \{x_i^k\}_{k\in\mathbb{N}}$ 是 $\mathbb{R}$ 中的 Cauchy 列.
 
 \end{frame}
 
@@ -557,10 +557,10 @@ $$f_k(x) = \begin{cases}
 \item 集合 $E \subset \mathbb{R}^n$ 的内点 $x:$ ~~ $\exists O(x, \delta) \subset E.$ \par
 集合 $E \subset \mathbb{R}^n$ 的内部 $E^0:$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的内点} \}.$
 \item 集合 $E \subset \mathbb{R}^n$ 的外点 $x:$ ~~ $\exists O(x, \delta) \subset \mathbb{R}^n \setminus E.$
-\item 集合 $E \subset \mathbb{R}^n$ 的边界点 $x:$ ~~ $\forall O(x, \delta) \cap E \neq \emptyset,$ 但 $O(x, \delta) \not\subset E.$ \par
+\item 集合 $E \subset \mathbb{R}^n$ 的边界点 $x:$ ~~ $\forall~O(x, \delta) \cap E \neq \emptyset,$ 但 $O(x, \delta) \not\subset E.$ \par
 集合 $E \subset \mathbb{R}^n$ 的边界 $\partial E:$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的边界点} \}.$
 \item 集合 $E \subset \mathbb{R}^n$ 的孤立点 $x:$ ~~ $\exists O(x, \delta)$ 使得 $O(x, \delta) \cap E = \{x\}.$
-\item 集合 $E \subset \mathbb{R}^n$ 的聚点 (极限点) $x:$ ~~ $\forall \mathring{O}(x, \delta), \mathring{O}(x, \delta) \cap E \neq \emptyset.$ \par
+\item 集合 $E \subset \mathbb{R}^n$ 的聚点 (极限点) $x:$ ~~ $\forall~\mathring{O}(x, \delta), \mathring{O}(x, \delta) \cap E \neq \emptyset.$ \par
 集合 $E \subset \mathbb{R}^n$ 的导集 $E':$ ~~ $\{ x \in \mathbb{R}^n: ~ x ~ \text{为 $E$ 的极限点} \}.$
 \item 集合 $E \subset \mathbb{R}^n$ 的闭包 $\overline{E}:$ ~~ $E \cup E'.$
 \end{itemize}
@@ -586,7 +586,7 @@ $\Longrightarrow:$ 由定义, 取 $\delta_1 = 1,$ 则 $\mathring{O}(x, \delta_1)
 \pause
 \vspace{0.5em}
 
-$\Longleftarrow:$ 若 $\lim\limits_{k\to\infty} x_k = x,$ 且 $x_k \neq x,$ 则 $\forall \varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall k > K,$ 有 $0 < d(x_k, x) < \varepsilon,$ 即 $x_k \in \mathring{O}(x, \varepsilon) \cap E,$ 从而知 $\mathring{O}(x, \varepsilon) \cap E \neq \emptyset,$ 于是 $x$ 是 $E$ 的聚点.
+$\Longleftarrow:$ 若 $\lim\limits_{k\to\infty} x_k = x,$ 且 $x_k \neq x,$ 则 $\forall~\varepsilon > 0,$ 存在正整数 $K,$ 使得 $\forall~k > K,$ 有 $0 < d(x_k, x) < \varepsilon,$ 即 $x_k \in \mathring{O}(x, \varepsilon) \cap E,$ 从而知 $\mathring{O}(x, \varepsilon) \cap E \neq \emptyset,$ 于是 $x$ 是 $E$ 的聚点.
 
 \end{frame}
 
@@ -603,7 +603,7 @@ $\Longleftarrow:$ 若 $\lim\limits_{k\to\infty} x_k = x,$ 且 $x_k \neq x,$ 则 
 
 只要证明 $\mathbb{R}^n \setminus \overline{E}$ 是开集即可.
 \pause
-$\forall x \in \mathbb{R}^n \setminus \overline{E},$ 则 $x$ 不是 $E$ 的聚点, 即存在 $\mathring{O}(x, \delta) \cap E = \emptyset,$ 即 $\mathring{O}(x, \delta) \subset \mathbb{R}^n \setminus E,$ 于是
+$\forall~x \in \mathbb{R}^n \setminus \overline{E},$ 则 $x$ 不是 $E$ 的聚点, 即存在 $\mathring{O}(x, \delta) \cap E = \emptyset,$ 即 $\mathring{O}(x, \delta) \subset \mathbb{R}^n \setminus E,$ 于是
 $$O(x, \delta) = \mathring{O}(x, \delta) \cup \{x\} \subset \mathbb{R}^n \setminus E.$$
 
 \pause
@@ -650,7 +650,7 @@ $\Longrightarrow:$ 只要证明 $E$ 的任意聚点 $x$ 都在 $E$ 中即可.
 \pause
 
 \begin{proof}
-$\forall y \in O(x, \delta),$ 则 $d(x, y) < \delta,$ 取 $\varepsilon = (\delta - d(x, y)) / 2 > 0.$ 任取 $z \in O(y, \varepsilon),$ 则 $d(y, z) < \varepsilon,$ 由三角不等式知
+$\forall~y \in O(x, \delta),$ 则 $d(x, y) < \delta,$ 取 $\varepsilon = (\delta - d(x, y)) / 2 > 0.$ 任取 $z \in O(y, \varepsilon),$ 则 $d(y, z) < \varepsilon,$ 由三角不等式知
 $$d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y) / 2 < \delta,$$
 即 $z \in O(x, \delta),$ 从而 $O(y, \varepsilon) \subset O(x, \delta),$ 即 $O(x, \delta)$ 是开集.
 \end{proof}
@@ -699,11 +699,11 @@ $$d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y
 
 \begin{frame}{定理的证明}
 
-(1). $\forall x \in \bigcup\limits_{\alpha \in I} E_{\alpha},$ 则存在 $\alpha_0 \in I$ 使得 $x \in E_{\alpha_0},$ 由 $E_{\alpha_0}$ 是开集知存在 $O(x, \delta) \subset E_{\alpha_0} \subset \bigcup\limits_{\alpha \in I} E_{\alpha},$ 即 $\bigcup\limits_{\alpha \in I} E_{\alpha}$ 是开集.
+(1). $\forall~x \in \bigcup\limits_{\alpha \in I} E_{\alpha},$ 则存在 $\alpha_0 \in I$ 使得 $x \in E_{\alpha_0},$ 由 $E_{\alpha_0}$ 是开集知存在 $O(x, \delta) \subset E_{\alpha_0} \subset \bigcup\limits_{\alpha \in I} E_{\alpha},$ 即 $\bigcup\limits_{\alpha \in I} E_{\alpha}$ 是开集.
 
 \pause
 
-(2). $\forall x \in \bigcap\limits_{i=1}^n E_i,$ 则 $\forall 1 \leqslant i \leqslant n, x \in E_i,$ 由 $E_i$ 是开集知存在 $O(x, \delta_i) \subset E_i,$ 取 $\delta = \min\limits_{1 \leqslant i \leqslant n} \delta_i,$ 则 $\forall 1 \leqslant i \leqslant n, O(x, \delta) \subset E_i,$ 即 $\bigcap\limits_{i=1}^n E_i$ 是开集.
+(2). $\forall~x \in \bigcap\limits_{i=1}^n E_i,$ 则 $\forall~1 \leqslant i \leqslant n, x \in E_i,$ 由 $E_i$ 是开集知存在 $O(x, \delta_i) \subset E_i,$ 取 $\delta = \min\limits_{1 \leqslant i \leqslant n} \delta_i,$ 则 $\forall~1 \leqslant i \leqslant n, O(x, \delta) \subset E_i,$ 即 $\bigcap\limits_{i=1}^n E_i$ 是开集.
 
 \pause
 \vspace{1em}
@@ -742,9 +742,9 @@ $\mathbb{R}^n$ 中任意多闭集的并不一定仍是闭集,
 设 $\{ \Delta_k \}$ 是 $\mathbb{R}^n$ 中的一列闭矩体, $\Delta_k = \{ x \in \mathbb{R}^n: ~ a_i^k \leqslant x_i \leqslant b_i^k, ~ 1 \leqslant i \leqslant n \},$ 且满足
 $$\Delta_1 \supset \Delta_2 \supset \cdots \supset \Delta_k \supset \cdots,$$
 或者写为
-$$a_i^1 \leqslant a_i^2 \leqslant \cdots \leqslant a_i^k \leqslant \cdots \leqslant b_i^k \leqslant \cdots \leqslant b_i^2 \leqslant b_i^1, ~~ \forall 1 \leqslant i \leqslant n,$$
-并且 $\lim\limits_{k\to\infty} (b_i^k - a_i^k) = 0, \forall 1 \leqslant i \leqslant n,$ 则存在唯一的点 $x \in \mathbb{R}^n,$ 使得 $x \in \bigcap\limits_{k=1}^{\infty} \Delta_k,$ 并且满足
-$$\lim\limits_{k\to\infty} a_i^k = \lim\limits_{k\to\infty} b_i^k = x_i, ~~ \forall 1 \leqslant i \leqslant n.$$
+$$a_i^1 \leqslant a_i^2 \leqslant \cdots \leqslant a_i^k \leqslant \cdots \leqslant b_i^k \leqslant \cdots \leqslant b_i^2 \leqslant b_i^1, ~~ \forall~1 \leqslant i \leqslant n,$$
+并且 $\lim\limits_{k\to\infty} (b_i^k - a_i^k) = 0, \forall~1 \leqslant i \leqslant n,$ 则存在唯一的点 $x \in \mathbb{R}^n,$ 使得 $x \in \bigcap\limits_{k=1}^{\infty} \Delta_k,$ 并且满足
+$$\lim\limits_{k\to\infty} a_i^k = \lim\limits_{k\to\infty} b_i^k = x_i, ~~ \forall~1 \leqslant i \leqslant n.$$
 \end{thm}
 
 \end{frame}
@@ -985,7 +985,7 @@ $$G_m = \mathbb{R}^n \setminus \overline{O(x, 1/m)} = \left\{ y \in \mathbb{R}^n
 
 \pause
 
-由于 $x$ 是 $E$ 的聚点, 即存在 $x_k \in E, x_k \neq x,$ 且 $\lim\limits_{k\to\infty} x_k = x,$ 于是对任意 $m,$ 存在 $K_m$ 使得 $d(x, x_k) < 1/m, \forall k > K_m,$ 从而 $x_k \not\in G_m, \forall k > K_m.$ 这表明每个 $G_m$ 都只含有有限个 $x_k,$ 从而 $\{ G_m \}$ 的任意有限子覆盖都只含有有限个 $x_k,$ 从而不能覆盖 $E,$ 矛盾.
+由于 $x$ 是 $E$ 的聚点, 即存在 $x_k \in E, x_k \neq x,$ 且 $\lim\limits_{k\to\infty} x_k = x,$ 于是对任意 $m,$ 存在 $K_m$ 使得 $d(x, x_k) < 1/m, \forall~k > K_m,$ 从而 $x_k \not\in G_m, \forall~k > K_m.$ 这表明每个 $G_m$ 都只含有有限个 $x_k,$ 从而 $\{ G_m \}$ 的任意有限子覆盖都只含有有限个 $x_k,$ 从而不能覆盖 $E,$ 矛盾.
 
 \end{frame}
 
@@ -1030,12 +1030,12 @@ $E$ 的任意无限子集在 $E$ 中必有聚点.
 \vspace{1em}
 
 假设 $E$ 是有界闭集, 那么从 $S$ 中任选一个可列子集 $\{ x_k \},$ 那么它也构成了一个没有重复元素的点列,
-由 Bolzano-Weierstra\ss 定理知 $\{ x_k \}_{k\in\mathbb{N}}$ 必有收敛子列. 可以不妨设 $\{ x_k \}_{k\in\mathbb{N}}$ 本身就是收敛的, 假设收敛到 $x,$ 那么任取 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $d(x_k, x) < \varepsilon, \forall k > K,$ 即 $x_k \in O(x, \varepsilon)$ 对所有 $k > K$ 成立, 从而 $\mathring{O}(x, \varepsilon) \cap S \neq \emptyset,$ 即 $x$ 是 $S$ 的聚点. 由于 $E$ 是闭集, 从而 $x \in E.$
+由 Bolzano-Weierstra\ss 定理知 $\{ x_k \}_{k\in\mathbb{N}}$ 必有收敛子列. 可以不妨设 $\{ x_k \}_{k\in\mathbb{N}}$ 本身就是收敛的, 假设收敛到 $x,$ 那么任取 $\varepsilon > 0,$ 存在正整数 $K,$ 使得 $d(x_k, x) < \varepsilon, \forall~k > K,$ 即 $x_k \in O(x, \varepsilon)$ 对所有 $k > K$ 成立, 从而 $\mathring{O}(x, \varepsilon) \cap S \neq \emptyset,$ 即 $x$ 是 $S$ 的聚点. 由于 $E$ 是闭集, 从而 $x \in E.$
 
 \pause
 \vspace{1em}
 
-另一个方向, 只要证明 $E$ 有界集即可. 用反证法, 假设 $E$ 无界, 那么 $\forall k \in \mathbb{N},$ 存在 $x_k \in E,$ 使得 $\lVert x_k \rVert > \max\{k, \lVert x_{k-1} \rVert + 1\}$ (约定 $x_0$ 为 $E$ 中任意一点), 从而 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $E$ 的无限子集, 但是它没有聚点, 矛盾.
+另一个方向, 只要证明 $E$ 有界集即可. 用反证法, 假设 $E$ 无界, 那么 $\forall~k \in \mathbb{N},$ 存在 $x_k \in E,$ 使得 $\lVert x_k \rVert > \max\{k, \lVert x_{k-1} \rVert + 1\}$ (约定 $x_0$ 为 $E$ 中任意一点), 从而 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $E$ 的无限子集, 但是它没有聚点, 矛盾.
 
 \end{frame}
 
