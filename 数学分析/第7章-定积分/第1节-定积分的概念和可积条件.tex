@@ -364,7 +364,11 @@ $$
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{振幅与可积条件}
+
+\begin{Def}[振幅]
+
+\end{Def}
 
 \end{frame}
 
@@ -375,7 +379,51 @@ $$
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{零测集}
+
+介绍函数黎曼可积的勒贝格判别法之前, 先要引入一些概念.
+
+\begin{Def}[零测集]
+称 $E \subset \mathbb{R}$ 为零测集, 若 $\forall~\varepsilon > 0,$ 总存在 $E$ 的开覆盖 $\displaystyle E \subset \bigcup_{i \in I} (a_i, b_i),$ 这些开区间互不相交, 且满足 $\sum\limits_{i \in I} (b_i - a_i) < \varepsilon.$
+\end{Def}
+
+一般来说, 对一般的 $E \subset \mathbb{R}$ 可以定义它的 (外) 测度, 但对于零测集的定义, 我们不需要引入这套理论. 指标集 $I$ 可以证明是至多可列集, 故和式 $\sum\limits_{i \in I} (b_i - a_i)$ 是良定义的 (见后续章节 - 数项级数).
+
+\pause
+
+\begin{eg}[一些典型的零测集和典型的非零测集]
+\begin{itemize}
+\item 可列集必然是零测集, 例如 $\mathbb{Q}.$
+\pause
+\item 非退化区间 $(a, b),$ $a < b,$ 必然是非零测集.
+\end{itemize}
+\end{eg}
+
+\pause
+
+\alert{注意}, 集合的势和是否是零测集有一定关系, 但不是严格一一对应的关系. 例如, 所谓的 Cantor 三分集, 具有连续统的势, 但是是零测集.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{几乎处处成立的性质}
+
+\begin{Def}[几乎处处成立的性质]
+称某性质 $\mathcal{P}$ 在 $E \subset \mathbb{R}$ 上几乎处处成立, 若存在某个零测集 $Z \subset E,$ 使得性质 $\mathcal{P}$ 在 $E \setminus Z$ 上处处成立.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{函数黎曼可积的勒贝格判别法}
+
+\begin{thm}[函数黎曼可积的勒贝格判别法]
+定义在闭区间 $[a, b]$ 上的函数 $f$ 是黎曼可积的, \alert{当且仅当} $f$ 在 $[a, b]$ 上有界, 且几乎处处连续.
+\end{thm}
 
 \end{frame}
 
