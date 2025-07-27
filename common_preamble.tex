@@ -80,6 +80,15 @@
 }
 \makeatother
 
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{4pt}
+  \setlength\belowdisplayskip{4pt}
+  \setlength\abovedisplayshortskip{2pt}
+  \setlength\belowdisplayshortskip{2pt}
+}
+\makeatother
+
 \newtheorem{thm}{定理}[section]
 \newtheorem{prop}[thm]{命题}
 \newtheorem{lem}[thm]{引理}
@@ -172,3 +181,14 @@ colback=blue!30, boxrule=1pt,
 
 \newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
 \newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+
+\makeatletter
+\g@addto@macro\normalsize{%
+\setlength\abovedisplayskip{4pt plus 2pt minus 1pt}       % 默认约 12pt plus 3pt minus 9pt
+\setlength\belowdisplayskip{4pt plus 2pt minus 1pt}       % 默认约 12pt plus 3pt minus 9pt
+\setlength\abovedisplayshortskip{2pt plus 1pt minus 0.5pt} % 默认约 0pt plus 3pt
+\setlength\belowdisplayshortskip{2pt plus 1pt minus 0.5pt} % 默认约 7pt plus 3pt minus 4pt
+}
+\makeatother
+
