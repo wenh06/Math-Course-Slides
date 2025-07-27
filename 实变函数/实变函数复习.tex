@@ -137,7 +137,7 @@ $\mathbb{R}$ 中开集 $G$: 所有点都是内点, 即
 
 比开、闭集更广义的集类:
 \begin{center}
-$G_{\delta}$-集: 可列多个开集的交 \quad $F_{\sigma}$-集: 可列多个闭集的并
+$G_{\delta}$-集: 可列多个开集的交 \quad\quad $F_{\sigma}$-集: 可列多个闭集的并
 
 $G_{\delta\sigma}$-集, $F_{\sigma\delta}$-集, $\dots$
 \end{center}
@@ -218,7 +218,7 @@ m G_0 = \sum_{n=1}^{\infty} \sum_{k=1}^{2^{n-1}} m I_{nk}= \sum_{n=1}^{\infty} \
 
 %------------------------------------------------
 
-\begin{frame}{内、外测度}
+\begin{frame}{内、外测度 | 可测集}
 
 \begin{itemize}
 \item 外测度: $\displaystyle m^* E = \inf_{G \supset E} m G$
@@ -233,13 +233,45 @@ m G_0 = \sum_{n=1}^{\infty} \sum_{k=1}^{2^{n-1}} m I_{nk}= \sum_{n=1}^{\infty} \
 $m E$ 称为 $E$ 的测度.
 \end{Def}
 
+\pause
+
+\begin{block}{可测集运算性质}
+\begin{itemize}
+\item 补集: 若 $E$ 可测, 则 $\mathscr{C}E$ 可测
+\item 有限交/并: 若 $E_1,E_2$ 可测, 则 $E_1 \cap E_2, E_1 \cup E_2$ 可测
+\item 可列交/并: 若 $\{E_n\}$ 可测, 则 $\bigcap_{n=1}^{\infty}E_n, \bigcup_{n=1}^{\infty}E_n$ 可测
+% \item 单调极限: 若 $\{E_n\}$ 单调, 则 $m\left(\lim_{n \to \infty}E_n\right) = \lim_{n \to \infty}mE_n$
+\end{itemize}
+\end{block}
+
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{可测集}
+\begin{frame}{可测的等价条件}
 
+\begin{block}{Carathéodory 条件}
+集 $E \subset \mathbb{R}$ 可测的等价条件: $\forall ~ A \subset \mathbb{R}$，恒有
+\[
+m^*(A) = m^*(A \cap E) + m^*(A \cap \mathscr{C}E).
+\]
+\end{block}
 
+\pause
+
+\begin{block}{更多的可测等价条件}
+\begin{itemize}
+\item $\forall ~ \varepsilon > 0,$ 存在 (闭集) $F \subset E \subset G$ (开集), $m (G \setminus F) < \varepsilon.$
+\pause
+\item (\alert{等测包、等测核}) 存在 ($F_{\sigma}$-集) $B \subset E \subset A$ ($G_{\delta}$-集), 使得 $m (A \setminus B) = 0.$
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{外测度的正则性}
+对任意集 (\alert{可能不可测}) $E \subset \mathbb{R},$ 存在 $G_{\delta}$-集 $A,$ 使得 $E \subset A,$ 且有 $m A = m^* E.$
+\end{block}
 
 \end{frame}
 
@@ -247,7 +279,26 @@ $m E$ 称为 $E$ 的测度.
 
 \begin{frame}{渐缩、渐张可测集列}
 
+渐缩可测集列
+\[
+E_1 \supset E_2 \supset \cdots \supset E_n \supset \cdots
+\]
+\alert{若还满足 $m E_n < \infty$} (对某个 $n$), 那么
+\[
+m \left( \bigcap_{n=1}^{\infty} E_n \right) = \lim_{n\to\infty} m E_n.
+\]
 
+\pause
+\vspace{1em}
+
+渐张可测集列
+\[
+E_1 \subset E_2 \subset \cdots \subset E_n \subset \cdots
+\]
+那么
+\[
+m \left( \bigcup_{n=1}^{\infty} E_n \right) = \lim_{n\to\infty} m E_n.
+\]
 
 \end{frame}
 
@@ -255,7 +306,34 @@ $m E$ 称为 $E$ 的测度.
 
 \begin{frame}{环, $\sigma$ 环, $\sigma$ 代数及其上的测度}
 
+\begin{itemize}
+\item[\Circled{1}] $A, A' \in \alert{\mathcal{R}} \Rightarrow A \cap A' \in \alert{\mathcal{R}}$ \tikzcoord{ring-item1}
+\item[\Circled{2}] $A, A' \in \alert{\mathcal{R}} \Rightarrow A \cup A' \in \alert{\mathcal{R}}$ \tikzcoord{ring-item2}
+\item[\Circled{2'}] $A_n \in \alert{\mathcal{R}},\ n \in \mathbb{N} \Rightarrow \bigcup_{n \in \mathbb{N}} A_n \in \alert{\mathcal{R}}$ \tikzcoord{ring-item2p}
+\item[\Circled{3}] 基本集 $X \in \alert{\mathcal{R}}$ \tikzcoord{ring-item3}
+\end{itemize}
 
+\begin{tikzpicture}[remember picture,overlay]
+
+\draw[decorate,decoration={brace,amplitude=5pt},thick]
+($(ring-item1)+(1em,1.8ex)$) -- ($(ring-item2)+(1em,-0.5ex)$)
+node[midway,xshift=1.4em] {\alert{环}};
+
+\draw[decorate,decoration={brace,amplitude=5pt},thick]
+($(ring-item2p)+(1em,8.7ex)$) -- ($(ring-item2p)+(1em,-1.5ex)$)
+node[midway,xshift=1.8em] {\alert{$\sigma$-环}};
+
+\draw[decorate,decoration={brace,amplitude=5pt},thick]
+($(ring-item2p)+(4.5em,9.0ex)$) -- ($(ring-item2p)+(4.5em,-6ex)$)
+node[midway,xshift=2.4em] {\alert{$\sigma$-代数}};
+
+\end{tikzpicture}
+
+\pause
+
+\begin{adjustbox}{width=1.0\textwidth}
+\input{tikz-figures/measure-extension}
+\end{adjustbox}
 
 \end{frame}
 

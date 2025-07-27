@@ -12,8 +12,8 @@
   highlight/.style={rectangle,rounded corners,fill=red!15,draw,
     fill opacity=0.5,thick,inner sep=0pt}
 }
-\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
-  baseline=(#1.base)] \node (#1) {#2};}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture, baseline=(#1.base)] \node (#1) {#2};}
+\newcommand{\tikzcoord}[1]{\tikz[remember picture,baseline] \node[coordinate] (#1) {};}
 
 \newcommand{\Highlight}[1][submatrix]{%
     \tikz[overlay,remember picture]{
@@ -63,8 +63,8 @@
 \def\f{{\mathbf{F}}}
 \def\x{\mathbf{x}}
 \renewcommand\r{{\bf r}}
-\def \[{\begin{equation}}
-\def \]{\end{equation}}
+% \def \[{\begin{equation}}
+% \def \]{\end{equation}}
 
 \def\qed{{\hfill\qedsymbol}}
 
@@ -159,8 +159,8 @@
 
 \setcounter{tocdepth}{1}
 
-
 \everymath{\displaystyle}
+% \setbeamertemplate{equations}[default]
 
 \allowdisplaybreaks
 
@@ -192,3 +192,4 @@ colback=blue!30, boxrule=1pt,
 }
 \makeatother
 
+\newcommand{\verteq}{\rotatebox{90}{$\,=$}}
