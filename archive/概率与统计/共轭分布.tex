@@ -49,7 +49,7 @@
 \vspace{0.5em}
 
 先来回忆一下贝叶斯公式
-$$p(\theta \mid x)={\dfrac{p(x \mid \theta)\, p(\theta)}{ \int p(x \mid \theta')\,p(\theta')\,d\theta '}}$$
+\[p(\theta \mid x)={\dfrac{p(x \mid \theta)\, p(\theta)}{ \int p(x \mid \theta')\,p(\theta')\,d\theta '}}\]
 希望从数据$x$来推断参数$\theta$的分布（密度）。假设似然函数$p(x \mid \theta)$取定（这是一个合理的假设，因为一般地，由数据的产生过程，就能很好的确定似然函数）。
 
 \end{frame}
@@ -90,9 +90,9 @@ $$p(\theta \mid x)={\dfrac{p(x \mid \theta)\, p(\theta)}{ \int p(x \mid \theta')
 \pause
 
 事实上，取先验分布为Beta分布$Beta(\alpha,\beta)$, 即
-$$p(\theta) = \dfrac{\theta^{\alpha-1} (1-\theta)^{\beta-1}}{\mathrm{B}(\alpha,\beta)}$$
+\[p(\theta) = \dfrac{\theta^{\alpha-1} (1-\theta)^{\beta-1}}{\mathrm{B}(\alpha,\beta)}\]
 似然分布为二项分布$B(n,\theta)$:
-$$p(x \mid \theta) = C_n^x \theta^x (1-\theta)^x$$
+\[p(x \mid \theta) = C_n^x \theta^x (1-\theta)^x\]
 \end{block}
 
 \end{frame}
@@ -109,7 +109,7 @@ p(\theta \mid x) \quad & {\color{red}\propto} \quad p(x \mid \theta) p(\theta) \
 & {\color{green}\propto} \quad \dfrac{\theta^{\alpha+x-1} (1-\theta)^{\beta+n-x-1}}{\mathrm{B}(\alpha+x,\beta+n-x)} \sim Beta(\alpha+x,\beta+n-x)
 \end{align*}
 ${\color{red}\propto}$的系数为
-$$\left( \int_0^1 C_n^x \dfrac{\theta'^{\alpha+x-1} (1-\theta')^{\beta+n-x-1}}{\mathrm{B}(\alpha,\beta)} d\theta' \right)^{-1} = \dfrac{\mathrm{B}(\alpha,\beta)}{C_n^x \mathrm{B}(\alpha+x,\beta+n-x)}$$
+\[\left( \int_0^1 C_n^x \dfrac{\theta'^{\alpha+x-1} (1-\theta')^{\beta+n-x-1}}{\mathrm{B}(\alpha,\beta)} d\theta' \right)^{-1} = \dfrac{\mathrm{B}(\alpha,\beta)}{C_n^x \mathrm{B}(\alpha+x,\beta+n-x)}\]
 于是有${\color{green}\propto}$（实际是=）。
 \end{block}
 
@@ -141,7 +141,7 @@ $N(\mu_{prior},\sigma^2_{prior})$ & $N(\theta,\sigma^2)$ & $N(\mu_{post},\sigma^
 \renewcommand{\arraystretch}{1}
 \end{center}
 最后一行参数的关系式为
-$$\dfrac{\mu_{post}}{\sigma^2_{post}} = \dfrac{\mu_{prior}}{\sigma^2_{prior}} + \dfrac{x}{\sigma^2}, \quad \dfrac{1}{\sigma^2_{post}} = \dfrac{1}{\sigma^2_{prior}} + \dfrac{1}{\sigma^2}$$
+\[\dfrac{\mu_{post}}{\sigma^2_{post}} = \dfrac{\mu_{prior}}{\sigma^2_{prior}} + \dfrac{x}{\sigma^2}, \quad \dfrac{1}{\sigma^2_{post}} = \dfrac{1}{\sigma^2_{prior}} + \dfrac{1}{\sigma^2}\]
 \end{block}
 
 \end{frame}

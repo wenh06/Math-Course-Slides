@@ -38,27 +38,27 @@
 \begin{frame}
 
 我们考虑$n$维{\bfseries 欧氏空间（Euclidean Space）}
-$$\mathbb{R}^n := \left\{ \mathbf{x} = (x_1,\ldots,x_n) \ \middle\vert \ x_i\in\mathbb{R}, 1\leqslant i \leqslant n \right\}.$$
+\[\mathbb{R}^n := \left\{ \mathbf{x} = (x_1,\ldots,x_n) \ \middle\vert \ x_i\in\mathbb{R}, 1\leqslant i \leqslant n \right\}.\]
 
 \pause
 
 % $\mathbb{R}^n$中可以定义内积（Inner Product）
-% $$\langle \vec{x}, \vec{y} \rangle := x_1y_1 + \cdots + x_ny_n,$$
+% \[\langle \vec{x}, \vec{y} \rangle := x_1y_1 + \cdots + x_ny_n,\]
 
 % \pause
 
 $\mathbb{R}^n$有自然范数（Norm）
-$$\Vert \mathbf{x} \Vert := \sqrt{x_1^2 + \cdots + x_n^2},$$
+\[\Vert \mathbf{x} \Vert := \sqrt{x_1^2 + \cdots + x_n^2},\]
 
 \pause
 
 以及更一般的$\ell_p$范数（$p\geqslant1$）
-$$\Vert \mathbf{x} \Vert_p := \left(|x_1|^p + \cdots + |x_n|^p\right)^{1/p}.$$
+\[\Vert \mathbf{x} \Vert_p := \left(|x_1|^p + \cdots + |x_n|^p\right)^{1/p}.\]
 
 \pause
 
 由范数可以诱导出$\mathbb{R}^n$中的距离，或称度量（Metric）
-$$d(\mathbf{x}, \mathbf{y}) = \Vert \mathbf{x} - \mathbf{y} \Vert = \sqrt{\sum\limits_{i=1}^n (x_i-y_i)^2}.$$
+\[d(\mathbf{x}, \mathbf{y}) = \Vert \mathbf{x} - \mathbf{y} \Vert = \sqrt{\sum\limits_{i=1}^n (x_i-y_i)^2}.\]
 
 \end{frame}
 
@@ -67,8 +67,8 @@ $$d(\mathbf{x}, \mathbf{y}) = \Vert \mathbf{x} - \mathbf{y} \Vert = \sqrt{\sum\l
 \begin{frame}
 
 机器学习的一些线性模型（Linear Models）
-$$\label{linear model}
-y_{pred}(b,\mathbf{w},\mathbf{x}) = b + w_1x_1 + \ldots + w_nx_n = b + \mathbf{w}\cdot\mathbf{x},$$
+\[\label{linear model}
+y_{pred}(b,\mathbf{w},\mathbf{x}) = b + w_1x_1 + \ldots + w_nx_n = b + \mathbf{w}\cdot\mathbf{x},\]
 在训练的时候为了平抑过拟合（Overfit）现象，会在损失函数期望的后面加一个正则化项（Regularization），或者叫罚项（Penalty）$R(\mathbf{w})$. $R(\mathbf{w})$可以是$\ell_2$或$\ell_1$正则化，Elastic Net等：
 \begin{align*}
 & \lVert\mathbf{w}\rVert_2 = \sqrt{\sum\limits_{1 \leqslant i \leqslant n} w_i^2}, \\
@@ -108,9 +108,9 @@ y_{pred}(b,\mathbf{w},\mathbf{x}) = b + w_1x_1 + \ldots + w_nx_n = b + \mathbf{w
 
 \begin{block}{多变量实值函数极限的定义}
 设函数$f: \mathbb{R}^n \ni E \to \mathbb{R}$在点$\mathbf{a}$的近旁有定义。若对任意$\varepsilon > 0$，都存在$\delta > 0$，使得对于满足$0 < d(\mathbf{a}, \mathbf{x}) < \delta$的任何$\mathbf{x}\in E$都有
-$$|f(\mathbf{x})-A| < \varepsilon,$$
+\[|f(\mathbf{x})-A| < \varepsilon,\]
 则称当$\mathbf{x}$趋于$\mathbf{a}$时，$f(\mathbf{x})$趋于$A$，说$f(\mathbf{x})$的{\bfseries 极限}是$A$，并记作
-$$\lim\limits_{\mathbf{x}\to \mathbf{a}}f(\mathbf{x}) = A.$$
+\[\lim\limits_{\mathbf{x}\to \mathbf{a}}f(\mathbf{x}) = A.\]
 若$f$在$\mathbf{a}$有定义且还有$f(\mathbf{a}) = \lim\limits_{\mathbf{x}\to \mathbf{a}}f(\mathbf{x}),$ 则称$f$在点$\mathbf{a}${\bfseries 连续}。
 \end{block}
 
@@ -150,7 +150,7 @@ f(a,-a^2) & = -\dfrac{1}{2} \\
 
 \begin{block}{方向极限}
 设$\mathbf{v}\in\mathbb{R}^n, \mathbf{v} \neq \mathbf{0},$ 如果下列极限存在
-$$\lim\limits_{t\to0+} f(\mathbf{a} + t\mathbf{v}),$$
+\[\lim\limits_{t\to0+} f(\mathbf{a} + t\mathbf{v}),\]
 则称其为多变量函数$f$沿方向$\mathbf{v}$在点$\mathbf{a}$的方向极限。
 \end{block}
 
@@ -166,7 +166,7 @@ $$\lim\limits_{t\to0+} f(\mathbf{a} + t\mathbf{v}),$$
 
 \begin{block}{例子}
 例如，还是考虑函数\(\displaystyle f(x,y) = \dfrac{x^2y}{x^4+y^2}\)在$(0,0)$点处的情况。对任何$\mathbf{v} = (v_1,v_2)\neq(0,0)$, 有
-$$\lim\limits_{t\to0+} f(t\mathbf{v}) = \lim\limits_{t\to0+} \dfrac{t^3v_1v_2}{t^4v_1^4 + t^2v_2^2} = 0.$$
+\[\lim\limits_{t\to0+} f(t\mathbf{v}) = \lim\limits_{t\to0+} \dfrac{t^3v_1v_2}{t^4v_1^4 + t^2v_2^2} = 0.\]
 也就是说这个函数在原点处的所有方向极限都等于$0$.
 \end{block}
 
@@ -187,9 +187,9 @@ $$\lim\limits_{t\to0+} f(t\mathbf{v}) = \lim\limits_{t\to0+} \dfrac{t^3v_1v_2}{t
 
 \begin{block}{多变量向量值函数极限的定义}
 设函数$\mathbf{f}: \mathbb{R}^n \supset E \to \mathbb{R}$在点$\mathbf{a}$的近旁有定义。若对任意$\varepsilon > 0$，都存在$\delta > 0$，使得对于满足$0 < d(\mathbf{a}, \mathbf{x}) < \delta$的任何$\mathbf{x}\in E$都有
-$$d(\mathbf{f}(\mathbf{x}), \mathbf{A}) < \varepsilon,$$
+\[d(\mathbf{f}(\mathbf{x}), \mathbf{A}) < \varepsilon,\]
 则称当$\mathbf{x}$趋于$\mathbf{a}$时，$\mathbf{f}(\mathbf{x})$趋于$\mathbf{A}$，说$\mathbf{f}(\mathbf{x})$的{\bfseries 极限}是$\mathbf{A}$，并记作
-$$\lim\limits_{\mathbf{x}\to \mathbf{a}}\mathbf{f}(\mathbf{x}) = \mathbf{A}.$$
+\[\lim\limits_{\mathbf{x}\to \mathbf{a}}\mathbf{f}(\mathbf{x}) = \mathbf{A}.\]
 若$\mathbf{f}$在$\mathbf{a}$有定义且还有$\mathbf{f}(\mathbf{a}) = \lim\limits_{\mathbf{x} \to \mathbf{a}} \mathbf{f}(\mathbf{x}),$ 则称$\mathbf{f}$在点$\mathbf{a}${\bfseries 连续}。
 \end{block}
 
@@ -200,13 +200,13 @@ $$\lim\limits_{\mathbf{x}\to \mathbf{a}}\mathbf{f}(\mathbf{x}) = \mathbf{A}.$$
 \begin{frame}
 
 多变量向量值函数$\mathbf{f}:\mathbb{R}^n \supset E \to \mathbb{R}^m$等价于给出$m$个实值函数（即每个坐标）$f_i: E \to \mathbb{R}.$令$\mathbf{A} = (A_1,\ldots,A_m), \mathbf{y} = (y_1,\ldots,y_m) \in \mathbb{R}^m,$那么
-$$|y_i - A_i| \leqslant d(\mathbf{y}, \mathbf{A}) \leqslant \sqrt{m}\cdot \max\limits_{1\leqslant i \leqslant m} |y_i - A_i|.$$
+\[|y_i - A_i| \leqslant d(\mathbf{y}, \mathbf{A}) \leqslant \sqrt{m}\cdot \max\limits_{1\leqslant i \leqslant m} |y_i - A_i|.\]
 回忆一下，\(\displaystyle d(\mathbf{y}, \mathbf{A}) = \sqrt{\sum\limits_{i=1}^m (y_i - A_i)^2}.\)
 
 \pause
 
 于是我们有
-$$\lim\limits_{\mathbf{x}\to\mathbf{a}} \mathbf{f}(\mathbf{x}) = \mathbf{A} \Longleftrightarrow \lim\limits_{\mathbf{x}\to\mathbf{a}} f_i(\mathbf{x}) = A_i, 1\leqslant i \leqslant m.$$
+\[\lim\limits_{\mathbf{x}\to\mathbf{a}} \mathbf{f}(\mathbf{x}) = \mathbf{A} \Longleftrightarrow \lim\limits_{\mathbf{x}\to\mathbf{a}} f_i(\mathbf{x}) = A_i, 1\leqslant i \leqslant m.\]
 
 \pause
 

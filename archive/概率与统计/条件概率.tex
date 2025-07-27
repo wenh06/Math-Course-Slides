@@ -47,7 +47,7 @@
 
 \begin{block}{条件概率，Conditional Probability}
 设有$A,B$两个随机事件，且$P(B) > 0$, 称
-$$P(A|B) = \dfrac{P(AB)}{P(B)}$$
+\[P(A|B) = \dfrac{P(AB)}{P(B)}\]
 为``在事件$B$发生的条件下，事件$A$发生''的条件概率。
 \end{block}
 
@@ -68,7 +68,7 @@ $$P(A|B) = \dfrac{P(AB)}{P(B)}$$
 \pause
 
 解：样本空间为
-$$\Omega = \{gg, gb, bg, bb\}$$
+\[\Omega = \{gg, gb, bg, bb\}\]
 其中$g$代表女孩，$b$代表男孩，字母的顺序代表出生次序，每一个样本点是一个（类）家庭。
 \begin{itemize}
 \item 事件``有一个孩子是男孩''为$A = \{gb,bg,bb\}$.
@@ -76,7 +76,7 @@ $$\Omega = \{gg, gb, bg, bb\}$$
 \end{itemize}
 
 于是``该家庭有一个男孩，另一个小孩还是男孩''为条件概率
-$$P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{P(B)}{P(A)} = \dfrac{1}{3}$$
+\[P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{P(B)}{P(A)} = \dfrac{1}{3}\]
 \end{block}
 
 \end{frame}
@@ -92,14 +92,14 @@ $$P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{P(B)}{P(A)} = \dfrac{1}{3}$$
 \pause
 
 解：这个问题中，我们的样本空间要变了：
-$$\Omega = \{g_g, g_b, b_g, b_b\}$$
+\[\Omega = \{g_g, g_b, b_g, b_b\}\]
 样本点变成了孩子（的性别），下标为他（她）家里另一个小孩的性别。我们在这个问题中要考虑的事件也相应地变为了
 \begin{itemize}
 \item ``（这个孩子）是一个男孩''$A = \{b_g, b_b\}$
 \item ``（这个孩子）有一个兄弟''$B = \{g_b, b_b\}$
 \end{itemize}
 相应的（条件）概率为
-$$P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{1}{2}$$
+\[P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{1}{2}\]
 \end{block}
 
 \end{frame}
@@ -114,12 +114,12 @@ $$P(B|A) = \dfrac{P(AB)}{P(A)} = \dfrac{1}{2}$$
 
 \begin{block}{乘积公式}
 设有两个事件$A,B$，满足$P(B) > 0$, 那么
-$$P(AB) = P(B)\cdot P(A|B)$$
+\[P(AB) = P(B)\cdot P(A|B)\]
 
 \pause
 
 证明：这个直接根据条件概率的定义即可得到：
-$$P(A|B) = \dfrac{P(AB)}{P(B)} \; \Longrightarrow \; P(AB) = P(B)\cdot P(A|B)$$
+\[P(A|B) = \dfrac{P(AB)}{P(B)} \; \Longrightarrow \; P(AB) = P(B)\cdot P(A|B)\]
 \end{block}
 
 \end{frame}
@@ -130,7 +130,7 @@ $$P(A|B) = \dfrac{P(AB)}{P(B)} \; \Longrightarrow \; P(AB) = P(B)\cdot P(A|B)$$
 
 \begin{block}{链式法则}
 把以上关于两个事件的乘积公式，用数学归纳法可以扩展到$n$个事件的乘积公式：
-$$P(A_1\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1\cdots A_{n-1}).$$
+\[P(A_1\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1\cdots A_{n-1}).\]
 当然，前提是假设$P(A_1\cdots A_{n-1}) > 0.$ 乘积公式又被称作是链式法则。
 \end{block}
 
@@ -146,7 +146,7 @@ $$P(A_1\cdots A_n) = P(A_1)P(A_2|A_1)\cdots P(A_n|A_1\cdots A_{n-1}).$$
 
 \begin{block}{全概率公式}
 假设$\Omega = \sum\limits_n A_n$是把样本空间$\Omega$划分为不相交集合的分割，即事件$A_n$之间互不相容，那么对任意事件$B$,有
-$$P(B) = \sum\limits_n P(A_n)P(B|A_n).$$ \pause
+\[P(B) = \sum\limits_n P(A_n)P(B|A_n).\] \pause
 也就是说，事件$B$可能在很多互斥的情形下发生，那么它发生的总体的概率等于各种情形发生的概率以及相应条件概率乘积的求和。
 \end{block}
 
@@ -170,14 +170,14 @@ P(B) & = P(B\Omega) = P(B\sum\limits_n A_n) = \sum\limits_n P(BA_n) \\
 
 \begin{block}{贝叶斯公式，Bayes' Rule}
 设$A,B$是两个随机事件，且假设$P(B) > 0$, 那么
-$$P(A|B) = \dfrac{P(B|A)P(A)}{P(B)}$$
+\[P(A|B) = \dfrac{P(B|A)P(A)}{P(B)}\]
 以上被称作贝叶斯公式。
 
 \vspace{1em}
 \pause
 
 若更进一步，$\Omega = \sum\limits_n A_n$是把样本空间$\Omega$划分为不相交集合的分割，那么
-$$P(A_n|B) = \dfrac{P(A_n)P(B|A_n)}{\sum\limits_i P(A_i)P(B|A_i)}$$
+\[P(A_n|B) = \dfrac{P(A_n)P(B|A_n)}{\sum\limits_i P(A_i)P(B|A_i)}\]
 \end{block}
 
 \end{frame}
@@ -198,7 +198,7 @@ $$P(A_n|B) = \dfrac{P(A_n)P(B|A_n)}{\sum\limits_i P(A_i)P(B|A_i)}$$
 \pause
 
 贝叶斯公式于是也可以写作
-$$\underbrace{P(A_n|B)}_{\substack{\text{后验概率} \\ \text{Posterior}}} \propto \underbrace{P(B|A_n)}_{\substack{\text{似然} \\ \text{Likelihood}}} \cdot \underbrace{P(A_n)}_{\substack{\text{先验概率} \\ \text{Prior}}}$$
+\[\underbrace{P(A_n|B)}_{\substack{\text{后验概率} \\ \text{Posterior}}} \propto \underbrace{P(B|A_n)}_{\substack{\text{似然} \\ \text{Likelihood}}} \cdot \underbrace{P(A_n)}_{\substack{\text{先验概率} \\ \text{Prior}}}\]
 上式中的符号$\propto$表示成正比。
 
 \end{frame}
@@ -235,7 +235,7 @@ P(A_1|B_1) & = \dfrac{P(A_1)P(B_1|A_1)}{P(A_1)P(B_1|A_1) + P(A_2)P(B_1|A_2)} \\
 & = \dfrac{0.00001\times 0.99}{0.00001\times 0.99 + 0.99999\times 0.0001} \approx 9\%
 \end{align*}
 此人真实携带病毒的概率并不高。问题的关键在于False Positive Rate $P(B_1|A_2)$相对于病毒携带率$P(A_1)$太高。在医疗领域，更关心的往往是所谓的False Negative，将病毒携带者诊断成未携带病毒者（阴性），其概率为
-$$P(A_1|B_2) = \dfrac{P(A_1)P(B_2|A_1)}{P(A_1)P(B_2|A_1) + P(A_2)P(B_2|A_2)} \approx 10^{-7}.$$
+\[P(A_1|B_2) = \dfrac{P(A_1)P(B_2|A_1)}{P(A_1)P(B_2|A_1) + P(A_2)P(B_2|A_2)} \approx 10^{-7}.\]
 概率很低。
 
 \end{frame}
@@ -266,21 +266,21 @@ $$P(A_1|B_2) = \dfrac{P(A_1)P(B_2|A_1)}{P(A_1)P(B_2|A_1) + P(A_2)P(B_2|A_2)} \ap
 
 \begin{block}{独立事件}
 事件$A,B$相互独立，指的是有
-$$P(AB) = P(A)\cdot P(B)$$
+\[P(AB) = P(A)\cdot P(B)\]
 或者等价地，
-$$P(A|B) = P(A), \quad P(B|A) = P(B)$$
+\[P(A|B) = P(A), \quad P(B|A) = P(B)\]
 
 \vspace{1em}
 \pause
 
 可以定义多个事件的独立性：
-$$P(A_1A_2\cdots A_n) = P(A_1)P(A_2)\cdots P(A_n).$$
+\[P(A_1A_2\cdots A_n) = P(A_1)P(A_2)\cdots P(A_n).\]
 
 \vspace{1em}
 \pause
 
 {\color{red}注意}！
-$$\text{多个事件两两独立} \; \not\Rightarrow \text{这些事件是独立的}$$
+\[\text{多个事件两两独立} \; \not\Rightarrow \text{这些事件是独立的}\]
 \end{block}
 
 \end{frame}

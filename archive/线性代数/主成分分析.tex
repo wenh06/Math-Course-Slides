@@ -53,7 +53,7 @@
 \begin{frame}
 
 假设一个模型有$n$个变量
-$$X_1,X_2,\ldots,X_n$$
+\[X_1,X_2,\ldots,X_n\]
 例如一开始考虑的房价评估问题，我们列出了7个影响房价的变量。
 
 \vspace{1.5em}
@@ -97,7 +97,7 @@ $$X_1,X_2,\ldots,X_n$$
 \begin{frame}
 
 对于每个变量$X_j$，令$\mu_j$为其在这$m$个样本上的观测值的平均，即
-$$\mu_j = \dfrac{\sum\limits_{i=1}^m x_{ij}}{m}$$
+\[\mu_j = \dfrac{\sum\limits_{i=1}^m x_{ij}}{m}\]
 有如下的去平均值的矩阵
 \[
 \small
@@ -123,7 +123,7 @@ $$\mu_j = \dfrac{\sum\limits_{i=1}^m x_{ij}}{m}$$
 
 \begin{block}{协方差矩阵}
 定义以上这组样本数据的协方差矩阵（Covariance Matrix）为
-$$Cov = \dfrac{1}{m-1}XX^T$$
+\[Cov = \dfrac{1}{m-1}XX^T\]
 
 以上方阵的第$(i,j)$位元素（$i\neq j$）即为变量$X_i,X_j$的协方差$Cov(X_i,X_j)$. 当$Cov(X_i,X_j) = 0$时，$X_i,X_j$被称作无关的。对角线上的元素为相应变量的方差。
 
@@ -155,7 +155,7 @@ XX^T = U \begin{pmatrix} \sigma_1^2 & & & \\ & \ddots & & \\ & & \sigma_r^2 & \\
 
 \begin{block}{主成分分析}
 即
-$$(X^TU)^T (X^TU) = \begin{pmatrix} \sigma_1^2 & & & \\ & \ddots & & \\ & & \sigma_r^2 & \\ & & & \bigzero \end{pmatrix}_n.$$
+\[(X^TU)^T (X^TU) = \begin{pmatrix} \sigma_1^2 & & & \\ & \ddots & & \\ & & \sigma_r^2 & \\ & & & \bigzero \end{pmatrix}_n.\]
 也就是说，把原数据矩阵做正交的列变换（从原变量产生新的变量）$Y^T = X^TU$, 新得到的$n$个变量$Y_i$之中
 \begin{itemize}
 \item 不同变量之间的协方差是$0$, 也就是说是无关的。
@@ -175,9 +175,9 @@ $$(X^TU)^T (X^TU) = \begin{pmatrix} \sigma_1^2 & & & \\ & \ddots & & \\ & & \sig
 
 \begin{block}{主成分分析与奇异值分解}
 如果$X$有（快速实现的）奇异值分解
-$$X = U \underbrace{\begin{pmatrix} \sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}}_{\Sigma} V^T$$
+\[X = U \underbrace{\begin{pmatrix} \sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}}_{\Sigma} V^T\]
 相应的主成分分析即为
-$$XX^T = (U\Sigma V^T) (V\Sigma^T U^T) = U (\Sigma\Sigma^T) U^T$$
+\[XX^T = (U\Sigma V^T) (V\Sigma^T U^T) = U (\Sigma\Sigma^T) U^T\]
 即不用先计算协方差矩阵，再将其进行特征分解（正交对角化）。
 \end{block}
 

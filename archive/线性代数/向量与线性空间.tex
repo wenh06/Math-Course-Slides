@@ -51,9 +51,9 @@
 
 \begin{block}{向量，Vector}
 一个$n$维向量，指的是一个有序的$n$元数组$(a_1,a_2,\cdots,a_n)$, 其中$a_i\in\mathbb{R}$都是实数。一般，我们把它写成列的形式：
-$$\alpha = \begin{pmatrix}
+\[\alpha = \begin{pmatrix}
 a_1 \\ a_2 \\ \vdots \\ a_n
-\end{pmatrix} = (a_1,a_2,\cdots,a_n)^T$$
+\end{pmatrix} = (a_1,a_2,\cdots,a_n)^T\]
 
 \pause
 
@@ -72,9 +72,9 @@ a_1 \\ a_2 \\ \vdots \\ a_n
 \begin{block}{向量的运算}
 \begin{itemize}
 \item<1-> 向量的加法：
-$$\begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} + \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix} = \begin{pmatrix} a_1 + b_1 \\ \vdots \\ a_n + b_n \end{pmatrix}$$
+\[\begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} + \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix} = \begin{pmatrix} a_1 + b_1 \\ \vdots \\ a_n + b_n \end{pmatrix}\]
 \item<2-> 数乘，$t\in\mathbb{R}$：
-$$t \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}t = \begin{pmatrix} ta_1 \\ \vdots \\ ta_n \end{pmatrix}$$
+\[t \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}t = \begin{pmatrix} ta_1 \\ \vdots \\ ta_n \end{pmatrix}\]
 \item<3-> 向量加法与数乘的关系：
 \begin{itemize}
 \item $(s+t)\alpha = s\alpha + t\alpha$,
@@ -92,7 +92,7 @@ $$t \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix} = \begin{pmatrix} a_1 \\ 
 
 \begin{block}{向量的内积（点积，数量积），Inner Product (Dot Product, Scalar Product)}
 设\(\displaystyle \alpha = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}, \beta = \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix}\)为两个$n$维向量，他们的内积（点积，数量积）被定义作
-$$\langle \alpha, \beta \rangle = \alpha\cdot\beta = a_1b_1 + \cdots + a_nb_n.$$
+\[\langle \alpha, \beta \rangle = \alpha\cdot\beta = a_1b_1 + \cdots + a_nb_n.\]
 
 \pause
 
@@ -112,11 +112,11 @@ $$\langle \alpha, \beta \rangle = \alpha\cdot\beta = a_1b_1 + \cdots + a_nb_n.$$
 \begin{block}{向量的范数，Norm}
 \begin{itemize}
 \item<1-> $\ell_p$-范数（$p\geqslant 1$）：
-$$\Vert \alpha \Vert_p := \left( \vert a_1 \vert^p + \vert a_2 \vert^p + \cdots + \vert a_n \vert^p \right)^{1/p}.$$
+\[\Vert \alpha \Vert_p := \left( \vert a_1 \vert^p + \vert a_2 \vert^p + \cdots + \vert a_n \vert^p \right)^{1/p}.\]
 \item<2-> 自然范数（$p = 2$）：
-$$\Vert \alpha \Vert := \sqrt{a_1^2 + a_2^2 + \cdots + a_n^p}.$$
+\[\Vert \alpha \Vert := \sqrt{a_1^2 + a_2^2 + \cdots + a_n^p}.\]
 \item<3-> $\infty$-范数：
-$$\Vert \alpha \Vert_{\infty} := \lim\limits_{p\to\infty} \Vert \alpha \Vert_p = \max_{1\leqslant i \leqslant n} \vert a_i \vert.$$
+\[\Vert \alpha \Vert_{\infty} := \lim\limits_{p\to\infty} \Vert \alpha \Vert_p = \max_{1\leqslant i \leqslant n} \vert a_i \vert.\]
 \end{itemize}
 \end{block}
 
@@ -160,9 +160,9 @@ $\theta = \arccos \dfrac{\langle \alpha, \beta \rangle}{\Vert \alpha \Vert \cdot
 设$V \subset \mathbb{R}^n$是$\mathbb{R}^n$中的非空子集合，即一个由一些$n$维列向量构成的集合，满足
 \begin{itemize}
 \item 对向量的加法是封闭的, 即
-$$\alpha, \beta \in V \Longrightarrow \alpha + \beta \in V,$$
+\[\alpha, \beta \in V \Longrightarrow \alpha + \beta \in V,\]
 \item 对向量的数乘运算是封闭的, 即
-$$\alpha \in V, t \in \mathbb{R} \Longrightarrow t\alpha \in V.$$
+\[\alpha \in V, t \in \mathbb{R} \Longrightarrow t\alpha \in V.\]
 \end{itemize}
 则称$V$是一个（有限维）线性空间（向量空间）。
 \end{block}
@@ -271,10 +271,10 @@ x \\ y \\ z\end{pmatrix} \in \mathbb{R}^3 \ \middle| \ x + 4y -2z = 0\right\} \)
 \begin{block}{向量间的线性关系 -- 线性组合与线性表出}
 \begin{itemize}
 \item<1-> 设$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$ $\in V$是线性空间$V$中$s$个向量, $t_1,$ $t_2,$ $\dots,$ $t_s$ $\in \mathbb{R}$是$s$个实数, 称
-$$t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s$$
+\[t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s\]
 是$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$ 的{\bfseries 线性组合（Linear Combination）}。
 \item<2-> 若对于给定的向量$\beta \in V$, 存在一组数$t_1,$ $t_2,$ $\ldots,$ $t_s$ $\in \mathbb{R}$使得
-$$\beta = t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s$$
+\[\beta = t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s\]
 则称$\beta$是$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$的一个线性组合, 也称$\beta$可由$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s${\bfseries 线性表出}。
 \item<3-> 如果对于一组向量$\beta_1,$ $\beta_2,$ $\ldots,$ $\beta_t$ $\in V$，其中每个向量都能被向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$线性表出，则称向量组$\beta_1,$ $\beta_2,$ $\ldots,$ $\beta_t$能被向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$线性表出。
 \end{itemize}
@@ -288,9 +288,9 @@ $$\beta = t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s$$
 
 \begin{block}{向量线性生成的子空间}
 设$\alpha_1,\ldots,\alpha_s$为线性空间$V$的一组向量。线性组合全体
-$$\left\{ t_1\alpha_1 + \cdots t_s\alpha_s \ \middle|\ t_1,\ldots,t_s\in\mathbb{R} \right\}$$
+\[\left\{ t_1\alpha_1 + \cdots t_s\alpha_s \ \middle|\ t_1,\ldots,t_s\in\mathbb{R} \right\}\]
 组成了$V$的一个线性子空间，被称为由$\alpha_1,\ldots,\alpha_s$线性生成（张成）的子空间。记作
-$$\operatorname{span}\left\{\alpha_1, \ldots, \alpha_s\right\}.$$
+\[\operatorname{span}\left\{\alpha_1, \ldots, \alpha_s\right\}.\]
 \end{block}
 
 \end{frame}
@@ -301,7 +301,7 @@ $$\operatorname{span}\left\{\alpha_1, \ldots, \alpha_s\right\}.$$
 
 \begin{block}{向量间的线性关系 -- 线性相关与线性无关}
 给定向量空间$V$中$s$个向量$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$, 若存在{\color{red}不全为零}的常数 $t_1,$ $t_2,$ $\dots,$ $t_s$ $\in \mathbb{R}$使得
-$$t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s = \mathbf{0},$$
+\[t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s = \mathbf{0},\]
 则称这个向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$是{\bfseries 线性相关的（Linearly Dependent）}
 \newline \pause \vspace{1em}
 否则, 称这个向量组是{\bfseries 线性无关的（Linearly Independent）}。
@@ -324,7 +324,7 @@ $$t_1 \alpha_1 + t_2 \alpha_2 + \cdots + t_s \alpha_s = \mathbf{0},$$
 \pause
 
 数$r$被称作向量组$\alpha_1,$ $\alpha_2,$ $\ldots,$ $\alpha_s$的{\bfseries 秩（rank）}，记作
-$$r(\alpha_1, \alpha_2, \ldots, \alpha_s)$$
+\[r(\alpha_1, \alpha_2, \ldots, \alpha_s)\]
 我们还约定，只含零向量$\mathbf{0}$的向量组的秩等于$0$.
 \end{block}
 
@@ -384,12 +384,12 @@ $\mathbb{R}^3$的一组基可以选取为自然基\(\displaystyle e_1 = \begin{p
 
 \begin{block}{例子}
 $2\times 2$矩阵全体
-$$M_{2\times 2}(\mathbb{R}) = \left\{ \begin{pmatrix}
-a & b \\ c & d \end{pmatrix} \ \middle|\ a,b,c,d \in \mathbb{R} \right\}$$
+\[M_{2\times 2}(\mathbb{R}) = \left\{ \begin{pmatrix}
+a & b \\ c & d \end{pmatrix} \ \middle|\ a,b,c,d \in \mathbb{R} \right\}\]
 是一个4维线性空间。它的一组基可以选为自然基
-$$\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}.$$
+\[\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}.\]
 以下的4个方阵也构成$M_{2\times 2}(\mathbb{R})$的一组基
-$$\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & -1 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}, \; \begin{pmatrix} 0 & -2 \\ 0 & 3 \end{pmatrix}.$$
+\[\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & -1 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}, \; \begin{pmatrix} 0 & -2 \\ 0 & 3 \end{pmatrix}.\]
 \end{block}
 
 \end{frame}
@@ -404,14 +404,14 @@ $$\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}, \; \begin{pmatrix} 0 & -1 \\ 0 &
 
 \begin{block}{从线性空间的角度来看线性方程组}
 把线性方程组$A\mathbf{x} = \mathbf{b}$的系数矩阵$A$写成列向量组成的行的形式
-$$A = (\alpha_1, \alpha_2, \ldots, \alpha_n),$$
+\[A = (\alpha_1, \alpha_2, \ldots, \alpha_n),\]
 原方程组即可写作
-$$x_1\alpha_1 + x_2\alpha_2 + \cdots + x_n\alpha_n = \mathbf{b}.$$
+\[x_1\alpha_1 + x_2\alpha_2 + \cdots + x_n\alpha_n = \mathbf{b}.\]
 
 \pause
 
 于是
-$$A\mathbf{x} = \mathbf{b} \text{ 有解 } \Longleftrightarrow \mathbf{b} \in \operatorname{span}\left\{ \alpha_1, \alpha_2, \ldots, \alpha_n \right\} \subset \mathbb{R}^m.$$
+\[A\mathbf{x} = \mathbf{b} \text{ 有解 } \Longleftrightarrow \mathbf{b} \in \operatorname{span}\left\{ \alpha_1, \alpha_2, \ldots, \alpha_n \right\} \subset \mathbb{R}^m.\]
 
 $\operatorname{span}\left\{ \alpha_1, \alpha_2, \ldots, \alpha_n \right\}$被称作是矩阵$A$的列空间（Column Space），记作$C(A)$.
 \end{block}
@@ -424,18 +424,18 @@ $\operatorname{span}\left\{ \alpha_1, \alpha_2, \ldots, \alpha_n \right\}$被称
 
 \begin{block}{从线性空间的角度来看线性方程组}
 类似地，把线性方程组$A\mathbf{x} = \mathbf{b}$的系数矩阵$A$写成行向量组成的列的形式
-$$A = (\beta_1, \ldots, \beta_m)^T,$$
+\[A = (\beta_1, \ldots, \beta_m)^T,\]
 原方程组即可写作
-$$\begin{cases}
+\[\begin{cases}
 \langle \beta_1, \mathbf{x} \rangle = b_1 \\
 \phantom{yyy} \vdots \\
 \langle \beta_m, \mathbf{x} \rangle = b_m \\
-\end{cases}$$
+\end{cases}\]
 
 \pause
 
 于是，
-$$A\mathbf{x} = \mathbf{b} \text{ 有解 } \Longleftrightarrow \text{ 存在$\mathbf{x}$使得$\langle \beta_i, \mathbf{x} \rangle = b_i$}$$
+\[A\mathbf{x} = \mathbf{b} \text{ 有解 } \Longleftrightarrow \text{ 存在$\mathbf{x}$使得$\langle \beta_i, \mathbf{x} \rangle = b_i$}\]
 \end{block}
 
 \end{frame}

@@ -43,7 +43,7 @@
 
 \begin{block}{多变量实值函数取局部极值的必要条件}
 设实值函数$f$定义在点$\mathbf{x} = (x_1,\ldots,x_n)$的一个邻域$U(\mathbf{x})$，且关于每个自变量的偏导数都存在。若$f$在点$\mathbf{x}$处有局部极值，那么
-$$\partial_i f(\mathbf{x}) = 0, \quad i = 1,\ldots,n.$$
+\[\partial_i f(\mathbf{x}) = 0, \quad i = 1,\ldots,n.\]
 \end{block}
 
 \end{frame}
@@ -58,7 +58,7 @@ $$\partial_i f(\mathbf{x}) = 0, \quad i = 1,\ldots,n.$$
 
 \begin{block}{多变量实值函数取局部极值的充分条件}
 设函数$f$在点$\mathbf{x} = (x_1,\ldots,x_n)$的一个邻域$U(\mathbf{x})$上有直到2阶的连续偏导数，且所有1阶偏导数在点$\mathbf{x}$的值都等于0。如果$f$在$\mathbf{x}$处的泰勒展开式
-$$f(\mathbf{x} + \mathbf{h}) = f(\mathbf{x}) + \dfrac{1}{2!} \sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j + r_3(\mathbf{x}; \mathbf{h})$$
+\[f(\mathbf{x} + \mathbf{h}) = f(\mathbf{x}) + \dfrac{1}{2!} \sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j + r_3(\mathbf{x}; \mathbf{h})\]
 中的二次型\(\displaystyle \sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j\)
 \begin{itemize}
 \item 正定（Positive Definite）时$f$在点$\mathbf{x}$取得严格局部极小值；
@@ -75,11 +75,11 @@ $$f(\mathbf{x} + \mathbf{h}) = f(\mathbf{x}) + \dfrac{1}{2!} \sum\limits_{i,j=1}
 
 \begin{block}{黑塞矩阵，Hessian}
 把二次型\(\displaystyle \sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j\)写成矩阵形式
-$$\mathbf{h}\begin{pmatrix}
+\[\mathbf{h}\begin{pmatrix}
 \dfrac{\partial^2 f}{\partial x_1 \partial x_1} & \cdots & \dfrac{\partial^2 f}{\partial x_1 \partial x_n} \\
 \vdots & & \vdots \\
 \dfrac{\partial^2 f}{\partial x_n \partial x_1} & \cdots & \dfrac{\partial^2 f}{\partial x_n \partial x_n}
-\end{pmatrix}\mathbf{h}^T$$
+\end{pmatrix}\mathbf{h}^T\]
 中间的矩阵被称作是$f$在点$\mathbf{x}$的黑塞矩阵，记作$H(f).$
 \end{block}
 
@@ -91,15 +91,15 @@ $$\mathbf{h}\begin{pmatrix}
 
 \begin{block}{一个简单的例子}
 考虑函数$f(x,y) = x^2-y^2.$ 我们有
-$$\dfrac{\partial f}{\partial x} = 2x, \quad \dfrac{\partial f}{\partial y} = -2y.$$
+\[\dfrac{\partial f}{\partial x} = 2x, \quad \dfrac{\partial f}{\partial y} = -2y.\]
 那么函数$f$只有可能在$(0,0)$取到局部极值。
 
 \pause
 
 接下来我们来看它的黑塞矩阵
-$$H(f) = \begin{pmatrix}
+\[H(f) = \begin{pmatrix}
 2 & 0 \\ 0 & -2
-\end{pmatrix},$$
+\end{pmatrix},\]
 在原点处（以及在任何地方）都是不定的，因此原点不是它的局部极值点。
 \end{block}
 

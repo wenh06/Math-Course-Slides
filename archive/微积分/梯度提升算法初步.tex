@@ -72,7 +72,7 @@
 
 \begin{frame}
 
-对于损失函数的期望（即在训练集上的求和）$$\mathbb{E}_{y,\mathbf{x}}[L(y, F(\mathbf{x}))] = \sum\limits_{i=1}^N L(y_i, F(\mathbf{x}_i)),$$
+对于损失函数的期望（即在训练集上的求和）\[\mathbb{E}_{y,\mathbf{x}}[L(y, F(\mathbf{x}))] = \sum\limits_{i=1}^N L(y_i, F(\mathbf{x}_i)),\]
 在第$m$步，我们考虑的是，在$F_{m-1}$上加上一个什么样的$f_m$，能使损失函数的期望进一步降低（比第$m-1$步的时候），即
 \begin{align*}
 f_m & = \argmin_{f} \sum\limits_{i=1}^N L(y_i, F_{m-1}(\mathbf{x}_i) + f(\mathbf{x}_i)) \\
@@ -86,10 +86,10 @@ f_m & = \argmin_{f} \sum\limits_{i=1}^N L(y_i, F_{m-1}(\mathbf{x}_i) + f(\mathbf
 \begin{frame}
 
 于是根据梯度下降法，自然的选择是取$f_m$使得
-$$f_m(\mathbf{x}_i) = -\gamma_m \partial_2 L(y_i, F_{m-1}(\mathbf{x}_i)).$$
+\[f_m(\mathbf{x}_i) = -\gamma_m \partial_2 L(y_i, F_{m-1}(\mathbf{x}_i)).\]
 
 也就是原算法迭代步骤第4行所说的，将
-$$\left\{(\partial_2 L(y_i, F_{m-1}(\mathbf{x}_i)), \mathbf{x}_i) \right\}_{i=1}^N$$
+\[\left\{(\partial_2 L(y_i, F_{m-1}(\mathbf{x}_i)), \mathbf{x}_i) \right\}_{i=1}^N\]
 作为训练集训练 weak learner $f_m(\mathbf{x})$，再去搜索前面的系数$\gamma_m$。
 
 \vspace{2em}
@@ -113,9 +113,9 @@ $$\left\{(\partial_2 L(y_i, F_{m-1}(\mathbf{x}_i)), \mathbf{x}_i) \right\}_{i=1}
 % & + \dfrac{\partial_2^2 L(y, F_{m-1}(\mathbf{x}))}{2} (f(\mathbf{x}))^2 + \text{余项},
 % \end{align*}
 % 并用二阶的牛顿法替代一阶的最速下降法，相应的第$m$步增量为
-% $$
+% \[
 % -\dfrac{\mathbb{E}_{y,\mathbf{x}}[\partial_2 L(y, F_{m-1}(\mathbf{x}))]}{\mathbb{E}_{y,\mathbf{x}}[\partial_2^2 L(y, F_{m-1}(\mathbf{x}))]}
-% $$
+% \]
 % \end{block}
 
 % \end{frame}

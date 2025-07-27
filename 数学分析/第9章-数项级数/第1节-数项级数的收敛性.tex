@@ -77,9 +77,9 @@ $\cdots\cdots$\\
 \vspace*{-0.9em}
 
 % {\larger[2]\color{red}
-% $$
+% \[
 % 1 = \dfrac{1}{2} + \dfrac{1}{4} + \cdots + \dfrac{1}{2^n} + \cdots ~ !
-% $$
+% \]
 % }
 {\larger[2]
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
@@ -102,7 +102,7 @@ $\cdots\cdots$\\
 \begin{frame}{数项级数定义}
 
 设 $x_1, x_2, \dots, x_n, \dots$ 是无穷可列个实数, 我们称它们的{\color{red}“和”}
-$$x_1 + x_2 + \cdots + x_n + \cdots$$
+\[x_1 + x_2 + \cdots + x_n + \cdots\]
 为\textbf{无穷数项级数}（简称\textbf{级数}）, （形式上）记为 $\sum\limits_{n=1}^\infty x_n,$ 其中 $x_n$ 称为级数的\textbf{通项}或\textbf{一般项}.
 
 \pause
@@ -147,7 +147,7 @@ S_n & = x_1 + x_2 + \cdots + x_n, \\
 
 \begin{Def}
 如果部分和数列 $\{S_n\}$ 收敛于有限实数 $S,$ 则称无穷级数 $\sum\limits_{n=1}^\infty x_n$ 收敛, 且称它的和为 $S,$ 记为
-$$S = \sum\limits_{n=1}^\infty x_n.$$
+\[S = \sum\limits_{n=1}^\infty x_n.\]
 \pause
 \vspace*{-0.3em}
 如果部分和数列 $\{S_n\}$ 发散, 则称无穷级数 $\sum\limits_{n=1}^\infty x_n$ 发散.
@@ -175,11 +175,11 @@ $$S = \sum\limits_{n=1}^\infty x_n.$$
 \begin{frame}{数项级数的典型例子 | {\smaller 几何级数}}
 
 设 $|q| < 1,$ 则\textbf{几何级数}（即\textbf{等比数列}）
-$$\sum\limits_{n=1}^\infty q^{n-1} = 1 + q + q^2 + \cdots + q^n + \cdots$$
+\[\sum\limits_{n=1}^\infty q^{n-1} = 1 + q + q^2 + \cdots + q^n + \cdots\]
 是收敛的.
 \pause
 这是因为它的部分和数列通项为
-$$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - ~ {\color{red}q^n}}{1 - q} ~~ \xrightarrow{\phantom{+} {\color{red}n \to \infty} \phantom{+}} ~~ \dfrac{1}{1 - q}$$
+\[S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - ~ {\color{red}q^n}}{1 - q} ~~ \xrightarrow{\phantom{+} {\color{red}n \to \infty} \phantom{+}} ~~ \dfrac{1}{1 - q}\]
 
 \end{frame}
 
@@ -188,14 +188,14 @@ $$S_n = \sum\limits_{k=1}^n q^{k-1} = \dfrac{1 - ~ {\color{red}q^n}}{1 - q} ~~ \
 \begin{frame}{数项级数的典型例子 | {\smaller 发散级数}}
 
 级数
-$$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots$$
+\[\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots\]
 是发散的.
 \pause
 这是因为它的部分和数列通项为
-$$S_n = \begin{cases}
+\[S_n = \begin{cases}
 0, & \text{$n$为偶数}, \\
 1, & \text{$n$为奇数}.
-\end{cases}$$
+\end{cases}\]
 显然数列 $\{S_n\}$ 是发散的.
 
 \pause
@@ -210,7 +210,7 @@ $$S_n = \begin{cases}
 
 \begin{frame}{数项级数的典型例子 | {\smaller $\zeta$}}
 
-$$\zeta(s) = \sum\limits_{n=1}^\infty \dfrac{1}{n^s} = 1 + \dfrac{1}{2^s} + \dfrac{1}{3^s} + \cdots + \dfrac{1}{n^s} + \cdots$$
+\[\zeta(s) = \sum\limits_{n=1}^\infty \dfrac{1}{n^s} = 1 + \dfrac{1}{2^s} + \dfrac{1}{3^s} + \cdots + \dfrac{1}{n^s} + \cdots\]
 被称作 $\zeta$ 函数, 是现代 \textbf{(解析) 数论}的中心研究对象之一. 上述定义式对实部大于 $1$ 的复数都有意义, 并且可以解析延拓为整个复数域 $\mathbb{C}$ 上的一个亚纯函数. 著名的Riemann猜想就是关于 $\zeta(s)$ 的：
 % \begin{block}{Riemann猜想}
 % \begin{center}
@@ -251,7 +251,7 @@ $\cdots\cdots$\\
 \vspace*{0.5em}
 
 将所有路程加起来, 有
-$$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-1}S_1 + \cdots = \dfrac{S_1}{1 - q}$$
+\[\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-1}S_1 + \cdots = \dfrac{S_1}{1 - q}\]
 这~{\color{red}无限段}路程之和是~{\color{red}有限}的,也就是说, 当 Achilles 跑完路程 $S = \dfrac{S_1}{1 - q}$ (即经过了~{\color{red}有限}的时间 $T = \dfrac{S_1}{(1-q)v_2}$ 秒) 时, 他已经追上了乌龟!
 
 \end{frame}
@@ -270,16 +270,16 @@ $$\color{red!80} S_1 + S_2 + \cdots + S_n + \cdots = S_1 + qS_1 + \cdots + q^{n-
 
 \begin{thm}[数项级数收敛的必要条件]
 设级数 $\sum\limits_{n=1}^\infty x_n$ 收敛, 则其通项所构成的数列 $\{x_n\}$ 是无穷小量, 即
-$$\lim\limits_{n\to\infty} x_n = 0.$$
+\[\lim\limits_{n\to\infty} x_n = 0.\]
 \end{thm}
 
 \pause
 
 \textbf{证明：}
 设 $\sum\limits_{n=1}^\infty x_n = S,$ 则对级数部分和 $S_n = \sum\limits_{k=1}^n x_k$ 成立
-$$\lim\limits_{n\to\infty} S_n = \lim\limits_{n\to\infty} S_{n-1} = S,$$
+\[\lim\limits_{n\to\infty} S_n = \lim\limits_{n\to\infty} S_{n-1} = S,\]
 于是得到
-$$\lim\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} (S_n - S_{n-1}) = \lim\limits_{n\to\infty} S_n - \lim\limits_{n\to\infty} S_{n-1} = 0.$$
+\[\lim\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} (S_n - S_{n-1}) = \lim\limits_{n\to\infty} S_n - \lim\limits_{n\to\infty} S_{n-1} = 0.\]
 
 \end{frame}
 
@@ -290,7 +290,7 @@ $$\lim\limits_{n\to\infty} x_n = \lim\limits_{n\to\infty} (S_n - S_{n-1}) = \lim
 % \begin{block}{注意}
 \begin{attnblock}
 $\lim\limits_{n\to\infty} x_n = 0$ 只是级数收敛的必要条件, 并~{\color{red}不是充分条件}. 例如
-$$\zeta(1) = \sum\limits_{n=1}^{\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots$$
+\[\zeta(1) = \sum\limits_{n=1}^{\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac{1}{3} + \cdots + \dfrac{1}{n} + \cdots\]
 就满足这一必要条件, 但它本身是发散的.
 \end{attnblock}
 
@@ -298,7 +298,7 @@ $$\zeta(1) = \sum\limits_{n=1}^{\infty} \dfrac{1}{n} = 1 + \dfrac{1}{2} + \dfrac
 \vspace*{0.5em}
 
 这一必要条件的一个重要作用在于, 可以用于直接判断某些级数发散, 例如我们已经看过的例子
-$$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots$$
+\[\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots\]
 现在可以直接通过其通项$(-1)^{n-1}$不是无穷小量得出这一级数发散的结论, 而不需要再去求它的部分和数列, 并判断其是否收敛.
 
 \end{frame}
@@ -309,7 +309,7 @@ $$\sum\limits_{n=1}^\infty (-1)^{n-1} = 1 - 1 + 1 - \cdots + (-1)^{n-1} + \cdots
 
 \begin{thm}[收敛级数运算的线性性]
 设 $\sum\limits_{n=1}^\infty a_n = A,$ $\sum\limits_{n=1}^\infty b_n = B,$ $\alpha, \beta$ 是两个常数, 那么
-$$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
+\[\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.\]
 \end{thm}
 
 也就是说, 对~{\color{red}收敛级数}可以进行加法以及数乘的运算.
@@ -319,7 +319,7 @@ $$\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B.$$
 
 \textbf{证明：}
 设级数 $\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$ 的部分和数列分别为 $\{S_n^{(1)}\}, \{S_n^{(2)}\},$ 那么对 $\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n)$ 的部分和数列 $\{S_n\}$ 有 $S_n = \alpha S_n^{(1)} + \beta S_n^{(2)}.$ 对 $n$ 取极限, 并利用极限的线性性, 即有
-$$\lim\limits_{n\to\infty} S_n = \alpha \lim\limits_{n\to\infty} S_n^{(1)} + \beta \lim\limits_{n\to\infty} S_n^{(2)} = \alpha A + \beta B.$$
+\[\lim\limits_{n\to\infty} S_n = \alpha \lim\limits_{n\to\infty} S_n^{(1)} + \beta \lim\limits_{n\to\infty} S_n^{(2)} = \alpha A + \beta B.\]
 
 \end{frame}
 
@@ -350,7 +350,7 @@ $$\lim\limits_{n\to\infty} S_n = \alpha \lim\limits_{n\to\infty} S_n^{(1)} + \be
 \begin{frame}{收敛级数的加法结合律}
 
 在公式 $\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n) = \alpha A + \beta B$ 中取 $\beta = 0,$ 那么可以得到~{\color{red} 收敛级数关于数乘的分配律}
-$$\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\infty a_n,$$
+\[\sum\limits_{n=1}^\infty \alpha a_n = \alpha A = \alpha \sum\limits_{n=1}^\infty a_n,\]
 那么一个自然的问题是, 有限个实数(加法)运算的其他性质, 例如~{\color{red}结合律、交换律}等, 对于级数而言是否还成立呢？
 
 \pause
@@ -415,14 +415,14 @@ U_{\color{red}k} & = y_1 + y_2 + \cdots + y_k = x_1 + x_2 + \cdots + x_{n_k} = S
 我们的反例如下：
 
 将发散级数 $\sum\limits_{n=1}^\infty (-1)^{n-1}$ 每两项之间加上括号, 则有
-$$(1-1) + (1-1) + \cdots + (1-1) + \cdots = 0 + 0 + \cdots + 0 + \cdots = 0$$
+\[(1-1) + (1-1) + \cdots + (1-1) + \cdots = 0 + 0 + \cdots + 0 + \cdots = 0\]
 
 \pause
 
 \vspace{0.4em}
 
 换一种方式, 从第二项开始, 每两项之间加上括号, 有
-$$1 - (1-1) - (1-1) + \cdots - (1-1) + \cdots = 1 + 0 + \cdots + 0 + \cdots = 1$$
+\[1 - (1-1) - (1-1) + \cdots - (1-1) + \cdots = 1 + 0 + \cdots + 0 + \cdots = 1\]
 
 \pause
 \vspace*{-0.6em}
@@ -439,9 +439,9 @@ $$1 - (1-1) - (1-1) + \cdots - (1-1) + \cdots = 1 + 0 + \cdots + 0 + \cdots = 1$
 
 \begin{attnblock}
 对于调换求和次序, 即
-$$
+\[
 \sum\limits_{n=1}^{\infty} x_{\sigma(n)}, ~~ \text{其中 $\sigma$ 是 $\mathbb{N}$ 的一个置换},
-$$
+\]
 \begin{itemize}
 \item 即使 $\sum\limits_{n=1}^{\infty} x_n$ (条件) 收敛, 也不能得出 $\sum\limits_{n=1}^{\infty} x_{\sigma(n)}$ 是收敛的;
 \item 即使 $\sum\limits_{n=1}^{\infty} x_{\sigma(n)}$ 收敛, 也不一定收敛到与 $\sum\limits_{n=1}^{\infty} x_n$ 相同的值.
@@ -459,7 +459,7 @@ $$
 \begin{frame}{黎曼重排定理}
 
 设级数 $\sum\limits_{n=1}^{\infty} x_n$ 条件收敛, 即 $\sum\limits_{n=1}^{\infty} |x_n|$ 发散 ($= + \infty$), 那么 $\forall ~ M \in \mathbb{R},$ 以及 $M = +\infty, -\infty,$ 存在 $\mathbb{N}$ 的置换 $\sigma,$ 使得
-$$\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M,$$
+\[\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M,\]
 同时还存在置换 $\widetilde{\sigma}$ 使得 $\sum\limits_{n=1}^{\infty} x_{\widetilde{\sigma}(n)}$ 发散且 $\neq \pm\infty.$
 
 \pause
@@ -558,7 +558,7 @@ scale=0.78,
 服药第三天, 患者体内药量增加 $0.05$ mg, 但之前剩下的药量被排泄掉 $20\%,$ 因此共计 $0.05 + (0.05 + 0.05\cdot(1-0.2))\cdot(1-0.2) = 0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2\right)$ mg;\\
 \pause
 $\cdots\cdots$ 以此类推, 长期服药后, 患者体内药量为
-$$0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2 + \left( \dfrac{4}{5} \right)^3 + \cdots \right) = 0.25 \text{(mg)}.$$
+\[0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2 + \left( \dfrac{4}{5} \right)^3 + \cdots \right) = 0.25 \text{(mg)}.\]
 
 \end{frame}
 
@@ -580,7 +580,7 @@ $$0.05\cdot\left(1 + \dfrac{4}{5} + \left( \dfrac{4}{5} \right)^2 + \left( \dfra
 {\smaller[1] $\arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} = \arctan\frac{\frac{1}{2n-1} - \frac{1}{2n+1}}{1 + \frac{1}{(2n+1)(2n-1)}} = \arctan\frac{1}{2n^2},$}
 
 所以
-$$\sum\limits_{n=1}^\infty \arctan \frac{1}{2n^2} = \sum\limits_{n=1}^\infty \left( \arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} \right) = \frac{\pi}{4}.$$
+\[\sum\limits_{n=1}^\infty \arctan \frac{1}{2n^2} = \sum\limits_{n=1}^\infty \left( \arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} \right) = \frac{\pi}{4}.\]
 
 \end{frame}
 
@@ -594,7 +594,7 @@ $$\sum\limits_{n=1}^\infty \arctan \frac{1}{2n^2} = \sum\limits_{n=1}^\infty \le
 
 % \begin{itemize}
 % \item[{\larger[2] \color{red} \ding{43}}] 数项级数的定义：
-% $$\sum\limits_{n=1}^\infty x_n := \text{它的部分和数列} \left\{ S_n = \sum\limits_{k=1}^n x_k \right\} \text{的极限}$$
+% \[\sum\limits_{n=1}^\infty x_n := \text{它的部分和数列} \left\{ S_n = \sum\limits_{k=1}^n x_k \right\} \text{的极限}\]
 % \pause
 % \vspace{0.4em}
 % \item[{\larger[2] \color{red} \ding{43}}] 数项级数收敛的~{\color{red}必要条件}：$\lim\limits_{n\to\infty} x_n = 0.$

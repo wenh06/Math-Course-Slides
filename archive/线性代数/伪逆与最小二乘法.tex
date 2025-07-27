@@ -42,7 +42,7 @@
 \vspace{1em}
 
 希望：定义一个伪逆（Pseudoinverse），记作$A^+$, 使得当$A$可逆的时候，$A$的伪逆就是它的逆，即
-$$A^+ = A^{-1}$$
+\[A^+ = A^{-1}\]
 如果可能的话，还要求当$A\mathbf{x} = \mathbf{b}$无解时，$\mathbf{x} = A^+\mathbf{b}$是``近似程度''最好的``解''。
 
 \end{frame}
@@ -71,7 +71,7 @@ $$A^+ = A^{-1}$$
 
 \begin{block}{矩阵的广义逆，Generalized Inverse}
 $m\times n$矩阵$A$的广义逆指的是一个$n\times m$的矩阵$X$, 满足
-$$AXA = A$$
+\[AXA = A\]
 通常把$A$的广义逆记作$A^-$.
 \end{block}
 
@@ -79,7 +79,7 @@ $$AXA = A$$
 
 \begin{block}{广义逆的普遍存在性}
 任意矩阵$A$的广义逆$A^-$总存在。设$P,Q$分别为$m$阶与$n$阶可逆阵，使得$A = P \begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\!\! Q$, 那么
-$$A^- = Q^{-1} \begin{pmatrix} I_r & * \\ *' & *'' \end{pmatrix}_{n\times m}\!\!\!\!\!\!\!\!\!\!\! P^{-1}$$
+\[A^- = Q^{-1} \begin{pmatrix} I_r & * \\ *' & *'' \end{pmatrix}_{n\times m}\!\!\!\!\!\!\!\!\!\!\! P^{-1}\]
 其中$r = r(A)$, $*,*',*''$分别是大小为$r \times (m-r)$, $(n-r) \times r$, 以及$(n-r) \times (m-r)$的块，块中元素可以任取。
 \end{block}
 
@@ -96,7 +96,7 @@ $$A^- = Q^{-1} \begin{pmatrix} I_r & * \\ *' & *'' \end{pmatrix}_{n\times m}\!\!
 
 \begin{block}{广义逆与齐次线性方程组}
 齐次线性方程组$A\mathbf{x} = \mathbf{0}$的解的全体为
-$$\mathbf{x} = (I_n - A^-A)\mathbf{z},$$
+\[\mathbf{x} = (I_n - A^-A)\mathbf{z},\]
 其中$A^-$取遍$A$的所有广义逆，$\mathbf{z}$取遍所有的$n$维列向量。
 \end{block}
 
@@ -104,7 +104,7 @@ $$\mathbf{x} = (I_n - A^-A)\mathbf{z},$$
 
 \begin{block}{广义逆与非齐次线性方程组}
 非齐次线性方程组$A\mathbf{x} = \mathbf{b}$有解，当且仅当存在$A$的广义逆$A^-$使得
-$$\mathbf{b} = A A^- \mathbf{b}.$$
+\[\mathbf{b} = A A^- \mathbf{b}.\]
 有解时，它的解的全体为$A^-\mathbf{b}$, $A^-$取遍$A$的所有广义逆。
 \end{block}
 
@@ -156,10 +156,10 @@ XAX = X \\
 
 \begin{block}{伪逆的存在性与唯一性}
 任意$m\times n$矩阵$A$的伪逆$A^+$都存在，而且
-$$A^+ = V\Sigma^+U^T,$$
+\[A^+ = V\Sigma^+U^T,\]
 其中$A = U\Sigma V^T$为矩阵$A$的奇异值分解，奇异值为$\sigma_1, \ldots, \sigma_r$,
-$$\Sigma^+ = \begin{pmatrix}
-\frac{1}{\sigma_1} & & & \\ & \ddots & & \\ & & \frac{1}{\sigma_r} & \\ & & & \bigzero \end{pmatrix}_{n\times m}$$
+\[\Sigma^+ = \begin{pmatrix}
+\frac{1}{\sigma_1} & & & \\ & \ddots & & \\ & & \frac{1}{\sigma_r} & \\ & & & \bigzero \end{pmatrix}_{n\times m}\]
 \end{block}
 
 \end{frame}
@@ -171,7 +171,7 @@ $$\Sigma^+ = \begin{pmatrix}
 
 \begin{block}{伪逆的另一种表达}
 $A$的奇异值分解又可以写作\(\displaystyle A = U\Sigma V^T = \sum\limits_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i^T \). 于是我们又有$A^+$的另一种表达
-$$A^+ = \sum\limits_{i=1}^r \sigma_i^{-1} \mathbf{v}_i \mathbf{u}_i^T$$
+\[A^+ = \sum\limits_{i=1}^r \sigma_i^{-1} \mathbf{v}_i \mathbf{u}_i^T\]
 其中这些$\mathbf{v}_i, \mathbf{u}_i$分别是正交阵$V$与$U$的列。
 \end{block}
 
@@ -188,9 +188,9 @@ $$A^+ = \sum\limits_{i=1}^r \sigma_i^{-1} \mathbf{v}_i \mathbf{u}_i^T$$
 
 \begin{block}{伪逆与线性方程组解的关系}
 对于线性方程组$A\mathbf{x} = \mathbf{b}$（$\mathbf{b}$可以是零向量也可以不是），它若有解，则解可以由系数矩阵$A$的Moore-Penrose伪逆统一给出：
-$$A^+\mathbf{b} + (I - A^+A)\mathbf{w}$$
+\[A^+\mathbf{b} + (I - A^+A)\mathbf{w}\]
 其中$\mathbf{w}$是任意一个$n$维列向量。当然，$A\mathbf{x} = \mathbf{b}$有解的充要条件为
-$$AA^+\mathbf{b} = \mathbf{b}$$
+\[AA^+\mathbf{b} = \mathbf{b}\]
 \end{block}
 
 \end{frame}
@@ -206,10 +206,10 @@ $$AA^+\mathbf{b} = \mathbf{b}$$
 
 \begin{block}{最小二乘法：问题分析}
 我们来考虑非齐次线性方程组$A\mathbf{x} = \mathbf{b}$无解的情况，$A$是一个$m\times n$矩阵。此时，我们有
-$$A\mathbf{x} = \mathbf{b}\text{无解} \Longleftrightarrow \mathbf{b}\not\in C(A)$$
+\[A\mathbf{x} = \mathbf{b}\text{无解} \Longleftrightarrow \mathbf{b}\not\in C(A)\]
 
 转而：在$C(A)$中寻找$A\widehat{\mathbf{x}}$, 使得它与$\mathbf{b}$最接近，即求
-$$\argmin_{\widehat{\mathbf{x}}}\lVert A\widehat{\mathbf{x}} - \mathbf{b} \rVert,$$
+\[\argmin_{\widehat{\mathbf{x}}}\lVert A\widehat{\mathbf{x}} - \mathbf{b} \rVert,\]
 并称其为一个最小二乘解。
 
 \vspace{2em}
@@ -275,7 +275,7 @@ $$\argmin_{\widehat{\mathbf{x}}}\lVert A\widehat{\mathbf{x}} - \mathbf{b} \rVert
 \end{align*}
 
 那么，问题转化为了求解非齐次线性方程组
-$$A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}$$
+\[A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}\]
 
 以上方程组（被称作法方程组，Normal Equations）的特点：
 \begin{itemize}
@@ -294,7 +294,7 @@ $$A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}$$
 \begin{block}{最小二乘解}
 \begin{itemize}
 \item<1-> 若$r(A) = n$, 那么$r(A^T) = r(A) = n$. 此时$A^TA$可逆，$A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}$有唯一解。于是我们得到唯一的最小二乘解
-$$\widehat{\mathbf{x}} = (A^TA)^{-1}A^T\mathbf{b}.$$
+\[\widehat{\mathbf{x}} = (A^TA)^{-1}A^T\mathbf{b}.\]
 \item<2-> 若$r(A) < n$, 那么$r(A^T) = r(A) < n$. 此时$A^TA$不可逆，$A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}$有无穷多组解，亦即最小二乘解有无穷多组。
 \end{itemize}
 \end{block}
@@ -357,7 +357,7 @@ A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \mathbf{0} & \Longrightarrow \sum\limi
 
 \begin{block}{最小二乘解}
 但是，我们知道$\mathbf{u}_1,\ldots,\mathbf{u}_r$是线性无关的（甚至是相互正交的），而且$\sigma_1,\ldots,\sigma_r$都是大于0的实数。于是
-$$\mathbf{v}_1^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \cdots = \mathbf{v}_r^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = 0.$$
+\[\mathbf{v}_1^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \cdots = \mathbf{v}_r^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = 0.\]
 那么
 \begin{align*}
 \langle \mathbf{x}^+, \widehat{\mathbf{x}}_0 - \mathbf{x}^+ \rangle & = (\mathbf{x}^+)^T (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) = (A^+\mathbf{b})^T (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \\
@@ -376,7 +376,7 @@ $$\mathbf{v}_1^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \cdots = \mathbf{v}_r^T
 
 \begin{block}{最小二乘解}
 因此，我们有
-$$\lVert \widehat{\mathbf{x}}_0 \rVert^2 = \lVert \mathbf{x}^+ + (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 = \lVert \mathbf{x}^+ \rVert^2 + \lVert (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 \geqslant \lVert \mathbf{x}^+ \rVert^2$$
+\[\lVert \widehat{\mathbf{x}}_0 \rVert^2 = \lVert \mathbf{x}^+ + (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 = \lVert \mathbf{x}^+ \rVert^2 + \lVert (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 \geqslant \lVert \mathbf{x}^+ \rVert^2\]
 也就是说$\mathbf{x}^+ = A^+\mathbf{b}$的确是长度最小的最小二乘解。
 \end{block}
 
@@ -394,9 +394,9 @@ $$\lVert \widehat{\mathbf{x}}_0 \rVert^2 = \lVert \mathbf{x}^+ + (\widehat{\math
 \pause
 
 根据矩阵乘积的秩关系
-$$A^TA\text{可逆} \Longrightarrow n = r(A^TA) = r(A) = r(\Sigma),$$
+\[A^TA\text{可逆} \Longrightarrow n = r(A^TA) = r(A) = r(\Sigma),\]
 于是，$\Sigma$就必须形如$\Sigma = \begin{pmatrix} \Sigma_0 \\ 0 \end{pmatrix}$, 其中$\Sigma_0 = diag(\sigma_1, \ldots, \sigma_n)$. 于是
-$$A^+ = V\begin{pmatrix} \Sigma_0^{-1} & 0 \end{pmatrix} U^T$$
+\[A^+ = V\begin{pmatrix} \Sigma_0^{-1} & 0 \end{pmatrix} U^T\]
 另一方面，
 \begin{align*}
 (A^TA)^{-1}A^T & = (V\Sigma^TU^TU\Sigma V^T)^{-1} V\Sigma^TU^T \\
@@ -412,13 +412,13 @@ $$A^+ = V\begin{pmatrix} \Sigma_0^{-1} & 0 \end{pmatrix} U^T$$
 \frametitle{最小二乘法}
 
 于是，最开始我们遇到的线性回归的问题
-$$
+\[
 \begin{cases}
 x_{11}w_1 + x_{12}w_2 + \cdots + x_{1n}w_n + 1\cdot b = y_1 \\
 x_{21}w_1 + x_{22}w_2 + \cdots + x_{2n}w_n + 1\cdot b = y_2 \\
 \phantom{yyy} \vdots \\
 x_{N1}w_1 + x_{N2}w_2 + \cdots + x_{Nn}w_n + 1\cdot b = y_N
-\end{cases}$$
+\end{cases}\]
 便用最小二乘法迎刃而解了。
 
 \end{frame}

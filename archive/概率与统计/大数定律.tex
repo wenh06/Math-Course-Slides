@@ -47,7 +47,7 @@
 
 \begin{block}{切比雪夫不等式，Chebyshev's Inequality}
 设随机变量$X$的期望$E(X)$与方差$Var(X)$都存在，那么对任意的正实数$\varepsilon > 0$, 下列不等式都成立
-$$P(\vert X - E(X) \vert \ge \varepsilon) \le \dfrac{Var(X)}{\varepsilon^2}$$
+\[P(\vert X - E(X) \vert \ge \varepsilon) \le \dfrac{Var(X)}{\varepsilon^2}\]
 \end{block}
 
 \end{frame}
@@ -82,14 +82,14 @@ $$P(\vert X - E(X) \vert \ge \varepsilon) \le \dfrac{Var(X)}{\varepsilon^2}$$
 
 \begin{block}{依概率收敛，Convergence in Probability}
 设$X_1,\ldots,X_n,\ldots$为一列随机变量，$a\in \mathbb{R}$为一个常数，若有
-$$\lim\limits_{n\to\infty} P(\vert X_n - a \vert < \varepsilon) = 1$$
+\[\lim\limits_{n\to\infty} P(\vert X_n - a \vert < \varepsilon) = 1\]
 对任意正实数$\varepsilon$成立，那么称随机变量序列$\{X_n\}_{n\ge1}$依概率收敛于$a$, 并记作
-$$X_n \xrightarrow{P} a$$
+\[X_n \xrightarrow{P} a\]
 
 \pause
 
 自然，我们可以类似地定义随机变量序列依概率收敛于一个随机变量
-$$X_n \xrightarrow{P} X$$
+\[X_n \xrightarrow{P} X\]
 \end{block}
 
 \end{frame}
@@ -100,9 +100,9 @@ $$X_n \xrightarrow{P} X$$
 
 \begin{block}{切比雪夫定理}
 设互相独立的随机变量序列$\{X_n\}_{n\ge1}$有相同的期望与方差，即
-$$E(X_n) = \mu, \; Var(X_n) = \sigma^2, \quad n=1,2,\ldots$$
+\[E(X_n) = \mu, \; Var(X_n) = \sigma^2, \quad n=1,2,\ldots\]
 那么$\dfrac{1}{n}\sum\limits_{i=1}^n X_i$依概率收敛于$\mu$, 也就是说
-$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \mu \right\vert < \varepsilon \right) = 1$$
+\[\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \mu \right\vert < \varepsilon \right) = 1\]
 对任意正实数$\varepsilon$成立。
 \end{block}
 
@@ -114,17 +114,17 @@ $$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_
 
 \begin{block}{伯努利大数定律，Law of Large Numbers, LLN}
 设$n_A$是$n$次独立重复试验中事件$A$的出现次数，$p$为每次试验中事件$A$出现的概率（即参数$p$的伯努利试验）。那么对任意的正实数$\varepsilon$, 有
-$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{n_A}{n} - \mu \right\vert < \varepsilon \right) = 1$$
+\[\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{n_A}{n} - \mu \right\vert < \varepsilon \right) = 1\]
 \end{block}
 
 \vspace{1em}
 \pause
 
 伯努利大数定律是切比雪夫定理的一个特殊情况，也就是说令
-$$X_n = \begin{cases}
+\[X_n = \begin{cases}
 1, & \text{若第$n$次试验中事件$A$发生} \\
 0, & \text{若第$n$次试验中事件$A$不发生}
-\end{cases} \quad n=1,2,\ldots$$
+\end{cases} \quad n=1,2,\ldots\]
 那么随机变量序列$\{X_n\}_{n\ge1}$满足切比雪夫定理条件。
 \end{frame}
 
@@ -158,7 +158,7 @@ $$X_n = \begin{cases}
 \item 马尔科夫（Markov）条件：$\lim\limits_{n\to\infty} \dfrac{1}{n}Var\left( \sum\limits_{i=1}^n X_i \right) = 0$
 \end{enumerate}
 那么对于任意正实数$\varepsilon$, 有
-$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \dfrac{1}{n}\sum\limits_{i=1}^n E(X_i) \right\vert < \varepsilon \right) = 1$$
+\[\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \dfrac{1}{n}\sum\limits_{i=1}^n E(X_i) \right\vert < \varepsilon \right) = 1\]
 \end{block}
 
 \end{frame}
@@ -169,7 +169,7 @@ $$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_
 
 \begin{block}{辛钦（Khinchin）大数定律}
 设$\{X_n\}_{n\ge1}$是一列独立同分布的随机变量，$E(X_n) = \mu$.那么对任意正实数$\varepsilon$, 有
-$$\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \mu \right\vert < \varepsilon \right) = 1$$
+\[\lim\limits_{n\to\infty} P\left( \left\vert \dfrac{1}{n}\sum\limits_{i=1}^n X_i - \mu \right\vert < \varepsilon \right) = 1\]
 \end{block}
 
 \vspace{1em}

@@ -67,7 +67,7 @@
 \pause
 
 $t=1$时，由单变量函数泰勒公式，有
-$$\varphi(1) = \varphi(0) + \dfrac{1}{1!}\varphi'(0) + \cdots + \dfrac{1}{n!}\varphi^{(n)}(0) + \text{余项}.$$
+\[\varphi(1) = \varphi(0) + \dfrac{1}{1!}\varphi'(0) + \cdots + \dfrac{1}{n!}\varphi^{(n)}(0) + \text{余项}.\]
 把$\varphi^{(k)}(0)$代入上式
 
 \end{frame}
@@ -78,7 +78,7 @@ $$\varphi(1) = \varphi(0) + \dfrac{1}{1!}\varphi'(0) + \cdots + \dfrac{1}{n!}\va
 
 \begin{block}{多变量实值函数的泰勒公式}
 设函数$f$在点$\mathbf{x} \in \mathbb{R}^n$的一个邻域$U(\mathbf{x}) \subset \mathbb{R}^n$上有定义，且在这个邻域上有直到$n+1$阶连续偏导。设$[\mathbf{x}, \mathbf{x} + \mathbf{h}] \subset U(\mathbf{x}),$ 那么
-$$f(\mathbf{x} + \mathbf{h}) = \sum\limits_{k=0}^n \dfrac{1}{k!} (\mathbf{h}\cdot\nabla)^k f(\mathbf{x}) + r_{n+1}(\mathbf{x}; \mathbf{h}).$$
+\[f(\mathbf{x} + \mathbf{h}) = \sum\limits_{k=0}^n \dfrac{1}{k!} (\mathbf{h}\cdot\nabla)^k f(\mathbf{x}) + r_{n+1}(\mathbf{x}; \mathbf{h}).\]
 \end{block}
 
 \end{frame}
@@ -93,14 +93,14 @@ $$f(\mathbf{x} + \mathbf{h}) = \sum\limits_{k=0}^n \dfrac{1}{k!} (\mathbf{h}\cdo
 
 \begin{block}{多变量实值函数的一阶近似}
 在点$\mathbf{x} \in \mathbb{R}^n$的一个小邻域内，可以有近似式
-$$f(\mathbf{x} + \mathbf{h}) \approx f(\mathbf{x}) + \mathbf{h}\cdot\nabla f(\mathbf{x}).$$
+\[f(\mathbf{x} + \mathbf{h}) \approx f(\mathbf{x}) + \mathbf{h}\cdot\nabla f(\mathbf{x}).\]
 \end{block}
 
 \pause
 
 \begin{block}{梯度下降原理}
 在$\mathbf{h}$长度固定等于$\gamma$的情况下，把$\mathbf{h}$方向取和梯度相反的时候，即
-$$\mathbf{h} = -\dfrac{\gamma}{\left\Vert \nabla f(\mathbf{x}) \right\Vert} \nabla f(\mathbf{x})$$
+\[\mathbf{h} = -\dfrac{\gamma}{\left\Vert \nabla f(\mathbf{x}) \right\Vert} \nabla f(\mathbf{x})\]
 时，$f(\mathbf{x} + \mathbf{h})$相对于$f(\mathbf{x})$的减量是最大的。
 \end{block}
 
@@ -112,9 +112,9 @@ $$\mathbf{h} = -\dfrac{\gamma}{\left\Vert \nabla f(\mathbf{x}) \right\Vert} \nab
 
 \begin{block}{梯度下降方法}
 从一个初始值$\mathbf{x}_0$出发，归纳地令
-$$\mathbf{x}_{n+1} = \mathbf{x}_n - {\color{red}\gamma_n} \nabla f(\mathbf{x}_n),$$
+\[\mathbf{x}_{n+1} = \mathbf{x}_n - {\color{red}\gamma_n} \nabla f(\mathbf{x}_n),\]
 得到递减数列
-$$f(\mathbf{x}_0) \geqslant f(\mathbf{x}_1) \geqslant \cdots$$
+\[f(\mathbf{x}_0) \geqslant f(\mathbf{x}_1) \geqslant \cdots\]
 \end{block}
 
 \end{frame}

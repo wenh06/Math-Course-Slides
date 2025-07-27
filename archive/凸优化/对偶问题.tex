@@ -55,7 +55,7 @@
 \end{eqnarray*}
 定义它的Lagrange函数$L: \mathbb{R}^n \times \mathbb{R}^m \times \mathbb{R}^p \rightarrow \mathbb{R}$为
 \vspace{-0.5em}
-$$L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu) = f_0(\mathbf{x}) + \sum\limits_{i=1}^m \lambda_i f_i(\mathbf{x}) + \sum\limits_{j=1}^p \nu_j h_j(\mathbf{x})$$
+\[L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu) = f_0(\mathbf{x}) + \sum\limits_{i=1}^m \lambda_i f_i(\mathbf{x}) + \sum\limits_{j=1}^p \nu_j h_j(\mathbf{x})\]
 \vspace{-1em}
 \begin{itemize}
 \item $\lambda_i \ge 0$: 对应$f_i(\mathbf{x}) \le 0$的Lagrange乘子（Multiplier）
@@ -124,7 +124,7 @@ g(\boldsymbol\lambda, \boldsymbol\nu) & = \inf\limits_{\mathbf{x}} L(\mathbf{x},
 \end{cases}
 \end{align*}
 因此，当$\mathbf{c} + A^T \boldsymbol\nu$每个分量都非负的时候，有
-$$p^* \ge -\mathbf{b}^T \boldsymbol\nu$$
+\[p^* \ge -\mathbf{b}^T \boldsymbol\nu\]
 \end{block}
 
 \end{frame}
@@ -209,7 +209,7 @@ Lagrange 对偶函数能得到的最好的下界是什么。
 \begin{block}{弱对偶性与强对偶性}
 \begin{itemize}
 \item 弱对偶性：由$p^* \ge g(\boldsymbol\lambda, \boldsymbol\nu)$我们有不等式
-$$d^* \le p^*$$
+\[d^* \le p^*\]
 这个性质被称为弱对偶性，其差值$p^* - d^*$被称作原问题的最优对偶间隙（Optimal Duality Gap）
 \vspace{1em}
 \item 强对偶性：如果有等式$d^* = p^*$成立，即最优对偶间隙为0，那么称强对偶性成立。
@@ -229,23 +229,23 @@ $$d^* \le p^*$$
 
 \begin{block}{Slater约束准则}
 对于优化变量$\mathbf{x}$的定义域$\mathcal{D}$, 定义其仿射包（Affine Hull）为
-$$\operatorname{aff}\mathcal{D} = \left\{ \theta_1\mathbf{x}_1 + \cdots + \theta_k\mathbf{x}_k \ \middle|\ \begin{array}{l}
+\[\operatorname{aff}\mathcal{D} = \left\{ \theta_1\mathbf{x}_1 + \cdots + \theta_k\mathbf{x}_k \ \middle|\ \begin{array}{l}
 k \in \mathbb{Z}_{>0}; \; \mathbf{x}_1,\ldots,\mathbf{x}_k \in \mathcal{D}; \\
 \theta_1+\cdots\theta_k = 1
-\end{array} \right \}$$
+\end{array} \right \}\]
 以及它的相对内部（Relative Interior）为
-$$\operatorname{relint} \mathcal{D} = \left\{ \mathbf{x} \in \mathcal{D} \ \middle|\ B(\mathbf{x},r) \cap \operatorname{aff}\mathcal{D} \subset \mathcal{D} \text{ 对于某些 } r > 0 \right\}$$
+\[\operatorname{relint} \mathcal{D} = \left\{ \mathbf{x} \in \mathcal{D} \ \middle|\ B(\mathbf{x},r) \cap \operatorname{aff}\mathcal{D} \subset \mathcal{D} \text{ 对于某些 } r > 0 \right\}\]
 其中$B(\mathbf{x},r) = \{\mathbf{y} \in \mathbb{R}^n \ |\ \Vert \mathbf{y} - \mathbf{x} \Vert \le r\}$为以$\mathbf{x}$为中心，以$r$为半径的闭球。
 
 \vspace{1em}
 \pause
 
 强对偶性成立的Slater约束准则指的是以下的条件：
-$$\exists\; \mathbf{x} \in \operatorname{relint} \mathcal{D}, \; \text{ 使得 }\;
+\[\exists\; \mathbf{x} \in \operatorname{relint} \mathcal{D}, \; \text{ 使得 }\;
 \begin{array}{l}
 f_i(\mathbf{x}) \; {\color{red}<}\; 0, \; i = 1,\ldots,m \\
 A\mathbf{x} = \mathbf{b}
-\end{array}$$
+\end{array}\]
 \end{block}
 
 \end{frame}
@@ -268,7 +268,7 @@ A\mathbf{x} = \mathbf{b}
 \item 对偶约束条件：$\lambda_i \ge 0$
 \item 互补松弛条件：$\lambda_if_i(\mathbf{x}) = 0$
 \item Lagrange函数$L(\mathbf{x}, \boldsymbol\lambda, \boldsymbol\nu)$关于$\mathbf{x}$的梯度为$\mathbf{0}$
-$$\nabla f_0(\mathbf{x}) + \sum\limits_{i=1}^m \lambda_i \nabla f_i(\mathbf{x}) + \sum\limits_{j=1}^p \nu_j \nabla h_j(\mathbf{x}) = \mathbf{0}$$
+\[\nabla f_0(\mathbf{x}) + \sum\limits_{i=1}^m \lambda_i \nabla f_i(\mathbf{x}) + \sum\limits_{j=1}^p \nu_j \nabla h_j(\mathbf{x}) = \mathbf{0}\]
 \end{enumerate}
 \end{block}
 

@@ -72,14 +72,14 @@
 
 \begin{Def}
   如果级数$\sum\limits_{n=1}^\infty x_n$的通项都是非负实数, 即
-  $$x_n \geqslant 0, \quad n = 1, 2, \cdots,$$
+  \[x_n \geqslant 0, \quad n = 1, 2, \cdots,\]
   则称此级数为\textbf{正项级数}.
 \end{Def}
 
 \pause
 
 显然, 正项级数$\sum\limits_{n=1}^\infty x_n$的部分和数列$\{S_n\}$是单调增加的, 即
-$$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1}, \quad n = 1, 2, \cdots.$$
+\[S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1}, \quad n = 1, 2, \cdots.\]
 由数列的单调有界收敛定理, 立刻可以得到
 
 \end{frame}
@@ -113,7 +113,7 @@ $$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1},
 \begin{frame}{正项级数的收敛原理}
 
 在这个例子中, 我们实际上使用了马上要介绍的“比较判别法”, 即使用了不等式
-$$\dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},$$
+\[\dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},\]
 $\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断. 可以通过判断它的收敛性, 进而得出$\sum\limits_{n=2}^\infty x_n$的收敛性.
 
 \pause
@@ -137,7 +137,7 @@ $\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断
 
 \begin{thm}[比较判别法]
 设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数, 若存在常数$A > 0,$ 使得
-$$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
+\[x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,\]
 \vspace*{-1.6em}
 \begin{enumerate}
   \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
@@ -159,7 +159,7 @@ $$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
 \begin{frame}{比较判别法的证明}
 
 设级数$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$的部分和序列分别为$\{S_n\}$与$\{T_n\},$那么显然有
-$$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
+\[S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,\]
 \pause
 于是当数列$\{T_n\}$有上界时, $\{S_n\}$也有上界; 当$\{S_n\}$无上界时, $\{T_n\}$必定也无上界. 那么由~{\color{red}正项级数的收敛原理}\tikzmark{mark1}
 
@@ -198,7 +198,7 @@ $$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
 \pause
 
 \textbf{解：} 容易看出, 当$n > 3$时成立
-$$\dfrac{n + ~{\color{red}3}}{2n^3 - ~ {\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3 - ~{\color{red}n^3}} = \dfrac{2}{n^2},$$
+\[\dfrac{n + ~{\color{red}3}}{2n^3 - ~ {\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3 - ~{\color{red}n^3}} = \dfrac{2}{n^2},\]
 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$的收敛性 (值等于$\dfrac{\pi^2}{6}$), 知$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$收敛.
 
 \end{frame}
@@ -232,7 +232,7 @@ $$\dfrac{n + ~{\color{red}3}}{2n^3 - ~ {\color{red}n}} < \dfrac{n+{\color{red}n}
     从右图可看出, 当$x \in [0, \dfrac{\pi}{2}]$时, 成立不等式$\sin x \geqslant \dfrac{2}{\pi} x,$
     \pause
     所以当$n\geqslant 2$时有
-    $$\sin\dfrac{\pi}{n} \geqslant \dfrac{2}{\pi} \cdot \dfrac{\pi}{n} = \dfrac{2}{n}.$$
+    \[\sin\dfrac{\pi}{n} \geqslant \dfrac{2}{\pi} \cdot \dfrac{\pi}{n} = \dfrac{2}{n}.\]
     由于$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散, 所以$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$也发散.
   \end{column}
 \end{columns}
@@ -250,7 +250,7 @@ $x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n
 \begin{thm}[比较判别法的极限形式]
 设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数, 且
 \vspace*{-0.9em}
-$$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)$$
+\[\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)\]
 \vspace*{-1.3em}
 \begin{enumerate}
   \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
@@ -281,7 +281,7 @@ $$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqs
 \pause
 所以
 \vspace*{-1.6em}
-$$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.$$
+\[\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.\]
 依据比较判别法的极限形式, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛.
 
 \end{frame}
@@ -306,10 +306,10 @@ $$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac
 \begin{thm}[积分判别法]
 设$f(x)$定义于$[a, +\infty),$ 且$f(x) \geqslant 0,$ 进一步假设$f(x)$在任意有限区间$[a, A]$上Riemann可积. 设$\{a_n\}$是单调增加且趋于$+\infty$的数列：
 % \vspace*{-0.4em}
-$$a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,$$
+\[a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,\]
 令$u_n = \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=1}^\infty u_n$同时收敛或同时发散到$+\infty,$且有
 % \vspace*{-1.6em}
-$$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$$
+\[\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.\]
 \end{thm}
 }
 
@@ -323,7 +323,7 @@ $$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limit
 
 \begin{frame}{积分判别法的证明}
 设正项级数$\sum\limits_{n=1}^\infty u_n$的部分和数列为$\{S_n\},$ 那么对任意$A > a,$ 存在 (由$A$唯一确定的) 正整数$n$使得$a_n \leqslant A < a_{n+1},$ 于是有
-$$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.$$
+\[S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.\]
 \pause
 若正项级数$\sum\limits_{n=1}^\infty u_n$收敛, 即数列$\{S_n\}$收敛时, 根据极限的夹逼性, $\int_a^A f(x) \mathrm{d} x$当$A \to +\infty$时也收敛, 且收敛到同一极限. \\
 若$\sum\limits_{n=1}^\infty u_n$发散到$+\infty,$ 由不等式$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x$可知反常积分$\int_a^{+\infty} f(x) \mathrm{d} x = \lim\limits_{A\to+\infty} \int_a^{A} f(x) \mathrm{d} x = +\infty.$
@@ -335,9 +335,9 @@ $$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.$$
 \begin{frame}{积分判别法的证明}
 
 当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n$时, 在闭区间$[n, n+1]$上有
-$$f(n+1) \leqslant f(x) \leqslant f(n),$$
+\[f(n+1) \leqslant f(x) \leqslant f(n),\]
 由定积分的保序性, 有不等式
-$$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mathrm{d} x \leqslant \int_{n}^{n+1} f(n) \mathrm{d} x = f(n).$$
+\[f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mathrm{d} x \leqslant \int_{n}^{n+1} f(n) \mathrm{d} x = f(n).\]
 \pause
 由比较判别法 (使用两次) 知$\sum\limits_{n=[a]+1}^\infty f(n)$与$\sum\limits_{n=[a]+1}^\infty u_n$同时收敛或同时发散, 从而与反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$有相同的敛散性.
 
@@ -383,11 +383,11 @@ $$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mat
 \vspace{0.6em}
 
 \textbf{解：} 在$[0, 1]$区间上, $g(x) = e^{x^2} - \cos\pi x$是非负递增的, 因为很容易算得$g(0) = 0,$ 且 $g'(x) = 2xe^{x^2} + \pi \sin\pi x \geqslant 0.$ 于是
-$$f(x) = g(1/x) = e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x}$$
+\[f(x) = g(1/x) = e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x}\]
 为$[1, +\infty]$上单调递减的非负函数. 那么根据积分判别法, 我们约化到了判断反常积分$\int_1^{+\infty} f(x) \mathrm{d} x$的敛散性：
-$$
+\[
 \int_1^{+\infty} f(x) \mathrm{d} x = \int_1^{+\infty} \left( e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x} \right) \mathrm{d} x = \int_0^1 \dfrac{e^{t^2} - \cos\pi t}{t^2} \mathrm{d} t
-$$
+\]
 
 \end{frame}
 
@@ -401,7 +401,7 @@ e^{t^2} - \cos\pi t & = (e^{t^2} - 1) + (1 - \cos\pi t) = (e^{t^2} - 1) + 2 \sin
 & \sim t^2 + 2 \cdot \left( \dfrac{\pi t}{2} \right)^2 = \left( 1 + \dfrac{\pi^2}{2} \right) t^2,
 \end{align*}
 即在$0$附近成立
-$$\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},$$
+\[\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},\]
 于是原来的反常积分收敛, 进而知级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$收敛.
 
 \end{frame}
@@ -437,10 +437,10 @@ u_n & := \int_{n\pi}^{(n+1)\pi} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x} = \int_{0}
 
 当$0 < t < \dfrac{1}{(n+1)\pi} < 1$时, 如下不等式恒成立：
 \vspace*{-0.6em}
-$$(n\pi + t)^2 \sin^2 t < (n + 1)^2 (\pi t)^2 < (n + 1)^2 \pi^2 \dfrac{1}{(n+1)^2\pi^2} = 1.$$
+\[(n\pi + t)^2 \sin^2 t < (n + 1)^2 (\pi t)^2 < (n + 1)^2 \pi^2 \dfrac{1}{(n+1)^2\pi^2} = 1.\]
 于是
 \vspace*{-1.2em}
-$$u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} > \dfrac{1}{2\pi} \cdot \dfrac{1}{n+1}.$$
+\[u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} > \dfrac{1}{2\pi} \cdot \dfrac{1}{n+1}.\]
 由于$\sum\limits_{n=1}^\infty \dfrac{1}{n+1}$发散, 有比较判别法知$\sum\limits_{n=1}^\infty u_n$发散,又由积分判别法知, 反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散.
 
 \pause
@@ -571,7 +571,7 @@ $$u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^
 \text{\bfseries\color{red!80} 有无穷多项$\nroot[n_k]{x_{n_k}}$满足$\nroot[n_k]{x_{n_k}} > q.$}
 \end{empheq}
 也就是说, 存在$\{x_n\}$的一个子列$\{x_{n_k}\},$ 成立
-$$x_{n_k} > q^{n_k} \to +\infty,$$
+\[x_{n_k} > q^{n_k} \to +\infty,\]
 不满足级数收敛的必要条件.
 
 \end{frame}
@@ -583,7 +583,7 @@ $$x_{n_k} > q^{n_k} \to +\infty,$$
 (3). 当$r = 1$时, 我们既能找到收敛的例子, 也能找到发散的例子.
 \pause
 最直接的就是$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}.$ 对于任何一个固定的实数$s,$ 有
-$$\zeta(s) = \lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\infty} \dfrac{1}{\nroot[n]{n}} \right)^s = 1.$$
+\[\zeta(s) = \lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n^s}} = \left( \lim\limits_{n\to\infty} \dfrac{1}{\nroot[n]{n}} \right)^s = 1.\]
 对于级数$\sum\limits_{n=1}^{\infty} \dfrac{1}{n^s}$来说, 我们知道$s > 1$时它收敛; $s \leqslant 1$时它发散.
 
 \end{frame}
@@ -644,7 +644,7 @@ $$\zeta(s) = \lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}
 
 \begin{lem}
 设$\{x_n\}$是正项数列, 则
-$$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+\[\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.\]
 \end{lem}
 
 \pause
@@ -669,11 +669,11 @@ $$\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty}
 
 由下极限的性质, $\forall~\varepsilon > 0,$ 存在正整数$N,$ 使得$\forall~n > N$成立$\dfrac{x_{n+1}}{x_n} > \underline{r} - \varepsilon,$ 即有
 \vspace*{-0.5em}
-$$x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},$$
+\[x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},\]
 从而有$\nroot[n]{x_n} > \sqrt[\leftroot{-6}\uproot{9}n]{(\underline{r} - \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立. 于是
-$$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \varliminf_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.$$
+\[\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \varliminf_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.\]
 由$\varepsilon$的任意性知
-$$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+\[\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}.\]
 
 \end{frame}
 
@@ -688,11 +688,11 @@ $$\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf_{n
 
 由上极限的性质, $\forall~\varepsilon > 0,$ 存在正整数$N,$ 使得$\forall~n > N$成立$\dfrac{x_{n+1}}{x_n} < \overline{r} + \varepsilon,$ 即有
 \vspace*{-0.5em}
-$$x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},$$
+\[x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},\]
 从而有$\nroot[n]{x_n} < \sqrt[\leftroot{-6}\uproot{9}n]{(\overline{r} + \varepsilon)^{n-N} x_{N+1}}$对所有$n > N$成立. 于是
-$$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.$$
+\[\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.\]
 由$\varepsilon$的任意性知
-$$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.$$
+\[\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.\]
 
 \end{frame}
 
@@ -730,7 +730,7 @@ $$\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\
 \begin{eg}
 考虑级数$\sum\limits_{n=1}^\infty x_n = \dfrac{1}{2} + \dfrac{1}{3} + \dfrac{1}{2^2} + \dfrac{1}{3^2} + \cdots,$ 通项为
 \vspace{-1em}
-$$x_{2n-1} = \dfrac{1}{2^n}, ~~ x_{2n} = \dfrac{1}{3^n}$$
+\[x_{2n-1} = \dfrac{1}{2^n}, ~~ x_{2n} = \dfrac{1}{3^n}\]
 那么
 \begin{gather*}
 \varlimsup_{n\to\infty} \nroot[n]{x_n} = \lim_{n\to\infty} \sqrt[\leftroot{-6}\uproot{13}2n-1]{\frac{1}{2^n}} = \dfrac{1}{\sqrt{2}} \\
@@ -751,10 +751,10 @@ $$x_{2n-1} = \dfrac{1}{2^n}, ~~ x_{2n} = \dfrac{1}{3^n}$$
 
 \begin{eg}
 正项级数$\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$收敛性的判定, 我们之前是用的d'Alembert判别法：
-$$\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \dfrac{e}{3} < 1.$$
+\[\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \dfrac{e}{3} < 1.\]
 \pause
 而
-$$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = \dfrac{n}{3} \cdot \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n!}}$$
+\[\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = \dfrac{n}{3} \cdot \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n!}}\]
 极限不太好求, 故不太方便适用Cauchy判别法.
 
 \pause
@@ -798,12 +798,12 @@ $$\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = 
 \begin{frame}{Raabe判别法的分析与证明}
 
 当$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r < 1$时, 由极限的性质, 对任意满足$r < q < 1$的实数$q,$ 都存在正整数$N,$ 使得$\forall~n \geqslant N$都有
-$$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) < q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} < 1 + \dfrac{q}{n} < 1 + \dfrac{1}{n},$$
+\[n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) < q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} < 1 + \dfrac{q}{n} < 1 + \dfrac{1}{n},\]
 从而有
-$$n x_n \leqslant (n+1) x_{n+1}.$$
+\[n x_n \leqslant (n+1) x_{n+1}.\]
 \pause
 也就是说, 新数列$y_n := nx_n, n = 1, 2, \dots,$ 当$n \geqslant N$时是递增的, 因此有$n x_n \geqslant N x_N,$ 或写为
-$$x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall~n \geqslant N.$$
+\[x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall~n \geqslant N.\]
 于是, 根据比较判别法, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散可推出$\sum\limits_{n=1}^\infty x_n$也发散.
 
 \end{frame}
@@ -823,7 +823,7 @@ $$x_n \geqslant N \cdot x_N \cdot ~ {\color{red} \dfrac{1}{n}}, ~~ \forall~n \ge
 \vspace{0.6em}
 
 我们还是从 $\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = r > 1$ 出发,对任意满足 $1 < q < r$ 的实数 $q,$ 都存在正整数 $N,$ 使得 $\forall~n \geqslant N$ 都有
-$$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n}.$$
+\[n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n}.\]
 
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
 \text{\bfseries\color{red!80} 想方法将 $1 + q\cdot\dfrac{1}{n}$ 与 $\left(\dfrac{n+1}{n}\right)^t = \left(1 + \dfrac{1}{n}\right)^t$ 联系起来！}
@@ -848,7 +848,7 @@ $$n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) > q, ~~ \text{即} ~~ \dfrac{x_n}{x_
 \begin{frame}{Raabe判别法的分析与证明}
 
 首先, 比较$f(x) = 1 + qx$与$g(x) = (1 + x)^t$在$x = 0$处的导数值：
-$$
+\[
 \begin{cases}
 f'(x) = q \\
 g'(x) = t(1+x)^{t-1}
@@ -857,14 +857,14 @@ g'(x) = t(1+x)^{t-1}
 f'(0) = q \\
 g'(0) = t
 \end{cases}
-$$
+\]
 \pause
 那么, 我们只要进一步取$1 < t < q < r,$ 即有$f'(0) > g'(0).$ 由于$f'(x), g'(x)$的连续性, 以及$f(0) = g(0) = 1$知, 在$x = 0$的某个右半邻域$(0, \delta)$内, 恒有$f(x) > g(x).$
 
 \pause
 
 取正整数$N$充分大, 使得$N > \dfrac{1}{\delta},$ 那么$\forall~n > N$有$\dfrac{1}{n} \in (0, \delta),$ 从而有
-$$\dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n} = f \left(\dfrac{1}{n}\right) = \left(\dfrac{1}{n}\right) = \left( 1 + \dfrac{1}{n} \right)^t = \left( \dfrac{n+1}{n} \right)^t,$$
+\[\dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n} = f \left(\dfrac{1}{n}\right) = \left(\dfrac{1}{n}\right) = \left( 1 + \dfrac{1}{n} \right)^t = \left( \dfrac{n+1}{n} \right)^t,\]
 
 \end{frame}
 
@@ -873,11 +873,11 @@ $$\dfrac{x_n}{x_{n+1}} > 1 + \dfrac{q}{n} = f \left(\dfrac{1}{n}\right) = \left(
 \begin{frame}{Raabe判别法的分析与证明}
 
 于是, 就有了我们希望得到的形式：
-$$n^t x_n > (n+1)^t x_{n+1} ~~ \text{对所有$n > N$成立. }$$
+\[n^t x_n > (n+1)^t x_{n+1} ~~ \text{对所有$n > N$成立. }\]
 新数列$y_n = n^t x_n$当$n > N$时关于$n$非增, 设$A > 0$为它的一个上界, 有
-$$A \geqslant y_n = n^t x_n ~~ (n > N),$$
+\[A \geqslant y_n = n^t x_n ~~ (n > N),\]
 亦即
-$$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
+\[x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),\]
 根据比较判别法, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^t}$收敛知$\sum\limits_{n=1}^\infty x_n$也收敛.
 
 \end{frame}
@@ -896,11 +896,11 @@ $$x_n \leqslant \dfrac{A}{n^t} ~~ (n > N),$$
 % \vspace{0.6em}
 
 \textbf{解：} 记$x_n = \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1},$ 则
-$$\lim\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim\limits_{n\to\infty} \dfrac{(2n+1)^2}{(2n+2)(2n+3)} = 1.$$
+\[\lim\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim\limits_{n\to\infty} \dfrac{(2n+1)^2}{(2n+2)(2n+3)} = 1.\]
 那么d'Alembert判别法 (以及Cauchy判别法) 都不适用了.
 \pause
 但是应用Raabe判别法, 可得
-$$\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(6n+5)}{(2n+1)^2} = \dfrac{3}{2} > 1,$$
+\[\lim\limits_{n\to\infty} n \left( \dfrac{x_n}{x_{n+1}} - 1 \right) = \dfrac{n(6n+5)}{(2n+1)^2} = \dfrac{3}{2} > 1,\]
 所以级数$\sum\limits_{n=1}^\infty \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{1}{2n+1}$收敛.
 
 \end{frame}

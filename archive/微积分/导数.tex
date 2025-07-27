@@ -36,9 +36,9 @@
 
 \begin{Def}
 设函数$f$在点$x$的近旁有定义，若极限
-$$\lim\limits_{h\to 0} \dfrac{f(x+h)-f(x)}{h}$$
+\[\lim\limits_{h\to 0} \dfrac{f(x+h)-f(x)}{h}\]
 存在且有限，则称这个数为函数$f$在点$x$处的{\bfseries 导数（derivative）}，记作$f'(x),$ 或$\dfrac{df(x)}{dx}$。此时，称函数$f$在点$x$处可微，
-$$df = f'(x)dx$$
+\[df = f'(x)dx\]
 被称为函数$f$在点$x$处的微分（differential）。
 \end{Def}
 
@@ -69,11 +69,11 @@ $$df = f'(x)dx$$
 设函数$f,g$都在点$x$处可微，那么
 \begin{itemize}
 \item<2-> $f+g$在$x$处可微，且
-$$(f+g)'(x) = (f'+g')(x);$$
+\[(f+g)'(x) = (f'+g')(x);\]
 \item<3-> $f\cdot g$在$x$处可微，且
-$$(f\cdot g)'(x) = f'(x)\cdot g(x) + f(x)\cdot g'(x);$$
+\[(f\cdot g)'(x) = f'(x)\cdot g(x) + f(x)\cdot g'(x);\]
 \item<4-> 若$g(x)\neq0$，则$\dfrac{f}{g}$在$x$处可微，且
-$$\dfrac{f'(x)\cdot g(x) - f(x)\cdot g'(x)}{g^2(x)}$$
+\[\dfrac{f'(x)\cdot g(x) - f(x)\cdot g'(x)}{g^2(x)}\]
 \end{itemize}
 
 \end{frame}
@@ -88,19 +88,19 @@ $$\dfrac{f'(x)\cdot g(x) - f(x)\cdot g'(x)}{g^2(x)}$$
 
 \begin{thm}[链式法则，Chain Rule]
 设函数$y=f(x)$在点$x_0$处可微，函数$z = g(y)$在点$y_0 = f(x_0)$处可微，那么复合函数$g\circ f$在点$x_0$处可微，并且有
-$$(g\circ f)'(x_0) = g'(f(x_0))\cdot f'(x_0).$$
+\[(g\circ f)'(x_0) = g'(f(x_0))\cdot f'(x_0).\]
 \end{thm}
 
 \pause
 
 使用Leibniz的记号，以上定理可以写作
-$$\dfrac{dz}{dx} = \dfrac{dz}{dy} \cdot \dfrac{dy}{dx}$$
+\[\dfrac{dz}{dx} = \dfrac{dz}{dy} \cdot \dfrac{dy}{dx}\]
 
 \pause
 
 \begin{cor}
 对于$n$个可微函数$y_1 = f_1(x), \ldots, y_n = f_n(y_{n-1})$的复合函数$(f_n\circ\cdots\circ f_1)(x),$ 有
-$$(f_n \circ \cdots \circ f_1)'(x) = f_n'(y_{n-1}) \cdots f_1'(x).$$
+\[(f_n \circ \cdots \circ f_1)'(x) = f_n'(y_{n-1}) \cdots f_1'(x).\]
 \end{cor}
 
 \end{frame}
@@ -117,9 +117,9 @@ $$(f_n \circ \cdots \circ f_1)'(x) = f_n'(y_{n-1}) \cdots f_1'(x).$$
 \pause
 
 令
-$$y_1 = \dfrac{x}{1+x^2},\quad  y_2 = \ln y_1,\quad  y_3 = \sin y_2,$$
+\[y_1 = \dfrac{x}{1+x^2},\quad  y_2 = \ln y_1,\quad  y_3 = \sin y_2,\]
 它们分别有导数
-$$y_1' = \dfrac{1-x^2}{(1+x^2)^2},\quad  y_2' = \dfrac{1}{y_1},\quad y_3' = \cos y_2.$$
+\[y_1' = \dfrac{1-x^2}{(1+x^2)^2},\quad  y_2' = \dfrac{1}{y_1},\quad y_3' = \cos y_2.\]
 有$y(x) = y_3 \circ y_2 \circ y_1(x),$ 于是根据复合函数求导的链式法则
 \begin{align*}
 y' & = y_3'(y_2)\cdot y_2'(y_1)\cdot y_1'(x) \\
@@ -138,7 +138,7 @@ y' & = y_3'(y_2)\cdot y_2'(y_1)\cdot y_1'(x) \\
 
 \begin{thm}<1->
 设函数$f$在点$x_0$的某个邻域内有反函数$f^{-1}$，且它们分别在点$x_0$与$y_0=f(x_0)$处连续。若$f$在点$x_0$处可微且$f'(x_0) \neq 0,$ 那么$f^{-1}$也在点$y_0$处可微且
-$$(f^{-1})'(y_0) = \dfrac{1}{f'(x_0)}.$$
+\[(f^{-1})'(y_0) = \dfrac{1}{f'(x_0)}.\]
 \end{thm}
 
 \begin{eg}<2->
@@ -149,7 +149,7 @@ $$(f^{-1})'(y_0) = \dfrac{1}{f'(x_0)}.$$
 \pause
 
 $y = \arcsin x$与$x = \sin y$互为反函数，于是根据反函数求导法则有
-$$y' =  \arcsin' x = \dfrac{1}{\sin' y} = \dfrac{1}{\cos y} = \dfrac{1}{\sqrt{1-x^2}}.$$
+\[y' =  \arcsin' x = \dfrac{1}{\sin' y} = \dfrac{1}{\cos y} = \dfrac{1}{\sqrt{1-x^2}}.\]
 
 
 \end{frame}
@@ -172,7 +172,7 @@ $$y' =  \arcsin' x = \dfrac{1}{\sin' y} = \dfrac{1}{\cos y} = \dfrac{1}{\sqrt{1-
 
 \begin{eg}<3->
 考虑$e^x + \ln x = y + \varepsilon \sin y, 0 < |\varepsilon| < 1.$ 两边同时对$x$求导有$e^x + \frac{1}{x} = y' + \varepsilon y'\cos y,$ 于是
-$$y' = \dfrac{e^x + \frac{1}{x}}{1+\varepsilon\cos y}$$
+\[y' = \dfrac{e^x + \frac{1}{x}}{1+\varepsilon\cos y}\]
 \end{eg}
 
 \end{frame}
@@ -187,7 +187,7 @@ $$y' = \dfrac{e^x + \frac{1}{x}}{1+\varepsilon\cos y}$$
 \begin{frame}
 
 如果函数$f$在某个区间$I$上每点都可微，那么有新的函数$f'$，他在每点$x\in I$的取值等于$f$在$x$处的导数。称他为{\bfseries 导函数}。于是，可以归纳地定义$f$的{\bfseries $n$阶导数}，记作
-$$f^{(n)}(x), \text{\quad 或 } \dfrac{d^n f(x)}{d x^n}.$$
+\[f^{(n)}(x), \text{\quad 或 } \dfrac{d^n f(x)}{d x^n}.\]
 \pause
 约定$f$的$0$阶导数是$f$本身，即$f^{(0)}(x) = f(x).$
 
@@ -195,7 +195,7 @@ $$f^{(n)}(x), \text{\quad 或 } \dfrac{d^n f(x)}{d x^n}.$$
 
 \begin{thm}[Leibniz公式]
 设函数$f,g$在区间$I$上都有直到$n$阶导数，那么函数的乘积$f\cdot g$也有$n$阶导数，并且有下述Leibniz公式
-$$(f\cdot g)^{(n)} = \sum\limits_{k=0}^n C_n^k f^{(n-k)}g^{(k)}.$$
+\[(f\cdot g)^{(n)} = \sum\limits_{k=0}^n C_n^k f^{(n-k)}g^{(k)}.\]
 \end{thm}
 
 \end{frame}
@@ -210,12 +210,12 @@ $$(f\cdot g)^{(n)} = \sum\limits_{k=0}^n C_n^k f^{(n-k)}g^{(k)}.$$
 
 \begin{thm}[拉格朗日中值定理，Lagrange's Mean Value Theorem]<1->
 设函数$f$在闭区间$[a,b]$上连续，在开区间$(a,b)$内可微，那么存在点$\xi\in(a,b)$，使得
-$$f(b)-f(a) = f'(\xi)(b-a).$$
+\[f(b)-f(a) = f'(\xi)(b-a).\]
 \end{thm}
 
 \begin{thm}[柯西中值定理，Cauchy's Generalized Mean Value Theorem]<2->
 设函数$f,g$在闭区间$[a,b]$上连续，在开区间$(a,b)$内可微，那么存在点$\xi\in(a,b)$，使得
-$$g'(\xi)(f(b)-f(a)) = f'(\xi)(g(b)-g(a)).$$
+\[g'(\xi)(f(b)-f(a)) = f'(\xi)(g(b)-g(a)).\]
 \end{thm}
 
 \pause
@@ -246,7 +246,7 @@ $$g'(\xi)(f(b)-f(a)) = f'(\xi)(g(b)-g(a)).$$
 \begin{block}{泰勒公式，Taylor's Formula}
 设函数$f$在点$x_0$的一个邻域内由定义，且在$x_0$处有$n$阶导数，那么我们有泰勒公式
 {\small
-$$f(x) = \underbrace{f(x_0) + \dfrac{f'(x_0)}{1!}(x-x_0) + \cdots + \dfrac{f^{(n)}(x_0)}{n!}(x-x_0)^n}_{\text{$f(x)$在$x_0$的$n$阶泰勒多项式}} + \underbrace{r_n(x_0;x)}_{\text{余项}}.$$
+\[f(x) = \underbrace{f(x_0) + \dfrac{f'(x_0)}{1!}(x-x_0) + \cdots + \dfrac{f^{(n)}(x_0)}{n!}(x-x_0)^n}_{\text{$f(x)$在$x_0$的$n$阶泰勒多项式}} + \underbrace{r_n(x_0;x)}_{\text{余项}}.\]
 }
 \end{block}
 
@@ -286,7 +286,7 @@ e^x & = 1 + \dfrac{1}{1!}x + \cdots + \dfrac{1}{n!}x^n + \text{余项} \\
 \item<1-> 做近似计算：
 考虑$\sin x, x\in[-1,1]$，用泰勒多项式逼近它，使得绝对误差不超过$0.001$。\newline
 解：考虑Lagrange余项$r_{2n+2}(0;x) = \frac{\sin(\xi+\frac{\pi}{2}(2n+3))}{(2n+3)!}x^{2n+3}$。$x\in[-1,1]$时，它的绝对值$|r_{2n+2}(0;x)| \leqslant \frac{1}{(2n+3)!}$。此时，只要$n=2$即可满足绝对误差不超过$0.001$。因此可以写
-$$\sin x \approx x - \dfrac{1}{3!}x^3 + \dfrac{1}{5!}x^5$$
+\[\sin x \approx x - \dfrac{1}{3!}x^3 + \dfrac{1}{5!}x^5\]
 \item<2-> 求不定式（$\frac{0}{0}$型或$\frac{\infty}{\infty}$）的极限：
 \begin{align*}
 & \lim\limits_{x \to 0} \dfrac{\cos x - e^{-x^2/2}}{x^4} \\
@@ -312,7 +312,7 @@ $$\sin x \approx x - \dfrac{1}{3!}x^3 + \dfrac{1}{5!}x^5$$
 \item $\lim\limits_{x\to a} f(x) = \lim\limits_{x\to a} g(x) = \infty,$
 \end{itemize}
 则会有
-$$\lim\limits_{x\to a}\dfrac{f(x)}{g(x)} = \lim\limits_{x\to a}\dfrac{f'(x)}{g'(x)}$$
+\[\lim\limits_{x\to a}\dfrac{f(x)}{g(x)} = \lim\limits_{x\to a}\dfrac{f'(x)}{g'(x)}\]
 \end{thm}
 
 \end{frame}
@@ -409,7 +409,7 @@ $$\lim\limits_{x\to a}\dfrac{f(x)}{g(x)} = \lim\limits_{x\to a}\dfrac{f'(x)}{g'(
 
 \begin{block}{凸函数定义}
 设函数$f$在区间$I$上有定义，若对任意$x_1,x_2\in I,$ 以及任意的$\alpha_1,\alpha_2 \geqslant 0, \alpha_1 + \alpha_2 = 1,$ 都有
-$$f(\alpha_1x_1 + \alpha_2x_2) \leqslant \alpha_1f(x_1) + \alpha_2f(x_2),$$
+\[f(\alpha_1x_1 + \alpha_2x_2) \leqslant \alpha_1f(x_1) + \alpha_2f(x_2),\]
 则称$f$是$I$上的{\bfseries 凸函数}。进一步，如果当$x_1 \neq x_2, \alpha_1\cdot\alpha_2 \neq 0$时，上述不等式是严格的（``$\leqslant$''换成``$<$''），则称$f$是{\bfseries 严格凸函数}。
 \end{block}
 
@@ -438,7 +438,7 @@ $$f(\alpha_1x_1 + \alpha_2x_2) \leqslant \alpha_1f(x_1) + \alpha_2f(x_2),$$
 
 \begin{block}{延森不等式，Jensen's Inequality}
 设$f$是开区间$(a,b)$上的凸函数，$x_1,\ldots,x_n \in (a,b)$, $\alpha_1,\ldots,\alpha_n \geqslant 0$且满足$\alpha_1+\cdots+\alpha_n = 1,$ 那么有不等式
-$$f(\alpha_1x_1+\cdots+\alpha_nx_n) \leqslant \alpha_1f(x_1)+\cdots+\alpha_nf(x_n).$$
+\[f(\alpha_1x_1+\cdots+\alpha_nx_n) \leqslant \alpha_1f(x_1)+\cdots+\alpha_nf(x_n).\]
 \end{block}
 
 \end{frame}

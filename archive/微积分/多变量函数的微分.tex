@@ -41,9 +41,9 @@
 
 \begin{block}{偏导数的定义，Partial Derivatives}
 设实值函数$f(x_1,\cdots,x_n)$在点$\mathbf{a} = (a_1,\cdots,a_n) \in \mathbb{R}^n$的一个邻域中有定义。考察单变量函数
-$$g(x) = f(a_1,\cdots,a_{i-1},x,a_{i+1}\cdots,a_n).$$
+\[g(x) = f(a_1,\cdots,a_{i-1},x,a_{i+1}\cdots,a_n).\]
 如果$g$在点$a_i$处可微，即$g'(a_i)$存在，那么我们把它称作是$f$在点$\mathbf{a}$关于第$i$个自变量的偏导数。以下每个符号都可以表示它
-$$\dfrac{\partial f}{\partial x_i}(\mathbf{a}), \partial_i f(\mathbf{a}), D_i f(\mathbf{a}), f'_{x_i}(\mathbf{a}),\cdots$$
+\[\dfrac{\partial f}{\partial x_i}(\mathbf{a}), \partial_i f(\mathbf{a}), D_i f(\mathbf{a}), f'_{x_i}(\mathbf{a}),\cdots\]
 \end{block}
 
 \end{frame}
@@ -66,7 +66,7 @@ $$\dfrac{\partial f}{\partial x_i}(\mathbf{a}), \partial_i f(\mathbf{a}), D_i f(
 \pause
 
 问题：函数
-$$f(x,y) = \sqrt{|xy|},$$
+\[f(x,y) = \sqrt{|xy|},\]
 在$(0,0)$处偏导数是否都存在？如果存在等于多少？
 
 \end{frame}
@@ -87,14 +87,14 @@ $$f(x,y) = \sqrt{|xy|},$$
 
 \begin{block}{可微性定义}
 设多变量实值函数$f(x_1,\cdots,x_n)$在点$\mathbf{a} = (a_1,\cdots,a_n)$的某邻域内有定义。称$f$在$\mathbf{a}$点{\bfseries 可微}，若存在$\mathbf{A} = (\alpha_1,\cdots,\alpha_n) \in \mathbb{R}^n$使得
-$$f(\mathbf{a} + \mathbf{h}) = f(\mathbf{a}) + (\alpha_1h_1+\cdots+\alpha_nh_n) + r(\mathbf{a};\mathbf{h}),$$
+\[f(\mathbf{a} + \mathbf{h}) = f(\mathbf{a}) + (\alpha_1h_1+\cdots+\alpha_nh_n) + r(\mathbf{a};\mathbf{h}),\]
 其中$\mathbf{h} = (h_1,\cdots,h_n),$ 关于$\mathbf{h}$的函数$r(\mathbf{a};\mathbf{h})$满足
-$$\lim\limits_{\mathbf{h}\to\mathbf{0}} \dfrac{r(\mathbf{a};\mathbf{h})}{\Vert h\Vert} = 0.$$
+\[\lim\limits_{\mathbf{h}\to\mathbf{0}} \dfrac{r(\mathbf{a};\mathbf{h})}{\Vert h\Vert} = 0.\]
 
 \pause
 
 此时，向量$\mathbf{A}$被称作$f$在$\mathbf{a}$处的{\bfseries 梯度（Gradient）}，记作
-$$\grad f(\mathbf{a}) = \nabla f(\mathbf{a}) = (\alpha_1,\cdots,\alpha_n).$$
+\[\grad f(\mathbf{a}) = \nabla f(\mathbf{a}) = (\alpha_1,\cdots,\alpha_n).\]
 
 \pause
 
@@ -109,9 +109,9 @@ $$\grad f(\mathbf{a}) = \nabla f(\mathbf{a}) = (\alpha_1,\cdots,\alpha_n).$$
 
 % \begin{block}{可微性定义}
 % 此时，向量$\mathbf{A}$被称作$f$在$\mathbf{a}$处的{\bfseries 梯度（Gradient）}，记作
-% $$\grad f(\mathbf{a}) = \nabla f(\mathbf{a}) = \dfrac{\partial f}{\partial(x_1,\cdots,x_n)}(\mathbf{a}) = (\alpha_1,\cdots,\alpha_n),$$
+% \[\grad f(\mathbf{a}) = \nabla f(\mathbf{a}) = \dfrac{\partial f}{\partial(x_1,\cdots,x_n)}(\mathbf{a}) = (\alpha_1,\cdots,\alpha_n),\]
 % 而
-% $$\displaystyle \grad = \nabla = \left(\dfrac{\partial}{\partial x_1}, \cdots, \dfrac{\partial}{\partial x_n} \right)$$
+% \[\displaystyle \grad = \nabla = \left(\dfrac{\partial}{\partial x_1}, \cdots, \dfrac{\partial}{\partial x_n} \right)\]
 % 被称作是梯度算子（Gradient Operator）。
 
 % \pause
@@ -131,7 +131,7 @@ $$\grad f(\mathbf{a}) = \nabla f(\mathbf{a}) = (\alpha_1,\cdots,\alpha_n).$$
 
 \begin{block}{微分与偏导数的关系}
 设多变量实值函数$f(x_1,\cdots,x_n)$在点$\mathbf{a} = (a_1,\cdots,a_n)$的某邻域内有定义，且在点$\mathbf{a}$可微，那么$f$在点$\mathbf{a}$关于每个自变量都有偏导数，并且它在点$\mathbf{a}$的微分由这些偏导数唯一确定：
-$$df(\mathbf{a})(\mathbf{h}) = \dfrac{\partial f}{\partial x_1}(\mathbf{a})h_1 + \cdots + \dfrac{\partial f}{\partial x_n}(\mathbf{a})h_n.$$
+\[df(\mathbf{a})(\mathbf{h}) = \dfrac{\partial f}{\partial x_1}(\mathbf{a})h_1 + \cdots + \dfrac{\partial f}{\partial x_n}(\mathbf{a})h_n.\]
 
 \pause
 
@@ -155,7 +155,7 @@ $$df(\mathbf{a})(\mathbf{h}) = \dfrac{\partial f}{\partial x_1}(\mathbf{a})h_1 +
 \pause
 
 例如，考虑函数函数\(\displaystyle f(x,y) = \sqrt{|xy|}\), 它在$(0,0)$的偏导数都等于$0$，假设它可微，那么由定义应该有
-$$\lim\limits_{(u,v)\to(0,0)} \dfrac{\sqrt{|uv|}}{\sqrt{u^2+v^2}} = 0,$$
+\[\lim\limits_{(u,v)\to(0,0)} \dfrac{\sqrt{|uv|}}{\sqrt{u^2+v^2}} = 0,\]
 但这是不可能的。
 
 \end{frame}
@@ -170,7 +170,7 @@ $$\lim\limits_{(u,v)\to(0,0)} \dfrac{\sqrt{|uv|}}{\sqrt{u^2+v^2}} = 0,$$
 
 \begin{block}{求实值多变量函数偏导数的链式法则}
 设$z = g(y_1,\cdots,y_n)$是实变量$y_1,\cdots,y_n$的实值函数，而$y_1,\cdots,y_n$每一个又是实变量$x_1,\cdots,x_m$的函数
-$$y_j = f_j(x_1,\cdots,x_m), \quad j = 1,\ldots,n.$$
+\[y_j = f_j(x_1,\cdots,x_m), \quad j = 1,\ldots,n.\]
 设多变量实值函数$g,f_j(j = 1,\ldots,n)$都可微，那么对于复合函数$z=g(f_1(x_1,\cdots,x_m),\cdots,f_n(x_1,\cdots,x_m))$有
 \begin{align*}
 \dfrac{\partial z}{\partial x_i} & = \dfrac{\partial (g\circ \mathbf{f})}{\partial x_i}(x_1,\cdots,x_m) \\
@@ -205,11 +205,11 @@ $$y_j = f_j(x_1,\cdots,x_m), \quad j = 1,\ldots,n.$$
 
 \begin{block}{雅可比矩阵，Jacobi Matrix}
 上式的矩阵
-$$\dfrac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_m)} = \begin{pmatrix}
+\[\dfrac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_m)} = \begin{pmatrix}
 \dfrac{\partial y_1}{\partial x_1} & \cdots & \dfrac{\partial y_1}{\partial x_m} \\
 \vdots & & \vdots \\
 \dfrac{\partial y_n}{\partial x_1} & \cdots & \dfrac{\partial y_n}{\partial x_m}
-\end{pmatrix}$$
+\end{pmatrix}\]
 被称为向量值函数$\mathbf{y}(\mathbf{x}) = (y_1(x_1,\cdots,x_m), \ldots, y_n(x_1,\cdots,x_m))$的雅可比矩阵。特别地，当$m=n$，它是方阵的时候，称其行列式为雅可比行列式（Jacobian）。
 \end{block}
 
@@ -229,7 +229,7 @@ $f(u,v) = u^2v$, $u = xy, v=\sin x + y$, 那么
 
 \pause
 同理可算得
-$$\displaystyle \dfrac{\partial f}{\partial y} = 2x^2y(\sin x + y) + x^2y^2$$
+\[\displaystyle \dfrac{\partial f}{\partial y} = 2x^2y(\sin x + y) + x^2y^2\]
 \end{block}
 
 \end{frame}
@@ -260,7 +260,7 @@ y & x \\ \cos x & 1 \end{pmatrix}
 
 \begin{block}{方向导数，Directional Derivative}
 设多变量实值函数$f$在点$\mathbf{x}_0 \in \mathbb{R}^n$的某邻域中有定义，$\mathbf{v} \in \mathbb{R}^n, \mathbf{v} \neq 0$。如果极限
-$$f'_{\mathbf{v}}(\mathbf{x}_0) = \dfrac{\partial f}{\partial \mathbf{v}}(\mathbf{x}_0) := \lim\limits_{t \to 0} \dfrac{f(\mathbf{x}_0 + \mathbf{v}t) - f(\mathbf{x}_0)}{t}$$
+\[f'_{\mathbf{v}}(\mathbf{x}_0) = \dfrac{\partial f}{\partial \mathbf{v}}(\mathbf{x}_0) := \lim\limits_{t \to 0} \dfrac{f(\mathbf{x}_0 + \mathbf{v}t) - f(\mathbf{x}_0)}{t}\]
 存在，则称其为函数$f$在点$\mathbf{x}_0$沿方向$\mathbf{v}$的{\bfseries 方向导数}。
 \end{block}
 
@@ -284,11 +284,11 @@ f'_{\mathbf{v}}(\mathbf{x}_0) & = \dfrac{d(f\circ \mathbf{x})}{dt}(0) = df(\math
 
 \begin{block}{多变量实值函数的微分中值定理}
 设$f$是定义在区域$E \subset \mathbb{R}^n$的实值函数，闭区间$[\mathbf{x}, \mathbf{x} + \mathbf{h}] \subset E$。如果$f$在闭区间$[\mathbf{x}, \mathbf{x} + \mathbf{h}]$上连续，在开区间闭区间$(\mathbf{x}, \mathbf{x} + \mathbf{h})$上可微，那么存在点$\mathbf{\xi} \in (\mathbf{x}, \mathbf{x} + \mathbf{h})$，使得下式成立
-$$f(\mathbf{x} + \mathbf{h}) - f(\mathbf{x}) = f'(\mathbf{\xi})\cdot\mathbf{h}.$$
+\[f(\mathbf{x} + \mathbf{h}) - f(\mathbf{x}) = f'(\mathbf{\xi})\cdot\mathbf{h}.\]
 这里的闭区间$[\mathbf{x}, \mathbf{x} + \mathbf{h}]$指的是
-$$\left\{ \mathbf{x} + \lambda \mathbf{h}: \lambda \in [0,1] \right\};$$
+\[\left\{ \mathbf{x} + \lambda \mathbf{h}: \lambda \in [0,1] \right\};\]
 相应地，开区间$(\mathbf{x}, \mathbf{x} + \mathbf{h})$指的是
-$$\left\{ \mathbf{x} + \lambda \mathbf{h}: \lambda \in (0,1) \right\}.$$
+\[\left\{ \mathbf{x} + \lambda \mathbf{h}: \lambda \in (0,1) \right\}.\]
 \end{block}
 
 \end{frame}
@@ -303,12 +303,12 @@ $$\left\{ \mathbf{x} + \lambda \mathbf{h}: \lambda \in (0,1) \right\}.$$
 
 \begin{block}{高阶偏导数，Higher-Order Partial Derivatives}
 设多变量实值函数$f(x_1,\ldots,x_n)$对每个变量$x_i$都有偏导数$\dfrac{\partial f}{\partial x_i},$ 于是我们有了一组新的多变量实值函数。这些新的函数$\dfrac{\partial f}{\partial x_i}$对某个$x_j$可以有偏导数
-$$\dfrac{\partial}{\partial x_j}\left( \dfrac{\partial f}{\partial x_i} \right) = \dfrac{\partial^2 f}{\partial x_j \partial x_i} = \partial_{ji}f.$$
+\[\dfrac{\partial}{\partial x_j}\left( \dfrac{\partial f}{\partial x_i} \right) = \dfrac{\partial^2 f}{\partial x_j \partial x_i} = \partial_{ji}f.\]
 
 \pause
 
 于是，我们能归纳地定义$k+1(k\geqslant2)$阶偏导数为
-$$\dfrac{\partial}{\partial x_i}\left( \dfrac{\partial^k f}{\partial x_{i_1} \cdots \partial x_{i_k}} \right).$$
+\[\dfrac{\partial}{\partial x_i}\left( \dfrac{\partial^k f}{\partial x_{i_1} \cdots \partial x_{i_k}} \right).\]
 \end{block}
 
 \pause

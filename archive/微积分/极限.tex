@@ -192,7 +192,7 @@ Name,Quantity
 
 \begin{block}{函数在一点连续的定义}
 若对任意$\varepsilon > 0$，都存在$\delta > 0$，使得对于满足$0 < |x-a| < \delta$的任何$x\in E$都有$|f(x)-A| < \varepsilon$，那么称当$x$趋于$a$时，$f(x)$趋于$A$，或者说$f(x)$的{\bfseries 极限}是$A$，并记作
-$$\lim\limits_{{\color{gray!50} E\ni}x\to a}f(x) = A.$$
+\[\lim\limits_{{\color{gray!50} E\ni}x\to a}f(x) = A.\]
 若$f$在$a$有定义且还有$f(a) = \lim\limits_{x\to a}f(x),$ 则称$f$在点$a${\bfseries 连续}。
 \end{block}
 
@@ -203,7 +203,7 @@ $$\lim\limits_{{\color{gray!50} E\ni}x\to a}f(x) = A.$$
 \(\displaystyle \lim\limits_{x\to a-}f(x) := \lim\limits_{\mathring{U}^-(a) \ni x\to a}f(x), \quad \lim\limits_{x\to a+}f(x) := \lim\limits_{\mathring{U}^+(a) \ni x\to a}f(x)\) \\
 \pause
 我们有
-$$\lim\limits_{x\to a}f(x) \Longleftrightarrow \lim\limits_{x\to a-}f(x),\lim\limits_{x\to a+}f(x) \text{同时存在且相等}.$$
+\[\lim\limits_{x\to a}f(x) \Longleftrightarrow \lim\limits_{x\to a-}f(x),\lim\limits_{x\to a+}f(x) \text{同时存在且相等}.\]
 \end{center}
 \end{block}
 
@@ -271,7 +271,7 @@ $$\lim\limits_{x\to a}f(x) \Longleftrightarrow \lim\limits_{x\to a-}f(x),\lim\li
 
 \begin{thm}[复合函数的极限]
 设函数$y = g\circ f(x)$由函数$u = f(x)$与函数$y = g(u)$复合而成，且在点$a$的近旁有定义。如果$\lim\limits_{x\to a}f(x) = u_0,$ 而且函数$y = g(u)$在$u=u_{0}$处连续，则
-$$\lim\limits_{x\to a} g\circ f(x) = g(u_0).$$
+\[\lim\limits_{x\to a} g\circ f(x) = g(u_0).\]
 \end{thm}
 
 \end{frame}
@@ -286,7 +286,7 @@ $$\lim\limits_{x\to a} g\circ f(x) = g(u_0).$$
 
 \begin{block}{另一种极限过程（趋于无穷）}
 设$f:(p,+\infty) \to \mathbb{R}$，若对任意$\varepsilon > 0$都存在$L$，使得对所有满足$x > L$的$x$都有$|f(x)-A| < \varepsilon$，那么称当$x$趋于正无穷时，$f(x)$趋于$A$，记作
-$$\lim\limits_{x\to+\infty}f(x) = A.$$
+\[\lim\limits_{x\to+\infty}f(x) = A.\]
 类似可以定义$\lim\limits_{x\to * }f(x) = **,$ 其中$*,**$可以是$+\infty,-\infty,\infty,$某个实数当中的任意一对。
 \end{block}
 
@@ -327,7 +327,7 @@ $$\lim\limits_{x\to+\infty}f(x) = A.$$
 
 \begin{block}{无穷大时的复合函数求极限}
 设函数$y = g\circ f(x)$由函数$u = f(x)$与函数$y = g(u)$复合而成，且在点$a$的近旁有定义。如果$\lim\limits_{x\to a}f(x) = \infty, \lim\limits_{u\to \infty} g(u) = A$，则
-$$\lim\limits_{x\to a} g\circ f(x) = A.$$
+\[\lim\limits_{x\to a} g\circ f(x) = A.\]
 \end{block}
 
 \end{frame}

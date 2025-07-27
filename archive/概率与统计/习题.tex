@@ -106,7 +106,7 @@
 \begin{frame}
 
 8. 服从拉普拉斯分布的随机变量$X$的概率密度函数为
-$$f(x) = Ae^{-|x|}$$
+\[f(x) = Ae^{-|x|}\]
 \begin{itemize}
 \item[(1)] 求常数$A$
 \vspace{0.4em}
@@ -116,7 +116,7 @@ $$f(x) = Ae^{-|x|}$$
 \vspace{1em}
 
 9. 设随机变量$X_1,\ldots,X_n$独立同指数分布$Exp(\lambda)$, 求证随机变量$Y = X_1 + \cdots + X_n$的概率密度函数为
-$$f(y) = \dfrac{\lambda^n y^{n-1} e^{-\lambda y}}{(n-1)!}$$
+\[f(y) = \dfrac{\lambda^n y^{n-1} e^{-\lambda y}}{(n-1)!}\]
 
 10$^*$. 求（验证）\S 4常见分布中所列举的分布的期望与方差
 
@@ -187,9 +187,9 @@ $$f(y) = \dfrac{\lambda^n y^{n-1} e^{-\lambda y}}{(n-1)!}$$
 \item $\varepsilon_1, \ldots, \varepsilon_n, w_1, \ldots, w_m$相互独立
 \end{itemize}
 如果用所谓的最大后验估计($f(\mathbf{w} | \{\mathbf{x}_i,y_i\}) \propto f(\{\mathbf{x}_i,y_i\} | \mathbf{w}) f(\mathbf{w})$)
-$$\argmax\limits_{\mathbf{w}} \left( \sum\limits_{i=1}^n \ln f(y_i|\mathbf{w}) + \sum\limits_{j=1}^m \ln f(w_j) \right)$$
+\[\argmax\limits_{\mathbf{w}} \left( \sum\limits_{i=1}^n \ln f(y_i|\mathbf{w}) + \sum\limits_{j=1}^m \ln f(w_j) \right)\]
 请证明这等价于岭回归（Ridge Regression）
-$$\argmin\limits_{\mathbf{w}} \left( \sum\limits_{i=1}^n \ln (y_i - \mathbf{w}^T\mathbf{x}_i) + \lambda \Vert \mathbf{w} \Vert_2^2 \right)$$
+\[\argmin\limits_{\mathbf{w}} \left( \sum\limits_{i=1}^n \ln (y_i - \mathbf{w}^T\mathbf{x}_i) + \lambda \Vert \mathbf{w} \Vert_2^2 \right)\]
 \end{frame}
 
 %------------------------------------------------

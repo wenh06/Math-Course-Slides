@@ -49,7 +49,7 @@
 \begin{itemize}
 \item<1-> 方阵：特征分解。\newline
 一个$n$阶可对角化方阵$A$可以分解为
-$$A = P\Lambda P^{-1},$$
+\[A = P\Lambda P^{-1},\]
 其中$\Lambda = \operatorname{diag}(\lambda_1,\ldots,\lambda_n)$是一个{\color{red}对角阵}，对角元$\lambda_i$为$A$的特征值，$P$由相应的特征向量$\mathbf{v}_i$组成。\newline
 
 \item<2-> 问题：对于一个一般的$m\times n$的实矩阵，如何将其``对角化''？
@@ -69,8 +69,8 @@ $$A = P\Lambda P^{-1},$$
 
 \begin{block}{奇异值分解定理，Theorem of Singular Value Decomposition}
 设$M$是一个$m\times n$的实矩阵，则$M$有如下的所谓的奇异值分解（Singular Value Decomposition, SVD）：
-$$M = U\Sigma V^T = U\begin{pmatrix}
-\sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\! V^T,$$
+\[M = U\Sigma V^T = U\begin{pmatrix}
+\sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\! V^T,\]
 \pause
 \begin{itemize}
 \item $r = r(M)$，$\sigma_1 \geqslant \cdots \geqslant \sigma_r > 0$被称为奇异值（Singular Value）
@@ -92,7 +92,7 @@ $$M = U\Sigma V^T = U\begin{pmatrix}
 \begin{block}{关键点}
 \begin{itemize}
 \item<2-> 特征分解的特殊情况：当$A$是一个实对称方阵的时候，它正交相似于对角阵：
-$$A = P\Lambda P^T,$$
+\[A = P\Lambda P^T,\]
 其中$P$为正交阵。
 \vspace{1em}
 \item<3-> 若$M$为$m\times n$的实矩阵，则$MM^T, M^TM$分别为$m$阶与$n$阶实对称方阵。
@@ -138,8 +138,8 @@ M^TMM^T\mathbf{x} = \lambda M^T\mathbf{x},
 
 \begin{block}{奇异值分解定理的证明}
 把$MM^T$与$M^TM$的正特征值记为$\sigma_1^2 \geqslant \cdots \geqslant \sigma_r^2 > 0,$ 其中$\sigma_i>0.$ 设$M^TM$通过$n$阶正交阵$V = (\mathbf{v}_1,\ldots,\mathbf{v}_n)$对角化：
-$$M^TM = V \begin{pmatrix}
-\sigma_1^2 & & & \\ & \ddots & & \\ & & \sigma_r^2 & \\ & & & \bigzero \end{pmatrix}_n\!\! V^T.$$
+\[M^TM = V \begin{pmatrix}
+\sigma_1^2 & & & \\ & \ddots & & \\ & & \sigma_r^2 & \\ & & & \bigzero \end{pmatrix}_n\!\! V^T.\]
 有$M^TM\mathbf{v}_i = \sigma_i^2\mathbf{v}_i,$ 令$\mathbf{u}_i = \dfrac{M\mathbf{v}_i}{\sigma_i},$ 那么可以证明：
 
 \pause
@@ -159,14 +159,14 @@ $$M^TM = V \begin{pmatrix}
 
 \begin{block}{奇异值分解定理的证明}
 于是有
-$$M(\mathbf{v}_1,\ldots,\mathbf{v}_r) = (\mathbf{u}_1,\ldots,\mathbf{u}_r) \begin{pmatrix}
-\sigma_1 & & \\ & \ddots & \\ & & \sigma_r \end{pmatrix}.$$
+\[M(\mathbf{v}_1,\ldots,\mathbf{v}_r) = (\mathbf{u}_1,\ldots,\mathbf{u}_r) \begin{pmatrix}
+\sigma_1 & & \\ & \ddots & \\ & & \sigma_r \end{pmatrix}.\]
 
 \pause
 
 把$\left\{ \mathbf{u}_1,\ldots,\mathbf{u}_r \right\}$扩充为$\mathbb{R}^m$的一组单位正交基$\left\{ \mathbf{u}_1,\ldots,\mathbf{u}_r,  \mathbf{u}_{r+1},\ldots,\mathbf{u}_m \right\}$，那么我们就得到了SVD定理中的形式:
-$$M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
-\sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\!(\mathbf{v}_1,\ldots,\mathbf{v}_n)^T.$$
+\[M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
+\sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\!(\mathbf{v}_1,\ldots,\mathbf{v}_n)^T.\]
 \end{block}
 
 \end{frame}
@@ -179,7 +179,7 @@ $$M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
 \begin{block}{奇异值分解的一种更紧凑的形式}
 将$M = (\mathbf{u}_1,\ldots,\mathbf{u}_m) \begin{pmatrix}
 \sigma_1 & & & \\ & \ddots & & \\ & & \sigma_r & \\ & & & \bigzero \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\!(\mathbf{v}_1,\ldots,\mathbf{v}_n)^T$写成分块形式
-$$M = (U_1, U_2) \begin{pmatrix} \Sigma_0 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} V_1 \\ V_2 \end{pmatrix} = U_1\Sigma_0V_1,$$
+\[M = (U_1, U_2) \begin{pmatrix} \Sigma_0 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} V_1 \\ V_2 \end{pmatrix} = U_1\Sigma_0V_1,\]
 其中
 \begin{gather*}
 U_1 = (\mathbf{u}_1,\ldots,\mathbf{u}_r), \quad U_2 = (\mathbf{u}_{r+1},\ldots,\mathbf{u}_m); \\
@@ -208,11 +208,11 @@ V_1 = (\mathbf{v}_1,\ldots,\mathbf{v}_r)^T, \quad V_2 = (\mathbf{v}_{r+1},\ldots
 \pause
 
 解：有
-$$M^TM = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix} \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.$$
+\[M^TM = \begin{pmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{pmatrix} \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.\]
 于是有奇异值$\sigma_1 = \sigma_2 = 1$. 我们可以选取
-$$\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+\[\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\]
 从而有
-$$\mathbf{u}_1 = M\mathbf{v}_1 = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \quad \mathbf{u}_2 = M\mathbf{v}_2 = \begin{pmatrix} -\sin\theta \\ \cos\theta \end{pmatrix}$$
+\[\mathbf{u}_1 = M\mathbf{v}_1 = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \quad \mathbf{u}_2 = M\mathbf{v}_2 = \begin{pmatrix} -\sin\theta \\ \cos\theta \end{pmatrix}\]
 \end{block}
 
 \end{frame}
@@ -224,15 +224,15 @@ $$\mathbf{u}_1 = M\mathbf{v}_1 = \begin{pmatrix} \cos\theta \\ \sin\theta \end{p
 
 \begin{block}{奇异值分解的例子（续）}
 于是$M = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$的奇异值分解可以是
-$$M = U\Sigma V^T = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \cdot I_2 \cdot I_2.$$
+\[M = U\Sigma V^T = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \cdot I_2 \cdot I_2.\]
 
 \vspace{1em}
 \pause
 
 我们也可以另选
-$$\mathbf{v}_1 = \begin{pmatrix} \cos\alpha \\ \sin\alpha \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} -\sin\alpha \\ \cos\alpha \end{pmatrix},$$
+\[\mathbf{v}_1 = \begin{pmatrix} \cos\alpha \\ \sin\alpha \end{pmatrix}, \quad \mathbf{v}_2 = \begin{pmatrix} -\sin\alpha \\ \cos\alpha \end{pmatrix},\]
 于是，相应的奇异值分解为
-$$M = U\Sigma V^T = \begin{pmatrix} \cos(\theta+\alpha) & -\sin(\theta+\alpha) \\ \sin(\theta+\alpha) & \cos(\theta+\alpha) \end{pmatrix} \cdot I_2 \cdot \begin{pmatrix} \cos\alpha & \sin\alpha \\ -\sin\alpha & \cos\alpha \end{pmatrix}$$
+\[M = U\Sigma V^T = \begin{pmatrix} \cos(\theta+\alpha) & -\sin(\theta+\alpha) \\ \sin(\theta+\alpha) & \cos(\theta+\alpha) \end{pmatrix} \cdot I_2 \cdot \begin{pmatrix} \cos\alpha & \sin\alpha \\ -\sin\alpha & \cos\alpha \end{pmatrix}\]
 \end{block}
 
 \end{frame}
@@ -244,10 +244,10 @@ $$M = U\Sigma V^T = \begin{pmatrix} \cos(\theta+\alpha) & -\sin(\theta+\alpha) \
 
 \begin{block}{奇异值分解的应用：图像压缩}
 利用SVD，我们可以把一个秩为$r$的$m\times n$矩阵$M$写作
-$$M = \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \cdots + \sigma_r\mathbf{u}_r\mathbf{v}_r^T.$$
+\[M = \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \cdots + \sigma_r\mathbf{u}_r\mathbf{v}_r^T.\]
 
 考虑$M$是一幅$m\times n$个像素的图片的情况。尽管图片一般接近满秩，但{\color{red}有效秩}很低。也就是说，存在一个相对于$r$很小的$k$，使得$\sigma_{k+1},\ldots,\sigma_{r}$非常小，接近于$0$，因此用
-$$M_k := \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \cdots + \sigma_k\mathbf{u}_k\mathbf{v}_k^T$$
+\[M_k := \sigma_1\mathbf{u}_1\mathbf{v}_1^T + \cdots + \sigma_k\mathbf{u}_k\mathbf{v}_k^T\]
 可以很好地近似$M$，同时只需要存储$k(m+n+1)$个数据，而不是原始的$mn$个数据。于是所需存储的数据大大减少，图像得到了压缩。
 \end{block}
 

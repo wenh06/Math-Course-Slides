@@ -80,14 +80,14 @@
 
 \begin{Def}
   如果级数$\sum\limits_{n=1}^\infty x_n$的通项都是非负实数, 即
-  $$x_n \geqslant 0, \quad n = 1, 2, \cdots,$$
+  \[x_n \geqslant 0, \quad n = 1, 2, \cdots,\]
   则称此级数为\textbf{正项级数}.
 \end{Def}
 
 \pause
 
 显然, 正项级数$\sum\limits_{n=1}^\infty x_n$的部分和数列$\{S_n\}$是单调增加的, 即
-$$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1}, \quad n = 1, 2, \cdots.$$
+\[S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1}, \quad n = 1, 2, \cdots.\]
 由数列的单调有界收敛定理, 立刻可以得到
 
 \end{frame}
@@ -121,7 +121,7 @@ $$S_n = \sum\limits_{k=1}^n x_k \leqslant \sum\limits_{k=1}^{n+1} x_k = S_{n+1},
 \begin{frame}{正项级数的收敛原理}
 
 在这个例子中, 我们实际上使用了马上要介绍的“比较判别法”, 即使用了不等式
-$$\dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},$$
+\[\dfrac{1}{\nroot[n]{n}} \ln{\dfrac{n^2}{(n-1)(n+1)}} := x_n \leqslant y_n := \ln{\dfrac{n^2}{(n-1)(n+1)}},\]
 $\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断. 可以通过判断它的收敛性, 进而得出$\sum\limits_{n=2}^\infty x_n$的收敛性.
 
 \pause
@@ -145,7 +145,7 @@ $\sum\limits_{n=2}^\infty y_n$相对比较好求, 敛散性相对比较好判断
 
 \begin{thm}[比较判别法]
 设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数, 若存在常数$A > 0,$ 使得
-$$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
+\[x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,\]
 \vspace*{-1.6em}
 \begin{enumerate}
   \item[(1)] 当$\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
@@ -167,7 +167,7 @@ $$x_n \leqslant Ay_n, \quad n = 1, 2 ,\cdots,$$
 \begin{frame}{比较判别法的证明}
 
 设级数$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$的部分和序列分别为$\{S_n\}$与$\{T_n\},$那么显然有
-$$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
+\[S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,\]
 \pause
 于是当数列$\{T_n\}$有上界时, $\{S_n\}$也有上界; 当$\{S_n\}$无上界时, $\{T_n\}$必定也无上界. 那么由~{\color{red}正项级数的收敛原理}\tikzmark{mark1}
 
@@ -206,7 +206,7 @@ $$S_n \leqslant AT_n, \quad n = 1, 2 ,\cdots,$$
 \pause
 
 \textbf{解：} 容易看出, 当$n > 3$时成立
-$$\dfrac{n + ~{\color{red}3}}{2n^3 - ~ {\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3 - ~{\color{red}n^3}} = \dfrac{2}{n^2},$$
+\[\dfrac{n + ~{\color{red}3}}{2n^3 - ~ {\color{red}n}} < \dfrac{n+{\color{red}n}}{2n^3 - ~{\color{red}n^3}} = \dfrac{2}{n^2},\]
 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$的收敛性 (值等于$\dfrac{\pi^2}{6}$), 知$\sum\limits_{n=1}^\infty \dfrac{n+3}{2n^3-n}$收敛.
 
 \end{frame}
@@ -240,7 +240,7 @@ $$\dfrac{n + ~{\color{red}3}}{2n^3 - ~ {\color{red}n}} < \dfrac{n+{\color{red}n}
     从右图可看出, 当$x \in [0, \dfrac{\pi}{2}]$时, 成立不等式$\sin x \geqslant \dfrac{2}{\pi} x,$
     \pause
     所以当$n\geqslant 2$时有
-    $$\sin\dfrac{\pi}{n} \geqslant \dfrac{2}{\pi} \cdot \dfrac{\pi}{n} = \dfrac{2}{n}.$$
+    \[\sin\dfrac{\pi}{n} \geqslant \dfrac{2}{\pi} \cdot \dfrac{\pi}{n} = \dfrac{2}{n}.\]
     由于$\sum\limits_{n=1}^\infty \dfrac{1}{n}$发散, 所以$\sum\limits_{n=1}^\infty \sin\dfrac{\pi}{n}$也发散.
   \end{column}
 \end{columns}
@@ -258,7 +258,7 @@ $x_n \leqslant Ay_n$的一种特殊情况是$\lim\limits_{n\to\infty} \dfrac{x_n
 \begin{thm}[比较判别法的极限形式]
 设$\sum\limits_{n=1}^\infty x_n$与$\sum\limits_{n=1}^\infty y_n$是两个正项级数, 且
 \vspace*{-0.9em}
-$$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)$$
+\[\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqslant +\infty)\]
 \vspace*{-1.3em}
 \begin{enumerate}
   \item[(1)] 若$0 \leqslant \ell < +\infty,$ 则当 $\sum\limits_{n=1}^\infty y_n$收敛时, $\sum\limits_{n=1}^\infty x_n$也收敛;
@@ -289,7 +289,7 @@ $$\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell \quad (0 \leqslant \ell \leqs
 \pause
 所以
 \vspace*{-1.6em}
-$$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.$$
+\[\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac{1}{n^2}} = 1 + \dfrac{\pi^2}{2}.\]
 依据比较判别法的极限形式, 由$\sum\limits_{n=1}^\infty \dfrac{1}{n^2}$收敛知$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$也收敛.
 
 \end{frame}
@@ -314,10 +314,10 @@ $$\lim\limits_{n\to\infty} \dfrac{e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n}}{\dfrac
 \begin{thm}[积分判别法]
 设$f(x)$定义于$[a, +\infty),$ 且$f(x) \geqslant 0,$ 进一步假设$f(x)$在任意有限区间$[a, A]$上Riemann可积. 设$\{a_n\}$是单调增加且趋于$+\infty$的数列：
 % \vspace*{-0.4em}
-$$a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,$$
+\[a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,\]
 令$u_n = \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$ 那么反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$与正项级数$\sum\limits_{n=1}^\infty u_n$同时收敛或同时发散到$+\infty,$且有
 % \vspace*{-1.6em}
-$$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.$$
+\[\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) \mathrm{d} x.\]
 \end{thm}
 }
 
@@ -331,7 +331,7 @@ $$\int_a^{+\infty} f(x) \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limit
 
 \begin{frame}{积分判别法的证明}
 设正项级数$\sum\limits_{n=1}^\infty u_n$的部分和数列为$\{S_n\},$ 那么对任意$A > a,$ 存在 (由$A$唯一确定的) 正整数$n$使得$a_n \leqslant A < a_{n+1},$ 于是有
-$$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.$$
+\[S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.\]
 \pause
 若正项级数$\sum\limits_{n=1}^\infty u_n$收敛, 即数列$\{S_n\}$收敛时, 根据极限的夹逼性, $\int_a^A f(x) \mathrm{d} x$当$A \to +\infty$时也收敛, 且收敛到同一极限. \\
 若$\sum\limits_{n=1}^\infty u_n$发散到$+\infty,$ 由不等式$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x$可知反常积分$\int_a^{+\infty} f(x) \mathrm{d} x = \lim\limits_{A\to+\infty} \int_a^{A} f(x) \mathrm{d} x = +\infty.$
@@ -343,9 +343,9 @@ $$S_{n-1} \leqslant \int_a^A f(x) \mathrm{d} x \leqslant S_n.$$
 \begin{frame}{积分判别法的证明}
 
 当$f(x)$在$[a, +\infty)$上单调减小,且取$a_n = n$时, 在闭区间$[n, n+1]$上有
-$$f(n+1) \leqslant f(x) \leqslant f(n),$$
+\[f(n+1) \leqslant f(x) \leqslant f(n),\]
 由定积分的保序性, 有不等式
-$$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mathrm{d} x \leqslant \int_{n}^{n+1} f(n) \mathrm{d} x = f(n).$$
+\[f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mathrm{d} x \leqslant \int_{n}^{n+1} f(n) \mathrm{d} x = f(n).\]
 \pause
 由比较判别法 (使用两次) 知$\sum\limits_{n=[a]+1}^\infty f(n)$与$\sum\limits_{n=[a]+1}^\infty u_n$同时收敛或同时发散, 从而与反常积分$\int_a^{+\infty} f(x) \mathrm{d} x$有相同的敛散性.
 
@@ -391,11 +391,11 @@ $$f(n+1) = \int_{n}^{n+1} f(n+1) \mathrm{d} x \leqslant \int_{n}^{n+1} f(x) \mat
 \vspace{0.6em}
 
 \textbf{解：} 在$[0, 1]$区间上, $g(x) = e^{x^2} - \cos\pi x$是非负递增的, 因为很容易算得$g(0) = 0,$ 且 $g'(x) = 2xe^{x^2} + \pi \sin\pi x \geqslant 0.$ 于是
-$$f(x) = g(1/x) = e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x}$$
+\[f(x) = g(1/x) = e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x}\]
 为$[1, +\infty]$上单调递减的非负函数. 那么根据积分判别法, 我们约化到了判断反常积分$\int_1^{+\infty} f(x) \mathrm{d} x$的敛散性：
-$$
+\[
 \int_1^{+\infty} f(x) \mathrm{d} x = \int_1^{+\infty} \left( e^{\frac{1}{x^2}} - \cos\dfrac{\pi}{x} \right) \mathrm{d} x = \int_0^1 \dfrac{e^{t^2} - \cos\pi t}{t^2} \mathrm{d} t
-$$
+\]
 
 \end{frame}
 
@@ -409,7 +409,7 @@ e^{t^2} - \cos\pi t & = (e^{t^2} - 1) + (1 - \cos\pi t) = (e^{t^2} - 1) + 2 \sin
 & \sim t^2 + 2 \cdot \left( \dfrac{\pi t}{2} \right)^2 = \left( 1 + \dfrac{\pi^2}{2} \right) t^2,
 \end{align*}
 即在$0$附近成立
-$$\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},$$
+\[\dfrac{e^{t^2} - \cos\pi t}{t^2} \sim 1 + \dfrac{\pi^2}{2},\]
 于是原来的反常积分收敛, 进而知级数$\sum\limits_{n=1}^\infty \left( e^{\frac{1}{n^2}} - \cos\dfrac{\pi}{n} \right)$收敛.
 
 \end{frame}
@@ -445,10 +445,10 @@ u_n & := \int_{n\pi}^{(n+1)\pi} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x} = \int_{0}
 
 当$0 < t < \dfrac{1}{(n+1)\pi} < 1$时, 如下不等式恒成立：
 \vspace*{-0.6em}
-$$(n\pi + t)^2 \sin^2 t < (n + 1)^2 (\pi t)^2 < (n + 1)^2 \pi^2 \dfrac{1}{(n+1)^2\pi^2} = 1.$$
+\[(n\pi + t)^2 \sin^2 t < (n + 1)^2 (\pi t)^2 < (n + 1)^2 \pi^2 \dfrac{1}{(n+1)^2\pi^2} = 1.\]
 于是
 \vspace*{-1.2em}
-$$u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} > \dfrac{1}{2\pi} \cdot \dfrac{1}{n+1}.$$
+\[u_n > \int_{0}^{\frac{1}{(n+1)\pi}} \dfrac{\mathrm{d} t}{1 + (n\pi + t)^2\sin^2 t} > \dfrac{1}{2\pi} \cdot \dfrac{1}{n+1}.\]
 由于$\sum\limits_{n=1}^\infty \dfrac{1}{n+1}$发散, 有比较判别法知$\sum\limits_{n=1}^\infty u_n$发散,又由积分判别法知, 反常积分$\int_0^{+\infty} \dfrac{\mathrm{d} x}{1 + x^2\sin^2 x}$发散.
 
 \pause

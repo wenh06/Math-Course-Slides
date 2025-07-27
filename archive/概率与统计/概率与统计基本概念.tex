@@ -79,14 +79,14 @@
 \begin{block}{离散样本空间与连续样本空间}
 \begin{itemize}
 \item 一枚硬币被抛两次的样本空间
-$$\Omega = \{\text{正正，正反，反正，反反}\}$$
+\[\Omega = \{\text{正正，正反，反正，反反}\}\]
 \item 一个骰子投一次的点数的样本空间
-$$\Omega = \{1,2,3,4,5,6\}$$
+\[\Omega = \{1,2,3,4,5,6\}\]
 \pause
 \item 某地气温的观测值的样本空间
-$$\Omega = \{T \ |\ T > 0K\}$$
+\[\Omega = \{T \ |\ T > 0K\}\]
 \item 某地房屋价格的样本空间
-$$\Omega = \{p \ |\ p > 0\text{元}\}$$
+\[\Omega = \{p \ |\ p > 0\text{元}\}\]
 \end{itemize}
 \end{block}
 
@@ -164,7 +164,7 @@ $$\Omega = \{p \ |\ p > 0\text{元}\}$$
 
 \begin{block}{蒲丰投针问题，Buffon's Needle Problem}
 设有一个以平行且等距木纹铺成的地板，现在随意抛一支长度$\ell$比木纹之间距离$h$小的针，那么针与纹线相交的概率为
-$$\dfrac{2\ell}{\pi h}$$
+\[\dfrac{2\ell}{\pi h}\]
 \end{block}
 
 \end{frame}
@@ -203,7 +203,7 @@ $$\dfrac{2\ell}{\pi h}$$
 \item 非负性：对任一随机事件$A\in\mathcal{F}$, $0 \le P(A) \le 1$
 \item 正则性：$P(\Omega) = 1$
 \item 可数可加性：若可数个事件$A_1,A_2,\ldots$两两互斥，那么
-$$P(\bigcup\limits_{i=1}^{+\infty} A_i) = \sum\limits_{i=1}^{+\infty} P(A_i)$$
+\[P(\bigcup\limits_{i=1}^{+\infty} A_i) = \sum\limits_{i=1}^{+\infty} P(A_i)\]
 \end{itemize}
 则称$P(A)$为事件$A$的概率。$(\Omega, \mathcal{F}, P)$被称为一个概率空间。
 \end{block}
@@ -224,7 +224,7 @@ $$P(\bigcup\limits_{i=1}^{+\infty} A_i) = \sum\limits_{i=1}^{+\infty} P(A_i)$$
 
 \begin{block}{随机变量，Random Variable}
 一个随机变量$X$, 指的是一个从{\color{red}样本空间}$\Omega$到实数集$\mathbb{R}$的函数
-$$X: \; \Omega \rightarrow \mathbb{R}, \; \omega \mapsto X(\omega)$$
+\[X: \; \Omega \rightarrow \mathbb{R}, \; \omega \mapsto X(\omega)\]
 \end{block}
 
 \vspace{1em}
@@ -246,12 +246,12 @@ $$X: \; \Omega \rightarrow \mathbb{R}, \; \omega \mapsto X(\omega)$$
 
 \begin{block}{随机变量的例子}
 一个赌博游戏，抛2次硬币，都是正面则赢10元，其他输5元，那么样本空间为
-$$\Omega = \{\text{正正，反正，正反，反反}\}$$
+\[\Omega = \{\text{正正，反正，正反，反反}\}\]
 相应的随机变量就可以定义作
-$$X(\omega) = \begin{cases}
+\[X(\omega) = \begin{cases}
 10, & \omega = \text{正正} \\
 -5, & \text{其他}
-\end{cases}$$
+\end{cases}\]
 \end{block}
 
 \end{frame}
@@ -266,7 +266,7 @@ $$X(\omega) = \begin{cases}
 
 \begin{block}{随机变量的（累积）分布函数，(Cumulative) Distribution Function}
 设$X$为一个{\color{red}概率空间}$(\Omega, \mathcal{F}, P)$上的随机变量。对任意实数$x\in\mathbb{R}$, 定义
-$$F(x) = P(X \le x) = P(\{\omega \ |\ X(\omega) \le x\})$$
+\[F(x) = P(X \le x) = P(\{\omega \ |\ X(\omega) \le x\})\]
 为随机变量$X$的（累积）分布函数。此时，称随机变量$X$服从分布$F$, 记作$X \sim F$.
 \end{block}
 
@@ -280,9 +280,9 @@ $$F(x) = P(X \le x) = P(\{\omega \ |\ X(\omega) \le x\})$$
 \begin{enumerate}
 \item 单调性：$F(x)$在$(-\infty, +\infty)$上单调不减
 \item 有界性：$0 \le F(x) \le 1$, 并且有
-$$F(-\infty) := \lim\limits_{x\to-\infty} F(x) = 0, \quad F(+\infty) := \lim\limits_{x\to+\infty} F(x) = 1$$
+\[F(-\infty) := \lim\limits_{x\to-\infty} F(x) = 0, \quad F(+\infty) := \lim\limits_{x\to+\infty} F(x) = 1\]
 \item 右连续性：即对任意$x_0\in\mathbb{R}$, 有
-$$F(x_0) = F(x_0+0) := \lim\limits_{x\to x_0+} F(x)$$
+\[F(x_0) = F(x_0+0) := \lim\limits_{x\to x_0+} F(x)\]
 \end{enumerate}
 \end{block}
 
@@ -294,7 +294,7 @@ $$F(x_0) = F(x_0+0) := \lim\limits_{x\to x_0+} F(x)$$
 
 \begin{block}{离散型随机变量的分布 --- 质量函数}
 若随机变量$X$的值域是可数个实数$x_1,x_2, \ldots, x_n, \ldots$, 则称其为一个离散型随机变量。特别地，
-$$P(X = x_k) = p_k$$
+\[P(X = x_k) = p_k\]
 被称作随机变量$X$的分布列，或$X$的概率质量函数（Probability Mass Function, PMF）。于是$X$的分布可以表示为一个表
 \begin{center}
 \renewcommand{\arraystretch}{1.5}
@@ -317,7 +317,7 @@ $p$ & $p_1$ & $p_2$ & $\cdots$ & $p_n$ & $\cdots$ \\
 
 \begin{block}{连续型随机变量的分布 --- 密度函数}
 设随机变量$X$服从分布$F$。若存在非负可积函数$f$，使得对任意$x\in\mathbb{R}$, 有
-$$F(x) = \int\limits_{-\infty}^x f(t)dt,$$
+\[F(x) = \int\limits_{-\infty}^x f(t)dt,\]
 则称$X$为连续性随机变量。函数$f$被称为随机变量$X$的概率密度函数（Probability Density Function, PDF）
 \end{block}
 

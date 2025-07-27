@@ -145,7 +145,7 @@ t_j = \sigma( \underbrace{\sum\limits_{i=1}^n {\color{red} w_{ij}}x_i + {\color{
 
 \begin{block}{反向传播算法原理}
 预先取定一个损失函数$L$, 例如可以取
-$$L(y, \widehat{y}) = (y-\widehat{y})^2$$
+\[L(y, \widehat{y}) = (y-\widehat{y})^2\]
 其中$\widehat{y}$为模型的输出值。
 
 \vspace{0.5em}
@@ -155,9 +155,9 @@ $$L(y, \widehat{y}) = (y-\widehat{y})^2$$
 \vspace{0.5em}
 
 方法：梯度下降。为了记号方便，考虑没有$b,b'$的情形。
-$$\mathcal{L}(v_{ij}+h_{ij}) \approx \mathcal{L}(v_{ij}) + \nabla\mathcal{L}(v_{ij})\cdot (h_{ij})$$
+\[\mathcal{L}(v_{ij}+h_{ij}) \approx \mathcal{L}(v_{ij}) + \nabla\mathcal{L}(v_{ij})\cdot (h_{ij})\]
 需要取$(v_{ij})$的增量为
-$$(h_{ij}) = -\eta \nabla\mathcal{L}(v_{ij})$$
+\[(h_{ij}) = -\eta \nabla\mathcal{L}(v_{ij})\]
 $\eta$为所谓的学习率。
 \end{block}
 
@@ -169,18 +169,18 @@ $\eta$为所谓的学习率。
 
 \begin{block}{反向传播算法原理}
 用坐标表示（再加上求偏导的链式法则）就是
-$$h_{ij} = -\eta\dfrac{\partial\mathcal{L}}{\partial v_{ij}} = \pause -\eta \underbrace{\dfrac{\partial L}{\partial \widehat{y}_j}}_{\partial_2 L} \cdot \underbrace{\dfrac{\partial \widehat{y}_j}{\partial r_j^{(2)}}}_{\sigma'} \cdot \underbrace{\dfrac{\partial r_j^{(2)}}{\partial v_{ij}}}_{t_i}$$
+\[h_{ij} = -\eta\dfrac{\partial\mathcal{L}}{\partial v_{ij}} = \pause -\eta \underbrace{\dfrac{\partial L}{\partial \widehat{y}_j}}_{\partial_2 L} \cdot \underbrace{\dfrac{\partial \widehat{y}_j}{\partial r_j^{(2)}}}_{\sigma'} \cdot \underbrace{\dfrac{\partial r_j^{(2)}}{\partial v_{ij}}}_{t_i}\]
 于是隐藏层到输出层的权重就要做如下更新：
 
 \pause
 
-$$v_{ij} \quad{\color{red}\longrightarrow\quad} v_{ij} + h_{ij} = v_{ij} - \eta \cdot \partial_2 L \cdot \sigma' \cdot t_i$$
+\[v_{ij} \quad{\color{red}\longrightarrow\quad} v_{ij} + h_{ij} = v_{ij} - \eta \cdot \partial_2 L \cdot \sigma' \cdot t_i\]
 
 
 \pause
 
 同理，输入层到隐藏层的权重要做如下更新：
-$$w_{ij} \quad{\color{red}\longrightarrow\quad} w_{ij} - \eta \partial_2 L \cdot \sigma' \cdot x_i$$
+\[w_{ij} \quad{\color{red}\longrightarrow\quad} w_{ij} - \eta \partial_2 L \cdot \sigma' \cdot x_i\]
 \end{block}
 
 \end{frame}

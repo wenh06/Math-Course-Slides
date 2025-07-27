@@ -53,16 +53,16 @@
 
 \begin{block}{期望，Expected Value}
 期望是一种加权平均值。一个随机变量的期望被定义作
-$$\mu = E(X) = \begin{cases}
+\[\mu = E(X) = \begin{cases}
 \sum\limits_{i=1}^{+\infty} x_i\cdot P(X=x_i), & \text{$X$为离散型随机变量} \\
 \int\limits_{-\infty}^{+\infty} x\cdot f(x)dx, & \text{$X$为连续型随机变量}
-\end{cases}$$
+\end{cases}\]
 
 \vspace{1em}
 \pause
 
 {\color{red}注意}！以上分别要求
-$$\sum\limits_{i=1}^{+\infty} \vert x_i \vert \cdot P(X=x_i) < +\infty,\quad \int\limits_{-\infty}^{+\infty} \vert x \vert \cdot f(x)dx < +\infty$$
+\[\sum\limits_{i=1}^{+\infty} \vert x_i \vert \cdot P(X=x_i) < +\infty,\quad \int\limits_{-\infty}^{+\infty} \vert x \vert \cdot f(x)dx < +\infty\]
 才称相应的期望存在。
 \end{block}
 
@@ -90,7 +90,7 @@ $$\sum\limits_{i=1}^{+\infty} \vert x_i \vert \cdot P(X=x_i) < +\infty,\quad \in
 
 \begin{block}{方差，Variance (或 Deviation)}
 随机变量$X$的方差被定义作
-$$Var(X) = E((X-E(X))^2)$$
+\[Var(X) = E((X-E(X))^2)\]
 方差衡量了一个随机变量的分散程度。
 \end{block}\pause
 \begin{align*}
@@ -172,7 +172,7 @@ E((X-E(X))^2) & = E(X^2 - 2XE(X) + E(X)^2) \\
 
 \begin{block}{多维随机变量}
 在一个问题的考察中，往往会涉及多个随机变量。于是，在同一样本空间$\Omega$中，我们同时考虑多个随机变量$X_1,X_2,\ldots,X_n$, 他们的取值可能相互影响。这样的情况下，
-$$\mathbf{X} = (X_1,X_2,\ldots,X_n)$$
+\[\mathbf{X} = (X_1,X_2,\ldots,X_n)\]
 被称作$n$维随机变量，或称随机向量。
 \end{block}
 
@@ -192,13 +192,13 @@ $$\mathbf{X} = (X_1,X_2,\ldots,X_n)$$
 
 \begin{block}{联合分布，Joint Distribution}
 对于任意$n$个实数$x_1, \ldots, x_n$, 事件$\{X_1 \le x_1\},$ $\ldots,$ $\{X_n \le x_n\}$同时发生的概率
-$$F(x_1,\ldots,x_n) = P(X_1 \le x_1, \ldots, X_n \le x_n)$$
+\[F(x_1,\ldots,x_n) = P(X_1 \le x_1, \ldots, X_n \le x_n)\]
 被称为$n$维随机变量$(X_1, \ldots, X_n)$的联合分布函数。
 \end{block}
 
 \begin{block}{联合密度，Joint Density Distribution}
 如果存在非负的$n$个变元的函数$f(x_1,\ldots,x_n)$, 使得
-$$F(x_1,\ldots,x_n) = \int_{-\infty}^{x_1} \cdots \int_{-\infty}^{x_n} f(t_1,\ldots,t_n) dt_1 \cdots dt_n$$
+\[F(x_1,\ldots,x_n) = \int_{-\infty}^{x_1} \cdots \int_{-\infty}^{x_n} f(t_1,\ldots,t_n) dt_1 \cdots dt_n\]
 则称$(X_1, \ldots, X_n)$为$n$维连续型随机变量，$f(x_1,\ldots,x_n)$被称为它的联合密度函数。
 \end{block}
 
@@ -242,7 +242,7 @@ $\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$ &  \\
 
 \begin{block}{边缘分布，Marginal Distribution}
 设$F(x_1,\ldots,x_n)$为$n$维（连续型）随机变量$\mathbf{X} = (X_1,\ldots,X_n)$的分布。设$I = \{i_1,\ldots,i_k\}$为$\{1,\ldots,n\}$的一个真子集，记$\mathbf{X}_I = (X_i)_{i\in I}$, 那么
-$$F_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \lim\limits_{\substack{x_i\to+\infty \\ i\not\in I}} F(x_1,\ldots,x_n)$$
+\[F_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \lim\limits_{\substack{x_i\to+\infty \\ i\not\in I}} F(x_1,\ldots,x_n)\]
 给出的随机向量$\mathbf{X}_I = (X_i)_{i\in I}$的概率分布被称作这部分随机向量的边缘分布。
 
 \vspace{1em}
@@ -262,11 +262,11 @@ $$F_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \lim\limits_{\substack{x_i\to+\inft
 
 \begin{block}{边缘密度与边缘质量，Marginal Density \& Mass}
 相应地，我们有边缘密度
-$$f_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \idotsint f(x_1,\ldots,x_n) \prod\limits_{i\not\in I}dx_i$$
+\[f_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \idotsint f(x_1,\ldots,x_n) \prod\limits_{i\not\in I}dx_i\]
 
 以及边缘质量
 
-$$P(X_{i_1}=x_{i_1},\ldots,X_{i_k}=x_{i_k}) = \sum\limits_{\substack{y_i\\i\not\in I}} P(X_1=x_1,\ldots,X_k=x_k) $$
+\[P(X_{i_1}=x_{i_1},\ldots,X_{i_k}=x_{i_k}) = \sum\limits_{\substack{y_i\\i\not\in I}} P(X_1=x_1,\ldots,X_k=x_k) \]
 \end{block}
 
 \end{frame}
@@ -281,11 +281,11 @@ $$P(X_{i_1}=x_{i_1},\ldots,X_{i_k}=x_{i_k}) = \sum\limits_{\substack{y_i\\i\not\
 
 \begin{block}{离散型随机变量的条件分布}
 考虑2维离散型随机变量$(X,Y)$, 设其有联合分布列
-$$P(X=x_i, Y = y_i) = p_{ij}$$
+\[P(X=x_i, Y = y_i) = p_{ij}\]
 令$Y$有边缘分布列$P(Y = y_j) = \sum\limits_{i} p_{ij} =: p_j$. 对于所有满足$p_j > 0$的$y_j$, 称
-$$P(X = x_i | Y = y_j) = \dfrac{P(X=x_i, Y = y_i)}{P(Y = y_j)} = \dfrac{p_{ij}}{p_j}$$
+\[P(X = x_i | Y = y_j) = \dfrac{P(X=x_i, Y = y_i)}{P(Y = y_j)} = \dfrac{p_{ij}}{p_j}\]
 为给定条件$Y=y_j$下$X$的条件分布列。相应的条件分布函数为
-$$F_{X|Y}(x|y_j) = \sum\limits_{x_i \le x} P(X = x_i | Y = y_j) = \sum\limits_{x_i \le x} \dfrac{p_{ij}}{p_j}.$$
+\[F_{X|Y}(x|y_j) = \sum\limits_{x_i \le x} P(X = x_i | Y = y_j) = \sum\limits_{x_i \le x} \dfrac{p_{ij}}{p_j}.\]
 \end{block}
 
 \end{frame}
@@ -311,11 +311,11 @@ f_{X|Y}(x|y) & = \dfrac{f(x,y)}{f_Y(y)}
 以2维连续型随机变量$(X,Y)$为例，我们也有条件密度的乘积公式（链式法则），全概率公式以及贝叶斯公式
 \begin{itemize}
 \item 乘积公式：
-$$f(x,y) = f_Y(y) f_{X|Y}(x|y)$$
+\[f(x,y) = f_Y(y) f_{X|Y}(x|y)\]
 \item 全概率公式：
-$$f_X(x) = \int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy$$
+\[f_X(x) = \int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy\]
 \item 贝叶斯公式：
-$$f_{Y|X}(y|x) = \dfrac{f_Y(y)f_{X|Y}(x|y)}{\int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy}$$
+\[f_{Y|X}(y|x) = \dfrac{f_Y(y)f_{X|Y}(x|y)}{\int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy}\]
 \end{itemize}
 
 \end{frame}
@@ -325,16 +325,16 @@ $$f_{Y|X}(y|x) = \dfrac{f_Y(y)f_{X|Y}(x|y)}{\int^{+\infty}_{-\infty} f_Y(y) f_{X
 \begin{frame}
 
 \begin{block}{条件期望}
-$$E(X|Y=y) = \begin{cases}
+\[E(X|Y=y) = \begin{cases}
 \sum\limits_i x_i P(X=x_i | Y=y), & \text{离散} \\
 \int_{-\infty}^{+\infty} x f(x,y) dx, & \text{连续} \\
-\end{cases}$$
+\end{cases}\]
 
 \vspace{1em}
 \pause
 
 我们有所谓的全期望公式
-$$E(X) = E(E(X | Y=y))$$
+\[E(X) = E(E(X | Y=y))\]
 也就是说，求$X$的期望，等于先计算$Y$在不同取值下$X$的条件期望，再用$Y$各个取值概率对这些条件期望求和或积分。
 
 大家可以将这个公式与之前的全概率公式对照来看。
@@ -352,7 +352,7 @@ $$E(X) = E(E(X | Y=y))$$
 
 \begin{block}{随机变量的独立性}
 设$n$维随机变量$(X_1,\ldots,X_n)$的联合分布函数为$F(x_1,\ldots,x_n)$, $F_{X_i}(x_i)$为随机变量$X_i$的边缘分布函数。如果对于任意$n$个实数$x_1,\ldots,x_n$有
-$$F(x_1,\ldots,x_n) = \prod\limits_{i=1}^n F_{X_i}(x_i)$$
+\[F(x_1,\ldots,x_n) = \prod\limits_{i=1}^n F_{X_i}(x_i)\]
 则称随机变量$X_1,\ldots,X_n$是相互独立的。
 
 \vspace{2em}
@@ -404,7 +404,7 @@ $$F(x_1,\ldots,x_n) = \prod\limits_{i=1}^n F_{X_i}(x_i)$$
 
 \begin{block}{协方差，Covariance}
 设$X,Y$是两个随机变量，称
-$$Cov(X,Y) := E((X-E(X))(Y-E(Y)))$$
+\[Cov(X,Y) := E((X-E(X))(Y-E(Y)))\]
 为$X,Y$的协方差
 \end{block}
 
@@ -437,7 +437,7 @@ $$Cov(X,Y) := E((X-E(X))(Y-E(Y)))$$
 
 \begin{block}{线性相关系数}
 假设随机变量$X,Y$都不是常数，那么它们的线性相关系数被定义为
-$$Corr(X,Y) = \dfrac{Cov(X, Y)}{\sigma(X)\cdot\sigma(Y)}$$
+\[Corr(X,Y) = \dfrac{Cov(X, Y)}{\sigma(X)\cdot\sigma(Y)}\]
 随机变量与常数的相关系数被约定作0. $X,Y$被称作正（或负或不）相关，若$Corr(X,Y) > 0$（或$<0$或$=0$）
 
 \vspace{1em}
@@ -461,12 +461,12 @@ $$Corr(X,Y) = \dfrac{Cov(X, Y)}{\sigma(X)\cdot\sigma(Y)}$$
 \vspace{1em}
 
 % 例如，设连续型随机变量$X$的PDF（概率密度函数）为
-% $$\varphi(x) = \dfrac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
+% \[\varphi(x) = \dfrac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}\]
 % 令$Y = X^2$. 那么$X,Y$是不独立的。但是它们是线性不相关的。可以验证如下：$X,Y$的联合密度函数为
-% $$f(x,y) = \begin{cases}
+% \[f(x,y) = \begin{cases}
 % \varphi(x), & \text{ 当 } y = x^2 \\
 % 0, & \text{其他情况}
-% \end{cases}$$
+% \end{cases}\]
 
 例如，独立地投掷硬币三次，令随机变量$X$为正面出现次数，$Y$为正、反面出现次数之差（的绝对值），那么有如下的联合分布列与边缘分布列
 \begin{center}
@@ -498,9 +498,9 @@ $P_X(x)$ & 1/8 & 3/8 & 3/8 & 1/8 & \\
 设$X_1,\ldots,X_n$为来自总体$X$的样本。那么，
 \begin{itemize}
 \item 若总体$X$有分布函数$F(x)$, 那么$(X_1,\ldots,X_n)$的联合分布函数为
-$$F^*(x_1,\ldots,x_n) = \prod\limits_{i=1}^n F(x)$$
+\[F^*(x_1,\ldots,x_n) = \prod\limits_{i=1}^n F(x)\]
 \item 若总体$X$有密度函数$f(x)$, 那么$(X_1,\ldots,X_n)$的联合密度为
-$$f^*(x_1,\ldots,x_n) = \prod\limits_{i=1}^n f(x)$$
+\[f^*(x_1,\ldots,x_n) = \prod\limits_{i=1}^n f(x)\]
 \end{itemize}
 \end{block}
 
@@ -557,7 +557,7 @@ S^2 = \dfrac{(X_1-\overline{X})^2 + \cdots + (X_n-\overline{X})^2}{\color{red} n
 对于前一个问题，有如下的一个（``初步''的）结果
 \begin{block}{定理}
 设$X_1,\ldots,X_n$是来自总体$X$, 且$X$服从正态分布$N(\mu, \sigma^2)$的样本，统计量$Y = \sum\limits_{i=1}^n a_iX_i$是样本的任一确定的线性函数，那么$Y$也服从正态分布：
-$$Y \sim N \left( \mu \sum\limits_{i=1}^n a_i, \sigma^2 \sum\limits_{i=1}^n a_i^2 \right)$$
+\[Y \sim N \left( \mu \sum\limits_{i=1}^n a_i, \sigma^2 \sum\limits_{i=1}^n a_i^2 \right)\]
 \end{block}
 
 \vspace{1em}
@@ -578,15 +578,15 @@ $$Y \sim N \left( \mu \sum\limits_{i=1}^n a_i, \sigma^2 \sum\limits_{i=1}^n a_i^
 \vspace{1em}
 
 考虑如下定义的Dirac函数
-$$\delta_a(x) = \begin{cases}
+\[\delta_a(x) = \begin{cases}
 +\infty, & \text{ 如果 } x = a \\
 0, & \text{ 其他情况 }
-\end{cases},$$
+\end{cases},\]
 且满足
-$$\int_{A} \delta_a(x)dx = \begin{cases}
+\[\int_{A} \delta_a(x)dx = \begin{cases}
 1, & \text{ 如果 } a \in A \\
 0, & \text{ 其他情况 }
-\end{cases}$$
+\end{cases}\]
 Dirac函数不是普通意义下的函数，而是所谓的广义函数（Generalized Function 或 Distribution）。
 
 \end{frame}
@@ -596,7 +596,7 @@ Dirac函数不是普通意义下的函数，而是所谓的广义函数（Genera
 \begin{frame}
 
 于是，一个概率质量函数就可以形式地写作如下的``概率密度函数''
-$$f(x) = \sum\limits_k P(X=k) \cdot \delta_k(x)$$
+\[f(x) = \sum\limits_k P(X=k) \cdot \delta_k(x)\]
 相应的积分（求累积分布，求期望，等等），自动就变成了求和。
 
 \end{frame}

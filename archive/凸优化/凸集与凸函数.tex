@@ -47,7 +47,7 @@
 
 \begin{block}{凸集，Convex Set}
 设$C$为$\mathbb{R}^n$的一个子集。如果任取$C$中两点$\mathbf{x}_1, \mathbf{x}_2$, 以这两点为端点的线段包含在集合$C$中，即
-$$\theta \mathbf{x}_1 + (1-\theta)\mathbf{x}_2 \in C$$
+\[\theta \mathbf{x}_1 + (1-\theta)\mathbf{x}_2 \in C\]
 对任意满足$0\le \theta \le 1$的非负实数$\theta$都成立，则称$C$为$\mathbb{R}^n$中的一个凸集。
 \end{block}
 
@@ -91,11 +91,11 @@ $$\theta \mathbf{x}_1 + (1-\theta)\mathbf{x}_2 \in C$$
 \item 超平面（Hyperplane）：$\{\mathbf{x} \ |\ \mathbf{a}^T\mathbf{x} = b\}$
 \item 半空间（Halfspace）：$\{\mathbf{x} \ |\ \mathbf{a}^T\mathbf{x} \le b\}$
 \item 球（Ball）与椭球（Ellipsoid）：
-$$\{\mathbf{x} \ |\ (\mathbf{x} - \mathbf{x}_0)^TP^{-1}(\mathbf{x} - \mathbf{x}_0) \le 1 \}$$
+\[\{\mathbf{x} \ |\ (\mathbf{x} - \mathbf{x}_0)^TP^{-1}(\mathbf{x} - \mathbf{x}_0) \le 1 \}\]
 其中$P$是一个正定阵。
 \item 范数球（Norm Ball）：$\{\mathbf{x} \ |\ \Vert \mathbf{x} - \mathbf{x}_0 \Vert \le r \}$
 \item 多面体（Polyhedra）：
-$$\{\mathbf{x} \ |\ \mathbf{a}_i^T\mathbf{x} \le b_i, \mathbf{c}_j^T\mathbf{x} = d_j\}$$
+\[\{\mathbf{x} \ |\ \mathbf{a}_i^T\mathbf{x} \le b_i, \mathbf{c}_j^T\mathbf{x} = d_j\}\]
 为有限个半空间与超平面的交集。
 \end{itemize}
 \end{block}
@@ -108,7 +108,7 @@ $$\{\mathbf{x} \ |\ \mathbf{a}_i^T\mathbf{x} \le b_i, \mathbf{c}_j^T\mathbf{x} =
 
 \begin{block}{凸组合，Convex Combination}
 设$\mathbf{x}_1, \ldots, \mathbf{x}_k$为$\mathbb{R}^n$中的$k$个点，称
-$$\mathbf{x} = \theta_1\mathbf{x}_1 + \cdots \theta_k\mathbf{x}_k \in \mathbb{R}^n$$
+\[\mathbf{x} = \theta_1\mathbf{x}_1 + \cdots \theta_k\mathbf{x}_k \in \mathbb{R}^n\]
 为这$k$个点的一个凸组合，其中$\theta_i \ge 0$且满足$\theta_1 + \cdots + \theta_k = 1$.
 \end{block}
 
@@ -116,7 +116,7 @@ $$\mathbf{x} = \theta_1\mathbf{x}_1 + \cdots \theta_k\mathbf{x}_k \in \mathbb{R}
 
 \begin{block}{凸包，Convex Hull}
 称集合$C\in\mathbb{R}^n$中点的所有的凸组合组成的集合为$C$的凸包，记作$\operatorname{conv} C$, 即
-$$\operatorname{conv} C = \left\{ \theta_1\mathbf{x}_1 + \cdots \theta_k\mathbf{x}_k \right\}$$
+\[\operatorname{conv} C = \left\{ \theta_1\mathbf{x}_1 + \cdots \theta_k\mathbf{x}_k \right\}\]
 $k$是正整数，$\mathbf{x}_1, \ldots, \mathbf{x}_k$是$C$中的点，$\theta_i \ge 0$, $\theta_1 + \cdots + \theta_k = 1$. $\operatorname{conv} C$是包含$C$的最小的凸集。
 \end{block}
 
@@ -150,10 +150,10 @@ $k$是正整数，$\mathbf{x}_1, \ldots, \mathbf{x}_k$是$C$中的点，$\theta_
 \begin{itemize}
 \item 交：若$C_1,C_2$是两个凸集，则$C_1\cap C_2$也是。更一般地，任意多凸集的交仍然是凸集。
 \item 仿射（Affine）映射：
-$$f: \mathbb{R}^n \to \mathbb{R}^m, \; \mathbf{x} \mapsto A\mathbf{x} + \mathbf{b}$$
+\[f: \mathbb{R}^n \to \mathbb{R}^m, \; \mathbf{x} \mapsto A\mathbf{x} + \mathbf{b}\]
 凸集在仿射映射下的像与原像都是凸集。
 \item 分式线性（Linear Fractional）映射：
-$$f: \{ \mathbf{x} \in \mathbb{R}^n \ |\ \mathbf{c}^T\mathbf{x} + d > 0 \} \to \mathbb{R}^m, \; \mathbf{x} \mapsto \dfrac{1}{\mathbf{c}^T\mathbf{x} + d}(A\mathbf{x} + \mathbf{b})$$
+\[f: \{ \mathbf{x} \in \mathbb{R}^n \ |\ \mathbf{c}^T\mathbf{x} + d > 0 \} \to \mathbb{R}^m, \; \mathbf{x} \mapsto \dfrac{1}{\mathbf{c}^T\mathbf{x} + d}(A\mathbf{x} + \mathbf{b})\]
 \end{itemize}
 
 \end{block}
@@ -180,7 +180,7 @@ $$f: \{ \mathbf{x} \in \mathbb{R}^n \ |\ \mathbf{c}^T\mathbf{x} + d > 0 \} \to \
 
 \begin{block}{凸函数，Convex Function}
 如果一个函数$f: C\to \mathbb{R}$是定义在$\mathbb{R}^n$中的一个凸集$C$上的函数。称$f$是一个凸函数，如果
-$$f(\theta\mathbf{x}_1 + (1-\theta)\mathbf{x}_2) \le \theta f(\mathbf{x}_1) + (1-\theta)f(\mathbf{x}_2)$$
+\[f(\theta\mathbf{x}_1 + (1-\theta)\mathbf{x}_2) \le \theta f(\mathbf{x}_1) + (1-\theta)f(\mathbf{x}_2)\]
 对任意的$\mathbf{x}_1, \mathbf{x}_2 \in C$以及任意的满足$0\le\theta\le1$的非负实数$\theta$都成立。
 \begin{itemize}
 \item 如果上述不等式当$\mathbf{x}_1 \neq \mathbf{x}_2$以及$0<\theta<1$都严格成立，那么称$f$是严格凸的。
@@ -218,7 +218,7 @@ $$f(\theta\mathbf{x}_1 + (1-\theta)\mathbf{x}_2) \le \theta f(\mathbf{x}_1) + (1
 \item 一阶条件：$f(\mathbf{y}) \ge f(\mathbf{x}) + \nabla f(\mathbf{x})^T(\mathbf{y} - \mathbf{x})$
 \item 二阶条件：$f$的黑塞矩阵$H(f)$在所有点都是半正定的
 \item 上境图（Epigraph）为凸集
-$$\operatorname{epi}f = \{ (\mathbf{x}, t) \ |\ f(\mathbf{x}) \le t \}$$
+\[\operatorname{epi}f = \{ (\mathbf{x}, t) \ |\ f(\mathbf{x}) \le t \}\]
 \item 由凸函数通过保凸运算得到的函数
 % \item
 \end{itemize}
@@ -233,13 +233,13 @@ $$\operatorname{epi}f = \{ (\mathbf{x}, t) \ |\ f(\mathbf{x}) \le t \}$$
 \begin{block}{保凸函数的运算}
 \begin{itemize}
 \item 非负加权求和：$f_1,\ldots,f_m$是凸函数，则
-$$f = w_1f_1+\cdots+w_mf_m$$
+\[f = w_1f_1+\cdots+w_mf_m\]
 仍是凸函数，其中$w_1,\ldots,w_m$都是非负实数
 \item 取最大值：$f_1,\ldots,f_m$是凸函数，则
-$$f(x) = \max\{f_1(x),\ldots,f_m(x)\}$$
+\[f(x) = \max\{f_1(x),\ldots,f_m(x)\}\]
 仍是凸函数
 \item 取上确界（Supremum）：若对每个$\mathbf{y}$, 函数$f(\mathbf{x}, \mathbf{y})$都是$\mathbf{x}$的凸函数，那么
-$$g(\mathbf{x}) = \sup\limits_{y} f(\mathbf{x}, \mathbf{y})$$
+\[g(\mathbf{x}) = \sup\limits_{y} f(\mathbf{x}, \mathbf{y})\]
 % \item
 % \item
 \end{itemize}
@@ -272,19 +272,19 @@ $$g(\mathbf{x}) = \sup\limits_{y} f(\mathbf{x}, \mathbf{y})$$
 
 \begin{block}{函数的扩展值延伸，Extended-Value Extension}
 为了方便，通常对于凸函数$f$的定义域之外的$\mathbf{x}$, 还补充定义其函数值为$+\infty$, 即
-$$\widetilde{f}(\mathbf{x}) := \begin{cases}
+\[\widetilde{f}(\mathbf{x}) := \begin{cases}
 f(\mathbf{x}), & \mathbf{x} \text{ 在定义域中} \\
 +\infty, & \mathbf{x} \text{ 不在定义域中}
-\end{cases}$$
+\end{cases}\]
 并将其称作是$f$的扩展值延伸。
 
 \vspace{1em}
 
 类似地，凹函数的扩展值延伸被定义作
-$$\widetilde{f}(\mathbf{x}) := \begin{cases}
+\[\widetilde{f}(\mathbf{x}) := \begin{cases}
 f(\mathbf{x}), & \mathbf{x} \text{ 在定义域中} \\
 -\infty, & \mathbf{x} \text{ 不在定义域中}
-\end{cases}$$
+\end{cases}\]
 \end{block}
 
 \end{frame}
@@ -299,7 +299,7 @@ f(\mathbf{x}), & \mathbf{x} \text{ 在定义域中} \\
 
 \begin{block}{共轭函数，Conjugate Function}
 函数$f: \mathbb{R}^n \to \mathbb{R}$的共轭函数被定义作
-$$f^*(\mathbf{y}) = \sup\limits_{\mathbf{x}} \left( \mathbf{y}^T\mathbf{x} - f(\mathbf{x}) \right)$$
+\[f^*(\mathbf{y}) = \sup\limits_{\mathbf{x}} \left( \mathbf{y}^T\mathbf{x} - f(\mathbf{x}) \right)\]
 
 \begin{itemize}
 \item $f^*$是$\mathbf{y}$的一系列的凸函数的逐点上确界，因此无论$f$是不是凸函数，$f^*$总是凸的。
@@ -322,7 +322,7 @@ f^*(y) & = \sup\limits_{x>0} \left( xy + \ln x \right) = \begin{cases}
 \end{cases}
 \end{align*}
 \item 正定二次型$f(\mathbf{x}) = \dfrac{1}{2} \mathbf{x}^T Q \mathbf{x}$的共轭为
-$$f^*(\mathbf{y}) = \sup\limits_{\mathbf{x}} \left( \mathbf{y}^T\mathbf{x} - \dfrac{1}{2} \mathbf{x}^T Q \mathbf{x} \right) = \dfrac{1}{2} \mathbf{y}^T Q^{-1} \mathbf{y}$$
+\[f^*(\mathbf{y}) = \sup\limits_{\mathbf{x}} \left( \mathbf{y}^T\mathbf{x} - \dfrac{1}{2} \mathbf{x}^T Q \mathbf{x} \right) = \dfrac{1}{2} \mathbf{y}^T Q^{-1} \mathbf{y}\]
 \end{itemize}
 \end{block}
 

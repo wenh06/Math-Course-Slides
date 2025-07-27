@@ -69,16 +69,16 @@
 \frametitle{多项式一致逼近}
 
 关于用多项式逼近函数, 我们首先想到的是上一节讲的 (解析) 函数的幂级数展开的前 $n$ 项和构成的多项式序列
-$$f(x) = \sum_{n=0}^\infty a_n (x - x_0)^n, ~~ P_n(x) = \sum_{k=0}^n a_k (x - x_0)^k.$$
+\[f(x) = \sum_{n=0}^\infty a_n (x - x_0)^n, ~~ P_n(x) = \sum_{k=0}^n a_k (x - x_0)^k.\]
 
 \pause
 \vspace{1em}
 
 但是这个形式的多项式逼近有缺陷:
 \begin{itemize}
-\item 对函数本身要求较高 (解析); 
+\item 对函数本身要求较高 (解析);
 \item 多项式列形式比较特殊, 灵活性差:
-$$P_n(x) - P_{n-1}(x) = a_n (x - x_0)^n.$$
+\[P_n(x) - P_{n-1}(x) = a_n (x - x_0)^n.\]
 \end{itemize}
 我们需要跳出幂级数 (前 $n$ 项和) 进行思考.
 
@@ -105,9 +105,9 @@ $$P_n(x) - P_{n-1}(x) = a_n (x - x_0)^n.$$
 \pause
 
 等价地来说, 就是有
-$$
+\[
 d(P, f) := \sup_{x\in[a,b]}|P(x) - f(x)| < \varepsilon.
-$$
+\]
 
 \pause
 
@@ -126,7 +126,7 @@ Weierstraß 第一逼近定理的证明需要一些预备知识与定理, 我们
 
 \begin{Def}
 称映射 $L: C[a,b] \rightarrow C[a,b]$ 为线性算子, 若 $\forall ~ f, g \in C[a,b],$ 以及 $\forall ~ \alpha, \beta \in \mathbb{R},$ 有
-$$L(\alpha f + \beta g) = \alpha L(f) + \beta L(g).$$
+\[L(\alpha f + \beta g) = \alpha L(f) + \beta L(g).\]
 称线性算子 $L$ 为正算子, 若对任意非负函数 $f \in C[a, b]$ (简记为 $f \geqslant 0$), $L(f)$ 也是非负函数; 称线性算子 $L$ 为多项式算子, 若对任意 $f \in C[a, b],$ $L(f)$ 为多项式.
 \end{Def}
 
@@ -159,7 +159,7 @@ Korovkin 定理的一个直接推论是
 
 \begin{cor}[Bernstein 定理]
 $\forall ~ f \in C[0,1], \forall ~ n \in \mathbb{N},$ Bernstein 多项式
-$$B_n(f; x) = \sum_{k=0}^{n} f ( \frac{k}{n} ) C_n^k x^k (1-x)^{n-k} \xRightarrow{[0,1]} f(x).$$
+\[B_n(f; x) = \sum_{k=0}^{n} f ( \frac{k}{n} ) C_n^k x^k (1-x)^{n-k} \xRightarrow{[0,1]} f(x).\]
 \end{cor}
 
 \end{frame}

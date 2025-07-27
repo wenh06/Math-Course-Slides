@@ -46,7 +46,7 @@
 
 % \begin{block}
 数学优化问题，或简称优化问题，指的是求以下的量的问题
-$$\min\limits_{\mathbf{x}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le (\text{或} = ) b_i, \; i = 1,\ldots,m \right\}$$
+\[\min\limits_{\mathbf{x}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le (\text{或} = ) b_i, \; i = 1,\ldots,m \right\}\]
 其中
 \begin{itemize}
 \item $\mathbf{x} = (x_1,\ldots,x_n)^T$ 为优化变量（Optimization Variable）
@@ -63,13 +63,13 @@ $$\min\limits_{\mathbf{x}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \
 \begin{frame}{最优解 ~ {\smaller Optimal Solution}}
 
 在一个优化问题中，满足所有约束条件
-$$f_i(\mathbf{x}) \le b_i,\; i = 1,\ldots,m,$$
+\[f_i(\mathbf{x}) \le b_i,\; i = 1,\ldots,m,\]
 的向量$\mathbf{x}$被称作可行的（Feasible）。全体可行点组成的集合被称作可行集。
 
 \vspace{1em}
 
 如果可行集中一个向量$\mathbf{x}^*$, 在目标函数$f_0$上取值最小，即
-$$\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le b_i, \; i = 1,\ldots,m \right\}$$
+\[\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le b_i, \; i = 1,\ldots,m \right\}\]
 则称$\mathbf{x}^*$为这个优化问题的最优解。相应地，目标函数$f_0$在最优解$\mathbf{x}^*$处的取值$p^* = f_0(\mathbf{x}^*)$被称作最优值。
 % \end{block}
 
@@ -81,11 +81,11 @@ $$\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf
 
 \begin{itemize}
 \item 最小二乘法：
-$$\min\limits_{\mathbf{x}} \Vert A\mathbf{x} - \mathbf{b} \Vert_2^2 = \sum (\mathbf{a}_i^T\mathbf{x} - b_i)^2$$
+\[\min\limits_{\mathbf{x}} \Vert A\mathbf{x} - \mathbf{b} \Vert_2^2 = \sum (\mathbf{a}_i^T\mathbf{x} - b_i)^2\]
 这是一个无约束问题。
 \vspace{1em}
 \item 线性规划 (Linear Programming)
-$$\min\limits_{\mathbf{x}} \left\{ \mathbf{c}^T\mathbf{x} \ \middle|\ \mathbf{a}_i^T\mathbf{x} \le b_i, \; i = 1,\ldots,m \right\}$$
+\[\min\limits_{\mathbf{x}} \left\{ \mathbf{c}^T\mathbf{x} \ \middle|\ \mathbf{a}_i^T\mathbf{x} \le b_i, \; i = 1,\ldots,m \right\}\]
 \end{itemize}
 
 \end{frame}
@@ -100,11 +100,11 @@ $$\min\limits_{\mathbf{x}} \left\{ \mathbf{c}^T\mathbf{x} \ \middle|\ \mathbf{a}
 
 % \begin{block}
 无约束优化问题具有以下形式
-$$\text{minimize} \quad f(\mathbf{x})$$
+\[\text{minimize} \quad f(\mathbf{x})\]
 如果$f$是凸函数 (convex function)，那么
-$$\mathbf{x}^* \text{ 是最优解 } \Longleftrightarrow \nabla f(\mathbf{x}^*) = \mathbf{0}$$
+\[\mathbf{x}^* \text{ 是最优解 } \Longleftrightarrow \nabla f(\mathbf{x}^*) = \mathbf{0}\]
 这个方程（组）一般没有解析解，必须采用迭代算法求解，即寻找所谓的极小化点列
-$$\mathbf{x}^{(0)}, \ldots, \mathbf{x}^{(k)}, \ldots,$$
+\[\mathbf{x}^{(0)}, \ldots, \mathbf{x}^{(k)}, \ldots,\]
 使得当$k\to\infty$时，$f(\mathbf{x}^{(k)}) \to p^*$
 % \end{block}
 
@@ -115,7 +115,7 @@ $$\mathbf{x}^{(0)}, \ldots, \mathbf{x}^{(k)}, \ldots,$$
 \begin{frame}{下降方法}
 
 极小化点列将按以下方式产生
-$$\mathbf{x}^{(k+1)} = \mathbf{x}^{(k)} + t^{(k)} \Delta \mathbf{x}^{(k)}, \text{ 且有 } f(\mathbf{x}^{(k+1)}) < f(\mathbf{x}^{(k)})$$
+\[\mathbf{x}^{(k+1)} = \mathbf{x}^{(k)} + t^{(k)} \Delta \mathbf{x}^{(k)}, \text{ 且有 } f(\mathbf{x}^{(k+1)}) < f(\mathbf{x}^{(k)})\]
 其中
 \begin{itemize}
 \item $\Delta \mathbf{x}^{(k)}$被称为第$k$次迭代搜索方向，或步径

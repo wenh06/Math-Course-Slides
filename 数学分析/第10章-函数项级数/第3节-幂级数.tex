@@ -101,18 +101,18 @@
 \pause
 
 (1) $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n}$ 的收敛半径为
-$$
+\[
 1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n}} \right. = 1
-$$
+\]
 \pause
 分别代入 $x = -1, 1$ 可得收敛域为 $[-1, 1).$
 
 \pause
 
 (2) $\displaystyle \sum_{n=1}^{\infty} \dfrac{(-1)^{n+1}}{n}x^n$ 的收敛半径为
-$$
+\[
 1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n}} \right. = 1
-$$
+\]
 \pause
 收敛域为 $(-1, 1].$
 
@@ -130,9 +130,9 @@ $$
 \pause
 
 $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n!}$ 的收敛半径为
-$$
+\[
 1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n!}} \right. = +\infty,
-$$
+\]
 \pause
 所以收敛域等于 $\mathbb{R}.$
 
@@ -181,7 +181,7 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \frametitle{Abel 第一定理}
 
 \begin{thm}[Abel 第一定理]
-    
+
 \end{thm}
 
 \end{frame}
@@ -192,7 +192,7 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \frametitle{Abel 第二定理}
 
 \begin{thm}[Abel 第二定理]
-    
+
 \end{thm}
 
 \end{frame}
@@ -203,9 +203,9 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \frametitle{级数求和的 Abel 方法}
 
 之前, 我们已经证明了: 若数项级数 $\displaystyle \sum_{n=1}^\infty a_n$ 收敛, 则幂级数 $\displaystyle \sum_{n=1}^\infty a_n x^n$ 的收敛半径 $R \geqslant 1,$ 且收敛域包含 $(-1, 1].$ 于是由 Abel 第二定理, $\displaystyle \sum_{n=1}^\infty a_n x^n$ 在 $[0, 1]$ 上一致收敛, 从而连续, 于是成立
-$$
+\[
 \sum_{n=1}^\infty a_n = \lim_{x \to 1^-} \sum_{n=1}^{\infty} a_n x^n
-$$
+\]
 
 \pause
 
@@ -237,9 +237,9 @@ $$
 \pause
 
 简单来说, 就是
-$$
+\[
 \{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}
-$$
+\]
 
 \end{frame}
 
@@ -249,9 +249,9 @@ $$
 \frametitle{$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ ~ 证明}
 
 由于 $\displaystyle \sigma_n = \dfrac{1}{n} \sum_{k=1}^{n} S_k$ 极限为 $A,$ 所以
-$$
+\[
 \varlimsup_{n\to\infty} \nroot[n]{|n \sigma_n|} = \sqrt[\leftroot{-1}\uproot{18}n]{\sum_{k=1}^{n} S_k} = 1,
-$$
+\]
 即幂级数 $\displaystyle \sum_{n=1}^{\infty} n \sigma_n x^n$ 收敛半径为 $1.$
 \pause
 对于任意的 $|x| < 1,$ 上述幂级数绝对收敛, 因此有
@@ -278,9 +278,9 @@ $$
 \pause
 
 接下来, 我们要证明
-$$
+\[
 \lim_{x\to 1-} (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n = \lim_{x\to 1-} \sum_{n=1}^{\infty} a_n x^n = A.
-$$
+\]
 
 \end{frame}
 
@@ -326,13 +326,13 @@ $$
 \frametitle{$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ ~ 证明}
 
 对取定的 $\varepsilon,$ 任取 $1 - \dfrac{\varepsilon}{2M} < x < 1,$ 即有
-$$
+\[
 \left\lvert (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n \right\rvert \leqslant M(1 - x) + \dfrac{\varepsilon}{2} < \varepsilon,
-$$
+\]
 这样, 我们就证明了
-$$
+\[
 \lim_{x\to 1-} \sum_{n=1}^{\infty} a_n x^n = \lim_{x\to 1-} (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n = A.
-$$
+\]
 
 \end{frame}
 
@@ -364,9 +364,9 @@ $$
 
 之前讲数项级数的乘法时, 我们证明了若 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n$ 中至少一个绝对收敛时, 它们的 Cauchy 乘积 $\displaystyle \sum\limits_{n=2}^{\infty} {\color{magenta}\sum\limits_{k=1}^{n-1} a_k b_{n-k}} = \sum\limits_{n=2}^{\infty} {\color{magenta}c_n}$ 收敛, \pause
 并且看到了 $\displaystyle \sum\limits_{n=1}^{\infty} a_n, \sum\limits_{n=1}^{\infty} b_n$ 都只是条件收敛, 而$\displaystyle \sum\limits_{n=2}^{\infty} c_n$ 发散的例子:
-$$
+\[
 a_n = b_n = \dfrac{(-1)^{n+1}}{\sqrt{n}}.
-$$
+\]
 \pause
 我们接下来证明
 \begin{prop}
@@ -381,11 +381,11 @@ $$
 \frametitle{关于数项级数 Cauchy 乘积的扩展结论}
 
 证明: 定义幂级数
-$$
+\[
 f(x) = \sum\limits_{n=1}^{\infty} a_n x^n, ~~
 g(x) = \sum\limits_{n=1}^{\infty} b_n x^n, ~~
 h(x) = \sum\limits_{n=1}^{\infty} c_{n+1} x^n.
-$$
+\]
 由 Abel 第二定理, $f,g,h$ 在 $[0, 1]$ 上一致收敛, 从而连续. 又由 Cauchy-Hadamard 定理 (或者 Abel 第一定理), $\forall ~ |x| < 1,$ $f(x),g(x),h(x)$ 绝对收敛, 于是有等式
 
 \end{frame}

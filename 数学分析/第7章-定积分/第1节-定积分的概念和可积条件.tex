@@ -108,18 +108,18 @@
 \begin{column}[T]{0.58\textwidth}
 \only<4-5>{
 \ding{172}分割:
-$$[0, 1] ~~ \rightsquigarrow ~~ \begin{array}{cccccc}
+\[[0, 1] ~~ \rightsquigarrow ~~ \begin{array}{cccccc}
 0 & \frac{1}{n} & \frac{2}{n} & \cdots & \frac{n-1}{n} & 1 \\
 x_0 & x_1 & x_2 & \cdots & x_{n-1} & x_n
-\end{array}$$
+\end{array}\]
 }
 \only<5-6>{
 \ding{173}近似: 第 $i$ 小块面积近似为
-$$f(\xi_i) \cdot \Delta x_i = \xi_i^2 \cdot \frac{1}{n}$$
+\[f(\xi_i) \cdot \Delta x_i = \xi_i^2 \cdot \frac{1}{n}\]
 }
 \only<6->{
 \ding{174}求和:
-$$S \approx \sum_{i=1}^n f(\xi_i) \cdot \Delta x_i = \frac{1}{n} \sum_{i=1}^n \xi_i^2$$
+\[S \approx \sum_{i=1}^n f(\xi_i) \cdot \Delta x_i = \frac{1}{n} \sum_{i=1}^n \xi_i^2\]
 }
 \only<7>{
 \ding{175}取极限: $\displaystyle \frac{1}{n} \sum_{i=1}^n \xi_i^2 ~ \longrightarrow ~ ?$
@@ -189,12 +189,12 @@ a = x_0 < x_1 < \cdots < x_{n-1} < x_n = b
 \begin{frame}
 \frametitle{闭区间上的划分}
 
-$$
+\[
 \begin{array}{cccccccccccc}
 P: ~~ & a=x_0 & < & x_1 & < & x_2 & < & \cdots & < & x_{n-1} & < & x_n = b \\
 \xi: ~~ & & \xi_1 & & \xi_2 & & \xi_3 & \cdots & \xi_{n-1} & & \xi_n
 \end{array}
-$$
+\]
 
 \pause
 
@@ -265,9 +265,9 @@ $[a,b]$ 上黎曼可积函数全体构成的\alert{集合}记为 $\mathcal{R}[a,
 \item 若积分和极限存在, 那么它既与划分的分点 $x_0, x_1 ,\dots, x_n$ 无关, 也与标志点 $\xi_1, \dots, \xi_n$ 的选取无关.
 
 用 $\varepsilon-\delta$ 语言去写, 即 $\forall~\varepsilon > 0, ~ \exists~\delta > 0,$ 对$[a,b]$ 区间的任意划分 $P,$ 只要分割细度 $\lambda(P) < \delta,$ 总有
-$$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| < \varepsilon.$$
+\[\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| < \varepsilon.\]
 \item 柯西准则: $\forall~\varepsilon > 0, ~ \exists~\delta > 0,$ 对$[a,b]$ 区间的任意带标志点的划分 $(P, \xi), (P', \xi')$ 只要分割细度 $\lambda(P), \lambda(P') < \delta,$ 总有
-$$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - \sum_{i=1}^{n'} f(\xi_i')\Delta x_i' \right| < \varepsilon.$$
+\[\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - \sum_{i=1}^{n'} f(\xi_i')\Delta x_i' \right| < \varepsilon.\]
 
 \pause
 
@@ -283,12 +283,12 @@ $$\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - \sum_{i=1}^{n'} f(\xi_i')\Delta x_i' \
 
 \begin{eg}[黎曼不可积函数的例子]
 $[0, 1]$ 区间上的狄利克雷函数
-$$
+\[
 D(x) = \begin{cases}
 1, & x \in \mathbb{Q} \cap [0, 1],\\
 0, & x \in [0, 1] \setminus \mathbb{Q}.
 \end{cases}
-$$
+\]
 \end{eg}
 
 \pause
@@ -308,12 +308,12 @@ S(D; P, \xi') = \sum_{i=1}^n D(\xi'_i) \cdot \Delta x_i = \sum_{i=1}^n 0 \cdot \
 
 \begin{question}
 $[0, 1]$ 区间上的黎曼函数
-$$
+\[
 R(x) = \begin{cases}
 \frac{1}{p}, & x = \frac{q}{p} \in \mathbb{Q} \cap (0, 1),\\
 0, & x \in ((0, 1) \setminus \mathbb{Q}) \cup \{0, 1\}
 \end{cases}
-$$
+\]
 是否黎曼可积? 这里的 $x = \frac{q}{p}$ 指的是写成既约分数的形式.
 \end{question}
 
@@ -344,9 +344,9 @@ $$
 
 \begin{thm}[可积充要条件]
 函数 $f$ 在 $[a,b]$ 上可积的充要条件是：
-$$
+\[
 \forall~\varepsilon > 0, ~\exists~\text{分割}~P,\ 使得~\overline{S}(P,f) - \underline{S}(P,f) < \varepsilon
-$$
+\]
 \end{thm}
 \end{frame}
 

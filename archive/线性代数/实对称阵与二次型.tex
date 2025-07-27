@@ -77,9 +77,9 @@
 
 \begin{block}{复向量的内积}
 令$\alpha = (x_1,\ldots,x_n)^T,$ $\beta = (y_1,\ldots,y_n)^T$为两个$n$维复向量，则$\alpha$与$\beta$的内积被定义为
-$$\langle \alpha, \beta \rangle = \alpha^*\beta = \overline{x}_1y_1 + \cdots + \overline{x}_ny_n.$$
+\[\langle \alpha, \beta \rangle = \alpha^*\beta = \overline{x}_1y_1 + \cdots + \overline{x}_ny_n.\]
 于是，复向量$\alpha$范数（或长度）的定义为
-$$\Vert \alpha \Vert = \sqrt{\langle \alpha, \alpha \rangle} = \sqrt{\overline{x}_1x_1 + \cdots + \overline{x}_nx_n}$$
+\[\Vert \alpha \Vert = \sqrt{\langle \alpha, \alpha \rangle} = \sqrt{\overline{x}_1x_1 + \cdots + \overline{x}_nx_n}\]
 \end{block}
 
 \end{frame}
@@ -95,11 +95,11 @@ $$\Vert \alpha \Vert = \sqrt{\langle \alpha, \alpha \rangle} = \sqrt{\overline{x
 \pause
 
 {\bfseries 证明}：把$n$阶实对称方阵$A$视作复系数的方阵，其特征多项式$f(\lambda)$视作一个复系数的单变量多项式，因此有$n$个复根。任取其中一个复根$\lambda$, 依定义存在复系数的$n$维非零向量$\alpha$，使得
-$$A\alpha = \lambda\alpha.$$
+\[A\alpha = \lambda\alpha.\]
 于是
-$$\alpha^*A\alpha = \lambda \alpha^*\alpha = \lambda \Vert \alpha \Vert^2.$$
+\[\alpha^*A\alpha = \lambda \alpha^*\alpha = \lambda \Vert \alpha \Vert^2.\]
 又有
-$$\alpha^*A\alpha = \alpha^*A^*\alpha = (A\alpha)^*\alpha = \overline{\lambda}\alpha^*\alpha = \overline{\lambda} \Vert \alpha \Vert^2.$$
+\[\alpha^*A\alpha = \alpha^*A^*\alpha = (A\alpha)^*\alpha = \overline{\lambda}\alpha^*\alpha = \overline{\lambda} \Vert \alpha \Vert^2.\]
 因此$\lambda = \overline{\lambda}$,即$\lambda$为一个实数。
 \end{block}
 
@@ -111,7 +111,7 @@ $$\alpha^*A\alpha = \alpha^*A^*\alpha = (A\alpha)^*\alpha = \overline{\lambda}\a
 
 \begin{block}{实对称阵的特征向量}
 任取$n$阶实对称方阵$A$的一个特征值（实数），以及对应于它的一个特征向量$\alpha$. $\alpha$是如下的实系数齐次线性方程组的解
-$$(\lambda I_n - A)\mathbf{x} = \mathbf{0}$$
+\[(\lambda I_n - A)\mathbf{x} = \mathbf{0}\]
 于是$\alpha$是一个$n$维实向量。
 \end{block}
 
@@ -133,12 +133,12 @@ $$(\lambda I_n - A)\mathbf{x} = \mathbf{0}$$
 \pause
 
 {\bfseries 证明}：设$\alpha_1, \alpha_2$为分别属于实对称阵$A$的两个不相等特征值$\lambda_1, \lambda_2$, 即
-$$A\alpha_1 = \lambda_1\alpha_1, \; A\alpha_2 = \lambda_2\alpha_2.$$
+\[A\alpha_1 = \lambda_1\alpha_1, \; A\alpha_2 = \lambda_2\alpha_2.\]
 于是，我们有
-$$\begin{cases}
+\[\begin{cases}
 \alpha_2^T A\alpha_1 = \alpha_2^T\lambda_1\alpha_1 = \lambda_1 \langle \alpha_2, \alpha_1 \rangle \\
 \alpha_2^T A\alpha_1 = (\alpha_2^T A^T)\alpha_1 = (A\alpha_2)^T\alpha_1 = \lambda_2 \langle \alpha_2, \alpha_1 \rangle
-\end{cases}$$
+\end{cases}\]
 由于$\lambda_1 \neq \lambda_2$, 因此$\langle \alpha_2, \alpha_1 \rangle = 0.$
 \end{block}
 
@@ -178,11 +178,11 @@ $$\begin{cases}
 \begin{enumerate}
 \item 令$\varepsilon_1 = \alpha_1 / \Vert \alpha_1 \Vert$.
 \item 假设已经有$k$个标准正交的向量组$\varepsilon_1, \ldots, \varepsilon_k$, 使得
-$$\operatorname{span}\{ \varepsilon_1, \ldots, \varepsilon_k \} = \operatorname{span}\{ \alpha_1, \ldots, \alpha_k \},$$
+\[\operatorname{span}\{ \varepsilon_1, \ldots, \varepsilon_k \} = \operatorname{span}\{ \alpha_1, \ldots, \alpha_k \},\]
 令$\varepsilon' = \alpha_{k+1} + t_1\varepsilon_1 + \cdots + t_k\varepsilon_k,$ 从条件
-$$0 = \langle \varepsilon', \varepsilon_i \rangle = \langle \alpha_{k+1}, \varepsilon_i \rangle + t_i$$
+\[0 = \langle \varepsilon', \varepsilon_i \rangle = \langle \alpha_{k+1}, \varepsilon_i \rangle + t_i\]
 定出$t_i$, $i=1,\ldots,k$. 最后令
-$$\varepsilon_{k+1} = \varepsilon' / \Vert \varepsilon' \Vert.$$
+\[\varepsilon_{k+1} = \varepsilon' / \Vert \varepsilon' \Vert.\]
 \end{enumerate}
 \end{block}
 
@@ -201,7 +201,7 @@ $$\varepsilon_{k+1} = \varepsilon' / \Vert \varepsilon' \Vert.$$
 \vspace{1em}
 
 也就是说，对于任意实对称阵$A$, 存在正交阵$\Omega$使得
-$$\Omega^T A \Omega = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} = \Lambda$$
+\[\Omega^T A \Omega = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} = \Lambda\]
 
 \begin{itemize}
 \item 正交阵：即满足$\Omega^T\Omega = I_n$的方阵$\Omega$.
@@ -246,12 +246,12 @@ $$\Omega^T A \Omega = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda
 \vspace{2em}
 
 于是，令
-$$P = \begin{pmatrix} \frac{2}{3} & \frac{2}{3} & \frac{1}{3} \\ -\frac{2}{3} & \frac{1}{3} & \frac{2}{3} \\
-\frac{1}{3} & -\frac{2}{3} & \frac{2}{3} \end{pmatrix},$$
+\[P = \begin{pmatrix} \frac{2}{3} & \frac{2}{3} & \frac{1}{3} \\ -\frac{2}{3} & \frac{1}{3} & \frac{2}{3} \\
+\frac{1}{3} & -\frac{2}{3} & \frac{2}{3} \end{pmatrix},\]
 那么
-$$
+\[
 P^TAP = \Lambda = \begin{pmatrix} -1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 5 \end{pmatrix}.
-$$
+\]
 \end{block}
 
 \end{frame}
@@ -266,7 +266,7 @@ $$
 
 \begin{block}{二次型的定义}
 $\mathbb{R}$上的$n$个未定元$x_1,\ldots,x_n$的二次型为函数
-$$Q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x},$$
+\[Q(\mathbf{x}) = \mathbf{x}^TA\mathbf{x},\]
 其中$A = (a_{ij})$为对称方阵，$\mathbf{x} = (x_1,\ldots,x_n)^T$为未定元的向量。
 
 \pause
@@ -292,9 +292,9 @@ Q(\mathbf{x}) & = (x_1,\ldots,x_n) \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \
 
 \begin{block}{二次型的例子}
 设$n$个变量的实值函数$f$在点$\mathbf{x} = (x_1,\ldots,x_n)$的一个邻域$U(\mathbf{x})$上有直到2阶的连续偏导数，且所有1阶偏导数在点$\mathbf{x}$的值都等于0。考虑$f$在$\mathbf{x}$处的泰勒展开式，如下
-$$f(\mathbf{x} + \mathbf{h}) = f(\mathbf{x}) + \dfrac{1}{2!} \sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j + r_3(\mathbf{x}; \mathbf{h})$$
+\[f(\mathbf{x} + \mathbf{h}) = f(\mathbf{x}) + \dfrac{1}{2!} \sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j + r_3(\mathbf{x}; \mathbf{h})\]
 其中的二次项
-$$\sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j = \mathbf{h}^T \underbrace{\left( \dfrac{\partial^2 f}{\partial x_i \partial x_j} \right)}_{H(f), \text{黑塞矩阵}} \mathbf{h}$$
+\[\sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{x})h_ih_j = \mathbf{h}^T \underbrace{\left( \dfrac{\partial^2 f}{\partial x_i \partial x_j} \right)}_{H(f), \text{黑塞矩阵}} \mathbf{h}\]
 就是一个关于增量向量$\mathbf{h}$的的二次型。
 \end{block}
 
@@ -306,7 +306,7 @@ $$\sum\limits_{i,j=1}^n \dfrac{\partial^2 f}{\partial x_i \partial x_j}(\mathbf{
 
 \begin{block}{二次型的变量替换}
 通过变量替换$\mathbf{y} = P^{-1}\mathbf{x}$, 有
-$$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \mathbf{y}^T P^TAP \mathbf{y} = Q'(\mathbf{y})$$
+\[Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x} = \mathbf{y}^T P^TAP \mathbf{y} = Q'(\mathbf{y})\]
 
 \pause
 
@@ -329,7 +329,7 @@ Q(x_1,x_2) & = (y_1,y_2) \begin{pmatrix} 1 & 0 \\ -\frac{b}{a} & 1 \end{pmatrix}
 
 \begin{block}{二次型变量替换的一般结果}
 设$A$为$n$阶实对称方阵，那么存在可逆方阵$P$使得
-$$P^T A P = \begin{pmatrix} a_1 & & \\ & \ddots & \\ & & a_n \end{pmatrix}$$
+\[P^T A P = \begin{pmatrix} a_1 & & \\ & \ddots & \\ & & a_n \end{pmatrix}\]
 \end{block}
 
 \pause
@@ -337,7 +337,7 @@ $$P^T A P = \begin{pmatrix} a_1 & & \\ & \ddots & \\ & & a_n \end{pmatrix}$$
 \begin{itemize}
 \item $B = P^TAP$被称作$B$与$A$相合（Cogredient或Congruent）
 \item 任意一个实对称阵都相合于形如以下的方阵
-$$\begin{pmatrix} I_p & & \\ & -I_q & \\ & & 0 \end{pmatrix}$$
+\[\begin{pmatrix} I_p & & \\ & -I_q & \\ & & 0 \end{pmatrix}\]
 自然数$p,q$由$A$唯一决定，分别被称作其正惯性指数，负惯性指数。
 \end{itemize}
 
@@ -353,7 +353,7 @@ $$\begin{pmatrix} I_p & & \\ & -I_q & \\ & & 0 \end{pmatrix}$$
 \item 可对角化方阵对角化得到的对角方阵，在不计对角线元素顺序的情况下，是唯一的；实对称阵则能通过多种相合变换，得到不同的对角阵。
 \item 相似与相合都来自坐标变换（或者说变量替换），前者来自于化简线性变换的矩阵表达，后者来自于化简二次型。
 \item 当要求坐标变换的过渡矩阵$P$是正交阵的时候
-$$P^T A P = P^{-1}AP$$
+\[P^T A P = P^{-1}AP\]
 \end{itemize}
 \end{block}
 
@@ -369,7 +369,7 @@ $$P^T A P = P^{-1}AP$$
 
 \begin{block}{正定实对称阵的定义}
 设$Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$为一个二次型，$A$为实对称阵。如果对于任意的非零向量$\mathbf{x}$都有
-$$\mathbf{x}^T A \mathbf{x} > 0$$
+\[\mathbf{x}^T A \mathbf{x} > 0\]
 则称$A$为一个正定（Positive Definite）实对称阵。
 \end{block}
 
@@ -407,7 +407,7 @@ $$\mathbf{x}^T A \mathbf{x} > 0$$
 
 \begin{block}{在微积分中的应用}
 设$n$个变量的实值函数$f$在点$\mathbf{x} = (x_1,\ldots,x_n)$的一个邻域$U(\mathbf{x})$上有直到2阶的连续偏导数，且所有1阶偏导数在点$\mathbf{x}$的值都等于0。考虑$f$在$\mathbf{x}$处的黑塞矩阵
-$$\left( \dfrac{\partial^2 f}{\partial x_i \partial x_j} \right)_{n\times n}$$
+\[\left( \dfrac{\partial^2 f}{\partial x_i \partial x_j} \right)_{n\times n}\]
 \begin{itemize}
 \item 正定时，$f$在点$\mathbf{x}$取得严格局部极小值。
 \item 负定时，$f$在点$\mathbf{x}$取得严格局部极大值。

@@ -42,7 +42,7 @@
 
 \begin{block}{黎曼积分}<3->
 称数$I$是函数$f$在闭区间$[a,b]$上的黎曼积分，如果对任意的$\varepsilon > 0$，都能找到$\delta > 0$，使得$[a,b]$的任意带标志点的分划$(P,\xi)$，只要满足$\lambda(P) < \delta,$ 就有
-$$\left| I - \sum\limits_{i=1}^n f(\xi_i)\Delta x_i \right| < \varepsilon.$$
+\[\left| I - \sum\limits_{i=1}^n f(\xi_i)\Delta x_i \right| < \varepsilon.\]
 \end{block}
 
 \end{frame}
@@ -52,7 +52,7 @@ $$\left| I - \sum\limits_{i=1}^n f(\xi_i)\Delta x_i \right| < \varepsilon.$$
 \begin{frame}
 
 用$\int_a^b f(x)dx$表示$f$在$[a,b]$上的黎曼积分，即数$I$。于是，用极限的语言写出来就是
-$$\int_a^b f(x)dx = \lim\limits_{\lambda(P) \to 0} \sum\limits_{i=1}^n f(\xi_i)\Delta x_i.$$
+\[\int_a^b f(x)dx = \lim\limits_{\lambda(P) \to 0} \sum\limits_{i=1}^n f(\xi_i)\Delta x_i.\]
 
 \vspace{2em}
 \pause
@@ -72,9 +72,9 @@ $$\int_a^b f(x)dx = \lim\limits_{\lambda(P) \to 0} \sum\limits_{i=1}^n f(\xi_i)\
 
 \begin{itemize}
 \item 关于被积函数线性：
-$$\int_a^b (\alpha f + \beta g)(x)dx = \alpha \int_a^b f(x) dx + \beta \int_a^b g(x) dx.$$
+\[\int_a^b (\alpha f + \beta g)(x)dx = \alpha \int_a^b f(x) dx + \beta \int_a^b g(x) dx.\]
 \item 关于积分区间可加：设$a \leqslant b \leqslant c,$ 那么
-$$\int_a^c f(x) dx = \int_a^b f(x) dx + \int_b^c f(x) dx.$$
+\[\int_a^c f(x) dx = \int_a^b f(x) dx + \int_b^c f(x) dx.\]
 \item \(\displaystyle \int_a^b f(x) dx = -\int_b^a f(x) dx.\)
 \item \(\displaystyle \int_a^a f(x) dx = 0.\)
 \item \(\displaystyle \left|\int_a^b f(x) dx\right| \leqslant \int_a^b |f(x)| dx.\)
@@ -92,9 +92,9 @@ $$\int_a^c f(x) dx = \int_a^b f(x) dx + \int_b^c f(x) dx.$$
 
 \begin{block}{积分第一中值定理，First Mean Value Theorem for the Integral}
 设可积函数$f,g$定义在区间$[a,b]$上，且$g$在$(a,b)$上不变号，那么
-$$\int_a^b (f\cdot g)(x)dx = \mu\int_a^b g(x)dx,$$
+\[\int_a^b (f\cdot g)(x)dx = \mu\int_a^b g(x)dx,\]
 其中$\mu$是一个介于$f$在$[a,b]$最小值与最大值之间的数。进一步，如果$f$连续，那么存在$\xi \in [a,b]$使得
-$$\int_a^b (f\cdot g)(x)dx = f(\xi)\int_a^b g(x)dx.$$
+\[\int_a^b (f\cdot g)(x)dx = f(\xi)\int_a^b g(x)dx.\]
 \end{block}
 
 \end{frame}
@@ -105,7 +105,7 @@ $$\int_a^b (f\cdot g)(x)dx = f(\xi)\int_a^b g(x)dx.$$
 
 \begin{block}{积分第二中值定理}
 设可积函数$f,g$定义在区间$[a,b]$上，且$g$在$(a,b)$上单调，那么存在$\xi \in [a,b]$使得
-$$\int_a^b (f\cdot g)(x)dx = g(a)\int_a^{\xi} f(x)dx + g(b)\int_{\xi}^b f(x)dx.$$
+\[\int_a^b (f\cdot g)(x)dx = g(a)\int_a^{\xi} f(x)dx + g(b)\int_{\xi}^b f(x)dx.\]
 \end{block}
 
 \end{frame}
@@ -120,7 +120,7 @@ $$\int_a^b (f\cdot g)(x)dx = g(a)\int_a^{\xi} f(x)dx + g(b)\int_{\xi}^b f(x)dx.$
 
 \begin{block}{牛顿-莱布尼茨公式，The Newton–Leibniz Formula}
 设可积函数$f$定义在区间$[a,b]$上，那么
-$$\int_a^b f(x)dx = \left.F(x)\right\vert_a^b := F(b) - F(a),$$
+\[\int_a^b f(x)dx = \left.F(x)\right\vert_a^b := F(b) - F(a),\]
 其中$F$是$f$的任一个原函数（Primitive），即{\color{zkblue!50}除去有限个点外有}$F'(x) = f(x)$.
 \end{block}
 
@@ -143,7 +143,7 @@ $F$又被称作反导数（Anti-derivative），不定积分（Indefinite Integr
 
 \begin{block}{分部积分法，Integration by Parts}
 设函数$f,g$在区间$[a,b]$上连续可微（即它们的导函数连续），那么
-$$\int_a^b (f\cdot g')(x)dx = (f\cdot g)(x)|_a^b - \int_a^b (f'\cdot g)(x)dx.$$
+\[\int_a^b (f\cdot g')(x)dx = (f\cdot g)(x)|_a^b - \int_a^b (f'\cdot g)(x)dx.\]
 
 \pause
 
@@ -172,7 +172,7 @@ $$\int_a^b (f\cdot g')(x)dx = (f\cdot g)(x)|_a^b - \int_a^b (f'\cdot g)(x)dx.$$
 
 \begin{block}{变量替换公式，Formula for Change of Variable}
 设函数$\varphi: [\alpha,\beta] \to [a,b]$是闭区间$[\alpha,\beta]$到闭区间$[a,b]$的连续可微函数，且$\varphi(\alpha) = a, \varphi(\beta) = b$。那么对于任意在$[a,b]$上连续的函数$f$有
-$$\int_a^b f(x)dx = \int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t)dt.$$
+\[\int_a^b f(x)dx = \int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t)dt.\]
 \end{block}
 
 \pause
@@ -196,7 +196,7 @@ $$\int_a^b f(x)dx = \int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t)dt.$$
 
 \begin{block}{积分区间无界的反常积分（Improper Integral）}
 设函数$f$定义在$[a,+\infty)$上，且对任意$b>a$，函数$f$在$[a,b]$上可积，如果下式右端极限存在
-$$\int_a^{+\infty} f(x)dx := \lim\limits_{b\to+\infty} \int_a^b f(x)dx,$$
+\[\int_a^{+\infty} f(x)dx := \lim\limits_{b\to+\infty} \int_a^b f(x)dx,\]
 则称其为$f$在$[a,+\infty)$上的反常积分。
 \end{block}
 
@@ -204,7 +204,7 @@ $$\int_a^{+\infty} f(x)dx := \lim\limits_{b\to+\infty} \int_a^b f(x)dx,$$
 
 \begin{block}{无界函数的反常积分}
 设函数$f$定义在区间$[a,w)$上，且在任意闭区间$[a,b]\subset [a,w)$上可积，如果下式右端极限存在
-$$\int_a^w f(x)dx := \lim\limits_{b\to w-} \int_a^b f(x)dx,$$
+\[\int_a^w f(x)dx := \lim\limits_{b\to w-} \int_a^b f(x)dx,\]
 则称其为$f$在$[a,w)$上的反常积分。
 \end{block}
 

@@ -71,10 +71,10 @@
 
 \begin{block}{全局最优与局部最优}
 全局最优解指的是以下的
-$$\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le 0, \; \mathbf{a}_j\mathbf{x} = b_j \right\}$$
+\[\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le 0, \; \mathbf{a}_j\mathbf{x} = b_j \right\}\]
 
 局部最优解指的是如下的量
-$$\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le 0, \; \mathbf{a}_j\mathbf{x} = b_j, \; {\color{red} \Vert \mathbf{x} - \mathbf{x}^* \Vert \le R}\right\}$$
+\[\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf{x}) \ \middle|\ f_i(\mathbf{x}) \le 0, \; \mathbf{a}_j\mathbf{x} = b_j, \; {\color{red} \Vert \mathbf{x} - \mathbf{x}^* \Vert \le R}\right\}\]
 
 \vspace{1em}
 \pause
@@ -92,9 +92,9 @@ $$\mathbf{x}^* = \argmin\limits_{\mathbf{x} \in \mathcal{D}} \left\{ f_0(\mathbf
 
 \begin{block}{目标函数可微时的最优性准则}
 记$X$为凸优化问题的可行集，即
-$$X = \{ \mathbf{x} \in \mathcal{D} \ |\ f_i(\mathbf{x}) \le 0, \; i = 1,\ldots,m;\; \mathbf{a}_j\mathbf{x} = b_j, \; j=1,\ldots,p \}$$
+\[X = \{ \mathbf{x} \in \mathcal{D} \ |\ f_i(\mathbf{x}) \le 0, \; i = 1,\ldots,m;\; \mathbf{a}_j\mathbf{x} = b_j, \; j=1,\ldots,p \}\]
 那么$X$中的元素$\mathbf{x}$是最优解，当且仅当
-$$\nabla f_0(\mathbf{x})^T(\widetilde{\mathbf{x}} - \mathbf{x}) \ge 0$$
+\[\nabla f_0(\mathbf{x})^T(\widetilde{\mathbf{x}} - \mathbf{x}) \ge 0\]
 对所有的$\widetilde{\mathbf{x}} \in X$成立
 \end{block}
 
@@ -230,7 +230,7 @@ $$\nabla f_0(\mathbf{x})^T(\widetilde{\mathbf{x}} - \mathbf{x}) \ge 0$$
 
 \begin{itemize}
 \item 注：对于不等式约束$\mathbf{f}_i^T \mathbf{x} \le g_i, \; i = 1,\ldots,m$, 我们通常将其简记作
-$$F\mathbf{x} \preccurlyeq \mathbf{g}$$
+\[F\mathbf{x} \preccurlyeq \mathbf{g}\]
 其中矩阵$F = (\mathbf{f}_1^T, \ldots, \mathbf{f}_m^T)^T, \mathbf{g} = (g_1, \ldots, g_m)^T$
 \end{itemize}
 \end{block}

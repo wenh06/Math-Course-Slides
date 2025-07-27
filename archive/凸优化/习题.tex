@@ -53,7 +53,7 @@
 \item[(2)] 超矩形，即形如$\{\mathbf{x} \in \mathbf{R}^n \ |\ a_i \le x_i \le b_i, \; i=1,\ldots,n \}$的集合
 \item[(3)] 楔形，即形如$\{\mathbf{x} \in \mathbf{R}^n \ |\ \mathbf{v}_1^T\mathbf{x} \le b_1, \; \mathbf{v}_2^T\mathbf{x} \le b_2 \}$的集合
 \item[(4)] 距离一个集合比距离另一个集合近的点组成的集合，即
-$$\{\mathbf{x} \in \mathbf{R}^n \ |\ \operatorname{dist}(\mathbf{x}, S_1) \le \operatorname{dist}(\mathbf{x}, S_2) \}$$
+\[\{\mathbf{x} \in \mathbf{R}^n \ |\ \operatorname{dist}(\mathbf{x}, S_1) \le \operatorname{dist}(\mathbf{x}, S_2) \}\]
 其中$S_1,S_2 \subset \mathbb{R}^n$, $\operatorname{dist}(\mathbf{x}, S) := \inf\limits_{\mathbf{y} \in S} \{ \Vert \mathbf{x} - \mathbf{y} \Vert_2 \}$
 \item[(5)] 集合$\{\mathbf{x} \in \mathbf{R}^n \ |\ \mathbf{x} + S_2 \subset S_1 \}$, 其中$S_1,S_2 \subset \mathbb{R}^n$并且$S_1$是凸集，$\mathbf{x} + S_2 := \{ \mathbf{x} + \mathbf{y} \ |\ \mathbf{y} \in S_2 \}$
 \end{itemize}
@@ -70,7 +70,7 @@ $$\{\mathbf{x} \in \mathbf{R}^n \ |\ \operatorname{dist}(\mathbf{x}, S_1) \le \o
 \item[(2)] 几何平均：$f(\mathbf{x}) = \left( \prod\limits_{i=1}^n x_i \right)^{1/n}$
 \item[(3)] 对数行列式：$f(X) = \ln\det X$
 \item[(4)] 凸函数的滑动平均（Running Average）
-$$F(x) = \dfrac{1}{x}\int_0^{x} f(t) dt$$
+\[F(x) = \dfrac{1}{x}\int_0^{x} f(t) dt\]
 其中$f$是一个定义域包含$\mathbb{R}_{\ge 0}$的凸函数
 \end{itemize}
 
@@ -85,9 +85,9 @@ $$F(x) = \dfrac{1}{x}\int_0^{x} f(t) dt$$
 \begin{frame}
 
 4. Logistic 模型的优化：设随机变量$X\in\{0,1\}$满足
-$$P(X=1) = p(\mathbf{x}) = \dfrac{e^{\mathbf{a}^T\mathbf{x} + b}}{1 + e^{\mathbf{a}^T\mathbf{x} + b}}$$
+\[P(X=1) = p(\mathbf{x}) = \dfrac{e^{\mathbf{a}^T\mathbf{x} + b}}{1 + e^{\mathbf{a}^T\mathbf{x} + b}}\]
 其中$\mathbf{x} \in \mathbb{R}^n$是影响概率的向量变量，$\mathbf{a}, b$是已知参数。还假设向量变量$\mathbf{x}$受线性的不等式约束
-$$\mathbf{f}_i^T\mathbf{x} \le g_i, \; i=1,\ldots,m$$
+\[\mathbf{f}_i^T\mathbf{x} \le g_i, \; i=1,\ldots,m\]
 请将下列问题建模为凸优化问题
 \begin{itemize}
 \item[(1)] 选择$\mathbf{x}$以极大化$p(\mathbf{x})$
@@ -107,7 +107,7 @@ $$\mathbf{f}_i^T\mathbf{x} \le g_i, \; i=1,\ldots,m$$
 & & h_j(\mathbf{x}) = 0, \quad j = 1,\ldots,p
 \end{eqnarray*}
 设$p^*$是最优值，$g(\boldsymbol\lambda, \boldsymbol\nu)$是对偶函数，请证明
-$$p^* \ge g(\boldsymbol\lambda, \boldsymbol\nu)$$
+\[p^* \ge g(\boldsymbol\lambda, \boldsymbol\nu)\]
 对任意$\boldsymbol\lambda, \boldsymbol\nu$成立。
 
 \end{frame}
@@ -126,7 +126,7 @@ $$p^* \ge g(\boldsymbol\lambda, \boldsymbol\nu)$$
 \vspace{1em}
 
 7. 解析中心（Analytic Centering）：考虑优化问题
-$$\text{minimize} \quad -\sum\limits_{i=1}^m \ln(b_i - \mathbf{a}_i^T\mathbf{x})$$
+\[\text{minimize} \quad -\sum\limits_{i=1}^m \ln(b_i - \mathbf{a}_i^T\mathbf{x})\]
 推导其对偶问题
 
 \end{frame}
@@ -168,9 +168,9 @@ $$\text{minimize} \quad -\sum\limits_{i=1}^m \ln(b_i - \mathbf{a}_i^T\mathbf{x})
 令$\mathbf{x}^*(t)$为这个问题的最优解。求证
 \begin{itemize}
 \item[(1)] $\mathbf{x}^*(t)$是严格可行的，即满足
-$$f_i(\mathbf{x}^*(t)) < 0, \; i = 1,\ldots,m; \quad A\mathbf{x}^*(t) = \mathbf{b}$$
+\[f_i(\mathbf{x}^*(t)) < 0, \; i = 1,\ldots,m; \quad A\mathbf{x}^*(t) = \mathbf{b}\]
 \item[(2)] 存在$\widehat{\boldsymbol\nu} \in \mathbb{R}^p,$ 使得
-$$\mathbf{0} = t \nabla f_0(\mathbf{x}^*(t)) + \nabla \phi(\mathbf{x}^*(t)) + A^T \widehat{\boldsymbol\nu}$$
+\[\mathbf{0} = t \nabla f_0(\mathbf{x}^*(t)) + \nabla \phi(\mathbf{x}^*(t)) + A^T \widehat{\boldsymbol\nu}\]
 \end{itemize}
 
 \end{frame}
@@ -180,7 +180,7 @@ $$\mathbf{0} = t \nabla f_0(\mathbf{x}^*(t)) + \nabla \phi(\mathbf{x}^*(t)) + A^
 \begin{frame}
 
 12$^*$. 继续考虑第11题中的问题。定义
-$$\lambda_i^*(t) = - \dfrac{1}{tf_i(\mathbf{x}^*(t))}, \; i = 1,\ldots,m; \quad \boldsymbol\nu^*(t) = \widehat{\boldsymbol\nu} / t$$
+\[\lambda_i^*(t) = - \dfrac{1}{tf_i(\mathbf{x}^*(t))}, \; i = 1,\ldots,m; \quad \boldsymbol\nu^*(t) = \widehat{\boldsymbol\nu} / t\]
 请证明
 \begin{itemize}
 \item[(1)] $(\boldsymbol\lambda^*(t), \boldsymbol\nu^*(t))$是原问题的对偶可行解

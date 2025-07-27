@@ -48,7 +48,7 @@
 
 \begin{block}{线性空间的直积（直和），Direct Product (Direct Sum)}
 设$V_1,V_2$为实数$\mathbb{R}$上的2个线性空间，定义$V_1$与$V_2$的直积（直和）为如下的有序对组成的集合
-$$V = V_1\times V_2 = V_1\oplus V_2 = \{ (\alpha, \beta) \ |\ \alpha \in V_1, \beta \in V_2\}.$$
+\[V = V_1\times V_2 = V_1\oplus V_2 = \{ (\alpha, \beta) \ |\ \alpha \in V_1, \beta \in V_2\}.\]
 并且在此集合上定义如下的加法与数乘
 \begin{itemize}
 \item $(\alpha_1, \beta_1) + (\alpha_2, \beta_2) = (\alpha_1 + \alpha_2, \beta_1 + \beta_2)$,
@@ -60,7 +60,7 @@ $$V = V_1\times V_2 = V_1\oplus V_2 = \{ (\alpha, \beta) \ |\ \alpha \in V_1, \b
 \vspace{2em}
 
 更进一步，我们可以归纳地定义任意$s$个线性空间的直积（直和）
-$$\prod_{i=1}^s V_i = V_1 \times V_2 \times \cdots \times V_s.$$
+\[\prod_{i=1}^s V_i = V_1 \times V_2 \times \cdots \times V_s.\]
 \end{block}
 
 \end{frame}
@@ -72,11 +72,11 @@ $$\prod_{i=1}^s V_i = V_1 \times V_2 \times \cdots \times V_s.$$
 \begin{block}{直积的性质}
 \begin{itemize}
 \item 若$\alpha_1,\ldots,\alpha_n$是$V_1$的基，$\beta_1,\ldots,\beta_m$是$V_2$的基，那么
-$$(\alpha_1,\mathbf{0}),\ldots,(\alpha_n,\mathbf{0}),(\mathbf{0},\beta_1),\ldots,(\mathbf{0},\beta_m)$$
+\[(\alpha_1,\mathbf{0}),\ldots,(\alpha_n,\mathbf{0}),(\mathbf{0},\beta_1),\ldots,(\mathbf{0},\beta_m)\]
 是$V_1\times V_2$的一组基。于是
-$$\dim V_1\times V_2 = \dim V_1 + \dim V_2$$
+\[\dim V_1\times V_2 = \dim V_1 + \dim V_2\]
 \item 设$V_1$上有内积$\langle \;,\; \rangle_1$, $V_2$上有内积$\langle \;,\; \rangle_2$, 那么$(\alpha_1,\beta_1)$与$(\alpha_2,\beta_2)$的内积为
-$$\langle (\alpha_1,\beta_1), (\alpha_2,\beta_2) \rangle = \langle \alpha_1, \alpha_2 \rangle_1 + \langle \beta_1, \beta_2 \rangle_2$$
+\[\langle (\alpha_1,\beta_1), (\alpha_2,\beta_2) \rangle = \langle \alpha_1, \alpha_2 \rangle_1 + \langle \beta_1, \beta_2 \rangle_2\]
 \end{itemize}
 \end{block}
 
@@ -91,7 +91,7 @@ $$\langle (\alpha_1,\beta_1), (\alpha_2,\beta_2) \rangle = \langle \alpha_1, \al
 \item $\mathbb{R}^n \times \mathbb{R}^m \cong \mathbb{R}^{n+m}$.
 \vspace{1em}
 \item 取$V_1 = M_2(\mathbb{R})$, $V_2 = \mathbb{R}[X]_2$, 那么
-$$V_1\times V_2 = \left\{ \left( \begin{pmatrix} a & b \\ c & d \end{pmatrix}, a_0 + a_1X + a_2X^2 \right) \ \middle|\ \substack{a,b,c,d\in\mathbb{R} \\ a_0,a_1,a_2\in\mathbb{R}} \right\}$$
+\[V_1\times V_2 = \left\{ \left( \begin{pmatrix} a & b \\ c & d \end{pmatrix}, a_0 + a_1X + a_2X^2 \right) \ \middle|\ \substack{a,b,c,d\in\mathbb{R} \\ a_0,a_1,a_2\in\mathbb{R}} \right\}\]
 \end{itemize}
 \end{block}
 
@@ -114,7 +114,7 @@ $$V_1\times V_2 = \left\{ \left( \begin{pmatrix} a & b \\ c & d \end{pmatrix}, a
 
 \begin{block}{多线性映射，Multilinear Mapping}
 设$V_1,\ldots,V_s,W$为实数$\mathbb{R}$上的线性空间。称一个映射
-$$f: \prod_{i=1}^s V_i \rightarrow W$$
+\[f: \prod_{i=1}^s V_i \rightarrow W\]
 为一个多线性映射，如果$f$对每一个分量都具有线性性，即对任意的$1\leqslant i \leqslant s$都有
 \begin{itemize}
 \item $f(\alpha_1,\ldots,\alpha_i+\alpha_i',\ldots,\alpha_s) = f(\alpha_1,\ldots,\alpha_i,\ldots,\alpha_s) + f(\alpha_1,\ldots,\alpha_i',\ldots,\alpha_s)$
@@ -135,9 +135,9 @@ $$f: \prod_{i=1}^s V_i \rightarrow W$$
 \begin{block}{多线性映射的例子}
 \begin{itemize}
 \item<1-> 之前在学习方阵行列式的时候，已经提到过行列式$\det$对于矩阵的列（以及行）有多线性性，于是我们可以把$\det$视作是如下的多线性映射（函数）
-$$\det: \underbrace{\mathbb{R}^n \times \cdots \times \mathbb{R}^n}_{\text{$n$个}} \rightarrow \mathbb{R}$$
+\[\det: \underbrace{\mathbb{R}^n \times \cdots \times \mathbb{R}^n}_{\text{$n$个}} \rightarrow \mathbb{R}\]
 \item<2-> 内积也是多线性函数的一个例子
-$$\langle \;,\; \rangle: V\times V \rightarrow \mathbb{R},$$
+\[\langle \;,\; \rangle: V\times V \rightarrow \mathbb{R},\]
 \end{itemize}
 \end{block}
 
@@ -192,9 +192,9 @@ T \ar[ur, dashrightarrow, "\exists! \widetilde{f}"'] &
 \pause
 
 在分别取定基$\alpha_1,\ldots,\alpha_n$以及$\beta_1,\ldots,\beta_m$之后，$V_1\otimes V_2$的一组基就可以取作
-$$\alpha_i\otimes \beta_j, \quad 1\leqslant i\leqslant n, 1\leqslant j\leqslant m$$
+\[\alpha_i\otimes \beta_j, \quad 1\leqslant i\leqslant n, 1\leqslant j\leqslant m\]
 于是，$V_1\otimes V_2$中的所有元素都能表示成有限和
-$$\sum\limits_{i,j} k_{ij} \alpha_i\otimes \beta_j.$$
+\[\sum\limits_{i,j} k_{ij} \alpha_i\otimes \beta_j.\]
 于是，$\dim V_1\otimes V_2 = \dim V_1 \times \dim V_2.$
 
 \vspace{1em}
@@ -211,9 +211,9 @@ $$\sum\limits_{i,j} k_{ij} \alpha_i\otimes \beta_j.$$
 
 \begin{block}{张量的一般形式}
 在取定了$V_i (i=1,2,\ldots,s)$的一组基
-$$\varepsilon_{i1},\ldots,\varepsilon_{in_i}$$
+\[\varepsilon_{i1},\ldots,\varepsilon_{in_i}\]
 之后，$\bigotimes\limits_{i=1}^s V_i$中所有元素都能表示为一个和式
-$$\sum\limits_{i_1,i_2,\ldots,i_s} k_{i_1i_2\ldots i_s} \varepsilon_{1i_1} \otimes \cdots \otimes \varepsilon_{si_s}$$
+\[\sum\limits_{i_1,i_2,\ldots,i_s} k_{i_1i_2\ldots i_s} \varepsilon_{1i_1} \otimes \cdots \otimes \varepsilon_{si_s}\]
 其中$1\leqslant i_1\leqslant \dim V_1 = n_1, \ldots, 1\leqslant i_s\leqslant \dim V_s = n_s$
 \end{block}
 
@@ -225,16 +225,16 @@ $$\sum\limits_{i_1,i_2,\ldots,i_s} k_{i_1i_2\ldots i_s} \varepsilon_{1i_1} \otim
 
 \begin{block}{张量的积}
 张量除了加法与数乘，还可以定义他们的积。为了书写方便，我们任取两个张量空间$V_1\otimes\cdots\otimes V_s$与$W_1\otimes\cdots\otimes W_t$中的两个张量
-$$v = \alpha_1\otimes\cdots\otimes \alpha_s, \quad w = \beta_1\otimes\cdots\otimes \beta_t$$
+\[v = \alpha_1\otimes\cdots\otimes \alpha_s, \quad w = \beta_1\otimes\cdots\otimes \beta_t\]
 那么可以定义$v$与$w$的积为
-$$v\otimes w := \alpha_1\otimes\cdots\otimes \alpha_s \otimes \beta_1\otimes\cdots\otimes \beta_t$$
+\[v\otimes w := \alpha_1\otimes\cdots\otimes \alpha_s \otimes \beta_1\otimes\cdots\otimes \beta_t\]
 为张量空间$V_1\otimes\cdots\otimes V_s\otimes W_1\otimes\cdots\otimes W_t$中的元素。
 
 \vspace{2em}
 \pause
 
 大家可以自行写一写以上两个张量空间中的一般元素
-$$\sum k_{i_1,i_2,\ldots,i_s}\alpha_{1i_1} \otimes \cdots \otimes \alpha_{si_s}, \quad \sum h_{j_1,j_2,\ldots,j_t}\beta_{1j_1} \otimes \cdots \otimes \beta_{tj_t}$$
+\[\sum k_{i_1,i_2,\ldots,i_s}\alpha_{1i_1} \otimes \cdots \otimes \alpha_{si_s}, \quad \sum h_{j_1,j_2,\ldots,j_t}\beta_{1j_1} \otimes \cdots \otimes \beta_{tj_t}\]
 的积的表达式。
 \end{block}
 
@@ -246,11 +246,11 @@ $$\sum k_{i_1,i_2,\ldots,i_s}\alpha_{1i_1} \otimes \cdots \otimes \alpha_{si_s},
 
 \begin{block}{作为多维数组的张量}
 考虑张量空间$\bigotimes\limits_{i=1}^s V_i$中一般的一个元素
-$$\sum\limits_{i_1,i_2,\ldots,i_s} k_{i_1i_2\ldots i_s} \varepsilon_{1i_1} \otimes \cdots \otimes \varepsilon_{si_s}$$
+\[\sum\limits_{i_1,i_2,\ldots,i_s} k_{i_1i_2\ldots i_s} \varepsilon_{1i_1} \otimes \cdots \otimes \varepsilon_{si_s}\]
 其中$\varepsilon_{i1},\ldots,\varepsilon_{in_i}, i=1,2,\ldots,s,$为线性空间$V_i $的一组基，且令$n_i = \dim V_i$. 那么该元素能够被视作一个$s$维数组
-$$
+\[
 \texttt{double} \quad k[n_1][n_2]...[n_s];
-$$
+\]
 使得数组中$k[i_1][i_2]...[i_s]$的值就是$k_{i_1i_2\ldots i_s}$.
 \end{block}
 

@@ -83,7 +83,7 @@
 \pause
 
 $N$个样本：
-$$\left\{(y_i, x_{i1}, x_{i2}, \cdots, x_{i7}) \right\}_{i=1}^N$$
+\[\left\{(y_i, x_{i1}, x_{i2}, \cdots, x_{i7}) \right\}_{i=1}^N\]
 % \end{block}
 
 \end{frame}
@@ -94,18 +94,18 @@ $$\left\{(y_i, x_{i1}, x_{i2}, \cdots, x_{i7}) \right\}_{i=1}^N$$
 
 % \begin{block}{一个线性回归的例子 -- 房价评估}
 最简单的模型 -- 线性模型：
-$$Y(X_1,X_2,\ldots,X_7) = w_1X_1 + w_2X_2 + \cdots + w_7X_7 + b.$$
+\[Y(X_1,X_2,\ldots,X_7) = w_1X_1 + w_2X_2 + \cdots + w_7X_7 + b.\]
 
 \pause
 
 $N$个样本，即有
-$$
+\[
 \begin{cases}
 y_1 = w_1x_{11} + w_2x_{12} + \cdots + w_7x_{17} + b \\
 y_2 = w_1x_{21} + w_2x_{22} + \cdots + w_7x_{27} + b \\
 \phantom{yyy} \vdots \\
 y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b
-\end{cases}$$
+\end{cases}\]
 
 \pause
 
@@ -128,13 +128,13 @@ y_N = w_1x_{N1} + w_2x_{N2} + \cdots + w_7x_{N7} + b
 
 % \begin{block}{线性方程组}
 $n$个未知元$m$个方程的线性方程组具有以下形式
-$$
+\[
 \begin{cases}
 a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
 a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
 \phantom{yyy} \vdots \\
 a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
-\end{cases}$$
+\end{cases}\]
 
 \pause
 
@@ -161,7 +161,7 @@ $x_1,\ldots,x_n$被称为未定元，$a_{ij},b_i$是一些常数，$i=1,2,\ldots
 % \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}
 \item 在$a_{i1} (i=1,2,\ldots,m)$中选取一个不等于$0$的$a_{i_01}$（不妨设存在这样的$a_{i_01}$）， 把第$i$行的方程两边同时除以$a_{i_01}$, 然后把它放到第一行。原方程组变形为
-$$
+\[
 \begin{cases}
 x_1 + {\color{red} \dfrac{a_{i_02}}{a_{i_01}}}x_2 + \cdots + {\color{red} \dfrac{a_{i_0n}}{a_{i_01}}}x_n = {\color{red} \dfrac{b_{i_0}}{a_{i_01}}} \\
 a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
@@ -170,7 +170,7 @@ a_{i_0-1,1}x_1 + a_{i_0-1,2}x_2 + \cdots + a_{i_0-1,n}x_n = b_{i_0-1} \\
 a_{i_0+1,1}x_1 + a_{i_0+1,2}x_2 + \cdots + a_{i_0+1,n}x_n = b_{i_0+1} \\
 \phantom{yyy} \vdots \\
 a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
-\end{cases}$$
+\end{cases}\]
 \end{enumerate}
 % \end{block}
 
@@ -183,18 +183,18 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
 % \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}\addtocounter{enumi}{1}
 \item 把$x_1 + \dfrac{a_{i_02}}{a_{i_01}}x_2 + \cdots + \dfrac{a_{i_0n}}{a_{i_01}}x_n = \dfrac{b_{i_0}}{a_{i_01}}$乘以$-a_{i1}$加到相应行的等式上面，方程继续变形为
-$$
+\[
 \begin{cases}
 x_1 + {\color{red} \dfrac{a_{i_02}}{a_{i_01}}}x_2 + \cdots + {\color{red} \dfrac{a_{i_0n}}{a_{i_01}}}x_n = {\color{red} \dfrac{b_{i_0}}{a_{i_01}}} \\
 \phantom{x_1 +a} {\color{red} a'_{12}}x_2 + \cdots + {\color{red} a'_{1n}}x_n = {\color{red} b'_1} \\
 \phantom{yyyyyyyyy} \vdots \\
 \phantom{x_1 +a} {\color{red} a'_{m2}}x_2 + \cdots + {\color{red} a'_{mn}}x_n = {\color{red} b'_m}
-\end{cases}$$
+\end{cases}\]
 
 \pause
 
 其中$a'_{ij}$与$b'_i$为通过上面的运算新得到的系数，容易看出
-$$a'_{ij} = a_{ij} - a_{i1}\dfrac{a_{i_0j}}{a_{i_01}}, \quad b'_{i} = b_{i} - a_{i1}\dfrac{b_{i_0}}{a_{i_01}}.$$
+\[a'_{ij} = a_{ij} - a_{i1}\dfrac{a_{i_0j}}{a_{i_01}}, \quad b'_{i} = b_{i} - a_{i1}\dfrac{b_{i_0}}{a_{i_01}}.\]
 \end{enumerate}
 % \end{block}
 
@@ -207,22 +207,22 @@ $$a'_{ij} = a_{ij} - a_{i1}\dfrac{a_{i_0j}}{a_{i_01}}, \quad b'_{i} = b_{i} - a_
 % \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}\addtocounter{enumi}{2}
 \item 对于除第一个方程外剩下（{\color{red}至多}有$m-1$个）的方程
-$$
+\[
 \small
 \begin{cases}
 a'_{12}x_2 + \cdots + a'_{1n}x_n = b'_1 \\
 \phantom{yyyy} \vdots \\
 a'_{m2}x_2 + \cdots + a'_{mn}x_n = b'_m
-\end{cases}$$
+\end{cases}\]
 重复之前的步骤1,2，重复最多$m$次之后，原方程组约化到如下的$k+1$个方程的形式，即所谓的阶梯形（Echelon Form）
-$$
+\[
 \begin{cases}
 x_1 + a'_{12}x_2 + a'_{13}x_3 + \cdots + a'_{1n}x_n = b'_1 \\
 \phantom{x_1 + 1} x_{\color{red} j_2} + a'_{2,j_2+1}x_{j_2+1} + \cdots + a'_{2n}x_n = b'_2 \\
 \phantom{yyyyyyyyyyyyyyyyy} \vdots \\
 \phantom{yyyyyyyyyyyyyyyyy} x_{\color{red} j_k} + \cdots + a'_{kn}x_n = b'_k \\
 \phantom{yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy} {\color{red} 0 = b'_{k+1}}
-\end{cases}$$
+\end{cases}\]
 \end{enumerate}
 % \end{block}
 
@@ -235,14 +235,14 @@ x_1 + a'_{12}x_2 + a'_{13}x_3 + \cdots + a'_{1n}x_n = b'_1 \\
 % \begin{block}{解线性方程组 - Gau{\ss}消元法，Gau{\ss}ian Elimination}
 \begin{enumerate}\addtocounter{enumi}{3}
 \item 对于{\color{red}不出现$0 = $非零常数的阶梯形}，从最底下的方程开始，逐次代入上一个方程中，即可求得原线性方程组的解。解的形式是
-$$\begin{cases}
+\[\begin{cases}
 x_1 = \ell_1(x_{h_1},\ldots,x_{h_s},b'_1,\ldots,b'_k) \\
 x_{j_2} = \ell_2(x_{h_1},\ldots,x_{h_s},b'_1,\ldots,b'_k) \\
 \phantom{yyy} \vdots \\
 x_{j_k} = \ell_k(x_{h_1},\ldots,x_{h_s},b'_1,\ldots,b'_k)
-\end{cases}$$
+\end{cases}\]
 其中$\ell_1,\ldots,\ell_k$有如下的形式
-$$t_1x_{h_1}+\cdots+t_sx_{h_s}+t'_1b'_1+\cdots+t'_kb'_k$$
+\[t_1x_{h_1}+\cdots+t_sx_{h_s}+t'_1b'_1+\cdots+t'_kb'_k\]
 $t_1,\ldots,t_s,t'_1,\ldots,t'_k$是一些实数，$h_1,\ldots,h_s$为$1,2,\ldots,n$中除掉$1,j_2,\ldots,j_k$中剩下的数，$x_{h_1},\ldots,x_{h_s}$为自由变元。
 \end{enumerate}
 % \end{block}
@@ -279,9 +279,9 @@ $t_1,\ldots,t_s,t'_1,\ldots,t'_k$是一些实数，$h_1,\ldots,h_s$为$1,2,\ldot
 \pause
 
 解：
-$$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 16} \xrightarrow{(2)-(1)\times 3} \left\{\begin{aligned}
+\[\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 16} \xrightarrow{(2)-(1)\times 3} \left\{\begin{aligned}
 x_1 - 2x_2 & = 2 \\ 0 & = 10
-\end{aligned}\right.$$
+\end{aligned}\right.\]
 此时，无解。
 
 \pause
@@ -291,9 +291,9 @@ x_1 - 2x_2 & = 2 \\ 0 & = 10
 \pause
 
 解：
-$$\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 6} \xrightarrow{(2)-(1)\times 3} \left\{\begin{aligned}
+\[\systeme{x_1 - 2x_2 = 2, 3x_1 - 6x_2 = 6} \xrightarrow{(2)-(1)\times 3} \left\{\begin{aligned}
 x_1 - 2x_2 & = 2 \\ 0 & = 0
-\end{aligned}\right.$$
+\end{aligned}\right.\]
 此时有无穷多组解：$x_2 = t, x_1 = 2t+2, t\in\mathbb{R}.$
 % \end{block}
 
@@ -333,13 +333,13 @@ x_1 - 2x_2 & = 2 \\ 0 & = 0
 
 % \begin{block}{作为线性方程组的线性回归问题}
 我们以系数作为未知元，于是能从一个线性回归的问题得到一个线性方程组
-$$
+\[
 \begin{cases}
 x_{11}w_1 + x_{12}w_2 + \cdots + x_{1n}w_n + 1\cdot b = y_1 \\
 x_{21}w_1 + x_{22}w_2 + \cdots + x_{2n}w_n + 1\cdot b = y_2 \\
 \phantom{yyy} \vdots \\
 x_{N1}w_1 + x_{N2}w_2 + \cdots + x_{Nn}w_n + 1\cdot b = y_N
-\end{cases}$$
+\end{cases}\]
 
 \pause
 
@@ -380,7 +380,7 @@ b_1 \\ b_2 \\ \vdots \\ b_n
 \pause
 
 即
-$$A\mathbf{x} = \mathbf{b}$$
+\[A\mathbf{x} = \mathbf{b}\]
 
 \end{frame}
 
@@ -390,7 +390,7 @@ $$A\mathbf{x} = \mathbf{b}$$
 
 % \begin{block}{矩阵(Matrix)的定义}
 由$mn$个实数排成行列的矩形数表, 用圆(或方)括号括起来，即
-$$
+\[
 A = \kbordermatrix{
 & \substack{\mathbf{a}_1 \\ \downarrow} & \substack{\mathbf{a}_2 \\ \downarrow} & \cdots & \substack{\mathbf{a}_n \\ \downarrow} \\
 \mathbf{\alpha}_1 \to & a_{11} & a_{12} & \cdots & a_{1n} \\
@@ -401,7 +401,7 @@ A = \kbordermatrix{
 = \begin{bmatrix}
 a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}
 \end{bmatrix}
-$$
+\]
 称为$m\times n$型的矩阵，简记为$A = (a_{ij})_{m\times n}$，其中横排$\mathbf{\alpha}_i$称为矩阵的行，竖排$\mathbf{a}_j$称为矩阵的列。$a_{ij}$称为矩阵的元素，其第一个下标表示所在的行数，第二个下标表示其所在的列数。全体$m\times n$型的矩阵组成的集合，记为$M_{m\times n}(\mathbb{R})$.
 % \end{block}
 
@@ -456,7 +456,7 @@ $$
 % \begin{block}{一些特殊矩阵}
 \begin{itemize}
 \item 对角阵：$n\times n$的矩阵$(a_{ij})_{n\times n}$，其中$a_{ij} = 0 \text{当$i\neq j$.}$对角阵简记为
-$$diag(a_{11},a_{22},\cdots,a_{nn}) = \begin{pmatrix} a_{11} & & \\ & \ddots & \\ & & a_{nn} \end{pmatrix}.$$
+\[diag(a_{11},a_{22},\cdots,a_{nn}) = \begin{pmatrix} a_{11} & & \\ & \ddots & \\ & & a_{nn} \end{pmatrix}.\]
 \item 单位阵：$I_n = diag(1,1,\cdots,1)$.
 \item 纯量阵：$cI_n = diag(c,c,\cdots,c), c \in \mathbb{R}$.
 \end{itemize}
@@ -471,9 +471,9 @@ $$diag(a_{11},a_{22},\cdots,a_{nn}) = \begin{pmatrix} a_{11} & & \\ & \ddots & \
 % \begin{block}{一些特殊矩阵}
 \begin{itemize}
 \item 上三角阵：主对角线下方的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i > j$.}$
-$$\begin{pmatrix}
+\[\begin{pmatrix}
 a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & \vdots \\ & & & a_{nn}
-\end{pmatrix}$$
+\end{pmatrix}\]
 
 \item 严格上三角阵：主对角线下方以及主对角线上的元素全为零的方阵称为上三角形矩阵，即$a_{ij} = 0 \text{当$i \geqslant j$.}$
 \end{itemize}
@@ -493,16 +493,16 @@ a_{11} & a_{12} & \cdots & a_{1n} \\ & a_{22} & \cdots & a_{2n} \\ & & \ddots & 
 % \begin{block}{矩阵的线性运算}
 \begin{itemize}
 \item 加法：同型矩阵对应分量相加。
-$$A = (a_{ij})_{m\times n}, B = (b_{ij})_{m\times n} \Rightarrow A + B := (a_{ij} + b_{ij})_{m\times n}$$
+\[A = (a_{ij})_{m\times n}, B = (b_{ij})_{m\times n} \Rightarrow A + B := (a_{ij} + b_{ij})_{m\times n}\]
 满足
 \begin{itemize}
 \item[$\bullet$] 结合律：$(A+B)+C = A+(B+C)$
 \item[$\bullet$] 交换律：$A+B = B+A$
 \end{itemize}
 \item 减法：同型矩阵对应分量相减。
-$$A - B := A + (-B) = (a_{ij} - b_{ij})_{m\times n}$$
+\[A - B := A + (-B) = (a_{ij} - b_{ij})_{m\times n}\]
 \item 数量乘法（或数乘）：矩阵的每个分量同乘一个数。
-$$\text{设 }t\in\mathbb{R}, A = (a_{ij})_{m\times n}, \text{ 则  } tA = t(a_{ij})_{m\times n} := (ta_{ij})_{m\times n}$$
+\[\text{设 }t\in\mathbb{R}, A = (a_{ij})_{m\times n}, \text{ 则  } tA = t(a_{ij})_{m\times n} := (ta_{ij})_{m\times n}\]
 \end{itemize}
 % \end{block}
 
@@ -518,7 +518,7 @@ $$\text{设 }t\in\mathbb{R}, A = (a_{ij})_{m\times n}, \text{ 则  } tA = t(a_{i
 
 % \begin{block}{矩阵的乘法}
 设$A = (a_{ij})_{m\times s}, B = (b_{ij})_{t\times n}$。如果矩阵$A$的列数等于矩阵$B$的行数，即$s=t$，则$A$与$B$ 可以相乘，记为$AB$。$AB$为一个$m\times n$阶的矩阵，其$(i,j)$位置上的元素是$A$ 的第$i$行的元素与$B$的第$j$列对应位置上的元素乘积之和，即如果记$AB = (c_{ij})_{m\times n}$，那么
-$$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj} = \sum\limits_{k=1}^s a_{ik}b_{kj}.$$
+\[c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj} = \sum\limits_{k=1}^s a_{ik}b_{kj}.\]
 % \end{block}
 
 \end{frame}
@@ -548,7 +548,7 @@ $$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj} = \sum\limits_{k=
 \]
 \Highlight[second]
 
-$$c_{\color{red} ij} = a_{{\color{red}i}1}b_{1{\color{red}j}} + a_{{\color{red}i}2}b_{2{\color{red}j}} + \cdots + a_{{\color{red}i}s}b_{s{\color{red}j}}.$$
+\[c_{\color{red} ij} = a_{{\color{red}i}1}b_{1{\color{red}j}} + a_{{\color{red}i}2}b_{2{\color{red}j}} + \cdots + a_{{\color{red}i}s}b_{s{\color{red}j}}.\]
 % \end{block}
 
 \end{frame}
@@ -639,9 +639,9 @@ AB = 0 & \not\Rightarrow & A = 0 \text{ 或 } B = 0.
 
 \begin{block}{方阵的逆与线性方程组求解}
 如果线性方程组
-$$A\mathbf{x} = \mathbf{b}$$
+\[A\mathbf{x} = \mathbf{b}\]
 中的系数矩阵$A$是一个{\color{red}可逆方阵}，那么在上式左右两边同时左乘$A^{-1}$, 那么有
-$$\mathbf{x} = A^{-1}\mathbf{b}.$$
+\[\mathbf{x} = A^{-1}\mathbf{b}.\]
 \end{block}
 
 \end{frame}
@@ -655,7 +655,7 @@ $$\mathbf{x} = A^{-1}\mathbf{b}.$$
 \begin{frame}{矩阵(Transpose)的转置}
 
 将$m\times n$的矩阵$A = (a_{ij})_{m\times n}$的行与列互换得到的矩阵称为矩阵$A$的转置，记作$A^T$，即
-$$A^T = (a_{ji})_{n\times m}.$$
+\[A^T = (a_{ji})_{n\times m}.\]
 简单来说，就是沿着（左上到右下的）对角线翻转一下。{\color{red} 注意}，上式说的是$A^T$的第$(i,j)$位置的元素为$a_{ji}$.
 
 \pause
@@ -706,7 +706,7 @@ $$A^T = (a_{ji})_{n\times m}.$$
 
 % \begin{block}{矩阵转置乘法反序性质的证明}
 设$A = (a_{ij})_{m\times s},$ $B = (b_{ij})_{s\times n}$, 令$A^T = (a'_{ij})_{s\times m},$ $B^T = (b'_{ij})_{n\times s}$. 那么有
-$$a'_{ij} = a_{ji}, \quad b'_{ij} = b_{ji}.$$
+\[a'_{ij} = a_{ji}, \quad b'_{ij} = b_{ji}.\]
 令$C = (c_{ij})_{m\times n} = AB$, $C^T = (c'_{ij})_{n\times m}$, $D = (d_{ij})_{n\times m} = B^TA^T$, 那么由矩阵乘法定义有
 \begin{align*}
 c'_{ji} & = c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj}, \\
