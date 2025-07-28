@@ -345,7 +345,31 @@ node[midway,xshift=2.4em] {\alert{$\sigma$-代数}};
 
 \begin{frame}{可测函数定义}
 
+\begin{Def}[可测函数]
+称定义在可测集 $E$ 上的实值函数 $f$ 可测, 若 $\forall ~ \alpha \in \mathbb{R},$ 集
+\[
+E(f > \alpha) := \{ x \in E ~:~ f(x) > \alpha \}
+\]
+总是可测集.
+\end{Def}
 
+\pause
+
+\begin{Def}[可测函数更弱, 但等价的定义]
+称定义在可测集 $E$ 上的实值函数 $f$ 可测, 若 $\forall ~ \alpha \in \alert{A} \subset \mathbb{R},$ \alert{$A$ 在 $\mathbb{R}$ 中稠密}, 集
+\[
+E(f > \alpha) := \{ x \in E ~:~ f(x) > \alpha \}
+\]
+总是可测集.
+\end{Def}
+
+\pause
+
+可测函数的例子:
+
+$[0, 1]$ 区间上的 Dirichlet 函数, Riemann 函数,\par
+\pause
+\alert{简单函数} $\varphi = \sum\limits_{i=1}^n c_i \chi_{E_i}.$
 
 \end{frame}
 
@@ -353,7 +377,14 @@ node[midway,xshift=2.4em] {\alert{$\sigma$-代数}};
 
 \begin{frame}{可测函数的运算}
 
-
+以下运算都保可测性:
+\begin{itemize}
+\item 代数运算, 以及 $\ln, \exp$ 等单调的超越运算
+\item 平方
+\item 取绝对值
+\item $\inf, \sup, \varliminf, \varlimsup$
+\item 正部 $f_+ = \max (0, f),$ 负部 $f_- = \max (0, -f)$ 
+\end{itemize}
 
 \end{frame}
 
@@ -362,7 +393,12 @@ node[midway,xshift=2.4em] {\alert{$\sigma$-代数}};
 \begin{frame}{Egorov 定理}
 
 \begin{thm}[Egorov 定理]
-
+设 \alert{$m E < \infty$}, 那么
+\begin{center}
+$\{ f_n \}$ 几乎处处收敛 ~ $\Longleftrightarrow$ ~ \alert{近}一致收敛
+\end{center}
+\pause
+\alert{注意}, 近一致收敛指, 在除一个任意小的正测度集之外, 一致收敛.
 \end{thm}
 
 \end{frame}
@@ -372,8 +408,21 @@ node[midway,xshift=2.4em] {\alert{$\sigma$-代数}};
 \begin{frame}{Riesz 定理}
 
 \begin{thm}[Riesz 定理]
-
+设 \alert{$m E < \infty$}, 那么
+\begin{center}
+$\{ f_n \}$ \alert{依测度}收敛 ~ $\Longleftrightarrow$ ~ $\{ f_n \}$ 任意子列可选出几乎处处收敛子列
+\end{center}
+\pause
+\alert{注意}, 依测度收敛指, $\displaystyle \lim_{n\to\infty} m E(|f_n - f| \geqslant \varepsilon) = 0.$
 \end{thm}
+
+\pause
+\vspace{1em}
+
+\begin{block}{可测函数空间关于依测度收敛的完备性}
+$\{ f_n \}$ 为依测度基本列 ~ $\Longleftrightarrow$ ~ \pause
+$\exists$ 可测函数 $f,$ 使得 $f_n \xrightarrow{\text{依测度}} f.$
+\end{block}
 
 \end{frame}
 
@@ -381,7 +430,14 @@ node[midway,xshift=2.4em] {\alert{$\sigma$-代数}};
 
 \begin{frame}{Luzin 定理}
 
-\begin{thm}[Luzin 定理]
+\begin{thm}[Luzin 定理 | 形式1]
+
+\end{thm}
+
+\pause
+\vspace{1em}
+
+\begin{thm}[Luzin 定理 | 形式2]
 
 \end{thm}
 
@@ -391,7 +447,45 @@ node[midway,xshift=2.4em] {\alert{$\sigma$-代数}};
 
 \begin{frame}{复合函数可测性}
 
+% \Circled{1}. $\mathbb{R}$\tikzcoord{comp-item1} $\xrightarrow[\text{可测}]{g}$ $\mathbb{R}$\tikzcoord{comp-item2} $\xrightarrow[\text{连续}]{f}$ $\mathbb{R}$\tikzcoord{comp-item3} ~ $\Longrightarrow$ $f\circ g$ 可测
+\begin{tikzpicture}[
+transform shape,
+node distance=0.6cm and 1.5cm, % Vertical and horizontal distance
+every path/.style={arrows={-Classical TikZ Rightarrow}},
+]
+\node (comp-item1) {\Circled{1} ~ $\mathbb{R}$};
+\node (comp-item2) [right = of comp-item1] {$\mathbb{R}$};
+\node (comp-item3) [right = of comp-item2] {$\mathbb{R}$};
 
+\draw (comp-item1) -- (comp-item2) node[midway, below] {\smaller[1] 可测} node[midway, above] {$g$};
+\draw (comp-item2) -- (comp-item3) node[midway, below] {\smaller[1] 连续} node[midway, above] {$f$};
+
+\node (comp-imply) [right = 1.8cm of comp-item3] {$f \circ g$ 可测};
+\draw[double, double distance=1pt] ([xshift=0.3cm]comp-item3) -- ([xshift=-0.3cm]comp-imply);
+
+\node (G) [below = 0.7cm of comp-item3] {\smaller[1] $G$};
+\draw[{Hooks[right]}->] (G) -- (comp-item3) node[midway] {$\circ$};
+\node (invfG) [below = of comp-item2] {\smaller[1] $f^{-1}(G)$};
+\node (invfgG) [below = of comp-item1] {\smaller[1] $g^{-1}(f^{-1}(G))$};
+\draw[dashed, ->] (G) to [bend left] (invfG);
+\draw[dashed, ->] (invfG) to [bend left] (invfgG);
+
+\pause
+
+\node (comp-item4) [below = 2.3cm of comp-item1] {\Circled{2} ~ $\mathbb{R}$};
+\node (comp-item5) [right = of comp-item4] {$\mathbb{R}$};
+\node (comp-item6) [right = of comp-item5] {$\mathbb{R}$};
+
+\draw (comp-item4) -- (comp-item5) node[midway, below] {\smaller[1] 连续} node[midway, above] {$g$};
+\draw (comp-item5) -- (comp-item6) node[midway, below] {\smaller[1] 可测} node[midway, above] {$f$};
+
+\node (comp-notimply) [right = 1.8cm of comp-item6] {$f \circ g$ 可测};
+\draw[double, double distance=1pt] ([xshift=0.3cm]comp-item6) -- ([xshift=-0.3cm]comp-notimply) node[midway] {/};
+\end{tikzpicture}
+
+\pause
+
+加条件: 零测集在 $g$ 下的逆像总是零测集, 则 $\Longrightarrow$ $f \circ g$ 可测.
 
 \end{frame}
 
