@@ -104,7 +104,7 @@
 \pause
 
 连续统: 与 $\mathbb{R}$ 等势的集合, 它们的势记作 $\mathfrak{c}.$ 有
-\[\mathfrak{c} = |\mathcal{P}(\mathbb{N})| = 2^{\aleph_0}.\]
+\[\mathfrak{c} = |\mathscr{P}(\mathbb{N})| = 2^{\aleph_0}.\]
 
 
 \end{frame}
@@ -307,10 +307,10 @@ m \left( \bigcup_{n=1}^{\infty} E_n \right) = \lim_{n\to\infty} m E_n.
 \begin{frame}{环, $\sigma$ 环, $\sigma$ 代数及其上的测度}
 
 \begin{itemize}
-\item[\Circled{1}] $A, A' \in \alert{\mathcal{R}} \Rightarrow A \cap A' \in \alert{\mathcal{R}}$ \tikzcoord{ring-item1}
-\item[\Circled{2}] $A, A' \in \alert{\mathcal{R}} \Rightarrow A \cup A' \in \alert{\mathcal{R}}$ \tikzcoord{ring-item2}
-\item[\Circled{2'}] $A_n \in \alert{\mathcal{R}},\ n \in \mathbb{N} \Rightarrow \bigcup_{n \in \mathbb{N}} A_n \in \alert{\mathcal{R}}$ \tikzcoord{ring-item2p}
-\item[\Circled{3}] 基本集 $X \in \alert{\mathcal{R}}$ \tikzcoord{ring-item3}
+\item[\Circled{1}] $A, A' \in \alert{\mathscr{R}} \Rightarrow A \cap A' \in \alert{\mathscr{R}}$ \tikzcoord{ring-item1}
+\item[\Circled{2}] $A, A' \in \alert{\mathscr{R}} \Rightarrow A \cup A' \in \alert{\mathscr{R}}$ \tikzcoord{ring-item2}
+\item[\Circled{2'}] $A_n \in \alert{\mathscr{R}},\ n \in \mathbb{N} \Rightarrow \bigcup_{n \in \mathbb{N}} A_n \in \alert{\mathscr{R}}$ \tikzcoord{ring-item2p}
+\item[\Circled{3}] 基本集 $X \in \alert{\mathscr{R}}$ \tikzcoord{ring-item3}
 \end{itemize}
 
 \begin{tikzpicture}[remember picture,overlay]
@@ -430,15 +430,17 @@ $\exists$ 可测函数 $f,$ 使得 $f_n \xrightarrow{\text{依测度}} f.$
 
 \begin{frame}{Luzin 定理}
 
-\begin{thm}[Luzin 定理 | 形式1]
+考虑可测集 $E$ 上定义的可测函数 $f.$
 
+\begin{thm}[Luzin 定理 | 形式1]
+$\forall ~ \varepsilon > 0,$ 存在闭集 $F \subset E,$ 使得 $m (E \setminus F) < \varepsilon,$ 且 $f|_F$ 连续.
 \end{thm}
 
 \pause
 \vspace{1em}
 
 \begin{thm}[Luzin 定理 | 形式2]
-
+$\forall ~ \varepsilon > 0,$ 存在 $g \in C(\mathbb{R}),$ 使得 $m E(f \neq g) < \varepsilon.$
 \end{thm}
 
 \end{frame}
@@ -463,10 +465,10 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 \node (comp-imply) [right = 1.8cm of comp-item3] {$f \circ g$ 可测};
 \draw[double, double distance=1pt] ([xshift=0.3cm]comp-item3) -- ([xshift=-0.3cm]comp-imply);
 
-\node (G) [below = 0.7cm of comp-item3] {\smaller[1] $G$};
+\node (G) [below = 0.9cm of comp-item3, anchor=center] {\smaller[1] $G$};
 \draw[{Hooks[right]}->] (G) -- (comp-item3) node[midway] {$\circ$};
-\node (invfG) [below = of comp-item2] {\smaller[1] $f^{-1}(G)$};
-\node (invfgG) [below = of comp-item1] {\smaller[1] $g^{-1}(f^{-1}(G))$};
+\node (invfG) [below = 0.9cm of comp-item2, anchor=center] {\smaller[1] $f^{-1}(G)$};
+\node (invfgG) [below = 0.9cm of comp-item1, anchor=center] {\smaller[1] $g^{-1}(f^{-1}(G))$};
 \draw[dashed, ->] (G) to [bend left] (invfG);
 \draw[dashed, ->] (invfG) to [bend left] (invfgG);
 
@@ -497,7 +499,39 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 
 \begin{frame}{勒贝格积分的构造}
 
+$E$: 可测集, ~~ $f$: $E$ 上可测函数,
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\text{{\bfseries 目标: 定义} ~ $\displaystyle \int_E f ~ \mathrm{d} m$}
+\end{empheq}
 
+\pause
+\vspace{1em}
+
+\begin{tikzpicture}[
+transform shape,
+node distance=0.8cm and 1.3cm, % Vertical and horizontal distance
+]
+\node (simpInt) {\smaller[1] (非负) 简单函数积分};
+\node (nnInt) [right = of simpInt] {\smaller[1]非负函数积分};
+\node (measInt) [right = of nnInt] {\smaller[1]可测函数积分};
+\draw[->, decorate, decoration={snake, amplitude=0.7mm, segment length=3mm}] (simpInt) -- (nnInt);
+\draw[->, decorate, decoration={snake, amplitude=0.7mm, segment length=3mm}] (nnInt) -- (measInt);
+
+\node (simpFunc) [below = of simpInt, anchor=center] {$\varphi = \sum\limits_{i=1}^n c_i \chi_{E_i}$};
+\node (nnFunc) [below = of nnInt, anchor=center] {$f \geqslant 0$};
+\node (measFunc) [below = of measInt, anchor=center] {$f = f_+ + f_-$};
+
+\node [below = 2.1cm of simpInt, anchor=center] {\smaller[1] $\displaystyle \sum_{i=1}^n c_i \cdot m E_i$};
+\node [below = 2.1cm of nnInt, anchor=center] {\smaller[1] $\displaystyle \sup_{0\leqslant\varphi\leqslant f} \int_E \varphi ~ \mathrm{d} m$};
+\node [below = 2.1cm of measInt, anchor=center] {\smaller[1] $\displaystyle \int_E f_+ ~ \mathrm{d} m - \int_E f_- ~ \mathrm{d} m$};
+\end{tikzpicture}
+
+\pause
+
+可积函数空间
+\[
+L_E = L(E) = \{ \text{$f$ 在 $E$ 上可测} ~:~ \int_E f ~ \mathrm{d} m < \infty \}.
+\]
 
 \end{frame}
 
@@ -505,7 +539,22 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 
 \begin{frame}{单个积分的性质}
 
-
+\begin{itemize}
+\item 关于被积区间: 有限、$\sigma$-可加性
+\[
+\int_{\cup E_i} f ~ \mathrm{d} m = \sum \int_{E_i} f ~ \mathrm{d} m
+\]
+\pause
+\item 绝对连续性
+\[
+\forall ~ \varepsilon, \exists ~ \delta, ~ \text{s.t.} ~ \forall m E < \delta, \int_{E} f ~ \mathrm{d} m < \varepsilon.
+\]
+\pause
+\item 关于被积函数: (有限) 线性性
+\[
+\int_{E} \sum_{i=1}^n f_i ~ \mathrm{d} m = \sum_{i=1}^n \int_{E} f_i ~ \mathrm{d} m.
+\]
+\end{itemize}
 
 \end{frame}
 
@@ -513,8 +562,15 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 
 \begin{frame}{积分序列的性质 | {\smaller[1] Levi 定理}}
 
-\begin{thm}[Levi 定理]
+积分序列的性质主要涉及积分与极限交换次序的结论
 
+\pause
+
+\begin{thm}[Levi 定理]
+$0 \leqslant f_1 \leqslant \cdots \leqslant f_n \leqslant \cdots$ 非负渐升可测, 且 $\displaystyle \lim_{n\to\infty} f_n = f,$ a.e., 那么
+\[
+\int_E f ~ \mathrm{d} m = \lim_{n\to\infty} \int_E f_n ~ \mathrm{d} m.
+\]
 \end{thm}
 
 \end{frame}
@@ -524,8 +580,32 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 \begin{frame}{积分序列的性质 | {\smaller[1] Fatou 引理}}
 
 \begin{thm}[Fatou 引理]
-
+$\{ f_n \}$ 非负可测, 那么
+\[
+\int_E \varliminf_{n\to\infty} f_n ~ \mathrm{d} m \leqslant \varliminf_{n\to\infty} \int_E f_n ~ \mathrm{d} m.
+\]
 \end{thm}
+\alert{这里, 不能随意取极限 (可能不存在).}
+
+\pause
+\vspace{1em}
+
+\begin{eg}[Fatou 引理中的严格不等例子]
+(1). 定义 $f_n(x) =
+\begin{cases}
+n, & x \in (0, 1/n], \\
+0, & x \in \{0\} \cup (1/n, 1],
+\end{cases}
+\quad x \in [0,1],$ 那么
+\[
+0 = \int_{[0,1]} \varliminf_{n\to\infty} f_n ~ \mathrm{d} m < \varliminf_{n\to\infty} \int_E f_n ~ \mathrm{d} m = 1.
+\]
+\pause
+(2). 取 $f_n(x) = \sin^2(n x), \quad x \in [0,1],$ 类似地有
+\[
+0 = \int_{[0,1]} \varliminf_{n\to\infty} f_n ~ \mathrm{d} m < \varliminf_{n\to\infty} \int_E f_n ~ \mathrm{d} m = \varliminf_{n\to\infty} \left( \frac{1}{2} - \frac{\sin 2n}{2n} \right) = \frac{1}{2}.
+\]
+\end{eg}
 
 \end{frame}
 
@@ -534,18 +614,43 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 \begin{frame}{积分序列的性质 | {\smaller[1] Lebesgue 控制收敛定理}}
 
 \begin{thm}[Lebesgue 控制收敛定理]
-
+假设满足条件
+\begin{enumerate}
+\item $\displaystyle \lim_{n\to\infty} f_n(x) = f(x),$ a.e.
+\item 存在 $g \in L_E,$ 使得 $|f| < g,$ a.e.
+\end{enumerate}
+那么
+\[
+\int_E \lim_{n\to\infty} f_n ~ \mathrm{d} m = \lim_{n\to\infty} \int_E f_n ~ \mathrm{d} m.
+\]
 \end{thm}
 
 \end{frame}
 
-%------------------------------------------------
+% %------------------------------------------------
 
-\begin{frame}{积分序列的性质 | {\smaller[1] Lebesgue-Vitali 依测度型控制收敛定理}}
+\begin{frame}{积分序列的性质 | {\smaller[1] 依测度型 Lebesgue 控制收敛定理}}
 
-\begin{thm}[Lebesgue-Vitali 依测度型控制收敛定理]
-
+\begin{thm}[依测度型 Lebesgue 控制收敛定理]
+假设满足条件
+\begin{enumerate}
+\item $\displaystyle f_n \xrightarrow{\text{测度}} f,$
+\item 存在 $g \in L_E,$ 使得 $|f| < g,$ a.e.
+\end{enumerate}
+那么
+\[
+\int_E \lim_{n\to\infty} f_n ~ \mathrm{d} m = \lim_{n\to\infty} \int_E f_n ~ \mathrm{d} m.
+\]
 \end{thm}
+
+\pause
+
+\begin{cor}[Lebesgue-Vitali]
+设 $\displaystyle f_n \xrightarrow{\text{测度}} f,$ 那么
+\[
+\underbrace{\lim_{n\to\infty} \int_E |f_n - f| ~ \mathrm{d} m}_{f_n \xrightarrow{L^1} f} \Longleftrightarrow \{ f_n \} \text{有\alert{等度}绝对连续积分}
+\]
+\end{cor}
 
 \end{frame}
 
@@ -553,7 +658,25 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 
 \begin{frame}{Riemann 积分与 Lebesgue 积分比较}
 
+{\smaller[1]
+\begin{tikzpicture}[
+node distance=0.6cm and 1.2cm,
+every node/.style={align=center}
+]
+\node[text width=5em, align=center] (riemann) {Riemann 积分};
+\coordinate (fork) at ($(riemann)+(2.1,0)$);
+\node[above right=0.7cm and 0.9cm of fork, text width=5em, align=center] (lebesgue) {Lebesgue 积分};
+\node[below right=0.7cm and 0.9cm of fork, text width=5em, align=center] (improper) {反常积分};
+\node[right=4.8cm of riemann, text width=13em] (stmt) {对非负函数是“一回事”, 但对一般可测函数不是};
+\draw[-] (riemann) -- ++(2.1,0) node[midway, above] {推广};
+\draw[-] (fork) -- (lebesgue.west);
+\draw[-] (fork) -- (improper.west);
 
+% 从 lebesgue, improper 到 statement 的斜线
+\draw[-] (lebesgue.east) -- (stmt.north west);
+\draw[-] (improper.east) -- (stmt.south west);
+\end{tikzpicture}
+}
 
 \end{frame}
 
@@ -561,7 +684,11 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 
 \begin{frame}{多重积分与累次积分 (Fubini 定理)}
 
-
+设 $(X, \mathscr{R}, \mu), (Y, \mathscr{S}, \nu)$ 是两个测度空间, $h(x,y) \in L_{X \times Y},$ 那么
+\[
+\int_{X \times Y} h ~ \mathrm{d} \lambda = \int_X \left( \int_Y h_x ~ \mathrm{d} \nu \right) ~ \mathrm{d} \mu = \int_Y \left( \int_X h^y ~ \mathrm{d} \mu \right) ~ \mathrm{d} \nu,
+\]
+其中 $\lambda = \mu \times \nu,$  % 未完待续
 
 \end{frame}
 
@@ -577,6 +704,7 @@ every path/.style={arrows={-Classical TikZ Rightarrow}},
 
 \vspace{-2em}
 
+% {\smaller[1]
 \begin{align*}
 L_{[a, b]} & = [a, b] \text{ 区间上的 Lebesgue 可积函数}, \\
 L_0 & = \{ f \in L_{[a, b]} ~:~ f \sim 0\}, \\
@@ -586,11 +714,87 @@ BV([a, b]) & = [a, b] \text{ 区间上有界变差函数}, \\
 AC([a, b]) & = [a, b] \text{ 区间上绝对连续函数}.
 \end{align*}
 
+
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{(变上限) 积分与微分}
+\begin{frame}{(变上限) 积分与微分 | {\smaller[1] Vitali 覆盖引理}}
+
+证明过程主要用到了 \alert{Vitali 覆盖引理}
+
+\pause
+
+\begin{Def}[Vitali 覆盖]
+\label{def:vitali-cover}
+设 $m E < \infty,$ $\mathcal{F}$ 为闭区间族, 满足 $\forall ~ x \in E,$ 存在 $\mathcal{F}$ 中一列闭区间 $\{ I_n \},$ 满足
+\begin{equation}
+\label{eq:vitali-cover}
+\tag{*}
+\forall ~ n \in \mathbb{N}, x \in I_n, ~ \text{且} ~ \lim_{n\to\infty} |I_n| = 0,
+\end{equation}
+则称 $\mathcal{F}$ 为 $E$ 的一个 \alert{Vitali 覆盖}.
+\end{Def}
+
+\pause
+
+Vitali 覆盖定义中的条件~(\ref{eq:vitali-cover}) 可以等级为以下条件
+\[
+\forall ~ \varepsilon > 0, ~ \exists ~ \text{闭区间} ~ I \in \mathcal{F}, ~ \text{使得} ~ x \in I, ~ \text{且} ~ |I| < \varepsilon.
+\]
+
+\pause
+\vspace{1em}
+
+也就是说, $\mathcal{F}$ 可以“在任意小尺度”附近, 用闭区间接近 $E$ 中的每一个点.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(变上限) 积分与微分 | {\smaller[1] Vitali 覆盖引理}}
+
+\begin{thm}[Vitali 覆盖引理]
+有限测度集 $E$ 的 Vitali 覆盖 $\mathcal{F}$ 可选出
+\begin{enumerate}
+\item 至多可列个互不相交闭区间 $\{ I_k \},$ 其并的补集测度为 $0:$
+\[
+m \left( E \setminus \bigcup_k I_k \right) = 0
+\]
+\item 有限个互不相交闭区间 $I_1, \dots, I_n,$ 其并的补集测度 $< \varepsilon:$
+\[
+m \left( E \setminus \bigcup_{k=1}^n I_k \right) < \varepsilon.
+\]
+\end{enumerate}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\operatorname{BV}([a, b]) \setminus \operatorname{AC}([a, b])$ 的例子}
+
+是有界变差函数, 但不是绝对连续函数的例子:
+\pause
+$[0, 1]$ 区间上的 Cantor 函数.
+\pause
+
+先定义 Cantor 集 $P_0$ 上的函数:
+\[
+\phi: P_0 \longrightarrow [0, 1], ~ 2 \sum_{n=1}^{\infty} \frac{\alpha_n}{3^n} \mapsto \sum_{n=1}^{\infty} \frac{\alpha_n}{2^n},
+\]
+以上 $\alpha_n \in \{0, 1\}.$
+\pause
+再扩展到 $[0, 1]$ 区间上的 Cantor 函数:
+\[
+\Phi: [0, 1] \longrightarrow [0, 1], ~ x \mapsto \sup_{P_0 \ni y \leqslant x} \phi(y).
+\]
+\pause
+容易验证, $\Phi$ 单增, 从而是有界变差函数; 但在零测集 $P_0$ 上的跳跃为 $1,$ 从而不是绝对连续函数.
+
+\begin{attnblock}
+$\Psi(x) := (\Phi(x) + x) / 2$ 还用于构造非 Borel 集的可测集.
+\end{attnblock}
 
 \end{frame}
 
