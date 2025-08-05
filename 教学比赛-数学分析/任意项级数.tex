@@ -11,7 +11,7 @@
 \author[任意项级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
 {\Large \bfseries 任意项级数}
 % \author{Singular Value Decomposition} % Your name
-% \date{\today} % Date, can be changed to a custom date
+% \date{\today} % Date can be changed to a custom date
 \date{}
 
 %------------------------------------------------
@@ -47,16 +47,16 @@
 
 \vspace{0.6em}
 
-\only<1-6>{\phantom{如果一个级数即有无限个正项, 又有无限个负项, 那么正项级数的各种判别法不再适用！}}
-\only<7->{如果一个级数即有无限个正项, 又有无限个负项, 那么正项级数的各种判别法不再适用！}
+\only<1-6>{\phantom{如果一个级数即有无限个正项, 又有无限个负项, 那么正项级数的各种判别法不再适用!}}
+\only<7->{如果一个级数即有无限个正项, 又有无限个负项, 那么正项级数的各种判别法不再适用!}
 \end{column}
 
 \begin{column}{0.42\textwidth}
 \only<2->{
 \begin{empheq}[box={\fancymath[colback=cyan!30, sharp corners]}]{align*}
   & \only<2->{\text{\color{red!80}\ding{43} 比较判别法}} \\
-  & \only<3->{\text{\color{red!80}\ding{43} Cauchy判别法}} \\
-  & \only<4->{\text{\color{red!80}\ding{43} d'Alembert判别法}} \\
+  & \only<3->{\text{\color{red!80}\ding{43} Cauchy 判别法}} \\
+  & \only<4->{\text{\color{red!80}\ding{43} d'Alembert 判别法}} \\
   & \only<5->{\text{\color{red!80}\ding{43} Raabe判别法}} \\
   & \only<6->{\text{\color{red!80}\ding{43} 积分判别法}} \\
   & \only<6->{\text{\color{red!80}\ding{43} $\cdots\cdots$}}
@@ -69,7 +69,7 @@
 
 \only<8->{
 \begin{center}
-我们只能从最基本的~{\color{red}Cauchy收敛原理}出发, 进行研究.
+我们只能从最基本的~{\color{red}Cauchy 收敛原理}出发, 进行研究.
 \end{center}
 }
 
@@ -77,16 +77,16 @@
 
 %------------------------------------------------
 
-\section[Cauchy\\收敛原理]{Cauchy收敛原理}
+\section[Cauchy\\收敛原理]{Cauchy 收敛原理}
 
 %------------------------------------------------
 
-\begin{frame}{级数的Cauchy收敛原理}
+\begin{frame}{级数的 Cauchy 收敛原理}
 
-\begin{thm}[Cauchy收敛原理]
-级数$\sum\limits_{n=1}^\infty x_n$收敛的充分必要条件是：对任意给定的$\varepsilon > 0,$ 存在正整数$N,$ 使得
+\begin{thm}[Cauchy 收敛原理]
+级数 $\sum\limits_{n=1}^\infty x_n$ 收敛的充分必要条件是: 对任意给定的 $\varepsilon > 0,$ 存在正整数$N,$ 使得
 \[\left\lvert x_{n+1} + x_{n+2} + \cdots + x_m \right\rvert = \left\lvert \sum\limits_{k=n+1}^m x_k \right\rvert < \varepsilon\]
-对一切$m > n > N$成立.
+对一切 $m > n > N$ 成立.
 \end{thm}
 
 \pause
@@ -94,9 +94,9 @@
 
 \begin{attnblock}
 \begin{itemize}
-\item[\ding{43}] Cauchy收敛原理对一般的度量空间都是成立的
+\item[\ding{43}] Cauchy 收敛原理对一般的度量空间都是成立的
 \pause
-\item[\ding{43}] 取$m = n + 1,$ 我们即得到级数收敛的必要条件$\lim\limits_{n\to\infty} x_n = 0.$
+\item[\ding{43}] 取 $m = n + 1,$ 即得到级数收敛的必要条件$\lim\limits_{n\to\infty} x_n = 0.$
 \end{itemize}
 \end{attnblock}
 
@@ -104,25 +104,25 @@
 
 %------------------------------------------------
 
-\section[Leibniz\\级数]{Leibniz级数}
+\section[Leibniz\\级数]{Leibniz 级数}
 
 %------------------------------------------------
 
-\begin{frame}{Leibniz级数}
+\begin{frame}{Leibniz 级数}
 
 \begin{Def}[交错级数]
-如果级数$\sum\limits_{n=1}^\infty x_n = \sum\limits_{n=1}^\infty (-1)^{n+1} u_n ~ (u_n > 0),$ 则称其为\textbf{交错级数}.
+如果级数 $\sum\limits_{n=1}^\infty x_n = \sum\limits_{n=1}^\infty (-1)^{n+1} u_n ~ (u_n > 0),$ 则称其为\textbf{交错级数}.
 \end{Def}
 
 \pause
 
-\begin{Def}[Leibniz级数]
-如果级数$\sum\limits_{n=1}^\infty x_n = \sum\limits_{n=1}^\infty (-1)^{n+1} u_n ~ (u_n > 0)$为交错级数, 并且数列$\{u_n\}$单调减少且收敛于$0,$ 则称此级数为\textbf{Leibniz级数}.
+\begin{Def}[Leibniz 级数]
+如果级数 $\sum\limits_{n=1}^\infty x_n = \sum\limits_{n=1}^\infty (-1)^{n+1} u_n ~ (u_n > 0)$ 为交错级数, 并且数列 $\{u_n\}$ 单调减少且收敛于 $0,$ 则称此级数为\textbf{Leibniz 级数}.
 \end{Def}
 
 \pause
 
-\begin{block}{Leibniz级数的一些例子}
+\begin{block}{Leibniz 级数的一些例子}
 \vspace{-1.5em}
 \[\sum\limits_{n=1}^\infty \dfrac{(-1)^{n+1}}{n^s} (s > 0), ~~~ \sum\limits_{n=2}^\infty (-1)^{n} \dfrac{\ln{n}}{n}, ~~~ \sum\limits_{n=1}^\infty (-1)^{n+1} \dfrac{n^2}{n^3 + 1}, ~~ \cdots\]
 \end{block}
@@ -131,14 +131,14 @@
 
 %------------------------------------------------
 
-\begin{frame}{Leibniz级数}
+\begin{frame}{Leibniz 级数}
 
-有一些Leibniz级数, 则不那么明显能一眼看出：
+有一些 Leibniz 级数, 则不那么明显能一眼看出:
 
 \pause
 \vspace{0.5em}
 
-考虑级数$\sum\limits_{n=1}^\infty \sin \left( \sqrt{n^2+1} \pi \right),$ 有
+考虑级数 $\sum\limits_{n=1}^\infty \sin \left( \sqrt{n^2+1} \pi \right),$ 有
 \begin{align*}
 \sin \left( \sqrt{n^2+1} \pi \right) & = {\color{red} (-1)^n} \sin \left( \sqrt{n^2+1} \pi ~ {\color{red} - n\pi} \right) \\
 & = (-1)^n \sin \left( \sqrt{n^2+1} - n \right) \pi \\
@@ -147,29 +147,29 @@
 
 \pause
 
-容易看出$\{u_n = \sin \dfrac{\pi}{\sqrt{n^2+1} + n}\}$是单调减小数列, 且
+容易看出 $\{u_n = \sin \dfrac{\pi}{\sqrt{n^2+1} + n}\}$ 是单调减小数列, 且
 \[\lim\limits_{n\to\infty} \sin \dfrac{\pi}{\sqrt{n^2+1} + n} = 0,\]
-可知$\sum\limits_{n=1}^\infty \sin \left( \sqrt{n^2+1} \pi \right)$是Leibniz级数.
+可知 $\sum\limits_{n=1}^\infty \sin \left( \sqrt{n^2+1} \pi \right)$ 是 Leibniz 级数.
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{Leibniz判别法}
+\begin{frame}{Leibniz 判别法}
 
-\begin{thm}[Leibniz判别法]
+\begin{thm}[Leibniz 判别法]
 \begin{center}
-Leibniz级数必定收敛.
+Leibniz 级数必定收敛.
 \end{center}
 \end{thm}
 
 \pause
 \vspace{0.5em}
 
-\textbf{证明：} 首先, 记$p = m - n,$ 有
+\textbf{证明:} 首先, 记 $p = m - n,$ 有
 \[\left\lvert x_{n+1} + x_{n+2} + \cdots + x_{n+p} \right\rvert = \left\lvert u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \right\rvert.\]
 \pause
-当$p$是奇数时, 有
+当 $p$ 是奇数时, 有
 \begin{multline*}
 u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \\
 = \begin{cases}
@@ -182,9 +182,9 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - (u_{n+p-1} - u_{n+p}) ~ {\color{red} \l
 
 %------------------------------------------------
 
-\begin{frame}{Leibniz判别法的证明}
+\begin{frame}{Leibniz 判别法的证明}
 
-当$p$是偶数时, 有
+当 $p$ 是偶数时, 有
 \begin{multline*}
 u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \\
 = \begin{cases}
@@ -201,7 +201,7 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 & \leqslant u_{n+1}.
 \end{align*}
 
-由于$\lim\limits_{n\to\infty} u_n = 0,$ 所以对于任意给定的$\varepsilon > 0,$ 存在正整数$N,$ 使得对一切$n > N,$ 成立
+由于 $\lim\limits_{n\to\infty} u_n = 0,$ 所以对于任意给定的 $\varepsilon > 0,$ 存在正整数 $N,$ 使得对一切 $n > N,$ 成立
 \only<2-2>{
 \[\varepsilon > u_{n+1},\]
 }
@@ -209,51 +209,51 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 \[\varepsilon > u_{n+1} ~ {\color{red} \geqslant \left\lvert x_{n+1} + x_{n+2} + \cdots + x_{n+p} \right\rvert},\]
 }
 \only<4->{
-由Cauchy收敛原理知Leibniz级数必收敛.
+由 Cauchy 收敛原理知 Leibniz 级数必收敛.
 }
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[A-D判别法]{Abel判别法与Dirichlet判别法}
+\section[A-D 判别法]{Abel 判别法与 Dirichlet 判别法}
 
 %------------------------------------------------
 
-\begin{frame}{回忆 | {\smaller[2] 反常积分的A-D判别法}}
+\begin{frame}{回忆 | {\smaller[2] 反常积分的 A-D 判别法}}
 
-我们先回忆一下一般函数的反常积分敛散性的Abel判别法与Dirichlet判别法 (A-D判别法)：
+我们先回忆一下一般函数的反常积分敛散性的 Abel 判别法与 Dirichlet 判别法 (A-D 判别法):
 
 \pause
 
-考虑$\int_a^{+\infty} f(x)g(x) \mathrm{d} x,$ 有
+考虑 $\int_a^{+\infty} f(x)g(x) \mathrm{d} x,$ 有
 \begin{itemize}
-\item[(1)] Abel判别法：
-\[\int_a^{+\infty} f(x) \mathrm{d} x ~ \text{收敛}, ~ g(x) ~ \text{单调有界} \Longrightarrow \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛};\]
-\item[(2)] Dirichlet判别法：
+\item[(1)] Abel 判别法:
+\[\int_a^{+\infty} f(x) \mathrm{d} x ~ \text{收敛}, ~ g(x) ~ \text{单调有界} ~ \Longrightarrow ~ \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛};\]
+\item[(2)] Dirichlet判别法:
 \begin{multline*}
-\int_a^{A} f(x) \mathrm{d} x ~ \text{关于$A$有界}, ~ g(x) ~ \text{单调}, ~ \lim\limits_{x\to\infty} g(x) = 0 \\
+\int_a^{A} f(x) \mathrm{d} x ~ \text{关于 $A$ 有界}, ~ g(x) ~ \text{单调}, ~ \lim\limits_{x\to\infty} g(x) = 0 \\
 \Longrightarrow \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛}
 \end{multline*}
 \end{itemize}
 
 \pause
 
-接下来要考虑的一般级数, 也假设它具有$\sum\limits_{n=1}^{\infty} a_n b_n$的形式, 我们有类似的结论, 证明方法也是类似的.
+接下来要考虑的一般级数, 也假设它具有 $\sum\limits_{n=1}^{\infty} a_n b_n$ 的形式, 我们有类似的结论, 证明方法也是类似的.
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{级数的A-D判别法}
+\begin{frame}{级数的 A-D 判别法}
 
-\begin{thm}[级数的A-D判别法]
-若下列条件之一满足, 则级数$\sum\limits_{n=1}^{\infty} a_n b_n$收敛：
+\begin{thm}[级数的 A-D 判别法]
+若下列条件之一满足, 则级数 $\sum\limits_{n=1}^{\infty} a_n b_n$ 收敛:
 \begin{itemize}
-\item[(1)] Abel判别法：
+\item[(1)] Abel 判别法:
 \[\sum\limits_{n=1}^{\infty} b_n ~ \text{收敛}, ~~~ a_n ~ \text{单调有界}\]
-\item[(2)] Dirichlet判别法：
-\[\sum\limits_{n=1}^{N} b_n ~ \text{关于$N$有界}, ~~~ a_n ~ \text{单调趋于$0$}\]
+\item[(2)] Dirichlet 判别法:
+\[\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ a_n ~ \text{单调趋于 $0$}\]
 \end{itemize}
 \end{thm}
 
@@ -261,27 +261,27 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的分析与证明}
+\begin{frame}{A-D 判别法的分析与证明}
 
-对于一般的情况, 目前能用的工具只有Cauchy收敛原理, 所以要考察
+对于一般的情况, 目前能用的工具只有 Cauchy 收敛原理, 所以要考察
 \[\left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert.\]
 
 \pause
 
-(1). Abel判别法：条件为$\sum\limits_{n=1}^{\infty} b_n$收敛, $a_n$单调有界.
+(1). Abel 判别法: 条件为 $\sum\limits_{n=1}^{\infty} b_n$ 收敛, $a_n$ 单调有界.
 \vspace{-1em}
 \begin{align*}
 \sum\limits_{n=1}^{\infty} b_n ~ \text{收敛} ~~ & ~ {\color{red}\Longrightarrow} ~~
-\only<2>{\phantom{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.}}
-\only<3->{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.} \\
-\only<4->{a_n ~ \text{单调有界} ~~ & ~ {\color{red}\Longrightarrow}} ~~ \only<5->{\exists M > 0, \text{ 使得 } \lvert a_n \rvert < M \text{ 对所有$n$成立}}
+\only<2>{\phantom{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall ~ m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.}}
+\only<3->{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall ~ m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.} \\
+\only<4->{a_n ~ \text{单调有界} ~~ & ~ {\color{red}\Longrightarrow}} ~~ \only<5->{\exists M > 0, ~ \text{使得} ~ \lvert a_n \rvert < M ~ \text{对所有 $n$ 成立}}
 \end{align*}
 
 \vspace{-1em}
 
 \only<6->{
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-  \text{\bfseries\color{red!80}希望： $\sum\limits_{k=n+1}^{m} a_k b_k \rightsquigarrow \left( \sum\limits_{k=n+1}^{m} b_k \right) \cdot \big( a_{n+1}, \cdots, a_m \text{ 相关的项} \big)$}
+  \text{\bfseries\color{red!80}希望: $\sum\limits_{k=n+1}^{m} a_k b_k \rightsquigarrow \left( \sum\limits_{k=n+1}^{m} b_k \right) \cdot \big( a_{n+1}, \cdots, a_m ~ \text{相关的项} \big)$}
 \end{empheq}
 }
 
@@ -289,9 +289,9 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的分析与证明}
+\begin{frame}{A-D 判别法的分析与证明}
 
-事实上, 如果记$B_t = \sum\limits_{k=n+1}^{t} b_k, t > n,$ 并约定~${\color{red}B_n = 0},$ 那么所有的$B_t$都满足$\lvert B_t \rvert < \varepsilon,$ 并且有
+事实上, 如果记 $B_t = \sum\limits_{k=n+1}^{t} b_k, t > n,$ 并约定 ${\color{red}B_n = 0},$ 那么所有的 $B_t$ 都满足 $\lvert B_t \rvert < \varepsilon,$ 并且有
 {\smaller[1]
 \begin{align*}
 \left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert & = \left\lvert \sum\limits_{k=n+1}^{m} a_k \left( B_{k} - B_{k-1} \right) \right\rvert = \left\lvert \sum\limits_{k=n+1}^{m} a_k B_{k} - \sum\limits_{k = ~ {\color{red}n+1}}^{{\color{red}m}} a_{{\color{red}k}} B_{{\color{red}k-1}} \right\rvert \\
@@ -305,33 +305,33 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的分析与证明}
+\begin{frame}{A-D 判别法的分析与证明}
 
-由于$a_n$单调, 所以$\sum\limits_{k=n+1}^{m-1} \left\lvert a_{k+1} - a_k \right\rvert = \left\lvert a_{n+1} - a_{m} \right\rvert,$ 于是
+由于 $a_n$ 单调, 所以 $\sum\limits_{k=n+1}^{m-1} \left\lvert a_{k+1} - a_k \right\rvert = \left\lvert a_{n+1} - a_{m} \right\rvert,$ 于是
 \begin{align*}
 \left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert & \leqslant \left\lvert a_m \right\rvert \varepsilon + {\color{red} \sum\limits_{k=n+1}^{m-1} \left\lvert a_{k+1} - a_k \right\rvert} \varepsilon \\
 & = \left( \left\lvert a_m \right\rvert + {\color{red} \left\lvert a_{n+1} - a_{m} \right\rvert} \right) \varepsilon \\
 & < 3M\varepsilon
 \end{align*}
 \pause
-有Cauchy收敛原理, 阿贝判别法得证.
+由 Cauchy 收敛原理, 阿贝判别法得证.
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的分析与证明}
+\begin{frame}{A-D 判别法的分析与证明}
 
-(2). Dirichlet判别法：条件为$\sum\limits_{n=1}^{N} b_n$关于$N$有界, $a_n$单调趋于$0.$
+(2). Dirichlet 判别法: 条件为 $\sum\limits_{n=1}^{N} b_n$ 关于 $N$ 有界, $a_n$ 单调趋于 $0.$
 \begin{align*}
-a_n ~ \text{单调趋于$0$} ~~ & {\color{red}\Longrightarrow} ~~
-\only<1>{\phantom{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~n > N, \left\lvert a_n \right\rvert < \varepsilon.}}
-\only<2->{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~n > N, \left\lvert a_n \right\rvert < \varepsilon.} \\
-\only<3->{\sum\limits_{n=1}^{N} b_n ~ \text{关于$N$有界} ~~ & {\color{red}\Longrightarrow}} ~~ \only<4->{\exists M > 0, \text{ 使得 } \forall~N \text{ 有 } \left\lvert \sum\limits_{n=1}^{N} b_n \right\rvert < ~ {\color{red}M}}
+a_n ~ \text{单调趋于 $0$} ~~ & {\color{red}\Longrightarrow} ~~
+\only<1>{\phantom{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall ~ n > N, \left\lvert a_n \right\rvert < \varepsilon.}}
+\only<2->{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall ~ n > N, \left\lvert a_n \right\rvert < \varepsilon.} \\
+\only<3->{\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界} ~~ & {\color{red}\Longrightarrow}} ~~ \only<4->{\exists M > 0, ~ \text{使得} ~\forall ~ N ~ \text{有} ~ \left\lvert \sum\limits_{n=1}^{N} b_n \right\rvert < ~ {\color{red}M}}
 \end{align*}
 
 \only<5->{
-利用证明阿贝判别法类似的方法, 有
+利用证明 Abel 判别法类似的方法, 有
 \begin{align*}
 \left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert & = \left\lvert a_m ~ {\color{red}B_m} - \sum\limits_{k=n+1}^{m-1} (a_{k+1} - a_k) ~ {\color{red}B_{k}} \right\rvert \\
 & \leqslant \left\lvert a_m \right\rvert \cdot ~ {\color{red}2M} + \sum\limits_{k=n+1}^{m-1} \left\lvert a_{k+1} - a_k \right\rvert \cdot ~ {\color{red}2M} \\
@@ -344,12 +344,12 @@ a_n ~ \text{单调趋于$0$} ~~ & {\color{red}\Longrightarrow} ~~
 
 %------------------------------------------------
 
-\begin{frame}{A-D判别法的分析与证明}
+\begin{frame}{A-D 判别法的分析与证明}
 
-反常积分敛散性的A-D判别法 (实际是证明过程中用到的积分第二中值定理) 与级数敛散性的A-D判别法的证明实际上都用到了如下的和式转换方法
+反常积分敛散性的 A-D 判别法 (实际是证明过程中用到的积分第二中值定理) 与级数敛散性的 A-D 判别法的证明实际上都用到了如下的和式转换方法
 
-\begin{lem}[Abel变换 (分部求和公式)]
-设$\{a_n\}, \{b_n\}$是数列, 记$B_n = \sum\limits_{k=1}^n b_k,$ $n = 1, 2, \dots,$ 那么
+\begin{lem}[Abel 变换 (分部求和公式)]
+设 $\{a_n\}, \{b_n\}$ 是数列, 记 $B_n = \sum\limits_{k=1}^n b_k,$ $n = 1, 2, \dots,$ 那么
 \[\sum\limits_{k=1}^n a_kb_k = a_n B_n - \sum\limits_{k=1}^{n-1} (a_{k+1} - a_k) B_k.\]
 \end{lem}
 
@@ -375,13 +375,13 @@ a_n ~ \text{单调趋于$0$} ~~ & {\color{red}\Longrightarrow} ~~
 
 \begin{frame}{A-D 判别法的几个注记}
 
-1. 回过头来看 Leibniz 判别法：
+1. 回过头来看 Leibniz 判别法:
 \begin{center}
-Leibniz 级数都收敛
+Leibniz 级数都收敛.
 \end{center}
 \pause
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
-\text{\bfseries\color{red!80}Leibniz级数： $\sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n \text{ 单调减小, 且 } u_n \to 0.$}
+\text{\bfseries\color{red!80}Leibniz 级数: $\sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n ~ \text{单调减小, 且} ~ u_n \to 0.$}
 \end{empheq}
 
 \pause
@@ -402,7 +402,7 @@ Leibniz 级数都收敛
 
 \begin{frame}{A-D 判别法的几个注记}
 
-2. Abel 判别法可以由 Dirichlet 判别法导出：
+2. Abel 判别法可以由 Dirichlet 判别法导出:
 
 \pause
 \vspace{0.8em}
@@ -434,7 +434,7 @@ Leibniz 级数都收敛
 
 \pause
 
-\textbf{方法一:} 利用 $\sin nx = \dfrac{e^{inx} - e^{-inx}}{2i},$ 可以将 $\sum\limits_{n=1}^N \sin nx$ 表示为两个等比数列求和 ($x \neq 2k\pi$)：
+\textbf{方法一:} 利用 $\sin nx = \dfrac{e^{inx} - e^{-inx}}{2i},$ 可以将 $\sum\limits_{n=1}^N \sin nx$ 表示为两个等比数列求和 ($x \neq 2k\pi$):
 \begin{align*}
 \sum\limits_{n=1}^N \sin nx & = \dfrac{1}{2i} \left( \sum\limits_{n=1}^N \left(e^{ix}\right)^n - \sum\limits_{n=1}^N \left(e^{-ix}\right)^n \right) \\
 & = \dfrac{1}{2\sin\frac{x}{2}} \left( \cos\dfrac{x}{2} - \cos \left(N + \dfrac{1}{2}\right) x \right)
@@ -446,7 +446,7 @@ Leibniz 级数都收敛
 
 \begin{frame}{A-D 判别法的应用}
 
-\textbf{方法二:} 利用三角函数的和差化积、积化和差公式：
+\textbf{方法二:} 利用三角函数的和差化积、积化和差公式:
 {
 % \smaller[1]
 \begin{align*}
@@ -493,17 +493,17 @@ Leibniz 级数都收敛
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 级数的Cauchy收敛原理 (充要条件)：
+{\larger[2] \color{red} \ding{43}} 级数的 Cauchy 收敛原理 (充要条件):
 \[\left\lvert x_{n+1} + x_{n+2} + \cdots + x_m \right\rvert = \left\lvert \sum\limits_{k=n+1}^m x_k \right\rvert < \varepsilon\]
 
 \pause
 
-{\larger[2] \color{red} \ding{43}} Leibniz判别法：Leibniz级数都收敛.
-\[\text{Leibniz级数:}~\sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n \text{ 单调减小, 且 } u_n \to 0.\]
+{\larger[2] \color{red} \ding{43}} Leibniz 判别法: Leibniz 级数都收敛.
+\[\text{Leibniz级数:}~\sum\limits_{n=1}^{\infty} (-1)^{n+1} u_n, ~~ 0 < u_n ~ \text{单调减小, 且} ~ u_n \to 0.\]
 
 \pause
 
-{\larger[2] \color{red} \ding{43}} A-D 判别法 ($\sum\limits_{n=1}^{\infty} a_n b_n$收敛的充分条件)：
+{\larger[2] \color{red} \ding{43}} A-D 判别法 ($\sum\limits_{n=1}^{\infty} a_n b_n$ 收敛的充分条件):
 \begin{align*}
 \text{Abel判别法:} ~ & \sum\limits_{n=1}^{\infty} b_n ~ \text{收敛}, ~ a_n ~ \text{单调有界} \\
 \text{Dirichlet判别法:} ~ & \sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~ a_n ~ \text{单调趋于 $0$}

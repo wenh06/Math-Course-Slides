@@ -787,7 +787,7 @@ Cauchy 判别法强于 d'Alembert 判别法:
 
 \begin{frame}{正项级数敛散性判别法 -- 积分判别法}
 
-设 $f(x)$ 是定义在 $[a, +\infty)$ 上的非负函数, 且在任意有限区间 $[a, A]$ 上 Riemann 可积. 设 $\{a_n\}$ 是单调增加且趋于 $+\infty$ 的数列：
+设 $f(x)$ 是定义在 $[a, +\infty)$ 上的非负函数, 且在任意有限区间 $[a, A]$ 上 Riemann 可积. 设 $\{a_n\}$ 是单调增加且趋于 $+\infty$ 的数列:
 \[a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,\]
 令 $u_n = \int_{a_n}^{a_{n+1}} f(x) ~ \mathrm{d} x.$ 那么反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 与正项级数 $\sum\limits_{n=1}^\infty u_n$ 同时收敛或同时发散到 $+\infty,$ 且有
 \vspace{-1em}
@@ -810,11 +810,11 @@ Leibniz 级数 $\sum\limits_{n=1}^\infty (-1)^{n-1} u_n,$ 其中 $0 < u_n \searr
 \pause
 
 \begin{thm}[A-D 判别法]
-若下列条件之一满足, 则级数 $\sum\limits_{n=1}^{\infty} a_n b_n$ 收敛：
+若下列条件之一满足, 则级数 $\sum\limits_{n=1}^{\infty} a_n b_n$ 收敛:
 \begin{itemize}[<+->]
-\item Abel 判别法：
+\item Abel 判别法:
 \[\sum\limits_{n=1}^{\infty} b_n ~ \text{收敛}, ~~~ a_n ~ \text{单调有界}.\]
-\item Dirichlet 判别法：
+\item Dirichlet 判别法:
 \[\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ a_n \searrow 0.\]
 \end{itemize}
 \end{thm}
@@ -1062,12 +1062,12 @@ S_n(x) = \sum\limits_{k=1}^n a_k(x) ~ \text{点态 / 一致 / 内闭一致收敛
 \begin{thm}[A-D 判别法]
 设函数项级数 $\sum\limits_{n=1}^\infty a_n(x)b_n(x)$ 在 $D$ 上点态收敛, 若下列两个条件之一满足, 则 $\sum\limits_{n=1}^\infty a_n(x)b_n(x)$ 在 $D$ 上一致收敛:
 \begin{itemize}[<+->]
-\item Abel 判别法：
+\item Abel 判别法:
 \begin{itemize}
 \item $\sum\limits_{n=1}^\infty b_n(x)$ 在 $D$ 上一致收敛;
 \item $\{a_n(x)\}_{n\in\mathbb{N}}$ 在 $D$ 每点关于 $n$ 单调, 且在 $D$ 上一致有界.
 \end{itemize}
-\item Dirichlet 判别法：
+\item Dirichlet 判别法:
 \begin{itemize}
 \item $S_n(x) := \sum\limits_{k=1}^n b_k(x)$ 在 $D$ 上一致有界;
 \item $\{a_n(x)\}_{n\in\mathbb{N}}$ 在 $D$ 每点关于 $n$ 单调, 且在 $D$ 上一致收敛到 $0.$

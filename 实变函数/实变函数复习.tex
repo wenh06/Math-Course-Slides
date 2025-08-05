@@ -251,7 +251,7 @@ $m E$ 称为 $E$ 的测度.
 \begin{frame}{可测的等价条件}
 
 \begin{block}{Carathéodory 条件}
-集 $E \subset \mathbb{R}$ 可测的等价条件: $\forall ~ A \subset \mathbb{R}$，恒有
+集 $E \subset \mathbb{R}$ 可测的等价条件: $\forall ~ A \subset \mathbb{R},$ 恒有
 \[
 m^*(A) = m^*(A \cap E) + m^*(A \cap \mathscr{C}E).
 \]
@@ -524,6 +524,9 @@ node distance=0.8cm and 1.3cm, % Vertical and horizontal distance
 \node [below = 2.1cm of simpInt, anchor=center] {\smaller[1] $\displaystyle \sum_{i=1}^n c_i \cdot m E_i$};
 \node [below = 2.1cm of nnInt, anchor=center] {\smaller[1] $\displaystyle \sup_{0\leqslant\varphi\leqslant f} \int_E \varphi ~ \mathrm{d} m$};
 \node [below = 2.1cm of measInt, anchor=center] {\smaller[1] $\displaystyle \int_E f_+ ~ \mathrm{d} m - \int_E f_- ~ \mathrm{d} m$};
+
+\node (rightArr) [below right = -0.2cm and 0.45cm of simpFunc,] {$\Longrightarrow$};
+\node [right = 2.5cm of rightArr] {$\Longrightarrow$};
 \end{tikzpicture}
 
 \pause
@@ -542,7 +545,7 @@ L_E = L(E) = \{ \text{$f$ 在 $E$ 上可测} ~:~ \int_E f ~ \mathrm{d} m < \inft
 \begin{itemize}
 \item 关于被积区间: 有限、$\sigma$-可加性
 \[
-\int_{\cup E_i} f ~ \mathrm{d} m = \sum \int_{E_i} f ~ \mathrm{d} m
+\int_{\cup E_i} f ~ \mathrm{d} m = \sum_i \int_{E_i} f ~ \mathrm{d} m
 \]
 \pause
 \item 绝对连续性
@@ -648,7 +651,7 @@ n, & x \in (0, 1/n], \\
 \begin{cor}[Lebesgue-Vitali]
 设 $\displaystyle f_n \xrightarrow{\text{测度}} f,$ 那么
 \[
-\underbrace{\lim_{n\to\infty} \int_E |f_n - f| ~ \mathrm{d} m}_{f_n \xrightarrow{L^1} f} \Longleftrightarrow \{ f_n \} \text{有\alert{等度}绝对连续积分}
+\underbrace{\lim_{n\to\infty} \int_E |f_n - f| ~ \mathrm{d} m}_{f_n \xrightarrow{L^1} f} ~ \Longleftrightarrow ~ \{ f_n \} \text{有\alert{等度}绝对连续积分}
 \]
 \end{cor}
 
@@ -889,6 +892,14 @@ $f_n, f \in L^p$
 \[
 \forall ~ g \in L^q, \int_E f_n \cdot g ~ \mathrm{d} m \to \int_E f \cdot g ~ \mathrm{d} m ~ \Longrightarrow ~ f_n \xrightarrow{~\text{弱}~} f
 \]
+
+\pause
+
+由 Hölder 不等式有
+\[
+\left| \int_E (f_n - f) \cdot g ~ \mathrm{d} m \right| \leqslant \lVert (f_n - f) \cdot g \rVert_1 \leqslant \lVert f_n - f \rVert_p \cdot \lVert g \rVert_q,
+\]
+故强收敛 $\Longrightarrow$ 弱收敛, 但弱收敛 $\not\Longrightarrow$ 强收敛.
 
 \end{frame}
 
