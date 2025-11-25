@@ -1,14 +1,16 @@
 \definecolor{sinColor}{RGB}{255,0,0}
 \definecolor{cosColor}{RGB}{0,0,255}
-\definecolor{versinColor}{RGB}{0,128,0}
+\definecolor{versinColor}{RGB}{0,96,0}
 \definecolor{exsecColor}{RGB}{255,0,255}
-\definecolor{secColor}{RGB}{0,128,128}
+\definecolor{secColor}{RGB}{0,168,192}
 \definecolor{tanColor}{RGB}{165,42,42}
 \definecolor{cotColor}{RGB}{255,165,0}
-\definecolor{excscColor}{RGB}{0,165,0}
+\definecolor{excscColor}{RGB}{0,255,0}
 \definecolor{cvsColor}{RGB}{0,255,255}
 \definecolor{cscColor}{RGB}{255,192,203}
 \definecolor{crdColor}{RGB}{128,128,128}
+\definecolor{vercosColor}{RGB}{0,112,192}
+\definecolor{covercosColor}{RGB}{153,50,204}
 
 \begin{tikzpicture}[>=Stealth, scale=3.5]
 \def\myangle{60}
@@ -18,13 +20,10 @@
 \pgfmathsetmacro{\csctheta}{1/sin(\myangle)}
 \pgfmathsetmacro{\cottheta}{cos(\myangle)/sin(\myangle)}
 \pgfmathsetmacro{\versin}{1 - \costheta}
-\pgfmathsetmacro{\exsec}{ \sectheta - 1}
-\pgfmathsetmacro{\excsc}{ \csctheta - 1}
+\pgfmathsetmacro{\exsec}{\sectheta - 1}
+\pgfmathsetmacro{\excsc}{\csctheta - 1}
 
 \draw[thick] (0,0) circle (1);
-
-% \draw[->] (-0.5,0) -- (2.4,0) node[right] {$x$};
-% \draw[->] (0,-0.5) -- (0,1.4) node[above] {$y$};
 
 \coordinate (O) at (0,0) node[below left] {$O$};
 \coordinate (A) at (\costheta, \sintheta) node[above right=-0.5ex and 0.1em of A] {$A$};
@@ -35,19 +34,24 @@
 \coordinate (F) at (0, \csctheta) node[above=0.1ex of F] {$F$};
 \coordinate (G) at (0, \sintheta) node[below left=-0.6ex and -0.2em of G] {$G$};
 \coordinate (H) at (0, 1) node[below right=-0.6ex and -0.3em of H] {$H$};
+\coordinate (K) at (-1, 0) node[left =-0.3ex of K] {$K$};
+\coordinate (L) at (0, -1) node[below =-0.3ex of L] {$L$};
 \coordinate (Z1) at ({1.4*cos(\myangle)},{1.4*sin(\myangle)});
-\coordinate (Z2) at (-0.55, 0);
+\coordinate (Z2) at (-0.4, 0);
+
+\draw[line width=3.2pt] (D) arc[start angle=0, end angle=\myangle, radius=1] node[near start, right] {$\mathrm{arc}$};
 
 \draw[thick] (O) -- (0.1,0) arc[start angle=0, end angle=\myangle, radius=0.1];
 \node at ({0.15*cos(\myangle/2)},{0.15*sin(\myangle/2)}) {$\theta$};
 
-\draw[sinColor, ultra thick] (A) -- (C) node[midway, right, draw, thick, inner sep=1.5pt, xshift=0.2em] {$\sin$};
+\draw[sinColor, ultra thick] (A) -- (C) node[midway, right, draw, thick, inner sep=1.5pt, xshift=0.2em, yshift=-2ex] {$\sin$};
 \draw[sinColor, ultra thick] (O) -- (G);
-\draw[gray, dashed, ultra thick] (C) -- (B);
+% \draw[gray, dashed, ultra thick] (C) -- (B);
 \draw[dashed, ultra thick] (O) -- (B);
 \draw[dashed, ultra thick] (A) -- (Z1);
 \pic[draw, ultra thick, angle radius=0.2cm] {right angle = O--C--A};
 \pic[draw, ultra thick, angle radius=0.2cm] {right angle = F--A--Z1};
+\pic[draw, ultra thick, angle radius=0.2cm] {right angle = O--G--A};
 
 \draw[cosColor, ultra thick] (O) -- (C) node[midway, below, inner sep=1.5pt, draw, thick, yshift=-0.5ex] {$\cos$};
 \draw[cosColor, ultra thick] (A) -- (G);
@@ -55,13 +59,13 @@
 \draw[ultra thick] (O) -- (A) node[midway, right] {$1$};
 \draw[tanColor, ultra thick] (A) -- (E) node[midway, above, sloped, draw, thick, inner sep=1.5pt, yshift=0.5ex] {$\tan$};
 
-\draw[secColor, dashed, ultra thick] (O) -- (0, -0.55);
-\draw[secColor, dashed, ultra thick] (E) -- ($(E) + (0, -0.55)$);
-\draw[secColor, ultra thick, <->] (0, -0.5) -- ($(E) + (0, -0.5)$) node[midway, below, sloped, draw, thick, inner sep=1.5pt, yshift=-0.5ex] {$\sec$};
+\draw[secColor, dashed, ultra thick] (O) -- (0, -0.4);
+\draw[secColor, dashed, ultra thick] (E) -- ($(E) + (0, -0.4)$);
+\draw[secColor, ultra thick, |<->|] (-0.008, -0.35) -- ($(E) + (0.008, -0.35)$) node[midway, below, sloped, draw, thick, inner sep=1.5pt, yshift=-0.5ex, xshift=2ex] {$\sec$};
 
 \draw[cscColor, dashed, ultra thick] (O) -- (Z2);
 \draw[cscColor, dashed, ultra thick] (F) -- ($(F) + (Z2)$);
-\draw[cscColor, ultra thick, <->] (-0.5, 0) -- ($(F) + (-0.5, 0)$) node[midway, left, draw, thick, inner sep=1.5pt, xshift=-0.2em] {$\csc$};
+\draw[cscColor, ultra thick, |<->|] (-0.35, -0.008) -- ($(F) + (-0.35, 0.008)$) node[midway, right, draw, thick, inner sep=1.5pt, xshift=0.2em] {$\csc$};
 \pic[draw, ultra thick, angle radius=0.2cm] {right angle = G--O--Z2};
 
 \draw[cotColor, ultra thick, sloped] (A) -- (F) node[midway, above, draw, thick, inner sep=1.5pt, yshift=0.5ex] {$\cot$};
@@ -74,8 +78,18 @@
 
 \draw[cvsColor, ultra thick] (H) -- (G) node[midway, left] {$\mathrm{cvs}$};
 
-\draw[ultra thick] (D) arc[start angle=0, end angle=\myangle, radius=1] node[near start, right] {$\mathrm{arc}$};
+\draw[crdColor, ultra thick] (D) -- (A) node[midway, above, sloped, yshift=-0.3ex] {$\mathrm{crd}$};
 
-\draw[crdColor, ultra thick] (D) -- (A) node[midway, above, sloped] {$\mathrm{crd}$};
+\draw[gray, ultra thick, dashed] (-0.4, 0) -- (K);
+\draw[gray, ultra thick, dashed] (0, -0.4) -- (L);
+
+\draw[vercosColor, ultra thick, dashed] (K) -- ($(K) + (0, -0.7)$);
+\draw[vercosColor, dashed, ultra thick] (C) -- ($(C) + (0, -0.65)$);
+\draw[gray, dashed, ultra thick] ($(C) + (0, -0.65)$) -- (B);
+\draw[vercosColor, ultra thick, |<->|] ($(K) + (-0.008, -0.65)$) -- ($(C) + (0.008, -0.65)$) node[midway, above] {$\mathrm{vercos}$};
+
+\draw[covercosColor, ultra thick, dashed] (L) -- ($(L) + (-0.7, 0)$);
+\draw[covercosColor, ultra thick, dashed] (G) -- ($(G) + (-0.7, 0)$);
+\draw[covercosColor, ultra thick, |<->|] ($(G) + (-0.65, 0.008)$) -- ($(L) + (-0.65, -0.008)$) node[midway, yshift=-4ex, right] {$\mathrm{covercos}$};
 
 \end{tikzpicture}

@@ -2,6 +2,8 @@
 \usepackage{centernot}
 \usepackage{adjustbox}
 \usepackage{circledsteps}
+\usepackage{xkeyval}
+\usepackage{extarrows}
 
 \graphicspath{{images/}}
 
@@ -140,15 +142,7 @@
 \newCJKfontfamily\simhei{simhei.ttf}[Extension = .ttf, Path=fonts/]
 \newCJKfontfamily\simkai{simkai.ttf}[Extension = .ttf, Path=fonts/]
 \newCJKfontfamily\fzsong{song_fangzheng.TTF}[Extension = .TTF, Path=fonts/]
-% \newCJKfontfamily\simsun{simsun.ttc}[Extension = .ttc, Path=fonts/]
 
-% \setCJKmainfont[Path = fonts/, BoldFont = simhei.ttf]{simfang.ttf}
-% \setCJKmainfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
-% \setCJKsansfont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
-% \setCJKmonofont[Path = fonts/, BoldFont = JDLangZhengTi.ttf]{simfang.ttf}
-
-% \setCJKmainfont[Path = fonts/, AutoFakeBold=3.5, ItalicFont=JDLangZhengTi.ttf]{simhei.ttf}
-% \setCJKmainfont[Path = fonts/, AutoFakeBold=3.5, ItalicFont=simhei.ttf]{song_fangzheng.TTF}
 \setCJKmainfont[Path = fonts/, AutoFakeBold=3.5, ItalicFont=simkai.ttf]{simhei.ttf}
 \setCJKsansfont[Path = fonts/, AutoFakeBold=3.5]{simhei.ttf}
 \setCJKmonofont[Path = fonts/]{simhei.ttf}
@@ -194,3 +188,49 @@ colback=blue!30, boxrule=1pt,
 \makeatother
 
 \newcommand{\verteq}{\rotatebox{90}{$\,=$}}
+
+
+\makeatletter
+\define@key{proofkeys}{bg}{\def\proof@bg{#1}}
+\define@key{proofkeys}{fg}{\def\proof@fg{#1}}
+
+% 定义 \startproof 命令
+% #1 是可选的颜色参数 ([])
+% #2 是可选的文本参数 (())，默认值为“证明”
+\NewDocumentCommand{\startproof}{O{} D(){证明}}{%
+  \def\proof@bg{themecolor}
+  \def\proof@fg{white}
+
+  \ifx#1\empty
+  \else
+  \expandafter\ifx\expandafter=\expandafter\relax\detokenize{#1}\relax
+      % 格式1: [color1, color2] (背景色, 文字色)
+      \@for\tmp:=#1\do{%
+        \ifx\proof@bg\@empty
+          \def\proof@bg{\tmp}
+        \else
+          \def\proof@fg{\tmp}
+        \fi
+      }
+    \else
+      % 格式2: [bg=color, fg=color] (键值对)
+      \setkeys{proofkeys}{#1}
+    \fi
+  \fi
+
+  \begin{tcolorbox}[
+    hbox,
+    nobeforeafter,
+    tcbox raise base,
+    boxrule=0pt,
+    colback=\proof@bg,
+    coltext=\proof@fg,
+    fontupper=\bfseries,
+    halign=center,
+    boxsep=0.2mm,
+    sharp corners,
+  ]
+    #2 % 文本参数，可以是默认的“证明”或用户自定义的文本
+  \end{tcolorbox}%
+}
+\makeatother

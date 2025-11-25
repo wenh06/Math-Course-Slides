@@ -41,15 +41,85 @@
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{内容提要}
 
+{\larger[1]
+本节介绍关于积分序列极限的一些结论. 这些结论, 包括在 \S 4.1 中已提前介绍的 Levi 定理, 在 Lebesgue 积分理论中占中心地位.
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{逐项积分}
+
+%------------------------------------------------
+
+\begin{frame}{逐项积分定理}
+
+\begin{thm}[逐项积分定理]
+设 $\{ u_n \}$ 是可测集 $E$ 上的非负可测函数列, $\displaystyle f = \sum_{n=1}^{\infty} u_n,$ 那么
+\[
+\int_E f ~ \mathrm{d} m = \sum_{n=1}^{\infty} \int_E u_n ~ \mathrm{d} m.
+\]
+\end{thm}
+
+\pause
+\vspace{1em}
+
+\startproof~
+令 $\displaystyle f_k = \sum_{n=1}^{k} u_n,$ 那么有 $E$ 上渐升非负可测函数列
+\[
+0 \leqslant f_1 \leqslant f_2 \leqslant \cdots \leqslant f_k \leqslant \cdots
+\]
+并且有
+\[
+\lim_{k\to\infty} f_k(x) = \lim_{k\to\infty} \sum_{n=1}^{k} u_n(x) = \sum_{n=1}^{\infty} u_n(x) = f(x).
+\]
+
+\end{frame}
+
+
+\begin{frame}
+
+那么
+\begin{align*}
+\int_E f ~ \mathrm{d} m & = \int_E \sum_{n=1}^{\infty} u_n ~ \mathrm{d} m = \int_E \lim_{k\to\infty} f_k ~ \mathrm{d} m \xlongequal[\alert{\text{定理}}]{\alert{\text{Levi}}} \lim_{k\to\infty} \int_E f_k ~ \mathrm{d} m \\
+& = \lim_{k\to\infty} \int_E \sum_{n=1}^{k} u_n ~ \mathrm{d} m \xlongequal[\alert{\text{线性性}}]{\alert{\text{被积函数}}} \lim_{k\to\infty} \sum_{n=1}^{k} \int_E u_n ~ \mathrm{d} m \\
+& = \sum_{n=1}^{\infty} \int_E u_n ~ \mathrm{d} m
+\end{align*}
+\qed
+
+\begin{cor}[积分关于积分集合的可加性]
+设 $\{ E_k \}$ 是一列互不相交的可测集, $\displaystyle E = \bigcup_{k=1}^{\infty} E_k,$ $f \in L_E,$ 那么
+\[
+\int_E f ~ \mathrm{d} m = \sum_{k=1}^{\infty} \int_{E_k} f ~ \mathrm{d} m 
+\]
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Fatou 引理}
+
+%------------------------------------------------
+
+\begin{frame}{xxx}
 
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section{控制收敛定理}
+
+%------------------------------------------------
+
+\begin{frame}{xxx}
+
+
+\end{frame}
 
 %------------------------------------------------
 
