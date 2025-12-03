@@ -419,6 +419,13 @@ $\{ f_n \}$ \alert{依测度}收敛 ~ $\Longleftrightarrow$ ~ $\{ f_n \}$ 任意
 \pause
 \vspace{1em}
 
+\begin{attnblock}
+Riesz 定理 $\Longrightarrow$ 部分 (由依测度收敛推存在几乎处处收敛子列) 实际上不需要 $m E < \infty,$ 但是 $\Longleftarrow$ 部分不能缺少该条件.
+\end{attnblock}
+
+\pause
+\vspace{1em}
+
 \begin{block}{可测函数空间关于依测度收敛的完备性}
 $\{ f_n \}$ 为依测度基本列 ~ $\Longleftrightarrow$ ~ \pause
 $\exists$ 可测函数 $f,$ 使得 $f_n \xrightarrow{\text{依测度}} f.$
@@ -634,7 +641,16 @@ n, & x \in (0, 1/n], \\
 
 \begin{frame}{积分序列的性质 | {\smaller[1] 依测度型 Lebesgue 控制收敛定理}}
 
-\begin{thm}[依测度型 Lebesgue 控制收敛定理]
+\begin{thm}[Lebesgue-Vitali]
+设 $\displaystyle f_n \xrightarrow{\text{测度}} f,$ 那么
+\[
+\underbrace{\lim_{n\to\infty} \int_E |f_n - f| ~ \mathrm{d} m}_{f_n \xrightarrow{L^1} f} ~ \Longleftrightarrow ~ \{ f_n \} \text{有\alert{等度}绝对连续积分}
+\]
+\end{thm}
+
+\pause
+
+\begin{cor}[依测度型 Lebesgue 控制收敛定理]
 假设满足条件
 \begin{enumerate}
 \item $\displaystyle f_n \xrightarrow{\text{测度}} f,$
@@ -643,15 +659,6 @@ n, & x \in (0, 1/n], \\
 那么
 \[
 \int_E \lim_{n\to\infty} f_n ~ \mathrm{d} m = \lim_{n\to\infty} \int_E f_n ~ \mathrm{d} m.
-\]
-\end{thm}
-
-\pause
-
-\begin{cor}[Lebesgue-Vitali]
-设 $\displaystyle f_n \xrightarrow{\text{测度}} f,$ 那么
-\[
-\underbrace{\lim_{n\to\infty} \int_E |f_n - f| ~ \mathrm{d} m}_{f_n \xrightarrow{L^1} f} ~ \Longleftrightarrow ~ \{ f_n \} \text{有\alert{等度}绝对连续积分}
 \]
 \end{cor}
 
