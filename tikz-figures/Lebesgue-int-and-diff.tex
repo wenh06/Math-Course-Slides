@@ -12,28 +12,25 @@ transform shape
 
 \node (BV) at (7, -2) {$BV([a, b]) \cap C([a, b])$};
 \draw[arrows={- Classical TikZ Rightarrow[]}] ([xshift=-1ex,yshift=0.5ex] BV.north) arc (180:360:0.5ex) -- (B);
-\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (L) -- (BV) node[midway,above] {$\int_{[a, x]}$};
+\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (L) -- (BV) node[midway,above] {$\int_{[a, x]}$} node[pos=0.9,above] {\Circled{1}};
 
 \node (BV2) at (11, -2) {$BV([a, b])$};
 \draw[arrows={- Classical TikZ Rightarrow[]}] ([xshift=0.5ex,yshift=1ex] BV.east) arc (90:270:0.5ex) -- (BV2);
 
-\node (AC) at (7, -4) {$AC([a, b])$};
-\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] ([xshift=-1ex,yshift=0.5ex] AC.north) arc (180:360:0.5ex) -- (BV);
-\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (L) -- ([xshift=-4ex] AC.north) node[midway,left] {$\int_{[a, x]}$};
+\node (AC) at (7, -4) {$AC_0([a, b])$};
+\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] ([xshift=-1ex,yshift=0.5ex] AC.north) arc (180:360:0.5ex) -- (BV) node[midway,right] {\Circled{2}};
+\draw[arrows={- Classical TikZ Rightarrow[sep] Classical TikZ Rightarrow[]}, dashed] (L) -- ([xshift=-4ex] AC.north) node[midway,left] {$\int_{[a, x]}$}  node[pos=0.9,above] {\Circled{3}};
 
 \node (p1) at (2, -4) {$L_{[a, b]} / L_0$};
 \draw[arrows={- Classical TikZ Rightarrow[sep] Classical TikZ Rightarrow[]}] (L) -- (p1) node[midway,left] {$\operatorname{pr}$};
-\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (p1) -- (AC) node[midway,above] {$\int_{[a, x]}$};
+\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (p1) -- (AC) node[midway,above] {$\int_{[a, x]}$} node[midway,below] {$\sim$};
 
-\node (AB) at (14, -2) {$AB([a, b])$};
-\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (BV2) -- (AB) node[midway,above] {$\widetilde{~ \mathrm{d}}$};
-
-\node (L_again) at (14, -4) {$L_{[a, b]}$};
-\draw[arrows={- Classical TikZ Rightarrow[]}] ([xshift=-1ex,yshift=0.5ex] L_again.north) arc (180:360:0.5ex) -- (AB);
+\node (L_again) at (11, -4) {$L_{[a, b]}$};
 \draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (AC) -- (L_again) node[midway,above] {$\widetilde{~ \mathrm{d}}$};
+\draw[arrows={- Classical TikZ Rightarrow[]}, dashed] (BV2) -- (L_again) node[midway,left] {$\widetilde{~ \mathrm{d}}$} node[midway,right] {\Circled{4}};
 
-\node (p2) at (17, -4) {$L_{[a, b]} / L_0$};
+\node (p2) at (14, -4) {$L_{[a, b]} / L_0$};
 \draw[arrows={- Classical TikZ Rightarrow[sep] Classical TikZ Rightarrow[]}] (L_again) -- (p2) node[midway,above] {$\operatorname{pr}$};
-\draw[arrows={- Classical TikZ Rightarrow[]}, dashed, bend right = 15] (p1) to node[midway,below] {$\operatorname{pr}~\circ~\widetilde{~ \mathrm{d}}~\circ~\int_{[a, x]} = \operatorname{id}$} (p2);
+\draw[arrows={- Classical TikZ Rightarrow[]}, dashed, bend right = 15] (p1) to node[midway,below] {$\operatorname{pr}~\circ~\widetilde{~ \mathrm{d}}~\circ~\int_{[a, x]} = \operatorname{id}$} node[midway,above] {\Circled{5}} (p2);
 
 \end{tikzpicture}
