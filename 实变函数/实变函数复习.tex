@@ -712,6 +712,7 @@ every node/.style={align=center}
 \input{tikz-figures/Lebesgue-int-and-diff}
 \end{adjustbox}
 
+\only<1>{
 \vspace{-2em}
 
 {\smaller[1]
@@ -725,6 +726,19 @@ AC_0([a, b]) & = [a, b] \text{ 区间上绝对连续且在 $a$ 处取 $0$ 的函
 \ker \left( {\textstyle\int}_{[a,x]}~\circ~\operatorname{pr}~\circ~\widetilde{\mathrm{d}}~\circ~\iota \right) & = [a, b] \text{ 区间上连续奇异函数与常数函数所张成的空间}.
 \end{align*}
 }
+}
+
+\only<2->{
+{\smaller[1]
+箭头旁边的圈内数字对应如下定理:
+\begin{itemize}
+\item[$\Circled{1}$] Jordan 分解定理: 定义在 $[a, b]$ 上的函数是有界变差的, 当且仅当它可以表示为两个单调函数之差.
+\item[$\Circled{2}$] 绝对连续函数必然是有界变差函数. 反之, 有界变差函数不一定是绝对连续函数, 例如 Cantor 函数.
+\item[$\Circled{3}$ $\Circled{5}$] Lebesgue 积分与微分基本定理: $f \in AC([a, b]) \iff \exists ~ g \in L_{[a, b]},$ 使得 $f(x) = f(a) + \int_a^x g(t) ~ \mathrm{d}t,$ 且此时有 $f'(x) = g(x)$ 几乎处处成立.
+\item[$\Circled{4}$] 定义在 $[a, b]$ 上的单调 (增) 函数几乎处处可导, 且其导函数是勒贝格可积的, 满足不等式 $\int_a^b f'(x) ~ \mathrm{d} x \leqslant f(b) - f(a).$
+\end{itemize}
+}
+}
 
 \end{frame}
 
@@ -732,7 +746,7 @@ AC_0([a, b]) & = [a, b] \text{ 区间上绝对连续且在 $a$ 处取 $0$ 的函
 
 \begin{frame}{(变上限) 积分与微分 | {\smaller[1] Vitali 覆盖引理}}
 
-证明过程主要用到了 \alert{Vitali 覆盖引理}
+相关结论 (单调函数几乎处处可导) 的证明过程主要用到了 \alert{Vitali 覆盖引理}
 
 \pause
 
@@ -749,7 +763,7 @@ AC_0([a, b]) & = [a, b] \text{ 区间上绝对连续且在 $a$ 处取 $0$ 的函
 
 \pause
 
-Vitali 覆盖定义中的条件~(\ref{eq:vitali-cover}) 可以等级为以下条件
+Vitali 覆盖定义中的条件~(\ref{eq:vitali-cover}) 可以等价为以下条件
 \[
 \forall ~ \varepsilon > 0, ~ \exists ~ \text{闭区间} ~ I \in \mathcal{F}, ~ \text{使得} ~ x \in I, ~ \text{且} ~ |I| < \varepsilon.
 \]
