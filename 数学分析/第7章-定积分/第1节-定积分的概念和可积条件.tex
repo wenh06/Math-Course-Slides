@@ -106,6 +106,8 @@
 \pause
 
 \begin{column}[T]{0.58\textwidth}
+{
+% \smaller[1]
 \only<4-5>{
 \ding{172}分割:
 \[[0, 1] ~~ \rightsquigarrow ~~ \begin{array}{cccccc}
@@ -130,6 +132,7 @@ x_0 & x_1 & x_2 & \cdots & x_{n-1} & x_n
 \vspace{1em}
 
 \hspace{1em} \alert{提示:} $\frac{i-1}{n} \leqslant \xi_i \leqslant \frac{i}{n}$
+}
 }
 \end{column}
 \end{columns}
@@ -345,7 +348,7 @@ R(x) = \begin{cases}
 \begin{thm}[可积充要条件]
 函数 $f$ 在 $[a,b]$ 上可积的充要条件是:
 \[
-\forall~\varepsilon > 0, ~\exists~\text{分割}~P,\ 使得~\overline{S}(P,f) - \underline{S}(P,f) < \varepsilon
+\forall~\varepsilon > 0, ~\exists~\text{分割}~P, ~\text{使得}~\overline{S}(P,f) - \underline{S}(P,f) < \varepsilon
 \]
 \end{thm}
 \end{frame}
