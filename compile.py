@@ -1,134 +1,190 @@
-import collections
+import argparse
 import platform
 import shutil
 import subprocess
 import sys
 import time
+import os
 from pathlib import Path
 from typing import List, Tuple, Union
 
-project_dir = Path(__file__).resolve().parent
-build_dir = project_dir / "build"
-if not build_dir.exists():
-    build_dir.mkdir(parents=True, exist_ok=True)
-main_tex_file = project_dir / "main.tex"
+PROJECT_DIR = Path(__file__).resolve().parent
+BUILD_DIR = PROJECT_DIR / "build"
+BUILD_DIR.mkdir(parents=True, exist_ok=True)
+MAIN_TEX_FILE = PROJECT_DIR / "main.tex"
 
 
-def execute_cmd(cmd: Union[str, List[str]], raise_error: bool = True) -> Tuple[int, List[str]]:
-    """Execute shell command using `Popen`.
-
-    Parameters
-    ----------
-    cmd : str or list of str
-        Shell command to be executed,
-        or a list of .sh files to be executed.
-    raise_error : bool, default True
-        If True, error will be raised when occured.
-
-    Returns
-    -------
-    exitcode : int
-        Exit code returned by `Popen`.
-    output_msg : list of str
-        Outputs from `stdout` of `Popen`.
-
+def execute_cmd(cmd: Union[str, List[str]], raise_error: bool = True, cwd: Path = None) -> int:
     """
-    shell_arg, executable_arg = True, None
-    s = subprocess.Popen(
-        cmd,
-        shell=shell_arg,
-        executable=executable_arg,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        close_fds=(not (platform.system().lower() == "windows")),
-    )
-    debug_stdout = collections.deque(maxlen=1000)
-    # print("\n" + "*" * 10 + "  execute_cmd starts  " + "*" * 10 + "\n")
-    while 1:
-        line = s.stdout.readline().decode("utf-8", errors="replace")
-        if line.rstrip():
-            debug_stdout.append(line)
-            print(line)
-        exitcode = s.poll()
-        if exitcode is not None:
-            for line in s.stdout:
-                debug_stdout.append(line.decode("utf-8", errors="replace"))
-            if exitcode is not None and exitcode != 0:
-                error_msg = " ".join(cmd) if not isinstance(cmd, str) else cmd
-                error_msg += "\n"
-                error_msg += "".join(debug_stdout)
-                s.communicate()
-                s.stdout.close()
-                print("\n" + "*" * 10 + "  execute_cmd failed  " + "*" * 10 + "\n")
-                if raise_error:
-                    raise subprocess.CalledProcessError(exitcode, error_msg)
-                else:
-                    output_msg = list(debug_stdout)
-                    return exitcode, output_msg
-            else:
-                break
-    s.communicate()
-    s.stdout.close()
-    output_msg = list(debug_stdout)
+    Execute command using subprocess.Popen with real-time output printing.
+    """
+    is_windows = platform.system().lower() == "windows"
+    shell_arg = True
 
-    # print("\n" + "*" * 10 + "  execute_cmd succeeded  " + "*" * 10 + "\n")
+    encoding = "gbk" if is_windows else "utf-8"
 
-    exitcode = 0
+    cmd_str = cmd if isinstance(cmd, str) else " ".join(cmd)
+    print(f"\n[CMD] Executing: {cmd_str}")
 
-    return exitcode, output_msg
+    env = os.environ.copy()
 
+    captured_logs = []
 
-def main():
-    if shutil.which("latexmk") is None:
-        raise RuntimeError("latexmk is not installed.")
-
-    if len(sys.argv) not in [1, 2]:
-        raise RuntimeError("Usage: python compile.py [tex_entry_file]")
-    if len(sys.argv) == 1:
-        tex_entry_file = main_tex_file
-        handout = True
-    else:
-        tex_entry_file = Path(sys.argv[1]).expanduser().resolve()
-        handout = False
-
-    # specifying outdir for latexmk may result in errors: https://tex.stackexchange.com/q/323820
-    cmd = (
-        f"""latexmk -xelatex --shell-escape -f -outdir="{str(project_dir)}" """
-        f"""-jobname="{tex_entry_file.stem}" "{str(tex_entry_file)}" """
-    )
     try:
-        exitcode, _ = execute_cmd(cmd)
+        with subprocess.Popen(
+            cmd,
+            shell=shell_arg,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            cwd=str(cwd) if cwd else None,
+            env=env
+        ) as p:
+            if p.stdout:
+                for line in iter(p.stdout.readline, b''):
+                    try:
+                        line_str = line.decode(encoding, errors="replace").rstrip()
+                    except Exception:
+                        line_str = line.decode("utf-8", errors="replace").rstrip()
+                    
+                    if line_str:
+                        print(line_str)
+                        captured_logs.append(line_str)
+
+            p.wait()
+            exitcode = p.returncode
+
+            if exitcode != 0:
+                error_msg = f"\nCommand failed with exit code {exitcode}.\nCommand: {cmd_str}\n"
+                error_msg += "\n--- Last 20 lines of output ---\n"
+                error_msg += "\n".join(captured_logs[-20:])
+                
+                print("\n" + "!" * 10 + "  EXECUTION FAILED  " + "!" * 10)
+                if raise_error:
+                    raise subprocess.CalledProcessError(exitcode, cmd, output="\n".join(captured_logs))
+                else:
+                    return exitcode
+
     except KeyboardInterrupt:
-        # clean up
-        cmd = f"""latexmk -C -outdir="{str(project_dir)}" "{str(tex_entry_file)}" """
-        execute_cmd(cmd, raise_error=False)
-        print("Compilation cancelled.")
-        exitcode = 1
-    if exitcode != 0:
-        sys.exit(exitcode)
-    generated_pdf_file = project_dir / f"{tex_entry_file.stem}.pdf"
-    suffix = time.strftime("%Y%m%d-%H%M%S")
-    if tex_entry_file.stem == main_tex_file.stem and handout:
-        backup_pdf_file = build_dir / f"MathCourseSlides-{suffix}.pdf"
-    else:
-        backup_pdf_file = build_dir / f"{tex_entry_file.stem}.pdf"
-    shutil.copy(generated_pdf_file, backup_pdf_file)
-    # also copy the log file
-    shutil.copy(generated_pdf_file.with_suffix(".log"), backup_pdf_file.with_suffix(".log"))
+        print("\n[WARN] Process interrupted by user.")
+        return 130  # Standard SIGINT exit code
 
-    # clean up
-    cmd = f"""latexmk -C -outdir="{str(project_dir)}" "{str(tex_entry_file)}" """
-    exitcode, _ = execute_cmd(cmd)
-    if exitcode != 0:
-        sys.exit(exitcode)
-    # in case bbl file is not cleaned up
-    bbl_file = project_dir / f"{tex_entry_file.stem}.bbl"
+    return 0
+
+def clean_up(target_file: Path):
+    """Clean up auxiliary files generated by latexmk."""
+    print(f"\n[INFO] Cleaning up auxiliary files for {target_file.name}...")
+    cmd = f'latexmk -C -outdir="{str(PROJECT_DIR)}" "{str(target_file)}"'
+    execute_cmd(cmd, raise_error=False)
+
+    bbl_file = PROJECT_DIR / f"{target_file.stem}.bbl"
     if bbl_file.exists():
-        bbl_file.unlink()
-    # clear files of the pattern xelatex*.fls
-    for fls_file in project_dir.glob("xelatex*.fls"):
-        fls_file.unlink()
+        try:
+            bbl_file.unlink()
+            print(f"Removed {bbl_file.name}")
+        except OSError as e:
+            print(f"Error removing {bbl_file.name}: {e}")
 
+    for fls_file in PROJECT_DIR.glob("xelatex*.fls"):
+        try:
+            fls_file.unlink()
+        except OSError:
+            pass
+
+def main(args):
+    if shutil.which("latexmk") is None:
+        raise RuntimeError("latexmk is not installed or not in PATH.")
+
+    if args.tex_entry_file:
+        tex_entry_file = args.tex_entry_file
+        is_handout = args.handout
+    else:
+        tex_entry_file = MAIN_TEX_FILE
+        is_handout = True
+
+    if not tex_entry_file.exists():
+        raise FileNotFoundError(f"TeX file not found: {tex_entry_file}")
+
+    print(f"Target: {tex_entry_file.name}")
+    print(f"Mode: {'Handout' if is_handout else 'Standard'}")
+
+    job_name = tex_entry_file.stem
+    
+    cmd = (
+        f'latexmk -xelatex --shell-escape -f -outdir="{str(PROJECT_DIR)}" '
+        f'-jobname="{job_name}" "{str(tex_entry_file)}"'
+    )
+
+    try:
+        exitcode = execute_cmd(cmd)
+        if exitcode != 0:
+            sys.exit(exitcode)
+    except subprocess.CalledProcessError:
+        if args.gc:
+            clean_up(tex_entry_file)
+        sys.exit(1)
+
+    generated_pdf = PROJECT_DIR / f"{job_name}.pdf"
+    
+    if not generated_pdf.exists():
+        print("[ERROR] PDF was not generated successfully.")
+        sys.exit(1)
+
+    suffix = time.strftime("%Y%m%d-%H%M%S")
+
+    if tex_entry_file.stem == MAIN_TEX_FILE.stem and is_handout:
+        backup_pdf_name = f"MathCourseSlides-{suffix}.pdf"
+    else:
+        backup_pdf_name = f"{tex_entry_file.stem}.pdf"
+    
+    backup_pdf_path = BUILD_DIR / backup_pdf_name
+    
+    print(f"\n[INFO] Copying result to: {backup_pdf_path}")
+    shutil.copy(generated_pdf, backup_pdf_path)
+
+    generated_log = generated_pdf.with_suffix(".log")
+    if generated_log.exists():
+        shutil.copy(generated_log, backup_pdf_path.with_suffix(".log"))
+
+    if args.gc:
+        clean_up(tex_entry_file)
+    else:
+        print("\n[INFO] Build files kept. Use --gc to clean up.")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Compile LaTeX files using latexmk with automation."
+    )
+    
+    parser.add_argument(
+        "tex_entry_file", 
+        nargs="?", 
+        type=Path, 
+        default=None, 
+        help="The main .tex file to compile. Defaults to main.tex inside project dir."
+    )
+    
+    parser.add_argument(
+        "--handout", 
+        action="store_true", 
+        help="Compile as handout (defaults to True if no file specified)."
+    )
+    
+    parser.add_argument(
+        "--gc", 
+        action="store_true", 
+        help="Garbage collect (clean) build files after compilation."
+    )
+
+    args = parser.parse_args()
+
+    if args.tex_entry_file:
+        args.tex_entry_file = args.tex_entry_file.expanduser().resolve()
+
+    try:
+        main(args)
+    except KeyboardInterrupt:
+        print("\n[INFO] Script interrupted.")
+        sys.exit(130)
+    except Exception as e:
+        print(f"\n[ERROR] {e}")
+        sys.exit(1)

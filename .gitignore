@@ -179,7 +179,7 @@ dmypy.json
 .pyre/
 
 .vs
-.vscode
+# .vscode
 .idea
 .DS_Store
 
@@ -196,3 +196,5 @@ temp/
 !build
 build/*
 !build/.keep
+
+/*.pdf

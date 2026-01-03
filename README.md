@@ -16,3 +16,5 @@ python compile.py
 ## Misc
 
 [archive](archive) 目录下存放了一些非正式课程的课件, 包括 [微积分](archive/微积分), [线性代数](archive/线性代数), [概率与统计](archive/概率与统计), 以及 [凸优化](archive/凸优化) 等.
+
+VSCode Latex Workshop 插件配置文件位于 [.vscode](.vscode) 目录下.
