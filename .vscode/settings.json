@@ -11,7 +11,7 @@
                 "-file-line-error",
                 "-shell-escape",
                 "-f",
-                "%DOC%"
+                "main.tex"
             ]
         }
     ],
@@ -27,7 +27,7 @@
     "latex-workshop.latex.autoClean.run": "onFailed", 
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", 
-        "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", 
+        "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "vrb",
         "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk", "*.synctex.gz"
     ],
     "latex-workshop.view.pdf.viewer": "tab"
