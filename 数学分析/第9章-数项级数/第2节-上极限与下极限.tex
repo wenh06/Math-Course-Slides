@@ -76,7 +76,7 @@ declare function={
 \begin{frame}{数列的极限点}
 
 \begin{Def}
-在有界数列 $\{x_n\}$ 中, 若存在一个子列 $\{x_{n_k}\},$ 使得 $\lim\limits_{k \to \infty} x_{n_k} = \xi,$ 则称 $\xi$ 为数列 $\{x_n\}$ 的一个\alert{极限点}.
+在有界数列 $\{x_n\}$ 中, 若存在子列 $\{x_{n_k}\},$ 使得 $\lim\limits_{k \to \infty} x_{n_k} = \xi,$ 则称 $\xi$ 为数列 $\{x_n\}$ 的一个\alert{极限点}.
 \end{Def}
 
 \pause
@@ -87,9 +87,11 @@ declare function={
 
 \begin{attnblock}
 数列极限点的概念要与点集拓扑中极限点的概念相区别. 点集拓扑中, 一个点 $\xi$ 是集合 $S$ 的极限点, 若 $\xi$ 的任意去心邻域与 $S$ 的交非空.
+
 \pause
 二者的唯一区别在于, 当 $\xi$ 本身在 $\{x_n\}$ 中出现无穷多次时, $\xi$ 是 $\{x_n\}$ 的极限点, 但可能只是相应点集的孤立点.
 
+\pause
 数列极限点与点集拓扑中附着点 (adhere point) 的概念更接近.
 \end{attnblock}
 
@@ -177,7 +179,8 @@ $E$ 的最小值 $h = \min E$ 称为数列 $\{x_n\}$ 的下极限, 记为 $\varl
 
 \begin{frame}{上、下极限等价定义}
 
-{\smaller
+{
+\smaller[1]
 
 $1^\circ$ $H \leqslant \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k:$
 
@@ -234,7 +237,7 @@ $2^\circ$ $H \geqslant \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k:$
 \end{align*}
 
 \pause
-\vspace*{-2em}
+\vspace*{-0.5em}
 
 \begin{align*}
 \text{$\{x_n\}$ 不收敛} ~~ & {\color{red} \Longrightarrow} ~~ \text{存在至少两个子列收敛到不同的值} \\
@@ -251,6 +254,35 @@ $2^\circ$ $H \geqslant \newinf_{n \geqslant 1} \sup_{k \geqslant n} x_k:$
 %------------------------------------------------
 
 \begin{frame}{无界数列的上、下极限}
+
+可以将极限点的概念 (借由“无穷的邻域”) 扩充至 $\pm \infty$ 的情况.
+
+\begin{Def}
+在数列 $\{x_n\}$ 中, 若存在子列 $\{x_{n_k}\},$ 使得 $\lim\limits_{k\to\infty} x_{n_k} = \xi,$ \alert{$-\infty \leqslant \xi \leqslant +\infty$}, 则称 $\xi$ 为数列 $\{x_n\}$ 的一个\alert{极限点}.
+\end{Def}
+
+\pause
+
+\begin{remark}
+用“无穷的邻域”, 可以将上述定义写为:
+\begin{center}
+$\xi$ 的任意邻域中都包含 $\{x_n\}$ 中的无穷多项.
+\end{center}
+\end{remark}
+
+\pause
+
+\begin{thm}
+$\lim\limits_{n\to\infty} x_n$ 存在 (有限或 $+\infty$ 或 $-\infty$) 的充要条件为 $\varlimsup\limits_{n\to\infty} x_n = \varliminf\limits_{n\to\infty} x_n.$
+\end{thm}
+
+\pause
+
+对 $+\infty$ 的情况进行证明.
+
+$\Longrightarrow:$
+
+$\Longleftarrow:$
 
 \end{frame}
 
