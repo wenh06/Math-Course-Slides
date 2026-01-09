@@ -46,6 +46,10 @@ dist
 *.synctex.gz
 *.spl
 
+# TikZ/PGFPlots / Gnuplot intermediate files
+*.gnuplot
+*.table
+
 tensorboard_data
 .ipynb_checkpoints
 

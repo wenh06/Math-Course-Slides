@@ -28,7 +28,8 @@
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", 
         "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "vrb",
-        "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk", "*.synctex.gz"
+        "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk", "*.synctex.gz",
+        "*.gnuplot", "*.table"
     ],
     "latex-workshop.view.pdf.viewer": "tab"
 }
