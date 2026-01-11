@@ -275,14 +275,26 @@ $\xi$ 的任意邻域中都包含 $\{x_n\}$ 中的无穷多项.
 \begin{thm}
 $\lim\limits_{n\to\infty} x_n$ 存在 (有限或 $+\infty$ 或 $-\infty$) 的充要条件为 $\varlimsup\limits_{n\to\infty} x_n = \varliminf\limits_{n\to\infty} x_n.$
 \end{thm}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无界数列的上、下极限}
+
+\begin{thm}
+$\lim\limits_{n\to\infty} x_n$ 存在 (有限或 $+\infty$ 或 $-\infty$) 的充要条件为 $\varlimsup\limits_{n\to\infty} x_n = \varliminf\limits_{n\to\infty} x_n.$
+\end{thm}
 
 \pause
 
 对 $+\infty$ 的情况进行证明.
 
-$\Longrightarrow:$
+$\Longrightarrow:$ 由于 $\lim\limits_{n\to\infty} x_n = +\infty,$ 那么 $\forall~M > 0,$ 存在正整数 $N,$ 当 $n > N$ 时, 有 $x_n > M.$ 于是 $\inf_{k \geqslant n} x_k > M$ 对所有 $n > N$ 成立, 因此 $\varliminf\limits_{n\to\infty} x_n = \sup\limits_{n \geqslant 1} \inf\limits_{k \geqslant n} x_k \geqslant M.$ 由于 $M$ 是任取的, 因此 $\varliminf\limits_{n\to\infty} x_n = +\infty.$
 
-$\Longleftarrow:$
+\pause
+\vspace{1em}
+
+$\Longleftarrow:$ 若 $\varliminf\limits_{n\to\infty} x_n = \sup_{n\geqslant 1}\inf_{k \geqslant n} x_k = +\infty,$ 用反证法证明, 对于任意 $M > 0,$ 存在正整数 $N,$ 当 $n > N$ 时, 有 $x_n > M:$ 假设对某个 $M_0 > 0,$ 存在无穷多个 $x_n \leqslant M_0,$ 记这些下标为 $\{n_k\},$ 则 $\inf\limits_{k \geqslant n_k} x_k \leqslant x_{n_k} \leqslant M_0,$ 对所有 $k$ 成立, 因此 $\varliminf\limits_{n\to\infty} x_n = \sup\limits_{n \geqslant 1} \inf\limits_{k \geqslant n} x_k \leqslant M_0 < +\infty,$ 矛盾. 于是对于任意 $M > 0,$ 存在正整数 $N,$ 当 $n > N$ 时, 有 $x_n > M,$ 即 $\lim\limits_{n\to\infty} x_n = +\infty.$
 
 \end{frame}
 
@@ -292,7 +304,61 @@ $\Longleftarrow:$
 
 %------------------------------------------------
 
-\begin{frame}
+\begin{frame}{上、下极限的运算性质}
+
+一般来说, 极限运算具有的四则运算法则, 以及其他性质 (主要是等式), 对于上、下极限来说, \alert{都不成立. 但有一些不等式是成立的}.
+
+\pause
+
+\begin{thm}[加法运算性质]
+设 $\{x_n\}, \{y_n\}$ 为数列, 则有
+\begin{enumerate}
+\item $\varlimsup\limits_{n\to\infty} (x_n + y_n) \leqslant \varlimsup\limits_{n\to\infty} x_n + \varlimsup\limits_{n\to\infty} y_n;$ $\varliminf\limits_{n\to\infty} (x_n + y_n) \geqslant \varliminf\limits_{n\to\infty} x_n + \varliminf\limits_{n\to\infty} y_n.$
+\item 若 $\lim\limits_{n\to\infty} x_n$ 存在, 则有
+\[
+\varlimsup\limits_{n\to\infty} (x_n + y_n) = \lim\limits_{n\to\infty} x_n + \varlimsup\limits_{n\to\infty} y_n; \quad
+\varliminf\limits_{n\to\infty} (x_n + y_n) = \lim\limits_{n\to\infty} x_n + \varliminf\limits_{n\to\infty} y_n.
+\]
+\end{enumerate}
+\alert{注意:} 上面 4 个式子中, 若右端出现 $+\infty - \infty$ 的形式, 则该等式不成立.
+\end{thm}
+
+\pause
+
+只证明第一个不等式, 另一个类似. 记 $H_x = \varlimsup\limits_{n\to\infty} x_n,$ $H_y = \varlimsup\limits_{n\to\infty} y_n.$ 可以不妨设 $H_x, H_y$ 均为有限值, 否则不等式显然成立. 那么 $\forall~\varepsilon > 0,$ 存在正整数 $N_1,$ 当 $n > N_1$ 时, 有 $x_n < H_x + \frac{\varepsilon}{2};$ 存在正整数 $N_2,$ 当 $n > N_2$ 时, 有 $y_n < H_y + \frac{\varepsilon}{2}.$ 取 $N = \max\{N_1, N_2\},$ 则当 $n > N$ 时, 有
+\[
+x_n + y_n < H_x + H_y + \varepsilon.
+\]
+因此 $\varlimsup\limits_{n\to\infty} (x_n + y_n) \leqslant H_x + H_y.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{上、下极限的运算性质}
+
+\begin{thm}[乘法运算性质]
+设 $\{x_n\}, \{y_n\}$ 为数列, 则有
+\begin{enumerate}
+\item 若 $\{x_n\}, \{y_n\}$ 均为非负数列, 则有
+\[\varlimsup\limits_{n\to\infty} (x_n y_n) \leqslant \varlimsup\limits_{n\to\infty} x_n \cdot \varlimsup\limits_{n\to\infty} y_n;\quad
+\varliminf\limits_{n\to\infty} (x_n y_n) \geqslant \varliminf\limits_{n\to\infty} x_n \cdot \varliminf\limits_{n\to\infty} y_n.\]
+\item 若 $\lim\limits_{n\to\infty} x_n = a,$ $0 < a < +\infty,$ 则有
+\[
+\varlimsup\limits_{n\to\infty} (x_n y_n) = a \cdot \varlimsup\limits_{n\to\infty} y_n;\quad
+\varliminf\limits_{n\to\infty} (x_n y_n) = a \cdot \varliminf\limits_{n\to\infty} y_n.
+\]
+\end{enumerate}
+\alert{注意:} 上面 4 个式子中, 若右端出现 $0 \cdot (+\infty)$ 的形式, 则该等式不成立.
+\end{thm}
+
+\pause
+
+只证明第一个不等式, 另一个类似. 记 $H_x = \varlimsup\limits_{n\to\infty} x_n,$ $H_y = \varlimsup\limits_{n\to\infty} y_n.$ 类似地也可以不妨设 $H_x, H_y$ 均为有限值, 且大于 $0.$ 那么 $\forall~\varepsilon > 0,$ 存在正整数 $N_1,$ 当 $n > N_1$ 时, 有 $x_n < H_x + \frac{\varepsilon}{2H_y};$ 存在正整数 $N_2,$ 当 $n > N_2$ 时, 有 $y_n < H_y + \frac{\varepsilon}{2H_x}.$ 取 $N = \max\{N_1, N_2\},$ 则当 $n > N$ 时, 有
+\[
+x_n y_n < H_x H_y + \varepsilon.
+\]
+因此 $\varlimsup\limits_{n\to\infty} (x_n y_n) \leqslant H_x H_y.$
 
 \end{frame}
 
