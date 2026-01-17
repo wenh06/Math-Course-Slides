@@ -43,14 +43,576 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{序言}
+
+{
+\larger[2]
+在上一节中, 我们介绍了定积分的概念, 给出了定积分存在的充分必要条件---函数黎曼可积的判别法, 并得到了一个集合 (空间)
+\[
+\mathfrak{R}[a, b] \subsetneqq B[a, b].
+\]
+本节将研究这个集合中每个元素, 即每个黎曼可积函数所具有的一些基本性质, 进而可以看出这个集合的一些空间结构.
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{线性性}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分关于被积函数的线性性}
+
+\begin{prop}[线性性]
+$\mathfrak{R}[a, b]$ 具有线性空间结构, 即对任意 $f, g \in \mathfrak{R}[a, b]$ 及任意 $\alpha, \beta \in \mathbb{R}$, 有 $\alpha f + \beta g \in \mathfrak{R}[a, b],$ 并且有
+\[
+\int_a^b [\alpha f(x) + \beta g(x)] ~ \mathrm{d} x = \alpha \int_a^b f(x) ~ \mathrm{d} x + \beta \int_a^b g(x) ~ \mathrm{d} x.
+\]
+\end{prop}
+
+\pause
+\vspace{1em}
+
+\textbf{证明:} 对任意带标志点的划分 $(P, \xi) = (\{x_k\}_{k=0}^n,\ \{\xi_k\}_{k=1}^n)$, 有
+\[
+S(\alpha f + \beta g; P, \xi) = \sum_{i=1}^n [\alpha f(\xi_i) + \beta g(\xi_i)] \Delta x_i = \alpha S(f; P, \xi) + \beta S(g; P, \xi).
+\]
+上式右边每一项关于 $\lambda(P) \to 0$ 时分别收敛于 $\alpha \int_a^b f(x) ~ \mathrm{d} x$ 和 $\beta \int_a^b g(x) ~ \mathrm{d} x$. 因此, 左边也收敛, 即 $\alpha f + \beta g \in \mathfrak{R}[a, b]$, 并且有
+\[
+\int_a^b [\alpha f(x) + \beta g(x)] ~ \mathrm{d} x = \alpha \int_a^b f(x) ~ \mathrm{d} x + \beta \int_a^b g(x) ~ \mathrm{d} x.
+\]
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{黎曼积分关于被积函数的线性性}
+
+\begin{cor}
+设 $f \in \mathfrak{R}[a, b]$, 若只改变 $f$ 在有限个点处的函数值, 则所得函数仍在 $\mathfrak{R}[a, b]$ 中, 且积分值不变.
+\end{cor}
+
+\vspace{1em}
+
+\textbf{证明:} 记所得函数为 $g,$ 并定义 $h(x) = g(x) - f(x).$ 则 $h(x)$ 在 $[a, b]$ 上仅在有限个点处不为零. 因此, $h$ 只在这些点处不连续, 其不连续点集为有限集, 故 $h \in \mathfrak{R}[a, b]$ 且容易算出 $\int_a^b h(x) ~ \mathrm{d} x = 0.$
+
+\pause
+\vspace{1em}
+
+\begin{question}
+这个结论还能放宽条件吗? 例如, 改变 $f$ 在某个可数集上的函数值, 结果是否仍然成立?
+\end{question}
+
+\pause
+
+\alert{结论是: 不行!} 改变常值函数 $f(x) = 0$ 在有理数集上的函数值, 可得到 Dirichlet 函数, 它在 $[a, b]$ 上不黎曼可积.
+
+对于黎曼积分来说, 这个结论 (改变可列多个点处的函数值) 不成立, 但对于以后要学的\alert{勒贝格积分}来说, 这个结论是成立的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[乘积可积]{乘积可积性}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分关于被积函数乘积的乘积可积性}
+
+\begin{prop}[乘积可积性]
+设 $f, g \in \mathfrak{R}[a, b]$, 则 $fg \in \mathfrak{R}[a, b].$
+\end{prop}
+
+\pause
+\vspace{0.5em}
+
+\textbf{证明:} 由于 $f, g$ 在 $[a, b]$ 上均有界, 故存在常数 $M > 0$, 使得对任意 $x \in [a, b]$, 有 $|f(x)| \leqslant M,$ $|g(x)| \leqslant M,$ 且 $|f(x) \cdot g(x)| \leqslant M.$ 由振幅判别法, 存在划分 $P$ 使得
+\[
+\sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \Delta x_i < \varepsilon / 2M, \quad \sum_{i=1}^n \omega(g; [x_{i-1}, x_i]) \Delta x_i < \varepsilon / 2M.
+\]
+
+\pause
+\vspace{0.5em}
+
+来观察一般的闭区间 $[c, d] \subseteq [a, b]$ 上 $fg$ 的振幅: $\forall ~ t_1, t_2 \in [c, d],$ 有
+\begin{align*}
+|f(t_1) g(t_1) - f(t_2) g(t_2)| & = |f(t_1) g(t_1) - f(t_1) g(t_2) + f(t_1) g(t_2) - f(t_2) g(t_2)| \\
+& \leqslant |f(t_1)| \cdot |g(t_1) - g(t_2)| + |g(t_2)| \cdot |f(t_1) - f(t_2)| \\
+& \leqslant M |g(t_1) - g(t_2)| + M |f(t_1) - f(t_2)| \\
+& \leqslant M \cdot \omega(f; [c, d]) + M \cdot \omega(g; [c, d]).
+\end{align*}
+因此,
+\[
+\sum_{i=1}^n \omega(fg; [x_{i-1}, x_i]) \Delta x_i \leqslant M \sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \Delta x_i + M \sum_{i=1}^n \omega(g; [x_{i-1}, x_i]) \Delta x_i < \varepsilon.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{乘积可积性的简化证明}
+
+\textbf{简化证明1:} 乘积可积性实际上是线性性和有界函数乘积可积性的直接推论. 事实上, 设 $f, g \in \mathfrak{R}[a, b],$ 则
+\[
+fg = \frac{1}{4}[(f + g)^2 - (f - g)^2].
+\]
+由于 $f + g, f - g \in \mathfrak{R}[a, b],$ 且有界函数的平方仍然是有界函数, 故只需证明黎曼可积函数的平方是黎曼可积的即可, 这个直接可以通过振幅看出来:
+\begin{align*}
+\omega(f^2; [c, d]) & = \sup_{x_1, x_2 \in [c, d]} |f^2(x_1) - f^2(x_2)| = \sup_{x_1, x_2 \in [c, d]} |f(x_1) - f(x_2)| \cdot |f(x_1) + f(x_2)| \\
+& \leqslant 2M \cdot \omega(f; [c, d]).
+\end{align*}
+
+\pause
+\vspace{1em}
+
+\textbf{简化证明2 (利用勒贝格判别准则):}
+\begin{align*}
+f, g \in \mathfrak{R}[a, b] & \iff \text{$f, g$ 在 $[a, b]$ 上有界且几乎处处连续} \\
+& \overset{\Circled{\star}}{\implies} \text{$fg$ 在 $[a, b]$ 上有界且几乎处处连续} \\
+& \iff fg \in \mathfrak{R}[a, b].
+\end{align*}
+其中 $\Circled{\star}$ 是因为 $fg$ 的不连续点集是 $f, g$ 的不连续点集的并的子集, 故也是零测集.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{保序性}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分关于被积函数乘积的保序性/单调性}
+
+\begin{prop}[保序性/单调性]
+设 $f, g \in \mathfrak{R}[a, b],$ 且对任意 $x \in [a, b],$ 有 $f(x) \leqslant g(x),$ 则
+\[
+\int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b g(x) ~ \mathrm{d} x.
+\]
+\end{prop}
+
+\textbf{证明:} 由线性性, 只要对 $f \geqslant 0$ 证明 $\int_a^b f(x) ~ \mathrm{d} x \geqslant 0$ 即可. 设 $(P, \xi) = (\{x_k\}_{k=0}^n,\ \{\xi_k\}_{k=1}^n)$ 是任意带标志点的划分, 则
+\[
+S(f; P, \xi) = \sum_{i=1}^n f(\xi_i) \Delta x_i \geqslant 0.
+\]
+因此, $\int_a^b f(x) ~ \mathrm{d} x = \lim_{\lambda(P) \to 0} S(f; P, \xi) \geqslant 0.$
+\pause
+
+\begin{remark}
+保序性的条件可以放宽为\alert{除有限个点外}, 对任意 $x \in [a, b],$ 有 $f(x) \leqslant g(x).$
+
+对于勒贝格积分, 这个结论可以放宽为\alert{几乎处处} $x \in [a, b],$ 有 $f(x) \leqslant g(x).$
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{绝对可积性}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分关于被积函数的绝对可积性}
+
+\begin{prop}[绝对可积性]
+设 $f \in \mathfrak{R}[a, b],$ 那么 $|f| \in \mathfrak{R}[a, b]$ 且有
+\[
+\left| \int_a^b f(x) ~ \mathrm{d} x \right| \leqslant \int_a^b |f(x)| ~ \mathrm{d} x.
+\]
+\alert{反之不成立.}
+\end{prop}
+
+\pause
+\vspace{1em}
+
+\textbf{证明:} 我们通过振幅来证明 $|f| \in \mathfrak{R}[a, b].$ 对任意闭区间 $[c, d] \subseteq [a, b],$ 有
+\[
+\omega(|f|; [c, d]) = \sup_{x_1, x_2 \in [c, d]} ||f(x_1)| - |f(x_2)|| \leqslant \sup_{x_1, x_2 \in [c, d]} |f(x_1) - f(x_2)| = \omega(f; [c, d]).
+\]
+因此, 对任意划分 $P = \{x_i\}_{i=0}^n,$ 有
+\[
+\sum_{i=1}^n \omega(|f|; [x_{i-1}, x_i]) \Delta x_i \leqslant \sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \Delta x_i.
+\]
+由 $f \in \mathfrak{R}[a, b]$ 可知, $\forall ~ \varepsilon > 0,$ 存在划分 $P$ 使得右边小于 $\varepsilon,$ 故左边也小于 $\varepsilon,$ 即 $|f| \in \mathfrak{R}[a, b].$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{绝对可积性的证明续}
+
+再由保序性, 有
+\[-\int_a^b |f(x)| ~ \mathrm{d} x \leqslant \int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b |f(x)| ~ \mathrm{d} x,\]
+从而得到
+\[\left| \int_a^b f(x) ~ \mathrm{d} x \right| \leqslant \int_a^b |f(x)| ~ \mathrm{d} x.\]
+
+\pause
+\vspace{1em}
+
+\textbf{反之不成立的例子:} 设 $f(x) = D(x) - \frac{1}{2},$ 其中 $D(x)$ 是 Dirichlet 函数. 则 $f \notin \mathfrak{R}[0, 1],$ 但 $|f|$ 在 $[0, 1]$ 上恒为 $\frac{1}{2},$ 故 $|f| \in \mathfrak{R}[0, 1].$
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{积分区间可加性}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分关于积分区间的可加性}
+
+\begin{prop}[区间可加性]
+设 $f \in \mathfrak{R}[a, b],$ 且 $c \in (a, b),$ 则 $f$ 在 $[a, c]$ 和 $[c, b]$ 上均黎曼可积, 且有
+\[
+\int_a^b f(x) ~ \mathrm{d} x = \int_a^c f(x) ~ \mathrm{d} x + \int_c^b f(x) ~ \mathrm{d} x.
+\]
+反之也成立.
+\end{prop}
+
+\pause
+\vspace{1em}
+
+\textbf{证明:} 一般地, 设 $[c, d] \subseteq [a, b],$ 则对任意划分 $P = \{x_i\}_{i=0}^n,$ 可添加点 $c$ 和 $d$ 得到划分 $P^* = \{x_i^*\}_{i=0}^{n^*},$ 则有振幅的关系
+\[
+\sum_{i=1}^{n^*} \omega(f; [x_{i-1}^*, x_i^*]) \Delta x_i^* \leqslant \sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \Delta x_i.
+\]
+因此, $f \in \mathfrak{R}[a, b] \implies f \in \mathfrak{R}[c, d].$ 特别地, $f \in \mathfrak{R}[a, b] \implies f \in \mathfrak{R}[a, c]$ 且 $f \in \mathfrak{R}[c, b].$
+
+\pause
+\vspace{1em}
+
+反之, 设 $f \in \mathfrak{R}[a, c]$ 且 $f \in \mathfrak{R}[c, b],$ 则对任意 $\varepsilon > 0,$ 存在 $[a, c]$ 的划分 $P_1$ 和 $[c, b]$ 的划分 $P_2$ 使得
+\[
+\sum_{i=1}^{n_1} \omega(f; [x_{i-1}^{(1)}, x_i^{(1)}]) \Delta x_i^{(1)} < \varepsilon / 2, \quad \sum_{i=1}^{n_2} \omega(f; [x_{i-1}^{(2)}, x_i^{(2)}]) \Delta x_i^{(2)} < \varepsilon / 2.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{区间可加性的证明续}
+
+将 $P_1$ 和 $P_2$ 合并得到 $[a, b]$ 的划分 $P,$ 则
+\[\sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \Delta x_i < \varepsilon.\]
+因此, $f \in \mathfrak{R}[a, b].$
+
+\pause
+\vspace{0.5em}
+
+下面证明 $\int_a^b f(x) ~ \mathrm{d} x = \int_a^c f(x) ~ \mathrm{d} x + \int_c^b f(x) ~ \mathrm{d} x.$
+
+取 $[a, b]$ 的带标志点的划分 $(P, \xi) = (\{x_k\}_{k=0}^n,\ \{\xi_k\}_{k=1}^n),$ 使得总有 $c \in P,$ 则 $P$ 可分为 $[a, c]$ 上的带标志点的划分 $(P_1, \xi_1)$ 和 $[c, b]$ 上的带标志点的划分 $(P_2, \xi_2).$ 因此,
+\[
+S(f; P, \xi) = S(f; P_1, \xi_1) + S(f; P_2, \xi_2).
+\]
+对 $\lambda(P) \to 0$ 时, 有 $\lambda(P_1), \lambda(P_2) \to 0,$ 故
+\[
+\int_a^b f(x) ~ \mathrm{d} x = \int_a^c f(x) ~ \mathrm{d} x + \int_c^b f(x) ~ \mathrm{d} x.
+\]
+
+\pause
+% \vspace{0.5em}
+
+\begin{remark}
+若对 $b < a$ 约定 $\int_a^b f(x) ~ \mathrm{d} x = - \int_b^a f(x) ~ \mathrm{d} x,$ 则区间可加性对任意 $a, b, c \in \mathbb{R}$ 均成立.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{积分第一中值定理}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分的第一中值定理}
+
+\begin{prop}[积分第一中值定理]
+设 $f, g \in \mathfrak{R}[a, b],$ 且 $g(x)$ 在 $[a, b]$ 上不变号 (恒非负或恒非正), 则存在 $\mu \in [m, M],$ 其中 $m = \inf_{x \in [a, b]} f(x),$ $M = \sup_{x \in [a, b]} f(x),$ 使得
+\[
+\int_a^b f(x) g(x) ~ \mathrm{d} x = \mu \int_a^b g(x) ~ \mathrm{d} x.
+\]
+特别地, 若 $f \in C[a, b],$ 则存在 $\xi \in [a, b],$ 使得
+\[
+\int_a^b f(x) g(x) ~ \mathrm{d} x = f(\xi) \int_a^b g(x) ~ \mathrm{d} x.
+\]
+\end{prop}
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第一中值定理的证明}
+
+不妨设 $g(x) \geqslant 0$ 对任意 $x \in [a, b]$ 成立, 那么由保序性, 有
+\[
+m \int_a^b g(x) ~ \mathrm{d} x \leqslant \int_a^b f(x) g(x) ~ \mathrm{d} x \leqslant M \int_a^b g(x) ~ \mathrm{d} x.
+\]
+若 $\int_a^b g(x) ~ \mathrm{d} x = 0,$ 则取任意 $\mu \in [m, M]$ 即可. 若 $\int_a^b g(x) ~ \mathrm{d} x > 0,$ 则取
+\[\mu = \frac{\int_a^b f(x) g(x) ~ \mathrm{d} x}{\int_a^b g(x) ~ \mathrm{d} x} \in [m, M].\]
+
+\pause
+\vspace{0.5em}
+
+若 $f \in C[a, b],$ 则由介值定理, 存在 $\xi \in [a, b],$ 使得 $f(\xi) = \mu,$ 从而得到
+\[\int_a^b f(x) g(x) ~ \mathrm{d} x = f(\xi) \int_a^b g(x) ~ \mathrm{d} x.\]
+
+\pause
+% \vspace{0.5em}
+
+\begin{remark}
+对于 $f \in C[a, b], g = 1,$ 积分第一中值定理退化为积分的平均值定理: 存在 $\xi \in [a, b],$ 使得
+\[\int_a^b f(x) ~ \mathrm{d} x = f(\xi) (b - a).\]
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{应用举例}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分性质的应用举例}
+
+\begin{eg}
+设 $0 < f \in C[a, b],$ 那么 $\dfrac{1}{b - a} \int_a^b \ln f(x) ~ \mathrm{d} x \leqslant \ln \left( \dfrac{1}{b - a} \int_a^b f(x) ~ \mathrm{d} x \right).$
+\end{eg}
+
+\textbf{证明:} 任取带标志点的划分 $(P, \xi) = (\{x_k\}_{k=0}^n,\ \{\xi_k\}_{k=1}^n),$ 有
+\[
+\dfrac{1}{b - a} S(\ln f; P, \xi) = \sum_{i=1}^n \frac{\Delta x_i}{b - a} \cdot \ln f(\xi_i).
+\]
+注意到 $\sum_{i=1}^n \frac{\Delta x_i}{b - a} = 1,$ 由对数函数 $\ln$ 的凹 (上凸) 性, 有
+\[
+\sum_{i=1}^n \frac{\Delta x_i}{b - a} \cdot \ln f(\xi_i) \leqslant \ln \left( \sum_{i=1}^n \frac{\Delta x_i}{b - a} \cdot f(\xi_i) \right) = \ln \left( \frac{1}{b - a} S(f; P, \xi) \right).
+\]
+对 $\lambda(P) \to 0$ 时, 两边同时取极限, 并利用 $\ln$ 的连续性, 即得所需不等式
+\[
+\dfrac{1}{b - a} \int_a^b \ln f(x) ~ \mathrm{d} x \leqslant \ln \left( \dfrac{1}{b - a} \int_a^b f(x) ~ \mathrm{d} x \right).
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Hölder 不等式}
+
+\begin{thm}[Hölder 不等式]
+设 $p, q > 1,$ 且 $\dfrac{1}{p} + \dfrac{1}{q} = 1.$ 若 $f, g \in C[a, b],$ 则有
+\[
+\int_a^b |f(x) g(x)| ~ \mathrm{d} x \leqslant \left( \int_a^b |f(x)|^p ~ \mathrm{d} x \right)^{\frac{1}{p}} \left( \int_a^b |g(x)|^q ~ \mathrm{d} x \right)^{\frac{1}{q}}.
+\]
+\end{thm}
+
+\begin{remark}
+记 $\lVert f \rVert_p = \left( \int_a^b |f(x)|^p ~ \mathrm{d} x \right)^{\frac{1}{p}},$ 则 Hölder 不等式可写为 $\lVert fg \rVert_1 \leqslant \lVert f \rVert_p \cdot \lVert g \rVert_q.$
+\end{remark}
+
+\pause
+\vspace{0.5em}
+
+\textbf{证明:} 若 $f \equiv 0$ 或 $g \equiv 0,$ 则 $\lVert fg \rVert_1 = \lVert f \rVert_p \cdot \lVert g \rVert_q = 0,$ 不等式显然成立. 现设 $f \not\equiv 0$ 且 $g \not\equiv 0,$ 那么 $\lVert f \rVert_p > 0$ 且 $\lVert g \rVert_q > 0.$ 考虑 (下) 凸函数 $\varphi(t) = e^t, t \in \mathbb{R}.$ 那么 $\forall ~ A, B \in \mathbb{R},$ 有
+\[
+\varphi \left( \frac{A}{p} + \frac{B}{q} \right) \leqslant \frac{\varphi(A)}{p} + \frac{\varphi(B)}{q},
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Hölder 不等式}
+
+取 $A = \ln \dfrac{|f(x)|^p}{\lVert f \rVert_p^p},$ $B = \ln \dfrac{|g(x)|^q}{\lVert g \rVert_q^q},$ 则上式
+\begin{align*}
+\text{左边} & = \varphi \left( \frac{1}{p} \ln \dfrac{|f(x)|^p}{\lVert f \rVert_p^p} + \frac{1}{q} \ln \dfrac{|g(x)|^q}{\lVert g \rVert_q^q} \right) = \varphi \left( \ln \dfrac{|f(x)|}{\lVert f \rVert_p} + \ln \dfrac{|g(x)|}{\lVert g \rVert_q} \right) = \dfrac{|f(x) g(x)|}{\lVert f \rVert_p \cdot \lVert g \rVert_q}, \\
+\text{右边} & = \frac{1}{p} \cdot \frac{|f(x)|^p}{\lVert f \rVert_p^p} + \frac{1}{q} \cdot \frac{|g(x)|^q}{\lVert g \rVert_q^q}.
+\end{align*}
+因此, 对任意 $x \in [a, b],$ 有
+\[
+\dfrac{|f(x) g(x)|}{\lVert f \rVert_p \cdot \lVert g \rVert_q} \leqslant \frac{1}{p} \cdot \frac{|f(x)|^p}{\lVert f \rVert_p^p} + \frac{1}{q} \cdot \frac{|g(x)|^q}{\lVert g \rVert_q^q}.
+\]
+由积分的保序性和线性性, 对上式积分可得
+\[
+\int_a^b \dfrac{|f(x) g(x)|}{\lVert f \rVert_p \cdot \lVert g \rVert_q} ~ \mathrm{d} x \leqslant \frac{1}{p} + \frac{1}{q} = 1,
+\]
+即得 Hölder 不等式 $\lVert fg \rVert_1 = \int_a^b |f(x) g(x)| ~ \mathrm{d} x \leqslant \lVert f \rVert_p \cdot \lVert g \rVert_q.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{关于 Hölder 不等式的几个注记}
+
+{\color{red}\ding{43}} 对于 $p = 1, q = \infty$ 的情形, Hölder 不等式同样成立, 即
+\[
+\lVert fg \rVert_1 = \int_a^b |f(x) g(x)| ~ \mathrm{d} x \leqslant \left( \int_a^b |f(x)| ~ \mathrm{d} x \right) \cdot {\color{red}\sup_{x \in [a, b]} |g(x)|} = \lVert f \rVert_1 \cdot {\color{red}\lVert g \rVert_\infty}.
+\]
+
+\pause
+\vspace{1em}
+
+{\color{red}\ding{43}} Hölder 不等式中的条件 $f, g \in C[a, b]$ 可放宽为 $f, g \in \mathfrak{R}[a, b].$ 只需要额外证明
+\[
+\lVert f \lVert_p = 0 ~ \text{或} ~ \lVert g \lVert_q = 0 \implies \lVert fg \lVert_1 = 0,
+\]
+即可. 事实上, (这里要用到一些额外知识: 若函数黎曼可积, 则它勒贝格可积, 且积分值相等. 以下论述都是基于勒贝格积分的.) 若 $\lVert f \lVert_p = 0,$ 则 $|f(x)|^p = 0$ 几乎处处成立, 从而 $f(x) = 0$ 几乎处处成立, 进而 $|f(x) g(x)| = 0$ 几乎处处成立, 故 $\lVert fg \lVert_1 = 0.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Minkowski 不等式}
+
+\begin{cor}[Minkowski 不等式/三角不等式]
+设 $p \geqslant 1.$ 若 $f, g \in \mathfrak{R}[a, b],$ 则有
+\[
+\lVert f + g \rVert_p \leqslant \lVert f \rVert_p + \lVert g \rVert_p.
+\]
+\end{cor}
+
+\pause
+\vspace{0.5em}
+
+\textbf{证明:} $p = 1, \infty$ 以及 $\lVert f + g \rVert_p = 0$ 都是简单的情形. 下设 $1 < p < \infty$ 且 $\lVert f + g \rVert_p > 0.$ 记 $q$ 为 $p$ 的共轭指标, 即 $\dfrac{1}{p} + \dfrac{1}{q} = 1.$ 则由 Hölder 不等式, 有
+\begin{align*}
+\lVert f + g \rVert_p^p & = \int_a^b |f(x) + g(x)|^p ~ \mathrm{d} x = \int_a^b |f(x) + g(x)|^{p - 1} |f(x) + g(x)| ~ \mathrm{d} x \\
+& \leqslant \int_a^b |f(x) + g(x)|^{p - 1} |f(x)| ~ \mathrm{d} x + \int_a^b |f(x) + g(x)|^{p - 1} |g(x)| ~ \mathrm{d} x \\
+(\text{\color{red}Hölder 不等式}) & ~ {\color{red}\leqslant} ~ \lVert f + g \rVert_p^{\frac{p - 1}{p}} \cdot \lVert f \rVert_p + \lVert f + g \rVert_p^{\frac{p - 1}{p}} \cdot \lVert g \rVert_p.
+\end{align*}
+两边除以 $\lVert f + g \rVert_p^{\frac{p - 1}{p}}$ 即得所需不等式.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{积分第二中值定理}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{黎曼积分的第二中值定理}
+
+\begin{thm}[积分第二中值定理]
+设 $f, g \in \mathfrak{R}[a, b],$ 且 $g(x)$ 在 $[a, b]$ 上\alert{单调}, 则存在 $\xi \in [a, b],$ 使得
+\begin{equation}
+\int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x.
+\tag{$\star$}
+\label{eq:star}
+\end{equation}
+\end{thm}
+
+\alert{注意:} 相较于积分第一中值定理, 积分第二中值定理对 $g$ 的要求从``不变号''变为``单调'', 结论中相应的积分号内的函数也从 $g(x)$ 变为了 $f(x).$
+
+\pause
+\vspace{0.5em}
+
+\begin{thm}[积分第二中值定理的变形 (等价形式)]
+设 $f, g \in \mathfrak{R}[a, b],$ 且 $g(x)$ 在 $[a, b]$ 上\alert{非负不增}, 则存在 $\xi' \in [a, b],$ 使得
+\begin{equation}
+\int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x.
+\tag{$\star\star$}
+\label{eq:star2}
+\end{equation}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第二中值定理等价形式互推}
+
+\textbf{(\ref{eq:star}) $\implies$ (\ref{eq:star2}):} 设 $g$ 在 $[a, b]$ 上单调不减 (单调不增类似), 令 $G(x) = g(b) - g(x),$ 则 $G$ 在 $[a, b]$ 上单调不增, 由式~(\ref{eq:star}), 存在 $\xi \in [a, b],$ 使得
+\[
+\int_a^b f(x) G(x) ~ \mathrm{d} x = G(a) \int_a^\xi f(x) ~ \mathrm{d} x + G(b) \int_\xi^b f(x) ~ \mathrm{d} x.
+\]
+将 $G(x) = g(b) - g(x)$ 代入上式, 移项, 利用积分区间可加性, 可得
+\[\int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x.\]
+
+\pause
+\vspace{0.5em}
+
+\textbf{(\ref{eq:star2}) $\implies$ (\ref{eq:star}):} 由 $g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x = g(a) \cdot \left( \int_a^\xi f(x) ~ \mathrm{d} x + \int_\xi^b \frac{g(b)}{g(a)} f(x) ~ \mathrm{d} x \right),$ 令 $\tau = \frac{g(b)}{g(a)},$ 由于 $g$ 非负不增, 故 $0 \leqslant \tau \leqslant 1.$ 那么
+\[
+\int_a^t f(x) ~ \mathrm{d} x - \left( \int_a^\xi f(x) ~ \mathrm{d} x + \tau \int_\xi^t f(x) ~ \mathrm{d} x \right) = {\color{red}\int_\xi^t f(x) ~ \mathrm{d} x} - {\color{cyan}\tau \int_\xi^b f(x) ~ \mathrm{d} x}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第二中值定理等价形式互推 (续)}
+
+\begin{itemize}
+\item 当 $t$ 从 $\xi$ 变到 $b$ 时, $\color{red} \int_\xi^t f(x) ~ \mathrm{d} x$ 连续地取遍了 $0$ 与 $\int_\xi^b f(x) ~ \mathrm{d} x$ 之间的所有值 (范围可能更大);
+\item 而 $\color{cyan} \tau \int_\xi^b f(x) ~ \mathrm{d} x$ 是 $0$ 与 $\int_\xi^b f(x) ~ \mathrm{d} x$ 之间的某个固定值;
+\end{itemize}
+因此, 存在某个 $t = \xi' \in [\xi, b] \subseteq [a, b],$ 使得 $\color{red} \int_\xi^{\xi'} f(x) ~ \mathrm{d} x = \color{cyan} \tau \int_\xi^b f(x) ~ \mathrm{d} x,$ 即有
+\[
+\int_a^{\xi'} f(x) ~ \mathrm{d} x = \int_a^\xi f(x) ~ \mathrm{d} x + \tau \int_\xi^b f(x) ~ \mathrm{d} x,
+\]
+两边同时乘以 $g(a)$ 即得
+\[
+g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x = g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x = \int_a^b f(x) g(x) ~ \mathrm{d} x.
+\]
+
+\pause
+\vspace{0.5em}
+
+\alert{注意}, 这里用到了一个结论: $\int_\xi^t f(x) ~ \mathrm{d} x$ 关于 $t$ 是连续的, 这个结论可以通过积分的定义直接证明.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第二中值定理的证明}
+
+我们证明式~(\ref{eq:star2}), 即从 $g$ 在 $[a, b]$ 上非负不增出发, 证明存在 $\xi' \in [a, b],$ 使得
+\[
+\int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x.
+\]
+
+设 $P = \{ x_i \}_{i=0}^n$ 是 $[a, b]$ 上的划分, 那么
+\begin{align*}
+\int_a^b f(x) g(x) ~ \mathrm{d} x & = \sum_{i=1}^n \int_{x_{i-1}}^{x_i} f(x) g(x) ~ \mathrm{d} x \\
+& = \underbrace{\sum_{i=1}^n g(x_{i-1}) \int_{x_{i-1}}^{x_i} f(x) ~ \mathrm{d} x}_{\Circled{1}} + \underbrace{\sum_{i=1}^n \int_{x_{i-1}}^{x_i} f(x) (g(x) - g(x_{i-1})) ~ \mathrm{d} x}_{\Circled{2}}.
+\end{align*}
+
+\pause
+
+首先, 证明 $\Circled{2} \to 0$ 当 $\lambda(P) \to 0.$ 记 $M = \sup_{x \in [a, b]} |f(x)|,$ 则有
+\begin{align*}
+|\Circled{2}| & \leqslant \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |f(x)| |g(x) - g(x_{i-1})| ~ \mathrm{d} x \leqslant \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |g(x) - g(x_{i-1})| \cdot \sup_{x \in [a, b]} |f(x)| ~ \mathrm{d} x \\
+& = M \sum_{i=1}^n \int_{x_{i-1}}^{x_i} \omega(g; [x_{i-1}, x_i]) ~ \mathrm{d} x \leqslant M \sum_{i=1}^n \omega(g; [x_{i-1}, x_i]) \Delta x_i \xrightarrow{\lambda(P) \to 0} 0.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第二中值定理的证明续}
 
 \end{frame}
 
