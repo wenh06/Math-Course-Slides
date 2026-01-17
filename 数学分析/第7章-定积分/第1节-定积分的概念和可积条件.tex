@@ -594,7 +594,7 @@ $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
 \end{thm}
 
 \pause
-\vspace{1em}
+\vspace{0.5em}
 
 {\color{red}\ding{43}} 充分性较简单, 由
 \[
@@ -603,9 +603,65 @@ $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
 可知, 若式~(\ref{eq:star}) 成立, 则极限 $\lim\limits_{\lambda(P) \to 0} S(f; P,\xi)$ 存在且等于该共同值.
 
 \pause
-\vspace{1em}
+% \vspace{1em}
 
-{\color{red}\ding{43}} 必要性的证明则依赖于达布定理, 由达布定理可知, 若 $f$ 在 $[a,b]$ 上黎曼可积, 则
+{\color{red}\ding{43}} 必要性: 记 $I = \int_a^b f(x) ~ \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P,\xi).$ 首先, 对任意划分 $P$ 有 $\underline{S}(f; P) \leqslant I \leqslant \overline{S}(f; P).$ 这是因为, 任取 $P$ 的加细 $P',$ 则由达布和的单调性可知
+\[
+\underline{S}(f; P) \leqslant \underline{S}(f; P') \leqslant S(f; P',\xi') \leqslant \overline{S}(f; P') \leqslant \overline{S}(f; P).
+\]
+上式对 $\lambda(P') \to 0$ 取极限即可. 进一步有 ~ $\sup_P \underline{S}(f; P) \leqslant I \leqslant \inf_P \overline{S}(f; P).$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{达布和给出的黎曼可积充要条件}
+
+接下来, 我们证明 $\forall ~ \varepsilon > 0,$ 都有划分 $P$ 使得 $I - \underline{S}(f; P) < \varepsilon.$ (对 $\overline{S}(f; P)$ 类似可证.)
+
+为此, 由黎曼可积的定义, 存在某个 $\delta > 0,$ 使得对任意带标志点的划分 $(P', \xi')$ 满足 $\lambda(P') < \delta$ 时, 都有
+\[
+|S(f; P',\xi') - I| < \varepsilon/2.
+\]
+现任取划分 $P$ 满足 $\lambda(P) < \delta,$ 并取标志点 $\xi$ 使得
+\[
+0 \leqslant f(\xi_k) - m_k < \frac{\varepsilon}{2(b-a)}, \quad k = 1, 2, \dots, n.
+\]
+则有
+\[
+|\underline{S}(f; P) - S(f; P,\xi)| = \left| \sum_{k=1}^n (f(\xi_k) - m_k) \Delta x_k \right| < \frac{\varepsilon}{2(b-a)} \sum_{k=1}^n \Delta x_k = \frac{\varepsilon}{2}.
+\]
+因此,
+\[
+|I - \underline{S}(f; P)| \leqslant |I - S(f; P,\xi)| + |\underline{S}(f; P) - S(f; P,\xi)| < \varepsilon/2 + \varepsilon/2 = \varepsilon.
+\]
+于是, 我们就证明了 $\sup_P \underline{S}(f; P) = I.$
+
+类似地, 可证 $\inf_P \overline{S}(f; P) = I.$ 综上, 必要性得证.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{达布和给出的黎曼可积充要条件 --- 几个注记}
+
+\begin{itemize}
+\item 对区间 $[a, b]$ 上的有界函数 $f,$ 总成立
+\[
+\lim\limits_{\lambda(P) \to 0} \underline{S}(f; P) = \sup_P \underline{S}(f; P) ~ {\color{red}\leqslant} ~ \inf_P \overline{S}(f; P) = \lim\limits_{\lambda(P) \to 0} \overline{S}(f; P).
+\]
+我们证明了 $\color{red} \leqslant$ 号取等的充分必要条件是 $f$ 在 $[a,b]$ 上黎曼可积.
+
+相较于黎曼可积的定义, 这条判别准则\alert{去掉了一个``随机'' (或``任取'')的因素} --- 标志点的选取, 因而更便于实际应用.
+\item 由 $\underline{S}(f; P) \leqslant \overline{S}(f; P),$ 考察
+\[
+\overline{S}(f; P) - \underline{S}(f; P) \geqslant 0,
+\]
+若 $\lim\limits_{\lambda(P) \to 0} [\overline{S}(f; P) - \underline{S}(f; P)] = 0,$ 则 $f$ 在 $[a,b]$ 上黎曼可积. 反过来也成立.
+
+这就引出了黎曼可积的另一种判别方法 --- 振幅判别法.
+\end{itemize}
 
 \end{frame}
 
@@ -619,14 +675,222 @@ $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
 \frametitle{振幅与可积条件}
 
 \begin{Def}[振幅]
-
+设 $E \subset \mathbb{R},$ 函数 $f$ 定义域包含 $E.$ 定义函数 $f$ 在集合 $E$ 上的\alert{振幅 (oscillation)}为
+\[
+\omega(f; E) = \sup_{x_1, x_2 \in E} |f(x_1) - f(x_2)|.
+\]
 \end{Def}
+
+\pause
+
+特别地, 对区间 $[a, b]$ 的划分 $P = \{x_i\}_{i=0}^n,$ 用 $\omega_i = \omega(f; [x_{i-1}, x_i])$ 表示 $f$ 在子区间 $[x_{i-1}, x_i]$ 上的振幅, 那么用达布和表达的黎曼可积性充要条件的定理可等价为用振幅表达的形式:
+
+\pause
+
+\begin{thm}[振幅判别法]
+区间 $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
+\[\lim_{\lambda(P) \to 0} \sum_{i=1}^n \omega_i \Delta x_i = 0.\]
+\end{thm}
+
+\pause
+
+实际上, 可以进一步定义 $f$ 的振幅函数
+\[
+\omega_f(x) := \lim_{\delta \to 0^+} \omega(f; (x - \delta, x + \delta) \cap [a,b]), \quad x \in [a,b].
+\]
+可以证明 $\inf_P \overline{S}(f; P) - \sup_P \underline{S}(f; P) = \int_{[a, b]} \omega_f(x) ~ \mathrm{d} x.$ (后者是勒贝格积分)
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{函数黎曼可积的勒贝格判别法}
+\begin{frame}
+\frametitle{几大类黎曼可积函数}
+
+下面, 我们借由振幅判别法引入几大类常见的黎曼可积函数.
+\[
+{\color{red}\boxed{?}} \subset \mathfrak{R}[a,b] \subsetneqq \{[a, b] ~ \text{上有界函数}\} =: B[a,b].
+\]
+
+\pause
+
+\begin{cor}[连续函数]
+区间 $[a,b]$ 上的连续函数 $f$ 必然黎曼可积, 即 $C[a,b] \subset \mathfrak{R}[a,b].$
+\end{cor}
+
+\pause
+
+证明: 闭区间上连续函数都是\alert{一致连续的}, 故对任意 $\varepsilon > 0,$ 存在 $\delta > 0,$ 使得当 $|x - y| < \delta$ 时, 有 $|f(x) - f(y)| < \varepsilon/2(b-a).$ 因此, 对任意划分 $P$ 满足 $\lambda(P) < \delta$ 时, 有
+\[
+\omega_i := \sup_{x, y \in [x_{i-1}, x_i]} |f(x) - f(y)| \leqslant \frac{\varepsilon}{2(b-a)}, \quad i = 1, 2, \dots, n,
+\]
+从而有
+\[
+\sum_{i=1}^n \omega_i \Delta x_i \leqslant \frac{\varepsilon}{2(b-a)} \sum_{i=1}^n \Delta x_i = \varepsilon/2 < \varepsilon.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{几大类黎曼可积函数}
+
+\begin{cor}[单调函数]
+区间 $[a,b]$ 上的单调函数 $f$ 必然黎曼可积, 即 $\{\text{区间 } [a,b] \text{ 上的单调函数}\} \subset \mathfrak{R}[a,b].$
+\end{cor}
+
+\pause
+
+证明: 不妨设设 $f$ 在 $[a,b]$ 上单调递增, 则对任意划分 $P = \{x_i\}_{i=0}^n,$ 有
+\[
+m_i = f(x_{i-1}), \quad M_i = f(x_i) \implies \omega_i = M_i - m_i = f(x_i) - f(x_{i-1}),
+\]
+从而有
+\[
+\sum_{i=1}^n \omega_i \Delta x_i = \sum_{i=1}^n [f(x_i) - f(x_{i-1})] \Delta x_i \leqslant (f(b) - f(a)) \cdot \lambda(P).
+\]
+因此, 当 $\lambda(P) \to 0$ 时, 上式趋于 $0,$ 故 $f$ 在 $[a,b]$ 上黎曼可积.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{振幅判别法的进一步简化}
+
+回顾一下达布定理的证明过程: 我们首先确定了 $\forall ~ \varepsilon > 0,$ 存在某个划分 $P' = \{ x_i \}_0^h$ 使得 $\overline{S}(f; P') < L + \frac{\varepsilon}{2}.$ 然后, 对于所有满足
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\lambda(P) < \min \left\{ \dfrac{\varepsilon}{2(h-1)(M - m)}, ~ \min_{1 \leqslant i \leqslant h} \Delta x_i' \right\}
+\end{empheq}
+的划分 $P,$ 通过考察 $P, P',$ 以及它们的合并加细 $P^*$ 的关系, 我们得出了 $\overline{S}(f; P) < L + \varepsilon$ 的结论.
+
+\pause
+\vspace{1em}
+
+那么可以合理地猜测:
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{align*}
+& \text{若我们能找到某个划分 $P',$ 使得 $\sum \Delta x_i' \cdot \omega_i' < \varepsilon/2,$}\\
+& \text{那么可以找到 $\color{red} \delta = ?$ 使得对任意划分 $P$ 满足 $\lambda(P) < \delta$ 时, 都有 $\sum \Delta x_i \cdot \omega_i < \varepsilon.$}
+\end{empheq}
+
+\pause
+\vspace{1em}
+
+事实上, 还是只要取 $\delta = \min \left\{ \dfrac{\varepsilon}{2(h-1)(M - m)}, ~ \min_{1 \leqslant i \leqslant h} \Delta x_i' \right\}$ 即可. 证明过程与达布定理的证明类似, 此处不再赘述.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{振幅判别法的进一步简化}
+
+总结起来, 我们有条件简化 (减弱) 版本的振幅判别法:
+\begin{thm}[振幅判别法的简化版本]
+区间 $[a,b]$ 上有界函数 $f$ 黎曼可积的充分条件是:
+\[
+\forall~\varepsilon > 0, ~{\color{red}\exists~\text{划分}~P}, ~\text{使得}~\sum_{i=1}^n \omega_i \Delta x_i < \varepsilon.
+\]
+\end{thm}
+
+注意, 该定理中 \alert{红色部分``$\exists~\text{划分}~P$''} 在之前的振幅判别法中是 \alert{``$\exists~\delta > 0,$ 对任意满足 $\lambda(P) < \delta$ 的划分 $P$''}.
+
+\pause
+\vspace{1em}
+
+\begin{cor}
+若有界函数 $f$ 在 $[a,b]$ 上只有有限个不连续点, 则 $f$ 在 $[a,b]$ 上黎曼可积.
+\end{cor}
+
+\alert{注意}, 之后在学习实变函数论时会证明, 单调函数的不连续点集是可数集, 因此本推论可视作之前结论``区间上单调函数黎曼可积''的弱化版本.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{振幅判别法的进一步简化}
+
+证明: 设 $f$ 在 $[a,b]$ 上的不连续点为 $\{c_1, c_2, \dots, c_k\}.$ 令 (设 $k \geqslant 1,$ 否则 $f$ 连续, 结论显然成立)
+\[
+d = \begin{cases}
+\min\limits_{1 \leqslant i \leqslant k-1} (c_i - c_{i-1}), & k > 1; \\
+(b - a) / 2, & k = 1; \\
+\end{cases}
+\]
+取 $0 < \delta < d/3,$ 并挖去 $(c_i - \delta, c_i + \delta), ~ i = 1, 2, \dots, k$ (若 $c_i$ 是闭区间端点, 则相应地挖去半开区间) 后, 得到至多 $k+1$ 个闭子区间, $f$ 在每个闭子区间上连续, 从而可积. 那么 $\forall ~ \varepsilon > 0,$ 可在每个闭子区间 (不妨设有 $k+1$ 个) 上分别找到划分 $P_j = \{x_i^{(j)}\}_{i=0}^{n_j},$ $j = 1, 2, \dots, k+1,$ 使得
+\[
+\sum_{i=1}^{n_j} \omega(f; [x_{i-1}^{(j)}, x_i^{(j)}]) \Delta x_i^{(j)} < \frac{\varepsilon}{2(k+1)}, ~ j = 1, 2, \dots, k+1.
+\]
+
+\pause
+
+另一方面, 在区间 $(c_i - \delta, c_i + \delta), ~ i = 1, 2, \dots, k$ 上, $f$ 的振幅至多为 $M - m,$ 其中 $M = \sup_{x \in [a,b]} f(x),$ $m = \inf_{x \in [a,b]} f(x).$ 因此, 进一步要求
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+0 < \delta < \frac{\varepsilon}{4k(M - m)},
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{振幅判别法的进一步简化}
+
+则在每个区间 $(c_i - \delta, c_i + \delta), ~ i = 1, 2, \dots, k$ 上, 有
+\[\omega(f; [c_i - \delta, c_i + \delta]) \cdot 2\delta < (M - m) \cdot \frac{\varepsilon}{2k(M - m)} = \frac{\varepsilon}{2k}.\]
+合并起来得
+\[
+\sum_{i=1}^{k} 2\delta \cdot \omega(f; [c_i - \delta, c_i + \delta]) < \frac{\varepsilon}{2}.
+\]
+将上述划分 $P_j, ~ j = 1, 2, \dots, k+1$ 和各个区间 $[c_i - \delta, c_i + \delta], ~ i = 1, 2, \dots, k$ 的端点合并, 即可得到一个划分 $P$ 满足
+\begin{align*}
+\sum_{i=1}^n \omega_i \Delta x_i & = \sum_{j=1}^{k+1} \sum_{i=1}^{n_j} \omega(f; [x_{i-1}^{(j)}, x_i^{(j)}]) \Delta x_i^{(j)} + \sum_{i=1}^{k} 2\delta \cdot \omega(f; [c_i - \delta, c_i + \delta]) \\
+& < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\end{align*}
+这就完成了证明.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{函数黎曼可积性定义及判别法总结}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.3cm, every node/.style={align=center}]
+\node (def) [anchor=east] {定义};
+\node (def_interpret) [right = of def, anchor=west] {$\lim\limits_{\lambda(P) \to 0} S(f; P,\xi)$ 存在};
+\node (darboux) [below = of def.east, anchor=east] {达布和};
+\node (darboux_interpret) [right = of darboux, anchor=west] {$\sup_P \underline{S}(f; P) = \inf_P \overline{S}(f; P)$};
+\node (oscillation) [below = of darboux.east, anchor=east] {振幅};
+\node (oscillation_interpret) [right = of oscillation, anchor=west] {$\lim\limits_{\lambda(P) \to 0} \sum \omega_i \Delta x_i = 0$};
+\node (oscillation_simplify) [below = of oscillation.east, anchor=east] {振幅 (简化版)};
+\node (oscillation_simplify_interpret) [right = of oscillation_simplify, anchor=west] {$\forall ~ \varepsilon > 0, ~ \exists ~ P, ~ \sum \omega_i \Delta x_i < \varepsilon$};
+
+% arrows
+\draw[->] ([xshift=-1.3em]def.south east) -- ([xshift=-1.3em]darboux.north east);
+\draw[->] ([xshift=-1.3em]darboux.south east) -- ([xshift=-1.3em]oscillation.north east);
+\draw[->] ([xshift=-1.3em]oscillation.south east) -- ([xshift=-1.3em]oscillation_simplify.north east);
+\end{tikzpicture}
+\end{center}
+
+\pause
+
+\begin{question}
+以上最简便的判别法 (振幅的简化版本) 还是需要进行构造 (划分 $P$), 以及计算 (振幅 $\omega_i$), 以及求和. 有没有更简单的方法判定函数的黎曼可积性呢?
+\end{question}
+
+\pause
+
+答案是有的, 这就是函数黎曼可积的\alert{勒贝格判别法}.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[勒贝格判别法]{函数黎曼可积的勒贝格判别法}
 
 %------------------------------------------------
 
@@ -644,9 +908,22 @@ $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
 
 \pause
 
+\begin{Def}[几乎处处成立的性质]
+称某性质 $\mathcal{P}$ 在 $E \subset \mathbb{R}$ 上几乎处处成立, 若存在某个零测集 $Z \subset E,$ 使得 $\mathcal{P}$ 在 $E \setminus Z$ 上处处成立.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{零测集}
+
 \begin{eg}[一些典型的零测集和典型的非零测集]
 \begin{itemize}
-\item 可列集必然是零测集, 例如 $\mathbb{Q}.$
+\item 有限集、可列集必然是零测集, 例如 $\mathbb{Q}.$
+\pause
+\item 有限多个、可列多个零测集的并集仍然是零测集.
 \pause
 \item 非退化区间 $(a, b),$ $a < b,$ 必然是非零测集.
 \end{itemize}
@@ -656,16 +933,13 @@ $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
 
 \alert{注意}, 集合的势和是否是零测集有一定关系, 但不是严格一一对应的关系. 例如, 所谓的 Cantor 三分集, 具有连续统的势, 但是是零测集.
 
-\end{frame}
+\pause
+\vspace{1em}
 
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{几乎处处成立的性质}
-
-\begin{Def}[几乎处处成立的性质]
-称某性质 $\mathcal{P}$ 在 $E \subset \mathbb{R}$ 上几乎处处成立, 若存在某个零测集 $Z \subset E,$ 使得性质 $\mathcal{P}$ 在 $E \setminus Z$ 上处处成立.
-\end{Def}
+{\color{red}\ding{43}} 可列集是零测集的证明: 设 $E = \{x_1, x_2, \dots\}$ 是可列集, 则对任意 $\varepsilon > 0,$ 取开区间 $I_k = \left( x_k - \frac{\varepsilon}{2^{k+1}}, x_k + \frac{\varepsilon}{2^{k+1}} \right), ~ k = 1, 2, \dots,$ 则 $\{I_k\}$ 是 $E$ 的开覆盖, 且
+\[
+\sum_{k=1}^{\infty} |I_k| = \sum_{k=1}^{\infty} \frac{\varepsilon}{2^k} = \varepsilon.
+\]
 
 \end{frame}
 
@@ -675,8 +949,24 @@ $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
 \frametitle{函数黎曼可积的勒贝格判别法}
 
 \begin{thm}[函数黎曼可积的勒贝格判别法]
-定义在闭区间 $[a, b]$ 上的函数 $f$ 是黎曼可积的, \alert{当且仅当} $f$ 在 $[a, b]$ 上有界, 且几乎处处连续.
+定义在闭区间 $[a, b]$ 上的函数 $f$ 是黎曼可积的, 当且仅当 $f$ 在 $[a, b]$ 上有界, 且\alert{几乎处处连续}.
 \end{thm}
+
+勒贝格判别法的证明较为复杂, 此处不再赘述. 该定理表明, 函数黎曼可积性的本质在于它的\alert{``不连续点集的大小''}.
+
+\pause
+\vspace{1em}
+
+{\color{red}\ding{43}} 下面是函数黎曼可积的勒贝格判别法的一些应用:
+
+\begin{itemize}
+\item $[0, 1]$ 区间上的狄利克雷函数 $D(x)$ 在 $[0, 1]$ 上处处不连续, 故不可积.
+\item $[0, 1]$ 区间上的黎曼函数 $R(x)$ 在 $[0, 1]$ 上的不连续点集为 $\mathbb{Q} \cap [0, 1],$ 是可列集, 故是零测集, 因而 $R(x)$ 在 $[0, 1]$ 上黎曼可积.
+\item 区间 $[a, b]$ 上的单调函数 $f$ 的不连续点集是可数集, 故是零测集, 因而单调函数在闭区间上黎曼可积.
+\item 函数复合 $[a, b] \xrightarrow[\text{可积}]{f} [c, d] \xrightarrow[\text{连续}]{g} \mathbb{R}$ 是黎曼可积的.
+
+\alert{注意}, 若复合的顺序颠倒 $[a, b] \xrightarrow[\color{red}\text{连续}]{f} [c, d] \xrightarrow[\color{red}\text{可积}]{g} \mathbb{R}$, 则复合函数\alert{不一定黎曼可积}.
+\end{itemize}
 
 \end{frame}
 
