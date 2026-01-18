@@ -246,7 +246,7 @@ S(f; P, \xi) = \sum_{i=1}^n f(\xi_i) \Delta x_i \geqslant 0.
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{绝对可积性的证明续}
+\frametitle{绝对可积性的证明 (续)}
 
 再由保序性, 有
 \[-\int_a^b |f(x)| ~ \mathrm{d} x \leqslant \int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b |f(x)| ~ \mathrm{d} x,\]
@@ -300,7 +300,7 @@ S(f; P, \xi) = \sum_{i=1}^n f(\xi_i) \Delta x_i \geqslant 0.
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{区间可加性的证明续}
+\frametitle{区间可加性的证明 (续)}
 
 将 $P_1$ 和 $P_2$ 合并得到 $[a, b]$ 的划分 $P,$ 则
 \[\sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \Delta x_i < \varepsilon.\]
@@ -612,7 +612,49 @@ g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x = g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{积分第二中值定理的证明续}
+\frametitle{积分第二中值定理的证明 (续)}
+
+接下来证明, $\exists ~ \xi' \in [a, b],$ 使得 $\Circled{1} \xrightarrow{\lambda(P) \to 0} g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x.$ 记 $F(x) = \int_a^x f(t) ~ \mathrm{d} t,$ 那么
+\begin{align*}
+\Circled{1} & = \sum_{i=1}^n g(x_{i-1}) \left( \int_a^{{\color{red}x_i}} f(x) ~ \mathrm{d} x - \int_a^{{\color{red}x_{i-1}}} f(x) ~ \mathrm{d} x \right) = \sum_{i=1}^n g(x_{i-1}) (F(x_i) - F(x_{i-1})) \\
+& = \sum_{i=1}^n F(x_i) g(x_{i-1}) - \sum_{{\color{red}i=2}}^n F(x_{i-1}) g(x_{i-1}) = \sum_{i=1}^n F(x_i) g(x_{i-1}) - \sum_{{\color{red}i=1}}^{{\color{red}n-1}} F(x_i) g(x_i) \\
+& = F(b) g(x_{n-1}) + \sum_{i=1}^{n-1} F(x_i) (g(x_{i-1}) - g(x_i)).
+\end{align*}
+
+\pause
+
+显然 $F(x)$ 在 $[a, b]$ 上有界, 令 $d \leqslant F(x) \leqslant D.$ 注意到 $g(x)$ 是非负不增的, 由上式有
+\[
+{\only<3-> {d \cdot g(a) = ~}} d \cdot g(x_{n-1}) + \sum_{i=1}^{n-1} d (g(x_{i-1}) - g(x_i)) \leqslant \Circled{1} \leqslant D \cdot g(x_{n-1}) + \sum_{i=1}^{n-1} D (g(x_{i-1}) - g(x_i)) {\only<3-> {~ = D \cdot g(a)}}.
+\]
+
+\only<4->{
+对上式关于 $\lambda(P) \to 0$ 取极限, 可得
+\[
+d \cdot g(a) \leqslant \lim_{\lambda(P) \to 0} \Circled{1} \leqslant D \cdot g(a).
+\]
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分第二中值定理的证明 (续)}
+
+对 $\int_a^b f(x) g(x) ~ \mathrm{d} x = \Circled{1} + \Circled{2}$ 关于 $\lambda(P) \to 0$ 取极限:
+\[
+\int_a^b f(x) g(x) ~ \mathrm{d} x = \lim_{\lambda(P) \to 0} \Circled{1} + \lim_{\lambda(P) \to 0} \Circled{2} = \lim_{\lambda(P) \to 0} \Circled{1} \in [d \cdot g(a), D \cdot g(a)].
+\]
+于是, 存在 $\eta \in [d, D],$ 使得 $\int_a^b f(x) g(x) ~ \mathrm{d} x = \eta \cdot g(a).$
+
+\pause
+\vspace{0.5em}
+
+再次利用 $F(x) = \int_a^x f(t) ~ \mathrm{d} t$ 的连续性, 存在 $\xi' \in [a, b],$ 使得 $\eta = F(\xi') = \int_a^{\xi'} f(x) ~ \mathrm{d} x,$ 即有式~(\ref{eq:star2}) 成立:
+\[
+\int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x.
+\]
 
 \end{frame}
 
