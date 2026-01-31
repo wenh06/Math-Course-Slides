@@ -223,12 +223,9 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 考虑 $\int_a^{+\infty} f(x)g(x) \mathrm{d} x,$ 有
 \begin{itemize}
 \item[(1)] Abel 判别法:
-\[\int_a^{+\infty} f(x) \mathrm{d} x ~ \text{收敛}, ~ g(x) ~ \text{单调有界} \Longrightarrow \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛};\]
+\[\int_a^{+\infty} f(x) \mathrm{d} x ~ \text{收敛}, ~ g(x) ~ \text{单调有界} \implies \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛};\]
 \item[(2)] Dirichlet 判别法:
-\begin{multline*}
-\int_a^{A} f(x) \mathrm{d} x ~ \text{关于$A$有界}, ~ g(x) ~ \text{单调}, ~ \lim\limits_{x\to\infty} g(x) = 0 \\
-\Longrightarrow \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛}
-\end{multline*}
+\[\int_a^{A} f(x) \mathrm{d} x ~ \text{关于$A$有界}, ~ g(x) ~ \text{单调}, ~ \lim\limits_{x\to\infty} g(x) = 0 \implies \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛}\]
 \end{itemize}
 
 \pause
@@ -265,10 +262,10 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 (1). Abel 判别法: 条件为 $\sum\limits_{n=1}^{\infty} b_n$ 收敛, $a_n$单调有界.
 \vspace{-1em}
 \begin{align*}
-\sum\limits_{n=1}^{\infty} b_n ~ \text{收敛} ~~ & ~ {\color{red}\Longrightarrow} ~~
+\sum\limits_{n=1}^{\infty} b_n ~ \text{收敛} ~~ & ~ {\color{red}\implies} ~~
 \only<2>{\phantom{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.}}
 \only<3->{\forall~\varepsilon > 0, \exists N, \text{ 使得 } \forall~m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.} \\
-\only<4->{a_n ~ \text{单调有界} ~~ & ~ {\color{red}\Longrightarrow}} ~~ \only<5->{\exists M > 0, \text{ 使得 } \lvert a_n \rvert < M \text{ 对所有$n$成立}}
+\only<4->{a_n ~ \text{单调有界} ~~ & ~ {\color{red}\implies}} ~~ \only<5->{\exists M > 0, \text{ 使得 } \lvert a_n \rvert < M \text{ 对所有$n$成立}}
 \end{align*}
 
 \vspace{-1em}
@@ -318,10 +315,10 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 
 (2). Dirichlet 判别法: 条件为$\sum\limits_{n=1}^{N} b_n$ 关于 $N$ 有界, $a_n$ 单调趋于 $0.$
 \begin{align*}
-a_n ~ \text{单调趋于 $0$} ~~ & {\color{red}\Longrightarrow} ~~
+a_n ~ \text{单调趋于 $0$} ~~ & {\color{red}\implies} ~~
 \only<1>{\phantom{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall~n > N, \left\lvert a_n \right\rvert < \varepsilon.}}
 \only<2->{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall~n > N, \left\lvert a_n \right\rvert < \varepsilon.} \\
-\only<3->{\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界} ~~ & {\color{red}\Longrightarrow}} ~~ \only<4->{\exists M > 0, ~ \text{使得} ~ \forall~N ~ \text{有} ~ \left\lvert \sum\limits_{n=1}^{N} b_n \right\rvert < ~ {\color{red}M}}
+\only<3->{\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界} ~~ & {\color{red}\implies}} ~~ \only<4->{\exists M > 0, ~ \text{使得} ~ \forall~N ~ \text{有} ~ \left\lvert \sum\limits_{n=1}^{N} b_n \right\rvert < ~ {\color{red}M}}
 \end{align*}
 
 \only<5->{

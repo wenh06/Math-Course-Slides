@@ -152,9 +152,9 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 \setcounter{enumi}{1}
 \item 线性性:
 \[\int_a^b (\alpha g(x) + \beta f(x)) ~ \mathrm{d} x = \alpha \int_a^b g(x) ~ \mathrm{d} x + \beta \int_a^b f(x) ~ \mathrm{d} x.\]
-\item 乘积可积性: $f, g \in \mathcal{R}[a, b] \Longrightarrow f \cdot g \in \mathcal{R}[a, b].$
-\item 保序性: $f \leqslant g \Longrightarrow \int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b g(x) ~ \mathrm{d} x.$
-\item 绝对可积性: $f \in \mathcal{R}[a, b] \Longrightarrow \lvert f \rvert \in \mathcal{R}[a, b]$ ({\color{red}反之不成立}), 且有
+\item 乘积可积性: $f, g \in \mathcal{R}[a, b] \implies f \cdot g \in \mathcal{R}[a, b].$
+\item 保序性: $f \leqslant g \implies \int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b g(x) ~ \mathrm{d} x.$
+\item 绝对可积性: $f \in \mathcal{R}[a, b] \implies \lvert f \rvert \in \mathcal{R}[a, b]$ ({\color{red}反之不成立}), 且有
 \[\left\lvert \int_a^b f(x) ~ \mathrm{d} x \right\rvert \leqslant \int_a^b \lvert f(x) \rvert ~ \mathrm{d} x.\]
 \end{enumerate}
 
@@ -456,9 +456,9 @@ Cauchy 主值
 
 \begin{attnblock}
 定积分 (Riemann 积分) 的绝对可积性
-\[f(x) \in \mathcal{R}[a, b] ~~ \substack{\Longrightarrow \\ \centernot\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathcal{R}[a, b]\]
+\[f(x) \in \mathcal{R}[a, b] ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathcal{R}[a, b]\]
 在反常积分中正好反过来了:
-\[\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{\Longrightarrow \\ \centernot\Longleftarrow} ~~ \int_a^\omega f(x) ~ \mathrm{d} x ~ \text{ 收敛}.\]
+\[\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \int_a^\omega f(x) ~ \mathrm{d} x ~ \text{ 收敛}.\]
 \end{attnblock}
 
 \pause
@@ -513,8 +513,8 @@ Cauchy 主值
 \begin{block}{比较判别法}
 设在 $[a, \omega)$ 上, $0 \leqslant f(x) \leqslant g(x),$ 则
 \begin{itemize}[<+->]
-\item $\int_a^\omega g(x) ~ \mathrm{d} x $ 收敛 $\Longrightarrow$ $\int_a^\omega f(x) ~ \mathrm{d} x $ 收敛;
-\item $\int_a^\omega f(x) ~ \mathrm{d} x $ 发散 $\Longrightarrow$ $\int_a^\omega g(x) ~ \mathrm{d} x $ 发散.
+\item $\int_a^\omega g(x) ~ \mathrm{d} x $ 收敛 $\implies$ $\int_a^\omega f(x) ~ \mathrm{d} x $ 收敛;
+\item $\int_a^\omega f(x) ~ \mathrm{d} x $ 发散 $\implies$ $\int_a^\omega g(x) ~ \mathrm{d} x $ 发散.
 \end{itemize}
 \end{block}
 
@@ -700,8 +700,8 @@ Cauchy 主值
 \begin{thm}[比较判别法]
 设 $\sum\limits_{n=1}^{\infty} x_n, \sum\limits_{n=1}^{\infty} y_n$ 是两个 (正项) 级数, 若存在 $N \in \mathbb{N},$ 使得对所有 $n > N$ 都有 $0 \leqslant x_n \leqslant y_n,$ 那么
 \begin{itemize}
-\item $\sum\limits_{n=1}^{\infty} y_n$ 收敛 $\Longrightarrow$ $\sum\limits_{n=1}^{\infty} x_n$ 收敛;
-\item $\sum\limits_{n=1}^{\infty} x_n$ 发散 $\Longrightarrow$ $\sum\limits_{n=1}^{\infty} y_n$ 发散.
+\item $\sum\limits_{n=1}^{\infty} y_n$ 收敛 $\implies$ $\sum\limits_{n=1}^{\infty} x_n$ 收敛;
+\item $\sum\limits_{n=1}^{\infty} x_n$ 发散 $\implies$ $\sum\limits_{n=1}^{\infty} y_n$ 发散.
 \end{itemize}
 \end{thm}
 
@@ -840,9 +840,9 @@ Leibniz 级数 $\sum\limits_{n=1}^\infty (-1)^{n-1} u_n,$ 其中 $0 < u_n \searr
 
 \begin{prop}[乘积收敛性]
 \begin{itemize}[<+->]
-\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ $\Longrightarrow$ 正方形乘积 $= AB;$
-\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 且至少有一个绝对收敛 $\Longrightarrow$ Cauchy 乘积 $= AB.$
-\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 且 Cauchy 乘积 $\sum\limits_{n=1}^\infty c_n$ 收敛 $\Longrightarrow$ Cauchy 乘积 $= AB.$
+\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ $\implies$ 正方形乘积 $= AB;$
+\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 且至少有一个绝对收敛 $\implies$ Cauchy 乘积 $= AB.$
+\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 且 Cauchy 乘积 $\sum\limits_{n=1}^\infty c_n$ 收敛 $\implies$ Cauchy 乘积 $= AB.$
 \end{itemize}
 \end{prop}
 

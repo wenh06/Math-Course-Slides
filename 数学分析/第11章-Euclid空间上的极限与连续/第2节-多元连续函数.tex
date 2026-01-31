@@ -262,9 +262,9 @@ $\forall~\varepsilon > 0, \exists \delta > 0,$ 使得对任意满足 $0 < \lvert
 \[\lvert A - B \rvert \leqslant \lvert f(x) - A \rvert + \lvert f(x) - B \rvert \to 0, \quad (x \to x_0),\]
 知 $A = B.$
 \item 局部有界性: 如果函数 $f(x)$ 当 $x \to x_0$ 时有极限 $A$, 那么存在 $\delta > 0$, 使得对于 $x \in \mathring{O}(x_0, \delta) \cap D$ 有
-\[\lvert f(x) - A \rvert < 1 ~~ \Longrightarrow ~~ \lvert f(x) \rvert < \lvert A \rvert + 1.\]
+\[\lvert f(x) - A \rvert < 1 ~~ \implies ~~ \lvert f(x) \rvert < \lvert A \rvert + 1.\]
 \item 局部保号性: 如果函数 $f(x)$ 当 $x \to x_0$ 时有极限 $A > 0$, 那么存在 $\delta > 0$, 使得对于 $x \in \mathring{O}(x_0, \delta) \cap D$ 有
-\[\lvert f(x) - A \rvert < \dfrac{A}{2} ~~ \Longrightarrow ~~ f(x) > \dfrac{A}{2} > 0.\]
+\[\lvert f(x) - A \rvert < \dfrac{A}{2} ~~ \implies ~~ f(x) > \dfrac{A}{2} > 0.\]
 对于 $A < 0$ 的情形也是类似的.
 \end{itemize}
 
@@ -665,7 +665,7 @@ $\forall~\varepsilon > 0, \exists~\delta > 0,$ 当 $\lVert x - x_0 \rVert < \del
 \[
 (y+1) \sqrt{x^2 + y^2} \to 0
 \pause
-~~ \Longrightarrow ~~ \dfrac{\sin \left( {\color{red} (y+1) \sqrt{x^2 + y^2}} \right)}{\color{red} (y+1) \sqrt{x^2 + y^2}} \to 1
+~~ \implies ~~ \dfrac{\sin \left( {\color{red} (y+1) \sqrt{x^2 + y^2}} \right)}{\color{red} (y+1) \sqrt{x^2 + y^2}} \to 1
 \]
 \pause
 于是 $\lim\limits_{(x,y) \to (0,0)} \dfrac{\sin \left( (y+1) \sqrt{x^2 + y^2} \right)}{\sqrt{x^2 + y^2}} = 1 \cdot 1 = 1.$
