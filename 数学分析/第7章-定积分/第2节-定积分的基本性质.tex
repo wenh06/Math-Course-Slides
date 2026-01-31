@@ -43,7 +43,7 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{序言}
+\frametitle{绪言}
 
 {
 \larger[2]
@@ -579,7 +579,9 @@ g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x = g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g
 \pause
 \vspace{0.5em}
 
-\alert{注意}, 这里用到了一个结论: $\int_\xi^t f(x) ~ \mathrm{d} x$ 关于 $t$ 是连续的, 这个结论可以通过积分的定义直接证明.
+\alert{注意}, 这里用到了一个结论: $\int_\xi^t f(x) ~ \mathrm{d} x$ 关于 $t$ 是连续的, 这个结论可以利用黎曼可积函数的有界性直接证明:
+\pause
+$\left\lvert \int_{t}^{t+\Delta t} f(x) ~ \mathrm{d} x \right\rvert \leqslant M |\Delta t|,$ 其中 $M = \sup_{x \in [a, b]} |f(x)|.$
 
 \end{frame}
 
