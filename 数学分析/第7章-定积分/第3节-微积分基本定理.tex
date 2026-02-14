@@ -534,4 +534,46 @@ F(t) = \begin{cases} \arctan \left( t - \frac{1}{t} \right), & -1 \leqslant t < 
 
 %------------------------------------------------
 
+\begin{frame}
+\frametitle{一些后话}
+
+牛顿-莱布尼茨公式建立了微分学和积分学之间的联系, 具有比较重要的理论价值, 但一般具体的定积分计算很少通过这种方式求出, 还是通过数值方法来完成的. (将在 \S 7.6 中进行初步介绍)
+
+\pause
+\vspace{0.5em}
+
+这可以类比于代数学中用古典伴随矩阵求逆, 以及 Cramer 法则求解线性方程组, 这两种方法理论上很漂亮, 但实际计算中效率很低, 因此很少使用.
+
+\pause
+\vspace{0.5em}
+
+虽然实际计算中大部分是通过数值方法来完成的, 但类似原函数这种所谓的 ``闭式'' 的表达式, 由于不需要迭代, 在计算中也是有很大优势的. 另外, 这种直接的联系的理论意义, 也是数值方法不能比拟的. 例如
+\[
+\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}, ~~ (\text{证明方法很多})
+\]
+数值方法不能直接告诉我们 $\frac{1}{\pi^2} \sum\limits_{n=1}^\infty \frac{1}{n^2} \in \mathbb{Q}.$
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一些后话}
+
+更一般地, 有 Riemann Zeta 函数
+\[
+\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s} = \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}}, ~~ \Re(s) > 1,
+\]
+它可以解析延拓到整个复平面上, 还有所谓的 Functional Equation $\zeta(s) \rightsquigarrow \zeta(1-s)$. $s \in \mathbb{Z}$ 时, $\zeta(s)$ 是所谓的 Special Values, 例如, 设 $n \geqslant 0$ 是整数,
+\begin{itemize}
+\item $\zeta(2n + 2) = (\text{有理数}) \cdot \pi^{k}$;
+\item $\zeta(-n)$ 是有理数, 特别地, $\zeta(-2n - 2) = 0$ (被称为 Riemann Zeta 函数的平凡零点).
+\item $\zeta(2n + 1)$ 目前知道的结果很少, 没有类似于 $\zeta(2n + 2)$ 的漂亮的表达式.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
 \end{document}
