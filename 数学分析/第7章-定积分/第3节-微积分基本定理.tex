@@ -55,16 +55,480 @@
 \pause
 \vspace{1em}
 
-之前已经接触过 $F(x) = \int_a^x f(t) ~ \mathrm{d} t$ 这个函数了, 这里 $f \in \mathbb{R}[a, b]$ 是一个黎曼可积函数. $F(x)$ 是所谓的\alert{变上限积分},
+之前已经接触过 $F(x) = \int_a^x f(t) ~ \mathrm{d} t$ 这个函数了, 这里 $f \in \mathbb{R}[a, b]$ 是一个黎曼可积函数. $F(x)$ 是所谓的\alert{变上限积分}. 它是一个定义在 $[a, b]$ 上的函数, 而且已经证明了它在 $[a, b]$ 上连续.
 
+\pause
+\vspace{1em}
+
+我们知道, $f \in \mathfrak{R}[a, b] ~~ \iff ~~ \begin{cases} f \text{ 在 } [a, b] \text{ 上几乎处处连续}; \\ f \text{ 在 } [a, b] \text{ 上有界}. \end{cases}$
+
+\begin{question}
+在 $f(x)$ 连续的点 $x_0 \in [a, b]$ 处, $F(x)$ 有什么性质?
+\end{question}
 }
 
 \end{frame}
 
 %------------------------------------------------
 
+\section{微积分基本定理}
+
+%------------------------------------------------
+
 \begin{frame}
-\frametitle{待写}
+\frametitle{变上限积分的求导}
+
+\begin{theorem}[原函数存在定理]
+若 $f \in \mathcal{R}[a, b]$, 且 $f$ 在点 $x_0 \in [a, b]$ 处连续, 则 $F(x) = \int_a^x f(t) ~ \mathrm{d}t$ 在点 $x_0$ 处可导, 且
+\[ F'(x_0) = f(x_0). \]
+特别地, 若 $f \in C[a, b]$, 则 $F(x)$ 是 $f(x)$ 在 $[a, b]$ 上的一个原函数.
+\end{theorem}
+
+\pause
+
+\begin{proof}[证明思路]
+考察差商:
+\[ \frac{F(x) - F(x_0)}{x - x_0} = \frac{1}{x - x_0} \int_{x_0}^x f(t) ~ \mathrm{d}t. \]
+利用积分中值定理(或连续性的 $\varepsilon-\delta$ 定义), 当 $x \to x_0$ 时, 上式趋于 $f(x_0)$.
+\end{proof}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{微积分基本定理}
+
+由原函数存在定理, 我们知道连续函数一定有原函数.
+
+\begin{thm}[牛顿-莱布尼茨公式]
+若 $f \in C[a, b]$, 且 $G(x)$ 是 $f(x)$ 在 $[a, b]$ 上的\alert{任意}一个原函数, 则
+\[ \int_a^b f(x) ~ \mathrm{d}x = G(b) - G(a) = \left[ G(x) \right]_a^b. \]
+\end{thm}
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 通常将``变上限积分求导''称为\textbf{第一微积分基本定理}, 它建立了积分与微分的逆运算关系.
+\pause
+\item 将``牛顿-莱布尼茨公式''称为\textbf{第二微积分基本定理}, 它提供了计算定积分的有效手段: 先求不定积分 (\alert{分部积分法, 换元法, \dots}), 再利用原函数的值计算定积分.
+\pause
+但更多时候, 积分值是通过数值方法 (\S 7.6) 计算的.
+\pause
+\item 一般的可积函数 $f(x) \in \mathfrak{R}[a, b]$ 可能没有原函数. 但可以对一类特殊的可积函数:
+\[
+\{ ~ f(x) \text{有界且仅有有限个间断点} ~ \} ~ \subsetneqq ~ \mathfrak{R}[a, b],
+\]
+扩展原函数的概念: 定义其广义原函数 $G(x) = \int_a^x f(t) ~ \mathrm{d}t$, 除去有限多个点外有 $G'(x) = f(x).$
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{分部积分法}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{定积分的分部积分法}
+
+\begin{thm}[分部积分法]
+设 $u(x), v(x) \in C^1[a, b]$ (即有一阶连续导数), 则
+\[ \int_a^b u(x) v'(x) ~ \mathrm{d}x = \left. u(x)v(x) \right|_a^b - \int_a^b u'(x) v(x) ~ \mathrm{d}x. \]
+
+\pause
+或写成更紧凑的形式:
+\[ \int_a^b u ~ \mathrm{d}v = \left. uv \right|_a^b - \int_a^b v ~ \mathrm{d}u. \]
+\end{thm}
+
+\vspace{1em}
+\textbf{证明}: 对乘积 $u(x)v(x)$ 求导并积分即可:
+\[ \int_a^b (uv)' ~ \mathrm{d}x = \left. uv \right|_a^b \implies \int_a^b u'v ~ \mathrm{d}x + \int_a^b uv' ~ \mathrm{d}x = \left. uv \right|_a^b. \]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{应用: 正交函数列}
+
+\begin{Def}[正交函数列]
+设函数列 $\{g_n(x)\}$ 定义在 $[a, b]$ 上. 若 $\forall ~ n, m \in \mathbb{N}$, $g_n, g_m$ 都是 $[a, b]$ 上的可积函数, 且有
+\[
+\int_a^b g_n(x) g_m(x) ~ \mathrm{d}x = \begin{cases} 0, & n \neq m; \\ \int_a^b g_n^2(x) ~ \mathrm{d}x > 0, & n = m, \end{cases}
+\]
+则称 $\{g_n(x)\}$ 是 $[a, b]$ 上的一个\alert{正交函数列}.
+\end{Def}
+
+\pause
+
+\begin{eg}[勒让德 (Legendre) 多项式]
+定义在 $[-1, 1]$ 上的多项式序列:
+\[ P_n(x) = \frac{1}{2^n n!} \frac{\mathrm{d}^n}{\mathrm{d}x^n} \left[ (x^2-1)^n \right], \quad n=0,1,2,\dots \]
+是一个正交函数列.
+\end{eg}
+
+\pause
+
+更具体来说, 要证明
+\[
+\int_{-1}^1 P_n(x) P_m(x) ~ \mathrm{d}x = \begin{cases} 0, & n \neq m; \\ \frac{2}{2n+1}, & n = m. \end{cases}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{勒让德多项式正交性的证明}
+
+首先证明 $\int_{-1}^1 P_n(x) P_m(x) ~ \mathrm{d}x = 0$ ($n > m$).
+令 $u = (x^2-1)^n, v = (x^2-1)^m$. 注意到 $u$ 及其直至 $n-1$ 阶导数在 $x=\pm 1$ 处均为 0.
+
+\vspace{0.5em}
+\small
+利用分部积分法 (忽略常数系数):
+\begin{align*}
+\int_{-1}^1 P_n(x) P_m(x) ~ \mathrm{d}x & \propto \int_{-1}^1 \frac{\mathrm{d}^n u}{\mathrm{d}x^n} \cdot \frac{\mathrm{d}^m v}{\mathrm{d}x^m} ~ \mathrm{d}x = \int_{-1}^1 \frac{\mathrm{d}^m v}{\mathrm{d}x^m} ~ \mathrm{d} \left( \frac{\mathrm{d}^{n-1} u}{\mathrm{d}x^{n-1}} \right) \\
+\text{(分部积分)} \quad & = \left. \frac{\mathrm{d}^{n-1} u}{\mathrm{d}x^{n-1}} \cdot \frac{\mathrm{d}^m v}{\mathrm{d}x^m} \right|_{-1}^1 - \int_{-1}^1 \frac{\mathrm{d}^{n-1} u}{\mathrm{d}x^{n-1}} \cdot \frac{\mathrm{d}^{m+1} v}{\mathrm{d}x^{m+1}} ~ \mathrm{d}x
+\end{align*}
+由于边界项为 0, 重复 $n$ 次分部积分, 导数全部转移到右边:
+\[
+\int_{-1}^1 \frac{\mathrm{d}^n u}{\mathrm{d}x^n} \cdot \frac{\mathrm{d}^m v}{\mathrm{d}x^m} ~ \mathrm{d}x = (-1)^n \int_{-1}^1 u \cdot \frac{\mathrm{d}^{m+n} v}{\mathrm{d}x^{m+n}} ~ \mathrm{d}x.
+\]
+由于 $n > m$, 则 $m + n > 2m > \deg v$, 即有 $\frac{\mathrm{d}^{m+n} v}{\mathrm{d}x^{m+n}} \equiv 0$, 从而 $\int_{-1}^1 P_n(x) P_m(x) ~ \mathrm{d}x = 0$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{勒让德多项式正交性的证明 (续)}
+
+接下来证明 $\int_{-1}^1 P_n^2(x) ~ \mathrm{d}x = \frac{2}{2n+1}$.
+同样利用分部积分法得 $\int_{-1}^1 P_n^2(x) ~ \mathrm{d}x \propto \int_{-1}^1 u \cdot \frac{\mathrm{d}^{2n} u}{\mathrm{d}x^{2n}} ~ \mathrm{d}x$.
+由于 $\deg u = 2n$, 则 $\frac{\mathrm{d}^{2n} u}{\mathrm{d}x^{2n}} = (2n)!$. 因此
+\begin{align*}
+\int_{-1}^1 \frac{\mathrm{d}^n u}{\mathrm{d}x^n} \cdot \frac{\mathrm{d}^m v}{\mathrm{d}x^m} ~ \mathrm{d}x
+& = (2n)! \int_{-1}^1 (1 - x)^n (1 + x)^n ~ \mathrm{d}x = (2n)! \int_0^1 (1 - x)^n \frac{1}{n+1} ~ \mathrm{d} (1 + x)^{n+1} \\
+& = (2n)! \int_0^1 \frac{n}{n+1} (1-x)^{n-1} (1+x)^{n+1} ~ \mathrm{d}x \\
+& \hspace{1em} \vdots \\
+& = (2n)! \cdot \frac{n}{n+1} \cdot \frac{n-1}{n+2} \cdots \frac{1}{2n} \int_0^1 (1+x)^{2n} ~ \mathrm{d}x \\
+& = (n!)^2 \cdot \frac{1}{2n+1} \cdot \left. (1+x)^{2n+1} \right|_0^1 = \frac{2^{2n+1} (n!)^2}{2n+1}.
+\end{align*}
+因此 $\int_{-1}^1 P_n^2(x) ~ \mathrm{d}x = \frac{1}{2^{2n} (n!)^2} \cdot \int_{-1}^1 \frac{\mathrm{d}^n u}{\mathrm{d}x^n} \cdot \frac{\mathrm{d}^m v}{\mathrm{d}x^m} ~ \mathrm{d}x = \frac{1}{2^{2n} (n!)^2} \cdot \frac{2^{2n+1} (n!)^2}{2n+1} = \frac{2}{2n+1}$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{勒让德多项式标准化}
+
+\begin{remark}
+令 $b_n(x) = \sqrt{\frac{2n+1}{2}} P_n(x)$, 则 $\int_{-1}^1 b_n^2(x) ~ \mathrm{d}x = 1$. 因此 $\{b_n(x)\}$ 是 $[-1, 1]$ 上的一个\alert{标准正交函数列}. 可以证明, $b_n(x)$ 可以通过 Gram-Schmidt 正交化过程从 $1, x, x^2, \dots$ 这组函数列中得到.
+\end{remark}
+
+\pause
+\vspace{1em}
+
+事实上, 利用勒让德多项式正交性的证明中类似的分部积分方法, 可以证明, 对任意满足 $\deg Q(x) < n$ 的多项式 $Q(x)$, 都有 $\int_{-1}^1 P_n(x) Q(x) ~ \mathrm{d}x = 0$. 因此 $P_n(x)$ 与 $1, x, x^2, \dots, x^{n-1}$ 都正交. 由于 $\deg P_n = n$, 那么 $P_n(x)$ 就是 $1, x, x^2, \dots$ 这组函数列中第 $n$ 个函数经过 Gram-Schmidt 正交化后的结果. 从而 $b_n(x)$ 就是 $1, x, x^2, \dots$ 进行 Gram-Schmidt 正交化后得到的第 $n$ 个正交多项式 (相差一个正的归一化常数). 因此 $b_n(x) = \sqrt{\frac{2n+1}{2}} P_n(x)$ 就是标准正交化后的结果.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{换元法}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{定积分的换元积分法}
+
+\begin{thm}[换元积分法]
+设函数 $f(x)$ 在 $[a, b]$ 上连续. 变换 $x = \phi(t)$ 满足:
+\begin{enumerate}
+\item $\phi(\alpha) = a, \quad \phi(\beta) = b$;
+\item $\phi(t)$ 在 $[\alpha, \beta]$ (或 $[\beta, \alpha]$) 上具有连续导数;
+\item 值域 $R_{\phi} = [a, b]$ (即变换过程不跑出定义域).
+\end{enumerate}
+则有
+\[ \int_a^b f(x) ~ \mathrm{d}x = \int_{\alpha}^{\beta} f(\phi(t)) \phi'(t) ~ \mathrm{d}t. \]
+\end{thm}
+
+\pause
+\vspace{1em}
+
+\begin{itemize}
+\item $\int_{\alpha}^{\beta} f(\phi(t)) \phi'(t) ~ \mathrm{d}t \longrightarrow \int_a^b f(x) ~ \mathrm{d}x$ 的变换称为 \alert{第一换元法, 或称凑微分法}.
+\item $\int_a^b f(x) ~ \mathrm{d}x \longrightarrow \int_{\alpha}^{\beta} f(\phi(t)) \phi'(t) ~ \mathrm{d}t$ 的变换称为 \alert{第二换元法}.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{换元法的注记与例子}
+
+\begin{remark}
+\begin{itemize}
+\item \alert{换元必换限}: 定积分换元后, 上下限必须相应改变.
+\item \alert{不需回代}: 求出原函数后直接代入新变量 $t$ 的上下限计算即可.
+\item $\phi(t)$ 不一定要求单调, 但必须覆盖区间 $[a, b]$ 且端点对应.
+\end{itemize}
+\end{remark}
+
+\pause
+\vspace{1em}
+
+\begin{eg}
+计算 $I = \int_0^a \sqrt{a^2 - x^2} \mathrm{d}x \quad (a > 0)$.
+\end{eg}
+
+\vspace{0.5em}
+\textbf{解}: 令 $x = a \sin t$.
+当 $x=0$ 时, $t=0$; 当 $x=a$ 时, $t=\frac{\pi}{2}$.
+且 $\mathrm{d}x = a \cos t \mathrm{d}t$.
+\begin{align*}
+I &= \int_0^{\frac{\pi}{2}} \sqrt{a^2 - a^2 \sin^2 t} \cdot (a \cos t) \mathrm{d}t \\
+  &= a^2 \int_0^{\frac{\pi}{2}} \cos^2 t \mathrm{d}t = a^2 \cdot \frac{1}{2} \cdot \frac{\pi}{2} = \frac{\pi a^2}{4}.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{换元法的例子}
+
+这题如果直接用牛顿-莱布尼茨公式求解, 则过程会比较麻烦. 先 (用分部积分法) 求原函数:
+\[
+\int \sqrt{a^2 - x^2} ~ \mathrm{d}x = x \sqrt{a^2 - x^2} + \int \frac{x^2}{\sqrt{a^2 - x^2}} ~ \mathrm{d}x = x \sqrt{a^2 - x^2} - \int \sqrt{a^2 - x^2} ~ \mathrm{d}x + a^2 \int \frac{1}{\sqrt{a^2 - x^2}} ~ \mathrm{d}x,
+\]
+解得
+\[
+\int \sqrt{a^2 - x^2} ~ \mathrm{d}x = \frac{1}{2} \left( x \sqrt{a^2 - x^2} + a^2 \int \frac{1}{\sqrt{a^2 - x^2}} ~ \mathrm{d}x \right) = \frac{1}{2} \left( x \sqrt{a^2 - x^2} + a^2 \arcsin \frac{x}{a} \right) + C.
+\]
+因此
+\[
+I = \left. \frac{1}{2} \left( x \sqrt{a^2 - x^2} + a^2 \arcsin \frac{x}{a} \right) \right|_0^a = \frac{\pi a^2}{4}.
+\]
+
+\pause
+\vspace{1em}
+
+其实, 这类题目有更简便的解法: 直接观察到被积函数 $\sqrt{a^2 - x^2}$ 是以 $x$ 轴为底, 半径为 $a$ 的半圆的上半部分的函数表达式. 因此 $I$ 就是这个半圆的面积, 从而 $I = \frac{\pi a^2}{4}$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{定积分性质}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{定积分的性质}
+
+定积分其余方便计算的性质列举如下:
+
+\begin{thm}
+设 $f(x)$ 在对称区间 $[-a, a]$ 上可积
+\begin{enumerate}
+\item 若 $f$ 是偶函数, 则 $\int_{-a}^a f(x) ~ \mathrm{d}x = 2 \int_0^a f(x) ~ \mathrm{d}x$;
+\item 若 $f$ 是奇函数, 则 $\int_{-a}^a f(x) ~ \mathrm{d}x = 0$.
+\end{enumerate}
+\end{thm}
+
+\pause
+\vspace{1em}
+
+\begin{thm}
+设 $f(x)$ 是以 $T$ 为周期的周期函数, 则 $\forall ~ a \in \mathbb{R},$ 有
+\[ \int_a^{a+T} f(x) ~ \mathrm{d}x = \int_0^T f(x) ~ \mathrm{d}x. \]
+也就是说, 对于一个完整的周期区间, 积分有平移不变性.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{定积分的性质}
+
+\begin{eg}
+$\{ ~ 1, \sin x, \cos x, \sin 2x, \cos 2x, \dots ~ \}$ 是任意长度为 $2\pi$ 的区间上的正交函数列.
+\end{eg}
+
+\pause
+
+\textbf{证明}: 由于以上函数都是 $2\pi$ 周期的, 所以只要对 $[-\pi, \pi]$ 进行验证即可. 记 $1 = \cos 0x.$ 那么
+
+$1^\circ$: $\langle \sin nx, \cos mx \rangle = \int_{-\pi}^\pi \sin nx \cdot \cos mx ~ \mathrm{d}x = 0$ (被积函数是奇函数).
+
+$2^\circ$:
+\begin{align*}
+\langle \sin nx, \sin mx \rangle & = \int_{-\pi}^\pi \sin nx \cdot \sin mx ~ \mathrm{d}x = \int_0^\pi (\cos (n-m)x - \cos (n+m)x) ~ \mathrm{d}x \\
+& = \begin{cases} \left. \left(\frac{\sin (n-m)x}{n-m} - \frac{\sin (n+m)x}{n+m} \right) \right|_0^\pi = 0, & n \neq m; \\ \left. \left( x - \frac{\sin 2nx}{2n} \right) \right|_0^\pi = \pi, & n = m. \end{cases}
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{定积分的性质}
+
+$3^\circ$:
+\begin{align*}
+\langle \cos nx, \cos mx \rangle & = \int_{-\pi}^\pi \cos nx \cdot \cos mx ~ \mathrm{d}x = \int_0^\pi (\cos (n-m)x + \cos (n+m)x) ~ \mathrm{d}x \\
+& = \begin{cases} \left. \left(\frac{\sin (n-m)x}{n-m} + \frac{\sin (n+m)x}{n+m} \right) \right|_0^\pi = 0, & n \neq m; \\ \left. \left( x + \frac{\sin 2nx}{2n} \right) \right|_0^\pi = \pi, & n = m \geqslant 1; \\ 2x |_{0}^{\pi} = 2\pi, & n = m = 0. \end{cases}
+\end{align*}
+
+于是,
+\[
+\left\{ ~ \frac{1}{2\sqrt{\pi}}, \frac{1}{\sqrt{\pi}} \cos x, \frac{1}{\sqrt{\pi}} \sin x, \frac{1}{\sqrt{\pi}} \cos 2x, \frac{1}{\sqrt{\pi}} \sin 2x, \dots ~ \right\}
+\]
+构成了 $L_{[-\pi, \pi]}^2$ 上的一个标准正交函数列.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一类重要例子}
+
+最后再来看一类例子, 它告诉我们要应用牛顿-莱布尼茨公式计算定积分, 要严格验证定理成立的前提条件. 否则, 可能会得到错误的结果.
+
+\begin{eg}
+计算 $I = \int_0^2 \frac{(x - 1)^2 + 1}{(x - 1)^2 + x^2(x - 2)^2} ~ \mathrm{d}x$.
+\end{eg}
+
+\pause
+
+首先, 被积函数 $f(x) = \frac{(x - 1)^2 + 1}{(x - 1)^2 + x^2(x - 2)^2}$ 是有理分式, 且值恒大于 $0,$ 因此 $f(x)$ 在 $[0, 2]$ 上连续 (光滑), 从而 $f \in C[0, 2]$. 做变换 $x \to t + 1,$ 那么
+\begin{align*}
+I & = \int_{-1}^1 \frac{t^2 + 1}{t^2 + (t^2-1)^2} ~ \mathrm{d}t = \int_{-1}^1 \frac{\left( 1 + \frac{1}{t^2} \right) ~ \mathrm{d}t}{1 + \left( t - \frac{1}{t} \right)^2} = \int_{-1}^1 \frac{\mathrm{d} \left( t - \frac{1}{t} \right)}{1 + \left( t - \frac{1}{t} \right)^2} \\
+& \alert{\overset{?}{=}} \left. \arctan \left( t - \frac{1}{t} \right) \right|_{-1}^1 = \arctan 0 - \arctan 0 = 0.
+\end{align*}
+
+\pause
+
+以上结果显然是错误的, 因为被积函数 $f(x)$ 在 $[0, 2]$ 上是正的, 从而 $I$ 应该也是正的. 那么, 到底哪里出错了呢?
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一类重要例子}
+
+计算过程中, 进行了凑微分 $u = t - \frac{1}{t}$ 的换元, 相关图像如下所示:
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = {$t$},
+    ylabel = {$t - \frac{1}{t}$},
+    domain=-1.5:1.5,
+    ymin=-4.2, ymax=4.2,
+    xmin=-1.6, xmax=1.6,
+    restrict y to domain=-8:8,
+    width=8cm,
+    height=6cm,
+]
+\addplot[blue, thick, domain=-1.5:-0.05, samples=100] {x - 1/x};
+\addplot[blue, thick, domain=0.05:1.5, samples=100] {x - 1/x};
+\end{axis}
+\end{tikzpicture}
+\hspace{2em}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = {$t$},
+    ylabel = {$\arctan \left( t - \frac{1}{t} \right)$},
+    domain=-1.5:1.5,
+    ymin=-1.8, ymax=1.8,
+    xmin=-1.6, xmax=1.6,
+    width=8cm,
+    height=6cm,
+]
+\addplot[blue, thick, domain=-1.5:-0.01, samples=100] {rad(atan(x - 1/x))};
+\addplot[blue, thick, domain=0.01:1.5, samples=100] {rad(atan(x - 1/x))};
+\addplot[only marks, mark=o, mark size=2.5pt, thick, red] coordinates {(0, pi/2) (0, -pi/2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\pause
+
+很容易看到, $\arctan \left( t - \frac{1}{t} \right)$ 在 $t=0$ 处间断, 因此 $\arctan \left( t - \frac{1}{t} \right)$ 不是原函数. 从而, 牛顿-莱布尼茨公式不适用, 以上的计算过程是错误的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一类重要例子}
+
+更深层次的原因: $\arctan$ 是多值函数:
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = {$t$},
+    ylabel = {$\arctan t$},
+    domain=-3.1:3.1,
+    ymin=-1.8, ymax=5.8,
+    xmin=-3.2, xmax=3.2,
+    width=8cm,
+    height=6cm,
+]
+\addplot[blue, thick, domain=-3.1:3.1, samples=100] {rad(atan(x))};
+\addplot[blue, thick, domain=-3.1:3.1, samples=100] {rad(atan(x)) + pi};
+\addplot[dashed, thick, domain=-3.1:3.1, samples=100] {pi/2};
+\end{axis}
+\end{tikzpicture}
+\hspace{2em}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = middle,
+    xlabel = {$t$},
+    ylabel = {$F(t)$},
+    domain=-1.5:1.5,
+    ymin=-1.8, ymax=4.4,
+    xmin=-1.6, xmax=1.6,
+    width=8cm,
+    height=6cm,
+]
+\addplot[blue, thick, domain=-1.5:-0.01, samples=100] {rad(atan(x - 1/x))};
+\addplot[dashed, blue, thick, domain=0.01:1.5, samples=100] {rad(atan(x - 1/x))};
+\addplot[blue, thick, domain=0.01:1.5, samples=100] {rad(atan(x - 1/x)) + pi};
+\addplot[only marks, mark=o, mark size=2.5pt, thick, red] coordinates {(0, pi/2) (0, -pi/2)};
+\node[
+    single arrow,
+    draw=blue,
+    fill=green,
+    minimum width=15pt,
+    minimum height=15mm,
+    single arrow head extend=5pt,
+    rotate=90
+]
+at (axis cs:0.7,0.7) {};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+原函数应该是\alert{可微函数}
+\[
+F(t) = \begin{cases} \arctan \left( t - \frac{1}{t} \right), & -1 \leqslant t < 0; \\ \arctan \left( t - \frac{1}{t} \right) + \pi, & 0 < t \leqslant 1; \\ \frac{\pi}{2}, & t = 0. \end{cases}
+\]
 
 \end{frame}
 
