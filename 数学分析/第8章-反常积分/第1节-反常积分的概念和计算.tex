@@ -57,15 +57,32 @@
 \[
 \ell = \int_{-1}^1 \sqrt{1 - (y')^2} ~ \mathrm{d} x = \int_{-1}^1 \sqrt{1 - \left(-\frac{x}{\sqrt{1 - x^2}}\right)^2} ~ \mathrm{d} x = \int_{-1}^1 \frac{1}{\sqrt{1 - x^2}} ~ \mathrm{d} x.
 \]
+被积函数在积分区间的端点处无定义, 且在该区间上无界, 这是黎曼积分的无法处理的. 但这并不表明弧长是无法计算的. 所以我们需要拓展黎曼积分的定义.
+
+\pause
+\vspace{0.5em}
+
+一个自然的想法是, \alert{``取黎曼积分的极限''}, 对于上述的积分, 就是
+\[
+\lim_{\varepsilon \to 0^+} \int_{-1 + \varepsilon}^0 \frac{1}{\sqrt{1 - x^2}} ~ \mathrm{d} x
+~~ \text{与} ~~
+\lim_{\varepsilon \to 0^+} \int_0^{1 - \varepsilon} \frac{1}{\sqrt{1 - x^2}} ~ \mathrm{d} x.
+\]
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
+\section{反常积分的定义}
 
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{反常积分的定义}
 
 
 \end{frame}
+
+%------------------------------------------------
 
 \end{document}
