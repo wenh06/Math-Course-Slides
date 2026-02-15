@@ -325,7 +325,7 @@ OA = (x_0, y_0) = (\cos \theta, \sin \theta), \quad OB = (x_0, -y_0) = (\cos \th
 
 % 标记点
 \fill (O) circle (1.5pt) node[below left] {$O$};
-\fill (A) circle (1.5pt) node[above] {$A$};
+\fill (A) circle (1.5pt) node[right] {$A$};
 \fill (B) circle (1.5pt) node[above right] {$B$};
 \fill (P) circle (1.5pt) node[below right] {$P$};
 \fill (Q) circle (1.5pt) node[above right] {$Q$};
@@ -472,6 +472,10 @@ S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \frac{1}{2} r(\xi_i)^2 \Delta \theta_i 
 \draw[thin] ([shift=({\angle-180}:0.2)]C2) arc ({\angle-180}:{\angle-105}:0.2);
 \node at ([shift=({\angle-145}:0.3)]C2) {$\phi$};
 
+\draw[dashed, thick] (O) -- (M2);
+\draw[thin] ([shift=(0:0.2)]O) arc (0:\angle:0.2);
+\node at ([shift=({0.2*\angle}:0.5)]O) {$\theta = \phi$};
+
 \end{tikzpicture}
 }
 \end{column}
@@ -512,7 +516,7 @@ S = \int_0^{2\pi} \frac{1}{2} r^2 ~ d\theta = \int_0^{2\pi} \frac{1}{2} a^2 (1-\
 \end{columns}
 
 \only<2>{
-解得点 $C$ 的参数方程为 $\begin{cases} x_c = a(1-\cos\phi)\cos\phi \\[6pt] y_c = a(1-\cos\phi)\sin\phi \end{cases}$, 即心形线的极坐标方程 $r = a(1-\cos\theta)$.
+解得点 $C$ 的参数方程为 $\begin{cases} x_c = a(1-\cos\phi)\cos\phi \\[6pt] y_c = a(1-\cos\phi)\sin\phi \end{cases}$, 联立得心形线的极坐标方程 $r = a(1-\cos\theta)$ (其中 $\theta = \phi$).
 }
 
 \end{frame}
@@ -759,11 +763,39 @@ Koch Snowflake 是最简单的分形 (Fractal) 的例子, 其长度为 $\infty$,
 \begin{frame}
 \frametitle{光滑曲线弧长公式的几个注记}
 
-\begin{enumerate}
-\item
-\item
-\item
-\item
+\begin{enumerate}[<+->]
+\item 若可由参数方程求得显式的函数关系 $y = f(x)$, 则由关系式 $f'(x) = \frac{y'(t)}{x'(t)}$ 以及 $\mathrm{d} x = x'(t) ~ \mathrm{d}t$ 可得
+\[
+\ell = \int_{a}^{b} \sqrt{1 + (f'(x))^2} ~ \mathrm{d} x,
+\]
+其中 $a$ 等于 $x(T_1), x(T_2)$ 中较小的一个, $b$ 等于较大的一个 (注意, 这里自动对 $x'(t) < 0$ 的情况交换了积分上下限).
+\item 若曲线为极坐标形式 $r = r(\theta), \theta \in [\alpha, \beta]$, 则由关系式 (参数形式) $\begin{cases} x = r(\theta) \cos\theta \\[6pt] y = r(\theta) \sin\theta \end{cases}$ 可得
+\begin{align*}
+\ell & = \int_\alpha^\beta \sqrt{\left( \frac{\mathrm{d}x}{\mathrm{d}\theta} \right)^2 + \left( \frac{\mathrm{d}y}{\mathrm{d}\theta} \right)^2} ~ \mathrm{d}\theta \\
+& = \int_\alpha^\beta \sqrt{\left( r'(\theta) \cos\theta - r(\theta) \sin\theta \right)^2 + \left( r'(\theta) \sin\theta + r(\theta) \cos\theta \right)^2} ~ \mathrm{d}\theta \\
+& = \int_\alpha^\beta \sqrt{(r'(\theta))^2 + (r(\theta))^2} ~ \mathrm{d}\theta.
+\end{align*}
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{光滑曲线弧长公式的几个注记 (续)}
+
+\begin{enumerate}[<+->]
+\setcounter{enumi}{2}
+\item $\int_{T_1}^{T_2} \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d}t$ 可推广至一般的 $n$ 维空间 $\mathbb{R}^n$, 设曲线参数方程为 $\vv{r}(t) = (x_1(t), x_2(t), \cdots, x_n(t))$, $t \in [T_1, T_2]$, 则该曲线的长度为
+\[
+\ell = \int_{T_1}^{T_2} \sqrt{(x_1'(t))^2 + (x_2'(t))^2 + \cdots + (x_n'(t))^2} ~ \mathrm{d}t = \int_{T_1}^{T_2} \left\lVert \vv{r}'(t) \right\rVert_2 ~ \mathrm{d}t.
+\]
+\item 弧长不依赖于它的光滑参数化的选取. 设 $\vv{r}(t)$ 和 $\vv{R}(\tau)$ 是同一条曲线的两种不同的光滑参数化, 则存在一个双射 $t = t(\tau)$, 使得 $\vv{r}(t(\tau)) = \vv{R}(\tau)$, 因此,
+\begin{align*}
+\int_{T_1}^{T_2} \left\lVert \vv{r}'(t) \right\rVert_2 ~ \mathrm{d}t & = \int_{T_1}^{T_2} \left\lVert \vv{R}'(\tau) \cdot \frac{\mathrm{d}\tau}{\mathrm{d}t} \right\rVert_2 ~ \mathrm{d}t \\
+& = \int_{T_1}^{T_2} \left\lVert \vv{R}'(\tau) \right\rVert_2 \cdot \left\lvert \frac{\mathrm{d}\tau}{\mathrm{d}t} \right\rvert ~ \mathrm{d}t \\
+& = \int_{T_1}^{T_2} \left\lVert \vv{R}'(\tau) \right\rVert_2 ~ \mathrm{d}\tau.
+\end{align*}
 \end{enumerate}
 
 \end{frame}
