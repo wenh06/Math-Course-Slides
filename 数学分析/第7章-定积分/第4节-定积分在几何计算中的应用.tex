@@ -1,5 +1,6 @@
 \everymath{\displaystyle}
 \usepgfplotslibrary{fillbetween}
+\usetikzlibrary{lindenmayersystems}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -144,7 +145,7 @@
 \frametitle{平面图形面积 -- 例题}
 
 \begin{eg}[双曲函数]
-求双曲线 $x^2 - y^2 = 1$ 与 $OA = (x_0, y_0)$, $OB = (x_0, -y_0)$ 围成的区域的面积
+求双曲线 $x^2 - y^2 = 1$ 与 $OA = (x_0, y_0)$, $OB = (x_0, -y_0)$ 围成的区域的面积 $t$.
 \end{eg}
 
 \begin{columns}
@@ -181,6 +182,16 @@
 \addplot[green!60!black, thick] coordinates {(0,0) (\xa,\ya)};
 \addplot[green!60!black, thick] coordinates {(0,0) (\xa,-\ya)};
 
+\only<5>{
+% 绘制以 OA 为半径的圆弧
+\addplot[red, dashed, domain=-40:40, samples=100] ({sqrt(\xa*\xa + \ya*\ya)*cos(x)}, {sqrt(\xa*\xa + \ya*\ya)*sin(x)});
+
+% 绘制 OA 与 x 轴夹角为 theta
+\pgfmathsetmacro{\angle}{atan(\ya/\xa)}
+\draw[thick] (0.3,0) arc[start angle=0, end angle=\angle, radius=0.3];
+\node at ({0.4*cos(\angle/2)},{0.4*sin(\angle/2)}) {$\theta$};
+}
+
 % 标记点
 \addplot[only marks, mark=*, mark size=3pt] coordinates {(0,0) (\xa,\ya) (\xa,-\ya)};
 
@@ -189,21 +200,149 @@
 \node[above right] at (axis cs:\xa-0.2,\ya) {$A$};
 \node[below right] at (axis cs:\xa-0.2,-\ya) {$B$};
 \node[blue] at (axis cs:1.1,-1.3) {$x^2-y^2=1$};
+\node[red] at (axis cs:0.8,0.2) {\larger[1]$t$};
 \end{axis}
 \end{tikzpicture}
 \end{center}
 \end{column}
-\pause
 \begin{column}{0.65\textwidth}
+\only<2-3>{
 \textbf{解:} 若以 $x$ 为自变量, 则 $y = \pm \sqrt{x^2 - 1}$. 因此, 利用对称性, 所求面积为
 \[
-\text{面积} = 2 \left( \frac{x_0y_0}{2} - \int_1^{x_0} \sqrt{x^2 - 1} ~ dx \right) = \ln (x_0 + y_0).
+t = 2 \left( \frac{x_0y_0}{2} - \int_1^{x_0} \sqrt{x^2 - 1} ~ dx \right) = \ln (x_0 + y_0).
 \]
 注意, 以上是求三角形 $OAB$ 内补面积的方式进行求解.
-\pause
+}
+\only<3>{
 也可以以 $y$ 为自变量, 则 $x = \sqrt{y^2 + 1}$. 因此, 利用对称性, 所求面积为
 \[
-\text{面积} = 2 \left( \int_0^{y_0} \left( \sqrt{y^2 + 1} - \frac{x_0}{y_0} y \right) ~ dy \right) = \ln (x_0 + y_0).
+t = 2 \left( \int_0^{y_0} \left( \sqrt{y^2 + 1} - \frac{x_0}{y_0} y \right) ~ dy \right) = \ln (x_0 + y_0).
+\]
+}
+\only<4-5>{
+注意, 如果联立方程 $\begin{cases} x + y = e^t \\ x^2 - y^2 = 1 \end{cases}$, 则可得
+\[
+\begin{cases}
+x = \frac{e^t + e^{-t}}{2} = \cosh t \\[6pt]
+y = \frac{e^t - e^{-t}}{2} = \sinh t
+\end{cases}
+\]
+即所谓的双曲余弦函数 $\cosh t$ 和双曲正弦函数 $\sinh t$.
+}
+
+\only<5>{
+这可以类比三角函数: 记相应的 $OA$, $OB$ 与圆弧围成的面积为 $\theta$ (恰好是 $OA$ 与 $x$ 轴的夹角), 则
+\[
+OA = (x_0, y_0) = (\cos \theta, \sin \theta), \quad OB = (x_0, -y_0) = (\cos \theta, -\sin \theta).
+\]
+}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{极坐标下面积}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{极坐标下求面积问题的引入}
+
+\begin{columns}
+\begin{column}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.3]
+% 定义角度和半径
+\def\alphaDeg{25}
+\def\betaDeg{65}
+\def\rA{3}
+\def\rB{3.5}
+
+% 计算A和B的坐标
+\coordinate (O) at (0,0);
+\coordinate (A) at (\alphaDeg:\rA);
+\coordinate (B) at (\betaDeg:\rB);
+
+% 绘制坐标轴
+\draw[->, thick] (-0.5,0) -- (4.5,0) node[right] {$x$};
+\draw[->, thick] (0,-0.5) -- (0,4) node[above] {$y$};
+
+% 绘制不规则曲线AB
+\draw[blue, thick] plot[smooth, tension=0.8] coordinates {
+    (\alphaDeg:\rA)
+    (35:3.2)
+    (45:3.8)
+    (55:3.6)
+    (\betaDeg:\rB)
+};
+
+% 填充扇形区域
+\fill[blue!20, opacity=0.5] (O) --
+    plot[smooth, tension=0.8] coordinates {
+        (\alphaDeg:\rA)
+        (35:3.2)
+        (45:3.8)
+        (55:3.6)
+        (\betaDeg:\rB)
+    } -- cycle;
+
+% 绘制极径OA和OB
+\draw[->, red, thick] (O) -- (A) node[near end, below right] {$r(\alpha)$};
+\draw[->, red, thick] (O) -- (B) node[midway, above left] {$r(\beta)$};
+
+% 绘制示例极径P和Q（中间某个角度）
+\def\thetaDeg{45}
+\def\rTheta{3.8}
+\def\thetaQDeg{50}
+\def\rThetaQ{3.7}
+\coordinate (P) at (\thetaDeg:\rTheta);
+\coordinate (Q) at (\thetaQDeg:\rThetaQ);
+
+% \draw[->, green!60!black, thick] (O) -- (P) node[midway, below right] {$r(\theta)$};
+% \draw[->, green!60!black, thick] (O) -- (Q) node[midway, above right] {$r(\theta+\mathrm{d}\theta)$};
+\draw[->, green!60!black, thick] (O) -- (P);
+\draw[->, green!60!black, thick] (O) -- (Q);
+
+% 填充微小扇形区域
+\fill[yellow!40, opacity=0.6] (O) -- (P) arc (\thetaDeg:\thetaQDeg:\rTheta) -- cycle;
+
+% 绘制PQ弧段
+% \draw[blue, very thick] (P) arc (\thetaDeg:\thetaQDeg:3.75);
+
+% 绘制角度弧
+\draw[thick] (0.8,0) arc (0:\alphaDeg:0.8);
+\node at (12:1) {$\alpha$};
+
+\draw[thick] (1.2,0) arc (0:\betaDeg:1.2);
+\node at (32:1.5) {$\beta$};
+
+% 绘制d\theta角度弧
+% \draw[thick, purple] (1.5,0) arc (0:\thetaDeg:1.5);
+% \node[purple] at (22:1.8) {$\theta$};
+
+\draw[<->, purple] (0,0) +(\thetaDeg:2.3) arc (\thetaDeg:\thetaQDeg:2.3) node[midway, above right] {$\mathrm{d}\theta$};
+
+% 标记点
+\fill (O) circle (1.5pt) node[below left] {$O$};
+\fill (A) circle (1.5pt) node[above] {$A$};
+\fill (B) circle (1.5pt) node[above right] {$B$};
+\fill (P) circle (1.5pt) node[below right] {$P$};
+\fill (Q) circle (1.5pt) node[above right] {$Q$};
+
+% 添加曲线标签
+\node[blue] at (50:4.5) {曲线 $r=r(\theta)$};
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.55\textwidth}
+\textbf{问题引入:} 已知极坐标方程 $r = r(\theta)$ 描述的曲线, 以及两条极径 $OA$ 和 $OB$ (即 $\theta = \alpha$ 和 $\theta = \beta$), 该曲线与两条极径围成的区域的面积:
+\[
+S = \sum \text{微小扇形面积} \approx \sum_{i=1}^n \frac{1}{2} r(\xi_i)^2 \Delta \theta_i,
+\]
+其中, 对 $[\alpha, \beta]$ 去了一个带标志点的划分 $(P, \xi): \alpha = \theta_0 < \theta_1 < \cdots < \theta_n = \beta$, $\xi_i \in [\theta_{i-1}, \theta_i]$. 当 $\lambda(P) \to 0$ 时,
+\[
+S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \frac{1}{2} r(\xi_i)^2 \Delta \theta_i = \int_\alpha^\beta \frac{1}{2} r(\theta)^2 ~ \mathrm{d} \theta.
 \]
 \end{column}
 \end{columns}
@@ -212,23 +351,467 @@
 
 %------------------------------------------------
 
-\section{极坐标下求面积}
+\begin{frame}
+\frametitle{例题 -- 心形线围成的面积}
+
+\begin{columns}
+\begin{column}{0.37\textwidth}
+\only<1, 3->{
+\begin{tikzpicture}[scale=1.6]
+% Define parameter a
+\def\a{1.5}
+
+% Draw axes (light gray)
+\draw[gray!30, very thin, ->] (-3.2,0) -- (0.5,0) node[right] {$x$};
+\draw[gray!30, very thin, ->] (0,-2,0) -- (0,2) node[above] {$y$};
+
+% Draw origin
+\filldraw[black] (0,0) circle (0.03) node[below left] {$O$};
+
+% Draw the complete cardioid using r = a(1-cos(θ))
+% x = r*cos(θ) = a(1-cos(θ))*cos(θ)
+% y = r*sin(θ) = a(1-cos(θ))*sin(θ)
+\draw[thick, red!70, line width=1pt]
+    plot[domain=0:360, samples=200, smooth]
+    ({\a*(1-cos(\x))*cos(\x)}, {\a*(1-cos(\x))*sin(\x)});
+
+% Mark the cusp at origin
+% \node[red!70, below right, xshift=3pt, yshift=-3pt] at (0,0) {\small 尖点};
+
+% Mark the rightmost point at θ=180°
+% \filldraw[red!70] ({2*\a}, 0) circle (0.04);
+% \node[red!70, above, yshift=2pt] at ({2*\a}, 0) {\small $r_{\max}=2a$};
+
+% Title
+% \node[above] at (1.5, 2.3) {\textbf{心脏线 (Cardioid)}};
+\node[below, font=\small] at (-1.3, 1.0) {$r = a(1-\cos\theta)$, $0 \leq \theta \leq 2\pi$};
+
+\node at (-2*\a - 0.2, 0.1) {$-2a$};
+\node at (0.1, \a) {$a$};
+\node at (0.1, -\a) {$-a$};
+
+\end{tikzpicture}
+}
+\only<2>{
+\begin{tikzpicture}[scale=1.7]
+% Define radius (circles have radius a/2)
+\def\a{1.5}
+\def\r{0.75} % a/2
+\def\angle{75} % Rolling angle
+
+% Origin is at the initial contact point
+% Fixed circle center at (-a/2, 0)
+\coordinate (O1) at (-\r, 0);
+
+% Initial rolling circle center at (a/2, 0)
+\coordinate (C1) at (\r, 0);
+
+% Origin (initial contact point and initial marker point)
+\coordinate (O) at (0, 0);
+
+% Current rolling circle center after rolling angle θ
+% Center moves to: O1 + (2*(a/2)*cos(θ), 2*(a/2)*sin(θ)) = O1 + (a*cos(θ), a*sin(θ))
+\coordinate (C2) at ({-\r + \a*cos(\angle)}, {\a*sin(\angle)});
+
+% Current marker point using r = a(1-cos(θ)) in polar coordinates
+% x = a(1-cos(θ))*cos(θ), y = a(1-cos(θ))*sin(θ)
+\coordinate (M2) at ({\a*(1-cos(\angle))*cos(\angle)}, {\a*(1-cos(\angle))*sin(\angle)});
+
+% Draw axes (light gray)
+\draw[gray!30, very thin] (-2,0) -- (2,0);
+\draw[gray!30, very thin] (0,-0.5) -- (0,2);
+
+% Draw fixed circle (solid line, radius a/2)
+\draw[thick, black] (O1) circle (\r);
+\filldraw[black] (O1) circle (0.03);
+
+% Draw initial rolling circle (dashed, red, radius a/2)
+\draw[thick, blue!60, dashed] (C1) circle (\r);
+\filldraw[blue!60] (C1) circle (0.03);
+
+% Draw initial marker point at origin
+\filldraw[red!60] (O) circle (0.06);
+% \node[red!60, below right, xshift=3pt, yshift=-3pt] at (O) {\small 初始标记点};
+
+% Draw current rolling circle (dashed, blue, radius a/2)
+\draw[thick, blue!70, dashed, line width=0.8pt] (C2) circle (\r);
+\filldraw[blue!70] (C2) circle (0.03) node[above right, xshift=2pt, yshift=2pt] {$B$};
+
+% Draw line from O1 to C2 (two circle centers connection) - make it more visible
+\draw[dashed, thick] (O1) -- (C2);
+
+% Draw radius from C2 to marker point - make it more visible
+\draw[dashed, thick] (C2) -- (M2);
+
+% Draw current marker point
+\filldraw[red!70] (M2) circle (0.06);
+\node[red!70, left, xshift=-3pt] at (M2) {$C$};
+
+% Draw the cardioid trace using r = a(1-cos(θ))
+\draw[thick, red, ->, line width=0.7pt]
+    plot[domain=0:\angle, samples=100, smooth]
+    ({\a*(1-cos(\x))*cos(\x)}, {\a*(1-cos(\x))*sin(\x)});
+
+% Draw arrow showing rotation direction
+\draw[thick, -Stealth, gray!60]
+([shift=(25:{1.3*\a})]O1) arc (30:50:{1.3*\a});
+
+% Draw current contact point (between two circles)
+\coordinate (Contact) at ({\r*cos(\angle) - \r}, {\r*sin(\angle)});
+\filldraw[blue!70] (Contact) circle (0.05);
+\node[blue!70, above left, xshift=-1pt] at (Contact) {$A$};
+
+\node at (-\a-0.2, 0.1) {$-a$};
+\node at (\a-0.2, 0.1) {$a$};
+
+% Draw angle between (C2)-(O1) and x-axis (phi)
+\draw[thin] ([shift=(0:0.2)]O1) arc (0:\angle:0.2);
+\node at ([shift=({0.5*\angle}:0.3)]O1) {$\phi$};
+
+% Draw angle between (O1)-(C2) and (C2)-(M2) (also phi)
+\draw[thin] ([shift=({\angle-180}:0.2)]C2) arc ({\angle-180}:{\angle-105}:0.2);
+\node at ([shift=({\angle-145}:0.3)]C2) {$\phi$};
+
+\end{tikzpicture}
+}
+\end{column}
+\begin{column}{0.63\textwidth}
+\only<1, 3->{
+\textbf{心形线 (Cardioid)} 是极坐标方程
+\[
+r = a(1-\cos\theta), a > 0, 0 \leq \theta \leq 2\pi
+\]
+描述的曲线.
+}
+\only<2>{
+心形线可以看作是一个半径为 $a/2$ 的圆沿着另一个半径为 $a/2$ 的圆滚动时, 圆上某个固定点的轨迹. 该固定点在初始位置与两个圆的切点重合, 随着滚动, 该点在心形线上运动, 形成了心形线, 如作图所示.
+
+图中 $A, B$ 两点的坐标分别为
+\[
+A: \left( \frac{a}{2}(\cos\phi - 1), \frac{a}{2}\sin\phi \right), \quad B: \left( a\cos\phi - \frac{a}{2}, a\sin\phi \right).
+\]
+由于角 $\angle ABC$ 也是 $\phi$, 因此, $\vv{BC} = \begin{pmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{pmatrix} \vv{BA}$, 即
+\[
+\begin{pmatrix} x_c - \left(a\cos\phi - \frac{a}{2}\right) \\ y_c - a\sin\phi \end{pmatrix} = \begin{pmatrix} \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi \end{pmatrix} \begin{pmatrix} -\frac{a}{2}\cos\phi \\ -\frac{a}{2}\sin\phi \end{pmatrix}.
+\]
+}
+
+\only<3->{
+\begin{question}
+求心形线围成的面积.
+\end{question}
+}
+
+\only<4->{
+要求心形线围成的面积, 可以直接代公式
+\[
+S = \int_0^{2\pi} \frac{1}{2} r^2 ~ d\theta = \int_0^{2\pi} \frac{1}{2} a^2 (1-\cos\theta)^2 ~ \mathrm{d}\theta = \frac{3\pi a^2}{2}.
+\]
+}
+\end{column}
+\end{columns}
+
+\only<2>{
+解得点 $C$ 的参数方程为 $\begin{cases} x_c = a(1-\cos\phi)\cos\phi \\[6pt] y_c = a(1-\cos\phi)\sin\phi \end{cases}$, 即心形线的极坐标方程 $r = a(1-\cos\theta)$.
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 双曲螺线围成的面积}
+
+\begin{columns}
+\begin{column}{0.37\textwidth}
+\begin{tikzpicture}[scale=2]
+% Define parameter a
+\def\a{1.5}
+\def\n{1} % number of full rotations (2n*pi)
+\def\myangle{45}
+
+% Draw axes (light gray)
+\draw[gray!30, very thin, ->] (-0.6,0) -- (2.7,0) node[right] {$x$};
+\draw[gray!30, very thin, ->] (0,-0.6) -- (0,1.8) node[above] {$y$};
+
+% Draw origin
+\filldraw[black] (0,0) circle (0.03) node[below left] {$O$};
+
+% Draw the hyperbolic spiral using r*θ = a, so r = a/θ
+% x = r*cos(θ) = (a/θ)*cos(θ)
+% y = r*sin(θ) = (a/θ)*sin(θ)
+% Start from 30° and go to 2n*π
+\draw[thick, blue!70, line width=1pt]
+    plot[domain=30:{2*\n*180+\myangle}, samples=500, smooth]
+    ({\a/(\x*pi/180)*cos(\x)}, {\a/(\x*pi/180)*sin(\x)});
+
+% Draw ray from origin at angle \myangle (dashed)
+\draw[dashed, gray!60, thick] (0,0) -- ({\myangle}:2.7);
+
+\pgfmathsetmacro{\xIntersect}{\a/(\myangle*pi/180)*cos(\myangle)}
+\pgfmathsetmacro{\yIntersect}{\a/(\myangle*pi/180)*sin(\myangle)}
+
+\filldraw[red!70] (\xIntersect, \yIntersect) circle (0.05);
+% \node[red!70, above right, xshift=2pt, yshift=2pt] at (\xIntersect, \yIntersect) {\small 交点};
+
+\pgfmathsetmacro{\thetaIntersect}{2*180+\myangle}
+\pgfmathsetmacro{\xIntersectNew}{\a/(\thetaIntersect*pi/180)*cos(\thetaIntersect)}
+\pgfmathsetmacro{\yIntersectNew}{\a/(\thetaIntersect*pi/180)*sin(\thetaIntersect)}
+
+\filldraw[red!70] (\xIntersectNew, \yIntersectNew) circle (0.05);
+
+% Mark starting point at θ=30°
+% \filldraw[blue!70] ({\a/30*cos(30)}, {\a/30*sin(30)}) circle (0.04);
+% \node[blue!70, right, xshift=2pt] at ({\a/30*cos(30)}, {\a/30*sin(30)}) {\small $\theta=30°$};
+
+% Title
+% \node[above] at (0, 3.3) {\textbf{双曲螺线 (Hyperbolic Spiral)}};
+\node[below] at (1.9, 1.3) {$r\theta = a$, $a > 0$};
+
+% Add note about asymptotic behavior
+% \node[align=center, font=\footnotesize, gray!70] at (0, -3.3) {
+%     当 $\theta \to \infty$ 时, $r \to 0$ (螺线趋向原点)
+% };
+\fill[blue!20, opacity=0.5]
+    (0,0) --
+    plot[domain=\myangle:{2*\n*180+\myangle}, samples=500, smooth]
+    ({\a/(\x*pi/180)*cos(\x)}, {\a/(\x*pi/180)*sin(\x)})
+    -- cycle;
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.63\textwidth}
+\textbf{双曲螺线 (Hyperbolic Spiral)} 是极坐标方程
+\[
+r\theta = a, a > 0,
+\]
+描述的曲线. 它对应的直角坐标方程为 $\begin{cases} x = \frac{a}{\theta}\cos\theta \\[6pt] y = \frac{a}{\theta}\sin\theta \end{cases}$.
+
+\pause
+
+\begin{question}
+求 $\theta$ 从 $\frac{\pi}{4}$ 变化到 $2\pi + \frac{\pi}{4}$ 时, 双曲螺线上的点对应的极径扫过的面积.
+\end{question}
+
+\pause
+
+这个问题也可以直接代公式
+\[
+S = \int_{\pi/4}^{9\pi/4} \frac{1}{2} r^2 ~ d\theta = \int_{\pi/4}^{9\pi/4} \frac{1}{2} \frac{a^2}{\theta^2} ~ d\theta = - \left. \frac{a^2}{2\theta} \right|_{\pi/4}^{9\pi/4} = \frac{16 a^2}{9 \pi}.
+\]
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{极坐标下面积}
 
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{极坐标下求面积问题的引入}
 
+\begin{Def}
+设平面曲线参数方程为 $\begin{cases} x = x(t) \\[6pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, $x(t), y(t)$ 在 $[T_1, T_2]$ 上关于 $t$ 连续. 设 $[T_1, T_2]$ 有划分 $P: T_1 = t_0 < t_1 < \cdots < t_n = T_2$, 记相应的分点为 $A_i = (x(t_i), y(t_i))$, $i = 0, 1, \cdots, n$, 以及 $\left\lvert \vv{A_{i-1}A_i} \right\rvert = \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2}$, 若极限
+\[
+\ell = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \left\lvert \vv{A_{i-1}A_i} \right\rvert
+\]
+存在, 则称该曲线是\alert{可求长的}, $\ell$ 是该曲线的\alert{长度}.
+\end{Def}
+
 \end{frame}
 
 %------------------------------------------------
 
-\section{旋转体体积}
+\begin{frame}
+\frametitle{不可求长的曲线}
+
+\begin{remark}
+不是所有曲线都可求长. 例如 Koch Snowflake:
+
+\vspace{1em}
+
+% Declare Lindenmayer systems once (with check for beamer)
+\ifcsname pgf@lsystem@KochSnowflake\endcsname
+\else
+  \pgfdeclarelindenmayersystem{KochSnowflake}{
+      \rule{F -> F-F++F-F}
+  }
+\fi
+
+\begin{tikzpicture}[scale=1.2]
+
+% Stage 0: Initial equilateral triangle
+\begin{scope}[xshift=0cm]
+    \draw[thick, blue!70] (0,0) -- (2,0) -- (1,{sqrt(3)}) -- cycle;
+    \node[below] at (1, -0.5) {长度为 $3$};
+\end{scope}
+
+% Arrow 1
+\draw[-Stealth, thick] (2.5, {sqrt(3)/2}) -- (3.5, {sqrt(3)/2});
+
+% Stage 1: Koch iteration 1 using Lindenmayer system
+\begin{scope}[xshift=4.5cm, yshift=0.35cm]
+    \draw[thick, red!70, l-system={KochSnowflake, step=0.444cm, angle=60, axiom=F++F++F, order=1}]
+        lindenmayer system;
+
+    \node[below] at (0.7, -0.85) {长度为 $4$};
+\end{scope}
+
+% Arrow 2
+\draw[-Stealth, thick] (7, {sqrt(3)/2}) -- (8, {sqrt(3)/2});
+
+% Stage 2: Further iteration using Lindenmayer system
+\begin{scope}[xshift=9cm, yshift=0.4cm, scale=1]
+    \draw[thick, green!60!black, l-system={KochSnowflake, step=0.148cm, angle=60, axiom=F++F++F, order=2}]
+        lindenmayer system;
+
+    \node[below] at (0.85, -0.7) {长度为 $3 \cdot \left(\frac{4}{3}\right)^2$};
+\end{scope}
+
+% Arrow 3
+\draw[-Stealth, thick] (11.5, {sqrt(3)/2}) -- (12.5, {sqrt(3)/2});
+
+% Dots
+\begin{scope}[xshift=13cm]
+    \node[font=\Large] at (0.5, {sqrt(3)/2}) {$\cdots$};
+    \node[below] at (0.5, -0.5) {$\infty$};
+\end{scope}
+
+\end{tikzpicture}
+
+\pause
+
+Koch Snowflake 是最简单的分形 (Fractal) 的例子, 其长度为 $\infty$, 但面积为 $0$. 需要另一种尺度来``测量''它, 这就是所谓的\alert{分形维数 (Fractal Dimension)}, 或者说是 \alert{Hausdorff Dimension}, 维数不再局限于整数, 而是可以是任意实数. 例如, Koch Snowflake 的分形维数为 $\frac{\ln 4}{\ln 3}$. 另外还有像 Cantor Set 这样的分形, 但分形维数为 $\frac{\ln 2}{\ln 3}$.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{可求长的曲线}
+
+\begin{question}
+\begin{itemize}
+\item 哪些曲线是可求长的?
+\item 可求长的曲线的长度如何计算?
+\end{itemize}
+\end{question}
+
+\pause
+
+\textbf{分析}: $\sum\limits_{i=1}^n \left\lvert \vv{A_{i-1}A_i} \right\rvert$ 并非黎曼和或者达布和的形式, 为了能用定积分 (进一步用牛顿-莱布尼茨公式) 来计算, 需要先将其化为黎曼和的形式. 首先观察
+\begin{align*}
+\left\lvert \vv{A_{i-1}A_i} \right\rvert & = \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2} \\
+& (\text{进一步假设 $x(t), y(t)$ 在 $(T_1, T_2)$ 上可导}) \\
+(\text{微分中值定理}) & = \sqrt{(x'(\eta_i))^2 + (y'(\sigma_i))^2} \Delta t_i, \quad \eta_i, \sigma_i \in (t_{i-1}, t_i) \\
+& {\color{red}\overset{?}{\approx}} \sqrt{(x'(\xi_i))^2 + (y'(\xi_i))^2} \Delta t_i, \quad \xi_i \in (t_{i-1}, t_i)
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{光滑曲线及其弧长公式}
+
+\begin{Def}
+设平面曲线参数方程为 $\begin{cases} x = x(t) \\[6pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, 若 $x(t), y(t) \in C^1([T_1, T_2])$, 且 $\forall t \in [T_1, T_2], (x'(t))^2 + (y'(t))^2 \neq 0$, 则称该曲线是\alert{光滑曲线 (Smooth Curve)}.
+\end{Def}
+
+\pause
+
+\begin{thm}
+设平面曲线参数方程为 $\begin{cases} x = x(t) \\[6pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, 若该曲线是光滑曲线, 则该曲线是可求长的, 且其长度为
+\[
+\ell = \int_{T_1}^{T_2} \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d}t.
+\]
+\end{thm}
+
+注意, $\mathrm{d} \ell = \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d}t$ 称作\alert{弧长微分 (Differential of Arc Length)}. 因此, $\ell = \int_{T_1}^{T_2} \mathrm{d}\ell$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{光滑曲线弧长公式的证明}
+
+设 $(P, \xi)$ 是 $[T_1, T_2]$ 的一个带标志点的划分, 我们考察两个``积分和''的差:
+\begin{align*}
+& \left\lvert \sum_{i=1}^n \left\lvert \vv{A_{i-1}A_i} \right\rvert - \sum_{i=1}^n \sqrt{(x'(\xi_i))^2 + (y'(\xi_i))^2} \Delta t_i \right\rvert \\
+& \leqslant \sum_{i=1}^n \left\lvert \sqrt{(x'(\eta_i))^2 + (y'(\sigma_i))^2} - \sqrt{(x'(\xi_i))^2 + (y'(\xi_i))^2} \right\rvert \Delta t_i \\
+(\text{三角不等式}) & \leqslant \sum_{i=1}^n \sqrt{(x'(\eta_i) - x'(\xi_i))^2 + (y'(\sigma_i) - y'(\xi_i))^2} \Delta t_i \\
+(\text{直角三角形的三角不等式}) & \leqslant \sum_{i=1}^n \left( \left\lvert x'(\eta_i) - x'(\xi_i) \right\rvert + \left\lvert y'(\sigma_i) - y'(\xi_i) \right\rvert \right) \Delta t_i \\
+& \leqslant \sum_{i=1}^n \left( \omega(x', [t_{i-1}, t_i]) + \omega(y', [t_{i-1}, t_i]) \right) \Delta t_i \\
+& = \sum_{i=1}^n \omega(x', [t_{i-1}, t_i]) \Delta t_i + \sum_{i=1}^n \omega(y', [t_{i-1}, t_i]) \Delta t_i \\
+(\text{$x$ 和 $y$ 的连续性}) & \to 0 \quad (\lambda(P) \to 0).
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{光滑曲线弧长公式的几个注记}
+
+\begin{enumerate}
+\item
+\item
+\item
+\item
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{求曲线弧长的例子 -- 圆的弧长}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{求曲线弧长的例子 -- 椭圆周长}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{几何体体积}
 
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{旋转体体积}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{旋转曲面面积}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{旋转曲面面积}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{曲线曲率}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{曲线曲率}
 
 \end{frame}
 
