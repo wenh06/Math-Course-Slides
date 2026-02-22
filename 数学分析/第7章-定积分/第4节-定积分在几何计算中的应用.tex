@@ -393,7 +393,7 @@ S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \frac{1}{2} r(\xi_i)^2 \Delta \theta_i 
 \end{tikzpicture}
 }
 \only<2>{
-\begin{tikzpicture}[scale=1.7]
+\begin{tikzpicture}[scale=1.4]
 % Define radius (circles have radius a/2)
 \def\a{1.5}
 \def\r{0.75} % a/2
@@ -418,7 +418,7 @@ S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \frac{1}{2} r(\xi_i)^2 \Delta \theta_i 
 \coordinate (M2) at ({\a*(1-cos(\angle))*cos(\angle)}, {\a*(1-cos(\angle))*sin(\angle)});
 
 % Draw axes (light gray)
-\draw[gray!30, very thin] (-2,0) -- (2,0);
+\draw[gray!30, very thin] (-3.1,0) -- (1.6,0);
 \draw[gray!30, very thin] (0,-0.5) -- (0,2);
 
 % Draw fixed circle (solid line, radius a/2)
@@ -461,8 +461,9 @@ S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \frac{1}{2} r(\xi_i)^2 \Delta \theta_i 
 \filldraw[blue!70] (Contact) circle (0.05);
 \node[blue!70, above left, xshift=-1pt] at (Contact) {$A$};
 
-\node at (-\a-0.2, 0.1) {$-a$};
+\node at (-\a+0.2, 0.1) {$-a$};
 \node at (\a-0.2, 0.1) {$a$};
+\node at (-2*\a+0.2, 0.1) {\smaller[1] $-2a$};
 
 % Draw angle between (C2)-(O1) and x-axis (phi)
 \draw[thin] ([shift=(0:0.2)]O1) arc (0:\angle:0.2);
@@ -475,6 +476,32 @@ S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \frac{1}{2} r(\xi_i)^2 \Delta \theta_i 
 \draw[dashed, thick] (O) -- (M2);
 \draw[thin] ([shift=(0:0.2)]O) arc (0:\angle:0.2);
 \node at ([shift=({0.2*\angle}:0.5)]O) {$\theta = \phi$};
+
+\def\angleOne{150}
+\coordinate (C2a) at ({-\r + \a*cos(\angleOne)}, {\a*sin(\angleOne)});
+\coordinate (M2a) at ({\a*(1-cos(\angleOne))*cos(\angleOne)}, {\a*(1-cos(\angleOne))*sin(\angleOne)});
+\draw[thick, blue!40, dashed, opacity=0.6] (C2a) circle (\r);
+\filldraw[red!60, opacity=0.7] (M2a) circle (0.05);
+
+\def\angleTwo{220}
+\coordinate (C2b) at ({-\r + \a*cos(\angleTwo)}, {\a*sin(\angleTwo)});
+\coordinate (M2b) at ({\a*(1-cos(\angleTwo))*cos(\angleTwo)}, {\a*(1-cos(\angleTwo))*sin(\angleTwo)});
+\draw[thick, blue!50, dashed, opacity=0.6] (C2b) circle (\r);
+\filldraw[red!60, opacity=0.7] (M2b) circle (0.05);
+
+\def\angleThree{290}
+\coordinate (C2c) at ({-\r + \a*cos(\angleThree)}, {\a*sin(\angleThree)});
+\coordinate (M2c) at ({\a*(1-cos(\angleThree))*cos(\angleThree)}, {\a*(1-cos(\angleThree))*sin(\angleThree)});
+\draw[thick, blue!60, dashed, opacity=0.6] (C2c) circle (\r);
+\filldraw[red!60, opacity=0.7] (M2c) circle (0.05);
+
+\draw[thick, red, ->, line width=0.7pt]
+    plot[domain=\angle:\angleThree, samples=100, smooth]
+    ({\a*(1-cos(\x))*cos(\x)}, {\a*(1-cos(\x))*sin(\x)});
+
+\draw[thick, red, ->, line width=0.7pt]
+    plot[domain=\angleThree:360, samples=100, smooth]
+    ({\a*(1-cos(\x))*cos(\x)}, {\a*(1-cos(\x))*sin(\x)});
 
 \end{tikzpicture}
 }
@@ -805,12 +832,135 @@ Koch Snowflake 是最简单的分形 (Fractal) 的例子, 其长度为 $\infty$,
 \begin{frame}
 \frametitle{求曲线弧长的例子 -- 圆的弧长}
 
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\begin{tikzpicture}[scale=1.1]
+\begin{axis}[
+axis lines=middle,
+xlabel={$x$},
+ylabel={$y$},
+xlabel style={at={(ticklabel* cs:1)}, anchor=west},
+ylabel style={at={(ticklabel* cs:1)}, anchor=south},
+xmin=-1.5, xmax=1.5,
+ymin=-0.4, ymax=1.5,
+xtick={-1,1},
+xticklabels={$-a$,$a$},
+ytick=\empty,
+width=6cm,
+height=4cm,
+axis equal image, % 保证圆看起来是圆
+]
+% 绘制上半圆
+\addplot[blue, thick, domain=-1:1, samples=100] {sqrt(1-x^2)};
+
+% 标记原点
+\node[below left] at (axis cs:0,0) {$O$};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{question}
+求半径为 $a$ 的圆的弧长.
+\end{question}
+
+\pause
+
+\textbf{方法一: 参数化}: 圆的参数方程为 $\begin{cases} x = a\cos t \\[6pt] y = a\sin t \end{cases}$, $t \in [0, \pi]$. 因此, 圆 (一般性的从 $\alpha$ 角到 $\beta$ 的圆弧) 的弧长为
+\[
+\ell = \int_{\alpha}^{\beta} \sqrt{(-a\sin t)^2 + (a\cos t)^2} ~ \mathrm{d}t = \int_{\alpha}^{\beta} a ~ \mathrm{d}t = a(\beta - \alpha).
+\]
+\pause
+\textbf{方法二: 极坐标}: 圆的极坐标方程为 $r = a$, $\theta \in [0, \pi]$. 因此
+\[
+\ell = \int_{\alpha}^{\beta} \sqrt{(0)^2 + (a)^2} ~ \mathrm{d}\theta = \int_{\alpha}^{\beta} a ~ \mathrm{d}\theta = a(\beta - \alpha).
+\]
+\end{column}
+\end{columns}
+
+\pause
+
+\textbf{方法三: 显式函数关系}: (上半) 圆的显式函数关系为 $y = \sqrt{a^2 - x^2}$, $x \in [-a, a]$. 因此, 圆弧的弧长为
+\[
+\ell = \int_{-a}^{a} \sqrt{1 + \left(\frac{-x}{\sqrt{a^2 - x^2}} \right)^2} ~ \mathrm{d}x = \underbrace{{\color{red}\int_{-a}^{a} \frac{a}{\sqrt{a^2 - x^2}} ~ \mathrm{d}x}}_{\text{已经不能用定积分理解}} = \left. a \arcsin\left( \frac{x}{a} \right) \right|_{-a}^{a} = a\pi.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{从用显式函数关系求圆弧长的例子引出的思考}
+
+\begin{question}
+被积函数 $\frac{a}{\sqrt{a^2 - x^2}}$ 在 $[-a, a]$ 上无界且在端点处无定义, 那么应该在 (正常意义下) 黎曼不可积, 但半圆弧长的确存在 (或者说半圆是可求长的). 那么问题出在哪里?
+\end{question}
+
+\pause
+
+\textbf{问题在于}: 显式函数关系 $y = \sqrt{a^2 - x^2}$ 也可看成一个参数化表达
+\[
+\begin{cases} x = t \\[6pt] y = \sqrt{a^2 - t^2} \end{cases}, t \in [-a, a].
+\]
+这个参数方程在某些点 ($t = \pm a$) 不满足光滑性条件.
+
+\pause
+
+\begin{block}{解决办法}
+\begin{itemize}
+\item 推广黎曼积分, 扩大可积函数的范围 \pause  ~ $\rightsquigarrow$ ~ 反常积分, Lebesgue 积分.
+\pause
+\item 有重合地分段参数化, 分段重合的地方``相容'' \pause ~ $\rightsquigarrow$ ~ 流形 (manifold) ~ $\rightsquigarrow$ ~ 概型 (scheme).
+\end{itemize}
+\end{block}
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{求曲线弧长的例子 -- 椭圆周长}
+
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\begin{tikzpicture}[scale=1.0]
+\begin{axis}[
+axis lines=middle,
+xlabel={$x$},
+ylabel={$y$},
+xlabel style={at={(ticklabel* cs:1)}, anchor=west},
+ylabel style={at={(ticklabel* cs:1)}, anchor=south},
+xmin=-1.8, xmax=1.8,
+ymin=-1.2, ymax=1.2,
+xtick=\empty,
+ytick=\empty,
+width=6cm,
+height=5cm,
+axis equal image, % 保证椭圆比例正确
+]
+% 绘制椭圆 (使用参数方程 x=acos(t), y=bsin(t))
+% 这里假设 a=1.5, b=0.8 用于绘图
+\addplot[blue, thick, domain=0:360, samples=100, variable=\t] ({1.5*cos(t)}, {0.8*sin(t)});
+
+% 标记原点
+\node[below left] at (axis cs:0,0) {$O$};
+
+% 标记 ±a 和 ±b
+\node[below] at (axis cs:1.6,0) {$a$};
+\node[below] at (axis cs:-1.7,0) {$-a$};
+\node[left] at (axis cs:0,0.95) {$b$};
+\node[left] at (axis cs:0,-0.95) {$-b$};
+
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{question}
+求半长轴为 $a$、半短轴为 $b$ 的椭圆的周长.
+\end{question}
+\pause
+xxx
+\end{column}
+\end{columns}
 
 \end{frame}
 
@@ -821,7 +971,144 @@ Koch Snowflake 是最简单的分形 (Fractal) 的例子, 其长度为 $\infty$,
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{问题引入}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\begin{tikzpicture}[
+scale=1.5,
+axis/.style={->, thick, >=latex},
+section/.style={fill=blue!10, draw=blue, thick},
+hidden/.style={dashed, draw=blue!50}
+]
+
+% 定义坐标系视角
+% x轴水平向右，z轴垂直向上，y轴斜向里
+\draw[axis] (0,0,0) -- (6,0,0) node[right] {$x$};
+\draw[axis] (0,0,0) -- (0,2.5,0) node[above] {$z$};
+\draw[axis] (0,0,0) -- (0,0,-2.5) node[left] {$y$};
+\node[below left] at (0,0,0) {$O$};
+
+% 定义几何体参数
+% 几何体中心大概在 x=3, y=0, z=1.2
+% 形状是一个略微变形的椭球体
+
+% 绘制几何体的轮廓（Outline）
+% 上边缘
+\draw[thick, name path=top] plot[smooth, tension=0.7] coordinates {
+(1, 0.8, 0) (2, 1.5, 0) (3, 1.6, 0) (4, 1.5, 0) (5, 0.9, 0)
+};
+% 下边缘
+\draw[thick, name path=bottom] plot[smooth, tension=0.7] coordinates {
+(1, 0.8, 0) (2, 0.3, 0) (3, 0.2, 0) (4, 0.3, 0) (5, 0.9, 0)
+};
+
+% --- 左侧截面 (x approx 1.5, 稍微靠近左端点但不在端点) ---
+% 前半部分 (实线)
+\draw[thick, blue] (1.5, 1.2, 0) arc (90:270:0.15 and 0.33);
+% 后半部分 (虚线)
+\draw[hidden] (1.5, 1.2, 0) arc (90:-90:0.15 and 0.33);
+\draw[dashed] (1.5, 0.5, 0) -- (1.5, 0, 0) node[below] {$a$};
+
+% --- 中间截面 (x approx 3.0) ---
+% 这是一个稍微大一点的截面，代表一般位置 x
+% 前半部分 (实线)
+\draw[thick, blue] (3, 1.6, 0) arc (90:270:0.3 and 0.7);
+% 后半部分 (虚线)
+\draw[hidden] (3, 1.6, 0) arc (90:-90:0.3 and 0.7);
+
+% 标注 A(x)
+\draw[->, thin] (3, 2.0, 0) -- (3, 1.65, 0);
+\node[above] at (3, 2.0, 0) {面积 $A(x)$};
+\node[below] at (3, -0.2, 0) {$x$};
+\draw[dashed] (3, 0.2, 0) -- (3, 0, 0); % 投影线到x轴
+
+% --- 右侧截面 (x approx 4.5, 稍微靠近右端点但不在端点) ---
+% 前半部分 (实线)
+\draw[thick, blue] (4.5, 1.2, 0) arc (90:270:0.15 and 0.31);
+% 后半部分 (虚线)
+\draw[hidden] (4.5, 1.2, 0) arc (90:-90:0.15 and 0.31);
+\draw[dashed] (4.5, 0.5, 0) -- (4.5, 0, 0) node[below] {$b$};
+
+% 连接截面的侧面轮廓（增强立体感，可选）
+\draw[thick, dashed] (1, 0.8, 0) .. controls (1.5, 1.5, 0) and (4.5, 1.5, 0) .. (5, 0.9, 0);
+\draw[thick] (1, 0.8, 0) .. controls (1.5, 0.3, 0) and (4.5, 0.3, 0) .. (5, 0.9, 0);
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.4\textwidth}
+\begin{question}
+xxx
+\end{question}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{旋转体体积}
+
+\begin{tikzpicture}[
+    scale=1.1,
+    axis/.style={->, thick, >=latex},
+    domain=1:4.5,
+    samples=100
+]
+
+% 定义坐标轴
+\draw[axis] (-0.5,0,0) -- (5.5,0,0) node[right] {$x$};
+\draw[axis] (0,-2,0) -- (0,2,0) node[above] {$y$};
+\draw[axis] (0,0,0) -- (0,0,2) node[below left] {$z$}; % z轴指向外
+\node[above left] at (0,0,0) {$O$};
+
+% 定义上边界函数 f(x)
+\def\func{0.6 + 0.2*sin(deg(3*\x)) + 0.15*\x}
+
+% 绘制旋转体侧面
+% 上边缘 f(x)
+\draw[thick, name path=top] plot[domain=1:4.5] (\x, {0.6 + 0.2*sin(deg(3*\x)) + 0.15*\x});
+% 下边缘 -f(x) (对称)
+\draw[thick, name path=bottom] plot[domain=1:4.5] (\x, {-(0.6 + 0.2*sin(deg(3*\x)) + 0.15*\x)});
+
+% 绘制端点圆面 (x=a, x=b)
+% 左端点 x=1 (a)
+\def\xa{1}
+\pgfmathsetmacro{\ra}{0.6 + 0.2*sin(deg(3*\xa)) + 0.15*\xa}
+% 绘制左端面的椭圆
+\draw[thick, blue] (\xa, \ra) arc (90:270:0.15 and \ra);
+\draw[thick, blue] (\xa, \ra) arc (90:-90:0.15 and \ra);
+% 标注 a
+\draw[dashed] (\xa, 0) -- (\xa, -\ra-0.3);
+\node[below] at (\xa, -\ra-0.3) {$a$};
+
+% 右端点 x=4.5 (b)
+\def\xb{4.5}
+\pgfmathsetmacro{\rb}{0.6 + 0.2*sin(deg(3*\xb)) + 0.15*\xb}
+% 绘制右端面的椭圆
+\draw[dashed, blue!50] (\xb, \rb) arc (90:270:0.2 and \rb);
+\draw[thick, blue] (\xb, \rb) arc (90:-90:0.2 and \rb);
+% 标注 b
+\draw[dashed] (\xb, 0) -- (\xb, -\rb-0.3);
+\node[below] at (\xb, -\rb-0.3) {$b$};
+
+% 填充颜色 (可选，为了好看)
+\foreach \x in {2, 3, 3.8} {
+    \pgfmathsetmacro{\r}{0.6 + 0.2*sin(deg(3*\x)) + 0.15*\x}
+    \draw[thin, gray!40] (\x, \r) arc (90:-90:0.1 and \r);
+    \draw[dashed, gray!40] (\x, \r) arc (90:270:0.1 and \r);
+}
+
+% 标注曲线 y=f(x)
+\node[above] at (2.5, 1.3) {$y=f(x)$};
+
+% 绕x轴旋转箭头 (画一个环绕x轴的圆弧箭头)
+\draw[->, >=latex, thick]
+    (5.0, 0) ++(0, 0.4) arc (90:430:0.15 and 0.4);
+\node[below right] at (5.0, -0.5) {绕 $x$ 轴};
+
+\end{tikzpicture}
 
 \end{frame}
 
