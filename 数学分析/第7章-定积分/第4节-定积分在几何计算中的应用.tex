@@ -223,7 +223,7 @@ t = 2 \left( \int_0^{y_0} \left( \sqrt{y^2 + 1} - \frac{x_0}{y_0} y \right) ~ dy
 注意, 如果联立方程 $\begin{cases} x + y = e^t \\ x^2 - y^2 = 1 \end{cases}$, 则可得
 \[
 \begin{cases}
-x = \frac{e^t + e^{-t}}{2} = \cosh t \\[6pt]
+x = \frac{e^t + e^{-t}}{2} = \cosh t \\[3pt]
 y = \frac{e^t - e^{-t}}{2} = \sinh t
 \end{cases}
 \]
@@ -543,7 +543,7 @@ S = \int_0^{2\pi} \frac{1}{2} r^2 ~ d\theta = \int_0^{2\pi} \frac{1}{2} a^2 (1-\
 \end{columns}
 
 \only<2>{
-解得点 $C$ 的参数方程为 $\begin{cases} x_c = a(1-\cos\phi)\cos\phi \\[6pt] y_c = a(1-\cos\phi)\sin\phi \end{cases}$, 联立得心形线的极坐标方程 $r = a(1-\cos\theta)$ (其中 $\theta = \phi$).
+解得点 $C$ 的参数方程为 $\begin{cases} x_c = a(1-\cos\phi)\cos\phi \\[3pt] y_c = a(1-\cos\phi)\sin\phi \end{cases}$, 联立得心形线的极坐标方程 $r = a(1-\cos\theta)$ (其中 $\theta = \phi$).
 }
 
 \end{frame}
@@ -616,7 +616,7 @@ S = \int_0^{2\pi} \frac{1}{2} r^2 ~ d\theta = \int_0^{2\pi} \frac{1}{2} a^2 (1-\
 \[
 r\theta = a, a > 0,
 \]
-描述的曲线. 它对应的直角坐标方程为 $\begin{cases} x = \frac{a}{\theta}\cos\theta \\[6pt] y = \frac{a}{\theta}\sin\theta \end{cases}$.
+描述的曲线. 它对应的直角坐标方程为 $\begin{cases} x = \frac{a}{\theta}\cos\theta \\[3pt] y = \frac{a}{\theta}\sin\theta \end{cases}$.
 
 \pause
 
@@ -646,7 +646,7 @@ S = \int_{\pi/4}^{9\pi/4} \frac{1}{2} r^2 ~ d\theta = \int_{\pi/4}^{9\pi/4} \fra
 \frametitle{极坐标下求面积问题的引入}
 
 \begin{Def}
-设平面曲线参数方程为 $\begin{cases} x = x(t) \\[6pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, $x(t), y(t)$ 在 $[T_1, T_2]$ 上关于 $t$ 连续. 设 $[T_1, T_2]$ 有划分 $P: T_1 = t_0 < t_1 < \cdots < t_n = T_2$, 记相应的分点为 $A_i = (x(t_i), y(t_i))$, $i = 0, 1, \cdots, n$, 以及 $\left\lvert \vv{A_{i-1}A_i} \right\rvert = \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2}$, 若极限
+设平面曲线参数方程为 $\begin{cases} x = x(t) \\[3pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, $x(t), y(t)$ 在 $[T_1, T_2]$ 上关于 $t$ 连续. 设 $[T_1, T_2]$ 有划分 $P: T_1 = t_0 < t_1 < \cdots < t_n = T_2$, 记相应的分点为 $A_i = (x(t_i), y(t_i))$, $i = 0, 1, \cdots, n$, 以及 $\left\lvert \vv{A_{i-1}A_i} \right\rvert = \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2}$, 若极限
 \[
 \ell = \lim_{\lambda(P) \to 0} \sum_{i=1}^n \left\lvert \vv{A_{i-1}A_i} \right\rvert
 \]
@@ -751,13 +751,13 @@ Koch Snowflake 是最简单的分形 (Fractal) 的例子, 其长度为 $\infty$,
 \frametitle{光滑曲线及其弧长公式}
 
 \begin{Def}
-设平面曲线参数方程为 $\begin{cases} x = x(t) \\[6pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, 若 $x(t), y(t) \in C^1([T_1, T_2])$, 且 $\forall t \in [T_1, T_2], (x'(t))^2 + (y'(t))^2 \neq 0$, 则称该曲线是\alert{光滑曲线 (Smooth Curve)}.
+设平面曲线参数方程为 $\begin{cases} x = x(t) \\[3pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, 若 $x(t), y(t) \in C^1([T_1, T_2])$, 且 $\forall t \in [T_1, T_2], (x'(t))^2 + (y'(t))^2 \neq 0$, 则称该曲线是\alert{光滑曲线 (Smooth Curve)}.
 \end{Def}
 
 \pause
 
 \begin{thm}
-设平面曲线参数方程为 $\begin{cases} x = x(t) \\[6pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, 若该曲线是光滑曲线, 则该曲线是可求长的, 且其长度为
+设平面曲线参数方程为 $\begin{cases} x = x(t) \\[3pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, 若该曲线是光滑曲线, 则该曲线是可求长的, 且其长度为
 \[
 \ell = \int_{T_1}^{T_2} \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d}t.
 \]
@@ -796,7 +796,7 @@ Koch Snowflake 是最简单的分形 (Fractal) 的例子, 其长度为 $\infty$,
 \ell = \int_{a}^{b} \sqrt{1 + (f'(x))^2} ~ \mathrm{d} x,
 \]
 其中 $a$ 等于 $x(T_1), x(T_2)$ 中较小的一个, $b$ 等于较大的一个 (注意, 这里自动对 $x'(t) < 0$ 的情况交换了积分上下限).
-\item 若曲线为极坐标形式 $r = r(\theta), \theta \in [\alpha, \beta]$, 则由关系式 (参数形式) $\begin{cases} x = r(\theta) \cos\theta \\[6pt] y = r(\theta) \sin\theta \end{cases}$ 可得
+\item 若曲线为极坐标形式 $r = r(\theta), \theta \in [\alpha, \beta]$, 则由关系式 (参数形式) $\begin{cases} x = r(\theta) \cos\theta \\[3pt] y = r(\theta) \sin\theta \end{cases}$ 可得
 \begin{align*}
 \ell & = \int_\alpha^\beta \sqrt{\left( \frac{\mathrm{d}x}{\mathrm{d}\theta} \right)^2 + \left( \frac{\mathrm{d}y}{\mathrm{d}\theta} \right)^2} ~ \mathrm{d}\theta \\
 & = \int_\alpha^\beta \sqrt{\left( r'(\theta) \cos\theta - r(\theta) \sin\theta \right)^2 + \left( r'(\theta) \sin\theta + r(\theta) \cos\theta \right)^2} ~ \mathrm{d}\theta \\
@@ -865,7 +865,7 @@ axis equal image, % 保证圆看起来是圆
 
 \pause
 
-\textbf{方法一: 参数化}: 圆的参数方程为 $\begin{cases} x = a\cos t \\[6pt] y = a\sin t \end{cases}$, $t \in [0, \pi]$. 因此, 圆 (一般性的从 $\alpha$ 角到 $\beta$ 的圆弧) 的弧长为
+\textbf{方法一: 参数化}: 圆的参数方程为 $\begin{cases} x = a\cos t \\[3pt] y = a\sin t \end{cases}$, $t \in [0, \pi]$. 因此, 圆 (一般性的从 $\alpha$ 角到 $\beta$ 的圆弧) 的弧长为
 \[
 \ell = \int_{\alpha}^{\beta} \sqrt{(-a\sin t)^2 + (a\cos t)^2} ~ \mathrm{d}t = \int_{\alpha}^{\beta} a ~ \mathrm{d}t = a(\beta - \alpha).
 \]
@@ -899,7 +899,7 @@ axis equal image, % 保证圆看起来是圆
 
 \textbf{问题在于}: 显式函数关系 $y = \sqrt{a^2 - x^2}$ 也可看成一个参数化表达
 \[
-\begin{cases} x = t \\[6pt] y = \sqrt{a^2 - t^2} \end{cases}, t \in [-a, a].
+\begin{cases} x = t \\[3pt] y = \sqrt{a^2 - t^2} \end{cases}, t \in [-a, a].
 \]
 这个参数方程在某些点 ($t = \pm a$) 不满足光滑性条件.
 
@@ -955,12 +955,32 @@ axis equal image, % 保证椭圆比例正确
 \end{column}
 \begin{column}{0.7\textwidth}
 \begin{question}
-求半长轴为 $a$、半短轴为 $b$ 的椭圆的周长.
+求半长轴为 $a$、半短轴为 $b$ 的椭圆 $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ 的周长. ($a \geqslant b > 0$)
 \end{question}
-\pause
-xxx
 \end{column}
 \end{columns}
+
+\pause
+
+\textbf{解}: 椭圆的参数方程为 $\begin{cases} x(\theta) = a\cos \theta \\[3pt] y(\theta) = b\sin \theta \end{cases}$, $\theta \in [0, 2\pi]$. 因此, 椭圆的周长为
+\begin{align*}
+\ell & = \int_0^{2\pi} \sqrt{(x'(\theta))^2 + (y'(\theta))^2} ~ \mathrm{d}\theta = \int_0^{2\pi} \sqrt{(-a\sin \theta)^2 + (b\cos \theta)^2} ~ \mathrm{d}\theta \\
+& = \int_0^{2\pi} a \sqrt{1 - \left( 1 - \frac{b^2}{a^2} \right) \sin^2 \theta} ~ \mathrm{d}\theta = 4a \int_0^{\pi/2} \sqrt{1 - k^2 \sin^2 \theta} ~ \mathrm{d}\theta,
+\end{align*}
+其中 $k = \sqrt{1 - \frac{b^2}{a^2}}$ 是椭圆的离心率. 令 $E(k, \phi) = \int_0^\phi \sqrt{1 - k^2 \sin^2 \theta} ~ \mathrm{d}\theta$ 是第二类不完全椭圆积分, 则椭圆的周长为 $4a E(k, \pi/2).$ 它不能用初等函数表达, 但可以用级数展开或者数值方法计算.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{求曲线弧长的例子 -- 椭圆周长}
+
+对 $E(k, \phi) = \int_0^\phi \sqrt{1 - k^2 \sin^2 \theta} ~ \mathrm{d}\theta$ 作变量替换 $t = \sin \theta$, 记 $T = \sin \phi$, 可得
+\[
+E(k, \phi) = \int_0^{\sin \phi} \frac{\sqrt{1 - k^2 t^2}}{\sqrt{1 - t^2}} ~ \mathrm{d}t = \int_0^{T} \frac{\sqrt{(1 - k^2t^2) (1 - t^2)}}{1 - t^2} ~ \mathrm{d}t = \int_0^{T} \frac{\sqrt{1 - (1 - k^2) t^2 + k^2 t^4}}{1 - t^2} ~ \mathrm{d}t = \int_0^{T} R(t, \sqrt{P(t)}) ~ \mathrm{d}t,
+\]
+其中, 一般来说, $R(t, w)$ 是有理函数, $P(t)$ 是以 $k$ 为参变量的三次或四次多项式. $\int_0^{T} R(t, \sqrt{P(t)}) ~ \mathrm{d}t$ 是一般的\alert{椭圆积分 (Elliptic Integral)}.
 
 \end{frame}
 
@@ -1038,18 +1058,31 @@ hidden/.style={dashed, draw=blue!50}
 \end{column}
 \begin{column}{0.4\textwidth}
 \begin{question}
-xxx
+求夹在平面 $x=a$ 和 $x=b$ 之间的几何体的体积. 其中假设在每一点 $x$ 处的横截面积 $A(x)$ 已知.
 \end{question}
 \end{column}
 \end{columns}
+
+\pause
+
+对 $[a, b]$ 进行带标志点划分 $P: a = x_0 < x_1 < \cdots < x_n = b$, $\xi \in (x_{i-1}, x_i)$, 则相应柱体体积和可以``近似''原几何体体积
+\[
+V \approx \sum_{i=1}^n A(\xi_i) \Delta x_i.
+\]
+当 $\lambda(P) \to 0$ 时, (假设) 上式的极限存在, 那么原几何体的体积为
+\[
+V = \lim_{\lambda(P) \to 0} \sum_{i=1}^n A(\xi_i) \Delta x_i = \int_a^b A(x) ~ \mathrm{d}x.
+\]
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{旋转体体积}
+\frametitle{特殊几何体 -- 旋转体体积}
 
+\begin{columns}
+\begin{column}{0.5\textwidth}
 \begin{tikzpicture}[
     scale=1.1,
     axis/.style={->, thick, >=latex},
@@ -1060,7 +1093,7 @@ xxx
 % 定义坐标轴
 \draw[axis] (-0.5,0,0) -- (5.5,0,0) node[right] {$x$};
 \draw[axis] (0,-2,0) -- (0,2,0) node[above] {$y$};
-\draw[axis] (0,0,0) -- (0,0,2) node[below left] {$z$}; % z轴指向外
+\draw[axis] (0,0,-1) -- (0,0,2) node[below left] {$z$}; % z轴指向外
 \node[above left] at (0,0,0) {$O$};
 
 % 定义上边界函数 f(x)
@@ -1109,6 +1142,105 @@ xxx
 \node[below right] at (5.0, -0.5) {绕 $x$ 轴};
 
 \end{tikzpicture}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{旋转体体积的求解}
+旋转体指的是由平面曲线 $y = f(x), x \in [a, b]$ 与 $x = a, x = b$ 以及 $x$ 轴围成的区域绕 $x$ 轴旋转一周所形成的几何体.
+\pause
+它在每一点 $x$ 处的横截是圆形, 半径为 $|f(x)|$, 因此横截面积为 $A(x) = \pi (f(x))^2$. 由前面求体积的公式可得旋转体的体积为
+\[
+V = \int_a^b \pi (f(x))^2 ~ \mathrm{d}x.
+\]
+\end{block}
+\end{column}
+\end{columns}
+
+\pause
+
+若曲线由参数方程 $\begin{cases} x = x(t) \\[3pt] y = y(t) \end{cases}$, $t \in [\alpha, \beta]$ 给出, 则旋转体的体积为
+\[
+V = \pi \int_{\alpha (\text{或 $\beta$})}^{\beta (\text{或 $\alpha$})} (y(t))^2 ~ \mathrm{d} x(t) = \pi \int_{\alpha}^{\beta} (y(t))^2 |x'(t)| ~ \mathrm{d}t.
+\]
+这里, 还要假设 $y(t)$ 以及 $x'(t)$ 在 $[\alpha, \beta]$ 上满足适当的连续性条件, 以保证上述定积分存在.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 旋转椭球体积}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{tikzpicture}[
+    scale=1.1,
+    axis/.style={->, thick, >=latex}
+]
+
+% 定义坐标轴
+% x轴水平向右
+\draw[axis] (-2.5,0,0) -- (2.5,0,0) node[right] {$x$};
+% y轴竖直向上
+\draw[axis] (0,-1.5,0) -- (0,1.5,0) node[above] {$y$};
+% z轴垂直纸面向外 (为了透视，画得稍微偏一点)
+\draw[axis, dashed] (0,0,-2) -- (0,0,2.5) node[below left] {$z$};
+\node[below left] at (0,0,0) {$O$};
+
+% 定义椭圆参数 a=2, b=1
+\def\a{2}
+\def\b{1}
+
+% 绘制旋转椭球的轮廓 (即 xy 平面上的椭圆)
+\draw[thick, blue] (0,0) ellipse ({\a} and {\b});
+
+% 绘制立体感的横截面 (垂直于x轴的圆)
+% x=0 处的最大截面 (圆)
+% 在透视中，yz平面上的圆看起来是个立着的椭圆
+\draw[dashed, blue!50] (0, \b) arc (90:270:0.3 and \b);
+\draw[thick, blue] (0, \b) arc (90:-90:0.3 and \b);
+
+% 其他位置的截面 (例如 x = 1, x = -1)
+\foreach \x in {-1, 1} {
+    \pgfmathsetmacro{\r}{\b*sqrt(1-(\x/\a)^2)}
+    % 画这些圆截面
+    \draw[dashed, gray!40] (\x, \r) arc (90:270:0.15 and \r);
+    \draw[thin, gray!40] (\x, \r) arc (90:-90:0.15 and \r);
+}
+
+% 标注
+\node[below right] at (\a, 0) {$a$};
+\node[below left] at (-\a, 0) {$-a$};
+\node[above left] at (0, \b) {$b$};
+\node[below left] at (0, -\b) {$-b$};
+
+% 绕x轴旋转箭头
+% \draw[->, thick, gray] (0, -1.3) arc (260:340:0.4 and 0.8);
+% \node[gray, below right] at (0.3, -1.4) {绕 $x$ 轴};
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{question}
+求椭圆 $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ ($a > b > 0$) 绕 $x$ 轴旋转一周所得的旋转体 (旋转椭球) 的体积.
+\end{question}
+\end{column}
+\end{columns}
+
+\only<2>{
+\textbf{解}: 旋转椭球的横截面是半径为 $r(x) = b\sqrt{1 - \frac{x^2}{a^2}}$ 的圆.
+\[
+V = \pi \int_{-a}^a (r(x))^2 ~ \mathrm{d}x = \pi \int_{-a}^a b^2 \left( 1 - \frac{x^2}{a^2} \right) ~ \mathrm{d}x = \frac{4}{3} \pi a b^2.
+\]
+特别地, 当 $a = b = r$ 时, 得到球体积公式 $V = \frac{4}{3} \pi r^3$.
+}
+\only<3->{
+\textbf{解}: 也可以使用参数化方法. 椭圆的参数方程为 $\begin{cases} x(t) = a\cos t \\[3pt] y(t) = b\sin t \end{cases}$, $t \in [0, \pi]$. 因此
+\begin{align*}
+V & = \pi \int_0^{\pi} (y(t))^2 |x'(t)| ~ \mathrm{d}t = \pi \int_0^{\pi} (b\sin t)^2 | -a\sin t | ~ \mathrm{d}t \\
+& = \pi a b^2 \int_0^{\pi} \sin^3 t ~ \mathrm{d}t = \pi a b^2 \int_0^{\pi} (\cos^2 t - 1) ~ \mathrm{d} (\cos t) \\
+& = \frac{4}{3} \pi a b^2.
+\end{align*}
+}
 
 \end{frame}
 
@@ -1119,7 +1251,160 @@ xxx
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{旋转曲面面积}
+\frametitle{问题引入}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{tikzpicture}[
+    scale=1.1,
+    axis/.style={->, thick, >=latex},
+    domain=1:4.5,
+    samples=100
+]
+
+% 定义坐标轴
+\draw[axis] (-0.5,0,0) -- (5.5,0,0) node[right] {$x$};
+\draw[axis] (0,-2,0) -- (0,2,0) node[above] {$y$};
+\draw[axis] (0,0,-1) -- (0,0,2) node[below left] {$z$}; % z轴指向外
+\node[above left] at (0,0,0) {$O$};
+
+% 定义上边界函数 f(x)
+\def\func{0.6 + 0.2*sin(deg(3*\x)) + 0.15*\x}
+
+% 绘制旋转体侧面
+% 上边缘 f(x)
+\draw[thick, name path=top] plot[domain=1:4.5] (\x, {0.6 + 0.2*sin(deg(3*\x)) + 0.15*\x});
+% 下边缘 -f(x) (对称)
+\draw[thick, name path=bottom] plot[domain=1:4.5] (\x, {-(0.6 + 0.2*sin(deg(3*\x)) + 0.15*\x)});
+
+% 绘制端点圆面 (x=a, x=b)
+% 左端点 x=1 (a)
+\def\xa{1}
+\pgfmathsetmacro{\ra}{0.6 + 0.2*sin(deg(3*\xa)) + 0.15*\xa}
+% 绘制左端面的椭圆
+\draw[thick, blue] (\xa, \ra) arc (90:270:0.15 and \ra);
+\draw[thick, blue] (\xa, \ra) arc (90:-90:0.15 and \ra);
+% 标注 a
+\draw[dashed] (\xa, 0) -- (\xa, -\ra-0.3);
+\node[below] at (\xa, -\ra-0.3) {$a$};
+
+% 右端点 x=4.5 (b)
+\def\xb{4.5}
+\pgfmathsetmacro{\rb}{0.6 + 0.2*sin(deg(3*\xb)) + 0.15*\xb}
+% 绘制右端面的椭圆
+\draw[dashed, blue!50] (\xb, \rb) arc (90:270:0.2 and \rb);
+\draw[thick, blue] (\xb, \rb) arc (90:-90:0.2 and \rb);
+% 标注 b
+\draw[dashed] (\xb, 0) -- (\xb, -\rb-0.3);
+\node[below] at (\xb, -\rb-0.3) {$b$};
+
+% 绘制中间位置的一圈带子 (模拟表面积微元)
+\def\xm{2.5}
+\def\dx{0.3} % 带子宽度
+\def\xM{2.8} % xm + dx
+
+% 计算半径
+\pgfmathsetmacro{\rm}{0.6 + 0.2*sin(deg(3*\xm)) + 0.15*\xm}
+\pgfmathsetmacro{\rM}{0.6 + 0.2*sin(deg(3*\xM)) + 0.15*\xM}
+
+% 1. 先填充带子的"背面" (虚线部分之间的区域)
+% 为了简单，用梯形或者两个圆弧之间的区域近似
+\fill[blue!10]
+  (\xm, \rm) arc (90:270:0.15 and \rm) --
+  (\xM, -\rM) arc (270:90:0.15 and \rM) -- cycle;
+
+% 2. 绘制背面的虚线轮廓
+\draw[dashed, blue!50] (\xm, \rm) arc (90:270:0.15 and \rm);
+\draw[dashed, blue!50] (\xM, \rM) arc (90:270:0.15 and \rM);
+
+% 3. 再填充带子的"正面" (实线部分之间的区域)
+\fill[blue!20]
+  (\xm, \rm) arc (90:-90:0.15 and \rm) --
+  (\xM, -\rM) arc (-90:90:0.15 and \rM) -- cycle;
+
+% 4. 绘制正面的实线轮廓
+\draw[thick, blue] (\xm, \rm) arc (90:-90:0.15 and \rm);
+\draw[thick, blue] (\xM, \rM) arc (90:-90:0.15 and \rM);
+
+% 5. 绘制连接两个圆环的侧面线 (近似沿着 f(x) 表面)
+\draw[thick, blue] (\xm, \rm) -- (\xM, \rM);
+\draw[thick, blue] (\xm, -\rm) -- (\xM, -\rM);
+
+% 6. 标注 dS
+\draw[->, thin] (3.2, 2.0) -- (2.65, 1.3);
+\node[above right] at (3.0, 1.8) {面积微元 $\mathrm{d}S$};
+\node[below] at (2.65, -1.2) {$\mathrm{d}s$}; % 弧长微元
+\draw[thin] (2.5, -0.9) -- (2.5, -1.1);
+\draw[thin] (2.8, -1.0) -- (2.8, -1.2);
+
+% 标注曲线 y=f(x)
+\node[above] at (1.2, 1.1) {$y=f(x)$};
+
+% 绕x轴旋转箭头 (画一个环绕x轴的圆弧箭头)
+\draw[->, >=latex, thick]
+    (5.0, 0) ++(0, 0.4) arc (90:430:0.15 and 0.4);
+\node[below right] at (5.0, -0.5) {绕 $x$ 轴};
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.5\textwidth}
+之前求旋转体体积时, 是利用微小圆柱体积的和来近似旋转体体积的. 类似地, 也可以利用微小带子面积的和来近似旋转体表面积.
+\begin{question}
+可否用圆柱体侧面积 $2\pi f(\xi_i) \Delta x_i$ 的和来近似旋转体表面积?
+\end{question}
+\end{column}
+\end{columns}
+
+\only<2-3>{
+\textbf{解}: \alert{不可以}. 圆柱体侧面积 $2\pi f(\xi_i) \Delta x_i$ 是带子底面圆的周长 $2\pi f(\xi_i)$ 与带子宽度 $\Delta x_i$ 的乘积, 但带子宽度 $\Delta x_i$ 并不等于带子所在曲线的弧长微元 $\mathrm{d}s$, 因此圆柱体侧面积的和并不能很好地近似旋转体表面积.
+}
+
+\only<3>{
+更具体来说, $\sum_{i=1}^n (f(\xi_i) + e_{1, i}) \cdot (\Delta x_i + e_{2, i})$ 中的误差项 $e_{1, i} \Delta x_i + {\color{red} f(\xi_i) e_{2, i}} + e_{1, i} e_{2, i}$ 的总和 $\sum_{i=1}^n (e_{1, i} \Delta x_i + {\color{red} f(\xi_i) e_{2, i}} + e_{1, i} e_{2, i})$ 不一定趋近于零.
+}
+
+\only<4>{
+\textbf{正确做法}: 用\alert{圆台}侧面积 $2\pi \frac{f(\xi_i) + f(\xi_{i-1})}{2} \cdot \mathrm{d}s$ 的和来近似旋转体表面积, 其中 $\mathrm{d}s = \sqrt{1 + (f'(\xi_i))^2} \mathrm{d} x$ 是带子所在曲线的弧长微元. 当 $\lambda(P) \to 0$ 时, 上式的极限存在, 那么旋转体的表面积为
+\[
+S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n 2\pi \frac{f(\xi_i) + f(\xi_{i-1})}{2} \cdot \mathrm{d}s = \tcbhighmath[colback=yellow!30]{2\pi \int_a^b f(x) \sqrt{1 + (f'(x))^2} ~ \mathrm{d}x}.
+\]
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 椭球表面积}
+
+\begin{question}
+求椭圆 $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ ($a \geqslant b > 0$) 绕 $x$ 轴旋转一周所得的旋转体 (旋转椭球) 的表面积.
+\end{question}
+
+\pause
+
+\textbf{解}: 椭圆的参数方程为 $\begin{cases} x(t) = a\cos t \\[3pt] y(t) = b\sin t \end{cases}$, $t \in [0, \pi]$. 因此旋转椭球的表面积为
+\begin{align*}
+S & = 2\pi \int_0^{\pi} y(t) \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d}t = 2\pi \int_0^{\pi} b\sin t \sqrt{(-a\sin t)^2 + (b\cos t)^2} ~ \mathrm{d}t \\
+& = 2\pi a b \int_0^{\pi} \sin t \sqrt{1 - \left( 1 - \frac{b^2}{a^2} \right) \cos^2 t} ~ \mathrm{d}t = \frac{4\pi ab}{k} \int^0_{\pi/2} \sqrt{1 - k^2 \cos^2 t} ~ \mathrm{d} (k\cos t) \\
+& = \frac{4\pi ab}{k} \int_0^{k} \sqrt{1 - u^2} ~ \mathrm{d}u = \frac{2\pi ab}{k} \left( \arcsin k + k \sqrt{1 - k^2} \right) = \tcbhighmath[colback=yellow!30]{2\pi b^2 + \frac{2\pi a b}{k} \arcsin k}.
+\end{align*}
+其中 $k = \sqrt{1 - \frac{b^2}{a^2}}$ 是椭圆的离心率.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 椭球表面积 (续)}
+
+\alert{注意}, 对一般的椭球 $\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$ ($a > b > c > 0$), 其表面积没有初等函数表达式, 只能用数值方法计算.
+
+\pause
+
+\begin{question}
+如果旋转轴 $x$ 轴是短轴, 即 $a < b$, 则旋转椭球的表面积为多少? 还是上式吗?
+\end{question}
 
 \end{frame}
 
