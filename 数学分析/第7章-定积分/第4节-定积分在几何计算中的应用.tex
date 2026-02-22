@@ -1,6 +1,6 @@
 \everymath{\displaystyle}
 \usepgfplotslibrary{fillbetween}
-\usetikzlibrary{lindenmayersystems}
+\usetikzlibrary{lindenmayersystems, intersections, calc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -1401,6 +1401,7 @@ S & = 2\pi \int_0^{\pi} y(t) \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d}t = 2\pi \
 \alert{注意}, 对一般的椭球 $\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$ ($a > b > c > 0$), 其表面积没有初等函数表达式, 只能用数值方法计算.
 
 \pause
+\vspace{1em}
 
 \begin{question}
 如果旋转轴 $x$ 轴是短轴, 即 $a < b$, 则旋转椭球的表面积为多少? 还是上式吗?
@@ -1416,6 +1417,149 @@ S & = 2\pi \int_0^{\pi} y(t) \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d}t = 2\pi \
 
 \begin{frame}
 \frametitle{曲线曲率}
+
+\begin{columns}
+\begin{column}{0.45\textwidth}
+\begin{tikzpicture}[
+    scale=1.35,
+    axis/.style={->, thick, >=latex}
+]
+\path[use as bounding box] (-0.5,-0.5) rectangle (4,3.5);
+% 1. 坐标轴
+\draw[->, thick, gray] (-0.5,0) -- (4,0) node[right] {$x$};
+\draw[->, thick, gray] (0,-0.5) -- (0,3.5) node[above] {$y$};
+\node[below left] at (0,0) {$O$};
+
+% 2. 定义圆心 C (曲率中心) 和 半径 R
+\coordinate (C) at (1.0, 2.5);
+\def\R{2.0}
+\filldraw[red] (C) circle (1.0pt) node[above left] {$C$};
+
+% 3. 定义两个角度 (在圆周上的角度位置, 0度向右)
+\def\angA{-20} % P1 对应角度
+\def\angB{-60} % P2 对应角度
+
+% 4. 计算 P1, P2 坐标
+\coordinate (P1) at ($(C) + (\angA:\R)$);
+\coordinate (P2) at ($(C) + (\angB:\R)$);
+
+% 5. 绘制圆弧 (模拟曲线)
+\draw[ultra thick, blue] ($(C) + ({\angA+15}:\R)$) arc ({\angA+15}:{\angB-30}:\R);
+\node[blue, left] at ($(C) + ({\angA+20}:\R)$) {曲线 $\Gamma$};
+
+% 6. 绘制 P1, P2
+\filldraw[black] (P1) circle (1pt) node[right] {$P_1$};
+\filldraw[black] (P2) circle (1pt) node[below right] {$P_2$};
+
+% 7. 绘制半径连线 (虚线)
+\draw[dashed, red] (C) -- (P1);
+\draw[dashed, red] (C) -- (P2);
+
+% 8. 绘制切线 (垂直于半径) 并延长至与x轴相交
+% Tangent angle = Radial angle + 90
+% P1 angle = -20, tan angle = 70 (pointing up-right). So "down" direction is 70+180 = 250.
+% Define Tangent Points on X-axis (T1_x, T2_x)
+% We use the 'intersection of' coordinate syntax or intersection library
+\path[name path=xaxis] (-1,0) -- (6,0);
+
+% Define path for tangent 1
+\path[name path=tan1] ($(P1) + ({\angA+90}:1)$) -- ($(P1) + ({\angA+90-180}:5)$);
+% Find intersection
+\path [name intersections={of=tan1 and xaxis, by=X1}];
+\draw[thick, orange] ($(P1) + ({\angA+90}:1.0)$) -- (X1);
+
+% Define path for tangent 2
+\path[name path=tan2] ($(P2) + ({\angB+90}:1)$) -- ($(P2) + ({\angB+90-180}:5)$);
+% Find intersection
+\path [name intersections={of=tan2 and xaxis, by=X2}];
+\draw[thick, orange] ($(P2) + ({\angB+90}:1.0)$) -- (X2);
+
+% 9. 标记半径夹角 Delta theta
+\draw[red] ($(C) + (\angB:0.5)$) arc (\angB:\angA:0.5);
+\node[red] at ($(C) + ({(\angA+\angB)/2}:0.7)$) {$\Delta \theta$};
+
+% 10. 标记垂直符号 (更小一点)
+% P1
+\draw[thin] ($(P1)!0.1cm!(C)$) -- ($(P1)!0.1cm!(C)!0.1cm!90:(C)$) -- ($(P1)!0.1cm!90:(C)$);
+% P2
+\draw[thin] ($(P2)!0.1cm!(C)$) -- ($(P2)!0.1cm!(C)!0.1cm!90:(C)$) -- ($(P2)!0.1cm!90:(C)$);
+
+% 11. 标记切线与x轴夹角 theta1, theta2
+% 在切线与x轴交点处标记
+% X1 处
+\draw[orange] ($(X1) + (0.2,0)$) arc (0:{\angA+90}:0.2);
+\node[orange, above right] at ($(X1) + (0.2,0.1)$) {$\theta_1$};
+
+% X2 处
+\draw[orange] ($(X2) + (0.3,0)$) arc (0:{\angB+90}:0.3);
+\node[orange, above right] at ($(X2) + (0.3,-0.05)$) {$\theta_2$};
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.55\textwidth}
+曲线的曲率 (Curvature) 是描述曲线在某一点弯曲程度的量. 假设曲线 $\Gamma$ 的方程为 $y = f(x)$, 有两点 $P_1 = (x_1, f(x_1))$ 和 $P_2 = (x_2, f(x_2))$ ($x_1 < x_2$) 在 $\Gamma$ 上, 切线斜率分别为 $k_1 = \tan \theta_1$ 和 $k_2 = \tan \theta_2$. 则``弧线'' $\wideparen{P_1P_2}$ 对应的角度为 $\Delta \theta = \theta_2 - \theta_1$, 弧长记为 $\Delta s$, 那么对应的``圆''的半径为
+\[
+\left| \frac{\Delta s}{\Delta \theta} \right|.
+\]
+\end{column}
+\end{columns}
+
+\pause
+
+一个重要观察是, ``圆''的半径越大, 则曲线在该处越平坦; ``圆''的半径越小, 则曲线在该处越弯曲. 因此可以定义曲率 $\kappa$ 为上述半径的倒数, 即
+$\kappa = \left| \frac{\Delta \theta}{\Delta s} \right|,$ 取极限 $\Delta s \to 0$ 后得到曲率的定义式
+\[
+\kappa = \lim_{\Delta s \to 0} \left| \frac{\Delta \theta}{\Delta s} \right| = \left| \frac{\mathrm{d}\theta}{\mathrm{d}s} \right|.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{曲线曲率公式}
+
+设曲线 $\Gamma$ 的方程为 $y = f(x)$, 且有二阶导数, 那么它在一点处切线斜率为 $k = \tan \theta = f'(x)$, 即 $\theta = \arctan f'(x)$. 因此
+\[
+\mathrm{d} \theta = \frac{f''(x)}{1 + (f'(x))^2} \mathrm{d} x
+\]
+另一方面, 曲线的弧长微元为 $\mathrm{d} s = \sqrt{1 + (f'(x))^2} \mathrm{d} x$. 因此曲率 $\kappa$ 的定义式可以写成
+\[
+\kappa = \left| \frac{\mathrm{d}\theta}{\mathrm{d}s} \right| = \left| \frac{\frac{f''(x)}{1 + (f'(x))^2} \mathrm{d} x}{\sqrt{1 + (f'(x))^2} \mathrm{d} x} \right| = \frac{|f''(x)|}{(1 + (f'(x))^2)^{3/2}}.
+\]
+
+\pause
+
+设曲线 $\Gamma$ 的参数方程为 $\begin{cases} x = x(t) \\[3pt] y = y(t) \end{cases}$, $t \in [\alpha, \beta]$, 且 $x'(t)^2 + y'(t)^2 > 0$, 利用关系 $\begin{cases} f'(x) = \frac{y'(t)}{x'(t)} \\[3pt] f''(x) = \frac{y''(t)x'(t) - y'(t)x''(t)}{(x'(t))^3} \end{cases}$, 可以得到曲率 $\kappa$ 的参数化公式
+\[
+\kappa = \frac{|y''(t)x'(t) - y'(t)x''(t)|}{\left((x'(t))^2 + (y'(t))^2\right)^{3/2}}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 椭圆的曲率}
+
+\begin{question}
+求椭圆 $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ ($a > b > 0$) 上曲率最大与最小的点.
+\end{question}
+
+\pause
+
+\textbf{解}: 椭圆的参数方程为 $\begin{cases} x(t) = a\cos t \\[3pt] y(t) = b\sin t \end{cases}$, $t \in [0, 2\pi]$. 因此
+\[
+x'(t) = -a\sin t, \quad y'(t) = b\cos t, \quad x''(t) = -a\cos t, \quad y''(t) = -b\sin t.
+\]
+代入曲率公式得到
+\[
+\kappa(t) = \frac{|y''(t)x'(t) - y'(t)x''(t)|}{\left((x'(t))^2 + (y'(t))^2\right)^{3/2}} = \frac{ab}{\left(a^2 \sin^2 t + b^2 \cos^2 t\right)^{3/2}} = \frac{ab}{\left((a^2 - b^2) \sin^2 t + b^2\right)^{3/2}}.
+\]
+\begin{itemize}
+\item 当 $\sin t = 0$ 时, 即 $t = 0$ 或 $t = \pi$, 曲率 $\kappa$ 达到最大值 $\frac{a}{b^2}$, 对应的点为长轴端点 $(\pm a, 0)$.
+\item 当 $\cos t = 0$ 时, 即 $t = \frac{\pi}{2}$ 或 $t = \frac{3\pi}{2}$, 曲率 $\kappa$ 达到最小值 $\frac{b}{a^2}$, 对应的点为短轴端点 $(0, \pm b)$.
+\end{itemize}
 
 \end{frame}
 
