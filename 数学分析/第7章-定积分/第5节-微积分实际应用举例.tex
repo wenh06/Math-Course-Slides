@@ -43,7 +43,257 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{绪言}
+
+{
+\larger[1]
+
+微积分作为量化世界的基石, 其应用价值主要体现在两个维度: 一方面, 它能通过积分将微观的静态分布累积为宏观总量, 精准解决物质质量、经济总成本等``求和''问题; 另一方面, 它能利用导数捕捉瞬息万变的动态效应, 深入分析物理运动、边际效益等“变化”规律. 本节我们将跨越物理、经济与社会等学科, 从这两个核心视角出发, 具体展示微积分如何将复杂的现实问题转化为可计算的精确模型.
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{微元法}
+
+先回忆一下之前我们在定积分定义以及几何应用中的一般做法:
+
+\begin{itemize}[<+->]
+\item \textbf{问题分解}: 对自变量区间 $[a,b]$ 进行划分 ~ $\rightsquigarrow$ $P: a=x_0 < x_1 < \cdots < x_n=b$.
+\item \textbf{做近似}: 在每个子区间 $[x_{i-1}, x_i]$ 上做近似: 对感兴趣的量 (记为 $A$) 的变化量
+\[
+\Delta A_i \approx \ell(\Delta x_i) = \alpha_i \cdot \Delta x_i
+\]
+表示为 $\Delta x_i$ 的线性函数. 误差估计为 $\delta(A; \Delta x_i).$
+\item \textbf{求和}: 将近似的变化量求和
+\[
+\sum_{i=1}^n \Delta A_i \approx \sum_{i=1}^n \alpha_i \cdot \Delta x_i.
+\]
+\item \textbf{取极限转化为积分}: 设 $\alpha_i = f(\xi_i)$, 其中 $\xi_i \in [x_{i-1}, x_i]$, 假设 $f$ 可积 (等价地, 误差累计 $\sum_{i=1}^n \delta(A; \Delta x_i) \to 0 ~ (\lambda(P) \to 0)$), 则
+\[
+\sum_{i=1}^n \Delta A_i \approx \sum_{i=1}^n f(\xi_i) \cdot \Delta x_i \xrightarrow{\lambda(P) \to 0} \int_a^b f(x) \mathrm{d}x.
+\]
+\end{itemize}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{微元法 (续)}
+
+这个过程可以抽象、简化一下, 即我们考虑一般的一个小区间 $[x, x+\mathrm{d}x]$, 其上的变化量 $\mathrm{d}A$, 以及它与 $\mathrm{d}x$ 的关系:
+\[
+\mathrm{d}A = f(x) \cdot \mathrm{d}x.
+\]
+那么整个过程就可以简化为: 先找到 $f(x)$, 然后积分 $\int_a^b f(x) \mathrm{d}x$. 这就是我们在实际应用中常用的\textbf{微元法}的核心思想.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{由静态分布求总量}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{由静态分布求总量}
+
+一般来说, 静态分布指的是, 质量、电荷等在空间上的``密度''分布, 或者是概率分布等. 通过积分, 我们可以将这些微观的分布累积为宏观的总量 $A$.
+
+\begin{itemize}[<+->]
+\item \textbf{一维}: 如果密度分布为 $\rho(x)$, 其中 $x \in [a,b]$, 则总量 $A$ 可以通过积分求得:
+\[
+A = \int_a^b \rho(x) \mathrm{d}x.
+\]
+\item \textbf{二维}: 如果密度分布为 $\sigma(x,y)$, 其中 $(x,y) \in D \in \mathbb{R}^2$ 是一个平面区域, 则总量 $A$ 可以通过二重积分求得:
+\[
+A = \iint_D \sigma(x,y) \mathrm{d}A.
+\]
+有一个特殊情况是, 假设密度分布是所谓的线密度, 例如 $F(x)$, 只跟一个变量 $x$ 有关, 那么我们回到了一维的情况 $A = \int_a^b F(x) \mathrm{d}x.$
+\item \textbf{$n$ 维}: 如果密度分布为 $\rho(x_1, x_2, \ldots, x_n)$, 其中 $(x_1, x_2, \ldots, x_n) \in \Omega \in \mathbb{R}^n$ 是一个区域, 其中有所谓的体积形式 $\mathrm{d} \omega$, 则总量 $A$ 可以通过 $n$ 重积分求得:
+\[
+A = \int_\Omega \rho(x_1, x_2, \ldots, x_n) \mathrm{d} \omega.
+\]
+特殊形式还是, 密度分布只是一个变量的函数 $G(x)$, 则回到了一维的情况 $A = \int_a^b G(x) \mathrm{d}x.$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例子: 求压力 (水坝闸门等)}
+
+\begin{columns}
+\begin{column}{0.3\textwidth}
+\begin{tikzpicture}[scale=0.8]
+% 1. 水面
+\draw[thick, cyan] (-2.5, 0) -- (2.5, 0) node[midway, above, black] {水面};
+\foreach \x in {-2.3, -2.0, ..., 2.3} {
+    \draw[cyan] (\x, 0) -- (\x+0.2, -0.2);
+}
+
+% 2. 坐标轴 (x轴垂直向下, 从水面中点开始, 穿过圆)
+\draw[->, thick] (0, 0) -- (0, -8.3) node[right] {$x$};
+
+% 3. 圆形铁片
+% 圆心在水下6单位 (代表10m), 半径1.2单位 (代表1m, 为了画清楚放大比例)
+\coordinate (C) at (0, -6);
+\def\R{1.2}
+\draw[thick] (C) circle (\R);
+\filldraw (C) circle (1.5pt) node[right] {$O$};
+
+\node[below right] at (0, -7.2) {1};
+\node[above right] at (0, -4.8) {-1};
+
+% 4. 微元带子 (贴合圆形的曲边梯形/弓形切片)
+% 在圆心上方一点
+% 设带子高度 dy = 0.2
+% 设带子中心位置 y0 = -5.3 (相对于圆心是 0.7)
+\def\yCenter{-5.3}
+\def\dy{0.2}
+% 相对于圆心的偏移
+\pgfmathsetmacro{\offsetY}{\yCenter - (-6)} % 0.7
+\pgfmathsetmacro{\offsetYtop}{\offsetY + \dy/2}
+\pgfmathsetmacro{\offsetYbot}{\offsetY - \dy/2}
+
+% 计算对应的角度 (asin(y/R))
+\pgfmathsetmacro{\angTop}{asin(\offsetYtop/\R)}
+\pgfmathsetmacro{\angBot}{asin(\offsetYbot/\R)}
+
+% 绘制带子 (利用 arc)
+\draw[fill=red!40]
+    ($(C) + ({180-\angTop}:\R)$) --
+    ($(C) + ({\angTop}:\R)$) arc ({\angTop}:{\angBot}:\R) --
+    ($(C) + ({180-\angBot}:\R)$) arc ({180-\angBot}:{180-\angTop}:\R) -- cycle;
+
+% 标注 dx (在带子左侧)
+\node[left] at ($(C) + ({180-\angTop}:\R) + (-0.2, 0)$) {$\mathrm{d}x$};
+
+% 5. 标注深度 10m
+% 画在左边
+\draw[dashed] (-1.5, 0) -- (-2.8, 0); % 水面延长线
+\draw[dashed] (-1.5, -6) -- (-2.8, -6); % 圆心水平线
+\draw[<->] (-2.5, 0) -- (-2.5, -6) node[midway, fill=zkbackground] {$10$m};
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{question}
+求圆心在水下 $10$ 米处, 半径为 $1$ 米的竖直放置的圆形铁片受到的水的压力.
+\end{question}
+
+\pause
+
+\textbf{解}: 水下 $h$ 米处压强为 $p(h) = \rho g h = \rho g (x + 10)$, 其中 $\rho$ 是水的密度, $g$ 是重力加速度. 因此, 压力 $\mathrm{d}F = p(h) \mathrm{d}S(x)$. 其中 $\mathrm{d}S(x)$ 是位于深度 $x$ 处的微元带子的面积.
+\pause
+$S = 2\int_{-1}^x \sqrt{1-u^2} \mathrm{d}u$. 于是 $\mathrm{d} S = 2 \sqrt{1-x^2} \mathrm{d}x$. 因此, 压力
+\[
+\mathrm{d}F = 2 \rho g (x + 10) \sqrt{1-x^2} \mathrm{d}x.
+\]
+最终, 水对铁片的总压力为
+\[
+F = \int_{-1}^1 2 \rho g (x + 10) \sqrt{1-x^2} \mathrm{d}x = 20 \rho g \int_{-1}^1 \sqrt{1-x^2} \mathrm{d}x = 10 \rho g \pi.
+\]
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例子: 曲线、曲面上的质量分布}
+
+设平面曲线 $C$ 有显式形式 $y = f(x)$, 或者参数方程 $x = x(t), y = y(t)$. 如果曲线上的质量密度 (点密度) 分布为 $G(x, y),$ 则曲线的总质量为
+\[
+A = \int_C \mathrm{d}A = \int_C G(x, y) \mathrm{d}\ell,
+\]
+其中 $\mathrm{d}\ell = \begin{cases} \sqrt{1 + \left(\frac{\mathrm{d}y}{\mathrm{d}x}\right)^2} \mathrm{d}x \\ \sqrt{\left(\frac{\mathrm{d}x}{\mathrm{d}t}\right)^2 + \left(\frac{\mathrm{d}y}{\mathrm{d}t}\right)^2} \mathrm{d}t \end{cases}$ 是曲线上的微元长度. 那么
+\[
+A = \begin{cases} \int_a^b G(x, f(x)) \sqrt{1 + (f'(x))^2} \mathrm{d}x \\ \int_\alpha^\beta G(x(t), y(t)) \sqrt{(x'(t))^2 + (y'(t))^2} \mathrm{d}t \end{cases}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例子: 曲线、曲面上的质量分布 (续)}
+
+对于三维空间中的曲面 $\Omega$, 设其参数方程为 $x = x(u,v), y = y(u,v), z = z(u,v)$, 或者知道其显式形式 $(x, y, f(x,y))$. 如果曲面上的质量密度分布为 $H(x, y, z)$, 则曲面的总质量为
+\[
+A = \iint_\Omega \mathrm{d}A = \iint_\Omega H(x, y, z) \mathrm{d}S,
+\]
+其中 $\mathrm{d}S = \begin{cases} \sqrt{1 + \left(\frac{\partial f}{\partial x}\right)^2 + \left(\frac{\partial f}{\partial y}\right)^2} ~ \mathrm{d}x \mathrm{d}y \\ \mathrm{d} S(u, v) \end{cases}$ 是曲面上的微元面积.
+\pause
+我们来求一下参数形式的 $\mathrm{d} S(u, v)$. 参数空间 $(u,v)$ 上的微元面积为 $\mathrm{d}u \mathrm{d}v$. 通过参数方程, 这个微元面积在空间中被映射为一个平行四边形, 其两条边分别由 $\frac{\partial \mathbf{r}}{\partial u} \mathrm{d}u$ 和 $\frac{\partial \mathbf{r}}{\partial v} \mathrm{d}v$ 生成, 其中 $\mathbf{r}(u,v) = (x(u,v), y(u,v), z(u,v))$. 因此, 映射后的微元面积为
+\begin{align*}
+\mathrm{d} S(u, v) & = \text{平行四边形面积} \\
+(\text{cross product}) & = \left\lVert \left( \frac{\partial x}{\partial u}, \frac{\partial y}{\partial u}, \frac{\partial z}{\partial u} \right) \mathrm{d}u \times \left( \frac{\partial x}{\partial v}, \frac{\partial y}{\partial v}, \frac{\partial z}{\partial v} \right) \mathrm{d}v \right\rVert \\
+& = \left\lVert \left( \frac{\partial y}{\partial u} \cdot \frac{\partial z}{\partial v} - \frac{\partial z}{\partial u} \cdot \frac{\partial y}{\partial v}, ~ \frac{\partial z}{\partial u} \cdot \frac{\partial x}{\partial v} - \frac{\partial x}{\partial u} \cdot \frac{\partial z}{\partial v}, ~ \frac{\partial x}{\partial u} \cdot \frac{\partial y}{\partial v} - \frac{\partial y}{\partial u} \cdot \frac{\partial x}{\partial v} \right) \right\rVert \mathrm{d}u \mathrm{d}v.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例子: 曲线、曲面上的质量分布 (续)}
+
+上述公式 $\mathrm{d} S(u, v) = \left\lVert \left( \frac{\partial y}{\partial u} \cdot \frac{\partial z}{\partial v} - \frac{\partial z}{\partial u} \cdot \frac{\partial y}{\partial v}, ~ \frac{\partial z}{\partial u} \cdot \frac{\partial x}{\partial v} - \frac{\partial x}{\partial u} \cdot \frac{\partial z}{\partial v}, ~ \frac{\partial x}{\partial u} \cdot \frac{\partial y}{\partial v} - \frac{\partial y}{\partial u} \cdot \frac{\partial x}{\partial v} \right) \right\rVert$ 可以推出一些特殊情况的简化公式. 例如, 如果曲面 $\Omega$ 是 $z = f(x,y)$ 的显式形式, 则 $\mathrm{d} S$ 可以简化为
+\[
+\mathrm{d} S = \left\lVert \left( -\frac{\partial f}{\partial x}, -\frac{\partial f}{\partial y}, 1 \right) \right\rVert \mathrm{d}x \mathrm{d}y = \sqrt{1 + \left(\frac{\partial f}{\partial x}\right)^2 + \left(\frac{\partial f}{\partial y}\right)^2} ~ \mathrm{d}x \mathrm{d}y.
+\]
+
+\pause
+
+对于之前的求旋转曲面面积的问题, 参数方程为 $(x, f(x)\cos \theta, f(x) \sin \theta)$, $x \in [a,b], \theta \in [0, 2\pi]$. 计算 $\mathrm{d} S$ 的过程如下:
+\begin{align*}
+\mathrm{d} S & = \left\lVert f'(x) \cos\theta \cdot f(x) \cos\theta + f'(x) \sin\theta \cdot f(x) \sin\theta, ~ -f(x) \cos\theta, ~ - f(x) \sin\theta \right\rVert \mathrm{d}x \mathrm{d}\theta \\
+& = |f(x)| \sqrt{1 + (f'(x))^2} ~ \mathrm{d}x \mathrm{d}\theta.
+\end{align*}
+``质量密度'' $H$ 恒为 $1$, 则曲面面积为
+\[
+S = \int_0^{2\pi} \int_a^b \mathrm{d} S = \int_0^{2\pi} \int_a^b |f(x)| \sqrt{1 + (f'(x))^2} ~ \mathrm{d}x \mathrm{d}\theta = 2\pi \int_a^b |f(x)| \sqrt{1 + (f'(x))^2} ~ \mathrm{d}x.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例子: 求半圆环上的总电量}
+
+\begin{question}
+设圆心在原点, 半径为 $R$ 的上半圆环 $C$ 上的电荷密度分布为 $\rho(x, y) = x^2$, 求半圆环上的总电量.
+\end{question}
+
+\pause
+
+\textbf{解}: 半圆环 $C$ 的参数方程为 $(R \cos \theta, R \sin \theta)$, 其中 $\theta \in [0, \pi]$. 因此, 半圆环上的总电量为
+\[
+A = \int_C \rho(x, y) \mathrm{d}\ell = \int_0^\pi \rho(R \cos \theta, R \sin \theta) \sqrt{(-R \sin \theta)^2 + (R \cos \theta)^2} \mathrm{d}\theta = \int_0^\pi R^3 \cos^2 \theta \mathrm{d}\theta = \frac{\pi R^3}{2}.
+\]
+
+\pause
+
+\alert{注意}, 这题也可以利用显式形式 $y = \sqrt{R^2 - x^2}$ 来求解, 但会比较麻烦, 而且 $y'$ 在 $x = \pm R$ 处没有定义, 需要分段积分. 因此, 参数方程的形式更适合求解这个问题.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{求动态效应}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{求动态效应}
 
 \end{frame}
 
