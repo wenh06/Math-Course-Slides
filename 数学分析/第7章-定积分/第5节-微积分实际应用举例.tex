@@ -295,6 +295,139 @@ A = \int_C \rho(x, y) \mathrm{d}\ell = \int_0^\pi \rho(R \cos \theta, R \sin \th
 \begin{frame}
 \frametitle{求动态效应}
 
+动态效应指的是, 物理运动、边际效益等随时间或其他变量变化的规律. 通过微积分, 我们可以分析这些变化的规律, 例如求解物体的位移、做功等.
+
+\begin{itemize}[<+->]
+\item \textbf{位移}: 如果物体的速度为 $v(t)$, 则物体位移的微元为 $\mathrm{d}s = v(t) \mathrm{d}t$, 在时间区间 $[a,b]$ 内的位移为
+\[
+s = \int_a^b v(t) \mathrm{d}t.
+\]
+\item \textbf{做功}: 如果物体受到的力为 $F(x)$, 则在位移 $\mathrm{d}x$ 上做的功为 $\mathrm{d}W = F(x) \mathrm{d}x$, 在位移区间 $[a,b]$ 内的总功为
+\[
+W = \int_a^b F(x) \mathrm{d}x.
+\]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例子: 求气缸平均功率}
+
+\begin{columns}
+\begin{column}{0.35\textwidth}
+\begin{tikzpicture}[scale=1.5]
+% 1. 气缸 (三条边的矩形, 右边开口)
+% 左下角原点 (0,0)
+% 设长度 L=3, 半径 R=1 (总高度 2R=2)
+\draw[thick] (3, 2) -- (0, 2) -- (0, 0) -- (3, 0);
+
+% 2. 标注 R
+% 左边的边中间画一点 (0, 1)
+\filldraw (0, 1) circle (1pt);
+% 和左上点 (0, 2) 的 midway 写 R
+\path (0, 1) -- (0, 2) node[midway, left] {$R$};
+
+% 3. 活塞 (初始位置)
+% 靠近左边, 很薄的矩形
+% 设厚度 0.1, 初始位置 x1 = 0.5
+\draw[fill=gray!30, dashed] (0.5, 0) rectangle (0.6, 2);
+\node[below] at (0.55, 0) {$a$};
+\node[below] at (0.55, -0.2) {$t_0$};
+
+% 4. 运动箭头
+% 从初始位置指向末位置
+\draw[->, thick, blue] (0.7, 1.0) -- (1.9, 1.0);
+
+% 5. 活塞 (末位置)
+% 右边, 实线
+% 设末位置 x2 = 2.0
+\draw[fill=gray!50, thick] (2.0, 0) rectangle (2.1, 2);
+\node[below] at (2.05, 0) {$b$};
+\node[below] at (2.05, -0.2) {$t_1$};
+
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.65\textwidth}
+\begin{question}
+设一个气缸的内径为 $R$, 活塞点火后, 从 $t_0 \to t_1$ (很短) 的时间内, 活塞从位置 $a$ 移动到位置 $b$, 求平均功率.
+\end{question}
+\pause
+Hint: 波义耳定律 (Boyle's Law): 在温度不变的条件下, 气体的压强 $P$ 与体积 $V$ 成反比, 即 $PV = k$, 其中 $k$ 是常数, 或写作 $P \propto 1/V$.
+\end{column}
+\end{columns}
+
+\pause
+
+\textbf{解}: 由波义耳定律, 活塞位置 $x$ 处的压强为 $P(x) = \frac{k}{\pi R^2 x}$. 因此, 在位置 $x$ 上的力为
+\[
+F(x) = P(x) \cdot \pi R^2 = \frac{k}{x}.
+\]
+活塞在位置 $x$ 时功的微元为 $\mathrm{d}W = F(x) \mathrm{d}x = \frac{k}{x} \mathrm{d}x$. 因此, 活塞从位置 $a$ 移动到位置 $b$ 的平均功率为
+\[
+\bar{P} = \frac{W}{t_1 - t_0} = \frac{1}{t_1 - t_0} \int_a^b \frac{k}{x} \mathrm{d}x = \frac{k}{t_1 - t_0} \ln\left(\frac{b}{a}\right).
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Malthus 人口模型与 Logistic 人口模型}
+
+\begin{block}{Malthus 人口模型}
+假设人口数量 $P(t)$ 的增长率与当前人口数量成正比, 即
+\[
+\begin{cases}
+P'(t) = r P(t), \\
+P(t_0) = P_0,
+\end{cases}
+\]
+其中 $P_0$ 是初始人口数量. 以上就是所谓的 Malthus 人口模型.
+
+\pause
+
+\textbf{问题}: $t$ 时刻的人口数量 $P(t)$ 是多少?
+\end{block}
+
+\textbf{解}: 这是一个简单的可分离变量的微分方程. 将 $P$ 的项移到一边, $t$ 的项移到另一边, 得到 $\frac{\mathrm{d}P}{P} = r \mathrm{d}t$. 两边积分得到 $\ln P = rt + C$, 其中 $C$ 是积分常数. 由初始条件 $P(t_0) = P_0$, 可得 $C = \ln P_0 - rt_0$. 因此, 人口数量随时间的变化为
+\[
+P(t) = P_0 e^{r(t - t_0)}.
+\]
+
+\pause
+
+当 $r > 0$ 时, 人口数量呈指数增长 (人口爆炸); 显然是不太符合实际的. 因此, 我们需要一个更合理的模型来描述人口增长, 这就是 Logistic 人口模型.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Malthus 人口模型与 Logistic 人口模型}
+
+\begin{block}{Logistic 人口模型}
+Logistic 人口模型的一个基本想法是, 人口应该有容纳上限 $P_{\max}$, 当人口数量接近这个上限时, 增长率 $P'(t)$ 应该逐渐降低到 $0$. 因此, Logistic 人口模型将 Malthus 模型中的增长率 $r$ 修改为一个随人口数量变化的函数, 例如 $r = \lambda \left(1 - \frac{P}{P_{\max}}\right)$, 其中 $\lambda$ 是一个正的常数. 因此, Logistic 人口模型可以写作
+\[
+\begin{cases}
+P'(t) = \lambda P(t) \left(1 - \frac{P(t)}{P_{\max}}\right), \\
+P(t_0) = P_0.
+\end{cases}
+\]
+\end{block}
+
+\pause
+
+求解这个微分方程也是一个可分离变量的过程. 将 $P$ 的项移到一边, $t$ 的项移到另一边, 得到 $\frac{\mathrm{d}P}{P(1 - P/P_{\max})} = \lambda \mathrm{d}t$. 左边的分式可以进一步写作 $\frac{1}{P} + \frac{1}{P_{\max} - P}$. 因此, 两边积分得到
+\[
+\ln P - \ln (P_{\max} - P) = \lambda t + C.
+\]
+由初始条件 $P(t_0) = P_0$, 可得 $C = \ln P_0 - \ln (P_{\max} - P_0) - \lambda t_0$. 因此, 人口数量随时间的变化为
+\[
+P(t) = \frac{P_{\max}}{1 + \left(\frac{P_{\max}}{P_0} - 1\right) e^{-\lambda (t - t_0)}}.
+\]
+
 \end{frame}
 
 %------------------------------------------------
