@@ -59,7 +59,263 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{Newton-Cotes 求积公式的引入}
+
+\begin{recall}
+定积分的定义是积分和的极限 $\int_a^b f(x) \mathrm{d}x = \lim_{n \to \infty} \sum_{i=1}^n f(\xi_i) \Delta x_i$, 其中 $a = x_0 < x_1 < \cdots < x_n = b$ 是 $[a, b]$ 的一个划分, $\xi_i \in [x_{i-1}, x_i]$. 那么最简单的划分就是等距划分, 即 $x_i = a + i h$ 其中 $h = \frac{b - a}{n}$, 并取 $\xi_i$ 为区间 $[x_{i-1}, x_i]$ 的端点, 例如 $\xi_i = x_i$. 这样定积分的计算就变成了
+\[
+\int_a^b f(x) \mathrm{d}x = \lim_{n \to \infty} \frac{b - a}{n} \sum_{i=1}^n f(a + i h).
+\]
+后面会看到, 这是 Newton-Cotes 求积公式的一种最简单的特殊情况, 即\textbf{矩形求积公式}.
+\end{recall}
+
+但是我们一般不会直接使用上述的求积公式来计算定积分的数值, \alert{为什么?}
+
+\pause
+\vspace{0.5cm}
+
+\textbf{原因:} 不方便控制误差精度, 收敛速度慢.
+\pause
+它本质是利用\textbf{阶梯函数}, 或者说\textbf{零阶插值}来近似被积函数 $f(x)$, 那么它的误差估计就是振幅和
+\[
+\sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \cdot \Delta x_i.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Newton-Cotes 求积公式的引入}
+
+特别地, 如果 $f$ 是 Lipschitz 连续的, 即存在 $L > 0$ 使得 $|f(x) - f(y)| \leqslant L |x - y|$ 对于任意 $x, y \in [a, b]$ 都成立, 那么振幅和
+\[
+\sum_{i=1}^n \omega(f; [x_{i-1}, x_i]) \cdot \Delta x_i \leqslant L \sum_{i=1}^n \Delta x_i^2 = L n h^2 = L \frac{b - a}{n}.
+\]
+也就是说, 误差 $\propto \frac{1}{n}$, 收敛速度慢.
+
+\pause
+
+\begin{question}
+\begin{itemize}
+\item 有没有``收敛''更快的方法 (求积公式)?
+\item 对不满足 Lipschitz 连续的函数怎么办?
+\end{itemize}
+\end{question}
+
+\pause
+\vspace{0.5cm}
+
+一个自然的想法是, 阶梯函数逼近太粗糙, 可以考虑用更好的逼近函数, 例如多项式, 更准确来说是 Lagrange 插值多项式:
+\[
+P_n(x) = \sum_{i=0}^n f(x_i) L_i(x), \quad L_i(x) = \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Lagrange 插值多项式}
+
+先回忆一下第 5 章中介绍过的 Lagrange 插值多项式在每一点的误差估计.
+
+\begin{prop}[第 5 章定理 5.3.3]
+设 $f \in C^{n+1}([a, b])$, 那么对于任意 $x \in [a, b]$, 存在 $\xi_x \in (a, b)$ 使得
+\[
+f(x) - P_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i) =: r_n(x).
+\]
+\end{prop}
+
+\pause
+
+因此, 定积分的误差可以估计为
+
+\begin{thm}[Lagrange 插值多项式近似定积分的误差估计]
+\label{thm:lagrange-interpolation-error-estimate-for-integration}
+设 $f \in C^{n+1}([a, b])$, 那么用 Lagrange 插值多项式 $P_n(x)$ 来近似计算定积分 $\int_a^b f(x) ~ \mathrm{d}x$ 的误差 $R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x$ 满足
+\[
+|R_n(f)| \leqslant \frac{M_f h^{n+2}}{(n+1)!} \int_0^n \prod_{i=0}^n |t - i| ~ \mathrm{d}t,
+\]
+其中 $M_f = \max_{x \in [a, b]} |f^{(n+1)}(x)|$ 是 $f$ 的 $(n+1)$-阶导数的最大值, $h = \frac{b - a}{n}$ 是等距划分的步长.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Lagrange 插值多项式近似定积分的误差估计}
+
+\textbf{证明.} 由 Lagrange 插值多项式的误差公式, 对于任意 $x \in [a, b]$, 存在 $\xi_x \in (a, b)$ 使得
+\[
+f(x) - P_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i).
+\]
+因此, 定积分的误差 $R_n(f)$ 可以表示为
+\[
+R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i) ~ \mathrm{d}x.
+\]
+由于 $f^{(n+1)}$ 在 $[a, b]$ 上连续, 存在 $M_f = \max_{x \in [a, b]} |f^{(n+1)}(x)|$, 因此
+\[
+|R_n(f)| \leqslant \frac{M_f}{(n+1)!} \int_a^b \left| \prod_{i=0}^n (x - x_i) \right| ~ \mathrm{d}x.
+\]
+接下来, 通过变量替换 $x = a + t h$ 可以将积分区间 $[a, b]$ 转换为 $[0, n]$, 从而得到 (定理中的形式)
+\[
+|R_n(f)| \leqslant \frac{M_f h^{n+2}}{(n+1)!} \int_0^n \prod_{i=0}^n |t - i| ~ \mathrm{d}t.
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Lagrange 插值多项式近似定积分的误差估计}
+
+对于误差估计进一步变换
+\begin{align*}
+|R_n(f)| & \leqslant \frac{M_f h^{n+2}}{(n+1)!} \int_0^n \prod_{i=0}^n |t - i| ~ \mathrm{d}t = \frac{M_f (b-a)^{n+2}}{(n+1)!} \int_0^n \prod_{i=0}^n |\frac{t}{n} - \frac{i}{n}| ~ \mathrm{d} \frac{t}{n} \\
+& = {\color{red}\frac{M_f (b-a)^{n+2}}{(n+1)!}} {\color{blue}\int_0^1 \prod_{i=0}^n |t - \frac{i}{n}| ~ \mathrm{d}t}.
+\end{align*}
+\begin{itemize}
+\item 第二部分 ${\color{blue}\int_0^1 \prod_{i=0}^n |t - \frac{i}{n}| ~ \mathrm{d}t}$ 是一个小于 1 的数
+\item 第一部分 ${\color{red}\frac{M_f (b-a)^{n+2}}{(n+1)!}}$ 分母中的 $(n+1)!$ 的增长速度远快于分子中的 $M_f (b-a)^{n+2}$.
+\end{itemize}
+也就是说, 我们得到了积分近似计算的精细误差估计, 而且这个误差随着 $n$ 的增长, 有很快的下降速度.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$n$ 步 Newton-Cotes 求积公式}
+
+\begin{Def}[$n$ 步 Newton-Cotes 求积公式]
+设 $f \in C^{n+1}([a, b])$, $n \in \mathbb{N}$, $h = \frac{b - a}{n}$, $x_i = a + i h$ ($i = 0, 1, \cdots, n$), 那么 $n$ 步 Newton-Cotes 求积公式是指用 Lagrange 插值多项式 $P_n(x)$ 来近似计算定积分 $\int_a^b f(x) ~ \mathrm{d}x$, 即
+\[
+\int_a^b f(x) ~ \mathrm{d}x \approx \int_a^b P_n(x) ~ \mathrm{d}x = \sum_{i=0}^n f(x_i) {\color{red}\int_a^b \left( \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j} \right) ~ \mathrm{d}x} = \sum_{i=0}^n {\color{red}A_i} f(x_i).
+\]
+\end{Def}
+
+\pause
+\vspace{0.5cm}
+
+注意到, $n$ 步 Newton-Cotes 求积公式中的``权重'' $A_i = \int_a^b \left( \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j} \right) ~ \mathrm{d}x$ 与被积函数 $f$, 只与区间 $[a, b]$ 和划分的步数 $n$ 有关, 与被积函数 $f$ 无关. 这也是数值求积公式的一个重要特点, 也是数值求积公式能够广泛应用的一个重要原因.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{求积公式的代数精度}
+
+我们希望更严格地描述 $n$ 步 Newton-Cotes 求积公式 (乃至一般性的数值求积公式) 的精度, 于是对求积公式引入如下的一般性概念:
+
+\begin{Def}[求积公式的代数精度]
+若一个数值求积公式在被积函数为任意次数 $\leqslant n$ 的多项式时都\textbf{精确成立}, 且在被积函数为某个次数 $n+1$ 的多项式时\textbf{不}精确成立成立, 则称该求积公式的代数精度为 $n$.
+\end{Def}
+
+\pause
+\vspace{0.5cm}
+
+关于 Lagrange 插值多项式近似定积分的误差估计 (定理 \ref{thm:lagrange-interpolation-error-estimate-for-integration}), 可以得到如下的结论:
+
+\begin{cor}[$n$ 步 Newton-Cotes 求积公式的代数精度]
+\begin{itemize}
+\item $n$ 步 Newton-Cotes 求积公式的代数精度至少为 $n$.
+\item $n = 2k$ 步 Newton-Cotes 求积公式的代数精度至少为 $n + 1 = 2k + 1$.
+\end{itemize}
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$n$ 步 Newton-Cotes 求积公式的代数精度的证明}
+
+回顾一下 Lagrange 插值多项式近似定积分的误差估计
+\[
+R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i) ~ \mathrm{d}x = \int_0^n \frac{f^{(n+1)}(\xi_{a+th})}{(n+1)!} \prod_{i=0}^n (t - i) ~ \mathrm{d}t.
+\]
+\begin{itemize}
+\item 如果 $f$ 是次数 $\leqslant n$ 的多项式, 那么 $f^{(n+1)} \equiv 0$, 从而 $R_n(f) = 0$, 也就是说, $n$ 步 Newton-Cotes 求积公式在被积函数为任意次数 $\leqslant n$ 的多项式时都精确成立, 代数精度至少为 $n$.
+\pause
+\item 如果 $f$ 是次数 $n + 1$ 的多项式, 那么 $f^{(n+1)}$ 是一个非零常数 $C$, 从而 $R_n(f) = \frac{C}{(n+1)!} \int_0^n \prod_{i=0}^n (t - i) ~ \mathrm{d}t$. 当 $n = 2k$ 时,
+\[
+R_{2k}(f) = \frac{C}{(2k+1)!} \int_0^{2k} \prod_{i=0}^{2k} (t - i) ~ \mathrm{d}t = \frac{C}{(2k+1)!} \int_{-k}^k \prod_{i=-k}^{k} (t+i) ~ \mathrm{d}t = 0.
+\]
+也就是说, $n = 2k$ 步 Newton-Cotes 求积公式对所有次数 $n + 1 = 2k + 1$ 的多项式都精确成立, 代数精度至少为 $n + 1 = 2k + 1$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Cotes 系数}
+
+回到 $n$ 步 Newton-Cotes 求积公式 $\int_a^b f(x) ~ \mathrm{d}x \approx \sum_{i=0}^n A_i f(x_i)$, 其中 $A_i = \int_a^b \left( \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j} \right) ~ \mathrm{d}x$. 通过变量替换 $x = a + t h$ 可以将积分区间 $[a, b]$ 转换为 $[0, n]$, 从而得到
+\[
+A_i = \int_a^b \left( \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j} \right) ~ \mathrm{d}x = \frac{b-a}{n} \int_0^n \left(\prod_{j=0, j \neq i}^n \frac{t - j}{i - j} \right) ~ \mathrm{d}t =: (b-a) C_i^{(n)},
+\]
+其中 $C_i^{(n)} = \frac{1}{n} \int_0^n \left(\prod_{j=0, j \neq i}^n \frac{t - j}{i - j} \right) ~ \mathrm{d}t$ 是一个与 $n$ 和 $i$ 有关的常数, 叫做\textbf{Cotes 系数}.
+
+\pause
+\vspace{0.5cm}
+
+可以用 Cotes 系数将 $n$ 步 Newton-Cotes 求积公式写成如下的更紧凑的形式
+\[
+\int_a^b f(x) ~ \mathrm{d}x \approx (b-a) \sum_{i=0}^n C_i^{(n)} f(x_i) = (b-a) \langle \begin{pmatrix} C_0^{(n)} \\ C_1^{(n)} \\ \vdots \\ C_n^{(n)} \end{pmatrix}, \begin{pmatrix} f(x_0) \\ f(x_1) \\ \vdots \\ f(x_n) \end{pmatrix} \rangle.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Cotes 系数性质}
+
+Cotes 系数可以预先计算出来, 并且具有良好的性质:
+
+\begin{prop}
+\begin{itemize}
+\item 对称性: $C_i^{(n)} = C_{n-i}^{(n)}$.
+\item 规范性: $\sum_{i=0}^n C_i^{(n)} = 1$.
+\end{itemize}
+\end{prop}
+
+\pause
+
+\textbf{证明.}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{特殊的 Newton-Cotes 求积公式 ($n = 0$) -- 矩形公式}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{特殊的 Newton-Cotes 求积公式 ($n = 1$) -- 梯形公式}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{特殊的 Newton-Cotes 求积公式 ($n = 2$) -- Simpson 公式 (抛物形公式)}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{特殊的 Newton-Cotes 求积公式 ($n = 4$) -- Cotes 公式}
 
 \end{frame}
 
