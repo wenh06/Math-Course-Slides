@@ -276,7 +276,7 @@ $\cdots\cdots$\\
 
 \pause
 
-\textbf{证明:}
+\startproof[bg=yellow, fg=red]
 设 $\sum\limits_{n=1}^\infty x_n = S,$ 则对级数部分和 $S_n = \sum\limits_{k=1}^n x_k$ 成立
 \[\lim\limits_{n\to\infty} S_n = \lim\limits_{n\to\infty} S_{n-1} = S,\]
 于是得到
@@ -318,7 +318,7 @@ $\lim\limits_{n\to\infty} x_n = 0$ 只是级数收敛的必要条件, 并~{\colo
 \pause
 \vspace{0.5em}
 
-\textbf{证明:}
+\startproof[bg=yellow, fg=red]
 设级数 $\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$ 的部分和数列分别为 $\{S_n^{(1)}\}, \{S_n^{(2)}\},$ 那么对 $\sum\limits_{n=1}^\infty (\alpha a_n + \beta b_n)$ 的部分和数列 $\{S_n\}$ 有 $S_n = \alpha S_n^{(1)} + \beta S_n^{(2)}.$ 对 $n$ 取极限, 并利用极限的线性性, 即有
 \[\lim\limits_{n\to\infty} S_n = \alpha \lim\limits_{n\to\infty} S_n^{(1)} + \beta \lim\limits_{n\to\infty} S_n^{(2)} = \alpha A + \beta B.\]
 
@@ -552,7 +552,8 @@ q_k & = \min \left\{ q ~ : ~ \sum\limits_{n=1}^{{\color{red} p_{k-1}}} a_n^+ + \
 
 \pause
 
-\textbf{解:} 服药第一天, 患者体内药量为 $0.05$~mg; \\
+\startproof[bg=yellow, fg=red](解)
+服药第一天, 患者体内药量为 $0.05$~mg; \\
 \pause
 服药第二天, 患者体内药量增加 $0.05$~mg, 但之前剩下的药量被排泄掉 $20\%,$ 因此共计 $0.05 + 0.05\cdot(1-0.2) = 0.05\cdot\left(1 + \dfrac{4}{5}\right)$~mg;\\
 \pause

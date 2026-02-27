@@ -9,6 +9,7 @@
 \usepackage{fix-cm}
 \usepackage{esvect}
 \usepackage{yhmath}
+\usepackage{listings}
 
 \graphicspath{{images/}}
 
@@ -240,3 +241,29 @@ colback=blue!30, boxrule=1pt,
   \end{tcolorbox}%
 }
 \makeatother
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Python,
+  backgroundcolor=\color{zkbackground},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  numbers=left,
+  xleftmargin=1em,
+  numbersep=7pt,
+}

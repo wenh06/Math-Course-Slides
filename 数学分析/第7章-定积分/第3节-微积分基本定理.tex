@@ -145,7 +145,8 @@
 \end{thm}
 
 \vspace{1em}
-\textbf{证明}: 对乘积 $u(x)v(x)$ 求导并积分即可:
+\startproof[bg=yellow, fg=red]
+对乘积 $u(x)v(x)$ 求导并积分即可:
 \[ \int_a^b (uv)' ~ \mathrm{d}x = \left. uv \right|_a^b \implies \int_a^b u'v ~ \mathrm{d}x + \int_a^b uv' ~ \mathrm{d}x = \left. uv \right|_a^b. \]
 
 \end{frame}
@@ -290,7 +291,8 @@
 \end{eg}
 
 \vspace{0.5em}
-\textbf{解}: 令 $x = a \sin t$.
+\startproof[bg=yellow, fg=red](解)
+令 $x = a \sin t$.
 当 $x=0$ 时, $t=0$; 当 $x=a$ 时, $t=\frac{\pi}{2}$.
 且 $\mathrm{d}x = a \cos t \mathrm{d}t$.
 \begin{align*}
@@ -366,7 +368,8 @@ $\{ ~ 1, \sin x, \cos x, \sin 2x, \cos 2x, \dots ~ \}$ 是任意长度为 $2\pi$
 
 \pause
 
-\textbf{证明}: 由于以上函数都是 $2\pi$ 周期的, 所以只要对 $[-\pi, \pi]$ 进行验证即可. 记 $1 = \cos 0x.$ 那么
+\startproof[bg=yellow, fg=red]
+由于以上函数都是 $2\pi$ 周期的, 所以只要对 $[-\pi, \pi]$ 进行验证即可. 记 $1 = \cos 0x.$ 那么
 
 $1^\circ$: $\langle \sin nx, \cos mx \rangle = \int_{-\pi}^\pi \sin nx \cdot \cos mx ~ \mathrm{d}x = 0$ (被积函数是奇函数).
 

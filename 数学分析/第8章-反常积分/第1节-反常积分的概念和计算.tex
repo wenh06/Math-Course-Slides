@@ -78,8 +78,56 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{反常积分的定义}
+\frametitle{函数值无界的反常积分}
 
+\begin{Def}[反常积分]
+设 $f$ 是定义在区间 $(a, b]$ 上的函数, 且在 $x = a$ 的右邻域内无界. 如果 $\forall \eta > 0$, $f$ 在 $[a + \eta, b]$ 上黎曼可积, 且 $\lim_{\eta \to 0^+} \int_{a + \eta}^b f(x) ~ \mathrm{d} x$ 存在, 则称反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 收敛, 且定义
+\[
+\int_a^b f(x) ~ \mathrm{d} x = \lim_{\eta \to 0^+} \int_{a + \eta}^b f(x) ~ \mathrm{d} x.
+\]
+否则称反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 发散.
+\end{Def}
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 若 $f$ 在某点 $x_0$ 的某个去心领域内有定义且无界, 则称 $x_0$ 为 $f$ 的一个奇点.
+\pause
+\item 对于 $b$ 点是 $f$ 的奇点的情况, 定义反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 收敛的方式与上述定义完全类似, 只需将 $a + \eta$ 替换为 $b - \eta$ 即可.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{函数定义域无界的反常积分}
+
+\begin{remark}
+\begin{itemize}
+\item 对于 $f$ 以 $a, b$ 为奇点的情况, 称反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 收敛, 若反常积分 $\int_a^c f(x) ~ \mathrm{d} x$ 和 $\int_c^b f(x) ~ \mathrm{d} x$ 都收敛, 其中 $c$ 是 $(a, b)$ 内的任意一点, 并且定义
+\[
+\int_a^b f(x) ~ \mathrm{d} x = \int_a^c f(x) ~ \mathrm{d} x + \int_c^b f(x) ~ \mathrm{d} x.
+\]
+否则称反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 发散.
+\pause
+\vspace{-0.5em}
+\item 对于 $f$ 在 $[a, b]$ 内部有有限多个奇点 $x_1, x_2, \cdots, x_n$, 定义反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 收敛, 若对于 $i = 0, 1, \cdots, n$, 反常积分 $\int_{x_i}^{x_{i + 1}} f(x) ~ \mathrm{d} x$ 收敛, 其中 $x_0 = a$, $x_{n + 1} = b$. 并且定义
+\[
+\int_a^b f(x) ~ \mathrm{d} x = \sum_{i = 0}^n \int_{x_i}^{x_{i + 1}} f(x) ~ \mathrm{d} x.
+\]
+否则称反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 发散.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分区域无界的反常积分}
 
 \end{frame}
 
