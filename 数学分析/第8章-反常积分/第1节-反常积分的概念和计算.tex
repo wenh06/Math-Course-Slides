@@ -103,7 +103,7 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{函数定义域无界的反常积分}
+\frametitle{函数值无界的反常积分}
 
 \begin{remark}
 \begin{itemize}
@@ -128,6 +128,299 @@
 
 \begin{frame}
 \frametitle{积分区域无界的反常积分}
+
+函数值无界的反常积分是反常积分的一种, 还有一种反常积分是积分区域无界的反常积分. 我们先看一个具体的例子.
+
+\begin{eg}[由万有引力定律导出第二宇宙速度]
+第二宇宙速度指的是一个物体在地球表面以某个速度发射后, 能够克服地球引力束缚, 进入太空 (运动到无限远处) 的最小速度. 根据万有引力定律, 地球对物体的引力为 $F = \frac{GMm}{r^2}$, 其中 $G$ 是万有引力常数, $M$ 是地球的质量, $m$ 是物体的质量, $r$ 是物体与地球中心的距离.
+
+\pause
+\vspace{0.5em}
+
+假设物体以初速度 $v$ 从地球表面 (距离地球中心的距离为 $R$) 发射, 并且不受其他外力的作用. 那么当物体运动到距离地球中心的距离为 $x$ 时, 记地球引力做的功为 $W(x)$, 则有
+\[
+\mathrm{d} W = -F \mathrm{d} x = -\frac{GMm}{x^2} \mathrm{d} x.
+\]
+因此
+\[
+W(x) = \int_R^x -\frac{GMm}{t^2} ~ \mathrm{d} t = -GMm \int_R^x \frac{1}{t^2} ~ \mathrm{d} t = GMm \left(\frac{1}{x} - \frac{1}{R}\right).
+\]
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分区域无界的反常积分的引入}
+
+\begin{eg}[由万有引力定律导出第二宇宙速度]
+根据能量守恒定律, 记此时物体的速度为 $v(x)$, 则有
+\[
+\frac{1}{2} m v(x)^2 - \frac{1}{2} m v_0^2 = W(x) = GMm \left(\frac{1}{x} - \frac{1}{R}\right),
+\]
+其中 $v_0$ 是物体的初速度. 上式要求, $\forall x > R$, $GMm \left(\frac{1}{x} - \frac{1}{R}\right) \geqslant -\frac{1}{2} m v_0^2$, 从而
+\[
+v_0 \geqslant \sqrt{\frac{2GM}{R}} \approx 11.2 ~ \mathrm{km/s}.
+\]
+这就是第二宇宙速度的表达式.
+
+\pause
+\vspace{0.5em}
+
+注意, 我们这里导出的是
+\[
+\frac{1}{2} m v_0^2 \geqslant GmM \frac{1}{R} = \lim_{x \to +\infty} \int_R^x \frac{GMm}{t^2} ~ \mathrm{d} t = \int_R^{+\infty} \frac{GMm}{x^2} ~ \mathrm{d} x,
+\]
+后者就是一个积分区域无界的反常积分.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分区域无界的反常积分的定义}
+
+\begin{Def}[积分区域无界的反常积分]
+设 $f$ 是定义在区间 $[a, +\infty)$ 上的函数, 且在 $[a, c]$ 上黎曼可积, $\forall c > a$. 如果 $\lim_{c \to +\infty} \int_a^c f(x) ~ \mathrm{d} x$ 存在, 则称反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 收敛, 且定义
+\[
+\int_a^{+\infty} f(x) ~ \mathrm{d} x = \lim_{c \to +\infty} \int_a^c f(x) ~ \mathrm{d} x.
+\]
+否则称反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 发散.
+\end{Def}
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 对于 $(-\infty, b]$ 上的函数 $f$, 定义反常积分 $\int_{-\infty}^b f(x) ~ \mathrm{d} x$ 收敛的方式与上述定义完全类似, 只需将 $a$ 替换为 $b$ 即可. 类似可定义 $\int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$.
+\item $\int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x \neq \lim_{c \to +\infty} \int_{-c}^c f(x) ~ \mathrm{d} x$, 后者称为 Cauchy 主值, 记为 $\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 反常积分敛散性}
+
+\begin{eg}
+讨论反常积分 $\int_1^{+\infty} \frac{1}{x^p} ~ \mathrm{d} x$ 的敛散性.
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](解)
+容易求得
+\[
+\int_1^{+\infty} \frac{1}{x^p} ~ \mathrm{d} x = \begin{cases}
+\left. \frac{1}{1 - p} x^{1 - p} \right|_1^{+\infty}, & p \neq 1, \\[6pt]
+\left. \ln x \right|_1^{+\infty}, & p = 1.
+\end{cases}
+\]
+因此当 $p > 1$ 时, 反常积分 $\int_1^{+\infty} \frac{1}{x^p} ~ \mathrm{d} x$ 收敛; 当 $p \leqslant 1$ 时, 反常积分 $\int_1^{+\infty} \frac{1}{x^p} ~ \mathrm{d} x$ 发散.
+
+\pause
+\vspace{0.5em}
+
+\begin{question}
+类似讨论反常积分 $\int_0^1 \frac{1}{x^p} ~ \mathrm{d} x$ 的敛散性.
+\end{question}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 反常积分敛散性}
+
+\begin{eg}
+讨论反常积分 $\int_{-1}^1 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x$ 的敛散性.
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](解)
+$x = 0$ 是被积函数的唯一奇点, 因此 $\int_{-1}^1 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x$ 收敛的充要条件是 $\int_{-1}^0 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x$ 和 $\int_0^1 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x$ 都收敛. 可以算得不定积分 $\int \frac{e^{1/x}}{x^2} ~ \mathrm{d} x = -e^{1/x} + C$. 因此
+\begin{align*}
+\int_{-1}^0 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x & = \left. -e^{1/x} \right|_{-1}^0 = \lim_{\varepsilon \to 0^+} \left(-e^{-1/\varepsilon} + e^{-1}\right) = e^{-1}, \\
+\int_0^1 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x & = \left. -e^{1/x} \right|_0^1 = \lim_{\varepsilon \to 0^+} \left(-e^{1/\varepsilon} + e\right) = -\infty.
+\end{align*}
+因此反常积分 $\int_{-1}^1 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x$ 发散.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 计算反常积分}
+
+\begin{eg}
+计算反常积分 $\int_0^{+\infty} \frac{\mathrm{d} x}{(1+x^2)(1+x^{\alpha})}$, 其中 $\alpha \in \mathbb{R}$.
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](解)
+首先, 由于 $0 \leqslant \frac{1}{(1+x^2)(1+x^{\alpha})} \leqslant \frac{1}{1+x^2}$, 所以要求的反常积分收敛.
+
+\pause
+\vspace{0.5em}
+
+接下来, 计算反常积分
+\begin{align*}
+\int_0^{+\infty} \frac{\mathrm{d} x}{(1+x^2)(1+x^{\alpha})} & = \int_0^1 \frac{\mathrm{d} x}{(1+x^2)(1+x^{\alpha})} + {\color{red}\int_1^{+\infty} \frac{\mathrm{d} x}{(1+x^2)(1+x^{\alpha})} ~ (\text{仍然收敛})} \\
+& = \int_{+\infty}^1 \frac{\mathrm{d} \frac{1}{x}}{(1+\frac{1}{x^2})(1+\frac{1}{x^{\alpha}})} + \int_1^{+\infty} \frac{\mathrm{d} x}{(1+x^2)(1+x^{\alpha})} \\
+& = \int_1^{+\infty} \frac{x^{\alpha} \mathrm{d} x}{(1+x^2)(1+x^{\alpha})} + \int_1^{+\infty} \frac{\mathrm{d} x}{(1+x^2)(1+x^{\alpha})} \\
+& = \int_1^{+\infty} \frac{(1+x^{\alpha}) \mathrm{d} x}{(1+x^2)(1+x^{\alpha})} = \int_1^{+\infty} \frac{\mathrm{d} x}{1+x^2} = \left. \arctan x \right|_1^{+\infty} = \frac{\pi}{4}.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{从计算反常积分例题引出的几个注记}
+
+\begin{remark}
+\begin{itemize}
+\item 上述计算反常积分的过程中, 用到了 \textbf{线性性}, \textbf{保序性} 和 \textbf{区间可加性} 等性质, 以及 \textbf{变量替换}. 事实上, 大部分定积分的性质都可以推广到反常积分上. 但有少部分定积分的性质无法推广到反常积分上, 例如 \textbf{乘积可积性}, 以及 \textbf{绝对可积性} 等性质. 反例: $\int_0^1 x^{-1/2} ~ \mathrm{d} x$ 收敛, 但 $\int_0^1 x^{-1/2} \cdot x^{-1/2} ~ \mathrm{d} x = \int_0^1 \frac{1}{x} ~ \mathrm{d} x$ 发散; $\int_{-\infty}^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x$ 收敛, 但 $\int_{-\infty}^{+\infty} \left|\frac{\sin x}{x}\right| ~ \mathrm{d} x$ 发散 (之后要学习的例子).
+\item 无穷区间上的反常积分与无界函数的反常积分可以很容易相互转化 (通过 $x \leftrightarrow \frac{1}{x}$ 的变量替换), 例如当 $a > 0$ 时,
+\begin{gather*}
+\int_a^{+\infty} f(x) ~ \mathrm{d} x = \int_0^{1/a} \frac{f(1/x)}{x^2} ~ \mathrm{d} x, \\
+\int_a^b f(x) ~ \mathrm{d} x = \int_{a-b}^0 f(x + b) ~ \mathrm{d} x = \int_{-\infty}^{\frac{1}{a-b}} \frac{f\left(\frac{1}{x} + b\right)}{x^2} ~ \mathrm{d} x.
+\end{gather*}
+这里的 $b$ 是 $f$ 的一个奇点.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 反常积分敛散性与被积函数的有界性}
+
+我们再来看一个例子, 这个例子说明了反常积分的敛散性与被积函数的有界性关系不大.
+
+\pause
+\vspace{0.5em}
+
+考虑定义在 $[1, +\infty)$ 上的函数
+\[
+f(x) = \begin{cases}
+n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
+0, & \text{其他}.
+\end{cases}
+\]
+
+\pause
+容易通过定义验证 $\int_1^{+\infty} f(x) ~ \mathrm{d} x = 1$ 是收敛的, 但 $f$ 在 $[1, +\infty)$ 上无界.
+
+\pause
+
+\begin{attnblock}
+我们暂时不能通过如下方式计算 $\int_1^{+\infty} f(x) ~ \mathrm{d} x$:
+\[
+\int_1^{+\infty} f(x) ~ \mathrm{d} x \stackrel{?}{=} \sum_{n = 1}^{+\infty} \int_n^{n + \frac{1}{n(n+1)^2}} (n + 1) ~ \mathrm{d} x = \sum_{n = 1}^{+\infty} \frac{1}{(n + 1)(n + 2)} = 1.
+\]
+因为这涉及了积分与无穷级数的交换, 这种交换不是无条件成立的, 需要满足一定的条件, 之后我们会学习相关的定理.
+
+\pause
+\vspace{0.5em}
+
+当然, 在这个例子中, 由于 $f$ 在 $[1, +\infty)$ 上非负, 是可以这样交换次序的 (实变函数中会讲到).
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{柯西主值}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{柯西主值}
+
+\begin{eg}
+讨论反常积分 $\int_{-\infty}^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x$ 的敛散性.
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](解)
+由于
+\begin{gather*}
+\int_0^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x = \left. -\cos x \right|_0^{+\infty} = \lim_{A \to +\infty} \left(-\cos A + 1\right), \\
+\int_{-\infty}^0 \frac{\sin x}{x} ~ \mathrm{d} x = \left. -\cos x \right|_{-\infty}^0 = \lim_{\widetilde{A} \to +\infty} \left(-\cos(-\widetilde{A}) + 1\right),
+\end{gather*}
+都发散, 所以 $\int_{-\infty}^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x$ 发散.
+
+\pause
+\vspace{0.5em}
+
+但是, 如果我们取一种特殊的收敛方式, 即 $A = \widetilde{A}$, 则
+\[
+\text{``$\int_{-\infty}^{+\infty}$''} \frac{\sin x}{x} ~ \mathrm{d} x = \lim_{A \to +\infty} \int_{-A}^A \frac{\sin x}{x} ~ \mathrm{d} x = \lim_{A \to +\infty} \left. -\cos x \right|_{-A}^A = 0.
+\]
+这就是所谓的\textbf{柯西主值}.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{柯西主值}
+
+\begin{Def}[柯西主值]
+设 $f$ 是定义在 $(-\infty, +\infty)$ 上的函数, 且 $\forall A > 0$, $f$ 在 $[-A, A]$ 上黎曼可积. 如果 $\lim_{A \to +\infty} \int_{-A}^A f(x) ~ \mathrm{d} x$ 存在, 则称柯西主值 $\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$ 收敛, 且定义
+\[\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x = \lim_{A \to +\infty} \int_{-A}^A f(x) ~ \mathrm{d} x.\]
+否则称柯西主值 $\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$ 发散.
+\end{Def}
+
+\begin{remark}
+\begin{itemize}
+\item 如果 $c \in (a, b)$ 是 $f$ 的一个奇点, 则相应的柯西主值定义为
+\[
+\mathrm{(cpv)} \int_a^b f(x) ~ \mathrm{d} x = \lim_{A \to 0^+} \left( \int_a^{c-A} f(x) ~ \mathrm{d} x + \int_{c+A}^b f(x) ~ \mathrm{d} x \right)
+\]
+\item 对于本身就收敛的反常积分, 相应的柯西主值也是收敛的, 且两者的值相等. 但\textbf{反之不成立}.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题 -- 反常积分与柯西主值的关系}
+
+\begin{eg}
+计算反常积分 $\int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$ 和柯西主值 $\mathrm{(cpv)} \int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$.
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](解)
+$0$ 为被积函数的唯一奇点, 因此 $\int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$ 收敛的充要条件是 $\int_{-1}^0 \frac{1}{x} ~ \mathrm{d} x$ 和 $\int_0^1 \frac{1}{x} ~ \mathrm{d} x$ 都收敛. 可以算得不定积分 $\int \frac{1}{x} ~ \mathrm{d} x = \ln |x| + C$. 因此
+\begin{align*}
+\int_{-1}^0 \frac{1}{x} ~ \mathrm{d} x & = \left. \ln |x| \right|_{-1}^0 = \lim_{\varepsilon \to 0^+} \left(\ln \varepsilon - \ln 1\right) = -\infty, \\
+\int_0^1 \frac{1}{x} ~ \mathrm{d} x & = \left. \ln |x| \right|_0^1 = \lim_{\varepsilon \to 0^+} \left(\ln 1 - \ln \varepsilon\right) = +\infty.
+\end{align*}
+因此反常积分 $\int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$ 发散.
+
+\pause
+\vspace{0.5em}
+
+接下来, 计算柯西主值 $\mathrm{(cpv)} \int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x = \lim_{\varepsilon \to 0^+} \left( \int_{-1}^{-\varepsilon} \frac{1}{x} ~ \mathrm{d} x + \int_{\varepsilon}^1 \frac{1}{x} ~ \mathrm{d} x \right) = 0.$
 
 \end{frame}
 
