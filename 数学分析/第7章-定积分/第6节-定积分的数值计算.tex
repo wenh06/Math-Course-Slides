@@ -806,20 +806,23 @@ n=4, m=7
 
 \node (D1) at (9,-1.5) {$T_m^{(4)}$};
 
-\draw[->] (A2) -- (B1);
-\draw[->] (A1) -- (B1);
-\draw[->] (A3) -- (B2);
-\draw[->] (A2) -- (B2);
-\draw[->] (A4) -- (B3);
-\draw[->] (A3) -- (B3);
+\draw[->, color=cau-green-1, thick] (A1) -- (A2);
+\draw[->, color=cau-green-1, thick] (A2) -- (B1);
+\draw[->, dashed] (A1) -- (B1);
+\draw[->, dashdotted, color=cau-green-1, thick] (B1) -- (A3);
+\draw[->, color=cau-green-1, thick] (A3) -- (B2);
+\draw[->, dashed] (A2) -- (B2);
+\draw[->, color=cau-green-1, thick] (A4) -- (B3);
+\draw[->, dashed] (A3) -- (B3);
 
-\draw[->] (B2) -- (C1);
-\draw[->] (B1) -- (C1);
-\draw[->] (B3) -- (C2);
-\draw[->] (B2) -- (C2);
+\draw[->, color=cau-green-1, thick] (B2) -- (C1);
+\draw[->, dashed] (B1) -- (C1);
+\draw[->, color=cau-green-1, thick] (B3) -- (C2);
+\draw[->, dashed] (B2) -- (C2);
+\draw[->, dashdotted, color=cau-green-1, thick] (C1) -- (A4);
 
-\draw[->] (C2) -- (D1);
-\draw[->] (C1) -- (D1);
+\draw[->, color=cau-green-1, thick] (C2) -- (D1);
+\draw[->, dashed] (C1) -- (D1);
 \end{tikzpicture}
 \end{center}
 
@@ -841,9 +844,10 @@ n=4, m=7
 下面是一个 Python 代码示例, 该代码实现了 Romberg 方法的计算
 
 \begin{lstlisting}
+import numpy as np
+
 def romberg_adaptive(f, a, b, tol=1e-10, max_level=10):
     T = np.zeros((max_level, max_level))
-
     h = b - a
     T[0, 0] = 0.5 * h * (f(a) + f(b))
 
