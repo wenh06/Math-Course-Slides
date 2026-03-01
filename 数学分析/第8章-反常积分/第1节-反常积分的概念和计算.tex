@@ -222,6 +222,7 @@ v_0 \geqslant \sqrt{\frac{2GM}{R}} \approx 11.2 ~ \mathrm{km/s}.
 \end{cases}
 \]
 因此当 $p > 1$ 时, 反常积分 $\int_1^{+\infty} \frac{1}{x^p} ~ \mathrm{d} x$ 收敛; 当 $p \leqslant 1$ 时, 反常积分 $\int_1^{+\infty} \frac{1}{x^p} ~ \mathrm{d} x$ 发散.
+\qed
 
 \pause
 \vspace{0.5em}
@@ -251,6 +252,7 @@ $x = 0$ 是被积函数的唯一奇点, 因此 $\int_{-1}^1 \frac{e^{1/x}}{x^2} 
 \int_0^1 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x & = \left. -e^{1/x} \right|_0^1 = \lim_{\varepsilon \to 0^+} \left(-e^{1/\varepsilon} + e\right) = -\infty.
 \end{align*}
 因此反常积分 $\int_{-1}^1 \frac{e^{1/x}}{x^2} ~ \mathrm{d} x$ 发散.
+\qed
 
 \end{frame}
 
@@ -279,6 +281,7 @@ $x = 0$ 是被积函数的唯一奇点, 因此 $\int_{-1}^1 \frac{e^{1/x}}{x^2} 
 & = \int_1^{+\infty} \frac{x^{\alpha} \mathrm{d} x}{(1+x^2)(1+x^{\alpha})} + \int_1^{+\infty} \frac{\mathrm{d} x}{(1+x^2)(1+x^{\alpha})} \\
 & = \int_1^{+\infty} \frac{(1+x^{\alpha}) \mathrm{d} x}{(1+x^2)(1+x^{\alpha})} = \int_1^{+\infty} \frac{\mathrm{d} x}{1+x^2} = \left. \arctan x \right|_1^{+\infty} = \frac{\pi}{4}.
 \end{align*}
+\qed
 
 \end{frame}
 
@@ -362,6 +365,7 @@ n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
 \int_{-\infty}^0 \frac{\sin x}{x} ~ \mathrm{d} x = \left. -\cos x \right|_{-\infty}^0 = \lim_{\widetilde{A} \to +\infty} \left(-\cos(-\widetilde{A}) + 1\right),
 \end{gather*}
 都发散, 所以 $\int_{-\infty}^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x$ 发散.
+\qed
 
 \pause
 \vspace{0.5em}
@@ -421,6 +425,7 @@ $0$ 为被积函数的唯一奇点, 因此 $\int_{-1}^1 \frac{1}{x} ~ \mathrm{d}
 \vspace{0.5em}
 
 接下来, 计算柯西主值 $\mathrm{(cpv)} \int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x = \lim_{\varepsilon \to 0^+} \left( \int_{-1}^{-\varepsilon} \frac{1}{x} ~ \mathrm{d} x + \int_{\varepsilon}^1 \frac{1}{x} ~ \mathrm{d} x \right) = 0.$
+\qed
 
 \end{frame}
 

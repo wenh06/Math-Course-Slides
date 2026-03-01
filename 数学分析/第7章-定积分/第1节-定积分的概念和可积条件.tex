@@ -40,6 +40,26 @@
 %	PRESENTATION SLIDES
 %-----------------------------------
 
+\begin{frame}
+\frametitle{绪言}
+
+\begin{itemize}[<+->]
+\item \textbf{回顾}: 在一元函数微分学中, 我们学习了求导运算 $\mathrm{d}$:
+\[
+\mathrm{d}: \{ \mathbb{R} ~ \text{上可微函数} \} \longrightarrow \{ \mathbb{R} ~ \text{上函数} \}.
+\]
+\item \textbf{不定积分}: 我们也学习了它的```逆运算'' —— 不定积分 (原函数):
+\[
+\int: \{ \mathbb{R} ~ \text{上 (某些) 函数} \} \longrightarrow \{ \mathbb{R} ~ \text{上可微函数} \} \quad (\text{忽略常数差}).
+\]
+\item \textbf{Integration}: 不定积分的英文是 \textbf{Indefinite Integral}. 但是单纯从不定积分的运算来看, 并没有体现出 \textbf{Integral} (Integration) 这个词的本意.
+\item \textbf{词源}: Integration 一词通常指``将各个部分结合成一个整体'', 即\textbf{积分}、\textbf{整合}. 例如 IC (Integrated Circuit, 集成电路).
+\item \textbf{定积分}: 本章我们将要学习的\textbf{定积分} (Definite Integral), 其定义过程 (分割、近似、求和、取极限) 才能真正体现出 Integration 的含义.
+\item \textbf{联系}: 当然, 我们后续也会建立起定积分与不定积分之间的紧密联系 (Newton-Leibniz 公式).
+\end{itemize}
+
+\end{frame}
+
 %------------------------------------------------
 
 \section{定积分概念的导出背景}
@@ -729,6 +749,7 @@ $[a,b]$ 上有界函数 $f$ 黎曼可积的充要条件是:
 \[
 \sum_{i=1}^n \omega_i \Delta x_i \leqslant \frac{\varepsilon}{2(b-a)} \sum_{i=1}^n \Delta x_i = \varepsilon/2 < \varepsilon.
 \]
+\qed
 
 \end{frame}
 
@@ -753,6 +774,7 @@ m_i = f(x_{i-1}), \quad M_i = f(x_i) \implies \omega_i = M_i - m_i = f(x_i) - f(
 \sum_{i=1}^n \omega_i \Delta x_i = \sum_{i=1}^n [f(x_i) - f(x_{i-1})] \Delta x_i \leqslant (f(b) - f(a)) \cdot \lambda(P).
 \]
 因此, 当 $\lambda(P) \to 0$ 时, 上式趋于 $0,$ 故 $f$ 在 $[a,b]$ 上黎曼可积.
+\qed
 
 \end{frame}
 
@@ -853,6 +875,7 @@ d = \begin{cases}
 & < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
 \end{align*}
 这就完成了证明.
+\qed
 
 \end{frame}
 

@@ -186,6 +186,8 @@ def compile_target(target_str: str, args):
         for f in failed:
             print(f"  {f}")
         sys.exit(1)
+    else:
+        print(f"\n[INFO] All {len(files_to_compile)} file(s) compiled successfully.")
 
 
 def main(args):
