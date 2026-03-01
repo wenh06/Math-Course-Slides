@@ -1,6 +1,7 @@
 import argparse
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -8,10 +9,29 @@ import time
 from pathlib import Path
 from typing import List, Optional, Union
 
+from bib_lookup.utils import _remove_comments
+
 PROJECT_DIR = Path(__file__).resolve().parent
 BUILD_DIR = PROJECT_DIR / "build"
 BUILD_DIR.mkdir(parents=True, exist_ok=True)
 MAIN_TEX_FILE = PROJECT_DIR / "main.tex"
+
+
+def _get_main_tex_preamble():
+    text = _remove_comments(MAIN_TEX_FILE.read_text(encoding="utf-8"))
+    # remove the last line that starts with \input{...}
+    lines = text.splitlines()
+
+    # Find indices of lines that start with \input{ (allowing leading spaces)
+    input_indices = [i for i, line in enumerate(lines) if re.match(r"^\s*\\input\{", line)]
+
+    if input_indices:
+        # Remove only the last occurrence
+        del lines[input_indices[-1]]
+    return "\n".join(lines)
+
+
+MAIN_TEX_PREAMBLE = _get_main_tex_preamble()
 
 
 def execute_cmd(cmd: Union[str, List[str]], raise_error: bool = True, cwd: Optional[Path] = None) -> int:
@@ -87,6 +107,87 @@ def clean_up(target_file: Path):
             pass
 
 
+def compile_section(tex_file: Path, args) -> int:
+    """Compile a single section tex file by prepending MAIN_TEX_PREAMBLE.
+
+    The resulting PDF is saved under build/ preserving the directory structure
+    relative to PROJECT_DIR, e.g. build/数学分析/第7章-定积分/第5节-....pdf
+    """
+    try:
+        rel_path = tex_file.relative_to(PROJECT_DIR)
+    except ValueError:
+        rel_path = Path(tex_file.stem)
+
+    out_pdf_path = BUILD_DIR / rel_path.with_suffix(".pdf")
+    out_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Combine preamble with \input pointing at the section file
+    rel_input = tex_file.relative_to(PROJECT_DIR).as_posix()
+    combined = MAIN_TEX_PREAMBLE + "\n" + f"\\input{{{rel_input}}}" + "\n"
+
+    job_name = f"_target_{tex_file.stem}"
+    temp_tex = PROJECT_DIR / f"{job_name}.tex"
+    temp_tex.write_text(combined, encoding="utf-8")
+
+    cmd = f'latexmk -xelatex --shell-escape -f -outdir="{str(PROJECT_DIR)}" ' f'-jobname="{job_name}" "{str(temp_tex)}"'
+
+    print(f"\n[INFO] Compiling: {rel_path}")
+    exitcode = 0
+    try:
+        exitcode = execute_cmd(cmd)
+    except subprocess.CalledProcessError:
+        exitcode = 1
+
+    generated_pdf = PROJECT_DIR / f"{job_name}.pdf"
+    if exitcode == 0 and generated_pdf.exists():
+        shutil.copy(generated_pdf, out_pdf_path)
+        print(f"[INFO] Output: {out_pdf_path}")
+        generated_log = generated_pdf.with_suffix(".log")
+        if generated_log.exists():
+            shutil.copy(generated_log, out_pdf_path.with_suffix(".log"))
+    else:
+        print(f"[ERROR] Failed to compile: {tex_file.name}")
+
+    if args.gc:
+        clean_up(temp_tex)
+    # Always remove the temporary tex file
+    temp_tex.unlink(missing_ok=True)
+
+    return exitcode
+
+
+def compile_target(target_str: str, args):
+    """Compile a target path: a single .tex file or all .tex files in a directory tree."""
+    target = Path(target_str)
+    if not target.is_absolute():
+        target = PROJECT_DIR / target
+
+    tex_file = target.with_suffix(".tex")
+
+    if tex_file.exists():
+        files_to_compile = [tex_file]
+    elif target.is_dir():
+        files_to_compile = sorted(target.rglob("*.tex"))
+        if not files_to_compile:
+            print(f"[WARN] No .tex files found under directory: {target}")
+            sys.exit(1)
+    else:
+        print(f"[WARN] Neither file '{tex_file}' nor directory '{target}' exists. Exiting.")
+        sys.exit(1)
+
+    failed = []
+    for f in files_to_compile:
+        ec = compile_section(f, args)
+        if ec != 0:
+            failed.append(f)
+
+    if failed:
+        print(f"\n[ERROR] {len(failed)} file(s) failed to compile:")
+        for f in failed:
+            print(f"  {f}")
+        sys.exit(1)
+
+
 def main(args):
     if shutil.which("latexmk") is None:
         raise RuntimeError("latexmk is not installed or not in PATH.")
@@ -153,23 +254,57 @@ if __name__ == "__main__":
         nargs="?",
         type=Path,
         default=None,
-        help="The main .tex file to compile. Defaults to main.tex inside project dir.",
+        help="The main tex file to compile. Defaults to main.tex inside project dir.",
     )
 
     parser.add_argument("--handout", action="store_true", help="Compile as handout (defaults to True if no file specified).")
 
     parser.add_argument("--gc", action="store_true", help="Garbage collect (clean) build files after compilation.")
 
+    parser.add_argument(
+        "--target",
+        type=str,
+        default=None,
+        metavar="PATH",
+        help=(
+            "Compile a specific section or directory. "
+            "Examples: '数学分析/第7章-定积分/第6节-定积分的数值计算' or '数学分析/第7章-定积分'. "
+            "If a matching .tex file exists it is compiled directly; otherwise all .tex files "
+            "under the directory are compiled. Output PDFs are saved under build/ preserving "
+            "the original directory structure. When set, tex_entry_file is ignored."
+        ),
+    )
+
     args = parser.parse_args()
 
-    if args.tex_entry_file:
-        args.tex_entry_file = args.tex_entry_file.expanduser().resolve()
+    if args.target:
+        if args.tex_entry_file:
+            print("[WARN] --target is set; tex_entry_file argument will be ignored.")
+        if not args.gc:
+            # set it to True and print a warning since compiling multiple files can generate many auxiliary files
+            print(
+                "[WARN] Compiling with --target can generate many auxiliary files. "
+                "Enabling --gc to clean up after compilation."
+            )
+            args.gc = True
 
-    try:
-        main(args)
-    except KeyboardInterrupt:
-        print("\n[INFO] Script interrupted.")
-        sys.exit(130)
-    except Exception as e:
-        print(f"\n[ERROR] {e}")
-        sys.exit(1)
+        try:
+            compile_target(args.target, args)
+        except KeyboardInterrupt:
+            print("\n[INFO] Script interrupted.")
+            sys.exit(130)
+        except Exception as e:
+            print(f"\n[ERROR] {e}")
+            sys.exit(1)
+    else:
+        if args.tex_entry_file:
+            args.tex_entry_file = args.tex_entry_file.expanduser().resolve()
+
+        try:
+            main(args)
+        except KeyboardInterrupt:
+            print("\n[INFO] Script interrupted.")
+            sys.exit(130)
+        except Exception as e:
+            print(f"\n[ERROR] {e}")
+            sys.exit(1)
