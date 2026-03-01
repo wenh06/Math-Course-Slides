@@ -1,9 +1,10 @@
 import numpy as np
+import sympy as sp
 
 
 def cotes_weights(n):
     x = np.linspace(0, 1, n + 1)
-    A = np.zeros(n + 1)
+    C = np.zeros(n + 1)
 
     for i in range(n + 1):
 
@@ -15,20 +16,33 @@ def cotes_weights(n):
             return val
 
         ts = np.linspace(0, 1, 5001)
-        A[i] = np.trapezoid([L(t) for t in ts], ts)
+        C[i] = np.trapezoid([L(t) for t in ts], ts)
 
-    return A
+    return C
+
+
+def cotes_weights_sp(n):
+    x = sp.symbols("x")
+    nodes = [sp.Rational(j, n) for j in range(n + 1)]
+    C = []
+    for i in range(n + 1):
+        L = 1
+        for j in range(n + 1):
+            if j != i:
+                L *= (x - nodes[j]) / (nodes[i] - nodes[j])
+        C.append(sp.integrate(L, (x, 0, 1)))
+    return C
 
 
 def newton_cotes_integrate(f, a, b, n):
-    A = cotes_weights(n)
+    C = cotes_weights(n)
     x = np.linspace(a, b, n + 1)
 
-    return (b - a) * np.dot(A, np.array([f(xi) for xi in x]))
+    return (b - a) * np.dot(C, np.array([f(xi) for xi in x]))
 
 
 def composite_newton_cotes(f, a, b, n, m):
-    A = cotes_weights(n)
+    C = cotes_weights(n)
     h = (b - a) / m
     total = 0.0
 
@@ -36,7 +50,7 @@ def composite_newton_cotes(f, a, b, n, m):
         left = a + k * h
         right = left + h
         x = np.linspace(left, right, n + 1)
-        total += h * np.dot(A, np.array([f(xi) for xi in x]))
+        total += h * np.dot(C, np.array([f(xi) for xi in x]))
 
     return total
 
