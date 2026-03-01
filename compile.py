@@ -142,9 +142,10 @@ def compile_section(tex_file: Path, args) -> int:
     if exitcode == 0 and generated_pdf.exists():
         shutil.copy(generated_pdf, out_pdf_path)
         print(f"[INFO] Output: {out_pdf_path}")
-        generated_log = generated_pdf.with_suffix(".log")
-        if generated_log.exists():
-            shutil.copy(generated_log, out_pdf_path.with_suffix(".log"))
+        # log is NOLONGER needed for this compilation mode
+        # generated_log = generated_pdf.with_suffix(".log")
+        # if generated_log.exists():
+        #     shutil.copy(generated_log, out_pdf_path.with_suffix(".log"))
     else:
         print(f"[ERROR] Failed to compile: {tex_file.name}")
 
