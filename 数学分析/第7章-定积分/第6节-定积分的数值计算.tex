@@ -562,9 +562,13 @@ R_2(f) = g(h) = -\frac{F^{(4)}(\xi_4)}{90} h^5 = -\frac{f^{(4)}(\xi)}{2880} (b-a
 %------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Newton-Cotes 求积公式的问题与复化求积公式的引入}
+\frametitle{Newton-Cotes 求积公式的问题}
 
-我们已经看到, $n$ 步 Newton-Cotes 求积公式的误差随着 $n$ 的增加有很快的下降速度, 但是, 当 $n$ 增加到一定程度时, Newton-Cotes 求积公式的误差反而会变得更大了. 这是因为, 当 $n$ 增加到一定程度时, Newton-Cotes 求积公式中的权重 $A_i$ 会出现负数或者非常大的数, 从而导致数值不稳定.
+我们已经看到, $n$ 步 Newton-Cotes 求积公式的误差随着 $n$ 的增加有很快的下降速度, 但是, 当 $n$ 增加到一定程度时 ($n \geqslant 8$), Newton-Cotes 求积公式的误差反而会变得更大了. 这是因为, 当 $n$ 增加到一定程度时, Newton-Cotes 求积公式中的权重 $A_i$ 会出现负数, 且 $\sum |A_i| \gg (b-a)$. 这会导致数值计算极不稳定 (Runge 现象)
+% \begin{itemize}
+% \item \textbf{插值多项式的振荡}: 高阶等距插值多项式在区间边缘会出现剧烈振荡, 导致逼近误差急剧增大.
+% \item \textbf{舍入误差放大}: 当权重绝对值之和很大时, 计算求积公式 $\sum A_i f(x_i)$ 会极大地放大函数值 $f(x_i)$ 中的微小舍入误差.
+% \end{itemize}
 
 \pause
 
@@ -604,42 +608,65 @@ n=12
 \end{lstlisting}
 \end{column}
 \end{columns}
-用于计算误差 \verb|error| 的``精确值''是通过 \verb|mpmath.quad| 函数计算得到的高精度近似值 ($0.549360306778006$).
+用于计算误差 \verb|error| 的``精确值''是通过 \verb|mpmath.quad| 函数计算得到的高精度近似值.
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Newton-Cotes 求积公式的问题与复化求积公式的引入}
+\frametitle{Newton-Cotes 求积公式的问题 -- Runge 现象}
 
-大家可能观察到了, 之前我们实现 \verb|cotes_weights| 函数时, 是通过数值积分来计算 Cotes 系数 $C_i^{(n)}$ 的:
+大家可能观察到了, 之前我们实现 \verb|cotes_weights| 函数时, 是通过数值积分来近似计算 Cotes 系数 $C_i^{(n)}$ 的:
 \begin{center}
 \begin{verbatim}
 ts = np.linspace(0, 1, 5001)
 C[i] = np.trapezoid([L(t) for t in ts], ts)
 \end{verbatim}
 \end{center}
-当 $n$ 增加到一定程度时, 计算 Cotes 系数的数值积分就会变得非常不稳定了, 从而导致计算得到的 Cotes 系数 $C_i^{(n)}$ 出现负数或者非常大的数, 从而导致 Newton-Cotes 求积公式的误差变得更大了.
+
+\pause
+
+当 $n$ 增加到一定程度时, 计算 Cotes 系数的数值积分就会变得非常不稳定了, 从而导致计算得到的 Cotes 系数 $C_i^{(n)}$ 出现负数或者非常大的数, 与真实值也会有较大偏差.
 
 \begin{question}
-$n \leqslant 12$ 的时候， Cotes 系数计算的误差并不明显, 这里的积分数值不稳定来源于什么地方?
+但是, 当 $n \leqslant 12$ 的时候， Cotes 系数计算的误差并不明显, 这里的积分数值不稳定来源于什么地方?
 \end{question}
+
+\pause
+
+\textbf{提示}: 画出 $\frac{1}{1 + 25x^2}$ 以及 $n = 12$ 的 Lagrange 插值多项式的图像, 观察一下它们在区间 $[-1, 1]$ 上的行为.
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Newton-Cotes 求积公式的问题与复化求积公式的引入}
+\frametitle{Newton-Cotes 求积公式的问题 -- Runge 现象}
 
-符号计算库 \verb|sympy| 可以计算 Cotes 系数 $C_i^{(n)}$ 的准确值:
+\begin{columns}
+\begin{column}{0.65\textwidth}
+\includegraphics[width=\textwidth]{images/runge-phenomenon.pdf}
+\end{column}
+\begin{column}{0.35\textwidth}
+可以看到, 当 $n$ 增加到一定程度时, $n$ 步 Newton-Cotes 求积公式中的 Lagrange 插值多项式在区间边缘出现了剧烈的振荡, 导致逼近误差急剧增大. 这就是所谓的 Runge 现象. 这也是为什么当 $n$ 增加到一定程度时, Newton-Cotes 求积公式的误差反而会变得更大了的原因.
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Newton-Cotes 求积公式的问题 -- 高阶 Cotes 系数的数值不稳定}
+
+再次回到 Cotes 系数. 符号计算库 \verb|sympy| 可以计算 Cotes 系数 $C_i^{(n)}$ 的准确值:
 \begin{lstlisting}
 import sympy as sp
 
 def cotes_weights_sp(n):
     x = sp.symbols("x")
-    nodes = [sp.Rational(j, n) for j in range(n + 1)]
-    C = []
+    nodes, C = [sp.Rational(j, n) for j in range(n + 1)], []
     for i in range(n + 1):
         L = 1
         for j in range(n + 1):
@@ -652,12 +679,16 @@ def cotes_weights_sp(n):
 科学计算库 \verb|scipy| 也提供了计算 Cotes 系数 $C_i^{(n)}$ 的函数 \verb|scipy.integrate.newton_cotes|.
 大家可以自行比较一下, 当 $n$ 比较大, 例如 $60$ 的时候, \verb|cotes_weights|, \verb|cotes_weights_sp| 和 \verb|scipy.integrate.newton_cotes| 计算得到的 Cotes 系数 $C_i^{(n)}$ 的差异.
 
+\begin{question}
+\verb|scipy.integrate.newton_cotes| 是如何实现的? 为什么它也会有较大的误差?
+\end{question}
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Newton-Cotes 求积公式的问题与复化求积公式的引入}
+\frametitle{复化求积公式的引入}
 
 为了克服 Newton-Cotes 求积公式的这个问题, 我们采取了\textbf{分而治之} 的策略: 将区间 $[a, b]$ 分成若干个小区间, 在每个小区间上使用一个较小的 $n$ 步 Newton-Cotes 求积公式来近似计算定积分, 然后将这些近似值加起来得到整个区间上的近似值. 这种方法叫做\textbf{复化求积公式} (Composite Quadrature Formula).
 
