@@ -540,7 +540,7 @@ g'''(x) & = \frac{1}{3}\left[F''(x) + F''(-x)\right] - \frac{1}{3}\left[F''(x) +
 \begin{frame}
 \frametitle{$n$ 步 Newton-Cotes 求积公式 ($n \leqslant 2$) 的误差估计}
 
-于是, 反复利用柯西微分中值定理
+于是, 反复利用 Cauchy 微分中值定理
 \begin{align*}
 \frac{g(x)}{x^5} & = \frac{g(x) - g(0)}{x^5 - 0} = \frac{g'(\xi_1)}{5 \xi_1^4} = \frac{g'(\xi_1) - g'(0)}{5 \xi_1^4 - 0} = \frac{g''(\xi_2)}{20 \xi_2^3} = \frac{g''(\xi_2) - g''(0)}{20 \xi_2^3 - 0} = \frac{g'''(\xi_3)}{60 \xi_3^2} \\
 & = \frac{-\frac{\xi_3}{3}\left[F'''(\xi_3) - F'''(-\xi_3)\right]}{60 \xi_3^2} = -\frac{F'''(\xi_3) - F'''(-\xi_3)}{180 \xi_3} = -\frac{2\xi_3 F^{(4)}(\xi_4)}{180 \xi_3} \\

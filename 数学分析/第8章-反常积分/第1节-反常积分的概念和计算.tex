@@ -57,12 +57,12 @@
 \[
 \ell = \int_{-1}^1 \sqrt{1 - (y')^2} ~ \mathrm{d} x = \int_{-1}^1 \sqrt{1 - \left(-\frac{x}{\sqrt{1 - x^2}}\right)^2} ~ \mathrm{d} x = \int_{-1}^1 \frac{1}{\sqrt{1 - x^2}} ~ \mathrm{d} x.
 \]
-被积函数在积分区间的端点处无定义, 且在该区间上无界, 这是黎曼积分的无法处理的. 但这并不表明弧长是无法计算的. 所以我们需要拓展黎曼积分的定义.
+被积函数在积分区间的端点处无定义, 且在该区间上无界, 这是 Riemann 积分的无法处理的. 但这并不表明弧长是无法计算的. 所以我们需要拓展 Riemann 积分的定义.
 
 \pause
 \vspace{0.5em}
 
-一个自然的想法是, \alert{``取黎曼积分的极限''}, 对于上述的积分, 就是
+一个自然的想法是, \alert{``取 Riemann 积分的极限''}, 对于上述的积分, 就是
 \[
 \lim_{\varepsilon \to 0^+} \int_{-1 + \varepsilon}^0 \frac{1}{\sqrt{1 - x^2}} ~ \mathrm{d} x
 ~~ \text{与} ~~
@@ -81,7 +81,7 @@
 \frametitle{函数值无界的反常积分}
 
 \begin{Def}[反常积分]
-设 $f$ 是定义在区间 $(a, b]$ 上的函数, 且在 $x = a$ 的右邻域内无界. 如果 $\forall \eta > 0$, $f$ 在 $[a + \eta, b]$ 上黎曼可积, 且 $\lim_{\eta \to 0^+} \int_{a + \eta}^b f(x) ~ \mathrm{d} x$ 存在, 则称反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 收敛, 且定义
+设 $f$ 是定义在区间 $(a, b]$ 上的函数, 且在 $x = a$ 的右邻域内无界. 如果 $\forall \eta > 0$, $f$ 在 $[a + \eta, b]$ 上 Riemann 可积, 且 $\lim_{\eta \to 0^+} \int_{a + \eta}^b f(x) ~ \mathrm{d} x$ 存在, 则称反常积分 $\int_a^b f(x) ~ \mathrm{d} x$ 收敛, 且定义
 \[
 \int_a^b f(x) ~ \mathrm{d} x = \lim_{\eta \to 0^+} \int_{a + \eta}^b f(x) ~ \mathrm{d} x.
 \]
@@ -183,7 +183,7 @@ v_0 \geqslant \sqrt{\frac{2GM}{R}} \approx 11.2 ~ \mathrm{km/s}.
 \frametitle{积分区域无界的反常积分的定义}
 
 \begin{Def}[积分区域无界的反常积分]
-设 $f$ 是定义在区间 $[a, +\infty)$ 上的函数, 且在 $[a, c]$ 上黎曼可积, $\forall c > a$. 如果 $\lim_{c \to +\infty} \int_a^c f(x) ~ \mathrm{d} x$ 存在, 则称反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 收敛, 且定义
+设 $f$ 是定义在区间 $[a, +\infty)$ 上的函数, 且在 $[a, c]$ 上 Riemann 可积, $\forall c > a$. 如果 $\lim_{c \to +\infty} \int_a^c f(x) ~ \mathrm{d} x$ 存在, 则称反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 收敛, 且定义
 \[
 \int_a^{+\infty} f(x) ~ \mathrm{d} x = \lim_{c \to +\infty} \int_a^c f(x) ~ \mathrm{d} x.
 \]
@@ -344,12 +344,12 @@ n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
 
 %------------------------------------------------
 
-\section{柯西主值}
+\section{Cauchy 主值}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{柯西主值}
+\frametitle{Cauchy 主值}
 
 \begin{eg}
 讨论反常积分 $\int_{-\infty}^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x$ 的敛散性.
@@ -374,28 +374,28 @@ n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
 \[
 \text{``$\int_{-\infty}^{+\infty}$''} \frac{\sin x}{x} ~ \mathrm{d} x = \lim_{A \to +\infty} \int_{-A}^A \frac{\sin x}{x} ~ \mathrm{d} x = \lim_{A \to +\infty} \left. -\cos x \right|_{-A}^A = 0.
 \]
-这就是所谓的\textbf{柯西主值}.
+这就是所谓的\textbf{Cauchy主值}.
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{柯西主值}
+\frametitle{Cauchy 主值}
 
-\begin{Def}[柯西主值]
-设 $f$ 是定义在 $(-\infty, +\infty)$ 上的函数, 且 $\forall A > 0$, $f$ 在 $[-A, A]$ 上黎曼可积. 如果 $\lim_{A \to +\infty} \int_{-A}^A f(x) ~ \mathrm{d} x$ 存在, 则称柯西主值 $\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$ 收敛, 且定义
+\begin{Def}[Cauchy 主值]
+设 $f$ 是定义在 $(-\infty, +\infty)$ 上的函数, 且 $\forall A > 0$, $f$ 在 $[-A, A]$ 上 Riemann 可积. 如果 $\lim_{A \to +\infty} \int_{-A}^A f(x) ~ \mathrm{d} x$ 存在, 则称 Cauchy 主值 $\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$ 收敛, 且定义
 \[\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x = \lim_{A \to +\infty} \int_{-A}^A f(x) ~ \mathrm{d} x.\]
-否则称柯西主值 $\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$ 发散.
+否则称 Cauchy 主值 $\mathrm{(cpv)} \int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x$ 发散.
 \end{Def}
 
 \begin{remark}
 \begin{itemize}
-\item 如果 $c \in (a, b)$ 是 $f$ 的一个奇点, 则相应的柯西主值定义为
+\item 如果 $c \in (a, b)$ 是 $f$ 的一个奇点, 则相应的 Cauchy 主值定义为
 \[
 \mathrm{(cpv)} \int_a^b f(x) ~ \mathrm{d} x = \lim_{A \to 0^+} \left( \int_a^{c-A} f(x) ~ \mathrm{d} x + \int_{c+A}^b f(x) ~ \mathrm{d} x \right)
 \]
-\item 对于本身就收敛的反常积分, 相应的柯西主值也是收敛的, 且两者的值相等. 但\textbf{反之不成立}.
+\item 对于本身就收敛的反常积分, 相应的 Cauchy 主值也是收敛的, 且两者的值相等. 但\textbf{反之不成立}.
 \end{itemize}
 \end{remark}
 
@@ -404,10 +404,10 @@ n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{例题 -- 反常积分与柯西主值的关系}
+\frametitle{例题 -- 反常积分与 Cauchy 主值的关系}
 
 \begin{eg}
-计算反常积分 $\int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$ 和柯西主值 $\mathrm{(cpv)} \int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$.
+计算反常积分 $\int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$ 和 Cauchy 主值 $\mathrm{(cpv)} \int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x$.
 \end{eg}
 
 \pause
@@ -424,7 +424,7 @@ $0$ 为被积函数的唯一奇点, 因此 $\int_{-1}^1 \frac{1}{x} ~ \mathrm{d}
 \pause
 \vspace{0.5em}
 
-接下来, 计算柯西主值 $\mathrm{(cpv)} \int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x = \lim_{\varepsilon \to 0^+} \left( \int_{-1}^{-\varepsilon} \frac{1}{x} ~ \mathrm{d} x + \int_{\varepsilon}^1 \frac{1}{x} ~ \mathrm{d} x \right) = 0.$
+接下来, 计算 Cauchy 主值 $\mathrm{(cpv)} \int_{-1}^1 \frac{1}{x} ~ \mathrm{d} x = \lim_{\varepsilon \to 0^+} \left( \int_{-1}^{-\varepsilon} \frac{1}{x} ~ \mathrm{d} x + \int_{\varepsilon}^1 \frac{1}{x} ~ \mathrm{d} x \right) = 0.$
 \qed
 
 \end{frame}

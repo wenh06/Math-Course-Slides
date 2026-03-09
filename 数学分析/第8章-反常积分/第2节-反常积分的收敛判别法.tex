@@ -58,16 +58,16 @@
 
 %------------------------------------------------
 
-\section{反常积分的柯西收敛原理}
+\section{反常积分的 Cauchy 收敛原理}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{柯西收敛原理}
+\frametitle{Cauchy 收敛原理}
 
 由于反常积分定义是用极限表达的, 最基本的判别准则为
 
-\begin{thm}[柯西收敛原理]
+\begin{thm}[Cauchy 收敛原理]
 反常积分 $\displaystyle \int_a^{\omega} f(x) ~ \mathrm{d} x$ 收敛 ($\omega$ 是无穷或者 $f(x)$ 的奇点) 的充要条件是: $\forall~\varepsilon > 0,$
 \begin{itemize}
 \item $\omega$ 是无穷: $\exists ~ X > a,$ 使得 $\forall~c_2 > c_1 > X,$
@@ -93,7 +93,7 @@
 \begin{frame}
 
 \begin{question}
-之前判断函数是否黎曼可积时, 利用振幅判别法, 有
+之前判断函数是否 Riemann 可积时, 利用振幅判别法, 有
 \begin{equation*}
 f(x) \in \mathcal{R}[a, b] \quad \stackanchor[6pt]{$\implies$}{$\bcancel{\Longleftarrow}$} \quad |f(x)| \in \mathcal{R}[a, b]
 \end{equation*}
@@ -102,7 +102,7 @@ f(x) \in \mathcal{R}[a, b] \quad \stackanchor[6pt]{$\implies$}{$\bcancel{\Longle
 
 \pause
 
-一方面, 有 $\displaystyle \left| \int_{c_1}^{c_2} f(x) ~ \mathrm{d}x \right| \leqslant \int_{c_1}^{c_2} |f(x)| ~ \mathrm{d}x,$ 那么由\alert{柯西收敛原理}知
+一方面, 有 $\displaystyle \left| \int_{c_1}^{c_2} f(x) ~ \mathrm{d}x \right| \leqslant \int_{c_1}^{c_2} |f(x)| ~ \mathrm{d}x,$ 那么由 \alert{Cauchy 收敛原理}知
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
 \text{$f(x)$ 反常积分收敛 $\Longleftarrow$ $|f(x)|$ 反常积分收敛}
 \end{empheq}
@@ -123,7 +123,7 @@ f(x) \in \mathcal{R}[a, b] \quad \stackanchor[6pt]{$\implies$}{$\bcancel{\Longle
 \frametitle{绝对可积与条件可积函数}
 
 \begin{block}{绝对可积（绝对收敛）}
-设函数 $f(x)$ 在 $[a, \omega)$ 上\emph{局部可积} (即在每个闭区间 $[a, b] \subset [a, \omega)$ 上黎曼可积), 若反常积分
+设函数 $f(x)$ 在 $[a, \omega)$ 上\emph{局部可积} (即在每个闭区间 $[a, b] \subset [a, \omega)$ 上 Riemann 可积), 若反常积分
 \begin{equation*}
 \int_a^{+\infty} |f(x)|dx\ \text{收敛}
 \end{equation*}

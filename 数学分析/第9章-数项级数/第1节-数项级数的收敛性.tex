@@ -453,13 +453,13 @@ U_{\color{red}k} & = y_1 + y_2 + \cdots + y_k = x_1 + x_2 + \cdots + x_{n_k} = S
 
 \pause
 
-实际上, 对于这个问题, 有如下的黎曼重排定理 (Riemann rearrangement theorem)
+实际上, 对于这个问题, 有如下的 Riemann 重排定理 (Riemann rearrangement theorem)
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{黎曼重排定理}
+\begin{frame}{Riemann 重排定理}
 
 设级数 $\sum\limits_{n=1}^{\infty} x_n$ 条件收敛, 即 $\sum\limits_{n=1}^{\infty} |x_n|$ 发散 ($= + \infty$), 那么 $\forall ~ M \in \mathbb{R},$ 以及 $M = +\infty, -\infty,$ 存在 $\mathbb{N}$ 的置换 $\sigma,$ 使得
 \[\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M,\]
@@ -476,7 +476,7 @@ U_{\color{red}k} & = y_1 + y_2 + \cdots + y_k = x_1 + x_2 + \cdots + x_{n_k} = S
 
 %------------------------------------------------
 
-\begin{frame}{黎曼重排定理证明思路}
+\begin{frame}{Riemann 重排定理证明思路}
 
 约定记号: $a_n^+ := \max\{0, a_n\}, ~ a_n^- := \min\{0, a_n\}$
 
@@ -502,7 +502,7 @@ $1^{\circ}$ 首先来说明 $\sum\limits_{n=1}^{\infty} a_n^+ = + \infty,$ 且 $
 
 %------------------------------------------------
 
-\begin{frame}{黎曼重排定理证明思路}
+\begin{frame}{Riemann 重排定理证明思路}
 
 $2^{\circ}$ 任取 $M \in \mathbb{R}_{\geqslant 0},$ 存在 $\mathbb{N}$ 的置换 $\sigma,$ 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M:$
 
@@ -527,7 +527,7 @@ q_k & = \min \left\{ q ~ : ~ \sum\limits_{n=1}^{{\color{red} p_{k-1}}} a_n^+ + \
 
 %------------------------------------------------
 
-\begin{frame}{黎曼重排定理证明思路}
+\begin{frame}{Riemann 重排定理证明思路}
 
 考虑序列~~$\dots, {\color{red} a_{q_k}^-}, {\color{cyan} a_{p_k+1}^+, \dots}, {\color{red} a_{p_{k+1}}^+}, {\color{cyan} a_{q_k+1}^-, \dots}, {\color{red} a_{q_{k+1}}^-}, {\color{cyan} a_{p_{k+1}+1}^+, \dots}$
 
@@ -582,10 +582,11 @@ $\cdots\cdots$ 以此类推, 长期服药后, 患者体内药量为
 \pause
 \vspace*{1em}
 
-{\smaller[1] $\arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} = \arctan\frac{\frac{1}{2n-1} - \frac{1}{2n+1}}{1 + \frac{1}{(2n+1)(2n-1)}} = \arctan\frac{1}{2n^2},$}
-
-所以
-\[\sum\limits_{n=1}^\infty \arctan \frac{1}{2n^2} = \sum\limits_{n=1}^\infty \left( \arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} \right) = \frac{\pi}{4}.\]
+\startproof[bg=yellow, fg=red](解)
+因为 $\arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} = \arctan\frac{\frac{1}{2n-1} - \frac{1}{2n+1}}{1 + \frac{1}{(2n+1)(2n-1)}} = \arctan\frac{1}{2n^2},$ 所以
+\[
+\sum\limits_{n=1}^\infty \arctan \frac{1}{2n^2} = \sum\limits_{n=1}^\infty \left( \arctan\frac{1}{2n-1} - \arctan\frac{1}{2n+1} \right) = \frac{\pi}{4}.
+\]
 
 \end{frame}
 

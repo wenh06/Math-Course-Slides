@@ -739,7 +739,7 @@ Koch Snowflake 是最简单的分形 (Fractal) 的例子, 其长度为 $\infty$,
 
 \pause
 
-\textbf{分析}: $\sum\limits_{i=1}^n \left\lvert \vv{A_{i-1}A_i} \right\rvert$ 并非黎曼和或者达布和的形式, 为了能用定积分 (进一步用牛顿-莱布尼茨公式) 来计算, 需要先将其化为黎曼和的形式. 首先观察
+\textbf{分析}: $\sum\limits_{i=1}^n \left\lvert \vv{A_{i-1}A_i} \right\rvert$ 并非 Riemann 和或者 Darboux 和的形式, 为了能用定积分 (进一步用 Newton-Leibniz 公式) 来计算, 需要先将其化为 Riemann 和的形式. 首先观察
 \begin{align*}
 \left\lvert \vv{A_{i-1}A_i} \right\rvert & = \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2} \\
 & (\text{进一步假设 $x(t), y(t)$ 在 $(T_1, T_2)$ 上可导}) \\
@@ -896,7 +896,7 @@ axis equal image, % 保证圆看起来是圆
 \frametitle{从用显式函数关系求圆弧长的例子引出的思考}
 
 \begin{question}
-被积函数 $\frac{a}{\sqrt{a^2 - x^2}}$ 在 $[-a, a]$ 上无界且在端点处无定义, 那么应该在 (正常意义下) 黎曼不可积, 但半圆弧长的确存在 (或者说半圆是可求长的). 那么问题出在哪里?
+被积函数 $\frac{a}{\sqrt{a^2 - x^2}}$ 在 $[-a, a]$ 上无界且在端点处无定义, 那么应该在 (正常意义下) Riemann 不可积, 但半圆弧长的确存在 (或者说半圆是可求长的). 那么问题出在哪里?
 \end{question}
 
 \pause
@@ -911,7 +911,7 @@ axis equal image, % 保证圆看起来是圆
 
 \begin{block}{解决办法}
 \begin{itemize}
-\item 推广黎曼积分, 扩大可积函数的范围 \pause  ~ $\rightsquigarrow$ ~ 反常积分, Lebesgue 积分.
+\item 推广 Riemann 积分, 扩大可积函数的范围 \pause  ~ $\rightsquigarrow$ ~ 反常积分, Lebesgue 积分.
 \pause
 \item 有重合地分段参数化, 分段重合的地方``相容'' \pause ~ $\rightsquigarrow$ ~ 流形 (manifold) ~ $\rightsquigarrow$ ~ 概型 (scheme).
 \end{itemize}

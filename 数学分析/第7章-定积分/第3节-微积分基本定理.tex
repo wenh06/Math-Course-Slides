@@ -55,7 +55,7 @@
 \pause
 \vspace{1em}
 
-之前已经接触过 $F(x) = \int_a^x f(t) ~ \mathrm{d} t$ 这个函数了, 这里 $f \in \mathbb{R}[a, b]$ 是一个黎曼可积函数. $F(x)$ 是所谓的\alert{变上限积分}. 它是一个定义在 $[a, b]$ 上的函数, 而且已经证明了它在 $[a, b]$ 上连续.
+之前已经接触过 $F(x) = \int_a^x f(t) ~ \mathrm{d} t$ 这个函数了, 这里 $f \in \mathbb{R}[a, b]$ 是一个 Riemann 可积函数. $F(x)$ 是所谓的\alert{变上限积分}. 它是一个定义在 $[a, b]$ 上的函数, 而且已经证明了它在 $[a, b]$ 上连续.
 
 \pause
 \vspace{1em}
@@ -101,7 +101,7 @@
 
 由原函数存在定理, 我们知道连续函数一定有原函数.
 
-\begin{thm}[牛顿-莱布尼茨公式]
+\begin{thm}[Newton-Leibniz 公式]
 若 $f \in C[a, b]$, 且 $G(x)$ 是 $f(x)$ 在 $[a, b]$ 上的\alert{任意}一个原函数, 则
 \[ \int_a^b f(x) ~ \mathrm{d}x = G(b) - G(a) = \left[ G(x) \right]_a^b. \]
 \end{thm}
@@ -112,7 +112,7 @@
 \begin{itemize}
 \item 通常将``变上限积分求导''称为\textbf{第一微积分基本定理}, 它建立了积分与微分的逆运算关系.
 \pause
-\item 将``牛顿-莱布尼茨公式''称为\textbf{第二微积分基本定理}, 它提供了计算定积分的有效手段: 先求不定积分 (\alert{分部积分法, 换元法, \dots}), 再利用原函数的值计算定积分.
+\item 将``Newton-Leibniz 公式''称为\textbf{第二微积分基本定理}, 它提供了计算定积分的有效手段: 先求不定积分 (\alert{分部积分法, 换元法, \dots}), 再利用原函数的值计算定积分.
 \pause
 但更多时候, 积分值是通过数值方法 (\S 7.6) 计算的.
 \pause
@@ -167,7 +167,7 @@
 
 \pause
 
-\begin{eg}[勒让德 (Legendre) 多项式]
+\begin{eg}[Legendre 多项式]
 定义在 $[-1, 1]$ 上的多项式序列:
 \[ P_n(x) = \frac{1}{2^n n!} \frac{\mathrm{d}^n}{\mathrm{d}x^n} \left[ (x^2-1)^n \right], \quad n=0,1,2,\dots \]
 是一个正交函数列.
@@ -185,7 +185,7 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{勒让德多项式正交性的证明}
+\frametitle{Legendre 多项式正交性的证明}
 
 首先证明 $\int_{-1}^1 P_n(x) P_m(x) ~ \mathrm{d}x = 0$ ($n > m$).
 令 $u = (x^2-1)^n, v = (x^2-1)^m$. 注意到 $u$ 及其直至 $n-1$ 阶导数在 $x=\pm 1$ 处均为 0.
@@ -208,7 +208,7 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{勒让德多项式正交性的证明 (续)}
+\frametitle{Legendre 多项式正交性的证明 (续)}
 
 接下来证明 $\int_{-1}^1 P_n^2(x) ~ \mathrm{d}x = \frac{2}{2n+1}$.
 同样利用分部积分法得 $\int_{-1}^1 P_n^2(x) ~ \mathrm{d}x \propto \int_{-1}^1 u \cdot \frac{\mathrm{d}^{2n} u}{\mathrm{d}x^{2n}} ~ \mathrm{d}x$.
@@ -228,7 +228,7 @@
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{勒让德多项式标准化}
+\frametitle{Legendre 多项式标准化}
 
 \begin{remark}
 令 $b_n(x) = \sqrt{\frac{2n+1}{2}} P_n(x)$, 则 $\int_{-1}^1 b_n^2(x) ~ \mathrm{d}x = 1$. 因此 $\{b_n(x)\}$ 是 $[-1, 1]$ 上的一个\alert{标准正交函数列}. 可以证明, $b_n(x)$ 可以通过 Gram-Schmidt 正交化过程从 $1, x, x^2, \dots$ 这组函数列中得到.
@@ -237,7 +237,7 @@
 \pause
 \vspace{1em}
 
-事实上, 利用勒让德多项式正交性的证明中类似的分部积分方法, 可以证明, 对任意满足 $\deg Q(x) < n$ 的多项式 $Q(x)$, 都有 $\int_{-1}^1 P_n(x) Q(x) ~ \mathrm{d}x = 0$. 因此 $P_n(x)$ 与 $1, x, x^2, \dots, x^{n-1}$ 都正交. 由于 $\deg P_n = n$, 那么 $P_n(x)$ 就是 $1, x, x^2, \dots$ 这组函数列中第 $n$ 个函数经过 Gram-Schmidt 正交化后的结果. 从而 $b_n(x)$ 就是 $1, x, x^2, \dots$ 进行 Gram-Schmidt 正交化后得到的第 $n$ 个正交多项式 (相差一个正的归一化常数). 因此 $b_n(x) = \sqrt{\frac{2n+1}{2}} P_n(x)$ 就是标准正交化后的结果.
+事实上, 利用 Legendre 多项式正交性的证明中类似的分部积分方法, 可以证明, 对任意满足 $\deg Q(x) < n$ 的多项式 $Q(x)$, 都有 $\int_{-1}^1 P_n(x) Q(x) ~ \mathrm{d}x = 0$. 因此 $P_n(x)$ 与 $1, x, x^2, \dots, x^{n-1}$ 都正交. 由于 $\deg P_n = n$, 那么 $P_n(x)$ 就是 $1, x, x^2, \dots$ 这组函数列中第 $n$ 个函数经过 Gram-Schmidt 正交化后的结果. 从而 $b_n(x)$ 就是 $1, x, x^2, \dots$ 进行 Gram-Schmidt 正交化后得到的第 $n$ 个正交多项式 (相差一个正的归一化常数). 因此 $b_n(x) = \sqrt{\frac{2n+1}{2}} P_n(x)$ 就是标准正交化后的结果.
 
 \end{frame}
 
@@ -309,7 +309,7 @@ I &= \int_0^{\frac{\pi}{2}} \sqrt{a^2 - a^2 \sin^2 t} \cdot (a \cos t) \mathrm{d
 \begin{frame}
 \frametitle{换元法的例子}
 
-这题如果直接用牛顿-莱布尼茨公式求解, 则过程会比较麻烦. 先 (用分部积分法) 求原函数:
+这题如果直接用 Newton-Leibniz 公式求解, 则过程会比较麻烦. 先 (用分部积分法) 求原函数:
 \[
 \int \sqrt{a^2 - x^2} ~ \mathrm{d}x = x \sqrt{a^2 - x^2} + \int \frac{x^2}{\sqrt{a^2 - x^2}} ~ \mathrm{d}x = x \sqrt{a^2 - x^2} - \int \sqrt{a^2 - x^2} ~ \mathrm{d}x + a^2 \int \frac{1}{\sqrt{a^2 - x^2}} ~ \mathrm{d}x,
 \]
@@ -408,7 +408,7 @@ $3^\circ$:
 \begin{frame}
 \frametitle{一类重要例子}
 
-最后再来看一类例子, 它告诉我们要应用牛顿-莱布尼茨公式计算定积分, 要严格验证定理成立的前提条件. 否则, 可能会得到错误的结果.
+最后再来看一类例子, 它告诉我们要应用 Newton-Leibniz 公式计算定积分, 要严格验证定理成立的前提条件. 否则, 可能会得到错误的结果.
 
 \begin{eg}
 计算 $I = \int_0^2 \frac{(x - 1)^2 + 1}{(x - 1)^2 + x^2(x - 2)^2} ~ \mathrm{d}x$.
@@ -473,7 +473,7 @@ I & = \int_{-1}^1 \frac{t^2 + 1}{t^2 + (t^2-1)^2} ~ \mathrm{d}t = \int_{-1}^1 \f
 
 \pause
 
-很容易看到, $\arctan \left( t - \frac{1}{t} \right)$ 在 $t=0$ 处间断, 因此 $\arctan \left( t - \frac{1}{t} \right)$ 不是原函数. 从而, 牛顿-莱布尼茨公式不适用, 以上的计算过程是错误的.
+很容易看到, $\arctan \left( t - \frac{1}{t} \right)$ 在 $t=0$ 处间断, 因此 $\arctan \left( t - \frac{1}{t} \right)$ 不是原函数. 从而, Newton-Leibniz 公式不适用, 以上的计算过程是错误的.
 
 \end{frame}
 
@@ -543,7 +543,7 @@ F(t) = \begin{cases} \arctan \left( t - \frac{1}{t} \right), & -1 \leqslant t < 
 \begin{frame}
 \frametitle{一些后话}
 
-牛顿-莱布尼茨公式建立了微分学和积分学之间的联系, 具有比较重要的理论价值, 但一般具体的定积分计算很少通过这种方式求出, 还是通过数值方法来完成的. (将在 \S 7.6 中进行初步介绍)
+Newton-Leibniz 公式建立了微分学和积分学之间的联系, 具有比较重要的理论价值, 但一般具体的定积分计算很少通过这种方式求出, 还是通过数值方法来完成的. (将在 \S 7.6 中进行初步介绍)
 
 \pause
 \vspace{0.5em}
