@@ -48,7 +48,7 @@
 
 基本考察对象: 定义在闭区间上函数 $f: [a, b] \longrightarrow \mathbb{R}$
 \pause
-$\longsquiggly$ $\mathcal{R}[a,b].$
+$\longsquiggly$ $\mathfrak{R}[a,b].$
 
 \pause
 
@@ -152,9 +152,9 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 \setcounter{enumi}{1}
 \item 线性性:
 \[\int_a^b (\alpha g(x) + \beta f(x)) ~ \mathrm{d} x = \alpha \int_a^b g(x) ~ \mathrm{d} x + \beta \int_a^b f(x) ~ \mathrm{d} x.\]
-\item 乘积可积性: $f, g \in \mathcal{R}[a, b] \implies f \cdot g \in \mathcal{R}[a, b].$
+\item 乘积可积性: $f, g \in \mathfrak{R}[a, b] \implies f \cdot g \in \mathfrak{R}[a, b].$
 \item 保序性: $f \leqslant g \implies \int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b g(x) ~ \mathrm{d} x.$
-\item 绝对可积性: $f \in \mathcal{R}[a, b] \implies \lvert f \rvert \in \mathcal{R}[a, b]$ ({\color{red}反之不成立}), 且有
+\item 绝对可积性: $f \in \mathfrak{R}[a, b] \implies \lvert f \rvert \in \mathfrak{R}[a, b]$ ({\color{red}反之不成立}), 且有
 \[\left\lvert \int_a^b f(x) ~ \mathrm{d} x \right\rvert \leqslant \int_a^b \lvert f(x) \rvert ~ \mathrm{d} x.\]
 \end{enumerate}
 
@@ -165,13 +165,13 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 \begin{frame}{积分中值定理}
 
 \begin{itemize}
-\item 积分第一中值定理: $f, g \in \mathcal{R}[a, b],$ {\color{red}$g$ 不变号}, 那么存在 $\inf_{x \in [a,b]} f(x) \leqslant \eta \leqslant \sup_{x \in [a,b]} f(x),$ 使得
+\item 积分第一中值定理: $f, g \in \mathfrak{R}[a, b],$ {\color{red}$g$ 不变号}, 那么存在 $\inf_{x \in [a,b]} f(x) \leqslant \eta \leqslant \sup_{x \in [a,b]} f(x),$ 使得
 \[\int_a^b f(x) g(x) ~ \mathrm{d} x = \eta \int_a^b \colorbox{orange}{\text{$g(x)$}} ~ \mathrm{d} x.\]
 \pause
-\item 积分第二中值定理: $f, g \in \mathcal{R}[a, b],$ {\color{red}$g$ 单调}, 那么存在 $\xi \in [a, b],$ 使得
+\item 积分第二中值定理: $f, g \in \mathfrak{R}[a, b],$ {\color{red}$g$ 单调}, 那么存在 $\xi \in [a, b],$ 使得
 \[\int_a^b f(x) g(x) ~ \mathrm{d} x = \colorbox{orange}{\text{$g(a)$}} \int_a^\xi f(x) ~ \mathrm{d} x + \colorbox{orange}{\text{$g(b)$}} \int_{\xi}^b f(x) ~ \mathrm{d} x.\]
 \pause
-等价形式: $f, g \in \mathcal{R}[a, b],$ {\color{red}$g$ 非负不增}, 那么存在 $\xi' \in [a, b],$ 使得
+等价形式: $f, g \in \mathfrak{R}[a, b],$ {\color{red}$g$ 非负不增}, 那么存在 $\xi' \in [a, b],$ 使得
 \[\int_a^b f(x) g(x) ~ \mathrm{d} x = \colorbox{orange}{\text{$g(a)$}} \int_a^{\xi'} f(x) ~ \mathrm{d} x.\]
 \end{itemize}
 
@@ -182,9 +182,9 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 \begin{frame}{几个重要不等式}
 
 \begin{itemize}[<+->]
-\item H\"older 不等式: $f, g \in C[a, b]$ (更一般 $\mathcal{R}[a, b]$), $1 \leqslant p, q \leqslant +\infty,$ $\dfrac{1}{p} + \dfrac{1}{q} = 1,$ 记 $\lVert f \rVert_p = \left( \int_a^b \lvert f(x) \rvert^p ~ \mathrm{d} x \right)^{1/p},$ 那么
+\item H\"older 不等式: $f, g \in C[a, b]$ (更一般 $\mathfrak{R}[a, b]$), $1 \leqslant p, q \leqslant +\infty,$ $\dfrac{1}{p} + \dfrac{1}{q} = 1,$ 记 $\lVert f \rVert_p = \left( \int_a^b \lvert f(x) \rvert^p ~ \mathrm{d} x \right)^{1/p},$ 那么
 \[\lVert f \cdot g \rVert_1 \leqslant \lVert f \rVert_p \cdot \lVert g \rVert_q.\]
-\item Minkowski 不等式: $f, g \in \mathcal{R}[a, b]$, $1 \leqslant p \leqslant +\infty,$ 那么
+\item Minkowski 不等式: $f, g \in \mathfrak{R}[a, b]$, $1 \leqslant p \leqslant +\infty,$ 那么
 \[\lVert f + g \rVert_p \leqslant \lVert f \rVert_p + \lVert g \rVert_p.\]
 \end{itemize}
 
@@ -276,7 +276,7 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 \begin{frame}{定积分的计算}
 
 \begin{block}{变上限积分}
-$f(x) \in \mathcal{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(t) ~ \mathrm{d} t,$ $x \in [a, b].$
+$f(x) \in \mathfrak{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(t) ~ \mathrm{d} t,$ $x \in [a, b].$
 \end{block}
 
 \pause
@@ -394,7 +394,7 @@ $f(x) \in \mathcal{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(t) ~ \mathrm{d}
 \vspace{-0.5em}
 
 \begin{attnblock}
-反常积分不是 Riemann 积分, 而是它的一种推广. 当 $f \in \mathcal{R}[a, b],$ 若把 $\int_a^b f(x) ~ \mathrm{d} x$ 视作反常积分, 则它的值等于 Riemann 积分的值.
+反常积分不是 Riemann 积分, 而是它的一种推广. 当 $f \in \mathfrak{R}[a, b],$ 若把 $\int_a^b f(x) ~ \mathrm{d} x$ 视作反常积分, 则它的值等于 Riemann 积分的值.
 \end{attnblock}
 
 \end{frame}
@@ -456,7 +456,7 @@ Cauchy 主值
 
 \begin{attnblock}
 定积分 (Riemann 积分) 的绝对可积性
-\[f(x) \in \mathcal{R}[a, b] ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathcal{R}[a, b]\]
+\[f(x) \in \mathfrak{R}[a, b] ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathfrak{R}[a, b]\]
 在反常积分中正好反过来了:
 \[\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \int_a^\omega f(x) ~ \mathrm{d} x ~ \text{ 收敛}.\]
 \end{attnblock}
