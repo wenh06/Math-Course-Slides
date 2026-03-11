@@ -128,7 +128,7 @@ $10^6$ & 78,498 & 72,382 & 1.084 \\
 \begin{frame}
 \frametitle{1. 素数计数问题与素数定理}
 
-关于素数定理: 是 Gau{\ss} 最早猜测 $\pi(x) \sim \frac{x}{\log x}$, 但如果考虑素数密度随位置变化 (密度约为 $\frac{1}{\log x}$), 则更自然的猜测是 $\pi(x) \sim \mathrm{Li}(x)$, 其中 $\mathrm{Li}(x) = \int_2^x \frac{dt}{\log t}$ 是素数计数函数的更精确近似. 事实上, $\mathrm{Li}(x)$ 与 $x/\log x$ 的比值趋于1, 但 $\mathrm{Li}(x)$ 的误差项更小.
+关于素数定理: 是 Gau{\ss} 最早猜测 $\pi(x) \sim \frac{x}{\log x}$, 但如果考虑素数密度随位置变化 (局部概率密度约为 $\frac{1}{\log x}$), 则更自然的猜测是 $\pi(x) \sim \mathrm{Li}(x)$, 其中 $\mathrm{Li}(x) = \int_2^x \frac{dt}{\log t}$ 是素数计数函数的更精确近似. 事实上, $\mathrm{Li}(x)$ 与 $x/\log x$ 的比值趋于1, 但 $\mathrm{Li}(x)$ 的误差项更小.
 
 \begin{center}
 \includegraphics[width=0.55\textwidth]{images/pnt_plot.pdf}
@@ -166,7 +166,7 @@ $\zeta(s)$ 的所有非平凡零点 (Non-trivial Zeros) 都位于临界线 $\mat
 \end{alertblock}
 
 \begin{itemize}
-    \item RH 若成立, 意味着素数的分布误差项 $\pi(x) - \mathrm{Li}(x)$ 达到最优估计 $O(x^{1/2+\epsilon})$.
+\item RH 若成立, 意味着素数的分布误差项 $\pi(x) - \mathrm{Li}(x)$ 达到最优估计 $O(x^{1/2+\epsilon})$.
 \end{itemize}
 \end{frame}
 
@@ -180,12 +180,12 @@ $\zeta(s)$ 的所有非平凡零点 (Non-trivial Zeros) 都位于临界线 $\mat
 
 \begin{exampleblock}{一个直观的例子}
 \[
-\zeta(s) \text{ 在 } s=1 \text{ 处有简单极点} \implies \text{素数密度约为 } \frac{1}{\log x}.
+-\frac{\zeta'}{\zeta}(s) \text{ 在 } s=1 \text{ 处有简单极点} \implies \pi(x) \sim \frac{x}{\log x}.
 \]
 \end{exampleblock}
 
 \begin{itemize}
-\item 这种通过生成函数的极点、留数来反推部分和 $A(x) = \sum_{n \le x} a_n$ 渐近行为的定理, 统称为 \textbf{Tauberian Theorems}.
+    \item 这种通过生成函数的极点、留数来反推部分和 $A(x) = \sum_{n \le x} a_n$ 渐近行为的定理, 统称为 \textbf{Tauberian Theorems}.
 \end{itemize}
 \end{frame}
 
@@ -198,12 +198,12 @@ $\zeta(s)$ 的所有非平凡零点 (Non-trivial Zeros) 都位于临界线 $\mat
 \]
 更进一步, 它与代数数论中的\textbf{类数公式} (Class Number Formula) 密切相关.
 \begin{itemize}
-    \item 对于虚二次域 $K = \mathbb{Q}(\sqrt{-d})$, 其 $L$-函数在 $s=1$ 处的值为:
+    \item 对于虚二次域 $K = \mathbb{Q}(\sqrt{D})$ ($D < 0$ 为判别式), 其 $L$-函数在 $s=1$ 处的值为:
     \[
-    L(1, \chi_{-d}) = \frac{2\pi h_K}{w \sqrt{d}}.
+    L(1, \chi_{D}) = \frac{2\pi h_K}{w \sqrt{|D|}}.
     \]
     \item 这里 $h_K$ 是 $K$ 的\alert{理想类群} (Ideal Class Group) 的阶, 衡量了 $K$ 中唯一分解定理失效的程度.
-    \item 例如: Leibniz 级数 $1 - \frac{1}{3} + \frac{1}{5} - \cdots = \frac{\pi}{4}$ 对应 $\mathbb{Q}(i)$, $h_K=1$.
+    \item 例如: Leibniz 级数 $1 - \frac{1}{3} + \frac{1}{5} - \cdots = \frac{\pi}{4}$ 对应 $\mathbb{Q}(i)$ (即 $D=-4$), 此时 $h_K=1, w=4, \sqrt{|D|}=2$.
 \end{itemize}
 \end{frame}
 
@@ -213,19 +213,64 @@ $\zeta(s)$ 的所有非平凡零点 (Non-trivial Zeros) 都位于临界线 $\mat
 本课程的研讨路线:
 \begin{center}
 \begin{tikzpicture}[node distance=1.2cm, auto]
-    \node (arith) [draw, rounded corners] {Arithmetic Functions};
-    \node (conv) [draw, rounded corners, below of=arith] {Dirichlet Convolution};
-    \node (series) [draw, rounded corners, below of=conv] {Dirichlet Series};
-    \node (zeta) [draw, rounded corners, below of=series] {Riemann Zeta Function};
-    \node (pnt) [draw, rounded corners, fill=red!10, below of=zeta] {Prime Number Theorem};
+\node (arith) [draw, rounded corners] {Arithmetic Functions};
+\node (conv) [draw, rounded corners, below of=arith] {Dirichlet Convolution};
+\node (series) [draw, rounded corners, below of=conv] {Dirichlet Series};
+\node (zeta) [draw, rounded corners, below of=series] {Riemann Zeta Function};
+\node (pnt) [draw, rounded corners, fill=red!10, below of=zeta] {Prime Number Theorem};
 
-    \draw[->, thick] (arith) -- (conv);
-    \draw[->, thick] (conv) -- (series);
-    \draw[->, thick] (series) -- (zeta);
-    \draw[->, thick] (zeta) -- (pnt);
+\draw[->, thick] (arith) -- (conv);
+\draw[->, thick] (conv) -- (series);
+\draw[->, thick] (series) -- (zeta);
+\draw[->, thick] (zeta) -- (pnt);
 \end{tikzpicture}
 \end{center}
 \textbf{核心目标}: 理解 $\zeta(s)$ 的解析性质如何控制素数的分布规律.
+\end{frame}
+
+%------------------------------------------------
+
+\section{课程内容详述}
+
+\begin{frame}
+\frametitle{第一阶段: 算术函数的代数理论 (Week 1-4)}
+\textbf{重点: 建立算术函数的代数结构, 不涉及复杂分析.}
+\begin{itemize}
+    \item \textbf{Week 2 (基础)}: 积性函数 (Multiplicative Functions). 算术基本定理保证了积性函数由其在素数幂处的值完全决定.
+    \item \textbf{Week 3 (Möbius 反演)}: $\mu(n)$ 不仅是一个函数, 它是 Dirichlet 卷积下的``除法''. 解决``已知 $g = f * 1$, 反求 $f$'' 的问题.
+    \item \textbf{Week 4 (Dirichlet 卷积)}: 证明所有算术函数在卷积下构成一个环. 这是后续 Dirichlet 级数理论的代数基础.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{第二阶段: 初等渐近估计方法 (Week 5-8)}
+\textbf{重点: 利用实变量微积分估计数论和式.}
+\begin{itemize}
+    \item \textbf{Week 5 (求和公式)}: Euler Summation Formula. 如何将离散求和 $\sum_{n \le x} f(n)$ 转化为积分 $\int f(t)dt$ 加上误差项.
+    \item \textbf{Week 6 (分部求和)}: Summation by Parts (Abel Summation). 处理 $\sum a_n f(n)$ 的最强初等工具, 离散版本的分部积分法.
+    \item \textbf{Week 7 (卷积法)}: 处理 $\sum \varphi(n)$ 等平均值问题. 技巧是将复杂函数分解为简单函数的卷积 ($\varphi = \mu * \mathrm{Id}$).
+    \item \textbf{Week 8 (双曲线法)}: Dirichlet Hyperbola Method. 专门处理除数函数 $d(n)$ 的求和, 几何上对应于双曲线 $xy \le x$ 下的整点计数.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{第三阶段: 素数分布的初等结果 (Week 9-10)}
+\textbf{重点: 在引入复变函数之前, 我们能对素数知道多少?}
+\begin{itemize}
+\item \textbf{Week 9 (Chebyshev 估计)}: 虽然无法初等证明 $\pi(x) \sim x/\log x$, 但 Chebyshev 证明了其量级确实是 $x/\log x$, 即 $c_1 \frac{x}{\log x} < \pi(x) < c_2 \frac{x}{\log x}$.
+\item \textbf{Week 10 (Mertens 定理)}: 比 PNT 弱但极其实用的定理. 给出了 $\sum_{p \le x} \frac{1}{p} \sim \log \log x$ 等精确估计.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{第四阶段: 解析方法与素数定理 (Week 11-15)}
+\textbf{重点: 引入复变函数 (Complex Analysis)，向 PNT 发起总攻.}
+\begin{itemize}
+    \item \textbf{Week 11-12 (Dirichlet 级数)}: 建立 $\sum a_n n^{-s}$ 的解析理论. 证明其不仅是形式级数, 更是复平面上的解析函数.
+    \item \textbf{Week 13 (Riemann Zeta)}: 深入研究 $\zeta(s)$. 解析延拓、函数方程、极点与留数.
+    \item \textbf{Week 14 (PNT 的思想)}: 介绍 Perron 公式 (围道积分表达系数和). 解释核心逻辑: $\zeta(s)$ 在 $\mathrm{Re}(s)=1$ 上无零点 $\implies \pi(x) \sim \mathrm{Li}(x)$.
+    \item \textbf{Week 15 (Primes in AP)}: (进阶) 推广到 $L(s, \chi)$, 证明算术级数中有无穷多素数 ($L(1, \chi) \neq 0$).
+\end{itemize}
 \end{frame}
 
 %------------------------------------------------
