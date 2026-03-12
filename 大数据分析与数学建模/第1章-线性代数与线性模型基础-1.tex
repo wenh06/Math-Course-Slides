@@ -1,0 +1,795 @@
+\usepackage{nicematrix}
+
+%-----------------------------------
+% TITLE PAGE
+%-----------------------------------
+
+\title[大数据分析与数学建模]{\texorpdfstring{\LARGE \bfseries 大数据分析与数学建模}{大数据分析与数学建模}}
+\author[线性代数基础(1)]
+{\Large \bfseries 第一章\quad 线性代数与线性模型基础 \\ \vspace{0.5em} \large \S 1.1 向量与线性空间 \quad \S 1.2 矩阵与高斯消元法}
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内容提要}
+\tableofcontents
+\end{frame}
+
+%-----------------------------------
+% PRESENTATION SLIDES
+%-----------------------------------
+
+\begin{frame}
+\frametitle{引言：为什么要在“大数据”课讲线性代数？}
+
+\begin{block}{从数据到矩阵}
+\begin{itemize}
+    \item 在大数据分析中，最基本的数据结构是\textbf{表格}（Table）或\textbf{数据框}（DataFrame）。
+    \item 每一行代表一个\textbf{样本}（Sample），每一列代表一个\textbf{特征}（Feature）。
+    \item 这天然对应于一个\textbf{矩阵} $X_{m \times n}$。
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{从模型到方程组}
+\begin{itemize}
+    \item 所谓建模，往往是建立输入 $X$ 到输出 $Y$ 的映射关系 $Y = f(X)$。
+    \item 最简单的线性模型 $Y = X\beta + \epsilon$，其核心就是解线性方程组或最小二乘问题。
+    \item \textbf{线性代数提供了操作高维数据的语言和工具。}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{向量及其运算}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{纯量与向量}
+
+\begin{Def}[纯量 (Scalar)]
+一个纯量（或标量）通常指的是一个实数 $a \in \mathbb{R}$。在数据分析中，它通常表示一个单独的数值，例如温度、身高、价格等。
+\end{Def}
+
+\pause
+
+\begin{Def}[向量 (Vector)]
+一个 $n$ 维向量指的是一个有序的 $n$ 元数组 $(a_1, a_2, \cdots, a_n)$，其中 $a_i \in \mathbb{R}$。一般我们将其写成列的形式：
+\[
+\mathbf{a} = \begin{pmatrix}
+a_1 \\ a_2 \\ \vdots \\ a_n
+\end{pmatrix} \in \mathbb{R}^n
+\]
+\begin{itemize}
+    \item $a_i$ 称为向量 $\mathbf{a}$ 的第 $i$ 个分量。
+    \item 几何上，它代表 $n$ 维空间中的一个\textbf{点}，或者从原点指向该点的\textbf{有向线段}。
+    \item 为了几号上的方便，我们也可以将列向量写作 $\mathbf{a} = (a_1, a_2, \dots, a_n)^T$, 其中 $T$ 表示转置。之后讲矩阵的时候，会具体介绍转置的概念。
+\end{itemize}
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{向量的加法与数乘}
+
+\begin{block}{向量的加法与数乘}
+设 $\mathbf{a}, \mathbf{b} \in \mathbb{R}^n, k \in \mathbb{R}$。
+\begin{itemize}
+    \item \textbf{加法}：对应分量相加，$\mathbf{a} + \mathbf{b} = (a_1+b_1, \dots, a_n+b_n)^T$。
+    \item \textbf{数乘}：每个分量乘以 $k$， $k\mathbf{a} = (ka_1, \dots, ka_n)^T$。
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{几何意义}
+\begin{itemize}
+    \item 加法满足\textbf{平行四边形法则}。
+    \item 数乘代表向量的\textbf{伸缩}（$k>1$ 伸长，$0<k<1$ 缩短，$k<0$ 反向）。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{线性组合与线性空间}
+
+\begin{block}{线性组合 (Linear Combination)}
+给定一组向量 $\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k \in \mathbb{R}^n$ 和一组标量 $c_1, c_2, \dots, c_k$，向量
+\[
+\mathbf{y} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_k \mathbf{v}_k = \sum_{i=1}^k c_i \mathbf{v}_i
+\]
+称为向量组 $\mathbf{v}_1, \dots, \mathbf{v}_k$ 的一个线性组合。
+\end{block}
+
+\begin{block}{张成空间 (Span)}
+所有可能的线性组合构成的集合称为由 $\mathbf{v}_1, \dots, \mathbf{v}_k$ \textbf{张成}（Span）的子空间：
+\[
+\mathrm{span}(\mathbf{v}_1, \dots, \mathbf{v}_k) = \{ \sum c_i \mathbf{v}_i \mid c_i \in \mathbb{R} \}
+\]
+这是理解回归模型能否完美拟合数据的关键。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{向量的内积 (Inner (Dot) Product)}
+
+\begin{Def}[向量的内积]
+设 $\mathbf{a}, \mathbf{b} \in \mathbb{R}^n$，它们的内积定义为：
+\[
+\langle \mathbf{a}, \mathbf{b} \rangle = \mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b} = \sum_{i=1}^n a_i b_i
+\]
+\end{Def}
+
+\begin{prop}[内积的性质]
+\begin{enumerate}
+    \item \textbf{交换律}：$\mathbf{a} \cdot \mathbf{b} = \mathbf{b} \cdot \mathbf{a}$
+    \item \textbf{分配律}：$\mathbf{a} \cdot (\mathbf{b} + \mathbf{c}) = \mathbf{a} \cdot \mathbf{b} + \mathbf{a} \cdot \mathbf{c}$
+    \item \textbf{数乘结合律}：$(k\mathbf{a}) \cdot \mathbf{b} = k(\mathbf{a} \cdot \mathbf{b})$
+    \item \textbf{非负性}：$\mathbf{a} \cdot \mathbf{a} \ge 0$，且等于 $0$ 当且仅当 $\mathbf{a} = \mathbf{0}$
+\end{enumerate}
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{范数与距离}
+
+\begin{block}{范数 (Norm)}
+向量的长度（或模）：
+\[
+\|\mathbf{a}\| = \sqrt{\mathbf{a} \cdot \mathbf{a}} = \sqrt{\sum_{i=1}^n a_i^2}.
+\]
+他被称作是 2-范数, 或者欧几里得范数 (Euclidean Norm)。在数据分析中，范数用于衡量向量的大小，例如在正则化中常用 $\|\beta\|$ 来控制模型复杂度。
+其他常用的范数还有 1-范数 $\|\mathbf{a}\|_1 = \sum |a_i|$ 和无穷范数 $\|\mathbf{a}\|_\infty = \max |a_i|$，在不同的应用场景中有不同的意义。
+\end{block}
+
+\begin{block}{单位向量 (Unit Vector)}
+长度为 1 的向量。任意非零向量 $\mathbf{a}$ 可以标准化为 $\mathbf{u} = \frac{\mathbf{a}}{\|\mathbf{a}\|}$。
+\end{block}
+
+\begin{block}{距离 (Distance)}
+两个向量 $\mathbf{a}, \mathbf{b}$ 之间的距离定义为：
+\[
+d(\mathbf{a}, \mathbf{b}) = \|\mathbf{a} - \mathbf{b}\| = \sqrt{\sum (a_i - b_i)^2}
+\]
+这在 KNN（K-近邻）算法中是核心概念。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{两个重要不等式}
+
+\begin{block}{Cauchy-Schwarz 不等式}
+对于任意 $\mathbf{a}, \mathbf{b} \in \mathbb{R}^n$：
+\[
+|\mathbf{a} \cdot \mathbf{b}| \le \|\mathbf{a}\| \|\mathbf{b}\|
+\]
+等号成立当且仅当 $\mathbf{a}$ 与 $\mathbf{b}$ 线性相关（即共线）。
+\end{block}
+
+\pause
+
+\begin{block}{三角不等式 (Triangle Inequality)}
+\[
+\|\mathbf{a} + \mathbf{b}\| \le \|\mathbf{a}\| + \|\mathbf{b}\|
+\]
+几何意义：三角形两边之和大于第三边。
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{向量的夹角与正交}
+
+\begin{block}{夹角 (Angle)}
+由 Cauchy-Schwarz 不等式，我们可以定义向量 $\mathbf{a}, \mathbf{b}$ 的夹角 $\theta \in [0, \pi]$：
+\[
+\cos \theta = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \|\mathbf{b}\|}
+\]
+\end{block}
+
+\pause
+
+\begin{block}{正交 (Orthogonality)}
+若 $\mathbf{a} \cdot \mathbf{b} = 0$，则称 $\mathbf{a}$ 与 $\mathbf{b}$ \textbf{正交}（垂直），记为 $\mathbf{a} \perp \mathbf{b}$。
+\end{block}
+
+\begin{alertblock}{统计关联}
+对于中心化后的数据向量（均值为0），内积对应于\textbf{协方差}，夹角的余弦对应于\textbf{Pearson相关系数}。
+\begin{itemize}
+    \item 正交 $\iff$ 不相关 (Uncorrelated)
+    \item 共线 $\iff$ 完全相关 (Correlation = $\pm 1$)
+\end{itemize}
+\end{alertblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{线性方程组与矩阵}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{线性方程组 (Linear System)}
+
+$n$个未知元$m$个方程的线性方程组具有以下形式
+\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+\phantom{yyy} \vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\end{cases}\]
+
+\pause
+
+$x_1,\ldots,x_n$被称为未定元，$a_{ij},b_i$是一些常数，$i=1,2,\ldots,m;$ $j = 1,2,\ldots,n,$ 其中$a_{ij}$被称为方程组系数，$b_i$被称为常数项。
+
+\pause
+
+\begin{itemize}
+\item 齐次线性方程组：$b_1,b_2,\ldots,b_m = 0$
+\item 非齐次线性方程组：$b_1,b_2,\ldots,b_m$不全为$0$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{矩阵 (Matrix)}
+
+我们可以把之前遇到的线性方程组系数与未知元分开写，写成一种更紧凑的形式
+\[
+\underbrace{\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}}_{\text{系数矩阵} A = (a_{ij})} \underbrace{\begin{pmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{pmatrix}}_{\text{未知元列}\mathbf{x}} =
+\underbrace{\begin{pmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_m
+\end{pmatrix}}_{\text{常数项列}\mathbf{b}}
+\]
+即
+\[A\mathbf{x} = \mathbf{b}\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{矩阵(Matrix)的定义}
+
+% \begin{block}{矩阵(Matrix)的定义}
+由$mn$个实数排成行列的矩形数表, 用圆(或方)括号括起来，即
+\[
+A = ~
+\begin{NiceMatrix}[first-row, first-col]
+  & \substack{\mathbf{a}_1 \\ \downarrow}
+  & \substack{\mathbf{a}_2 \\ \downarrow}
+  & \cdots
+  & \substack{\mathbf{a}_n \\ \downarrow} \\
+\mathbf{\alpha}_1 \to & a_{11} & a_{12} & \cdots & a_{1n} \\
+\mathbf{\alpha}_2 \to & a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots               & \vdots & \vdots & \vdots & \vdots \\
+\mathbf{\alpha}_m \to & a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{NiceMatrix}
+= \begin{bmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    a_{m1} & a_{m2} & \cdots & a_{mn}
+  \end{bmatrix}
+\]
+称为$m\times n$型的矩阵，简记为$A = (a_{ij})_{m\times n}$，其中横排$\mathbf{\alpha}_i$称为矩阵的行，竖排$\mathbf{a}_j$称为矩阵的列。$a_{ij}$称为矩阵的元素，其第一个下标表示所在的行数，第二个下标表示其所在的列数。全体$m\times n$型的矩阵组成的集合，记为$M_{m\times n}(\mathbb{R})$.
+% \end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{线性方程组的两种图示：行图与列图}
+
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\textbf{行图 (Row Picture)} \\
+$A\mathbf{x}$ 的第 $i$ 个分量是 $A$ 的第 $i$ 行与 $\mathbf{x}$ 的内积。
+\[
+(A\mathbf{x})_i = \sum_{j=1}^n a_{ij} x_j
+\]
+这对应于 $m$ 个线性方程。
+\end{column}
+\begin{column}{0.48\textwidth}
+\textbf{列图 (Column Picture)} \\
+$A\mathbf{x}$ 是 $A$ 的列向量的\textbf{线性组合}。
+\[
+A\mathbf{x} = x_1 \mathbf{c}_1 + x_2 \mathbf{c}_2 + \dots + x_n \mathbf{c}_n
+\]
+其中 $\mathbf{c}_j$ 是 $A$ 的第 $j$ 列。
+\end{column}
+\end{columns}
+
+\vspace{1em}
+\begin{center}
+\textbf{列图对于理解线性模型的几何意义至关重要！}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{线性方程组的解}
+
+考虑方程组 $A\mathbf{x} = \mathbf{b}$。
+
+\begin{block}{从列图看解的存在性}
+方程组 $A\mathbf{x} = \mathbf{b}$ 有解，当且仅当 $\mathbf{b}$ 可以表示为 $A$ 的列向量的线性组合。
+\begin{itemize}
+    \item 即：$\mathbf{b}$ 落在 $A$ 的列空间（Column Space, $\mathcal{C}(A)$）中。
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{三种情况}
+\begin{enumerate}
+    \item \textbf{唯一解}：$A$ 的列向量线性无关，且 $\mathbf{b} \in \mathcal{C}(A)$。
+    \item \textbf{无穷多解}：$A$ 的列向量线性相关（有自由变量），且 $\mathbf{b} \in \mathcal{C}(A)$。
+    \item \textbf{无解}：$\mathbf{b} \notin \mathcal{C}(A)$。（这就是最小二乘法要解决的问题）
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{高斯消元法}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{高斯消元法 (Gaussian Elimination)}
+
+\begin{block}{目的}
+将一般的线性方程组转化为容易求解的\textbf{上三角形} (Upper Triangular) 方程组。
+\end{block}
+
+\begin{eg}[消元步骤]
+\[
+\left[ \begin{array}{ccc|c}
+1 & 2 & 1 & 2 \\
+3 & 8 & 1 & 12 \\
+0 & 4 & 1 & 2
+\end{array} \right]
+\xrightarrow{r_2 \leftarrow r_2 - 3r_1}
+\left[ \begin{array}{ccc|c}
+\mathbf{1} & 2 & 1 & 2 \\
+0 & \mathbf{2} & -2 & 6 \\
+0 & 4 & 1 & 2
+\end{array} \right]
+\]
+\[
+\xrightarrow{r_3 \leftarrow r_3 - 2r_2}
+\left[ \begin{array}{ccc|c}
+\mathbf{1} & 2 & 1 & 2 \\
+0 & \mathbf{2} & -2 & 6 \\
+0 & 0 & \mathbf{5} & -10
+\end{array} \right]
+\]
+最后得到的主元 (Pivots) 为 $1, 2, 5$。
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{回代 (Back Substitution)}
+
+一旦得到上三角形式：
+\[
+\begin{cases}
+x_1 + 2x_2 + x_3 = 2 \\
+\phantom{x_1 + } 2x_2 - 2x_3 = 6 \\
+\phantom{x_1 + 2x_2 + } 5x_3 = -10
+\end{cases}
+\]
+
+\pause
+
+我们可以从下往上依次求解：
+\begin{enumerate}
+    \item 由第三个方程：$5x_3 = -10 \implies x_3 = -2$。
+    \item 代入第二个方程：$2x_2 - 2(-2) = 6 \implies 2x_2 = 2 \implies x_2 = 1$。
+    \item 代入第一个方程：$x_1 + 2(1) + (-2) = 2 \implies x_1 = 2$。
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{消元法的矩阵表示：初等矩阵}
+
+消元操作实际上是左乘一个\textbf{初等矩阵} (Elementary Matrix)。
+
+\begin{block}{初等矩阵 $E_{ij}(k)$}
+将单位阵 $I$ 的第 $i$ 行减去 $k$ 倍的第 $j$ 行得到的矩阵。
+\end{block}
+
+例如，将 $r_2 \leftarrow r_2 - 3r_1$ 对应于左乘：
+\[
+E_{21}(3) = \begin{pmatrix} 1 & 0 & 0 \\ -3 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}
+\]
+
+\begin{itemize}
+    \item 整个消元过程就是一系列初等矩阵的乘积：
+    \[
+    (E_k \dots E_2 E_1) A = U
+    \]
+    其中 $U$ 是上三角矩阵。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{矩阵代数}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{矩阵乘法}
+
+\begin{Def}[矩阵乘法]
+设 $A$ 是 $m \times n$ 的矩阵，$B$ 是 $n \times p$ 的矩阵，则 $AB$ 是 $m \times p$ 的矩阵，定义为
+\[(AB)_{ij} = \sum_{k=1}^n a_{ik} b_{kj},\]
+也就是说，$AB$ 的第 $i$ 行第 $j$ 列元素是 $A$ 的第 $i$ 行与 $B$ 的第 $j$ 列的内积。
+\end{Def}
+
+一个特殊情况是当 $B$ 是一个列向量 $\mathbf{x}$ 时，$A\mathbf{x}$ 就是之前定义的矩阵与向量的乘积：
+\[
+(A\mathbf{x})_i = \sum_{j=1}^n a_{ij} x_j.
+\]
+
+注意, 这里一个列向量$\mathbf{x}$ 可以看作是一个 $n \times 1$ 的矩阵。相应地，一个行向量$\mathbf{y}^T$ 可以看作是一个 $1 \times n$ 的矩阵。矩阵乘法的定义保证了我们之前定义的矩阵与向量的乘积是矩阵乘法的一个特例。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{矩阵乘法的性质}
+
+\begin{block}{乘法结合律与分配律}
+\begin{itemize}
+    \item $(AB)C = A(BC)$
+    \item $A(B+C) = AB + AC$
+    \item $(A+B)C = AC + BC$
+\end{itemize}
+\end{block}
+
+\begin{alertblock}{注意：不满足交换律}
+一般情况下，$AB \neq BA$。
+\begin{itemize}
+    \item 例子：消元矩阵 $E_{21}$ 和 $E_{31}$ 的乘积顺序不同，结果可能不同（尽管对于下三角消元阵是个特例）。
+    \item 在数据处理中，先旋转再拉伸，与先拉伸再旋转，结果通常不同。
+\end{itemize}
+\end{alertblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{矩阵的转置与对称阵}
+
+\begin{Def}[转置 (Transpose)]
+设 $A = (a_{ij})$ 是 $m \times n$ 的矩阵，则 $A^T$ 是 $n \times m$ 的矩阵，定义为
+\[(A^T)_{ij} = a_{ji}.\]
+也就是说，$A^T$ 的第 $i$ 行第 $j$ 列元素是 $A$ 的第 $j$ 行第 $i$ 列元素。
+\end{Def}
+
+\begin{block}{转置性质}
+\begin{itemize}
+    \item $(A^T)^T = A$
+    \item $(A+B)^T = A^T + B^T$
+    \item \textbf{$(AB)^T = B^T A^T$} （穿脱衣法则）
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{对称阵 (Symmetric Matrices)}
+若 $A^T = A$，则称 $A$ 为对称阵。
+\begin{itemize}
+    \item 对于任意矩阵 $R$（如数据矩阵），$R^T R$ 和 $R R^T$ 总是对称阵。
+    \item $X^T X$ 在最小二乘法中扮演核心角色（Gram 矩阵）。
+\end{itemize}
+\end{block}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{二次型与正定性}
+
+对于对称阵 $A$ 和向量 $\mathbf{x}$，标量 $\mathbf{x}^T A \mathbf{x}$ 称为二次型。
+\begin{itemize}
+    \item 若对任意 $\mathbf{x} \neq \mathbf{0}$ 都有 $\mathbf{x}^T A \mathbf{x} > 0$，称 $A$ \textbf{正定} (Positive Definite)。
+    \item 若对任意 $\mathbf{x}$ 都有 $\mathbf{x}^T A \mathbf{x} \ge 0$，称 $A$ \textbf{半正定} (Positive Semi-Definite)。
+    \item 协方差矩阵总是\textbf{半正定}的 ($\ge 0$)。这保证了方差非负。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{矩阵的秩与迹}
+
+\begin{block}{秩 (Rank)}
+矩阵 $A$ 的秩 $\mathrm{rank}(A)$ 定义为 $A$ 中线性无关的行向量（或列向量）的极大数目。
+\begin{itemize}
+    \item $\mathrm{rank}(A) \le \min(m, n)$。
+    \item 若 $\mathrm{rank}(A) = \min(m, n)$，称 $A$ 为\textbf{满秩}矩阵。
+    \item 统计意义：秩衡量了数据的\textbf{维度}或\textbf{自由度}。秩亏损意味着存在多重共线性。
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{迹 (Trace)}
+方阵 $A$ 的主对角线元素之和：$\mathrm{tr}(A) = \sum a_{ii}$。
+\begin{itemize}
+    \item 性质：$\mathrm{tr}(AB) = \mathrm{tr}(BA)$。
+    \item 统计意义：协方差矩阵的迹等于所有变量的方差之和（总变异）。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{分块矩阵 (Block Matrices)}
+
+我们可以将大矩阵分割成小矩阵（块）来运算，这在处理大规模数据时非常有用。
+
+\[
+A = \begin{pmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{pmatrix}, \quad
+B = \begin{pmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \end{pmatrix}
+\]
+
+\begin{itemize}
+    \item \textbf{乘法}：就像普通矩阵乘法一样，但元素变成了矩阵块。
+    \[
+    AB = \begin{pmatrix} A_{11}B_{11}+A_{12}B_{21} & A_{11}B_{12}+A_{12}B_{22} \\ A_{21}B_{11}+A_{22}B_{21} & A_{21}B_{12}+A_{22}B_{22} \end{pmatrix}
+    \]
+    \item \textbf{要求}：块之间的维度必须匹配。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{矩阵的逆}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{行列式与逆矩阵}
+
+\begin{block}{行列式 (Determinant)}
+$|A|$ 是方阵的一个标量属性，记作 $\det(A)$。它代表了矩阵变换对体积的缩放比例。
+\begin{itemize}
+    \item 二阶情形：$\left| \begin{smallmatrix} a & b \\ c & d \end{smallmatrix} \right| = ad - bc$。
+    \item 性质：$|AB| = |A||B|$。
+    \item 判别：$A$ 可逆 $\iff |A| \neq 0$。
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{Def}[逆矩阵]
+若方阵 $A$ 存在方阵 $B$ 使得 $AB = BA = I$，则称 $A$ 可逆，记 $B = A^{-1}$。
+\end{Def}
+
+\begin{prop}[逆矩阵的性质]
+\begin{itemize}
+    \item $(A^{-1})^{-1} = A$
+    \item $(AB)^{-1} = B^{-1} A^{-1}$ （同样是穿脱衣法则）
+    \item $(A^T)^{-1} = (A^{-1})^T$
+\end{itemize}
+\end{prop}
+
+\begin{block}{奇异性 (Singularity)}
+若 $A$ 不可逆，则称 $A$ 是\textbf{奇异} (Singular) 的。
+\begin{itemize}
+    \item $A$ 奇异 $\iff |A| = 0$ $\iff A$ 的列向量线性相关。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Gauss-Jordan 消元法求逆}
+
+如何计算 $A^{-1}$？我们可以通过将 $[A | I]$ 变换为 $[I | A^{-1}]$ 来实现。
+
+\begin{eg}
+求 $A = \begin{pmatrix} 1 & 3 \\ 2 & 7 \end{pmatrix}$ 的逆。
+\begin{align*}
+\left[ \begin{array}{cc|cc} 1 & 3 & 1 & 0 \\ 2 & 7 & 0 & 1 \end{array} \right]
+&\xrightarrow{r_2 - 2r_1}
+\left[ \begin{array}{cc|cc} 1 & 3 & 1 & 0 \\ 0 & 1 & -2 & 1 \end{array} \right] \\
+&\xrightarrow{r_1 - 3r_2}
+\left[ \begin{array}{cc|cc} 1 & 0 & 7 & -3 \\ 0 & 1 & -2 & 1 \end{array} \right]
+\end{align*}
+所以 $A^{-1} = \begin{pmatrix} 7 & -3 \\ -2 & 1 \end{pmatrix}$。
+\end{eg}
+
+验证：$\begin{pmatrix} 1 & 3 \\ 2 & 7 \end{pmatrix} \begin{pmatrix} 7 & -3 \\ -2 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$。
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{LU分解}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{LU 分解：消元法的逆过程}
+
+\begin{block}{思想}
+高斯消元法将 $A$ 转化为上三角矩阵 $U$。如果我们记录下消元的过程（初等矩阵的逆），就能得到下三角矩阵 $L$。
+\end{block}
+
+\begin{block}{LU 分解定理}
+如果 $A$ 可以通过不需要行交换的消元过程转化为 $U$，那么 $A$ 可以分解为：
+\[
+A = L U
+\]
+其中：
+\begin{itemize}
+    \item $L$ 是单位下三角矩阵 (Lower Triangular with 1s on diagonal)。
+    \item $U$ 是上三角矩阵 (Upper Triangular, pivots on diagonal)。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{LU 分解的应用：解方程}
+
+如果我们有了 $A = LU$，解 $A\mathbf{x} = \mathbf{b}$ 变得非常快，分两步：
+
+\begin{enumerate}
+    \item \textbf{前向代入 (Forward Substitution)}：解 $L\mathbf{y} = \mathbf{b}$，求出 $\mathbf{y}$。
+    \item \textbf{回代 (Back Substitution)}：解 $U\mathbf{x} = \mathbf{y}$，求出 $\mathbf{x}$。
+\end{enumerate}
+
+\begin{block}{计算量优势}
+\begin{itemize}
+    \item 对于同一个 $A$ 和多个不同的 $\mathbf{b}$，LU 分解只需做一次（$O(n^3)$），之后每次求解只需 $O(n^2)$。
+    \item 计算机中大多数线性方程组求解器（如 Python 的 ``np.linalg.solve''）内部都是使用 LU 分解。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{置换矩阵 (Permutation Matrix)}
+
+如果消元过程中遇到主元为 0，需要进行行交换。这时需要引入置换矩阵 $P$。
+
+\begin{block}{PA = LU 分解}
+对于任意可逆矩阵 $A$，都存在置换矩阵 $P$（行交换）、单位下三角矩阵 $L$ 和上三角矩阵 $U$，使得：
+\[
+PA = LU
+\]
+\end{block}
+
+\begin{itemize}
+    \item $P$ 是行重新排列后的单位阵。
+    \item $P^{-1} = P^T$。
+    \item 这是最通用的矩阵分解形式之一。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{线性模型初步}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{从 $Ax=b$ 到 $A^TAx = A^Tb$}
+
+在现实数据中，方程组通常是\textbf{超定}的（$m > n$，样本数远大于特征数），并且 $\mathbf{b}$ 不在 $A$ 的列空间中。
+\[
+A\mathbf{x} = \mathbf{b}
+\]
+通常无解（因为 $\mathbf{b}$ 不在 $\mathcal{C}(A)$ 中）。
+
+\pause
+
+我们退而求其次，寻找“最优解” $\hat{\mathbf{x}}$，使得误差 $\|A\hat{\mathbf{x}} - \mathbf{b}\|^2$ 最小。
+
+\begin{block}{正规方程 (Normal Equations)}
+通过微积分或几何投影原理，最优解满足：
+\[
+(A^T A) \hat{\mathbf{x}} = A^T \mathbf{b}
+\]
+这是一个总是可解的 $n \times n$ 方程组（只要 $A$ 列满秩）。
+\end{block}
+
+这就是\textbf{线性回归}的数学本质。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{总结与展望}
+
+\begin{enumerate}
+    \item \textbf{向量空间}：数据存在的场所，内积定义了“相似度”。
+    \item \textbf{线性方程组}：$A\mathbf{x}=\mathbf{b}$ 是线性代数的核心问题。
+    \item \textbf{高斯消元与 LU 分解}：求解方程组的算法基石。
+    \item \textbf{最小二乘}：当方程无解时，寻找投影（Projection）。
+\end{enumerate}
+
+\vspace{1em}
+\begin{center}
+    下节课我们将深入讨论线性模型的一般形式、最小二乘解的几何意义，以及回归分析与方差分析的矩阵表示。
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
