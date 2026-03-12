@@ -31,9 +31,9 @@
 \SiZhengtrue
 \SiZhengfalse
 
-\newif\ifShowCompiledTime
-\ShowCompiledTimefalse
-\ShowCompiledTimetrue
+\newif\ifShowCompiledInfo
+\ShowCompiledInfofalse
+\ShowCompiledInfotrue
 
 
 \ifHandout
@@ -78,14 +78,17 @@
 \input{common_preamble}
 
 
-\ifShowCompiledTime
+\ifShowCompiledInfo
 \usepackage{datetime2}
 \DTMsetdatestyle{iso}
 \DTMsettimestyle{iso}
 
 \addtobeamertemplate{title page}{}{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node[anchor=south east, xshift=-5mm, yshift=5mm, opacity=0.6] at (current page.south east) {\tiny \texttt{编译于 \DTMtoday~\DTMcurrenttime}};
+    \node[anchor=south east, xshift=-5mm, yshift=5mm, opacity=0.6, align=right] at (current page.south east) {
+      \tiny \texttt{编译于 \DTMtoday~\DTMcurrenttime} \hspace{1em} \\
+      \tiny \texttt{Commit: \input{|"git rev-parse HEAD"}}
+    };
   \end{tikzpicture}
 }
 \fi
