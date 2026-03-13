@@ -513,9 +513,10 @@ $p = 1, \infty$ 以及 $\lVert f + g \rVert_p = 0$ 都是简单的情形. 下设
 \begin{align*}
 \lVert f + g \rVert_p^p & = \int_a^b |f(x) + g(x)|^p ~ \mathrm{d} x = \int_a^b |f(x) + g(x)|^{p - 1} |f(x) + g(x)| ~ \mathrm{d} x \\
 & \leqslant \int_a^b |f(x) + g(x)|^{p - 1} |f(x)| ~ \mathrm{d} x + \int_a^b |f(x) + g(x)|^{p - 1} |g(x)| ~ \mathrm{d} x \\
-(\text{\color{red}Hölder 不等式}) & ~ {\color{red}\leqslant} ~ \lVert f + g \rVert_p^{\frac{p - 1}{p}} \cdot \lVert f \rVert_p + \lVert f + g \rVert_p^{\frac{p - 1}{p}} \cdot \lVert g \rVert_p.
+(\text{\color{red}Hölder 不等式}) & ~ {\color{red}\leqslant} ~ \lVert |f + g |^{p - 1} \rVert_q \cdot \lVert f \rVert_p + \lVert |f + g |^{p - 1} \rVert_q \cdot \lVert g \rVert_p \\
+& = \lVert f + g \rVert_p^{p - 1} \cdot \lVert f \rVert_p + \lVert f + g \rVert_p^{p - 1} \cdot \lVert g \rVert_p.
 \end{align*}
-两边除以 $\lVert f + g \rVert_p^{\frac{p - 1}{p}}$ 即得所需不等式.
+两边除以 $\lVert f + g \rVert_p^{p - 1}$ 即得所需不等式.
 \qed
 
 \end{frame}
@@ -559,9 +560,9 @@ $p = 1, \infty$ 以及 $\lVert f + g \rVert_p = 0$ 都是简单的情形. 下设
 \begin{frame}
 \frametitle{积分第二中值定理等价形式互推}
 
-\textbf{(\ref{eq:star}) $\implies$ (\ref{eq:star2}):} 设 $g$ 在 $[a, b]$ 上单调不减 (单调不增类似), 令 $G(x) = g(b) - g(x),$ 则 $G$ 在 $[a, b]$ 上单调不增, 由式~(\ref{eq:star}), 存在 $\xi \in [a, b],$ 使得
+\textbf{(\ref{eq:star2}) $\implies$ (\ref{eq:star}):} 设 $g$ 在 $[a, b]$ 上单调不减 (单调不增类似), 令 $G(x) = g(b) - g(x),$ 则 $G$ 在 $[a, b]$ 上非负不增, 由式~(\ref{eq:star2}), 存在 $\xi \in [a, b],$ 使得
 \[
-\int_a^b f(x) G(x) ~ \mathrm{d} x = G(a) \int_a^\xi f(x) ~ \mathrm{d} x + G(b) \int_\xi^b f(x) ~ \mathrm{d} x.
+\int_a^b f(x) G(x) ~ \mathrm{d} x = G(a) \int_a^\xi f(x) ~ \mathrm{d} x.
 \]
 将 $G(x) = g(b) - g(x)$ 代入上式, 移项, 利用积分区间可加性, 可得
 \[\int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x.\]
@@ -569,9 +570,9 @@ $p = 1, \infty$ 以及 $\lVert f + g \rVert_p = 0$ 都是简单的情形. 下设
 \pause
 \vspace{0.5em}
 
-\textbf{(\ref{eq:star2}) $\implies$ (\ref{eq:star}):} 由 $g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x = g(a) \cdot \left( \int_a^\xi f(x) ~ \mathrm{d} x + \int_\xi^b \frac{g(b)}{g(a)} f(x) ~ \mathrm{d} x \right),$ 令 $\tau = \frac{g(b)}{g(a)},$ 由于 $g$ 非负不增, 故 $0 \leqslant \tau \leqslant 1.$ 那么
+\textbf{(\ref{eq:star}) $\implies$ (\ref{eq:star2}):} 由 $g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x = g(a) \cdot \left( \int_a^\xi f(x) ~ \mathrm{d} x + \int_\xi^b \frac{g(b)}{g(a)} f(x) ~ \mathrm{d} x \right),$ 令 $\tau = \frac{g(b)}{g(a)},$ 由于 $g$ 非负不增, 故 $0 \leqslant \tau \leqslant 1.$ 那么
 \[
-\int_a^t f(x) ~ \mathrm{d} x - \left( \int_a^\xi f(x) ~ \mathrm{d} x + \tau \int_\xi^t f(x) ~ \mathrm{d} x \right) = {\color{red}\int_\xi^t f(x) ~ \mathrm{d} x} - {\color{cyan}\tau \int_\xi^b f(x) ~ \mathrm{d} x}.
+\int_a^t f(x) ~ \mathrm{d} x - \left( \int_a^\xi f(x) ~ \mathrm{d} x + \tau \int_\xi^b f(x) ~ \mathrm{d} x \right) = {\color{red}\int_\xi^t f(x) ~ \mathrm{d} x} - {\color{cyan}\tau \int_\xi^b f(x) ~ \mathrm{d} x}.
 \]
 
 \end{frame}
@@ -593,6 +594,7 @@ $p = 1, \infty$ 以及 $\lVert f + g \rVert_p = 0$ 都是简单的情形. 下设
 \[
 g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x = g(a) \int_a^\xi f(x) ~ \mathrm{d} x + g(b) \int_\xi^b f(x) ~ \mathrm{d} x = \int_a^b f(x) g(x) ~ \mathrm{d} x.
 \]
+\qed
 
 \pause
 \vspace{0.5em}
@@ -608,6 +610,7 @@ $\left\lvert \int_{t}^{t+\Delta t} f(x) ~ \mathrm{d} x \right\rvert \leqslant M 
 \begin{frame}
 \frametitle{积分第二中值定理的证明}
 
+\startproof[bg=yellow, fg=red]
 我们证明式~(\ref{eq:star2}), 即从 $g$ 在 $[a, b]$ 上非负不增出发, 证明存在 $\xi' \in [a, b],$ 使得
 \[
 \int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x.
@@ -624,7 +627,7 @@ $\left\lvert \int_{t}^{t+\Delta t} f(x) ~ \mathrm{d} x \right\rvert \leqslant M 
 首先, 证明 $\Circled{2} \to 0$ 当 $\lambda(P) \to 0.$ 记 $M = \sup_{x \in [a, b]} |f(x)|,$ 则有
 \begin{align*}
 |\Circled{2}| & \leqslant \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |f(x)| |g(x) - g(x_{i-1})| ~ \mathrm{d} x \leqslant \sum_{i=1}^n \int_{x_{i-1}}^{x_i} |g(x) - g(x_{i-1})| \cdot \sup_{x \in [a, b]} |f(x)| ~ \mathrm{d} x \\
-& = M \sum_{i=1}^n \int_{x_{i-1}}^{x_i} \omega(g; [x_{i-1}, x_i]) ~ \mathrm{d} x \leqslant M \sum_{i=1}^n \omega(g; [x_{i-1}, x_i]) \Delta x_i \xrightarrow{\lambda(P) \to 0} 0.
+& \leqslant M \sum_{i=1}^n \int_{x_{i-1}}^{x_i} \omega(g; [x_{i-1}, x_i]) ~ \mathrm{d} x = M \sum_{i=1}^n \omega(g; [x_{i-1}, x_i]) \Delta x_i \xrightarrow{\lambda(P) \to 0} 0.
 \end{align*}
 
 \end{frame}
@@ -675,6 +678,7 @@ d \cdot g(a) \leqslant \lim_{\lambda(P) \to 0} \Circled{1} \leqslant D \cdot g(a
 \[
 \int_a^b f(x) g(x) ~ \mathrm{d} x = g(a) \int_a^{\xi'} f(x) ~ \mathrm{d} x.
 \]
+\qed
 
 \end{frame}
 
