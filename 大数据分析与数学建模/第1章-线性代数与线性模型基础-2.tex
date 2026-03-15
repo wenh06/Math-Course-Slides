@@ -28,7 +28,61 @@
 % PRESENTATION SLIDES
 %-----------------------------------
 
-\section{线性模型的一般形式}
+\section[复习]{复习：线性代数基础}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{复习：矩阵运算核心}
+
+在进入线性模型之前，我们快速回顾一下上节课的核心工具：
+
+\begin{enumerate}
+    \item \textbf{矩阵乘法}：$C = AB$，其中 $C_{ij} = (\text{Row } i \text{ of } A) \cdot (\text{Col } j \text{ of } B)$。
+    \begin{itemize}
+        \item 结合律成立 $(AB)C = A(BC)$，
+        \item 但\textbf{交换律一般不成立} $AB \neq BA$。
+    \end{itemize}
+    \item \textbf{转置 (Transpose)}：行列互换。
+    \begin{itemize}
+        \item 关键性质：$(AB)^T = B^T A^T$ （穿脱衣法则）。
+        \item 对称阵：$A^T = A$。$X^T X$ 永远是对称阵。
+    \end{itemize}
+    \item \textbf{逆矩阵 (Inverse)}：$A A^{-1} = I$。
+    \begin{itemize}
+        \item 只有方阵且满秩时才可逆。
+        \item $(AB)^{-1} = B^{-1} A^{-1}$。
+    \end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{复习：列空间与秩}
+
+\begin{block}{列空间 (Column Space) $\mathcal{C}(A)$}
+矩阵 $A$ 的所有列向量的线性组合构成的空间。
+\[
+A\mathbf{x} = x_1 \mathbf{a}_1 + x_2 \mathbf{a}_2 + \dots + x_n \mathbf{a}_n
+\]
+方程 $A\mathbf{x} = \mathbf{b}$ 有解当且仅当 $\mathbf{b} \in \mathcal{C}(A)$。
+\end{block}
+
+\begin{block}{秩 (Rank)}
+矩阵中线性无关的列（或行）的最大数目。
+\begin{itemize}
+    \item 若 $A$ 是 $n \times p$ 矩阵 ($n > p$)，且 $\text{rank}(A) = p$，称 $A$ \textbf{列满秩}。
+    \item 只有列满秩时，$A^T A$ 才可逆，这是最小二乘法有唯一解的前提。
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[线性模型]{线性模型的一般形式}
 
 %------------------------------------------------
 
@@ -78,7 +132,7 @@ X = \begin{pmatrix}
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{最小二乘估计 (OLS)}
+\frametitle{最小二乘估计 (Ordinary Least Squares, OLS)}
 
 我们的目标是找到 $\boldsymbol{\beta}$ 的估计值 $\hat{\boldsymbol{\beta}}$，使得模型预测值 $\hat{\mathbf{y}} = X \hat{\boldsymbol{\beta}}$ 与真实值 $\mathbf{y}$ 之间的误差平方和最小：
 
@@ -106,6 +160,220 @@ X^T X \hat{\boldsymbol{\beta}} = X^T \mathbf{y}
 
 %------------------------------------------------
 
+\section[最小二乘法]{最小二乘法的推导}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘目标函数展开}
+
+最小化误差平方和：
+
+\[
+Q(\beta) = (\mathbf{y} - X\boldsymbol{\beta})^T (\mathbf{y} - X\boldsymbol{\beta})
+\]
+
+展开利用矩阵转置性质 $(AB)^T = B^T A^T$：
+\[
+\begin{aligned}
+Q(\boldsymbol{\beta}) &= (\mathbf{y}^T - \boldsymbol{\beta}^T X^T) (\mathbf{y} - X\boldsymbol{\beta}) \\
+&= \mathbf{y}^T\mathbf{y} - \mathbf{y}^T X\boldsymbol{\beta} - \boldsymbol{\beta}^T X^T \mathbf{y} + \boldsymbol{\beta}^T X^T X \boldsymbol{\beta}
+\end{aligned}
+\]
+
+注意 $\mathbf{y}^T X\boldsymbol{\beta}$ 是一个标量，其转置等于自身：
+\[
+(\mathbf{y}^T X\boldsymbol{\beta})^T = \boldsymbol{\beta}^T X^T \mathbf{y}
+\]
+所以：
+\[
+Q(\boldsymbol{\beta}) = \mathbf{y}^T\mathbf{y} - 2\boldsymbol{\beta}^T X^T \mathbf{y} + \boldsymbol{\beta}^T X^T X \boldsymbol{\beta}
+\]
+
+这是一个关于 $\boldsymbol{\beta}$ 的二次函数。
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{求导得到正规方程}
+
+我们需要利用矩阵微分公式：
+\begin{enumerate}
+    \item $\frac{\partial (\mathbf{a}^T \mathbf{x})}{\partial \mathbf{x}} = \mathbf{a}$
+    \item $\frac{\partial (\mathbf{x}^T A \mathbf{x})}{\partial \mathbf{x}} = (A + A^T)\mathbf{x}$，若 $A$ 对称，则为 $2A\mathbf{x}$。
+\end{enumerate}
+
+\vspace{1em}
+对 $Q(\boldsymbol{\beta})$ 关于 $\boldsymbol{\beta}$ 求导：
+\[
+\frac{\partial Q}{\partial \boldsymbol{\beta}} = 2X^T \mathbf{y} + 2(X^T X)\boldsymbol{\beta}
+\]
+
+令导数为 $\mathbf{0}$：
+\[
+-2X^T \mathbf{y} + 2X^T X \hat{\boldsymbol{\beta}} = \mathbf{0} \implies X^T X \hat{\boldsymbol{\beta}} = X^T \mathbf{y}
+\]
+
+这称为\textbf{正规方程 (Normal Equations)}。
+\end{frame}
+
+%------------------------------------------------
+
+\section[统计性质与方差分析]{统计性质与方差分析}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{帽子矩阵 (Hat Matrix)}
+
+我们的预测值是 $\hat{\mathbf{y}} = X \hat{\boldsymbol{\beta}}$。将 $\hat{\boldsymbol{\beta}} = (X^T X)^{-1} X^T \mathbf{y}$ 代入：
+
+\[
+\hat{\mathbf{y}} = X (X^T X)^{-1} X^T \mathbf{y} = H \mathbf{y}
+\]
+
+其中定义 $H$ 为\textbf{帽子矩阵} (Hat Matrix)：
+\[
+H = X (X^T X)^{-1} X^T
+\]
+因为它把 $\mathbf{y}$ 变成了 $\hat{\mathbf{y}}$（给 $y$ 戴上了帽子）。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Hat Matrix 的性质}
+
+$H$ 具有优良的数学性质：
+
+\begin{enumerate}
+    \item \textbf{对称性}：
+    \[
+    H^T = (X (X^T X)^{-1} X^T)^T = X ((X^T X)^{-1})^T X^T = H
+    \]
+
+    \item \textbf{幂等性}：
+    \[
+    H^2 = H H = X \underbrace{(X^T X)^{-1} X^T X}_{I} (X^T X)^{-1} X^T = H
+    \]
+\end{enumerate}
+
+\begin{itemize}
+    \item $H$ 是将任意向量投影到 $X$ 的列空间 $\mathcal{C}(X)$ 上的\textbf{正交投影矩阵}。
+    \item \textbf{重要性质}：
+    \[ \text{rank}(H) = \text{tr}(H) = p \]
+    这意味着 $H$ 的迹等于模型参数的个数（自由度），这是统计推断的核心桥梁。
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{残差向量与正交性}
+
+\textbf{残差} (Residuals) 定义为观测值与预测值之差：
+\[
+\mathbf{e} = \mathbf{y} - \hat{\mathbf{y}} = \mathbf{y} - H\mathbf{y} = (I - H)\mathbf{y}
+\]
+
+\textbf{性质}：残差与设计矩阵的列空间正交，即与\textbf{所有解释变量正交}。
+\[
+X^T \mathbf{e} = X^T (I - H)\mathbf{y} = (X^T - X^T H)\mathbf{y} = \mathbf{0}
+\]
+
+这意味着：\textbf{所有的模型信息都已经提取完毕，剩下的残差 $\mathbf{e}$ 中不包含任何可以由 $X$ 线性解释的部分。}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{误差的统计假设}
+
+为了进行统计推断（如计算 P 值、置信区间），我们需要对随机误差项 $\boldsymbol{\epsilon}$ 做出假设。
+
+\begin{block}{Gauss-Markov 假设}
+\begin{itemize}
+    \item $E[\boldsymbol{\epsilon}] = \mathbf{0}$（无偏）
+    \item $Var(\boldsymbol{\epsilon}) = \sigma^2 I$（同方差性，且观测之间不相关）
+\end{itemize}
+\end{block}
+
+\textbf{Gauss-Markov 定理}：
+在此假设下，$\hat{\boldsymbol{\beta}}$ 是 $\boldsymbol{\beta}$ 的\textbf{最佳线性无偏估计 (BLUE, Best Linear Unbiased Estimator)}。
+\begin{itemize}
+    \item "最佳"意味着在所有无偏估计中，OLS 的方差最小。
+    \item 注意：BLUE 不需要正态分布假设。但如果要进行 t 检验或 F 检验，则通常需要假设 $\boldsymbol{\epsilon} \sim N(\mathbf{0}, \sigma^2 I)$。
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{参数估计的方差}
+
+由于 $\hat{\boldsymbol{\beta}} = (X^T X)^{-1} X^T \mathbf{y}$ 是 $\mathbf{y}$ 的线性组合，根据方差传播律：
+
+\[
+Var(\hat{\boldsymbol{\beta}}) = (X^T X)^{-1} X^T Var(\mathbf{y}) X (X^T X)^{-1} = \sigma^2 (X^T X)^{-1}
+\]
+
+\textbf{结论}：
+\begin{itemize}
+    \item 随着样本量 $n$ 增加，$X^T X$ 包含的信息量增加，其逆矩阵的元素通常减小，估计方差降低。
+    \item 如果 $X$ 列之间存在高度共线性，$X^T X$ 接近奇异，方差会急剧增大。
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{残差平方和与方差估计}
+
+我们通常不知道真实的 $\sigma^2$，需要从数据中估计。
+
+\textbf{残差平方和 (RSS)}:
+\[
+RSS = \mathbf{e}^T \mathbf{e} = \|\mathbf{y} - \hat{\mathbf{y}}\|^2
+\]
+
+\textbf{无偏估计量}：
+\[
+\hat{\sigma}^2 = \frac{RSS}{n - p}
+\]
+
+其中 $n-p$ 称为\textbf{残差自由度}。
+\begin{itemize}
+    \item 为什么是 $n-p$？因为 $\text{trace}(I-H) = \text{trace}(I) - \text{trace}(H) = n - p$。
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{方差分解 (ANOVA Decomposition)}
+
+总变异 (TSS) 可以分解为模型解释的变异 (ESS) 和残差变异 (RSS)。
+
+\[
+\underbrace{\sum (y_i - \bar{y})^2}_{\text{TSS}} = \underbrace{\sum (\hat{y}_i - \bar{y})^2}_{\text{ESS}} + \underbrace{\sum (y_i - \hat{y}_i)^2}_{\text{RSS}}
+\]
+
+在矩阵形式下：
+\[
+\mathbf{y}^T \mathbf{y} = \hat{\mathbf{y}}^T \hat{\mathbf{y}} + \mathbf{e}^T \mathbf{e}
+\]
+
+这其实就是 $n$ 维空间中的\textbf{勾股定理}。
+\begin{itemize}
+    \item 因为 $\hat{\mathbf{y}} \in \mathcal{C}(X)$ 且 $\mathbf{e} \perp \mathcal{C}(X)$，所以两者正交。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}
 \frametitle{几何解释：投影}
 
@@ -115,18 +383,33 @@ X^T X \hat{\boldsymbol{\beta}} = X^T \mathbf{y}
     \item 观测向量 $\mathbf{y}$ 通常不在 $X$ 的列空间 $\mathcal{C}(X)$ 中（因为有误差 $\boldsymbol{\epsilon}$）。
     \item 我们寻找 $\mathcal{C}(X)$ 中距离 $\mathbf{y}$ 最近的点 $\hat{\mathbf{y}}$。
     \item $\hat{\mathbf{y}} = X \hat{\boldsymbol{\beta}} = \underbrace{X(X^T X)^{-1} X^T}_{H} \mathbf{y}$。
-    \item $H$ 称为\textbf{投影矩阵} (Projection Matrix) 或\textbf{帽子矩阵} (Hat Matrix)，因为它把 $y$ 变成了 $\hat{y}$。
 \end{itemize}
 
 \begin{center}
-    （此处可以想象一个直角三角形，$\mathbf{y}$ 是斜边，$\hat{\mathbf{y}}$ 是直角边，$\mathbf{e}$ 是另一条直角边，$\mathbf{e} \perp \mathcal{C}(X)$）
+\begin{tikzpicture}[scale=1.2, >=stealth]
+    % Draw plane representing column space of X
+    \fill[blue!10] (-2, -1) -- (3, -1) -- (4, 1.5) -- (-1, 1.5) -- cycle;
+    \node[blue] at (3.5, 0.5) {$\mathcal{C}(X)$};
+
+    % Origin
+    \coordinate (O) at (0,0);
+    \fill (O) circle (1.5pt) node[below left] {$\mathbf{0}$};
+
+    % Vectors
+    \draw[->, thick, red] (O) -- (1.5, 2.5) node[above] {$\mathbf{y}$};
+    \draw[->, thick, blue] (O) -- (1.5, 0.8) node[below right] {$\hat{\mathbf{y}} = H\mathbf{y}$};
+    \draw[->, thick, dashed, orange] (1.5, 0.8) -- (1.5, 2.5) node[midway, right] {$\mathbf{e} \perp \mathcal{C}(X)$};
+
+    % Right angle symbol
+    \draw (1.5, 1.0) -- (1.6, 1.05) -- (1.6, 0.85);
+\end{tikzpicture}
 \end{center}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{线性模型的应用}
+\section[应用]{线性模型的应用}
 
 %------------------------------------------------
 
@@ -213,35 +496,71 @@ X = \begin{pmatrix}
 \]
 \begin{itemize}
     \item $\beta_0 = \mu_A$
-    \item $\beta_B = \mu_B - \mu_A$ (B与A的差异)
+    \item $\beta_B = \mu_B - \mu_A$ (差异)
 \end{itemize}
 \end{column}
 \end{columns}
 
 \vspace{1em}
-\textbf{注意}：R 语言默认采用方式 2 (Treatment Contrasts)。
+\textbf{注意}：
+\begin{itemize}
+    \item 方式 2 中，我们只有 $k-1$ 个品种哑变量，这是为了避免与截距列发生\textbf{完全共线性}（Rank Deficient）。
+    \item R 语言默认采用方式 2 (Treatment Contrasts)。
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{应用三：协方差分析 (ANCOVA) - 实际案例}
+
+假设我们研究猪的生长情况：
+\begin{itemize}
+    \item 响应变量 $y$：体重 (Weight)
+    \item 因子变量：品种 (Breed, 2个水平：A, B)
+    \item 因子变量：性别 (Sex, 2个水平：M, F)
+    \item 协变量 $x$：日龄 (Age)
+\end{itemize}
+
+模型：
+\[
+y_{ijk} = \mu + \text{Breed}_i + \text{Sex}_j + \beta \cdot \text{Age}_{ijk} + \epsilon_{ijk}
+\]
+
+若采用基准编码（A为基准，F为基准），设计矩阵 $X$ 将包含：
+\begin{enumerate}
+    \item 截距列（全1）
+    \item Breed\_B 列（如果是B则为1，否则为0）
+    \item Sex\_M 列（如果是M则为1，否则为0）
+    \item Age 列（连续数值）
+\end{enumerate}
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{应用三：协方差分析 (ANCOVA)}
+\frametitle{设计矩阵的具体形式}
 
-如果我们同时有连续变量和分类变量？
-\textbf{例子}：研究不同\textbf{性别} (Sex) 的猪，\textbf{体重} ($y$) 对\textbf{日龄} ($x$) 的回归。
+假设有 3 头猪的数据：
+\begin{enumerate}
+    \item 猪1：品种A，母(F)，100天
+    \item 猪2：品种B，公(M)，110天
+    \item 猪3：品种B，母(F)，105天
+\end{enumerate}
 
-模型：
+对应设计矩阵 $X$：
 \[
-y_i = \underbrace{\mu + \text{Sex}_i}_{\text{截距不同}} + \beta \cdot x_i + \epsilon_i
+X = \begin{pmatrix}
+\text{Intercept} & \text{Breed}_B & \text{Sex}_M & \text{Age} \\
+1 & 0 & 0 & 100 \\
+1 & 1 & 1 & 110 \\
+1 & 1 & 0 & 105
+\end{pmatrix}
 \]
+参数 $\boldsymbol{\beta} = (\mu, \beta_{\text{BreedB}}, \beta_{\text{SexM}}, \beta_{\text{Age}})^T$。
 
-设计矩阵 $X$ 将包含：
-1. 全 1 列（截距）。
-2. 性别哑变量列（如：若是公猪则为1，否则为0）。
-3. 日龄列（连续数值）。
-
-这使得我们可以同时校正环境效应（如场次、性别）来估计遗传参数。这是 BLUP 育种值估计的基础。
+这正是 R 语言 `model.matrix(~ Breed + Sex + Age)` 输出的结果。
 
 \end{frame}
 
@@ -303,14 +622,92 @@ print(coef(fit))
 
 %------------------------------------------------
 
+\section[高维问题]{高维问题与现代应用}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{当 $p > n$ 时：高维挑战}
+
+当特征数量 $p$ 超过样本量 $n$ 时（例如基因组数据，SNP数量远大于个体数）：
+\begin{enumerate}
+    \item $X$ 是 $n \times p$ 的扁长矩阵。
+    \item $\text{rank}(X) \le n < p$。
+    \item 这意味着 $X^T X$ \textbf{不可逆}（奇异矩阵）。
+\end{enumerate}
+
+\vspace{1em}
+此时传统的 OLS 失效：
+\[
+\hat{\boldsymbol{\beta}} = (X^T X)^{-1} X^T \mathbf{y} \quad \text{（无法计算）}
+\]
+
+\textbf{解决方案}：
+\begin{itemize}
+    \item \textbf{正则化 (Regularization)}：岭回归 (Ridge), Lasso。
+    \item \textbf{混合模型 (Mixed Models)}：将效应视为随机的 ($\beta \sim N(0, \sigma_\beta^2)$)，这就是 \textbf{BLUP} 的核心思想。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{混合线性模型 (Mixed Linear Model) 预告}
+
+为了解决上述问题，我们将引入混合模型：
+\[
+\mathbf{y} = X\boldsymbol{\beta} + Z\mathbf{u} + \mathbf{e}
+\]
+
+\begin{itemize}
+    \item $\boldsymbol{\beta}$：固定效应 (Fixed Effects)，如性别、场次。
+    \item $\mathbf{u}$：随机效应 (Random Effects)，如个体育种值。
+    \item 假设 $\mathbf{u} \sim N(0, G), \mathbf{e} \sim N(0, R)$。
+\end{itemize}
+
+\textbf{BLUP (Best Linear Unbiased Prediction)} 就是该模型的解，它能够同时估计固定效应和预测随机效应。这将是后续课程的重点。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{线性模型在现代 AI 中的地位}
+
+尽管深度学习 (Deep Learning) 非常火热，但线性模型依然是基石。
+
+\begin{table}
+\centering
+\begin{tabular}{l l}
+\toprule
+\textbf{方法} & \textbf{本质} \\
+\midrule
+Linear Regression & OLS \\
+Ridge Regression & L2 Regularization \\
+Logistic Regression & GLM (广义线性模型) \\
+Support Vector Machine (SVM) & 线性分界面 \\
+Neural Network (神经网络) & \textbf{线性变换} + 非线性激活函数 \\
+Transformer (ChatGPT) & \textbf{线性变换} + Attention + 非线性 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{结论}：大量的机器学习方法，本质上都是线性变换的某种扩展。
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}
 \frametitle{本章总结}
 
 \begin{enumerate}
     \item \textbf{万物皆矩阵}：无论是回归、ANOVA 还是 ANCOVA，本质上都是 $Y = X\beta + e$。
-    \item \textbf{设计矩阵 $X$}：是连接现实世界（品种、性别、测量值）与数学模型（方程组）的桥梁。
-    \item \textbf{最小二乘法}：通过几何投影寻找最优参数估计。
-    \item \textbf{计算挑战}：当数据量（$n$）和特征数（$p$）巨大时，我们需要更高效的线性代数算法。
+    \item \textbf{OLS 解}：$\hat{\beta} = (X^T X)^{-1} X^T y$，其几何意义是投影。
+    \item \textbf{方差分解}：TSS = ESS + RSS，模型解释的变异越多，$R^2$ 越高。
+    \item \textbf{统计性质}：在误差独立同正态假设下，$\hat{\beta}$ 是无偏且最小方差估计。
+    \item \textbf{未来挑战}：当 $p > n$ 时，我们需要 BLUP 和正则化方法（下节课内容）。
 \end{enumerate}
 
 \end{frame}
