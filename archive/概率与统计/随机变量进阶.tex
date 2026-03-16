@@ -55,14 +55,14 @@
 期望是一种加权平均值。一个随机变量的期望被定义作
 \[\mu = E(X) = \begin{cases}
 \sum\limits_{i=1}^{+\infty} x_i\cdot P(X=x_i), & \text{$X$为离散型随机变量} \\
-\int\limits_{-\infty}^{+\infty} x\cdot f(x)dx, & \text{$X$为连续型随机变量}
+\int\limits_{-\infty}^{+\infty} x\cdot f(x) ~ \mathrm{d}x, & \text{$X$为连续型随机变量}
 \end{cases}\]
 
 \vspace{1em}
 \pause
 
 {\color{red}注意}！以上分别要求
-\[\sum\limits_{i=1}^{+\infty} \vert x_i \vert \cdot P(X=x_i) < +\infty,\quad \int\limits_{-\infty}^{+\infty} \vert x \vert \cdot f(x)dx < +\infty\]
+\[\sum\limits_{i=1}^{+\infty} \vert x_i \vert \cdot P(X=x_i) < +\infty,\quad \int\limits_{-\infty}^{+\infty} \vert x \vert \cdot f(x) ~ \mathrm{d}x < +\infty\]
 才称相应的期望存在。
 \end{block}
 
@@ -262,7 +262,7 @@ $\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$ &  \\
 
 \begin{block}{边缘密度与边缘质量，Marginal Density \& Mass}
 相应地，我们有边缘密度
-\[f_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \idotsint f(x_1,\ldots,x_n) \prod\limits_{i\not\in I}dx_i\]
+\[f_{\mathbf{X}_I}(x_{i_1},\ldots,x_{i_k}) = \idotsint f(x_1,\ldots,x_n) \prod\limits_{i\not\in I} ~ \mathrm{d}x_i\]
 
 以及边缘质量
 
@@ -295,9 +295,9 @@ $\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$ &  \\
 \begin{frame}
 
 \begin{block}{连续型随机变量的条件分布}
-考虑2维连续型随机变量$(X,Y)$, 设其有联合密度函数$f(x,y)$. 令$Y$有边缘密度$f_Y(y) = \int_{-\infty}^{+\infty} f(x,y)dx$. 对于所有满足$f_Y(y) > 0$的$y$, 给定条件$Y=y$下$X$的条件分布与条件密度分别为
+考虑2维连续型随机变量$(X,Y)$, 设其有联合密度函数$f(x,y)$. 令$Y$有边缘密度$f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) ~ \mathrm{d}x$. 对于所有满足$f_Y(y) > 0$的$y$, 给定条件$Y=y$下$X$的条件分布与条件密度分别为
 \begin{align*}
-F_{X|Y}(x|y) & = \int_{-\infty}^x \dfrac{f(t,y)}{f_Y(y)} dt \\
+F_{X|Y}(x|y) & = \int_{-\infty}^x \dfrac{f(t,y)}{f_Y(y)} ~ \mathrm{d}t \\
 f_{X|Y}(x|y) & = \dfrac{f(x,y)}{f_Y(y)}
 \end{align*}
 \end{block}
@@ -313,9 +313,9 @@ f_{X|Y}(x|y) & = \dfrac{f(x,y)}{f_Y(y)}
 \item 乘积公式：
 \[f(x,y) = f_Y(y) f_{X|Y}(x|y)\]
 \item 全概率公式：
-\[f_X(x) = \int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy\]
+\[f_X(x) = \int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) ~ \mathrm{d}y\]
 \item 贝叶斯公式：
-\[f_{Y|X}(y|x) = \dfrac{f_Y(y)f_{X|Y}(x|y)}{\int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) dy}\]
+\[f_{Y|X}(y|x) = \dfrac{f_Y(y)f_{X|Y}(x|y)}{\int^{+\infty}_{-\infty} f_Y(y) f_{X|Y}(x|y) ~ \mathrm{d}y}\]
 \end{itemize}
 
 \end{frame}
@@ -327,7 +327,7 @@ f_{X|Y}(x|y) & = \dfrac{f(x,y)}{f_Y(y)}
 \begin{block}{条件期望}
 \[E(X|Y=y) = \begin{cases}
 \sum\limits_i x_i P(X=x_i | Y=y), & \text{离散} \\
-\int_{-\infty}^{+\infty} x f(x,y) dx, & \text{连续} \\
+\int_{-\infty}^{+\infty} x f_{X|Y}(x|y) ~ \mathrm{d}x, & \text{连续} \\
 \end{cases}\]
 
 \vspace{1em}
@@ -583,7 +583,7 @@ S^2 = \dfrac{(X_1-\overline{X})^2 + \cdots + (X_n-\overline{X})^2}{\color{red} n
 0, & \text{ 其他情况 }
 \end{cases},\]
 且满足
-\[\int_{A} \delta_a(x)dx = \begin{cases}
+\[\int_{A} \delta_a(x) ~ \mathrm{d}x = \begin{cases}
 1, & \text{ 如果 } a \in A \\
 0, & \text{ 其他情况 }
 \end{cases}\]

@@ -444,8 +444,8 @@ P(Z=z) & = P(X+Y=z) = \sum\limits_{x+y=z} P(X=x,Y=y) \\
 \[f_X(x), \quad f_Y(y)\]
 那么$Z = X+Y$也是一个连续型随机变量，且$Z$的密度函数为
 \begin{align*}
-f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x)dx =
-\int_{-\infty}^{+\infty} f_X(z-y) f_Y(y)dy
+f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x) ~ \mathrm{d}x =
+\int_{-\infty}^{+\infty} f_X(z-y) f_Y(y) ~ \mathrm{d}y
 \end{align*}
 以上公式被称作卷积公式。
 \end{block}
@@ -476,8 +476,8 @@ f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) f_Y(z-x)dx =
 
 解：当$y<0$时，满足$x_1+x_2=y$的$x_1,x_2$中至少有一个小于0，因此自然有$f(y) = 0$. 当$y\ge 0$时，可以利用卷积公式算得
 \begin{align*}
-f(y) & = \int_{-\infty}^{+\infty} f_{X_1}(x_1) f_{X_2}(y-x_1) dx_1 = \int_{0}^{y} \lambda e^{-\lambda x_1} \cdot \lambda e^{-\lambda (y-x_1)} dx_1 \\
-& = \lambda^2 \int_{0}^{y} e^{-\lambda y} dx_1 = \lambda^2 y e^{-\lambda y}
+f(y) & = \int_{-\infty}^{+\infty} f_{X_1}(x_1) f_{X_2}(y-x_1) ~ \mathrm{d}x_1 = \int_{0}^{y} \lambda e^{-\lambda x_1} \cdot \lambda e^{-\lambda (y-x_1)} ~ \mathrm{d}x_1 \\
+& = \lambda^2 \int_{0}^{y} e^{-\lambda y} ~ \mathrm{d}x_1 = \lambda^2 y e^{-\lambda y}
 \end{align*}
 进一步，可以用归纳法证明，当有$n$个独立的，都服从指数分布$Exp(\lambda)$的随机变量$X_1,\ldots,X_n$时，随机变量$Y = X_1+\cdots+X_n$的密度函数为
 \[f(y) = \dfrac{\lambda^n y^{n-1} e^{-\lambda y}}{(n-1)!}, \quad y \ge 0\]
