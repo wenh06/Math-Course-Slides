@@ -43,6 +43,23 @@
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{复习：定积分主要性质}
+\begin{itemize}
+\item \textbf{线性性}: $\int_a^b [\alpha f(x) + \beta g(x)] \mathrm{d}x = \alpha \int_a^b f(x) \mathrm{d}x + \beta \int_a^b g(x) \mathrm{d}x$.
+\item \textbf{区间可加性}: $\int_a^b f(x) \mathrm{d}x = \int_a^c f(x) \mathrm{d}x + \int_c^b f(x) \mathrm{d}x$.
+\item \textbf{保序性}: $f(x) \le g(x) \implies \int_a^b f ~ \mathrm{d}x \leqslant \int_a^b g ~ \mathrm{d}x$.
+\item \textbf{绝对值不等式}: $\left|\int_a^b f(x) \mathrm{d}x\right| \le \int_a^b |f(x)| \mathrm{d}x$.
+\item \textbf{积分第一中值定理}: 若 $f, g \in \mathfrak{R}[a, b]$, $g$ 不变号, 则 $\exists ~ \eta \in \left[ \inf_{x \in [a, b]} f(x), \sup_{x \in [a, b]} f(x) \right]$ 使得
+\[ \int_a^b f(x) g(x) \mathrm{d}x = \eta \int_a^b g(x) \mathrm{d}x \]
+\item \textbf{积分第二中值定理}: 若 $f, g \in \mathfrak{R}[a, b]$, 且 $g$ 单调, 则 $\exists ~ \xi \in [a, b]$ 使得
+\[ \int_a^b f(x) g(x) \mathrm{d}x = g(a) \int_a^{\xi} f(x) \mathrm{d}x + g(b) \int_{\xi}^b f(x) \mathrm{d}x. \]
+\item \textbf{变上限积分连续性}: $F(x) = \int_a^x f(t) \mathrm{d}t$ 在 $[a,b]$ 上连续 (甚至 Lipschitz 连续).
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{绪言}
 
 {

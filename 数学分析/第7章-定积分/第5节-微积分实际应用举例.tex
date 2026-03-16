@@ -43,6 +43,36 @@
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{复习：平面图形面积与曲线弧长}
+\begin{itemize}
+\item \textbf{平面面积}:
+\[ S = \int_a^b |f(x)-g(x)| ~ \mathrm{d}x \quad \text{(直角坐标)} \]
+\[ S = \frac{1}{2} \int_\alpha^\beta \rho^2(\theta) ~ \mathrm{d}\theta \quad \text{(极坐标)} \]
+\item \textbf{平面曲线弧长}:
+\[ \ell = \int_a^b \sqrt{1+[y'(x)]^2} ~ \mathrm{d}x \quad \text{(直角坐标)} \]
+\[ \ell = \int_\alpha^\beta \sqrt{[x'(t)]^2+[y'(t)]^2} ~ \mathrm{d}t \quad \text{(参数方程)} \]
+\[ \ell = \int_\alpha^\beta \sqrt{\rho^2(\theta)+[\rho'(\theta)]^2} ~ \mathrm{d}\theta \quad \text{(极坐标)} \]
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{复习：旋转体体积、旋转曲面面积以及曲线曲率}
+\begin{itemize}
+\item \textbf{旋转体体积} (绕 x 轴):
+\[ V = \pi \int_a^b f^2(x) ~ \mathrm{d}x \]
+\item \textbf{旋转曲面面积} (绕 x 轴):
+\[ S = 2\pi \int_a^b |f(x)| \sqrt{1+[f'(x)]^2} ~ \mathrm{d}x \]
+\item \textbf{曲线曲率}:
+\[ \kappa = \frac{|f''(x)|}{[1+(f'(x))^2]^{3/2}} \quad \text{(直角坐标)} \]
+\[ \kappa = \frac{|y''(t)x'(t) - y'(t)x''(t)|}{\left((x'(t))^2 + (y'(t))^2\right)^{3/2}} \quad \text{(参数方程)} \]
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{绪言}
 
 {
@@ -107,18 +137,18 @@
 \begin{itemize}[<+->]
 \item \textbf{一维}: 如果密度分布为 $\rho(x)$, 其中 $x \in [a,b]$, 则总量 $A$ 可以通过积分求得:
 \[
-A = \int_a^b \rho(x) \mathrm{d}x.
+A = \int_a^b \rho(x) ~ \mathrm{d}x.
 \]
 \item \textbf{二维}: 如果密度分布为 $\sigma(x,y)$, 其中 $(x,y) \in D \in \mathbb{R}^2$ 是一个平面区域, 则总量 $A$ 可以通过二重积分求得:
 \[
-A = \iint_D \sigma(x,y) \mathrm{d}A.
+A = \iint_D \sigma(x,y) ~ \mathrm{d}A.
 \]
-有一个特殊情况是, 假设密度分布是所谓的线密度, 例如 $F(x)$, 只跟一个变量 $x$ 有关, 那么我们回到了一维的情况 $A = \int_a^b F(x) \mathrm{d}x.$
+有一个特殊情况是, 假设密度分布是所谓的线密度, 例如 $F(x)$, 只跟一个变量 $x$ 有关, 那么我们回到了一维的情况 $A = \int_a^b F(x) ~ \mathrm{d}x.$
 \item \textbf{$n$ 维}: 如果密度分布为 $\rho(x_1, x_2, \ldots, x_n)$, 其中 $(x_1, x_2, \ldots, x_n) \in \Omega \in \mathbb{R}^n$ 是一个区域, 其中有所谓的体积形式 $\mathrm{d} \omega$, 则总量 $A$ 可以通过 $n$ 重积分求得:
 \[
-A = \int_\Omega \rho(x_1, x_2, \ldots, x_n) \mathrm{d} \omega.
+A = \int_\Omega \rho(x_1, x_2, \ldots, x_n) ~ \mathrm{d} \omega.
 \]
-特殊形式还是, 密度分布只是一个变量的函数 $G(x)$, 则回到了一维的情况 $A = \int_a^b G(x) \mathrm{d}x.$
+特殊形式还是, 密度分布只是一个变量的函数 $G(x)$, 则回到了一维的情况 $A = \int_a^b G(x) ~ \mathrm{d}x.$
 \end{itemize}
 
 \end{frame}

@@ -43,6 +43,40 @@
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{复习：定积分的定义}
+\begin{Def}[Riemann 积分]
+设 $f$ 是定义在 $[a,b]$ 上的函数. 若存在实数 $I$, 使得对 $[a,b]$ 的任意带标志点的划分 $(P, \xi) = (\{x_i\}_{i=0}^n,\ \{\xi_i\}_{i=1}^n)$, 当划分细度 $\lambda(P) \to 0$ 时, 积分和 $S(f; P, \xi)$ 都收敛于 $I$:
+\[ \lim_{\lambda(P) \to 0} \sum_{i=1}^n f(\xi_i) \Delta x_i = I \]
+则称 $f$ 在 $[a,b]$ 上 \textbf{Riemann 可积}, $I$ 称为定积分, 记为 $\int_a^b f(x) ~ \mathrm{d}x$.
+\end{Def}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{复习：可积性判别准则}
+\begin{block}{必要条件}
+若 $f \in \mathfrak{R}[a,b]$, 则 $f$ 在 $[a,b]$ 上\textbf{有界}.
+\end{block}
+
+\begin{block}{充分必要条件}
+\begin{itemize}
+\item \textbf{Cauchy 准则} (积分和的 Cauchy 收敛原理)
+\item \textbf{Darboux 准则} (上积分与下积分相等: $\underline{\int_a^b} f ~ \mathrm{d}x = \overline{\int_a^b} f ~ \mathrm{d}x$)
+\item \textbf{振幅准则} (振幅和 $\lim_{\lambda(P) \to 0} \sum \omega_i \Delta x_i = 0$)
+\item \textbf{振幅准则简化版} ($\forall ~ \epsilon > 0, \exists ~ P$ 使得 $\sum \omega_i \Delta x_i < \epsilon$)
+\item \textbf{Lebesgue 判别法} (有界且几乎处处连续)
+\end{itemize}
+\end{block}
+
+\begin{block}{典型可积函数类}
+连续函数 $C[a,b]$, 只有有限个间断点的有界函数, 单调函数.
+\end{block}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{绪言}
 
 {

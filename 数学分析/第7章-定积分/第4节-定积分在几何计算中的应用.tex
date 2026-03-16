@@ -45,6 +45,21 @@
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{复习：微积分基本定理 (N-L 公式)}
+\begin{thm}[微积分基本定理]
+若 $f \in C[a,b]$, 且 $F'(x)=f(x)$, 则:
+\[ \int_a^b f(x) \mathrm{d}x = F(b) - F(a) \]
+\end{thm}
+\begin{itemize}
+    \item \textbf{变上限积分求导}: $\frac{\mathrm{d}}{\mathrm{d}x} \int_a^x f(t) \mathrm{d}t = f(x)$ ($f$ 连续).
+    \item \textbf{换元积分法}: $\int_a^b f(x) \mathrm{d}x = \int_\alpha^\beta f(\varphi(t)) \varphi'(t) \mathrm{d}t$.
+    \item \textbf{分部积分法}: $\int_a^b u \mathrm{d}v = [uv]_a^b - \int_a^b v \mathrm{d}u$.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{绪言}
 
 {
@@ -642,12 +657,12 @@ S = \int_{\pi/4}^{9\pi/4} \frac{1}{2} r^2 ~ d\theta = \int_{\pi/4}^{9\pi/4} \fra
 
 %------------------------------------------------
 
-\section{极坐标下面积}
+\section{曲线弧长}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{极坐标下求面积问题的引入}
+\frametitle{可求长曲线及其长度的定义}
 
 \begin{Def}
 设平面曲线参数方程为 $\begin{cases} x = x(t) \\[3pt] y = y(t) \end{cases}$, $t \in [T_1, T_2]$, $x(t), y(t)$ 在 $[T_1, T_2]$ 上关于 $t$ 连续. 设 $[T_1, T_2]$ 有划分 $P: T_1 = t_0 < t_1 < \cdots < t_n = T_2$, 记相应的分点为 $A_i = (x(t_i), y(t_i))$, $i = 0, 1, \cdots, n$, 以及 $\left\lvert \vv{A_{i-1}A_i} \right\rvert = \sqrt{(x(t_i) - x(t_{i-1}))^2 + (y(t_i) - y(t_{i-1}))^2}$, 若极限
@@ -1365,8 +1380,8 @@ V & = \pi \int_0^{\pi} (y(t))^2 |x'(t)| ~ \mathrm{d}t = \pi \int_0^{\pi} (b\sin 
 \end{column}
 \end{columns}
 
-\startproof[bg=yellow, fg=red](解)
 \only<2-3>{
+\startproof[bg=yellow, fg=red](解)
 \alert{不可以}. 圆柱体侧面积 $2\pi f(\xi_i) \Delta x_i$ 是带子底面圆的周长 $2\pi f(\xi_i)$ 与带子宽度 $\Delta x_i$ 的乘积, 但带子宽度 $\Delta x_i$ 并不等于带子所在曲线的弧长微元 $\mathrm{d}s$, 因此圆柱体侧面积的和并不能很好地近似旋转体表面积.
 }
 
@@ -1375,11 +1390,12 @@ V & = \pi \int_0^{\pi} (y(t))^2 |x'(t)| ~ \mathrm{d}t = \pi \int_0^{\pi} (b\sin 
 }
 
 \only<4>{
+\startproof[bg=yellow, fg=red](解)
 \textbf{正确做法}: 用\alert{圆台}侧面积 $2\pi \frac{f(\xi_i) + f(\xi_{i-1})}{2} \cdot \mathrm{d}s$ 的和来近似旋转体表面积, 其中 $\mathrm{d}s = \sqrt{1 + (f'(\xi_i))^2} \mathrm{d} x$ 是带子所在曲线的弧长微元. 当 $\lambda(P) \to 0$ 时, 上式的极限存在, 那么旋转体的表面积为
 \[
 S = \lim_{\lambda(P) \to 0} \sum_{i=1}^n 2\pi \frac{f(\xi_i) + f(\xi_{i-1})}{2} \cdot \mathrm{d}s = \tcbhighmath[colback=yellow!30]{2\pi \int_a^b f(x) \sqrt{1 + (f'(x))^2} ~ \mathrm{d}x}.
 \]
-\qed
+% \qed
 }
 
 \end{frame}
