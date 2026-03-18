@@ -982,9 +982,9 @@ axis equal image, % 保证椭圆比例正确
 \pause
 
 \startproof[bg=yellow, fg=red](解)
-椭圆的参数方程为 $\begin{cases} x(\theta) = a\cos \theta \\[3pt] y(\theta) = b\sin \theta \end{cases}$, $\theta \in [0, 2\pi]$. 因此, 椭圆的周长为
+取椭圆的参数方程为 $\begin{cases} x(\theta) = a\sin \theta \\[3pt] y(\theta) = b\cos \theta \end{cases}$, $\theta \in [0, 2\pi]$. 因此, 椭圆的周长为
 \begin{align*}
-\ell & = \int_0^{2\pi} \sqrt{(x'(\theta))^2 + (y'(\theta))^2} ~ \mathrm{d}\theta = \int_0^{2\pi} \sqrt{(-a\sin \theta)^2 + (b\cos \theta)^2} ~ \mathrm{d}\theta \\
+\ell & = \int_0^{2\pi} \sqrt{(x'(\theta))^2 + (y'(\theta))^2} ~ \mathrm{d}\theta = \int_0^{2\pi} \sqrt{(a\cos \theta)^2 + (-b\sin \theta)^2} ~ \mathrm{d}\theta \\
 & = \int_0^{2\pi} a \sqrt{1 - \left( 1 - \frac{b^2}{a^2} \right) \sin^2 \theta} ~ \mathrm{d}\theta = 4a \int_0^{\pi/2} \sqrt{1 - k^2 \sin^2 \theta} ~ \mathrm{d}\theta,
 \end{align*}
 其中 $k = \sqrt{1 - \frac{b^2}{a^2}}$ 是椭圆的离心率. 令 $E(k, \phi) = \int_0^\phi \sqrt{1 - k^2 \sin^2 \theta} ~ \mathrm{d}\theta$ 是第二类不完全椭圆积分, 则椭圆的周长为 $4a E(k, \pi/2).$ 它不能用初等函数表达, 但可以用级数展开或者数值方法计算.
@@ -998,9 +998,11 @@ axis equal image, % 保证椭圆比例正确
 \frametitle{求曲线弧长的例子 -- 椭圆周长}
 
 对 $E(k, \phi) = \int_0^\phi \sqrt{1 - k^2 \sin^2 \theta} ~ \mathrm{d}\theta$ 作变量替换 $t = \sin \theta$, 记 $T = \sin \phi$, 可得
-\[
-E(k, \phi) = \int_0^{\sin \phi} \frac{\sqrt{1 - k^2 t^2}}{\sqrt{1 - t^2}} ~ \mathrm{d}t = \int_0^{T} \frac{\sqrt{(1 - k^2t^2) (1 - t^2)}}{1 - t^2} ~ \mathrm{d}t = \int_0^{T} \frac{\sqrt{1 - (1 - k^2) t^2 + k^2 t^4}}{1 - t^2} ~ \mathrm{d}t = \int_0^{T} R(t, \sqrt{P(t)}) ~ \mathrm{d}t,
-\]
+\begin{align*}
+E(k, \phi) & = \int_0^{\sin \phi} \frac{\sqrt{1 - k^2 t^2}}{\sqrt{1 - t^2}} ~ \mathrm{d}t = \int_0^{T} \frac{\sqrt{(1 - k^2t^2) (1 - t^2)}}{1 - t^2} ~ \mathrm{d}t \\
+& = \int_0^{T} \frac{\sqrt{1 - (1 - k^2) t^2 + k^2 t^4}}{1 - t^2} ~ \mathrm{d}t \\
+& = \int_0^{T} R(t, \sqrt{P(t)}) ~ \mathrm{d}t,
+\end{align*}
 其中, 一般来说, $R(t, w)$ 是有理函数, $P(t)$ 是以 $k$ 为参变量的三次或四次多项式. $\int_0^{T} R(t, \sqrt{P(t)}) ~ \mathrm{d}t$ 是一般的\alert{椭圆积分 (Elliptic Integral)}.
 
 \end{frame}
@@ -1549,7 +1551,7 @@ $\kappa = \left| \frac{\Delta \theta}{\Delta s} \right|,$ 取极限 $\Delta s \t
 \begin{frame}
 \frametitle{曲线曲率公式}
 
-设曲线 $\Gamma$ 的方程为 $y = f(x)$, 且有二阶导数, 那么它在一点处切线斜率为 $k = \tan \theta = f'(x)$, 即 $\theta = \arctan f'(x)$. 因此
+设曲线 $\Gamma$ 的方程 $y = f(x)$ 二阶可导, 那么它在一点处切线斜率为 $k = \tan \theta = f'(x)$, 即 $\theta = \arctan f'(x)$. 因此
 \[
 \mathrm{d} \theta = \frac{f''(x)}{1 + (f'(x))^2} \mathrm{d} x
 \]
