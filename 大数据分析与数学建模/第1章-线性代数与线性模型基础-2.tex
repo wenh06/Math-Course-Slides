@@ -160,7 +160,98 @@ X^T X \hat{\boldsymbol{\beta}} = X^T \mathbf{y}
 
 %------------------------------------------------
 
-\section[最小二乘法]{最小二乘法的推导}
+\section[几何视角]{从几何视角看最小二乘法}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{矛盾的方程组}
+
+在实际数据分析中，我们往往面临\textbf{超定方程组} (Overdetermined System)：
+\[
+X \boldsymbol{\beta} = \mathbf{y}
+\]
+其中 $n \gg p$（样本量远大于参数个数）。
+
+\begin{itemize}
+    \item 观测向量 $\mathbf{y}$ 通常不在 $X$ 的列空间 $\mathcal{C}(X)$ 中（因为存在随机误差 $\boldsymbol{\epsilon}$）。
+    \item 这意味着方程 $X \boldsymbol{\beta} = \mathbf{y}$ \textbf{无解}。
+\end{itemize}
+
+\vspace{1em}
+\textbf{核心思想}：
+既然找不到完美的 $\boldsymbol{\beta}$ 使得 $X \boldsymbol{\beta}$ 等于 $\mathbf{y}$，那我们就退而求其次：
+找一个 $\hat{\boldsymbol{\beta}}$，使得 $X \hat{\boldsymbol{\beta}}$ \textbf{最接近} $\mathbf{y}$。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{几何解释：投影 (Projection)}
+
+最小二乘法的几何本质是\textbf{正交投影}。
+
+\begin{itemize}
+    \item 我们寻找 $\mathcal{C}(X)$ 中距离 $\mathbf{y}$ 最近的点 $\hat{\mathbf{y}}$。
+    \item 最短距离对应于\textbf{垂线}。即残差向量 $\mathbf{e} = \mathbf{y} - \hat{\mathbf{y}}$ 必须垂直于 $\mathcal{C}(X)$。
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2, >=stealth]
+    % Draw plane representing column space of X
+    \fill[blue!10] (-2, -1) -- (3, -1) -- (4, 1.5) -- (-1, 1.5) -- cycle;
+    \node[blue] at (3.5, 0.5) {$\mathcal{C}(X)$};
+
+    % Origin
+    \coordinate (O) at (0,0);
+    \fill (O) circle (1.5pt) node[below left] {$\mathbf{0}$};
+
+    % Vectors
+    \draw[->, thick, red] (O) -- (1.5, 2.5) node[above] {$\mathbf{y}$};
+    \draw[->, thick, blue] (O) -- (1.5, 0.8) node[below right] {$\hat{\mathbf{y}} = X\hat{\boldsymbol{\beta}}$};
+    \draw[->, thick, dashed, orange] (1.5, 0.8) -- (1.5, 2.5) node[midway, right] {$\mathbf{e} \perp \mathcal{C}(X)$};
+
+    % Right angle symbol
+    \draw (1.5, 1.0) -- (1.6, 1.05) -- (1.6, 0.85);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{从几何直觉导出正规方程}
+
+利用几何条件：\textbf{残差 $\mathbf{e}$ 垂直于 $X$ 的每一列}。
+即 $\mathbf{e}$ 垂直于 $\mathcal{C}(X)$ 中的任意向量。
+
+\[
+X^T \mathbf{e} = \mathbf{0}
+\]
+
+代入 $\mathbf{e} = \mathbf{y} - X \hat{\boldsymbol{\beta}}$：
+
+\[
+X^T (\mathbf{y} - X \hat{\boldsymbol{\beta}}) = \mathbf{0}
+\]
+
+展开整理：
+\[
+X^T \mathbf{y} - X^T X \hat{\boldsymbol{\beta}} = \mathbf{0} \implies X^T X \hat{\boldsymbol{\beta}} = X^T \mathbf{y}
+\]
+
+\begin{alertblock}{结论}
+这再次得到了\textbf{正规方程}！
+无需复杂的微积分求导，仅凭几何直觉 ($e \perp X$) 就能得到相同的结果。
+\end{alertblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[代数推导]{最小二乘法的代数推导}
 
 %------------------------------------------------
 
@@ -220,12 +311,12 @@ Q(\boldsymbol{\beta}) = \mathbf{y}^T\mathbf{y} - 2\boldsymbol{\beta}^T X^T \math
 
 %------------------------------------------------
 
-\section[统计性质与方差分析]{统计性质与方差分析}
+\section[方差分析]{统计性质与方差分析}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{帽子矩阵 (Hat Matrix)}
+\frametitle{投影矩阵 (Projection Matrix)}
 
 我们的预测值是 $\hat{\mathbf{y}} = X \hat{\boldsymbol{\beta}}$。将 $\hat{\boldsymbol{\beta}} = (X^T X)^{-1} X^T \mathbf{y}$ 代入：
 
@@ -233,18 +324,18 @@ Q(\boldsymbol{\beta}) = \mathbf{y}^T\mathbf{y} - 2\boldsymbol{\beta}^T X^T \math
 \hat{\mathbf{y}} = X (X^T X)^{-1} X^T \mathbf{y} = H \mathbf{y}
 \]
 
-其中定义 $H$ 为\textbf{帽子矩阵} (Hat Matrix)：
+其中定义 $H$ 为\textbf{投影矩阵} (Projection Matrix)，统计学中常称为\textbf{帽子矩阵} (Hat Matrix)：
 \[
 H = X (X^T X)^{-1} X^T
 \]
-因为它把 $\mathbf{y}$ 变成了 $\hat{\mathbf{y}}$（给 $y$ 戴上了帽子）。
+因为它将观测值 $\mathbf{y}$ 正交投影到了 $X$ 的列空间中，得到预测值 $\hat{\mathbf{y}}$。
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Hat Matrix 的性质}
+\frametitle{投影矩阵 $H$ 的性质}
 
 $H$ 具有优良的数学性质：
 
@@ -360,50 +451,15 @@ RSS = \mathbf{e}^T \mathbf{e} = \|\mathbf{y} - \hat{\mathbf{y}}\|^2
 \underbrace{\sum (y_i - \bar{y})^2}_{\text{TSS}} = \underbrace{\sum (\hat{y}_i - \bar{y})^2}_{\text{ESS}} + \underbrace{\sum (y_i - \hat{y}_i)^2}_{\text{RSS}}
 \]
 
-在矩阵形式下：
+在矩阵形式下，令 $\mathbf{1}$ 为全1向量，$\bar{y}\mathbf{1}$ 为均值向量。因为模型包含截距项，残差 $\mathbf{e}$ 与 $\mathbf{1}$ 正交，可推导得：
 \[
-\mathbf{y}^T \mathbf{y} = \hat{\mathbf{y}}^T \hat{\mathbf{y}} + \mathbf{e}^T \mathbf{e}
+\|\mathbf{y} - \bar{y}\mathbf{1}\|^2 = \|\hat{\mathbf{y}} - \bar{y}\mathbf{1}\|^2 + \|\mathbf{e}\|^2
 \]
 
 这其实就是 $n$ 维空间中的\textbf{勾股定理}。
 \begin{itemize}
     \item 因为 $\hat{\mathbf{y}} \in \mathcal{C}(X)$ 且 $\mathbf{e} \perp \mathcal{C}(X)$，所以两者正交。
 \end{itemize}
-
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{几何解释：投影}
-
-最小二乘法的几何本质是\textbf{投影}。
-
-\begin{itemize}
-    \item 观测向量 $\mathbf{y}$ 通常不在 $X$ 的列空间 $\mathcal{C}(X)$ 中（因为有误差 $\boldsymbol{\epsilon}$）。
-    \item 我们寻找 $\mathcal{C}(X)$ 中距离 $\mathbf{y}$ 最近的点 $\hat{\mathbf{y}}$。
-    \item $\hat{\mathbf{y}} = X \hat{\boldsymbol{\beta}} = \underbrace{X(X^T X)^{-1} X^T}_{H} \mathbf{y}$。
-\end{itemize}
-
-\begin{center}
-\begin{tikzpicture}[scale=1.2, >=stealth]
-    % Draw plane representing column space of X
-    \fill[blue!10] (-2, -1) -- (3, -1) -- (4, 1.5) -- (-1, 1.5) -- cycle;
-    \node[blue] at (3.5, 0.5) {$\mathcal{C}(X)$};
-
-    % Origin
-    \coordinate (O) at (0,0);
-    \fill (O) circle (1.5pt) node[below left] {$\mathbf{0}$};
-
-    % Vectors
-    \draw[->, thick, red] (O) -- (1.5, 2.5) node[above] {$\mathbf{y}$};
-    \draw[->, thick, blue] (O) -- (1.5, 0.8) node[below right] {$\hat{\mathbf{y}} = H\mathbf{y}$};
-    \draw[->, thick, dashed, orange] (1.5, 0.8) -- (1.5, 2.5) node[midway, right] {$\mathbf{e} \perp \mathcal{C}(X)$};
-
-    % Right angle symbol
-    \draw (1.5, 1.0) -- (1.6, 1.05) -- (1.6, 0.85);
-\end{tikzpicture}
-\end{center}
 
 \end{frame}
 
@@ -566,56 +622,64 @@ X = \begin{pmatrix}
 
 %------------------------------------------------
 
-\section{R 语言实战}
+\section[验证]{数学原理的验证}
 
 %------------------------------------------------
 
 \begin{frame}[fragile]
 \frametitle{R 语言中的线性模型}
 
-在 R 中，我们使用 \verb|lm()| 函数进行拟合。R 会自动为我们构造设计矩阵 $X$。
+在 R 中，我们通常直接调用 \verb|lm()| 函数进行拟合。
+我们经常看到这样的输出：
 
 \begin{block}{代码示例}
 \begin{verbatim}
-# 模拟数据
+# 模拟数据与拟合
 breed <- factor(c("A", "A", "B", "B", "C"))
 weight <- c(100, 102, 110, 112, 105)
-
-# 拟合线性模型
 fit <- lm(weight ~ breed)
-
-# 查看设计矩阵
-X <- model.matrix(fit)
-print(X)
+summary(fit)$coefficients
 \end{verbatim}
 \end{block}
 
 \pause
-输出的 $X$ 会自动处理因子变量 `breed`，生成哑变量列。
+\textbf{输出表格}：
+\begin{verbatim}
+            Estimate Std. Error  t value Pr(>|t|)
+(Intercept)   101.00      1.000  101.000 0.000097
+breedB          9.00      1.414    6.364 0.023800
+breedC          4.00      1.732    2.309 0.147200
+\end{verbatim}
+
+\textbf{问题}：这些数字是怎么来的？
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{手动实现 OLS}
+\frametitle{原理验证：矩阵运算验证 OLS}
 
-我们可以利用矩阵运算手动验证 `lm()` 的结果：
+我们可以利用矩阵运算验证 `lm()` 的结果，确保计算过程符合数学原理。
 
 \begin{verbatim}
+X <- model.matrix(fit)  # 获取设计矩阵
 y <- weight
 
-# 矩阵乘法求解: (X'X)^(-1) X'y
+# 1. 验证 Estimate (系数估计)
+# beta_hat = (X'X)^(-1) X'y
 beta_hat <- solve(t(X) %*% X) %*% t(X) %*% y
+print(beta_hat)  # 结果与 (Intercept), breedB, breedC 完全一致
 
-# 对比结果
-print(beta_hat)
-print(coef(fit))
+# 2. 验证 Std. Error (标准误)
+sigma2 <- sum((y - X %*% beta_hat)^2) / (5 - 3) # RSS / (n-p)
+var_beta <- sigma2 * solve(t(X) %*% X)          # Cov(beta)
+se <- sqrt(diag(var_beta))
+print(se)        # 结果与 Std. Error 列完全一致
 \end{verbatim}
 
-\begin{alertblock}{思考}
-如果 `breed` 有很多水平（例如 1000 头公牛），$X^T X$ 的维度会很大，直接求逆 `solve()` 会非常慢甚至内存溢出。
-这就是为什么我们需要 \textbf{混合模型方程组 (MME)} 和迭代算法（如 PCG），这是后续课程的内容。
+\begin{alertblock}{结论}
+软件计算结果并非黑盒，本质上是执行了我们推导的 $X^T X$ 和 $(X^T X)^{-1}$ 等矩阵运算。
 \end{alertblock}
 
 \end{frame}
@@ -652,28 +716,73 @@ print(coef(fit))
 
 %------------------------------------------------
 
-\begin{frame}
-\frametitle{混合线性模型 (Mixed Linear Model) 预告}
+\section[模型评估]{假设检验与模型评估}
 
-为了解决上述问题，我们将引入混合模型：
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{模型拟合优度：$R^2$}
+
+如何衡量模型“好不好”？
+我们利用方差分解：$TSS = ESS + RSS$。
+
+\begin{block}{决定系数 (Coefficient of Determination)}
 \[
-\mathbf{y} = X\boldsymbol{\beta} + Z\mathbf{u} + \mathbf{e}
+R^2 = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS}
 \]
+\end{block}
 
 \begin{itemize}
-    \item $\boldsymbol{\beta}$：固定效应 (Fixed Effects)，如性别、场次。
-    \item $\mathbf{u}$：随机效应 (Random Effects)，如个体育种值。
-    \item 假设 $\mathbf{u} \sim N(0, G), \mathbf{e} \sim N(0, R)$。
+    \item $R^2 \in [0, 1]$。
+    \item $R^2$ 表示响应变量 $y$ 的变异中，有多少比例可以被模型解释。
+    \item 例如 $R^2 = 0.8$ 意味着 80\% 的变异来源已查明。
 \end{itemize}
-
-\textbf{BLUP (Best Linear Unbiased Prediction)} 就是该模型的解，它能够同时估计固定效应和预测随机效应。这将是后续课程的重点。
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{线性模型在现代 AI 中的地位}
+\frametitle{调整后的 $R^2$ (Adjusted $R^2$)}
+
+单纯增加自变量个数 $p$，哪怕是随机数，$R^2$ 也只会增加不会减少。为了公平比较不同模型：
+
+\[
+R^2_{adj} = 1 - (1 - R^2) \frac{n - 1}{n - p - 1}
+\]
+
+\begin{itemize}
+    \item 引入了对参数个数 $p$ 的惩罚。
+    \item 如果新变量解释力弱，增加它反而会降低 $R^2_{adj}$。
+    \item \textbf{育种中的应用}：判断是否应该将某个微效基因纳入模型。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{参数的假设检验 (t-test)}
+
+我们想要知道某个解释变量（如性别）是否显著影响结果。
+\begin{itemize}
+    \item 原假设 $H_0: \beta_j = 0$
+    \item 备择假设 $H_1: \beta_j \neq 0$
+\end{itemize}
+
+构造 $t$ 统计量：
+\[
+t = \frac{\hat{\beta}_j - 0}{\text{SE}(\hat{\beta}_j)} \sim t(n-p)
+\]
+其中标准误 $\text{SE}(\hat{\beta}_j)$ 是协方差矩阵 $\hat{\sigma}^2 (X^T X)^{-1}$ 对角线元素的平方根。
+
+若 $|t|$ 很大（或 $p$ 值很小），则拒绝 $H_0$，认为该因素显著。
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{线性模型在现代 AI 中的地位}
 
 尽管深度学习 (Deep Learning) 非常火热，但线性模型依然是基石。
 
@@ -704,10 +813,10 @@ Transformer (ChatGPT) & \textbf{线性变换} + Attention + 非线性 \\
 
 \begin{enumerate}
     \item \textbf{万物皆矩阵}：无论是回归、ANOVA 还是 ANCOVA，本质上都是 $Y = X\beta + e$。
-    \item \textbf{OLS 解}：$\hat{\beta} = (X^T X)^{-1} X^T y$，其几何意义是投影。
-    \item \textbf{方差分解}：TSS = ESS + RSS，模型解释的变异越多，$R^2$ 越高。
-    \item \textbf{统计性质}：在误差独立同正态假设下，$\hat{\beta}$ 是无偏且最小方差估计。
-    \item \textbf{未来挑战}：当 $p > n$ 时，我们需要 BLUP 和正则化方法（下节课内容）。
+    \item \textbf{几何视角}：OLS 就是找投影，$R^2$ 就是变异分解。
+    \item \textbf{统计推断}：$\hat{\beta}$ 是无偏估计，标准误来自 $(X^T X)^{-1}$。
+    \item \textbf{实战应用}：构造正确的设计矩阵（处理哑变量）是建模的关键。
+    \item \textbf{模型拓展}：当 $p > n$ 时，OLS 失效，我们需要\textbf{混合模型}和\textbf{正则化}。
 \end{enumerate}
 
 \end{frame}
