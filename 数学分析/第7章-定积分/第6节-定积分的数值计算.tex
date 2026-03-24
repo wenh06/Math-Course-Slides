@@ -49,8 +49,8 @@
 \[ Q = \int_a^b \mathrm{d}Q = \int_a^b f(x) \mathrm{d}x \]
 \end{block}
 \begin{itemize}
-    \item \textbf{物理应用}: 变力做功、液体压力、引力、力矩等.
-    \item \textbf{建模应用}: Malthus 人口模型 ($P' = rP$) 与 Logistic 模型 ($P' = rP(1-P/K)$).
+\item \textbf{物理应用}: 变力做功、液体压力、引力、力矩等.
+\item \textbf{建模应用}: Malthus 人口模型 ($P' = rP$) 与 Logistic 模型 ($P' = rP(1-P/P_{\max})$).
 \end{itemize}
 \end{frame}
 
@@ -80,7 +80,7 @@
 \[
 \int_a^b f(x) \mathrm{d}x = \lim_{n \to \infty} \frac{b - a}{n} \sum_{i=1}^n f(a + i h).
 \]
-后面会看到, 这是 Newton-Cotes 求积公式的一种最简单的特殊情况, 即\textbf{矩形求积公式}.
+后面会看到, 这是 Newton-Cotes 求积公式的一种最简单的特殊情况, 即 (复化) \textbf{矩形求积公式}.
 \end{recall}
 
 但是我们一般不会直接使用上述的求积公式来计算定积分的数值, \alert{为什么?}
@@ -216,7 +216,7 @@ R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x
 \pause
 \vspace{0.5em}
 
-注意到, $n$ 步 Newton-Cotes 求积公式中的``权重'' $A_i = \int_a^b \left( \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j} \right) ~ \mathrm{d}x$ 与被积函数 $f$, 只与区间 $[a, b]$ 和划分的步数 $n$ 有关, 与被积函数 $f$ 无关. 这也是数值求积公式的一个重要特点, 也是数值求积公式能够广泛应用的一个重要原因.
+注意到, $n$ 步 Newton-Cotes 求积公式中的``权重'' $A_i = \int_a^b \left( \prod_{j=0, j \neq i}^n \frac{x - x_j}{x_i - x_j} \right) ~ \mathrm{d}x$ 只与区间 $[a, b]$ 和划分的步数 $n$ 有关, 与被积函数 $f$ 无关. 这也是数值求积公式的一个重要特点, 也是数值求积公式能够广泛应用的一个重要原因.
 
 \end{frame}
 
@@ -234,7 +234,9 @@ R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x
 \pause
 \vspace{0.5em}
 
-关于 Lagrange 插值多项式近似定积分的误差估计 (定理 \ref{thm:lagrange-interpolation-error-estimate-for-integration}), 可以得到如下的结论:
+关于 Lagrange 插值多项式近似定积分的误差估计
+% (定理 \ref{thm:lagrange-interpolation-error-estimate-for-integration})
+, 可以得到如下的结论:
 
 \begin{cor}[$n$ 步 Newton-Cotes 求积公式的代数精度]
 \begin{itemize}
@@ -243,7 +245,7 @@ R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x
 \end{itemize}
 \end{cor}
 
-根据这个结论, 一般我们都只采用 $n = 2k$ 偶数步的 Newton-Cotes 求积公式, 例如 $n = 2$ 的 Simpson 公式, $n = 4$ 的 Cotes 公式等等, 因为它们的代数精度更高.
+根据这个结论, 一般我们都只采用 $n = 2k$ 偶数步的 Newton-Cotes 求积公式, 例如 $n = 2$ 的 Simpson 公式, $n = 4$ 的 Cotes 公式等等, 因为它们与高一阶的求积公式具有相同的代数精度, 但计算复杂度更小.
 
 \end{frame}
 
@@ -254,14 +256,14 @@ R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x
 
 回顾一下 Lagrange 插值多项式近似定积分的误差估计
 \[
-R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i) ~ \mathrm{d}x = \int_0^n \frac{f^{(n+1)}(\xi_{a+th})}{(n+1)!} \prod_{i=0}^n (t - i) ~ \mathrm{d}t.
+R_n(f) = \int_a^b (f(x) - P_n(x)) ~ \mathrm{d}x = \int_a^b \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^n (x - x_i) ~ \mathrm{d}x = \int_0^n \frac{h^{n+2} f^{(n+1)}(\xi_{a+th})}{(n+1)!} \prod_{i=0}^n (t - i) ~ \mathrm{d}t.
 \]
 \begin{itemize}
 \item 如果 $f$ 是次数 $\leqslant n$ 的多项式, 那么 $f^{(n+1)} \equiv 0$, 从而 $R_n(f) = 0$, 也就是说, $n$ 步 Newton-Cotes 求积公式在被积函数为任意次数 $\leqslant n$ 的多项式时都精确成立, 代数精度至少为 $n$.
 \pause
-\item 如果 $f$ 是次数 $n + 1$ 的多项式, 那么 $f^{(n+1)}$ 是一个非零常数 $C$, 从而 $R_n(f) = \frac{C}{(n+1)!} \int_0^n \prod_{i=0}^n (t - i) ~ \mathrm{d}t$. 当 $n = 2k$ 时,
+\item 如果 $f$ 是次数 $n + 1$ 的多项式, 那么 $f^{(n+1)}$ 是一个非零常数 $C$, 从而 $R_n(f) = \frac{C h^{n+2}}{(n+1)!} \int_0^n \prod_{i=0}^n (t - i) ~ \mathrm{d}t$. 当 $n = 2k$ 时,
 \[
-R_{2k}(f) = \frac{C}{(2k+1)!} \int_0^{2k} \prod_{i=0}^{2k} (t - i) ~ \mathrm{d}t = \frac{C}{(2k+1)!} \int_{-k}^k \prod_{i=-k}^{k} (t+i) ~ \mathrm{d}t = 0.
+R_{2k}(f) = \frac{C h^{2k+2}}{(2k+1)!} \int_0^{2k} \prod_{i=0}^{2k} (t - i) ~ \mathrm{d}t = \frac{C h^{2k+2}}{(2k+1)!} \int_{-k}^k \prod_{i=-k}^{k} (t+i) ~ \mathrm{d}t = 0.
 \]
 也就是说, $n = 2k$ 步 Newton-Cotes 求积公式对所有次数 $n + 1 = 2k + 1$ 的多项式都精确成立, 代数精度至少为 $n + 1 = 2k + 1$.
 \end{itemize}
@@ -478,15 +480,15 @@ C_2^{(4)} & = 1 - 2 \cdot C_0^{(4)} - 2 \cdot C_1^{(4)}= \frac{12}{90}.
 
 我们之前已经得到了 $n$ 步 Newton-Cotes 求积公式的一般误差估计 (积分形式)
 \[
-R_n(f) = \int_0^n \frac{f^{(n+1)}(\xi_{a+th})}{(n+1)!} \prod_{i=0}^n (t - i) ~ \mathrm{d}t.
+R_n(f) = \int_0^n \frac{h^{n+2} f^{(n+1)}(\xi_{a+th})}{(n+1)!} \prod_{i=0}^n (t - i) ~ \mathrm{d}t.
 \]
 
 \pause
 
-对于 $n = 1$ 的梯形公式, 很容易得到更具体的误差估计
+对于 $n = 1$ 的梯形公式, $h = b - a,$ 很容易得到更具体的误差估计
 \begin{align*}
-R_1(f) & = \int_0^1 \frac{f''(\xi_{a+th})}{2!} (t - 0)(t - 1) ~ \mathrm{d}t \\
-(\text{第一中值定理}) & = \frac{f''(\xi)}{2} \int_0^1 t(t-1) ~ \mathrm{d}t = -\frac{f''(\xi)}{12} (b-a)^3,
+R_1(f) & = \int_0^1 \frac{h^3 f''(\xi_{a+th})}{2!} (t - 0)(t - 1) ~ \mathrm{d}t \\
+(\text{第一中值定理}) & = \frac{h^3 f''(\xi)}{2} \int_0^1 t(t-1) ~ \mathrm{d}t = -\frac{f''(\xi)}{12} (b-a)^3,
 \end{align*}
 其中 $\xi \in (a, b)$ 是一个待定的点. 也就是说, 梯形公式的误差 $R_1(f)$ 的大小与被积函数 $f$ 的二阶导数的最大值成正比, 与区间长度 $(b-a)$ 的三次方成正比.
 
@@ -495,7 +497,7 @@ R_1(f) & = \int_0^1 \frac{f''(\xi_{a+th})}{2!} (t - 0)(t - 1) ~ \mathrm{d}t \\
 
 对于 $n = 2$ 的 Simpson 公式, 有
 \[
-R_2(f) = \int_0^2 \frac{f^{(3)}(\xi_{a+th})}{3!} (t - 0)(t - 1)(t - 2) ~ \mathrm{d}t,
+R_2(f) = \int_0^2 \frac{h^4 f^{(3)}(\xi_{a+th})}{3!} (t - 0)(t - 1)(t - 2) ~ \mathrm{d}t,
 \]
 问题在于 $(t - 0)(t - 1)(t - 2)$ 在 $[0, 2]$ 上的符号不固定, 因此无法直接利用第一中值定理来得到一个更具体的误差估计. 但是, 可以通过一些技巧来得到一个更具体的误差估计.
 
@@ -644,7 +646,7 @@ C[i] = np.trapezoid([L(t) for t in ts], ts)
 当 $n$ 增加到一定程度时, 计算 Cotes 系数的数值积分就会变得非常不稳定了, 从而导致计算得到的 Cotes 系数 $C_i^{(n)}$ 出现负数或者非常大的数, 与真实值也会有较大偏差.
 
 \begin{question}
-但是, 当 $n \leqslant 12$ 的时候， Cotes 系数计算的误差并不明显, 这里的积分数值不稳定来源于什么地方?
+但是, 当 $n \leqslant 12$ 的时候 (\alert{可以自行验证一下})， Cotes 系数计算的误差并不明显, 这里的积分数值不稳定来源于什么地方?
 \end{question}
 
 \pause
