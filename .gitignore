@@ -202,3 +202,10 @@ build/*
 !build/.keep
 
 /*.pdf
+
+# nbgrader
+gradebook.db
+submitted/
+autograded/
+feedback/
+release/
