@@ -1,8 +1,11 @@
+from typing import Callable
+
 import numpy as np
 import sympy as sp
 
 
-def cotes_weights(n):
+def cotes_weights(n: int) -> np.ndarray:
+    """n 步 Newton-Cotes 求积公式的 Cotes 权重"""
     x = np.linspace(0, 1, n + 1)
     C = np.zeros(n + 1)
 
@@ -21,7 +24,8 @@ def cotes_weights(n):
     return C
 
 
-def cotes_weights_sp(n):
+def cotes_weights_sp(n: int) -> list:
+    """使用 SymPy 计算 n 步 Newton-Cotes 求积公式的 Cotes 权重 (精确值)"""
     x = sp.symbols("x")
     nodes = [sp.Rational(j, n) for j in range(n + 1)]
     C = []
@@ -34,14 +38,16 @@ def cotes_weights_sp(n):
     return C
 
 
-def newton_cotes_integrate(f, a, b, n):
+def newton_cotes_integrate(f: Callable[[float], float], a: float, b: float, n: int) -> float:
+    """使用 n 步 Newton-Cotes 求积公式计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$"""
     C = cotes_weights(n)
     x = np.linspace(a, b, n + 1)
 
     return (b - a) * np.dot(C, np.array([f(xi) for xi in x]))
 
 
-def composite_newton_cotes(f, a, b, n, m):
+def composite_newton_cotes(f: Callable[[float], float], a: float, b: float, n: int, m: int) -> float:
+    """使用 m 个分点的 n 步 复化 Newton-Cotes 求积公式计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$"""
     C = cotes_weights(n)
     h = (b - a) / m
     total = 0.0
@@ -55,7 +61,8 @@ def composite_newton_cotes(f, a, b, n, m):
     return total
 
 
-def composite_trapezoid(f, a, b, m):
+def composite_trapezoid(f: Callable[[float], float], a: float, b: float, m: int) -> float:
+    """使用 m 个分点的复化梯形公式计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$"""
     h = (b - a) / m
     x = np.linspace(a, b, m + 1)
     y = np.array([f(xi) for xi in x])
@@ -63,7 +70,19 @@ def composite_trapezoid(f, a, b, m):
     return h * (0.5 * y[0] + np.sum(y[1:-1]) + 0.5 * y[-1])
 
 
-def romberg(f, a, b, max_level=5):
+def composite_simpson(f: Callable[[float], float], a: float, b: float, m: int) -> float:
+    """使用 m 个分点的复化 Simpson 公式计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$"""
+    m2 = m * 2
+
+    h = (b - a) / m2
+    x = np.linspace(a, b, m2 + 1)
+    y = np.array([f(xi) for xi in x])
+
+    return h / 3 * (y[0] + 4 * np.sum(y[1:-1:2]) + 2 * np.sum(y[2:-2:2]) + y[-1])
+
+
+def romberg(f: Callable[[float], float], a: float, b: float, max_level: int = 5) -> np.ndarray:
+    """使用 Romberg 方法计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$"""
     T = np.zeros((max_level, max_level))
 
     # first column: composite trapezoid with 1, 2, 4, ... subintervals
@@ -79,7 +98,8 @@ def romberg(f, a, b, max_level=5):
     return T
 
 
-def romberg_adaptive(f, a, b, tol=1e-10, max_level=10):
+def romberg_adaptive(f: Callable[[float], float], a: float, b: float, tol: float = 1e-10, max_level: int = 10) -> tuple:
+    """使用自适应 Romberg 方法计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$"""
     T = np.zeros((max_level, max_level))
 
     # initial trapezoid (m = 1)
@@ -108,7 +128,11 @@ def romberg_adaptive(f, a, b, tol=1e-10, max_level=10):
     return T[max_level - 1, max_level - 1], max_level - 1, T
 
 
-def np_gauss_legendre_integrate(f, a, b, n):
+def np_gauss_legendre_integrate(f: Callable[[float], float], a: float, b: float, n: int) -> float:
+    """使用 Gauss-Legendre 求积公式计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$
+
+    这里使用 NumPy 内置的 leggauss 函数计算节点和权重
+    """
     x, w = np.polynomial.legendre.leggauss(n)
     xp = 0.5 * (b - a) * x + 0.5 * (b + a)
     wp = 0.5 * (b - a) * w
@@ -116,7 +140,8 @@ def np_gauss_legendre_integrate(f, a, b, n):
     return np.dot(wp, [f(xi) for xi in xp])
 
 
-def custom_gauss_legendre(n):
+def custom_gauss_legendre(n: int) -> tuple:
+    """使用自定义方法计算 Gauss-Legendre 求积公式的节点和权重"""
 
     # construct Jacobi matrix
     beta = np.array([k / np.sqrt(4 * k * k - 1) for k in range(1, n)])
@@ -137,7 +162,8 @@ def custom_gauss_legendre(n):
     return x, w
 
 
-def custom_gauss_legendre_integrate(f, a, b, n):
+def custom_gauss_legendre_integrate(f: Callable[[float], float], a: float, b: float, n: int) -> float:
+    """使用自定义 Gauss-Legendre 求积公式计算定积分 $\\int_a^b f(x) ~ \\mathrm{d}x$"""
     x, w = custom_gauss_legendre(n)
     xp = 0.5 * (b - a) * x + 0.5 * (b + a)
     wp = 0.5 * (b - a) * w
