@@ -36,14 +36,6 @@
 % \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 % \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}
-
-\titlepage % Print the title page as the first slide
-
-\end{frame}
-
 %-----------------------------------
 %	PRESENTATION SLIDES
 %-----------------------------------
@@ -55,7 +47,7 @@
 
 \textbf{问题:} 之前利用函数显式表达 $y = \sqrt{1 - x^2}$ 计算半圆弧长的时候, 遇到了如下的积分:
 \[
-\ell = \int_{-1}^1 \sqrt{1 - (y')^2} ~ \mathrm{d} x = \int_{-1}^1 \sqrt{1 - \left(-\frac{x}{\sqrt{1 - x^2}}\right)^2} ~ \mathrm{d} x = \int_{-1}^1 \frac{1}{\sqrt{1 - x^2}} ~ \mathrm{d} x.
+\ell = \int_{-1}^1 \sqrt{1 + (y')^2} ~ \mathrm{d} x = \int_{-1}^1 \sqrt{1 + \left(-\frac{x}{\sqrt{1 - x^2}}\right)^2} ~ \mathrm{d} x = \int_{-1}^1 \frac{1}{\sqrt{1 - x^2}} ~ \mathrm{d} x.
 \]
 被积函数在积分区间的端点处无定义, 且在该区间上无界, 这是 Riemann 积分的无法处理的. 但这并不表明弧长是无法计算的. 所以我们需要拓展 Riemann 积分的定义.
 
@@ -132,7 +124,7 @@
 函数值无界的反常积分是反常积分的一种, 还有一种反常积分是积分区域无界的反常积分. 我们先看一个具体的例子.
 
 \begin{eg}[由万有引力定律导出第二宇宙速度]
-第二宇宙速度指的是一个物体在地球表面以某个速度发射后, 能够克服地球引力束缚, 进入太空 (运动到无限远处) 的最小速度. 根据万有引力定律, 地球对物体的引力为 $F = \frac{GMm}{r^2}$, 其中 $G$ 是万有引力常数, $M$ 是地球的质量, $m$ 是物体的质量, $r$ 是物体与地球中心的距离.
+第二宇宙速度指的是一个物体在地球表面以某个速度发射后, 能够克服地球引力束缚, 进入太空 (运动到无限远处, 不考虑其他天体) 的最小速度. 根据万有引力定律, 地球对物体的引力为 $F = \frac{GMm}{x^2}$, 其中 $G$ 是万有引力常数, $M$ 是地球的质量, $m$ 是物体的质量, $x$ 是物体与地球中心的距离.
 
 \pause
 \vspace{0.5em}

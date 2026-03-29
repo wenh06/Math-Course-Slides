@@ -143,7 +143,7 @@ Q(\boldsymbol{\beta}) = \|\mathbf{y} - X \boldsymbol{\beta}\|^2 = (\mathbf{y} - 
 \pause
 
 \begin{block}{正规方程 (Normal Equations)}
-对 $\boldsymbol{\beta}$ 求导并令其为 0，得到：
+通过几何投影（\S\,3）或代数求导（\S\,4）均可推导出：
 \[
 X^T X \hat{\boldsymbol{\beta}} = X^T \mathbf{y}
 \]
@@ -244,7 +244,7 @@ X^T \mathbf{y} - X^T X \hat{\boldsymbol{\beta}} = \mathbf{0} \implies X^T X \hat
 
 \begin{alertblock}{结论}
 这再次得到了\textbf{正规方程}！
-无需复杂的微积分求导，仅凭几何直觉 ($e \perp X$) 就能得到相同的结果。
+无需复杂的微积分求导，仅凭几何直觉 ($\mathbf{e} \perp \mathcal{C}(X)$) 就能得到相同的结果。
 \end{alertblock}
 
 \end{frame}
@@ -261,7 +261,7 @@ X^T \mathbf{y} - X^T X \hat{\boldsymbol{\beta}} = \mathbf{0} \implies X^T X \hat
 最小化误差平方和：
 
 \[
-Q(\beta) = (\mathbf{y} - X\boldsymbol{\beta})^T (\mathbf{y} - X\boldsymbol{\beta})
+Q(\boldsymbol{\beta}) = (\mathbf{y} - X\boldsymbol{\beta})^T (\mathbf{y} - X\boldsymbol{\beta})
 \]
 
 展开利用矩阵转置性质 $(AB)^T = B^T A^T$：
@@ -298,7 +298,7 @@ Q(\boldsymbol{\beta}) = \mathbf{y}^T\mathbf{y} - 2\boldsymbol{\beta}^T X^T \math
 \vspace{1em}
 对 $Q(\boldsymbol{\beta})$ 关于 $\boldsymbol{\beta}$ 求导：
 \[
-\frac{\partial Q}{\partial \boldsymbol{\beta}} = 2X^T \mathbf{y} + 2(X^T X)\boldsymbol{\beta}
+\frac{\partial Q}{\partial \boldsymbol{\beta}} = -2X^T \mathbf{y} + 2(X^T X)\boldsymbol{\beta}
 \]
 
 令导数为 $\mathbf{0}$：
@@ -311,7 +311,25 @@ Q(\boldsymbol{\beta}) = \mathbf{y}^T\mathbf{y} - 2\boldsymbol{\beta}^T X^T \math
 
 %------------------------------------------------
 
-\section[方差分析]{统计性质与方差分析}
+\section[统计推断]{OLS 的统计性质与模型评估}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{本节导图：拿到 $\hat{\boldsymbol{\beta}}$ 之后}
+
+我们已经得到 OLS 估计量 $\hat{\boldsymbol{\beta}} = (X^TX)^{-1}X^T\mathbf{y}$，接下来自然要问三个问题：
+
+\begin{enumerate}
+    \item \textbf{几何上}：预测值 $\hat{\mathbf{y}}$ 和残差 $\mathbf{e}$ 的本质是什么？
+    \begin{itemize}\item 引出\textbf{投影矩阵} $H$，以及残差的正交性。\end{itemize}
+    \item \textbf{统计上}：$\hat{\boldsymbol{\beta}}$ 有多可靠？$\sigma^2$ 如何从数据中估计？
+    \begin{itemize}\item 引出 \textbf{Gauss-Markov 定理}与参数方差公式。\end{itemize}
+    \item \textbf{评估上}：模型拟合得好不好？某个变量是否真的显著？
+    \begin{itemize}\item 引出 \textbf{方差分解}、$R^2$ 与 $t$ 检验。\end{itemize}
+\end{enumerate}
+
+\end{frame}
 
 %------------------------------------------------
 
@@ -342,12 +360,13 @@ $H$ 具有优良的数学性质：
 \begin{enumerate}
     \item \textbf{对称性}：
     \[
-    H^T = (X (X^T X)^{-1} X^T)^T = X ((X^T X)^{-1})^T X^T = H
+    H^T = (X (X^T X)^{-1} X^T)^T = X \underbrace{((X^T X)^{-1})^T}_{= (X^TX)^{-1}} X^T = H
     \]
+    （因为 $X^TX$ 是对称阵，其逆仍对称：$((X^TX)^{-1})^T = ((X^TX)^T)^{-1} = (X^TX)^{-1}$。）
 
     \item \textbf{幂等性}：
     \[
-    H^2 = H H = X \underbrace{(X^T X)^{-1} X^T X}_{I} (X^T X)^{-1} X^T = H
+    H^2 = H H = X (X^T X)^{-1} \underbrace{X^T X (X^T X)^{-1}}_{= I} X^T = X(X^TX)^{-1}X^T = H
     \]
 \end{enumerate}
 
@@ -370,8 +389,10 @@ $H$ 具有优良的数学性质：
 \]
 
 \textbf{性质}：残差与设计矩阵的列空间正交，即与\textbf{所有解释变量正交}。
+
+注意到 $X^T H = X^T X (X^T X)^{-1} X^T = I \cdot X^T = X^T$，因此：
 \[
-X^T \mathbf{e} = X^T (I - H)\mathbf{y} = (X^T - X^T H)\mathbf{y} = \mathbf{0}
+X^T \mathbf{e} = X^T (I - H)\mathbf{y} = (X^T - X^T H)\mathbf{y} = (X^T - X^T)\mathbf{y} = \mathbf{0}
 \]
 
 这意味着：\textbf{所有的模型信息都已经提取完毕，剩下的残差 $\mathbf{e}$ 中不包含任何可以由 $X$ 线性解释的部分。}
@@ -386,15 +407,15 @@ X^T \mathbf{e} = X^T (I - H)\mathbf{y} = (X^T - X^T H)\mathbf{y} = \mathbf{0}
 
 \begin{block}{Gauss-Markov 假设}
 \begin{itemize}
-    \item $E[\boldsymbol{\epsilon}] = \mathbf{0}$（无偏）
-    \item $Var(\boldsymbol{\epsilon}) = \sigma^2 I$（同方差性，且观测之间不相关）
+    \item $\mathrm{E}[\boldsymbol{\epsilon}] = \mathbf{0}$（无偏）
+    \item $\mathrm{Var}(\boldsymbol{\epsilon}) = \sigma^2 I$（同方差性，且观测之间不相关）
 \end{itemize}
 \end{block}
 
 \textbf{Gauss-Markov 定理}：
 在此假设下，$\hat{\boldsymbol{\beta}}$ 是 $\boldsymbol{\beta}$ 的\textbf{最佳线性无偏估计 (BLUE, Best Linear Unbiased Estimator)}。
 \begin{itemize}
-    \item "最佳"意味着在所有无偏估计中，OLS 的方差最小。
+    \item ``最佳''意味着在所有无偏估计中，OLS 的方差最小。
     \item 注意：BLUE 不需要正态分布假设。但如果要进行 t 检验或 F 检验，则通常需要假设 $\boldsymbol{\epsilon} \sim N(\mathbf{0}, \sigma^2 I)$。
 \end{itemize}
 \end{frame}
@@ -407,7 +428,7 @@ X^T \mathbf{e} = X^T (I - H)\mathbf{y} = (X^T - X^T H)\mathbf{y} = \mathbf{0}
 由于 $\hat{\boldsymbol{\beta}} = (X^T X)^{-1} X^T \mathbf{y}$ 是 $\mathbf{y}$ 的线性组合，根据方差传播律：
 
 \[
-Var(\hat{\boldsymbol{\beta}}) = (X^T X)^{-1} X^T Var(\mathbf{y}) X (X^T X)^{-1} = \sigma^2 (X^T X)^{-1}
+\mathrm{Var}(\hat{\boldsymbol{\beta}}) = (X^T X)^{-1} X^T \mathrm{Var}(\mathbf{y}) X (X^T X)^{-1} = \sigma^2 (X^T X)^{-1}
 \]
 
 \textbf{结论}：
@@ -451,7 +472,7 @@ RSS = \mathbf{e}^T \mathbf{e} = \|\mathbf{y} - \hat{\mathbf{y}}\|^2
 \underbrace{\sum (y_i - \bar{y})^2}_{\text{TSS}} = \underbrace{\sum (\hat{y}_i - \bar{y})^2}_{\text{ESS}} + \underbrace{\sum (y_i - \hat{y}_i)^2}_{\text{RSS}}
 \]
 
-在矩阵形式下，令 $\mathbf{1}$ 为全1向量，$\bar{y}\mathbf{1}$ 为均值向量。因为模型包含截距项，残差 $\mathbf{e}$ 与 $\mathbf{1}$ 正交，可推导得：
+在矩阵形式下，令 $\mathbf{1}$ 为全1向量，$\bar{y}\mathbf{1}$ 为均值向量。由于截距列 $\mathbf{1} \in \mathcal{C}(X)$ 而 $\mathbf{e} \perp \mathcal{C}(X)$，故 $\mathbf{e} \perp \mathbf{1}$，利用勾股定理可得：
 \[
 \|\mathbf{y} - \bar{y}\mathbf{1}\|^2 = \|\hat{\mathbf{y}} - \bar{y}\mathbf{1}\|^2 + \|\mathbf{e}\|^2
 \]
@@ -460,6 +481,69 @@ RSS = \mathbf{e}^T \mathbf{e} = \|\mathbf{y} - \hat{\mathbf{y}}\|^2
 \begin{itemize}
     \item 因为 $\hat{\mathbf{y}} \in \mathcal{C}(X)$ 且 $\mathbf{e} \perp \mathcal{C}(X)$，所以两者正交。
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{模型拟合优度：$R^2$}
+
+由上面的方差分解 $TSS = ESS + RSS$，我们可以直接量化模型的解释能力：
+
+\begin{block}{决定系数 (Coefficient of Determination)}
+\[
+R^2 = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS}
+\]
+\end{block}
+
+\begin{itemize}
+    \item $R^2 \in [0, 1]$。$R^2 = 1$ 表示完美拟合，$R^2 = 0$ 表示模型完全无解释力。
+    \item $R^2$ 表示响应变量 $\mathbf{y}$ 的变异中，有多少比例可以被模型解释。
+    \item 例如 $R^2 = 0.8$ 意味着 $80\%$ 的变异来源已被模型捕获。
+    \item 注意：$R^2$ 随模型参数个数单调不减——单纯堆砌变量也能"虚高"$R^2$。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{调整后的 $R^2$ (Adjusted $R^2$)}
+
+单纯增加自变量个数（哪怕是随机噪声），$R^2$ 只增不减。为了公平比较含不同参数数目的模型，引入自由度惩罚：
+
+\[
+R^2_{\text{adj}} = 1 - \frac{RSS\,/\,(n-p)}{TSS\,/\,(n-1)} = 1 - (1 - R^2)\,\frac{n-1}{n-p}
+\]
+
+其中 $p$ 为模型参数总数（含截距列），$n-p$ 为残差自由度，$n-1$ 为总自由度。
+
+\begin{itemize}
+    \item 若新加入的变量解释力弱，$RSS/(n-p)$ 降幅不足以抵消自由度损失，$R^2_{\text{adj}}$ 反而会下降。
+    \item \textbf{育种中的应用}：判断是否应该将某个微效基因纳入模型。
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{参数的假设检验 ($t$ 检验)}
+
+我们想要知道某个解释变量（如性别）是否显著影响结果。
+\begin{itemize}
+    \item 原假设 $H_0: \beta_j = 0$（该因素无影响）
+    \item 备择假设 $H_1: \beta_j \neq 0$
+\end{itemize}
+
+在正态误差假设 $\boldsymbol{\epsilon} \sim N(\mathbf{0}, \sigma^2 I)$ 下，$\hat{\boldsymbol{\beta}} \sim N\!\left(\boldsymbol{\beta},\, \sigma^2 (X^TX)^{-1}\right)$，构造 $t$ 统计量：
+\[
+t = \frac{\hat{\beta}_j}{\mathrm{SE}(\hat{\beta}_j)} \sim t(n-p)
+\]
+其中 $\mathrm{SE}(\hat{\beta}_j) = \sqrt{\hat{\sigma}^2\,[(X^TX)^{-1}]_{jj}}$，即协方差矩阵对角元素的平方根。
+
+若 $|t|$ 很大（$p$ 值很小），则拒绝 $H_0$，认为该因素显著。
 
 \end{frame}
 
@@ -496,6 +580,14 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
     \item $\beta_1$: 回归系数（胸围每增加 1 单位，体重增加 $\beta_1$ 单位）。
 \end{itemize}
 
+\vspace{0.5em}
+代入 OLS 公式 $\hat{\boldsymbol{\beta}} = (X^TX)^{-1}X^T\mathbf{y}$，可得显式解：
+\[
+\hat{\beta}_1 = \frac{\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}, \qquad
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+\]
+这正是统计教材中经典的最小二乘公式，是矩阵形式在 $p=2$ 时的特例。
+
 \end{frame}
 
 %------------------------------------------------
@@ -511,7 +603,7 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 y_{ij} = \mu + \alpha_i + \epsilon_{ij}, \quad i \in \{A, B, C\}
 \]
 
-我们需要引入\textbf{哑变量} (Dummy Variables) 将其转化为矩阵形式。
+我们需要引入\textbf{哑变量（Dummy Variable）}：用 $0/1$ 二值列来表示分类变量的各个水平，从而将其编码到设计矩阵 $X$ 中，使线性模型能处理非数值的分类因素。
 
 \end{frame}
 
@@ -533,8 +625,8 @@ X = \begin{pmatrix}
 1 & 0 & 0 \\
 0 & 1 & 0 \\
 0 & 0 & 1
-\end{pmatrix}
-\begin{pmatrix} \mu_A \\ \mu_B \\ \mu_C \end{pmatrix}
+\end{pmatrix},\quad
+\boldsymbol{\beta} = \begin{pmatrix} \mu_A \\ \mu_B \\ \mu_C \end{pmatrix}
 \]
 $X$ 列满秩，$\hat{\mu}_A$ 即为品种 A 的均值。
 \end{column}
@@ -547,8 +639,8 @@ X = \begin{pmatrix}
 1 & 0 & 0 \\
 1 & 1 & 0 \\
 1 & 0 & 1
-\end{pmatrix}
-\begin{pmatrix} \beta_0 \\ \beta_{B} \\ \beta_{C} \end{pmatrix}
+\end{pmatrix},\quad
+\boldsymbol{\beta} = \begin{pmatrix} \beta_0 \\ \beta_{B} \\ \beta_{C} \end{pmatrix}
 \]
 \begin{itemize}
     \item $\beta_0 = \mu_A$
@@ -570,6 +662,9 @@ X = \begin{pmatrix}
 \begin{frame}
 \frametitle{应用三：协方差分析 (ANCOVA) - 实际案例}
 
+\textbf{协方差分析（ANCOVA，Analysis of Covariance）}在方差分析的基础上，同时纳入连续型协变量，是动植物育种研究中最常用的统计模型之一。
+
+\vspace{0.5em}
 假设我们研究猪的生长情况：
 \begin{itemize}
     \item 响应变量 $y$：体重 (Weight)
@@ -580,8 +675,9 @@ X = \begin{pmatrix}
 
 模型：
 \[
-y_{ijk} = \mu + \text{Breed}_i + \text{Sex}_j + \beta \cdot \text{Age}_{ijk} + \epsilon_{ijk}
+y_{ijk} = \mu + \alpha_i + \gamma_j + b \cdot \text{Age}_{ijk} + \epsilon_{ijk}
 \]
+其中 $\alpha_i$ 为品种效应，$\gamma_j$ 为性别效应，$b$ 为日龄的回归系数。
 
 若采用基准编码（A为基准，F为基准），设计矩阵 $X$ 将包含：
 \begin{enumerate}
@@ -616,7 +712,7 @@ X = \begin{pmatrix}
 \]
 参数 $\boldsymbol{\beta} = (\mu, \beta_{\text{BreedB}}, \beta_{\text{SexM}}, \beta_{\text{Age}})^T$。
 
-这正是 R 语言 `model.matrix(~ Breed + Sex + Age)` 输出的结果。
+这正是 R 语言 ``model.matrix(Breed + Sex + Age)'' 输出的结果。
 
 \end{frame}
 
@@ -645,10 +741,10 @@ summary(fit)$coefficients
 \pause
 \textbf{输出表格}：
 \begin{verbatim}
-            Estimate Std. Error  t value Pr(>|t|)
-(Intercept)   101.00      1.000  101.000 0.000097
-breedB          9.00      1.414    6.364 0.023800
-breedC          4.00      1.732    2.309 0.147200
+            Estimate   Std. Error      t value        Pr(>|t|)
+(Intercept)      101    1.000000    101.000000    9.801519e-05
+breedB            10    1.414214      7.071068    1.941932e-02
+breedC             4    1.732051      2.309401    1.471971e-01
 \end{verbatim}
 
 \textbf{问题}：这些数字是怎么来的？
@@ -660,7 +756,7 @@ breedC          4.00      1.732    2.309 0.147200
 \begin{frame}[fragile]
 \frametitle{原理验证：矩阵运算验证 OLS}
 
-我们可以利用矩阵运算验证 `lm()` 的结果，确保计算过程符合数学原理。
+我们可以利用矩阵运算验证 ``lm()'' 的结果，确保计算过程符合数学原理。
 
 \begin{verbatim}
 X <- model.matrix(fit)  # 获取设计矩阵
@@ -709,78 +805,10 @@ print(se)        # 结果与 Std. Error 列完全一致
 \textbf{解决方案}：
 \begin{itemize}
     \item \textbf{正则化 (Regularization)}：岭回归 (Ridge), Lasso。
-    \item \textbf{混合模型 (Mixed Models)}：将效应视为随机的 ($\beta \sim N(0, \sigma_\beta^2)$)，这就是 \textbf{BLUP} 的核心思想。
+    \item \textbf{混合模型 (Mixed Models)}：将效应视为随机的 ($\boldsymbol{\beta} \sim N(\mathbf{0}, \sigma_\beta^2 I)$)，这就是 \textbf{BLUP} 的核心思想。
 \end{itemize}
 
 \end{frame}
-
-%------------------------------------------------
-
-\section[模型评估]{假设检验与模型评估}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{模型拟合优度：$R^2$}
-
-如何衡量模型“好不好”？
-我们利用方差分解：$TSS = ESS + RSS$。
-
-\begin{block}{决定系数 (Coefficient of Determination)}
-\[
-R^2 = \frac{ESS}{TSS} = 1 - \frac{RSS}{TSS}
-\]
-\end{block}
-
-\begin{itemize}
-    \item $R^2 \in [0, 1]$。
-    \item $R^2$ 表示响应变量 $y$ 的变异中，有多少比例可以被模型解释。
-    \item 例如 $R^2 = 0.8$ 意味着 80\% 的变异来源已查明。
-\end{itemize}
-
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{调整后的 $R^2$ (Adjusted $R^2$)}
-
-单纯增加自变量个数 $p$，哪怕是随机数，$R^2$ 也只会增加不会减少。为了公平比较不同模型：
-
-\[
-R^2_{adj} = 1 - (1 - R^2) \frac{n - 1}{n - p - 1}
-\]
-
-\begin{itemize}
-    \item 引入了对参数个数 $p$ 的惩罚。
-    \item 如果新变量解释力弱，增加它反而会降低 $R^2_{adj}$。
-    \item \textbf{育种中的应用}：判断是否应该将某个微效基因纳入模型。
-\end{itemize}
-
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{参数的假设检验 (t-test)}
-
-我们想要知道某个解释变量（如性别）是否显著影响结果。
-\begin{itemize}
-    \item 原假设 $H_0: \beta_j = 0$
-    \item 备择假设 $H_1: \beta_j \neq 0$
-\end{itemize}
-
-构造 $t$ 统计量：
-\[
-t = \frac{\hat{\beta}_j - 0}{\text{SE}(\hat{\beta}_j)} \sim t(n-p)
-\]
-其中标准误 $\text{SE}(\hat{\beta}_j)$ 是协方差矩阵 $\hat{\sigma}^2 (X^T X)^{-1}$ 对角线元素的平方根。
-
-若 $|t|$ 很大（或 $p$ 值很小），则拒绝 $H_0$，认为该因素显著。
-
-\end{frame}
-
-%------------------------------------------------
 
 \begin{frame}{线性模型在现代 AI 中的地位}
 
@@ -812,7 +840,7 @@ Transformer (ChatGPT) & \textbf{线性变换} + Attention + 非线性 \\
 \frametitle{本章总结}
 
 \begin{enumerate}
-    \item \textbf{万物皆矩阵}：无论是回归、ANOVA 还是 ANCOVA，本质上都是 $Y = X\beta + e$。
+    \item \textbf{万物皆矩阵}：无论是回归、ANOVA 还是 ANCOVA，本质上都是 $\mathbf{y} = X\boldsymbol{\beta} + \boldsymbol{\epsilon}$。
     \item \textbf{几何视角}：OLS 就是找投影，$R^2$ 就是变异分解。
     \item \textbf{统计推断}：$\hat{\beta}$ 是无偏估计，标准误来自 $(X^T X)^{-1}$。
     \item \textbf{实战应用}：构造正确的设计矩阵（处理哑变量）是建模的关键。
