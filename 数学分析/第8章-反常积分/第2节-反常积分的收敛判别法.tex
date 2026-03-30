@@ -47,10 +47,10 @@
 {
 \larger[1]
 
+考虑反常积分
 \begin{equation*}
-\int_a^{\omega} f(x) ~ \mathrm{d} x
+\int_a^{\omega} f(x) ~ \mathrm{d} x, \quad \text{$\omega$ 是无穷或者 $f(x)$ 的奇点.}
 \end{equation*}
-
 有时候, 我们不需要 (往往也不容易) 计算某个反常积分的值, 但需要 (\alert{定性地}) 判断它是否收敛, 所以我们发展处一系列判别法, 来判断一个反常积分的敛散性.
 }
 
@@ -198,13 +198,13 @@ $f(x)$ 的可积性可以归纳为极限 $\displaystyle \lim_{x \to \omega} F(x)
 \frametitle{比较判别法的推论}
 
 \begin{cor}
-设 $f(x)$ 在 $[1, \omega)$ 上非负不增, 且局部可积, 那么级数 $\displaystyle \sum_{n=1}^{\infty} f(n)$ 与反常积分 $\displaystyle \int_1^{\omega} f(x) ~ \mathrm{d} x$ 同敛散.
+设 $f(x)$ 在 $[1, +\infty)$ 上非负不增, 且局部可积, 那么级数 $\displaystyle \sum_{n=1}^{\infty} f(n)$ 与反常积分 $\displaystyle \int_1^{+\infty} f(x) ~ \mathrm{d} x$ 同敛散.
 \end{cor}
 
 \pause
 
 \startproof[bg=yellow, fg=red]
-由于 $f(x)$ 在 $[1, \omega)$ 上非负不增, 则对于任意的 $n \in \mathbb{N}^+$ 和 $x \in [n, n+1),$ 有
+由于 $f(x)$ 在 $[1, +\infty)$ 上非负不增, 则对于任意的 $n \in \mathbb{N}^+$ 和 $x \in [n, n+1),$ 有
 \[
 f(n+1) \leqslant f(x) \leqslant f(n).
 \]
@@ -216,7 +216,7 @@ f(n+1) = \int_n^{n+1} f(n+1) ~ \mathrm{d} x \leqslant \int_n^{n+1} f(x) ~ \mathr
 \[
 \sum_{n=1}^{N} f(n+1) \leqslant \int_1^{N+1} f(x) ~ \mathrm{d} x \leqslant \sum_{n=1}^{N} f(n).
 \]
-这就说明了 $\displaystyle \sum_{n=1}^{\infty} f(n)$ 与 $\displaystyle \int_1^{\omega} f(x) ~ \mathrm{d} x$ 同敛散.
+这就说明了 $\displaystyle \sum_{n=1}^{\infty} f(n)$ 与 $\displaystyle \int_1^{+\infty} f(x) ~ \mathrm{d} x$ 同敛散.
 \qed
 
 \end{frame}
@@ -227,7 +227,7 @@ f(n+1) = \int_n^{n+1} f(n+1) ~ \mathrm{d} x \leqslant \int_n^{n+1} f(x) ~ \mathr
 \frametitle{比较判别法的推论}
 
 \begin{cor}
-取 $f(x) = \frac{1}{x^s}$, 则 $\displaystyle \zeta(s) := \sum_{n=1}^{\infty} \frac{1}{n^s}$ 与 $\displaystyle \int_1^{\omega} \frac{1}{x^s} ~ \mathrm{d} x$ 同敛散. 因此 $\zeta(s)$ 在 $s > 1$ 时收敛, 在 $s \leqslant 1$ 时发散.
+取 $f(x) = \frac{1}{x^s}$, 则 $\displaystyle \zeta(s) := \sum_{n=1}^{\infty} \frac{1}{n^s}$ 与 $\displaystyle \int_1^{+\infty} \frac{1}{x^s} ~ \mathrm{d} x$ 同敛散. 因此 $\zeta(s)$ 在 $s > 1$ 时收敛, 在 $s \leqslant 1$ 时发散.
 \end{cor}
 
 \pause

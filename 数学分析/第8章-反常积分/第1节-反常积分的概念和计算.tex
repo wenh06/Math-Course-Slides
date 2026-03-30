@@ -344,7 +344,7 @@ n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
 \frametitle{Cauchy 主值}
 
 \begin{eg}
-讨论反常积分 $\int_{-\infty}^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x$ 的敛散性.
+讨论反常积分 $\int_{-\infty}^{+\infty} \sin x~ \mathrm{d} x$ 的敛散性.
 \end{eg}
 
 \pause
@@ -353,10 +353,10 @@ n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
 \startproof[bg=yellow, fg=red](解)
 由于
 \begin{gather*}
-\int_0^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x = \left. -\cos x \right|_0^{+\infty} = \lim_{A \to +\infty} \left(-\cos A + 1\right), \\
-\int_{-\infty}^0 \frac{\sin x}{x} ~ \mathrm{d} x = \left. -\cos x \right|_{-\infty}^0 = \lim_{\widetilde{A} \to +\infty} \left(-\cos(-\widetilde{A}) + 1\right),
+\int_0^{+\infty} \sin x ~ \mathrm{d} x = \left. -\cos x \right|_0^{+\infty} = \lim_{A \to +\infty} \left(-\cos A + 1\right), \\
+\int_{-\infty}^0 \sin x ~ \mathrm{d} x = \left. -\cos x \right|_{-\infty}^0 = \lim_{\widetilde{A} \to +\infty} \left(-\cos(-\widetilde{A}) + 1\right),
 \end{gather*}
-都发散, 所以 $\int_{-\infty}^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x$ 发散.
+都发散, 所以 $\int_{-\infty}^{+\infty} \sin x ~ \mathrm{d} x$ 发散.
 \qed
 
 \pause
@@ -364,7 +364,7 @@ n + 1, & x \in [n, n+\frac{1}{n(n+1)^2}], ~ n = 1, 2, \cdots, \\[6pt]
 
 但是, 如果我们取一种特殊的收敛方式, 即 $A = \widetilde{A}$, 则
 \[
-\text{``$\int_{-\infty}^{+\infty}$''} \frac{\sin x}{x} ~ \mathrm{d} x = \lim_{A \to +\infty} \int_{-A}^A \frac{\sin x}{x} ~ \mathrm{d} x = \lim_{A \to +\infty} \left. -\cos x \right|_{-A}^A = 0.
+\text{``$\int_{-\infty}^{+\infty}$''} \sin x ~ \mathrm{d} x = \lim_{A \to +\infty} \int_{-A}^A \sin x~ \mathrm{d} x = \lim_{A \to +\infty} \left. -\cos x \right|_{-A}^A = 0.
 \]
 这就是所谓的\textbf{Cauchy主值}.
 
