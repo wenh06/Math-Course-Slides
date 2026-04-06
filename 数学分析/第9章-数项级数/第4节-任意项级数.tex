@@ -544,10 +544,273 @@ d_n = \sum\limits_{1 \leqslant k, \ell \leqslant n} a_k b_\ell,
 
 %------------------------------------------------
 
-\begin{frame}{级数的乘法 -- 思路 1}
+\begin{frame}{级数的乘法 -- 思路 1 的适用范围}
 
 \startproof[bg=yellow, fg=red]
+$\forall \varepsilon > 0,$ 存在正整数 $N,$ 使得对一切 $n > N,$ 成立
+\[
+\left\lvert \sum\limits_{k=1}^n a_k - A \right\rvert < \varepsilon / (|A| + |B| + 1), ~~ \text{且} ~~ \left\lvert \sum\limits_{k=1}^n b_k - B \right\rvert < \varepsilon / (|A| + |B| + 1).
+\]
+记 $\tau_1 = \sum\limits_{k=1}^n a_k -A , \tau_2 = \sum\limits_{k=1}^n b_k - B,$ 那么 $|\tau_1|, |\tau_2| < \varepsilon / (|A| + |B| + 1).$ 于是, 对一切 $n > N,$ 成立
+\[
+d_n = \left(  \sum\limits_{k=1}^n a_k \right) \left( \sum\limits_{k=1}^n b_k \right) = (A + \tau_1)(B + \tau_2) = AB + A\tau_2 + B\tau_1 + \tau_1\tau_2,
+\]
+那么有
+\[
+\left\lvert d_n - AB \right\rvert = \left\lvert A\tau_2 + B\tau_1 + \tau_1\tau_2 \right\rvert \leqslant (|A| + |B| + 1) \cdot \varepsilon / (|A| + |B| + 1) = \varepsilon.
+\]
 
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]{级数的乘法 -- 思路 2 (Cauchy 乘积)}
+
+\begin{block}{思路 2 (Cauchy 乘积)}
+按照反对角线方向, 将下标和为定值 $n+1$ 的项 $a_k b_\ell$ ($k + \ell = n + 1$) 归并在一起, 记
+\[
+c_n = \sum_{k=1}^{n} a_k b_{n-k+1} = a_1 b_n + a_2 b_{n-1} + \cdots + a_n b_1,
+\]
+并定义
+\[
+\left( \sum_{n=1}^\infty a_n \right) \cdot \left( \sum_{n=1}^\infty b_n \right) = \sum_{n=1}^\infty c_n.
+\]
+\end{block}
+
+\[
+\tikz[baseline=(m.north west)]{
+\matrix (m) [matrix of math nodes,
+            column sep={0.2cm, 0.1cm, 0.1cm, 0.1cm},
+            row sep=0.1cm] {
+    c_1 & a_1 b_1 & a_1 b_2 & a_1 b_3 & \cdots \\
+    c_2 & a_2 b_1 & a_2 b_2 & a_2 b_3 & \cdots \\
+    c_3 & a_3 b_1 & a_3 b_2 & a_3 b_3 & \cdots \\
+    \vdots & \vdots & \vdots & \vdots & \ddots \\
+};
+
+% 第1条对角线: a_1b_1 (第1行第2列)
+\draw[dashed, blue, thick] (m-1-2.north east) -- (m-1-2.south west);
+
+% 第2条对角线: a_1b_2 (第1行第3列) 到 a_2b_1 (第2行第2列)
+\draw[dashed, blue, thick] (m-1-3.north east) -- (m-2-2.south west);
+
+% 第3条对角线: a_1b_3 (第1行第4列) 到 a_3b_1 (第3行第2列)
+\draw[dashed, blue, thick] (m-1-4.north east) -- (m-3-2.south west);
+}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数的乘法 -- 思路 2 (Cauchy 乘积)}
+
+Cauchy 乘积实际上是一种 \alert{卷积 (Convolution)} 的操作:
+\begin{align*}
+\text{连续版本:} & \quad f * g (x) = \int_{-\infty}^{+\infty} f(t) g(x - t) ~ \mathrm{d} t; \\
+\text{离散有限版本:} & \quad A * B [k] = \sum_{i+j=k} A[i] \cdot B[j], ~~ \text{$A, B$ 的长度分别为 $n$ 和 $m$}; \\
+\text{离散无限版本:} & \quad A * B [k] = \sum_{i+j=k} A[i] \cdot B[j].
+\end{align*}
+
+下面, 我们来研究这种思路下, 级数乘积的敛散性
+
+\pause
+
+\begin{thm}
+设级数 $\sum\limits_{n=1}^\infty a_n = A$ 和 $\sum\limits_{n=1}^\infty b_n = B$ 都是收敛的, 且至少其中一个是绝对收敛的, 那么 Cauchy 乘积 $\sum\limits_{n=1}^\infty c_n$ 也是收敛的, 并且 $\sum\limits_{n=1}^\infty c_n = AB.$
+
+\pause
+
+若 $\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$ 都只是条件收敛的, 那么 $\sum\limits_{n=1}^\infty c_n$ 可能发散.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy 乘积收敛性的分析与证明}
+
+\startproof[bg=yellow, fg=red](分析)
+我们设 $\sum\limits_{n=1}^\infty a_n = A$ 绝对收敛. 要证明 $\sum\limits_{n=1}^\infty c_n$ 收敛 (暂时不证明它的和是 $AB$), 则由 Cauchy 收敛准则, 需要考察
+\[
+\left| \sum_{n = n_1+1}^{n_2+1} c_n \right| = \left| \sum_{n = n_1+1}^{n_2+1} \sum_{i+j=n} a_i b_j \right|.
+\]
+\pause
+上述和实际上对应无限矩阵中左上角的一块``梯形'':
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+& \hspace{5em} a_1 {\color{red} b_{n_1}} + a_1 {\color{red} b_{n_1+1}} + \cdots + a_1 {\color{red} b_{n_2}} \\
+& \hspace{3em} + a_2 {\color{red} b_{n_1-1}} + a_2 {\color{red} b_{n_1}} + \cdots + a_2 {\color{red} b_{n_2-1}} \\
+& \hspace{1.5em} \reflectbox{$\ddots$} \hspace{11.5em} \reflectbox{$\ddots$} \\
+& + {\color{red} a_{n_1}} b_1 + {\color{red} a_{n_1}} b_2 + \cdots + {\color{red} a_{n_1}} {\color{red} b_{n_2 - n_1 + 1}} \\
+& + {\color{red} a_{n_1+1}} {\color{red} b_1} + \cdots + {\color{red} a_{n_1+1}} {\color{red} b_{n_2 - n_1}} \\
+& \hspace{1.5em} \vdots \hspace{6.5em} \reflectbox{$\ddots$} \\
+& + {\color{red} a_{n_2-1}} b_1 + {\color{red} a_{n_2-1}} b_2 \\
+& + {\color{red} a_{n_2}} b_1
+\end{align*}
+\end{column}
+\pause
+\begin{column}{0.5\textwidth}
+从左式可以看到, 对于 $\color{red} b_{n_1}, a_{n_2}, \dots$ 这些项, 当 $n_1, n_2$ 足够大时, 它们的绝对值可以被控制; 但是对于 $b_1, a_1, \dots$ 这些项, 它们的绝对值都无法被控制. 这就启发了我们, 需要将上式截断, 分而治之, 一部分用绝对值较小的 $a_n$ 来控制, 另一部分用绝对值较小的 $b_n$ 来控制.
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy 乘积收敛性的分析与证明}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+\tikzcoord{L} & \hspace{5em} a_1 {\color{red} b_{n_1}} + a_1 {\color{red} b_{n_1+1}} + \cdots + a_1 {\color{red} b_{n_2}} \tikzcoord{R} \\
+& \hspace{3em} + a_2 {\color{red} b_{n_1-1}} + a_2 {\color{red} b_{n_1}} + \cdots + a_2 {\color{red} b_{n_2-1}} \\
+& \hspace{1.5em} \reflectbox{$\ddots$} \hspace{11.5em} \reflectbox{$\ddots$} \\
+% {\only<2->{& \tikz[remember picture, overlay] \draw[dashed, blue] ([yshift=-3.2em]L) -- ([yshift=-3.2em]R); \\[-\baselineskip]}}
+& + {\color{red} a_{n_1}} b_1 + {\color{red} a_{n_1}} b_2 + \cdots + {\color{red} a_{n_1}} {\color{red} b_{n_2 - n_1 + 1}} \\
+& + {\color{red} a_{n_1+1}} {\color{red} b_1} + \cdots + {\color{red} a_{n_1+1}} {\color{red} b_{n_2 - n_1}} \\
+& \hspace{1.5em} \vdots \hspace{6.5em} \reflectbox{$\ddots$} \\
+& + {\color{red} a_{n_2-1}} b_1 + {\color{red} a_{n_2-1}} b_2 \\
+& + {\color{red} a_{n_2}} b_1
+\end{align*}
+\end{column}
+\pause
+\begin{column}{0.5\textwidth}
+记 $A_{i}^{j} = \sum\limits_{n=i}^{j} a_n, B_{i}^{j} = \sum\limits_{n=i}^{j} b_n,$ 那么左式以橫的视角来看, 可以表示为
+\[
+\sum a_* B_*^*,
+\]
+以竖的视角来看, 可以表示为
+\[
+\sum A_*^* b_*.
+\]
+\pause
+由于 $\sum\limits_{n=1}^\infty a_n$ 绝对收敛, 我们使用第一种视角来控制上式的绝对值.
+{\tikz[remember picture, overlay] \draw[dashed, red, thick] ([yshift=-3.2em]L) -- ([yshift=-3.2em]R);}
+\end{column}
+\end{columns}
+
+\pause
+
+记
+\[
+S := \sum\limits_{n=n_1+1}^{n_2+1} c_n = a_1 B_{n_1}^{n_2} + a_2 B_{n_1-1}^{n_2-1} + \cdots + a_{n+1} B_{n_1-n}^{n_2-n} + \cdots + a_{n_1} B_1^{n_2-n_1+1} + a_{n_1+1} B_1^{n_2-n_1} + \cdots + a_{n_2} B_1^1.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy 乘积收敛性的分析与证明}
+
+由已知条件 $\sum\limits_{n=1}^\infty b_n = B$ 收敛, 那么
+\[
+\begin{cases}
+\exists M > 0, ~ \text{使得} ~ \forall~N, ~ \left\lvert \sum\limits_{n=1}^N b_n \right\rvert < M ~ \implies \left\lvert B_i^j \right\rvert < 2M; \\
+\forall~\varepsilon > 0, ~ \exists N_0, ~ \text{使得} ~ \forall~j > i > N_0, ~ \left\lvert B_i^j \right\rvert < \varepsilon.
+\end{cases}
+\]
+\pause
+由已知条件 $\sum\limits_{n=1}^\infty a_n = A$ 绝对收敛, 那么
+\[
+\begin{cases}
+\exists M' > 0, ~ \text{使得} ~ \forall~N, ~ \sum\limits_{n=1}^N |a_n| < M'; \\
+\forall~\varepsilon > 0, ~ \exists N_1, ~ \text{使得} ~ \forall~i > N_1, ~ |a_i| < \varepsilon.
+\end{cases}
+\]
+\pause
+取 $N = \max\{N_0, N_1\},$ $n_2, n_1 > 2N + 4,$ 并令 $n_0 = \lfloor n_1 / 2 \rfloor - 1 > N,$ 那么
+\begin{align*}
+|S| & \leqslant \left( |a_1| \cdot |B_{n_1}^{n_2}| + \cdots + |a_{n_0}| \cdot |B_{n_1-n_0+1}^{n_2-n_0+1}| \right) + \left( |a_{n_0+1}| \cdot |B_{n_1-n_0}^{n_2-n_0}| + \cdots + |a_{n_2}| \cdot |B_1^1| \right) \\
+& < (|a_1| + \cdots + |a_{n_0}|) \cdot \varepsilon + \varepsilon \cdot 2M < (M' + 2M) \cdot \varepsilon.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy 乘积收敛性的分析与证明}
+
+\begin{remark}
+至于 $\sum\limits_{n=1}^\infty c_n = AB$ 的证明, 可以考察 $\left\lvert \sum\limits_{n=1}^N c_n - AB \right\rvert,$ 用类似的方法分析误差, 这里不再赘述.
+\end{remark}
+
+\pause
+
+\begin{block}{$\sum\limits_{n=1}^\infty a_n,$ $\sum\limits_{n=1}^\infty b_n$ 都只是条件收敛, 而 $\sum\limits_{n=1}^\infty c_n$ 发散的例子}
+取 $a_n = b_n = \dfrac{(-1)^{n+1}}{\sqrt{n}},$ 那么 $\sum\limits_{n=1}^\infty a_n$ 和 $\sum\limits_{n=1}^\infty b_n$ 都是条件收敛的, 而
+\[
+|c_n| = \left|\sum_{i+j=n+1} (-1)^{i+j+2} \dfrac{1}{\sqrt{i}\sqrt{j}}\right| = \left|(-1)^{n+1} \sum_{i+j=n+1} \dfrac{1}{\sqrt{i}\sqrt{j}}\right| \geqslant \sum_{i+j=n+1} \dfrac{1}{(i + j)/2} = \dfrac{2n}{n+1}.
+\]
+因此, $c_n \not\to 0,$ 故 $\sum\limits_{n=1}^\infty c_n$ 发散.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{绝对收敛级数的乘积}
+
+\begin{question}
+我们已经证明了
+\begin{itemize}
+\item 如果 $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 都收敛 ~ $\implies$ 正方形乘积 $ = A \cdot B$;
+\item 如果 $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 都收敛, 且至少其中一个绝对收敛 ~ $\implies$ Cauchy 乘积 $ = A \cdot B$.
+\end{itemize}
+那么, 如果 $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 都绝对收敛, 那么会有更强的结论吗?
+\end{question}
+
+\pause
+
+\begin{thm}
+设 $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 都绝对收敛, 那么将 $a_k b_\ell$ 按照任意顺序排列成一个数列 $\{c_n\},$ 则 $\sum\limits_{n=1}^\infty c_n$ 也是绝对收敛的, 并且 $\sum\limits_{n=1}^\infty c_n = AB.$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{绝对收敛级数的乘积}
+
+\startproof[bg=yellow, fg=red](证明思路)
+容易观察到, $c_n = a_{\sigma_1(n)} b_{\sigma_2(n)}$ 的前 $n$ 项和, 对应于 $a_n, b_n$ 排列成的无穷矩阵的区域, 可以用一个很大的正方形来包含, 这里的 $\sigma_1, \sigma_2$ 是 $a_n, b_n$ 的排列. 考虑 $|c_n|$ 的前 $N$ 项和
+\[
+\sum\limits_{n=1}^N |c_n| = \sum\limits_{n=1}^N |a_{\sigma_1(n)} b_{\sigma_2(n)}|,
+\]
+令 $M = \max\limits_{1 \leqslant n \leqslant N} \{\sigma_1(n), \sigma_2(n)\},$ 那么上式的绝对值可以被下面的式子控制:
+\[
+\sum\limits_{n=1}^N |c_n| \leqslant \left( \sum\limits_{n=1}^M |a_n| \right) \cdot \left( \sum\limits_{n=1}^M |b_n| \right) \leqslant \left( \sum\limits_{n=1}^\infty |a_n| \right) \cdot \left( \sum\limits_{n=1}^\infty |b_n| \right).
+\]
+由此可知正项级数 $\sum\limits_{n=1}^\infty |c_n|$ 收敛, 即 $\sum\limits_{n=1}^\infty c_n$ 绝对收敛.
+
+\pause
+
+绝对收敛级数的和不受项的排列影响, 将 $c_n$ 的次序调整成 Cauchy 乘积的次序, 则 $\sum\limits_{n=1}^\infty c_n = AB.$
+\qed
+
+\pause
+
+\begin{question}
+若 $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B, \sum\limits_{n=1}^\infty c_n = C$ 都收敛, 那么是否必然有 $AB = C$? 或者是不一定成立的?
+\end{question}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数乘积应用举例}
+
+考虑 $e^x = \sum\limits_{n=0}^\infty \dfrac{x^n}{n!},$ $e^y = \sum\limits_{n=0}^\infty \dfrac{y^n}{n!}.$
+
+首先, 由 d'Alembert 判别法, $\left.\dfrac{x^{n+1}}{(n+1)!} \right/ \dfrac{x^n}{n!} = \dfrac{x}{n+1} \to 0 ~ (n \to \infty),$ 知以上级数都是绝对收敛的.
+\pause
+考虑用 Cauchy 乘积的方式计算 $e^x \cdot e^y,$ 则
+\begin{align*}
+e^x \cdot e^y & = \left( \sum\limits_{n=0}^\infty \dfrac{x^n}{n!} \right) \cdot \left( \sum\limits_{n=0}^\infty \dfrac{y^n}{n!} \right) = \sum\limits_{n=0}^\infty \sum_{i+j=n} \dfrac{x^i}{i!} \cdot \dfrac{y^j}{j!} \cdot {\color{red} \dfrac{n!}{n!}} \\
+& = \sum\limits_{n=0}^\infty \dfrac{1}{n!} \sum_{i+j=n} \dfrac{n!}{i!j!} x^i y^j = \sum\limits_{n=0}^\infty \dfrac{(x+y)^n}{n!} = e^{x+y}.
+\end{align*}
 
 \end{frame}
 
