@@ -58,15 +58,311 @@
 \begin{frame}
 \frametitle{无穷乘积的定义}
 
+设 $p_1, p_2, \ldots$ 是一个数列, 形式地称他们的``积''为如下的无穷乘积:
+\[
+\prod_{n=1}^\infty p_n = p_1 \cdot p_2 \cdot p_3 \cdots,
+\]
+与数项级数类似, 无穷乘积的定义也依赖于``部分积''的极限. 定义前 $n$ 项的部分积为
+\[
+P_n = \prod_{k=1}^n p_k = p_1 \cdot p_2 \cdot \cdots \cdot p_n.
+\]
+
+\begin{Def}[无穷乘积]
+如果部分积序列 $\{P_n\}$ 收敛于一个\alert{非零}的数 $P$, 即
+\[
+\lim_{n \to \infty} P_n = P \neq 0,
+\]
+则称无穷乘积 $\prod_{n=1}^\infty p_n$ 收敛, 并称其极限为 $P$.
+
+\pause
+
+若 $\{P_n\}$ 发散或者收敛于零, 则称无穷乘积 $\prod_{n=1}^\infty p_n$ 发散.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的必要条件}
+
+与数项级数类似, 我们首先给出无穷乘积收敛的一个必要条件:
+\begin{thm}
+如果无穷乘积 $\prod_{n=1}^\infty p_n$ 收敛, 则
+\begin{itemize}
+\item $\lim\limits_{n \to \infty} p_n = 1$ ~ (``通项''趋近于 1);
+\item $\lim\limits_{m \to \infty} \prod\limits_{n=m}^\infty p_n = 1$ ~ (``尾积''趋近于 1).
+\end{itemize}
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+由于部分积序列 $\{P_n\}$ 收敛于 $P \neq 0$, 所以 $\lim_{n \to \infty} p_n = \lim_{n \to \infty} \frac{P_n}{P_{n-1}} = \frac{P}{P} = 1$.
+另一方面,
+\[
+\prod\limits_{n=m}^\infty p_n = \lim_{k \to \infty} \prod\limits_{n=m}^k p_n = \lim_{k \to \infty} \dfrac{\prod\limits_{n=1}^k p_n}{\prod\limits_{n=1}^{m-1} p_n} = \lim_{k \to \infty} \dfrac{P_k}{P_{m-1}} = \dfrac{P}{P_{m-1}},
+\]
+于是, $\lim\limits_{m \to \infty} \prod\limits_{n=m}^\infty p_n = \lim\limits_{m \to \infty} \dfrac{P}{P_{m-1}} = 1$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的必要条件}
+
+\begin{remark}
+\begin{itemize}
+\item 无穷乘积收敛的必要条件 $\lim\limits_{n \to \infty} p_n = 1$ 不是充分的. 例如, $\prod_{n=1}^\infty \left(1 + \frac{1}{n}\right)$ 的通项趋近于 1, 但它的部分积 $P_n = n + 1$ 发散.
+\item 由无穷乘积收敛的必要条件 $\lim\limits_{n \to \infty} p_n = 1,$ 我们可以将通项 $p_n$ 写成 $p_n = 1 + a_n$, 其中 $\lim\limits_{n \to \infty} a_n = 0$.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一些无穷乘积收敛的例子}
+
+\begin{eg}[发散到零的无穷乘积]
+设 $p_n = 1 - \frac{1}{n+1}$ (即 $a_n = -\frac{1}{n+1}$), 则 $\lim\limits_{n \to \infty} p_n = 1$, 收敛的必要条件满足.
+\pause
+但是, 部分积
+\[
+P_n = \prod_{k=1}^n \left(1 - \frac{1}{k+1}\right) = \prod_{k=1}^n \frac{k}{k+1} = \frac{1}{n+1} \to 0,
+\]
+所以无穷乘积 $\prod_{n=1}^\infty \left(1 - \frac{1}{n+1}\right)$ 发散到零.
+\end{eg}
+
+\pause
+
+将 $p_n$ 稍作修改, 我们能得到如下的:
+
+\begin{eg}[Wallis 公式]
+设 $p_n = 1 - \frac{1}{4n^2}$ (即 $a_n = -\frac{1}{4n^2}$), 则有
+\[
+\frac{\pi}{2} = \prod_{n=1}^\infty \left(1 - \frac{1}{4n^2}\right)^{-1} = \prod_{n=1}^\infty \dfrac{4n^2}{4n^2 - 1} = \lim_{n \to \infty} \dfrac{((2n)!!)^2}{(2n-1)!! \cdot (2n+1)!!}.
+\]
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Wallis 公式的证明}
+
+\startproof[bg=yellow, fg=red]
+部分积 $P_n = \prod_{k=1}^n \dfrac{4k^2}{4k^2 - 1} = \prod_{k=1}^n \dfrac{(2k)^2}{(2k-1)(2k+1)} = \dfrac{((2n)!!)^2}{(2n-1)!! \cdot (2n+1)!!}$.
+另一方面, 考虑定积分
+\[
+I_m = \int_0^{\pi/2} \sin^n x ~ \mathrm{d}x = \begin{cases}
+\dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{\pi}{2}, & m = 2n, \\
+\dfrac{(2n)!!}{(2n+1)!!}, & m = 2n+1.
+\end{cases}
+\]
+于是, $\dfrac{I_{2n}}{I_{2n+1}} = \dfrac{\pi}{2} \cdot \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{(2n+1)!!}{(2n)!!} = \dfrac{\pi}{2} \cdot P_n$. 那么问题归结到了数列 $\dfrac{I_{2n}}{I_{2n+1}}$ 是否收敛, 以及它收敛到什么值.
+
+\pause
+\vspace{0.5em}
+
+在闭区间 $\left[0, \frac{\pi}{2}\right]$ 上, $\forall ~ n_2 > n_1 \geq 0$, 恒有 $\sin^{n_2} x \leqslant \sin^{n_1} x$, 从而 $I_{n_2} \leqslant I_{n_1}$. 特别地, 对于 $n_2 = 2n+1$ 和 $n_1 = 2n$, 有
+\[
+1 \leqslant \dfrac{I_{2n}}{I_{2n+1}} \leqslant \dfrac{I_{2n-1}}{I_{2n+1}} = \dfrac{2n+1}{2n} \xrightarrow[]{n \to \infty} 1.
+\]
+由夹逼准则, $\dfrac{I_{2n}}{I_{2n+1}} \xrightarrow[]{n \to \infty} 1$. 因此, $\dfrac{\pi}{2} \cdot P_n = \dfrac{I_{2n}}{I_{2n+1}} \xrightarrow[]{n \to \infty} 1$, 从而 $P_n \xrightarrow[]{n \to \infty} \dfrac{2}{\pi}$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Viète 公式}
+
+设 $p_n = \cos \frac{x}{2^{n}}.$ 则 $\lim\limits_{n \to \infty} p_n = 1$, 无穷乘积 $\prod_{n=1}^\infty \cos \frac{x}{2^{n}}$ 收敛的必要条件满足. 接下来, 计算部分积
+\[
+P_n = \prod_{k=1}^n \cos \frac{x}{2^{k}} = \cos \frac{x}{2} \cdot \cos \frac{x}{4} \cdots \cos \frac{x}{2^n}.
+\]
+容易观察到
+\begin{align*}
+{\color{red}\sin \frac{x}{2^n}} \cdot P_n & = \cos \frac{x}{2} \cdot \cos \frac{x}{4} \cdots \left( \cos \frac{x}{2^n} \cdot {\color{red}\sin \frac{x}{2^n}} \right) = \cos \frac{x}{2} \cdot \cos \frac{x}{4} \cdots \cos \frac{x}{2^{n-1}} \cdot \left( \frac{1}{2}\sin \frac{x}{2^{n-1}} \right) \\
+& \vdots \\
+& = \cos \frac{x}{2} \cdot \left( \frac{1}{2^{n-1}}\sin \frac{x}{2} \right) = \frac{1}{2^n} \sin x.
+\end{align*}
+于是, 当 $\sin \frac{x}{2^n} \neq 0$ 时, 有 $P_n = \dfrac{\sin x}{2^n \sin \frac{x}{2^n}} \xrightarrow[]{n \to \infty} \dfrac{\sin x}{x}$. 即得 $\prod_{n=1}^\infty \cos \frac{x}{2^{n}} = \dfrac{\sin x}{x}.$ 令 $x = \frac{\pi}{2}$, 就得到了 Viète 公式:
+\[
+\frac{2}{\pi} = \prod_{n=1}^\infty \cos \frac{\pi}{2^{n+1}} = \cos \frac{\pi}{4} \cdot \cos \frac{\pi}{8} \cdots \cos \frac{\pi}{2^{n+1}} \cdots.
+\]
+
 \end{frame}
 
 %------------------------------------------------
 
 \section{无穷乘积与数项级数的关系}
+
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{无穷乘积与数项级数的关系}
+
+由于无穷乘积 $\prod_{n=1}^\infty p_n$ 的必要条件是 $\lim\limits_{n \to \infty} p_n = 1$，所以考虑收敛性问题时，我们总可以假设 $p_n > 0.$ \alert{形式地}考虑
+\[
+\ln \prod_{n=1}^\infty p_n = \sum_{n=1}^\infty \ln p_n,
+\]
+可以用数项级数 $\sum_{n=1}^\infty \ln p_n$ 的收敛性来研究无穷乘积 $\prod_{n=1}^\infty p_n$ 的收敛性. 事实上, 有如下的定理:
+
+\pause
+
+\begin{thm}
+无穷乘积 $\prod_{n=1}^\infty p_n, p_n > 0$ 收敛的充分必要条件是数项级数 $\sum_{n=1}^\infty \ln p_n$ 收敛.
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+\vspace{-1em}
+\begin{align*}
+\text{无穷乘积 $\prod_{n=1}^\infty p_n, p_n > 0$ 收敛} & \Longleftrightarrow \text{部分积序列 $P_n = \prod_{k=1}^n p_k$ 收敛于 $P > 0$} \\
+& \Longleftrightarrow \text{数项级数 $\sum_{n=1}^\infty \ln p_n$ 收敛于 $\ln P$}.
+\end{align*}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件}
+
+\begin{cor}
+设 $a_n$ 恒正或者恒负, 则无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 收敛的充分必要条件是数项级数 $\sum_{n=1}^\infty a_n$ 收敛.
+\end{cor}
+
+\startproof[bg=yellow, fg=red]
+由定理知, ~~ 无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 收敛 ~ $\Longleftrightarrow$ ~ 数项级数 $\sum_{n=1}^\infty \ln (1 + a_n)$ 收敛.
+
+上述两边都能退出 $a_n \xrightarrow[]{n \to \infty} 0$, 从而有 $\lim\limits_{n \to \infty} \frac{\ln (1 + a_n)}{a_n} = 1$. 又由于 $a_n$ 恒正或者恒负, 那么由\alert{正项级数的比较判别法的极限形式}, 数项级数 $\sum_{n=1}^\infty \ln (1 + a_n)$ 收敛 ~ $\Longleftrightarrow$ ~ 数项级数 $\sum_{n=1}^\infty a_n$ 收敛.
+\qed
+
+\pause
+
+由此推论, 我们能很快得到之前几个例子中无穷乘积敛散性的结论:
+\begin{itemize}
+\item $p_n = 1 - \frac{1}{n+1} \implies a_n = -\frac{1}{n+1} \implies \sum_{n=1}^\infty a_n$ 发散 $\implies \prod_{n=1}^\infty p_n$ 发散;
+\item $p_n = 1 - \frac{1}{4n^2} \implies a_n = -\frac{1}{4n^2} \implies \sum_{n=1}^\infty a_n$ 收敛 $\implies \prod_{n=1}^\infty p_n$ 收敛;
+\item $p_n = \cos \frac{x}{2^{n}} = 1 - 2\sin^2 \frac{x}{2^{n+1}} \implies a_n = -2\sin^2 \frac{x}{2^{n+1}} \implies \sum_{n=1}^\infty a_n$ 收敛 $\implies \prod_{n=1}^\infty p_n$ 收敛.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件的几个注记}
+
+\def\squigarrowdown{%
+  \tikz[baseline=-0.3ex]{%
+    \draw[decorate,
+      decoration={snake, amplitude=0.5mm, segment length=2mm, post length=1.5mm},
+      -{Stealth[length=2mm]}
+    ] (0,0.3cm) -- (0,-0.3cm);   % 长度配合 1.5 倍行距
+  }%
+}
+
+\begin{remark}
+$a_n$ 恒正或者恒负 (或者从某项开始恒正或者恒负) 的条件是必要的. 例如, $a_n = \frac{(-1)^{n+1}}{\sqrt{n}}$ 时, 数项级数 $\sum_{n=1}^\infty a_n$ 是 Leibniz 级数, 收敛; 但是无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 发散.
+\end{remark}
+
+\startproof[bg=yellow, fg=red]
+{%
+\def\arraystretch{2}%
+\[
+\begin{array}{ccccccccc}
+\ln \left(1 + a_n\right) & = & a_n & - & \frac{a_n^2}{2} & + & \frac{a_n^3}{3} & + & o\left(a_n^3\right)
+\only<2->{\\
+& & \squigarrowdown & & \squigarrowdown & & \squigarrowdown & & \squigarrowdown \\
+& & \sum_{n=1}^\infty (-1)^{n+1} \frac{1}{\sqrt{n}} & & \sum_{n=1}^\infty \frac{1}{n} & & \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n^{3/2}} & & \sum_{n=1}^\infty \alpha_n n^{-3/2}}
+\only<3->{ \\
+\only<4->{\sum_{n=1}^\infty \ln \left(1 + a_n\right) \text{发散}} & \only<4->{\Longleftarrow} & \text{收敛} & & \text{\color{red}发散} & & \text{收敛} & & \text{收敛}
+}
+\end{array}
+\]
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件的几个注记}
+
+\begin{remark}
+同样地, 有无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ (或数项级数 $\sum_{n=1}^\infty a_n$) 收敛, 但数项级数 $\sum_{n=1}^\infty a_n$ 发散的例子:
+\[
+a_n = \begin{cases}
+-\frac{1}{\sqrt{k}}, & n = 2k-1, \\
+\frac{1}{\sqrt{k}} + \frac{1}{k} \left( 1 + \frac{1}{\sqrt{k}} \right), & n = 2k.
+\end{cases}
+\]
+\end{remark}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+\vspace{-2em}
+{
+\smaller[1]
+\begin{align*}
+\prod_{m=1}^n (1 + a_m) & = \begin{cases}
+\prod_{m=1}^{k} \left(1 - \frac{1}{\sqrt{m}}\right) \left(1 + \frac{1}{\sqrt{m}} + \frac{1}{m} \left( 1 + \frac{1}{\sqrt{m}} \right)\right), & n = 2k, \\
+\prod_{m=1}^{k} \left(1 - \frac{1}{\sqrt{m}}\right) \left(1 + \frac{1}{\sqrt{m}} + \frac{1}{m} \left( 1 + \frac{1}{\sqrt{m}} \right)\right) \cdot \left(1 - \frac{1}{\sqrt{k+1}}\right), & n = 2k+1.
+\end{cases} \\
+& = \begin{cases}
+\prod_{m=1}^{k} \left(1 - \frac{1}{m^2}\right), & n = 2k, \\
+\prod_{m=1}^{k} \left(1 - \frac{1}{m^2}\right) \cdot \left(1 - \frac{1}{\sqrt{k+1}}\right), & n = 2k+1.
+\end{cases}
+\only<3->{\larger[2] \longleftarrow ~ \text{收敛} }
+\end{align*}
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件的几个注记}
+
+另一方面, 有
+\vspace{-1em}
+{
+\smaller[1]
+\begin{align*}
+\sum_{m=1}^n a_m & = \begin{cases}
+\sum_{m=1}^{k} \left( \frac{1}{m} \left( 1 + \frac{1}{\sqrt{m}} \right) \right), & n = 2k, \\
+\sum_{m=1}^{k} \left( \frac{1}{m} \left( 1 + \frac{1}{\sqrt{m}} \right) \right) - \frac{1}{\sqrt{k+1}} , & n = 2k+1.
+\end{cases} \\
+& = \begin{cases}
+\sum_{m=1}^{k} \left( \frac{1}{m} + \frac{1}{m^{3/2}} \right), & n = 2k, \\
+\sum_{m=1}^{k} \left( \frac{1}{m} + \frac{1}{m^{3/2}} \right) - \frac{1}{\sqrt{k+1}} , & n = 2k+1.
+\end{cases}
+\end{align*}
+}
+\pause
+由于 $\sum_{m=1}^\infty \frac{1}{m}$ 发散, $\sum_{m=1}^\infty \frac{1}{m^{3/2}}$ 收敛, 所以 $\sum_{m=1}^n a_m$ 发散.
+\pause
+类似可验证 $\sum_{n=1}^\infty a_n^2$ 发散.
+\qed
+
+\pause
+
+于是, 我们能得到结论:
+\begin{attnblock}
+无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 的收敛性, 与数项级数 $\sum_{n=1}^\infty a_n$ 的收敛性, 是\textbf{互不包含}的.
+\end{attnblock}
 
 \end{frame}
 
