@@ -302,6 +302,106 @@ $\Longleftarrow:$ 若 $\varliminf\limits_{n\to\infty} x_n = \sup_{n\geqslant 1}\
 
 %------------------------------------------------
 
+\begin{frame}{上、下极限的微观本质}
+
+我们把之前证明中用到的类似的结论总结为如下定理, 以揭示上、下极限的微观本质:
+
+\begin{thm}
+设 $\{x_n\}$ 是有界数列, 那么
+\begin{enumerate}
+\item $\varlimsup\limits_{n\to\infty} x_n = H$ 的充要条件为 $\forall~\varepsilon > 0,$
+\begin{enumerate}
+\item 存在正整数 $N,$ 当 $n > N$ 时, 有 $x_n < H + \varepsilon;$
+\item 存在无穷多个 $x_n > H - \varepsilon.$
+\end{enumerate}
+\item $\varliminf\limits_{n\to\infty} x_n = h$ 的充要条件为 $\forall~\varepsilon > 0,$
+\begin{enumerate}
+\item 存在正整数 $N,$ 当 $n > N$ 时, 有 $x_n > h - \varepsilon;$
+\item 存在无穷多个 $x_n < h + \varepsilon.$
+\end{enumerate}
+\end{enumerate}
+\end{thm}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{上、下极限的微观本质 -- 图示}
+
+可以用如下图示来理解上、下极限的微观本质:
+\begin{columns}
+\begin{column}[b]{0.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=stealth]
+% --- 数轴 ---
+\draw[->, thick] (-0.8, 0) -- (7, 0);
+
+% --- 刻度：两端用括号，中间 H 用短竖线 ---
+\node at (1.5, 0) {\small(};
+\draw[thick] (3.5, -0.15) -- (3.5, 0.15);
+\node at (5.5, 0) {\small)};
+
+% --- 刻度标签 ---
+\node[below=6pt, font=\small] at (1.5, 0) {$H - \varepsilon$};
+\node[below=6pt, font=\small] at (3.5, 0) {$H$};
+\node[below=6pt, font=\small] at (5.5, 0) {$H + \varepsilon$};
+
+% --- 文字标注 ---
+\node[anchor=center, align=center, text width=3cm, font=\normalsize, color=green] at (3.5, 0.9) {\makebox[3cm][c]{无穷多项}};
+\node[align=center, font=\scriptsize, color=red] at (6.3, 0.8) {只有\\[-1pt]有限多项};
+\node[align=center, font=\scriptsize, color=blue] at (0.3, 0.8) {所有情况\\[-1pt]都有可能};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\begin{column}[b]{0.5\textwidth}
+    \begin{tikzpicture}[>=stealth]
+% --- 数轴 ---
+\draw[->, thick] (-0.8, 0) -- (7, 0);
+
+% --- 刻度：两端用括号，中间 H 用短竖线 ---
+\node at (1.5, 0) {\small(};
+\draw[thick] (3.5, -0.15) -- (3.5, 0.15);
+\node at (5.5, 0) {\small)};
+
+% --- 刻度标签 ---
+\node[below=6pt, font=\small] at (1.5, 0) {$h - \varepsilon$};
+\node[below=6pt, font=\small] at (3.5, 0) {$h$};
+\node[below=6pt, font=\small] at (5.5, 0) {$h + \varepsilon$};
+
+% --- 文字标注 ---
+\node[anchor=center, align=center, text width=3cm, font=\normalsize, color=green] at (3.5, 0.9) {\makebox[3cm][c]{无穷多项}};
+\node[align=center, font=\scriptsize, color=blue] at (6.3, 0.8) {所有情况\\[-1pt]都有可能};
+\node[align=center, font=\scriptsize, color=red] at (0.3, 0.8) {只有\\[-1pt]有限多项};
+\end{tikzpicture}
+\end{column}
+\end{columns}
+
+\pause
+\vspace*{2em}
+
+作为对比, 收敛数列 (极限为 $A$) 的情况如下图所示:
+\begin{center}
+\begin{tikzpicture}[>=stealth]
+% --- 数轴 ---
+\draw[->, thick] (-7, 0) -- (7, 0);
+% --- 刻度：两端用括号，中间 A 用短竖线 ---
+\draw[thick] (0, -0.15) -- (0, 0.15);
+\node at (-3.5, 0) {\small(};
+\node at (3.5, 0) {\small)};
+% --- 刻度标签 ---
+\node[below=6pt, font=\small] at (0, 0) {$A$};
+\node[below=6pt, font=\small] at (-3.5, 0) {$A - \varepsilon$};
+\node[below=6pt, font=\small] at (3.5, 0) {$A + \varepsilon$};
+% --- 文字标注 ---
+\node[anchor=center, align=center, text width=6cm, font=\normalsize, color=green] at (0, 0.9) {\makebox[6cm][c]{除有限项外所有项}};
+\node[align=center, font=\scriptsize, color=red] at (-5.5, 0.8) {只有\\[-1pt]有限多项};
+\node[align=center, font=\scriptsize, color=red] at (5.5, 0.8) {只有\\[-1pt]有限多项};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
 \section[运算]{上、下极限的运算}
 
 %------------------------------------------------
