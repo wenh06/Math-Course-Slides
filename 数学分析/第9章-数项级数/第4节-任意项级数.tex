@@ -307,7 +307,7 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 & < 3M\varepsilon
 \end{align*}
 \pause
-有 Cauchy 收敛原理, 阿贝判别法得证.
+有 Cauchy 收敛原理, Abel 判别法得证.
 
 \end{frame}
 
@@ -324,7 +324,7 @@ a_n ~ \text{单调趋于 $0$} ~~ & {\color{red}\implies} ~~
 \end{align*}
 
 \only<5->{
-利用证明阿贝判别法类似的方法, 有
+利用证 Abel 判别法类似的方法, 有
 \begin{align*}
 \left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert & = \left\lvert a_m ~ {\color{red}B_m} - \sum\limits_{k=n+1}^{m-1} (a_{k+1} - a_k) ~ {\color{red}B_{k}} \right\rvert \\
 & \leqslant \left\lvert a_m \right\rvert \cdot ~ {\color{red}2M} + \sum\limits_{k=n+1}^{m-1} \left\lvert a_{k+1} - a_k \right\rvert \cdot ~ {\color{red}2M} \\
@@ -717,7 +717,7 @@ S := \sum\limits_{n=n_1+1}^{n_2+1} c_n = a_1 B_{n_1}^{n_2} + a_2 B_{n_1-1}^{n_2-
 \[
 \begin{cases}
 \exists M' > 0, ~ \text{使得} ~ \forall~N, ~ \sum\limits_{n=1}^N |a_n| < M'; \\
-\forall~\varepsilon > 0, ~ \exists N_1, ~ \text{使得} ~ \forall~i > N_1, ~ |a_i| < \varepsilon.
+\forall~\varepsilon > 0, ~ \exists N_1, ~ \text{使得} ~ \forall~j > i > N_1, ~ \sum\limits_{n=i}^j |a_n| < \varepsilon.
 \end{cases}
 \]
 \pause
