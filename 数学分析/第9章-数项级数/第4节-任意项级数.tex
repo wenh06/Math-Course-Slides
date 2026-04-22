@@ -1146,12 +1146,10 @@ s_n - \sigma_n & = \sum\limits_{k=1}^n a_k - \sum\limits_{k=1}^n \left( 1 - \dfr
 \begin{frame}{增强的 Tauber 型定理的分析与证明}
 
 对于 $\text{\ding{173}} = \dfrac{1}{n-m} \sum\limits_{k=m+1}^{n} (s_n - s_k)$ 和式中的每一项, 我们有估计
-{\smaller
-\begin{multline*}
-\lvert s_n - s_k \rvert = \lvert a_{k+1} + \cdots + a_n \rvert \\
+\[
+\lvert s_n - s_k \rvert = \lvert a_{k+1} + \cdots + a_n \rvert
 \leqslant \dfrac{M}{k+1} + \cdots \dfrac{M}{n} \leqslant \dfrac{(n-k)M}{k+1} \leqslant \dfrac{(n-m-1)M}{m+1}.
-\end{multline*}
-}
+\]
 于是
 {\smaller
 \[
@@ -1182,8 +1180,12 @@ s_n - \sigma_n & = \sum\limits_{k=1}^n a_k - \sum\limits_{k=1}^n \left( 1 - \dfr
 \pause
 % \vspace{1em}
 
-注意这里的关键是 $m, n$ 的取法, 满足 $n$ 充分大, 且
-\[\dfrac{n}{1 + \frac{\varepsilon}{2M}} < m < \dfrac{n}{1 + \frac{\varepsilon}{4M}} < n.\]
+\begin{attnblock}
+这里的关键是 $m, n$ 的取法, 满足 $n$ 充分大, 且
+\[
+\dfrac{n}{1 + \frac{\varepsilon}{2M}} < m < \dfrac{n}{1 + \frac{\varepsilon}{4M}} < n.
+\]
+\end{attnblock}
 
 % 将上述思考、分析过程整理、调整顺序之后, 即是完整的证明.
 
