@@ -33,6 +33,40 @@ def _get_main_tex_preamble():
 
 MAIN_TEX_PREAMBLE = _get_main_tex_preamble()
 
+# Status markers that may follow \input{...} lines in main.tex (as comments or inline text)
+_STATUSES = ["已完成 ✅", "正在进行 ✏️", "待更新 ⚠️", "未完成 ❌"]
+_STATUS_COMPLETE = "已完成 ✅"
+
+
+def get_file_status_in_main_tex(tex_file: Path) -> Optional[str]:
+    """Return the status marker on the \\input line for *tex_file* in main.tex.
+
+    Searches for ``\\input{rel/path}`` or ``\\input{rel/path.tex}`` and returns
+    the first matching status string from ``_STATUSES`` found on that line.
+    Returns ``None`` when the \\input line is absent or carries no status marker.
+    """
+    try:
+        rel_path = tex_file.relative_to(PROJECT_DIR)
+    except ValueError:
+        return None
+
+    stem_path = rel_path.with_suffix("").as_posix()
+    main_text = MAIN_TEX_FILE.read_text(encoding="utf-8")
+
+    # Match \input{stem} or \input{stem.tex}; capture everything that follows
+    pattern = re.compile(r"\\input\{" + re.escape(stem_path) + r"(?:\.tex)?\}(.*)", re.UNICODE)
+
+    for line in main_text.splitlines():
+        m = pattern.search(line)
+        if m:
+            rest = m.group(1)
+            for status in _STATUSES:
+                if status in rest:
+                    return status
+            return None  # line found but no status marker
+
+    return None  # \input line not in main.tex
+
 
 def execute_cmd(cmd: Union[str, List[str]], raise_error: bool = True, cwd: Optional[Path] = None) -> int:
     """
@@ -120,6 +154,12 @@ def compile_section(tex_file: Path, args) -> int:
 
     out_pdf_path = BUILD_DIR / rel_path.with_suffix(".pdf")
     out_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Check status in main.tex; rename to *-Incomplete.pdf when not yet complete
+    status = get_file_status_in_main_tex(tex_file)
+    if status is not None and status != _STATUS_COMPLETE:
+        print(f"[INFO] Status of {rel_path}: {status!r} → output will be marked as Incomplete")
+        out_pdf_path = out_pdf_path.parent / (out_pdf_path.stem + "-Incomplete.pdf")
 
     # Combine preamble with \input pointing at the section file
     rel_input = tex_file.relative_to(PROJECT_DIR).as_posix()
