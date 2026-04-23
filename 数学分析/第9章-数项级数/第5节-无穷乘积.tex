@@ -207,7 +207,7 @@ P_n = \prod_{k=1}^n \cos \frac{x}{2^{k}} = \cos \frac{x}{2} \cdot \cos \frac{x}{
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{无穷乘积与数项级数的关系}
+\frametitle{无穷乘积与数项级数的关系 -- 无穷乘积收敛的充要条件}
 
 由于无穷乘积 $\prod_{n=1}^\infty p_n$ 的必要条件是 $\lim\limits_{n \to \infty} p_n = 1$，所以考虑收敛性问题时，我们总可以假设 $p_n > 0.$ \alert{形式地}考虑
 \[
@@ -236,7 +236,7 @@ P_n = \prod_{k=1}^n \cos \frac{x}{2^{k}} = \cos \frac{x}{2} \cdot \cos \frac{x}{
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{无穷乘积收敛的充要条件}
+\frametitle{无穷乘积收敛的充要条件的推论}
 
 \begin{cor}
 设 $a_n$ 恒正或者恒负, 则无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 收敛的充分必要条件是数项级数 $\sum_{n=1}^\infty a_n$ 收敛.
@@ -368,7 +368,165 @@ a_n = \begin{cases}
 
 %------------------------------------------------
 
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件的推论 2}
+
+\begin{cor}
+设数项级数 $\sum_{n=1}^\infty a_n$ 收敛, 则无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 收敛的充分必要条件是数项级数 $\sum_{n=1}^\infty a_n^2$ 收敛.
+\end{cor}
+
+\pause
+\vspace{0.5em}
+
+上述推论说的是, 我们有如下的空间关系:
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+
+% ===== 中心圆（三集合交集）=====
+\def\r{1.2}
+
+% ===== 三个集合（120° 对称）=====
+\blob{0}{yellow!30}{\r}    % 第一个鼓包 - 黄色
+\blob{120}{green!30}{\r}   % 第二个鼓包 - 绿色
+\blob{240}{blue!30}{\r}    % 第三个鼓包 - 蓝色
+
+% ===== 中心圆（放在最上层）=====
+\fill[red!30] (0,0) circle (\r);
+
+% 添加带圈标签
+\node at (1.7, 1) {\larger[1] \Circled{I}};
+\node at (-1.9, 0.7) {\larger[1] \Circled{II}};
+\node at (0, -2.1) {\larger[1] \Circled{III}};
+\node at (0, 0) {\larger[1] \Circled{IV}};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+其中
+
+\Circled{I} 是仅 $\sum_{n=1}^\infty a_n$ 收敛的序列 $\{a_n\}$ 的集合;
+
+\Circled{II} 是仅 $\sum_{n=1}^\infty a_n^2$ 收敛的序列 $\{a_n\}$ 的集合;
+
+\Circled{III} 是仅 $\prod_{n=1}^\infty (1 + a_n)$ 收敛的序列 $\{a_n\}$ 的集合;
+
+\Circled{IV} 是三者都收敛的序列 $\{a_n\}$ 的集合.
+
+\begin{attnblock}
+不存在仅有两个收敛, 另一个发散的情况.
+\end{attnblock}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件的推论 2}
+
+其实, 绘制上述的 Venn 图, 我们还缺少如下的结论
+
+\begin{block}
+设数项级数 $\sum_{n=1}^\infty a_n^2$ 收敛, 则无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 收敛的充分必要条件是数项级数 $\sum_{n=1}^\infty a_n$ 收敛.
+\end{block}
+
+\pause
+
+\startproof[bg=yellow, fg=red](Sketch)
+
+$\sum_{n=1}^\infty a_n^2$ 收敛 $\implies$ $\begin{cases} a_n \to 0, \\[3pt] \sum_{n=1}^\infty a_n^3 ~ \text{绝对收敛}. \end{cases}$
+\pause
+接下来, 考察
+\[
+\ln(1 + a_n) = a_n - \frac{a_n^2}{2} + \frac{a_n^3}{3} + o\left(a_n^3\right).
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件的推论 2 的证明}
+
+由于 $\sum_{n=1}^\infty a_n$ 收敛, 所以 $a_n \xrightarrow[]{n \to \infty} 0$. 考察 \alert{正项级数} $\sum_{n=1}^\infty b_n := \sum_{n=1}^\infty \left( a_n - \ln(1 + a_n) \right),$ 那么有
+\[
+\lim_{n \to \infty} \frac{b_n}{a_n^2} = \lim_{n \to \infty} \frac{a_n - \ln(1 + a_n)}{a_n^2} ~ {\color{red}=} ~ \lim_{n \to \infty} \frac{1 - \frac{1}{1 + a_n}}{2a_n} ~ {\color{red}=} ~ \lim_{n \to \infty} \frac{(a_n + 1)^{-2}}{2} = \frac{1}{2}.
+\]
+以上 ${\color{red}=}$ 处使用了 2 次 L'Hôpital 法则. 由正项级数的比较判别法的极限形式, 数项级数 $\sum_{n=1}^\infty b_n$ 与 $\sum_{n=1}^\infty a_n^2$ 的敛散性相同.
+
+\pause
+
+另一方面, 在 $\sum_{n=1}^\infty a_n$ 收敛的条件下, $\sum_{n=1}^\infty b_n = \sum_{n=1}^\infty \left( a_n - ~{\color{red}\ln(1 + a_n)} \right)$ 与 $\sum_{n=1}^\infty {\color{red}\ln(1 + a_n)}$ 的敛散性相同.
+\pause
+因此, $\sum_{n=1}^\infty a_n,$ $\sum_{n=1}^\infty a_n^2,$ $\sum_{n=1}^\infty \ln(1 + a_n)$ 这三者, 不可能出现其中两个收敛, 另一个发散的情况. 这已经证明了, 在 $\sum_{n=1}^\infty a_n$ 收敛的条件下, 无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 收敛的充分必要条件是数项级数 $\sum_{n=1}^\infty a_n^2$ 收敛.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛的充要条件的应用}
+
+\begin{eg}
+讨论无穷乘积 $\prod_{n=1}^\infty \left( 1 + (-1)^{n+1} \frac{1}{n^s} \right)$ 的敛散性.
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red](解)
+记 $a_n = (-1)^{n+1} \frac{1}{n^s}$,
+
+\vspace{0.5em}
+
+$1^{\circ}$ 当 $s \leqslant 0$ 时, $a_n$ 不趋近于零, 不满足收敛的必要条件, 无穷乘积发散.
+
+\pause
+
+$2^{\circ}$ 当 $s > 0$ 时, $\sum_{n=1}^\infty a_n$ 为 Leibniz 级数, 收敛. 由前一个推论, $\prod_{n=1}^\infty \left( 1 + (-1)^{n+1} \frac{1}{n^s} \right)$ 与 $\sum_{n=1}^\infty \frac{1}{n^{2s}}$ 的敛散性相同.
+\pause
+对于数项级数 $\sum_{n=1}^\infty \frac{1}{n^{2s}}$, 当 $s > \frac{1}{2}$ 时, 数项级数收敛; 当 $0 < s \leqslant \frac{1}{2}$ 时, 数项级数发散.
+
+\pause
+\vspace{0.5em}
+
+综上, 当 $s > \frac{1}{2}$ 时, 无穷乘积 $\prod_{n=1}^\infty \left( 1 + (-1)^{n+1} \frac{1}{n^s} \right)$ 收敛; 当 $s \leqslant \frac{1}{2}$ 时, 无穷乘积 $\prod_{n=1}^\infty \left( 1 + (-1)^{n+1} \frac{1}{n^s} \right)$ 发散.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{绝对收敛的无穷乘积}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{绝对收敛的无穷乘积}
+
+数项级数有绝对收敛的概念, 而无穷乘积 $\prod_{n=1}^\infty p_n = \prod_{n=1}^\infty (1 + a_n)$ 是与数项级数 $\sum_{n=1}^\infty \ln p_n = \sum_{n=1}^\infty \ln (1 + a_n)$ 具有相同敛散性的, 所以我们可以借由数项级数的绝对收敛, 来定义无穷乘积的绝对收敛.
+
+\pause
+
+\begin{Def}[绝对收敛的无穷乘积]
+如果数项级数 $\sum_{n=1}^\infty \ln p_n$ 绝对收敛, 则称无穷乘积 $\prod_{n=1}^\infty p_n$ 绝对收敛.
+\end{Def}
+
+\pause
+
+\begin{remark}
+
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
 \section{$\sin x$ 的无穷乘积展开}
+
 %------------------------------------------------
 
 \begin{frame}

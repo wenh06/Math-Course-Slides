@@ -243,6 +243,19 @@ colback=blue!30, boxrule=1pt,
 \makeatother
 
 
+\newcommand{\blob}[3]{  % 三个参数：旋转角度、颜色、半径
+    \begin{scope}[rotate=#1]
+        % 使用更平滑的贝塞尔曲线定义鼓包形状
+        \path[fill=#2]
+            (0,#3)
+            .. controls (0.5,1.8) and (1.2,2.2) .. (1.8,2.0)
+            .. controls (2.4,1.8) and (2.8,1.2) .. (2.6,0.5)
+            .. controls (2.4,-0.2) and (1.8,-0.5) .. (0,#3)
+            -- cycle;
+    \end{scope}
+}
+
+
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
