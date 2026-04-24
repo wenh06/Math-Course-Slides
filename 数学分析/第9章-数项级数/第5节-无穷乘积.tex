@@ -518,11 +518,7 @@ $2^{\circ}$ 当 $s > 0$ 时, $\sum_{n=1}^\infty a_n$ 为 Leibniz 级数, 收敛.
 \pause
 
 \begin{remark}
-无穷乘积 $\prod_{n=1}^\infty p_n$ 绝对收敛, 实质上是无穷乘积
-\[
-\prod_{n=1}^\infty \max \{p_n, p_n^{-1}\} \quad \text{收敛}.
-\]
-由于数项级数的绝对收敛蕴含数项级数的收敛, 无穷乘积 $\prod_{n=1}^\infty p_n$ 绝对收敛蕴含无穷乘积 $\prod_{n=1}^\infty p_n$ 收敛, 并且敛散性和收敛到的值, 与 $p_n$ 的排列次序无关.
+无穷乘积 $\prod_{n=1}^\infty p_n$ 绝对收敛, 实质上是无穷乘积 $\prod_{n=1}^\infty \max \{p_n, p_n^{-1}\}$ 收敛. 由于数项级数的绝对收敛蕴含数项级数的收敛, 无穷乘积 $\prod_{n=1}^\infty p_n$ 绝对收敛蕴含无穷乘积 $\prod_{n=1}^\infty p_n$ 收敛, 并且敛散性和收敛到的值, 与 $p_n$ 的排列次序无关.
 \end{remark}
 
 \end{frame}
@@ -542,9 +538,13 @@ $2^{\circ}$ 当 $s > 0$ 时, $\sum_{n=1}^\infty a_n$ 为 Leibniz 级数, 收敛.
 \end{enumerate}
 \end{thm}
 
-\pause
+\end{frame}
 
-\startproof[bg=yellow, fg=red]
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{绝对收敛无穷乘积性质的证明}
+
 主要利用正项级数的比较判别法:
 
 由定义, (1) $\Longleftrightarrow$ 数项级数 $\sum_{n=1}^\infty \ln (1 + a_n)$ 绝对收敛.
@@ -601,15 +601,44 @@ A = \lim_{n \to \infty} b_n = \lim_{n \to \infty} \frac{n! e^n}{n^n \sqrt{n}}.
 
 注意到有
 \[
-\frac{b_n^2}{b_{2n}} =
+\frac{b_n^2}{b_{2n}} = \left. \frac{(n!)^2 \cancel{e^n}}{n^{2n+1}} \middle/ \frac{(2n)! \cancel{e^{2n}}}{(2n)^{2n+1/2}} \right. = \frac{(n!)^2 2^{2n+1/2}}{(2n)! n^{1/2}} = \left( \frac{2}{n} \right)^{1/2} \cdot \frac{((2n)!!)^2}{(2n)!} = \left( \frac{2}{n} \right)^{1/2} \cdot \frac{(2n)!!}{(2n-1)!!}.
 \]
+\pause
+由之前证明的 Wallis 公式 $\frac{2}{\pi} = \prod_{n=1}^\infty \left( 1 - \frac{1}{4n^2} \right) = \lim_{n \to \infty} \left( \frac{(2n-1)!!}{(2n)!!} \right)^2 \frac{1}{2n+1},$ 有
+\begin{align*}
+A & = \frac{A^2}{A} = \lim_{n \to \infty} \frac{b_n^2}{b_{2n}} = \lim_{n \to \infty} \left( \frac{2}{n} \right)^{1/2} \cdot \frac{(2n)!!}{(2n-1)!!} = \lim_{n \to \infty} \left( \frac{2}{n} \right)^{1/2} \cdot {\color{red} \frac{1}{\sqrt{\left( \frac{(2n-1)!!}{(2n)!!} \right)^2 \frac{1}{2n+1}}}} \cdot \sqrt{2n+1} \\
+& = {\color{red} \sqrt{\frac{\pi}{2}}} \cdot \lim_{n \to \infty} \left( \frac{2(2n+1)}{n} \right)^{1/2} = \sqrt{2\pi}.
+\end{align*}
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Stirling 公式的应用}
+\frametitle{Stirling 公式的证明}
+
+综上, 我们证明了 $\lim_{n \to \infty} \frac{n! e^n}{n^n \sqrt{n}} = \sqrt{2\pi}$, 即
+\[
+n! \sim \sqrt{2\pi n} \left( \frac{n}{e} \right)^n \quad \text{当 } n \to \infty.
+\]
+\qed
+
+\pause
+
+\begin{cor}
+有 $\lim_{n \to \infty} \frac{n}{\sqrt[n]{n!}} = \lim_{n \to \infty} \frac{n}{\sqrt[n]{\sqrt{2\pi n} \left( \frac{n}{e} \right)^n}} = \lim_{n \to \infty} \frac{e}{\sqrt[2n]{2\pi n}} = e.$
+\end{cor}
+
+\pause
+
+$\lim_{n \to \infty} \frac{n}{\sqrt[n]{n!}} = e$ 也有更加初等的证明. 事实上, 它等价于 $1 = \lim_{n \to \infty} \left( \ln n - \frac{1}{n} \sum_{k=2}^n \ln k \right)$.
+\pause
+容易观察到 $\int_{k-1}^k \ln t ~ dt \leqslant \ln k \leqslant \int_k^{k+1} \ln t ~ dt$, 从而
+\[
+n (\ln n - 1) + 1 = \int_1^n \ln t ~ dt \leqslant \sum_{k=2}^n \ln k \leqslant \int_2^{n+1} \ln t ~ dt = (n+1) (\ln (n+1) - 1) - 2 (\ln 2 - 1).
+\]
+于是由夹逼定理, $\lim_{n \to \infty} \left( \ln n - \frac{1}{n} \sum_{k=2}^n \ln k \right) = 1$.
+\qed
 
 \end{frame}
 
@@ -708,7 +737,7 @@ f_n(t) = \prod_{k=1}^n \left( t - \sin^2 \left(\frac{k \pi}{2n + 1}\right) \righ
 \label{eq:ddagger}
 \]
 \pause
-对 $f_n(\sin^2 \varphi) = \frac{\sin(2n+1)\varphi}{\sin \varphi}$ 两边取 $\varphi \to 0$, 就得到了 $C_n = f_n(0) (2n + 1)^2$.
+对 $f_n(\sin^2 \varphi) = \frac{\sin(2n+1)\varphi}{\sin \varphi}$ 两边取 $\varphi \to 0$, 就得到了 $f_n(0) = 2n + 1,$ 从而 $C_n = 2n + 1.$
 
 \pause
 
