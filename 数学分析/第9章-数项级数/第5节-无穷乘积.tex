@@ -518,8 +518,98 @@ $2^{\circ}$ 当 $s > 0$ 时, $\sum_{n=1}^\infty a_n$ 为 Leibniz 级数, 收敛.
 \pause
 
 \begin{remark}
-
+无穷乘积 $\prod_{n=1}^\infty p_n$ 绝对收敛, 实质上是无穷乘积
+\[
+\prod_{n=1}^\infty \max \{p_n, p_n^{-1}\} \quad \text{收敛}.
+\]
+由于数项级数的绝对收敛蕴含数项级数的收敛, 无穷乘积 $\prod_{n=1}^\infty p_n$ 绝对收敛蕴含无穷乘积 $\prod_{n=1}^\infty p_n$ 收敛, 并且敛散性和收敛到的值, 与 $p_n$ 的排列次序无关.
 \end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{绝对收敛无穷乘积的性质}
+
+关于绝对收敛的无穷乘积, 有如下的刻画:
+\begin{thm}
+设 $a_n > -1, n = 1, 2, \cdots$, 则下列命题等价:
+\begin{enumerate}[(1)]
+\item 无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 绝对收敛;
+\item 无穷乘积 $\prod_{n=1}^\infty (1 + |a_n|)$ 收敛;
+\item 数项级数 $\sum_{n=1}^\infty |a_n|$ 收敛 (或者说数项级数 $\sum_{n=1}^\infty a_n$ 绝对收敛).
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+主要利用正项级数的比较判别法:
+
+由定义, (1) $\Longleftrightarrow$ 数项级数 $\sum_{n=1}^\infty \ln (1 + a_n)$ 绝对收敛.
+
+注意到 (1), (2), (3) 都以 $a_n \to 0$ 为必要条件, 因此有
+\[
+\lim_{n \to \infty} \frac{|\ln (1 + a_n)|}{|a_n|} = \left| \lim_{n \to \infty} \frac{\ln (1 + a_n)}{a_n} \right| = 1.
+\]
+于是 (1) $\Longleftrightarrow$ (2).
+\pause
+类似地有 $\lim_{n \to \infty} \frac{\ln (1 + |a_n|)}{|a_n|} = 1$, 从而 (2) $\Longleftrightarrow$ (3).
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Stirling 公式}
+
+\begin{eg}
+证明 Stirling 公式: $n! \sim \sqrt{2\pi n} \left( \frac{n}{e} \right)^n$ 当 $n \to \infty$.
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red](分析)
+把含有 $n$ 的项拿到一边, 我们要证明的式子等价于
+\[
+b_n := \frac{n! e^n}{n^n \sqrt{n}} \xrightarrow[]{n \to \infty} \sqrt{2\pi}.
+\]
+\pause
+发现 $\frac{b_n}{b_{n-1}} = ne \cdot \frac{(n-1)^{n-1/2}}{n^{n+1/2}} = e \cdot \left( 1 - \frac{1}{n} \right)^{n-1/2}$ 有比较简单的表达. 可以进一步写为
+\begin{align*}
+\frac{b_n}{b_{n-1}} & = \exp \left( 1 + \left(n - \frac{1}{2}\right) \ln \left( 1 - \frac{1}{n} \right) \right)
+= \exp \left( 1 + \left(n - \frac{1}{2}\right) \left( -\frac{1}{n} - \frac{1}{2n^2} - \frac{1}{3n^3} + o\left(\frac{1}{n^3}\right) \right) \right) \\
+& = \exp \left( 1 - 1 - \frac{1}{2n} - \frac{1}{3n^2} + \frac{1}{2n} + \frac{1}{4n^2} + o\left(\frac{1}{n^2}\right) \right) = \exp \left( \frac{1}{n} - \frac{1}{12n^2} + o\left(\frac{1}{n^2}\right) \right) \\
+& = 1 ~ {\color{red} - \frac{1}{12n^2} + o\left(\frac{1}{n^2}\right)} =: 1 +  ~ {\color{red} a_n}.
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Stirling 公式的证明}
+
+那么 $n$ 充分大时, $a_n < 0$, 数项级数 $\sum_{n=1}^\infty a_n = \sum_{n=1}^\infty \left( -\frac{1}{12n^2} + o\left(\frac{1}{n^2}\right) \right)$ 收敛, 从而无穷乘积 $\prod_{n=1}^\infty (1 + a_n)$ 收敛, 设其收敛到 $A > 0,$ 即
+\[
+A = \lim_{n \to \infty} b_n = \lim_{n \to \infty} \frac{n! e^n}{n^n \sqrt{n}}.
+\]
+
+\pause
+
+注意到有
+\[
+\frac{b_n^2}{b_{2n}} =
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Stirling 公式的应用}
 
 \end{frame}
 
@@ -530,7 +620,130 @@ $2^{\circ}$ 当 $s > 0$ 时, $\sum_{n=1}^\infty a_n$ 为 Leibniz 级数, 收敛.
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{$\sin x$ 的无穷乘积展开}
+
+这部分, 我们要证明一个重要的结论: $\sin x$ 有如下的无穷乘积展开式
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\sin x = x \prod_{n=1}^\infty \left( 1 - \frac{x^2}{n^2 \pi^2} \right).
+\tag{$\star$}
+\label{eq:star}
+\end{empheq}
+
+\pause
+
+它有一个重要的应用, 就是求 Riemann $\zeta$ 函数 $\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}$ 在正整数点 $s = 2$ 处的值.
+
+实际上, 由 \eqref{eq:star} 式有 $\frac{\sin(\pi x)}{\pi x} = \prod_{n=1}^\infty \left( 1 - \frac{x^2}{n^2} \right)$, 左边的 Taylor 展开式为
+\[
+\dfrac{\pi x - \frac{(\pi x)^3}{3!} + O(x^5)}{\pi x} = 1 - \frac{\pi^2}{6} x^2 + O(x^4).
+\]
+右边将无穷乘积展开得
+\[
+1 - \left( \sum_{n=1}^\infty \frac{1}{n^2} \right) x^2 + O(x^4).
+\]
+比较两边的 $x^2$ 项的系数, 就得到了 $\zeta(2) = \sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\sin x$ 的无穷乘积展开的证明}
+
+先来观察要证明的式子 $\sin x = x \prod_{n=1}^\infty \left( 1 - \frac{x^2}{n^2 \pi^2} \right),$ 可以发现, $x = k \pi,$ $k \in \mathbb{Z}^*$ 是左右两边的根. 在多项式的情况下, 我们可以推出左右两边差一个常数倍. \alert{但是不能推广至无穷乘积的情况.} 例如, $e^x \frac{\sin x}{x}$ 的根也是 $k \pi,$ $k \in \mathbb{Z}^*$, 但是 $e^x \frac{\sin x}{x}$ 与 $\sin x$ 之间的关系, 不是一个常数倍的关系. \alert{但是, 我们可以利用多项式这一性质.}
+
+\begin{attnblock}
+关键在于, 利用 $t \sim \sin t$ 当 $t \to 0$ 时, 将 $x$ 替换成 $\sin$ 函数的一个变量, 例如 $(2n + 1) \sin \frac{x}{2n + 1}$, 来构造一系列多项式, 通过某种方式取极限, 来得到 $\sin x$ 的无穷乘积展开式.
+\end{attnblock}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+令 $\varphi = \frac{x}{2n + 1}$, 或者说 $x = (2n + 1) \varphi$. 由和差化积公式, 有
+\begin{gather*}
+\sin(2n+1)\varphi + \sin(2n-1)\varphi = 2 \sin(2n\varphi) \cos \varphi \quad \text{\textcolor{red}{\ding{56}}} ~ \text{没有递推的结构}, \\
+\sin(2n+1)\varphi + \sin(2n-3)\varphi = 2 \sin((2n-1)\varphi) \cos 2\varphi = 2 \sin((2n-1)\varphi) (1-2\sin^2 \varphi)
+\end{gather*}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\sin x$ 的无穷乘积展开的证明}
+
+也就是说, 有下列递推关系
+\begin{align*}
+{\color{red}\sin(2n+1)\varphi} & = 2 (1 - 2~{\color{cyan}\sin^2 \varphi}) ~ {\color{red}\sin((2n-1)\varphi)} - {\color{red}\sin(2n-3)\varphi} \\
+\vdots & \\
+{\color{red}\sin 5\varphi} & = 2 (1 - 2~{\color{cyan}\sin^2 \varphi}) ~ {\color{red}\sin 3\varphi} - {\color{red}\sin \varphi} \\
+{\color{red}\sin 3\varphi} & = \cos 2\varphi \sin \varphi + \cos \varphi \sin 2\varphi = (1-2\sin^2 \varphi) \sin \varphi + 2\cos^2 \varphi \sin \varphi \\
+& = {\color{red}\sin \varphi} (1 - 4~{\color{cyan}\sin^2 \varphi} + 2).
+\end{align*}
+
+\pause
+将上述递推关系回代, 就得到了
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\sin(2n+1)\varphi = \sin \varphi \cdot f_n(\sin^2 \varphi),
+\tag{$\dagger$}
+\label{eq:dagger}
+\end{empheq}
+其中 $f_n$ 是一个关于 $\sin^2 \varphi$ 的多项式, 且 $\deg f_1 = 1,$ $\deg f_2 = 2$ $\implies$ $\deg f_{n+1} = \deg f_n + 1 = n+1$.
+
+\pause
+
+容易看出, $\varphi = \frac{k \pi}{2n + 1}, k = 1, 2, \cdots, n,$ 有 $\sin(2n+1)\varphi = 0,$ 但 $\sin \varphi \neq 0,$ 于是,
+$\sin^2 \varphi = \sin^2 \left(\frac{k \pi}{2n + 1}\right)$ 是 $n$ 次多项式 $f_n$ 的\alert{$n$ 个互异的实根}.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\sin x$ 的无穷乘积展开的证明}
+
+从而知
+\[
+f_n(t) = \prod_{k=1}^n \left( t - \sin^2 \left(\frac{k \pi}{2n + 1}\right) \right) \cdot \tilde{C}_n = \prod_{k=1}^n \left( 1 - \frac{t}{\sin^2 \left(\frac{k \pi}{2n + 1}\right)} \right) \cdot C_n,
+\tag{$\ddagger$}
+\label{eq:ddagger}
+\]
+\pause
+对 $f_n(\sin^2 \varphi) = \frac{\sin(2n+1)\varphi}{\sin \varphi}$ 两边取 $\varphi \to 0$, 就得到了 $C_n = f_n(0) (2n + 1)^2$.
+
+\pause
+
+将 $t = \sin^2 \varphi,$ $x = (2n + 1) \varphi$ 代入 \eqref{eq:ddagger} 式, 就得到了
+\[
+\frac{\sin x}{\sin \left( \frac{x}{2n + 1} \right)} = (2n + 1) \prod_{k=1}^n \left( 1 - \frac{\sin^2 \left( \frac{x}{2n + 1} \right)}{\sin^2 \left( \frac{k \pi}{2n + 1} \right)} \right).
+\]
+
+\pause
+
+于是, 对于固定的 $m$ 以及 $n > m$, 有
+\[
+\frac{\sin x}{(2n+1) \sin \left( \frac{x}{2n + 1} \right) \cdot \prod\limits_{k=1}^m \left( 1 - \frac{\sin^2 \left( \frac{x}{2n + 1} \right)}{\sin^2 \left( \frac{k \pi}{2n + 1} \right)} \right)} = \prod\limits_{k=m+1}^n \left( 1 - \frac{\sin^2 \left( \frac{x}{2n + 1} \right)}{\sin^2 \left( \frac{k \pi}{2n + 1} \right)} \right).
+\]
+对上式, 令 $n \to \infty$, 左边 $\xrightarrow[]{n \to \infty} \frac{\sin x}{x \prod\limits_{k=1}^m \left( 1 - \frac{x^2}{k^2 \pi^2} \right)}.$
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\sin x$ 的无穷乘积展开的证明}
+
+另一方面, 可以假设 $m$ 充分大, 使得 $\left| \frac{x}{2m+1} \right| < \frac{\pi}{2},$ 那么右边有
+\[
+1 \geqslant \text{右边} \xrightarrow[]{n \to \infty} \prod_{k=m+1}^\infty \left( 1 - \frac{\sin^2 \left(\frac{x}{2n + 1}\right)}{{\color{red} \sin^2 \left(\frac{k \pi}{2n + 1}\right)}} \right) \geqslant \prod_{k=m+1}^\infty \left( 1 - \frac{\left(\frac{x}{2n+1}\right)^2}{{\color{red}\left(\frac{2}{\pi}\right)^2 \left(\frac{k \pi}{2n+1}\right)^2}} \right) = \prod_{k=m+1}^\infty \left( 1 - \frac{x^2}{4 k^2} \right).
+\]
+也就是说, 得到了
+\[
+1 \geqslant \text{右边} = \text{左边} = \frac{\sin x}{x \prod\limits_{k=1}^m \left( 1 - \frac{x^2}{k^2 \pi^2} \right)} \geqslant \prod_{k=m+1}^\infty \left( 1 - \frac{x^2}{4 k^2} \right).
+\]
+注意到上式最右边是一个收敛的无穷乘积的尾积, 所以令 $m \to \infty$, 就得到了 $1 \geqslant \frac{\sin x}{x \prod\limits_{k=1}^\infty \left( 1 - \frac{x^2}{k^2 \pi^2} \right)} \geqslant 1.$ 由夹逼定理, 就得到了
+\[
+\sin x = x \prod_{n=1}^\infty \left( 1 - \frac{x^2}{n^2 \pi^2} \right).
+\]
+\qed
 
 \end{frame}
 
