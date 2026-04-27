@@ -164,7 +164,7 @@ I_m = \int_0^{\pi/2} \sin^m x ~ \mathrm{d}x = \begin{cases}
 \dfrac{(2n)!!}{(2n+1)!!}, & m = 2n+1.
 \end{cases}
 \]
-于是, $\dfrac{I_{2n}}{I_{2n+1}} = \dfrac{\pi}{2} \cdot \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{(2n+1)!!}{(2n)!!} = \dfrac{\pi}{2} \cdot P_n$. 那么问题归结到了数列 $\dfrac{I_{2n}}{I_{2n+1}}$ 是否收敛, 以及它收敛到什么值.
+于是, $\dfrac{I_{2n}}{I_{2n+1}} = \dfrac{\pi}{2} \cdot \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{(2n+1)!!}{(2n)!!} = \left.\dfrac{\pi}{2} \middle/ P_n\right.$. 那么问题归结到了数列 $\dfrac{I_{2n}}{I_{2n+1}}$ 是否收敛, 以及它收敛到什么值.
 
 \pause
 \vspace{0.5em}
@@ -173,7 +173,7 @@ I_m = \int_0^{\pi/2} \sin^m x ~ \mathrm{d}x = \begin{cases}
 \[
 1 \leqslant \dfrac{I_{2n}}{I_{2n+1}} \leqslant \dfrac{I_{2n-1}}{I_{2n+1}} = \dfrac{2n+1}{2n} \xrightarrow[]{n \to \infty} 1.
 \]
-由夹逼准则, $\dfrac{I_{2n}}{I_{2n+1}} \xrightarrow[]{n \to \infty} 1$. 因此, $\dfrac{\pi}{2} \cdot P_n = \dfrac{I_{2n}}{I_{2n+1}} \xrightarrow[]{n \to \infty} 1$, 从而 $P_n \xrightarrow[]{n \to \infty} \dfrac{2}{\pi}$.
+由夹逼准则, $\dfrac{I_{2n}}{I_{2n+1}} \xrightarrow[]{n \to \infty} 1$. 因此, $\left.\dfrac{\pi}{2} \middle/ P_n\right. = \dfrac{I_{2n}}{I_{2n+1}} \xrightarrow[]{n \to \infty} 1$, 从而 $P_n \xrightarrow[]{n \to \infty} \dfrac{\pi}{2}$.
 \qed
 
 \end{frame}
