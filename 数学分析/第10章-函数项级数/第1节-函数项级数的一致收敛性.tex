@@ -143,8 +143,128 @@ S_n(x) = \sum_{k=1}^n u_k(x), \quad n = 1, 2, \cdots.
 \pause
 
 \begin{remark}
-
+与数项级数类似, 函数项级数 $\sum_{n=1}^\infty u_n$ 的收敛性就是部分和函数列 $S_n$ 的收敛性, 所以经常通过讨论函数列的敛散性来研究函数项级数的敛散性.
 \end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{函数项级数性质的注记}
+
+之前不管在数项级数, 还是在函数列的讨论中, 都已经看到, 很多性质, 从有限过渡到无限时, 很可能不满足了, 例如
+\begin{center}
+数项级数运算的交换律, 结合律, 等等.
+\end{center}
+\pause
+那么关于函数项级数 (或函数列), 相关的性质或者法则是否仍然成立呢?
+\begin{itemize}
+\item 连续性: $\sum_{n=1}^\infty u_n$ 的和函数是否连续? \pause 等价地, $\lim_{x \to x_0} \sum_{n=1}^\infty u_n(x) \stackrel{?}{=} \sum_{n=1}^\infty u_n(x_0) = \sum_{n=1}^\infty \lim_{x \to x_0} u_n(x)$?
+\pause
+\item 可微性: $\sum_{n=1}^\infty u_n$ 的和函数是否可微? 以及相关的求导法则 (线性性, 可逐项求导) 是否仍然成立?
+\pause
+\item 可积性: $\sum_{n=1}^\infty u_n$ 的和函数是否可积? 以及相关的积分法则 (关于被积函数的线性性, 可逐项积分) 是否仍然成立?
+\end{itemize}
+
+\pause
+
+\begin{attnblock}
+可以看到, 以上问题本质都是``两个极限过程是否可交换次序''的问题. \pause 关于这类问题, 一般来说, 点态收敛不足以给出肯定的答案.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一些反例}
+
+\begin{eg}[函数项级数不保持连续性]
+设 $u_1(x) = x, u_n(x) = x^n - x^{n-1}$, $n = 2, 3, \cdots.$ 则部分和函数为 $S_n(x) = x^n.$ 因此
+\[
+\sum_{n=1}^\infty u_n(x) = \lim_{n \to \infty} S_n(x) = \begin{cases}
+0, & x \in (-1, 1), \\
+1, & x = 1.
+\end{cases}
+\]
+可以看到, $u_n(x)$ 都是连续函数, 但是 $\sum_{n=1}^\infty u_n$ 的和函数却在 $x = 1$ 处不连续.
+\end{eg}
+
+\pause
+
+\begin{eg}[函数项级数不能逐项求导]
+即使 $\sum_{n=1}^\infty u_n$ 连续, 乃至可微, 也不一定可以逐项求导, 即不一定有 $\left(\sum_{n=1}^\infty u_n\right)' = \sum_{n=1}^\infty u_n'.$
+
+\pause
+
+例如, 设部分和函数为 $S_n(x) = \frac{\sin nx}{\sqrt{n}}.$ 那么 $\lim_{n \to \infty} S_n(x) = 0,$ 和函数为 $S(x) \equiv 0,$ 是可微的, 且导函数为 $S'(x) \equiv 0.$
+\pause
+但是, $S_n'(x) = \sqrt{n} \cos nx,$ $\lim_{n \to \infty} S_n'(x)$ 发散 $\forall ~ x \in \mathbb{R}.$
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一些反例}
+
+\begin{eg}[函数项级数不保持可积性]
+记 $\mathbb{Q} \cap [0, 1] = \{r_1, r_2, \cdots\}.$ 定义
+\[
+u_n(x) = \begin{cases}1, & x = r_n, \\ 0, & x \in [0, 1] \setminus \{r_n\}.\end{cases}
+\]
+则 $\int_0^1 u_n(x) ~ \mathrm{d}x = 0,$ 但是 $\sum_{n=1}^\infty u_n(x) = \begin{cases}1, & x \in \mathbb{Q} \cap [0, 1], \\ 0, & x \in [0, 1] \setminus \mathbb{Q},\end{cases}$ 为 Dirichlet 函数, 不可积.
+\end{eg}
+
+\pause
+
+\begin{eg}[函数项级数不能逐项积分]
+即使 $\sum_{n=1}^\infty u_n$ 可积, 也不一定可以逐项积分, 即不一定有 $\int_a^b \sum_{n=1}^\infty u_n(x) ~ \mathrm{d}x = \sum_{n=1}^\infty \int_a^b u_n(x) ~ \mathrm{d}x.$
+
+\pause
+
+例如, 设部分和函数为 $S_n(x) = \begin{cases} n, & x \in \left( 0, \frac{1}{n} \right], \\ 0, & x \in \left( \frac{1}{n}, 1 \right] \cup \{0\}, \end{cases}$ 则 $\lim_{n \to \infty} S_n(x) = 0,$ 和函数为 $S(x) \equiv 0,$ 可积, 且 $\int_0^1 S(x) ~ \mathrm{d}x = 0.$
+\pause
+但是, $\int_0^1 S_n(x) ~ \mathrm{d}x = 1, \forall ~ n \in \mathbb{N}^+,$ $\lim_{n \to \infty} \int_0^1 S_n(x) ~ \mathrm{d}x = 1 \neq \int_0^1 S(x) ~ \mathrm{d}x.$
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{函数项级数的一致收敛性}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{函数项级数一致收敛性的引入}
+
+我们需要引入一种比点态收敛更强 (要求更强, 或者说更严格) 的收敛方式, 来保证相关性质、法则可以过渡到和函数 (或者极限函数) 上来, 例如, 连续性, 可微性, 可积性, 以及相关的求导法则, 积分法则等等.
+
+\pause
+
+\begin{attnblock}
+但是需要注意的是, 这种要求比较强, 是一种充分条件, 远不是必要条件. 而且很多时候, 这种条件过于苛刻.
+\end{attnblock}
+
+\pause
+
+\begin{Def}[函数列的一致收敛]
+设 $\{S_n\}$ 是一列函数, $D$ 是它们的公共定义域. 若 $\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$, 使得当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S(x)| < \varepsilon,$ 则称函数列 $\{S_n\}$ 在 $D$ 上\alert{一致收敛}于函数 $S,$ 记作 $S_n \stackrel{D}{\rightrightarrows} S.$
+\end{Def}
+
+\pause
+
+\begin{Def}[函数项级数的一致收敛]
+若函数项级数 $\sum_{n=1}^\infty u_n$ 的部分和函数列 $S_n$ 在 $D$ 上一致收敛于函数 $S,$ 则称函数项级数 $\sum_{n=1}^\infty u_n$ 在 $D$ 上\alert{一致收敛}于函数 $S.$
+\end{Def}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{关于一致收敛的一些注记}
 
 \end{frame}
 
