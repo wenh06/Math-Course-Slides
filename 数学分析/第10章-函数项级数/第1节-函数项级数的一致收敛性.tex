@@ -252,7 +252,7 @@ u_n(x) = \begin{cases}1, & x = r_n, \\ 0, & x \in [0, 1] \setminus \{r_n\}.\end{
 \pause
 
 \begin{Def}[函数列的一致收敛]
-设 $\{S_n\}$ 是一列函数, $D$ 是它们的公共定义域. 若 $\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$, 使得当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S(x)| < \varepsilon,$ 则称函数列 $\{S_n\}$ 在 $D$ 上\alert{一致收敛}于函数 $S,$ 记作 $S_n \stackrel{D}{\rightrightarrows} S.$
+设 $\{S_n\}$ 是一列函数, $D$ 是它们的公共定义域. 若 $\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$, 使得当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S(x)| < \varepsilon,$ 则称函数列 $\{S_n\}$ 在 $D$ 上\alert{一致收敛}于函数 $S,$ 记作 $S_n \stackrel{D}{\rightrightarrows} S,$ 或简写为 $S_n \rightrightarrows S.$
 \end{Def}
 
 \pause
@@ -261,10 +261,114 @@ u_n(x) = \begin{cases}1, & x = r_n, \\ 0, & x \in [0, 1] \setminus \{r_n\}.\end{
 若函数项级数 $\sum_{n=1}^\infty u_n$ 的部分和函数列 $S_n$ 在 $D$ 上一致收敛于函数 $S,$ 则称函数项级数 $\sum_{n=1}^\infty u_n$ 在 $D$ 上\alert{一致收敛}于函数 $S.$
 \end{Def}
 
+\end{frame}
+
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{关于一致收敛的一些注记}
+
+在图像上, 一致收敛的意思是, 当 $n$ 足够大时, $S_n$ 与 $S$ 的图像在整个定义域 $D$ 上都非常接近:
+
+\begin{center}
+\scalebox{0.8}{
+\begin{tikzpicture}[>=stealth, scale=1.4]
+% 1. 坐标轴
+\draw[->, thick] (0,0) -- (8,0) node[right] {$x$};
+\draw[->, thick] (0,0) -- (0,6) node[above] {$y$};
+\node[below left] at (0,0) {$O$};
+
+% 2. 定义域D
+\draw[dashed, gray!80] (0.7,0) -- (0.7,5.5);
+\draw[dashed, gray!80] (7.0,0) -- (7.0,5.5);
+\draw[<->] (0.7,0.4) -- (7.0,0.4) node[midway,below] {$D$};
+
+% 3. 极限函数 S(x)
+\draw[ultra thick] plot[smooth, tension=0.8] coordinates {
+    (0.7, 3)   (1.5, 3.2) (2.5, 3.5) (3.5, 3.4) (4.5, 3.6) (5.5, 3.5) (6.2, 3.7) (7.0, 3.6)
+} node[right] {$S(x)$};
+
+% 4. ε-上边界 S(x)+0.7
+\draw[dashed, thick] plot[smooth, tension=0.8] coordinates {
+    (0.7, 3.7) (1.5, 3.9) (2.5, 4.2) (3.5, 4.1) (4.5, 4.3) (5.5, 4.2) (6.2, 4.4) (7.0, 4.3)
+};
+% ε-下边界 S(x)-0.7
+\draw[dashed, thick] plot[smooth, tension=0.8] coordinates {
+    (0.7, 2.3) (1.5, 2.5) (2.5, 2.8) (3.5, 2.7) (4.5, 2.9) (5.5, 2.8) (6.2, 3.0) (7.0, 2.9)
+};
+
+% 5. 函数列 Sₙ(x), 在ε带内
+\draw[thick] plot[smooth, tension=0.8] coordinates {
+    (0.7, 2.5) (1.3, 3.8) (2.0, 3.0) (2.7, 4.0) (3.5, 3.2) (4.3, 3.9) (5.0, 3.1)
+    (5.8, 3.8) (6.5, 3.2) (7.0, 3.3)
+} node[right] {$S_n(x)$};
+
+% 6. ε 标注
+\node[left] at (0.55, 3.3) {$\varepsilon$};
+\node[left] at (0.55, 2.7) {$\varepsilon$};
+
+\end{tikzpicture}
+}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{关于一致收敛的一些注记}
+
+\begin{block}{函数项级数 (函数列) 一致收敛的 Cauchy 收敛原理}
+设 $\{S_n(x)\}$ 是定义在 $D$ 上的一列函数. 则函数列 $\{S_n(x)\}$ 在 $D$ 上一致收敛的充分必要条件是:
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{gather*}
+\text{$\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$,}\\
+\text{使得当 $m, n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S_m(x)| < \varepsilon.$}
+\end{empheq}
+
+\pause
+
+对于函数项级数 $\sum_{n=1}^\infty u_n(x),$ 相应的条件就变为:
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{gather*}
+\text{$\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$,}\\
+\text{使得当 $n > m > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $\left|\sum_{k=m+1}^n u_k(x)\right| < \varepsilon.$}
+\end{empheq}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{关于一致收敛的一些注记}
+
+\begin{block}{函数项级数一致收敛的一个必要条件}
+$\sum_{n=1}^\infty u_n \stackrel{D}{\rightrightarrows} S$ ~~ $\implies$ ~~ $u_n \stackrel{D}{\rightrightarrows} 0.$
+\end{block}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red]
+设 $\sum_{n=1}^\infty u_n \stackrel{D}{\rightrightarrows} S.$ 则 $\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$, 使得当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S(x)| < \varepsilon.$ 因此, 当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有
+\[|u_n(x)| = |S_n(x) - S_{n-1}(x)| \leq |S_n(x) - S(x)| + |S_{n-1}(x) - S(x)| < 2\varepsilon.\]
+这表明 $u_n \stackrel{D}{\rightrightarrows} 0.$
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛函数项级数 (函数列) 的例子}
+
+\begin{eg}
+设 $S_n(x) = \frac{x}{1 + n^2 x^2}, n = 1, 2, \cdots.$ 则 $S_n \rightrightarrows 0.$
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red]
 
 \end{frame}
 
