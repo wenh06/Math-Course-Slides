@@ -362,16 +362,364 @@ $\sum_{n=1}^\infty u_n \stackrel{D}{\rightrightarrows} S$ ~~ $\implies$ ~~ $u_n 
 \frametitle{一致收敛函数项级数 (函数列) 的例子}
 
 \begin{eg}
+\begin{center}
 设 $S_n(x) = \frac{x}{1 + n^2 x^2}, n = 1, 2, \cdots.$ 则 $S_n \rightrightarrows 0.$
+\end{center}
 \end{eg}
 
 \pause
 \vspace{0.5em}
 
 \startproof[bg=yellow, fg=red]
+首先, 对于每个固定的 $x \in \mathbb{R},$ $\lim_{n \to \infty} S_n(x) = 0.$ 因此, $S_n$ 点态收敛于 $0.$
+
+\pause
+
+可以进一步证明这种收敛是\alert{一致}的. 希望有 $\left| \frac{x}{1 + n^2 x^2} - 0 \right| < \varepsilon, \forall ~ x \in \mathbb{R},$ 当 $n$ 足够大时. 这等价于
+\[
+n^2 > \frac{1}{\varepsilon} \left( \frac{|x| - \varepsilon}{x^2} \right) = - \left( \frac{1}{|x|} - \frac{1}{2\varepsilon} \right) + \frac{1}{4\varepsilon^2}.
+\]
+上式右边最大值为 $\frac{1}{4\varepsilon^2}$, 因此, 取 $N = \left\lceil \frac{1}{2\varepsilon} \right\rceil,$ 则当 $n > N$ 时, $\left| \frac{x}{1 + n^2 x^2} - 0 \right| < \varepsilon, \forall ~ x \in \mathbb{R}.$
+\qed
 
 \end{frame}
 
 %------------------------------------------------
+
+\begin{frame}
+\frametitle{不一致收敛函数项级数 (函数列) 的例子}
+
+\begin{eg}
+\begin{center}
+设 $S_n(x) = \begin{cases} n, & x \in \left( 0, \frac{1}{n} \right], \\ 0, & x \in \left( \frac{1}{n}, 1 \right] \cup \{0\}, \end{cases}$ 则 $S_n$ 点态收敛于 $0,$ 但是不一致收敛于 $0.$
+\end{center}
+\end{eg}
+
+\pause
+
+上例的 $S_n(x)$ 是一个无界的函数列, 但即使 $S_n(x)$ 是有界函数列, 也可能点态收敛但不一致收敛.
+
+\pause
+
+\begin{eg}
+\begin{itemize}
+\item 设 $S_n(x) = \begin{cases} 1, & x \in \left( 0, \frac{1}{n} \right], \\ 0, & x \in \left( \frac{1}{n}, 1 \right] \cup \{0\}, \end{cases}$ 则 $S_n$ 点态收敛于 $0,$ 但是不一致收敛于 $0.$
+\pause
+\item 设 $S_n(x) = x^n,$ $x \in [0, 1),$ 则 $S_n$ 点态收敛于 $0,$ 但是不一致收敛于 $0.$
+\end{itemize}
+\end{eg}
+
+\pause
+
+以上两个例子, 只要对收敛域 $D$ 稍加调整, 就可以得到一致收敛性. 我们可以引入一个稍微弱一些的一致收敛概念.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{内闭一致收敛}
+
+\begin{Def}[内闭一致收敛]
+若对于任意给定的闭区间 $[a, b] \subset D,$ 函数列 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛于函数 $S(x),$ 则称函数列 $\{S_n(x)\}$ 在 $D$ 上\alert{内闭一致收敛}于函数 $S.$
+\end{Def}
+
+\pause
+
+\begin{eg}
+\begin{itemize}
+\item $S_n(x) = \begin{cases} 1, & x \in \left( 0, \frac{1}{n} \right], \\ 0, & x \in \left( \frac{1}{n}, 1 \right] \cup \{0\}, \end{cases}$ 在 $[0, 1)$ 上内闭一致收敛于 $0.$
+\pause
+\item $S_n(x) = x^n,$ $x \in [0, 1)$ 在 $[0, 1)$ 上内闭一致收敛于 $0.$
+\end{itemize}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{函数项级数的一致收敛性的判别方法}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛的距离判别法}
+
+关于一致收敛, 目前我们只能用定义, 或是 Cauchy 收敛原理来判断, 这在实际应用中是非常麻烦的. 因此, 我们需要一些更为实用的判别方法, 来判断函数项级数的一致收敛性.
+
+\pause
+\vspace{0.5em}
+
+\begin{thm}
+设函数列 $\{S_n(x)\}$ 在 $D$ 上点态收敛于函数 $S(x).$ 定义 $S_n(x)$ 与 $S(x)$ 之间的距离为
+\[
+d(S_n, S) := \sup_{x \in D} |S_n(x) - S(x)|,
+\]
+则 $S_n \stackrel{D}{\rightrightarrows} S$ 当且仅当 $\lim_{n \to \infty} d(S_n, S) = 0.$
+\end{thm}
+
+\pause
+
+\begin{remark}
+在赋予距离 (度量) $d(f, g) := \sup_{x \in D} |f(x) - g(x)|$ 下, 集合 $\{ D \text{ 上有界函数} \}$ 构成一个度量空间:
+\begin{itemize}
+\item 非负性: $d(f, g) \geq 0$ 且 $d(f, g) = 0 \iff f = g$;
+\item 对称性: $d(f, g) = d(g, f)$;
+\item 三角不等式: $d(f, h) \leq d(f, g) + d(g, h)$.
+\end{itemize}
+函数列一致收敛指的就是在这个度量空间中, $S_n$ 收敛于 $S.$
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛距离判别法的证明}
+
+$\Longrightarrow:$ 设 $S_n \stackrel{D}{\rightrightarrows} S.$ 则 $\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$, 使得当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S(x)| < \varepsilon/2.$ 因此, 当 $n > N(\varepsilon)$ 时, $d(S_n, S) = \sup_{x \in D} |S_n(x) - S(x)| \leqslant \varepsilon/2 < \varepsilon.$ 这表明 $\lim_{n \to \infty} d(S_n, S) = 0.$
+
+\pause
+\vspace{1em}
+
+$\Longleftarrow:$ 设 $\lim_{n \to \infty} d(S_n, S) = 0.$ 则 $\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$, 使得当 $n > N(\varepsilon)$ 时, $d(S_n, S) = \sup_{x \in D} |S_n(x) - S(x)| < \varepsilon.$ 因此, 当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S(x)| < \varepsilon.$ 这表明 $S_n \stackrel{D}{\rightrightarrows} S.$
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛距离判别法的应用}
+
+(1) 设 $S_n(x) = \frac{x}{1 + n^2 x^2}, n = 1, 2, \cdots.$ 则 $S_n(x) \rightarrow S(x) = 0.$
+\[
+d(S_n, S) = \sup_{x \in \mathbb{R}} \left| \frac{x}{1 + n^2 x^2} - 0 \right| = \sup_{x \in \mathbb{R}} \frac{|x|}{1 + n^2 x^2} = \frac{1}{2n} \to 0, n \to \infty.
+\]
+所以 $S_n \rightrightarrows 0.$
+
+\pause
+\vspace{1em}
+
+(2) 设 $S_n(x) = x^n, x \in [0, 1).$ 则 $S_n(x) \rightarrow S(x) = 0.$
+\[
+d(S_n, S) = \sup_{x \in [0, 1)} |x^n - 0| = \sup_{x \in [0, 1)} x^n = 1, \forall ~ n \in \mathbb{N}^+.
+\]
+所以 $S_n$ 不一致收敛于 $0.$ \pause 但是, 对于任意给定的闭区间 $[a, b] \subset [0, 1),$ 有
+\[
+d(S_n, S) = \sup_{x \in [a, b]} |x^n - 0| = \sup_{x \in [a, b]} x^n = b^n \to 0, n \to \infty.
+\]
+因此, $S_n$ 在 $[0, 1)$ 上内闭一致收敛于 $0.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛距离判别法的应用}
+
+(3) 将 (1) 中的 $S_n(x) = \frac{x}{1 + n^2 x^2}$ 稍作修改: $S_n(x) = \frac{{\color{red}n} x}{1 + n^2 x^2}, n = 1, 2, \cdots.$ 则仍有 $S_n(x) \rightarrow S(x) = 0,$ 但是
+\[
+d(S_n, S) = \sup_{x \in \mathbb{R}} \left| \frac{n x}{1 + n^2 x^2} - 0 \right| = \sup_{x \in \mathbb{R}} \frac{n |x|}{1 + n^2 x^2} = \frac{1}{2}.
+\]
+这个值当 $|x| = \frac{1}{n}$ 时取得. 因此, $S_n$ 不一致收敛于 $0.$
+
+\pause
+
+若取 $D = (0, +\infty),$ 则任取闭区间 $[a, b] \subset (0, +\infty),$ 有
+\[
+d(S_n, S) = \sup_{x \in [a, b]} \left| \frac{n x}{1 + n^2 x^2} - 0 \right| = \sup_{x \in [a, b]} \dfrac{1}{n x + \frac{1}{n x}}.
+\]
+当 $n$ 充分大时, $\frac{1}{n} < a$, 此时 $\dfrac{1}{n x + \frac{1}{n x}}$ 在 $[a, b]$ 上递减, 因此
+\[
+d(S_n, S) = \sup_{x \in [a, b]} \dfrac{1}{n x + \frac{1}{n x}} = \dfrac{1}{n a + \frac{1}{n a}} \to 0, n \to \infty.
+\]
+所以 $S_n$ 在 $(0, +\infty)$ 上内闭一致收敛于 $0.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛距离判别法的应用}
+
+(4) 设 $S_n(x) = \left( 1 + \frac{x}{n} \right)^n$, 则 $S_n(x) \rightarrow S(x) = e^x.$ 考虑 $D = [0, +\infty),$ 则
+\[
+d(S_n, S) = \sup_{x \in D} \left| \left( 1 + \frac{x}{n} \right)^n - e^x \right| = +\infty,
+\]
+所以 $S_n$ 在 $D$ 上不一致收敛于 $e^x.$
+\pause
+接下来考察是否内闭一致收敛.
+\pause
+考虑 $\varphi(x) = \left. \left( 1 + \frac{x}{n} \right)^n \middle/ e^x \right.,$ 则
+\[
+\varphi'(x) = \left( 1 + \frac{x}{n} \right)^{n-1} \cdot \frac{1}{e^x} - \left( 1 + \frac{x}{n} \right)^n \cdot \frac{1}{e^x} = -\frac{x}{n e^x} \left( 1 + \frac{x}{n} \right)^{n-1} < 0.
+\]
+因此, $\varphi(x)$ 在 $[0, +\infty)$ 上递减, 所以 $\forall ~ x \in [a, b],$ 有
+\[
+1 \geqslant \varphi(0) \geqslant \varphi(a) \geqslant \varphi(x) \geqslant \varphi(b) \geqslant \lim_{x \to +\infty} \varphi(x) = 0.
+\]
+所以在闭区间 $[a, b]$ 上, $\left( 1 + \frac{x}{n} \right)^n$ 与 $e^x$ 的距离为
+\begin{align*}
+d(S_n, S) & = \sup_{x \in [a, b]} \left| \left( 1 + \frac{x}{n} \right)^n - e^x \right| = \sup_{x \in [a, b]} e^x \cdot \left| \varphi(x) - 1 \right| \leqslant \sup_{x \in [a, b]} e^x \cdot \sup_{x \in [a, b]} \left| \varphi(x) - 1 \right| \\
+& = e^b \cdot \left( 1 -  \varphi(b) \right) = e^b \cdot \left( 1 - \frac{\left( 1 + \frac{b}{n} \right)^n}{e^b} \right) = e^b - \left( 1 + \frac{b}{n} \right)^n \to 0, n \to \infty.
+\end{align*}
+因此, $S_n$ 在 $[0, +\infty)$ 上内闭一致收敛于 $e^x.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛的数列判别法}
+
+下面再来看一个函数列一致收敛的判别法. 它的反命题经常用于判断函数列不一致收敛. 在之前的例 (3) 中我们实际上已经用了这个结论了.
+
+\pause
+\vspace{0.5em}
+
+\begin{thm}[函数列一致收敛的数列判别法]
+设函数列 $\{S_n(x)\}$ 在 $D$ 上点态收敛于函数 $S(x).$ 那么, $S_n \stackrel{D}{\rightrightarrows} S$ 当且仅当 $\forall$ $D$ 中数列 $\{x_n\}$, 都有 $\lim_{n \to \infty} (S_n(x_n) - S(x_n)) = 0.$
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+要用这个结论的反命题来判断函数列不一致收敛, 只需要找到 $D$ 中一个数列 $\{x_n\}$, 使得 $\lim_{n \to \infty} (S_n(x_n) - S(x_n)) \neq 0$ 即可.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛数列判别法的证明}
+
+$\Longrightarrow:$ 设 $S_n \stackrel{D}{\rightrightarrows} S.$ 则 $\forall ~ \varepsilon > 0,$ 存在仅与 $\varepsilon$ 有关的正整数 $N(\varepsilon) \in \mathbb{N}^+$, 使得当 $n > N(\varepsilon)$ 时, $\forall ~ x \in D,$ 都有 $|S_n(x) - S(x)| < \varepsilon.$ 因此, 对于任意 $D$ 中数列 $\{x_n\},$ 当 $n > N(\varepsilon)$ 时, 都有 $|S_n(x_n) - S(x_n)| < \varepsilon.$ 这表明 $\lim_{n \to \infty} (S_n(x_n) - S(x_n)) = 0.$
+
+\pause
+\vspace{1em}
+
+$\Longleftarrow:$ 设 $\forall$ $D$ 中数列 $\{x_n\}$, 都有 $\lim_{n \to \infty} (S_n(x_n) - S(x_n)) = 0.$ 我们用反证法来证明 $S_n \stackrel{D}{\rightrightarrows} S.$ 假设 $S_n$ 不一致收敛于 $S.$ 则 $\exists ~ \varepsilon > 0,$ 对任意正整数 $N,$ 都存在 $n > N$ 和 $x \in D,$ 使得 $|S_n(x) - S(x)| \geqslant \varepsilon.$ 那么
+\begin{align*}
+& \text{对于 $N=1,$ 存在 $n_1 > 1$ 和 $x_{n_1} \in D,$ 使得 $|S_{n_1}(x_{n_1}) - S(x_{n_1})| \geqslant \varepsilon.$} \\
+& \text{对于 $N=n_1,$ 存在 $n_2 > n_1$ 和 $x_{n_2} \in D,$ 使得 $|S_{n_2}(x_{n_2}) - S(x_{n_2})| \geqslant \varepsilon.$} \\
+& \vdots
+\end{align*}
+因此, 可以对 $k = 1, 2, \cdots$ 依次构造出 $n_k > n_{k-1}$ 和 $x_{n_k} \in D,$ 使得 $|S_{n_k}(x_{n_k}) - S(x_{n_k})| \geqslant \varepsilon.$ 将 $D$ 中数列 $\{x_{n_k}\}$ 任意扩充为 $D$ 中数列 $\{x_n\},$ 则 $\lim_{n \to \infty} (S_n(x_n) - S(x_n)) \neq 0.$ 矛盾. 因此, $S_n \stackrel{D}{\rightrightarrows} S.$
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛数列判别法的应用}
+
+(1) 之前已经证明了对于 $S_n(x) = \left( 1 + \frac{x}{n} \right)^n,$ $D = [0, +\infty),$ $S_n$ 点态收敛于 $S(x) = e^x,$ 但 $\sup_{x \in D} |S_n(x) - S(x)| = +\infty,$ 所以 $S_n$ 不一致收敛于 $e^x.$ 下面我们用数列判别法来证明这个结论.
+\pause
+设 $x_n = n,$ 则
+\[
+S_n(x_n) - S(x_n) = \left( 1 + \frac{n}{n} \right)^n - e^n = 2^n - e^n \to -\infty, n \to \infty.
+\]
+
+\pause
+\vspace{1em}
+
+(2) 对于 $D = [0, 1],$ $S_n(x) = nx(1-x^2)^n = x \cdot \dfrac{n}{\left( \frac{1}{1-x^2} \right)^n} \to 0, n \to \infty.$ 因此, $S_n$ 点态收敛于 $0.$
+\pause
+但是, 设 $x_n = \frac{1}{n},$ 则
+\[
+S_n(x_n) - S(x_n) = \left( 1 - \frac{1}{n^2} \right)^n = \left( 1 - \frac{1}{n} \right)^n \cdot \left( 1 + \frac{1}{n} \right)^n \to e^{-1} \cdot e = e^0 = 1, n \to \infty.
+\]
+因此, $S_n$ 不一致收敛于 $0.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛数列判别法的应用}
+
+(3) 考虑函数项级数 $\sum_{n=1}^\infty u_n(x) = \sum_{n=1}^\infty n \left( x + \frac{1}{n} \right)^n.$
+\pause
+首先来判断它的收敛域:
+\begin{itemize}
+\item 当 $x = 0$ 时, $\sum_{n=1}^\infty u_n(x) = \sum_{n=1}^\infty n \left( \frac{1}{n} \right)^n$ 收敛;
+\pause
+\item 当 $x \geqslant 1$ 时, $u_n(x) \geqslant n \left( 1 + \frac{1}{n} \right)^n > n,$ 通项不趋于 $0,$ 级数发散;
+\pause
+\item 当 $x \leqslant -1$ 时, 类似也能得到通项 $u_n(x)$ 不趋于 $0,$ 级数发散;
+\pause
+\item 当 $-1 < x < 1$ 且 $x \neq 0$ 时, 有
+\[
+\sqrt[n]{|u_n(x)|} = \sqrt[n]{n} \cdot \left| x + \frac{1}{n} \right| \to |x| < 1, n \to \infty,
+\]
+由正项级数的 Cauchy 判别法知 $\sum_{n=1}^\infty u_n(x)$ (绝对) 收敛.
+\end{itemize}
+因此, $\sum_{n=1}^\infty u_n(x)$ 的收敛域为 $(-1, 1).$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛数列判别法的应用}
+
+接下来判断 $\sum_{n=1}^\infty u_n(x) = \sum_{n=1}^\infty n \left( x + \frac{1}{n} \right)^n$ 在收敛域 $D = (-1, 1)$ 上是否一致收敛.
+
+\pause
+\vspace{1em}
+
+如果 $\sum_{n=1}^\infty u_n$ 在 $D$ 上一致收敛于 $S,$ 则 (由必要条件) $u_n \stackrel{D}{\rightrightarrows} 0.$ 但是, 取 $x_n = 1-\frac{1}{2n} \in D,$ 则
+\[
+u_n(x_n) = n \left( 1 - \frac{1}{2n} + \frac{1}{n} \right)^n = n \left( 1 + \frac{1}{2n} \right)^n = n \left( \left( 1 + \frac{1}{2n} \right)^{2n} \right)^{\frac{1}{2}} \to +\infty, n \to \infty.
+\]
+因此, $u_n$ 不一致收敛于 $0,$ 故 $\sum_{n=1}^\infty u_n$ 在收敛域 $D = (-1, 1)$ 上不一致收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛数列判别法的应用}
+
+但是, 它是内闭一致收敛的. 这是因为对任意闭区间 $[a, b] \subset (-1, 1),$ $\forall ~ x \in [a, b],$ 当 $n$ 足够大时, 有
+\[
+\left| x + \frac{1}{n} \right| < \max \left\{ \frac{1+|a|}{2}, \frac{1+|b|}{2} \right\} =: r < 1,
+\]
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+\draw (-4.5, 0) -- (4.5, 0);
+
+\node at (-4, 0) {\small(};
+\node[below left] at (-4, 0) {$-1$};
+\node at (4, 0) {\small)};
+\node[below right] at (4, 0) {$1$};
+
+\node at (-3, 0) {\small[};
+\node[below = 6pt] at (-3, 0) {$a$};
+\node at (3.5, 0) {\small]};
+\node[below=6pt] at (3.5, 0) {$b$};
+
+\node at (-3.8, 0) {\color{red}\small|};
+\node[below = 6pt] at (-3.8, 0) {\color{red}$-t$};
+\node at (3.8, 0) {\color{red}\small|};
+\node[below=6pt] at (3.8, 0) {\color{red}$t$};
+\end{tikzpicture}
+\end{center}
+因此有 $|u_n(x)| < n r^n.$ 那么对任意 $m > n,$ 有
+\[
+|S_m(x) - S_n(x)| = \left| \sum_{k=n+1}^m u_k(x) \right| < \sum_{k=n+1}^m k r^k < \sum_{k=n+1}^\infty k r^k = \frac{r^{n+1}}{(1-r)^2} \to 0, n \to \infty.
+\]
+由 Cauchy 收敛原理知 $\sum_{n=1}^\infty u_n$ 在 $[a, b]$ 上一致收敛于 $S.$ 因此, $\sum_{n=1}^\infty u_n$ 在 $(-1, 1)$ 上内闭一致收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{一致收敛数列判别法的应用}
+
+\end{frame}
 
 \end{document}
