@@ -35,12 +35,71 @@
 
 %------------------------------------------------
 
+\begin{frame}
+\frametitle{绪言}
+
+我们已有的基于``距离'', 或是基于数列的极限的函数项级数的一致收敛性的判别方法, 都首先需要将函数项级数的和函数或者函数列的极限函数求出来. 这对于仅仅需要判断一致收敛性的情况来说, 是不必要的, 而且在某些情况下甚至是不可行的. 于是我们需要一些不需要求出和函数或者极限函数的表达式, 就可以判断一致收敛性的判别方法. 这一节我们将介绍一些这样的判别方法.
+
+\pause
+\vspace{1em}
+
+我们已经介绍过这样一种基本的方法了:
+
+\begin{thm}[Cauchy 收敛原理]
+函数项级数 $\displaystyle \sum_{n=0}^\infty u_n(x)$ 在 $D$ 上一致收敛的充分必要条件是: 对任意 $\varepsilon > 0,$ 存在只与 $\varepsilon$ 有关的正整数 $N(\varepsilon)$, 使得当 $m > n \geqslant N(\varepsilon)$ 时, 对任意 $x \in D,$ 都有
+\begin{equation*}
+\left| \sum_{k=n+1}^m u_k(x) \right| = \left| u_{n+1}(x) + u_{n+2}(x) + \cdots + u_m(x) \right| < \varepsilon.
+\end{equation*}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{绪言}
+
+\begin{remark}
+\begin{itemize}
+\item 相应地, 函数列 $\{S_n(x)\}$ 在 $D$ 上一致收敛的 Cauchy 收敛原理是: 对任意 $\varepsilon > 0,$ 存在只与 $\varepsilon$ 有关的正整数 $N(\varepsilon)$, 使得当 $m > n \geqslant N(\varepsilon)$ 时, 对任意 $x \in D,$ 都有 $S_m(x) - S_n(x) < \varepsilon.$
+\item Cauchy 收敛原理对一般的完备的度量空间中元素的序列 (族) 的收敛性判别同样适用.
+\end{itemize}
+\end{remark}
+
+\pause
+\vspace{1em}
+
+Cauchy 收敛原理虽然是函数项级数一致收敛性的一个充分必要条件, 但是在实际应用中, 由于需要对任意 $m > n \geqslant N(\varepsilon)$ 和任意 $x \in D$ 都满足的条件进行验证, 因此使用起来非常麻烦. 下面我们将介绍一些更为实用的判别方法.
+
+\end{frame}
+
+%------------------------------------------------
+
 \section{一致收敛的判别}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{待写}
+\frametitle{Weierstraß 判别法}
+
+类似于正项级数的比较判别法, 函数项级数也有类似的判别方法, 最简单的情况就是被比较的函数项级数是一个正项级数, 这就是所谓的 Weierstraß 判别法:
+
+\begin{thm}[Weierstraß 判别法]
+设 $\{u_n(x)\}$ 是定义在 $D$ 上的函数列, $\{a_n\}$ 是正数列, 满足 $|u_n(x)| \leqslant a_n$ 对任意 $n \in \mathbb{N}$ 和 $x \in D$ 都成立. 如果正项级数 $\displaystyle \sum_{n=0}^\infty a_n$ 收敛, 那么函数项级数 $\displaystyle \sum_{n=0}^\infty u_n(x)$ 在 $D$ 上一致收敛.
+\end{thm}
+
+\pause
+\vspace{1em}
+
+\begin{eg}
+设数项级数 $\sum_{n=1}^\infty a_n$ 绝对收敛, 那么由 Weierstraß 判别法, 函数项级数
+\[
+\sum_{n=1}^\infty a_n \sin (n x), ~~ \sum_{n=1}^\infty a_n \cos (n x)
+\]
+在 $\mathbb{R}$ 上一致收敛.
+\pause
+例如, $a_n = \frac{1}{n^s}, s > 1;$ $a_n = \frac{(-1)^{n+1}}{n^2 + 1}$ 等等.
+\end{eg}
 
 \end{frame}
 
