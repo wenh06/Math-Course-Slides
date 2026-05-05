@@ -702,9 +702,9 @@ u_n(x_n) = n \left( 1 - \frac{1}{2n} + \frac{1}{n} \right)^n = n \left( 1 + \fra
 \node[below=6pt] at (3.5, 0) {$b$};
 
 \node at (-3.8, 0) {\color{red}\small|};
-\node[below = 6pt] at (-3.8, 0) {\color{red}$-t$};
+\node[below = 6pt] at (-3.8, 0) {\color{red}$-r$};
 \node at (3.8, 0) {\color{red}\small|};
-\node[below=6pt] at (3.8, 0) {\color{red}$t$};
+\node[below=6pt] at (3.8, 0) {\color{red}$r$};
 \end{tikzpicture}
 \end{center}
 因此有 $|u_n(x)| < n r^n.$ 那么对任意 $m > n,$ 有
@@ -712,13 +712,6 @@ u_n(x_n) = n \left( 1 - \frac{1}{2n} + \frac{1}{n} \right)^n = n \left( 1 + \fra
 |S_m(x) - S_n(x)| = \left| \sum_{k=n+1}^m u_k(x) \right| < \sum_{k=n+1}^m k r^k < \sum_{k=n+1}^\infty k r^k = \frac{r^{n+1}}{(1-r)^2} \to 0, n \to \infty.
 \]
 由 Cauchy 收敛原理知 $\sum_{n=1}^\infty u_n$ 在 $[a, b]$ 上一致收敛于 $S.$ 因此, $\sum_{n=1}^\infty u_n$ 在 $(-1, 1)$ 上内闭一致收敛.
-
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{一致收敛数列判别法的应用}
 
 \end{frame}
 
