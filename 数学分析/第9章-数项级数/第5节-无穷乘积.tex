@@ -779,8 +779,11 @@ f_n(t) = \prod_{k=1}^n \left( t - \sin^2 \left(\frac{k \pi}{2n + 1}\right) \righ
 于是, 对于固定的 $m$ 以及 $n > m$, 有
 \[
 \frac{\sin x}{(2n+1) \sin \left( \frac{x}{2n + 1} \right) \cdot \prod\limits_{k=1}^m \left( 1 - \frac{\sin^2 \left( \frac{x}{2n + 1} \right)}{\sin^2 \left( \frac{k \pi}{2n + 1} \right)} \right)} = \prod\limits_{k=m+1}^n \left( 1 - \frac{\sin^2 \left( \frac{x}{2n + 1} \right)}{\sin^2 \left( \frac{k \pi}{2n + 1} \right)} \right).
+\tag{$\star\star$}
+\label{eq:starstar}
 \]
 对上式, 令 $n \to \infty$, 左边 $\xrightarrow[]{n \to \infty} \frac{\sin x}{x \prod\limits_{k=1}^m \left( 1 - \frac{x^2}{k^2 \pi^2} \right)}.$
+
 \end{frame}
 
 %------------------------------------------------
@@ -788,15 +791,39 @@ f_n(t) = \prod_{k=1}^n \left( t - \sin^2 \left(\frac{k \pi}{2n + 1}\right) \righ
 \begin{frame}
 \frametitle{$\sin x$ 的无穷乘积展开的证明}
 
-另一方面, 可以假设 $m$ 充分大, 使得 $\left| \frac{x}{2m+1} \right| < \frac{\pi}{2},$ 那么右边有
+另一方面, 可以假设 $m$ 充分大, 使得 $\left| \frac{x}{2m+1} \right| < \frac{\pi}{2},$ 那么有
 \[
-1 \geqslant \text{右边} \xrightarrow[]{n \to \infty} \prod_{k=m+1}^\infty \left( 1 - \frac{\sin^2 \left(\frac{x}{2n + 1}\right)}{{\color{red} \sin^2 \left(\frac{k \pi}{2n + 1}\right)}} \right) \geqslant \prod_{k=m+1}^\infty \left( 1 - \frac{\left(\frac{x}{2n+1}\right)^2}{{\color{red}\left(\frac{2}{\pi}\right)^2 \left(\frac{k \pi}{2n+1}\right)^2}} \right) = \prod_{k=m+1}^\infty \left( 1 - \frac{x^2}{4 k^2} \right).
+0 \leqslant \frac{|x|}{2n + 1} < \frac{(m+1) \pi}{2n + 1} < \cdots < \frac{n \pi}{2n + 1} < \frac{\pi}{2},
 \]
-也就是说, 得到了
+所以有
 \[
-1 \geqslant \text{右边} = \text{左边} = \frac{\sin x}{x \prod\limits_{k=1}^m \left( 1 - \frac{x^2}{k^2 \pi^2} \right)} \geqslant \prod_{k=m+1}^\infty \left( 1 - \frac{x^2}{4 k^2} \right).
+0 < \sin^2 \left( \frac{x}{2n + 1} \right) < \sin^2 \left( \frac{(m+1) \pi}{2n + 1} \right) < \cdots < \sin^2 \left( \frac{n \pi}{2n + 1} \right) < 1.
 \]
-注意到上式最右边是一个收敛的无穷乘积的尾积, 所以令 $m \to \infty$, 就得到了 $1 \geqslant \frac{\sin x}{x \prod\limits_{k=1}^\infty \left( 1 - \frac{x^2}{k^2 \pi^2} \right)} \geqslant 1.$ 由夹逼定理, 就得到了
+同时, 在 $t \in [0, \frac{\pi}{2})$ 上有 ${\color{cyan}t} \geqslant \sin t \geqslant {\color{red}\frac{2}{\pi} t}.$ 那么 \eqref{eq:starstar} 式的右边满足
+\[
+1 \geqslant \text{右边} \geqslant \prod_{k=m+1}^n \left( 1 - \frac{{\color{cyan}\sin^2 \left(\frac{x}{2n + 1}\right)}}{{\color{red} \sin^2 \left(\frac{k \pi}{2n + 1}\right)}} \right) \geqslant \prod_{k=m+1}^n \left( 1 - \frac{{\color{cyan}\left(\frac{x}{2n+1}\right)^2}}{{\color{red}\left(\frac{2}{\pi}\right)^2 \left(\frac{k \pi}{2n+1}\right)^2}} \right) = \prod_{k=m+1}^n \left( 1 - \frac{x^2}{4 k^2} \right).
+\]
+同样对上式取极限 $n \to \infty$, 就得到了
+\[
+1 \geqslant \lim_{n \to \infty} \text{右边} \geqslant \prod_{k=m+1}^\infty \left( 1 - \frac{x^2}{4 k^2} \right).
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{$\sin x$ 的无穷乘积展开的证明}
+
+综合可得
+\[
+1 \geqslant \frac{\sin x}{x \prod\limits_{k=1}^m \left( 1 - \frac{x^2}{k^2 \pi^2} \right)} = \lim_{n \to \infty} \text{左边} = \lim_{n \to \infty} \text{右边} \geqslant \prod_{k=m+1}^\infty \left( 1 - \frac{x^2}{4 k^2} \right).
+\]
+注意到上式最右边是一个收敛的无穷乘积的尾积, 所以令 $m \to \infty$, 就得到了
+\[
+1 \geqslant \frac{\sin x}{x \prod\limits_{k=1}^\infty \left( 1 - \frac{x^2}{k^2 \pi^2} \right)} \geqslant \lim_{m \to \infty} \prod_{k=m+1}^\infty \left( 1 - \frac{x^2}{4 k^2} \right) = 1.
+\]
+由夹逼定理, 就得到了
 \[
 \sin x = x \prod_{n=1}^\infty \left( 1 - \frac{x^2}{n^2 \pi^2} \right).
 \]
