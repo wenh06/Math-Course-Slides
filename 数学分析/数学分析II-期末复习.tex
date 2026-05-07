@@ -1,0 +1,1537 @@
+\everymath{\displaystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[数分II\\
+期末复习]{\texorpdfstring{\Huge \bfseries 数学分析II期末复习}{数学分析II期末复习}} % The short title appears at the bottom of every slide, the full title is only on the title page
+% \author[\S 11.3\\
+% 多元连续函数性质] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+% {\Large \bfseries \S 11.3 多元连续函数的性质}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{定积分}
+
+%------------------------------------------------
+
+\begin{frame}{可积性与积分的定义}
+
+基本考察对象: 定义在闭区间上函数 $f: [a, b] \longrightarrow \mathbb{R}$
+\pause
+$\longsquiggly$ $\mathfrak{R}[a,b].$
+
+\pause
+
+\begin{itemize}[<+->]
+\item {\color{red}带标志点的}划分 $(P, {\color{red}\xi}):$
+\begin{alignat*}{8}
+P & : a = x_0 & < & ~ x_1 & < & ~ x_2 & ~ < & ~ \cdots & ~ < & ~ x_n = b \\
+& & \uparrow & & \uparrow & & \uparrow & & \uparrow & \\
+{\color{red}\xi} & : & ~ {\color{red}\xi_1} & & ~ {\color{red}\xi_2} & & ~ {\color{red}\xi_3} & ~ \cdots & ~ {\color{red}\xi_n} &
+\end{alignat*}
+$\Delta_i = [x_{i-1}, x_i], ~ \Delta x_i = x_i - x_{i-1}, ~ \lambda(P) = \max_{1 \leqslant i \leqslant n} \Delta x_i$
+\item 积分和: $S(f; P; \xi) = \sum\limits_{i=1}^n f(\xi) \Delta x_i.$
+\item Darboux 大和: $\overline{S}(f; P) = \sum\limits_{i=1}^n \sup_{t\in\Delta_i} f(t) \cdot \Delta x_i =: \sum\limits_{i=1}^n M_i(f) \cdot \Delta x_i$ \par
+Darboux 小和: $\underline{S}(f; P) = \sum\limits_{i=1}^n \inf_{t\in\Delta_i} f(t) \cdot \Delta x_i =: \sum\limits_{i=1}^n m_i(f) \cdot \Delta x_i$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可积性与积分的定义}
+
+\begin{Def}[函数 Riemann 可积]
+极限 $\lim\limits_{\lambda(P) \to 0} S(f; P; \xi) = I \in \mathbb{R}$ 存在, 则称 $f$ 在 $[a, b]$ 上 Riemann 可积, 记作
+\[\int_a^b f(x) ~ \mathrm{d} x = \lim\limits_{\lambda(P) \to 0} S(f; P; \xi).\]
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可积函数的性质与判别}
+
+必要条件: $f(x)$ 有界.
+
+\pause
+\vspace{1em}
+
+等价 (充要) 条件:
+\pause
+\begin{enumerate}[<+->]
+\item Cauchy 收敛原理: $\forall~\varepsilon > 0, \exists \delta > 0,$ 使得任意带标志点的划分 $(P_1, \xi_1), (P_2, \xi_2),$ 若满足 $\lambda(P_1) < \delta, \lambda(P_2) < \delta,$ 总有
+\[\lvert S(f; P_1; \xi_1) - S(f; P_2; \xi_2) \rvert < \varepsilon.\]
+\item Darboux 和条件: $\lim\limits_{\lambda(P) \to 0} \overline{S}(f; P) =: \overline{\int}_a^b f(x) ~ \mathrm{d} x = \underline{\int}_a^b f(x) ~ \mathrm{d} x := \lim\limits_{\lambda(P) \to 0} \underline{S}(f; P).$
+\item 振幅条件: $\forall~\varepsilon > 0, \exists \delta > 0,$ 使得任意满足 $\lambda(P) < \delta$ 的划分 $P$ 总有
+$\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\omega(f; \Delta_i) := \sup\limits_{t_1, t_2 \in \Delta_i} \lvert f(t_1) - f(t_2) \rvert.$
+\item Lebesgue 判别法: $f(x)$ 有界, 且几乎处处连续 (不连续点集是零测集).
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{闭区间上典型的可积函数}
+
+\begin{itemize}
+\item 连续函数 (所有初等函数) ~ \reflectbox{$\longsquiggly$} ~ 蕴含有界性\
+\pause
+\item 单调函数 ~ \reflectbox{$\longsquiggly$} ~ 蕴含有界性
+\pause
+\item $[0, 1]$ 上的 Riemann 函数 $R(x) = \begin{cases}
+  \dfrac{1}{q}, & x = \dfrac{p}{q} ~ \text{为既约分数;}\\
+  0, & x ~ \text{为无理数或} ~ x = 0.
+\end{cases}$
+\end{itemize}
+
+\pause
+\vspace{1em}
+
+典型的不可积函数:
+\pause
+
+\begin{itemize}[<+->]
+\item $[0, 1]$ 上的 Dirichlet 函数 $D(x) = \begin{cases}
+  1, & x ~ \text{为有理数;}\\
+  0, & x ~ \text{为无理数.}
+\end{cases}$
+\item 无界函数, 例如 $f(x) = \begin{cases}
+  \dfrac{1}{x}, & x \in (0, 1];\\
+  0, & x = 0.
+\end{cases}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的 (运算) 性质}
+
+关于被积区间的
+\pause
+\begin{enumerate}
+\item 区间 (有限) 可加性: $\int_a^b f(x) ~ \mathrm{d} x = \int_a^c f(x) ~ \mathrm{d} x + \int_c^b f(x) ~ \mathrm{d} x.$
+\end{enumerate}
+
+\pause
+
+关于被积函数的
+\pause
+\begin{enumerate}[<+->]
+\setcounter{enumi}{1}
+\item 线性性:
+\[\int_a^b (\alpha g(x) + \beta f(x)) ~ \mathrm{d} x = \alpha \int_a^b g(x) ~ \mathrm{d} x + \beta \int_a^b f(x) ~ \mathrm{d} x.\]
+\item 乘积可积性: $f, g \in \mathfrak{R}[a, b] \implies f \cdot g \in \mathfrak{R}[a, b].$
+\item 保序性: $f \leqslant g \implies \int_a^b f(x) ~ \mathrm{d} x \leqslant \int_a^b g(x) ~ \mathrm{d} x.$
+\item 绝对可积性: $f \in \mathfrak{R}[a, b] \implies \lvert f \rvert \in \mathfrak{R}[a, b]$ ({\color{red}反之不成立}), 且有
+\[\left\lvert \int_a^b f(x) ~ \mathrm{d} x \right\rvert \leqslant \int_a^b \lvert f(x) \rvert ~ \mathrm{d} x.\]
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{积分中值定理}
+
+\begin{itemize}
+\item 积分第一中值定理: $f, g \in \mathfrak{R}[a, b],$ {\color{red}$g$ 不变号}, 那么存在 $\inf_{x \in [a,b]} f(x) \leqslant \eta \leqslant \sup_{x \in [a,b]} f(x),$ 使得
+\[\int_a^b f(x) g(x) ~ \mathrm{d} x = \eta \int_a^b \colorbox{orange}{\text{$g(x)$}} ~ \mathrm{d} x.\]
+\pause
+\item 积分第二中值定理: $f, g \in \mathfrak{R}[a, b],$ {\color{red}$g$ 单调}, 那么存在 $\xi \in [a, b],$ 使得
+\[\int_a^b f(x) g(x) ~ \mathrm{d} x = \colorbox{orange}{\text{$g(a)$}} \int_a^\xi f(x) ~ \mathrm{d} x + \colorbox{orange}{\text{$g(b)$}} \int_{\xi}^b f(x) ~ \mathrm{d} x.\]
+\pause
+等价形式: $f, g \in \mathfrak{R}[a, b],$ {\color{red}$g$ 非负不增}, 那么存在 $\xi' \in [a, b],$ 使得
+\[\int_a^b f(x) g(x) ~ \mathrm{d} x = \colorbox{orange}{\text{$g(a)$}} \int_a^{\xi'} f(x) ~ \mathrm{d} x.\]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{几个重要不等式}
+
+\begin{itemize}[<+->]
+\item H\"older 不等式: $f, g \in C[a, b]$ (更一般 $\mathfrak{R}[a, b]$), $1 \leqslant p, q \leqslant +\infty,$ $\dfrac{1}{p} + \dfrac{1}{q} = 1,$ 记 $\lVert f \rVert_p = \left( \int_a^b \lvert f(x) \rvert^p ~ \mathrm{d} x \right)^{1/p},$ 那么
+\[\lVert f \cdot g \rVert_1 \leqslant \lVert f \rVert_p \cdot \lVert g \rVert_q.\]
+\item Minkowski 不等式: $f, g \in \mathfrak{R}[a, b]$, $1 \leqslant p \leqslant +\infty,$ 那么
+\[\lVert f + g \rVert_p \leqslant \lVert f \rVert_p + \lVert g \rVert_p.\]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的计算}
+
+\begin{thm}[微积分基本定理 (Newton-Leibniz 公式)]
+设 $f(x) \in C[a, b],$ $F(x)$ 是 $f(x)$ 在 $[a, b]$ 上的一个{\color{red}原函数}, 那么
+\[\int_a^b f(x) ~ \mathrm{d} x = F(b) - F(a).\]
+\end{thm}
+
+\pause
+
+典型例子: $I = \int_0^2 \dfrac{(x-1)^2 + 1}{(x-1)^2 + x^2(x-2)^2} ~ \mathrm{d} x$
+
+\pause
+
+\[I \begin{cases}
+\colorbox{red}{$\neq \int_0^2$} \arctan \dfrac{x(x-2)}{x-1} ~ \mathrm{d} x \\
+\pause
+= \left( \int_0^1 + \int_1^2 \right) \left( \arctan \dfrac{x(x-2)}{x-1} ~ \mathrm{d} x \right)
+\end{cases}\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{来自不定积分的计算方法}
+
+\begin{itemize}[<+->]
+\item 分部积分法: $\int_a^b u(x) ~ \mathrm{d} v(x) = \left. \left[ u(x)v(x) \right] \right|_a^b - \int_a^b v(x) ~ \mathrm{d} u(x).$
+\vspace{1em}
+\item 换元积分法: $\int_a^b f(x) ~ \mathrm{d} x = \int_\alpha^\beta f(\varphi(t)) \varphi'(t) ~ \mathrm{d} t.$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一些常见的定积分}
+
+\begin{itemize}[<+->]
+\item 奇函数, 偶函数在关于原点对称区间上的积分
+\item 周期函数积分: $\int_a^{a+T} f(x) ~ \mathrm{d} x = $ 与 $a$ 无关的常数
+\item 正交函数系: $\int_a^b f_k(x)f_j(x) ~ \mathrm{d} x = \begin{cases}
+  0, & k \neq j, \\
+  \int_a^b f_k^2(x) ~ \mathrm{d} x > 0, & k = j.
+\end{cases}$
+\begin{itemize}[<+->]
+\item $\cos nx, \sin mx, n = 0, 1, 2, \dots, m = 1, 2, \dots,$ 构成任意 $2\pi$ 长度区间上的正交函数系.
+\item Legendre 多项式 $P_n(x) = \dfrac{1}{2^n n!} \dfrac{\mathrm{d}^n}{\mathrm{d}x^n}(x^2-1)^n, n = 0, 1, 2, \dots,$ 构成 $[-1, 1]$ 区间上的正交函数系.
+\end{itemize}
+\item 初等函数: (不定积分) 基本积分表
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(不定积分) 基本积分表}
+
+{\smaller[2]
+\[
+\begin{array}{ll}
+\int x^\alpha ~ \mathrm{d} x = \begin{cases}
+  \dfrac{x^{\alpha+1}}{\alpha+1} + C, & \alpha \neq -1;\\
+  \ln \lvert x \rvert + C, & \alpha = -1.
+\end{cases} & \int \ln x ~ \mathrm{d} x = x \ln x - x + C \\
+\int a^x ~ \mathrm{d} x = \dfrac{a^x}{\ln a} + C & \int e^x ~ \mathrm{d} x = e^x + C \\
+\int \sin x ~ \mathrm{d} x = -\cos x + C & \int \cos x ~ \mathrm{d} x = \sin x + C \\
+\int \tan x ~ \mathrm{d} x = -\ln \lvert \cos x \rvert + C & \int \cot x ~ \mathrm{d} x = \ln \lvert \sin x \rvert + C \\
+\int \sec x ~ \mathrm{d} x = \ln \lvert \sec x + \tan x \rvert + C & \int \csc x ~ \mathrm{d} x = \ln \lvert \csc x - \cot x \rvert + C \\
+\int \operatorname{sh} x ~ \mathrm{d} x = \operatorname{ch} x + C & \int \operatorname{ch} x ~ \mathrm{d} x = \operatorname{sh} x + C \\
+\int \dfrac{\mathrm{d} x}{x^2 - a^2} = \dfrac{1}{2a} \ln \left\lvert \dfrac{x-a}{x+a} \right\rvert + C & \int \dfrac{\mathrm{d} x}{x^2+a^2} = \dfrac{1}{a} \arctan \dfrac{x}{a} + C \\
+\int \dfrac{\mathrm{d} x}{\sqrt{a^2-x^2}} = \arcsin \dfrac{x}{a} + C & \int \dfrac{\mathrm{d} x}{\sqrt{x^2 \pm a^2}} = \ln \left\lvert x \pm \sqrt{x^2 \pm a^2} \right\rvert + C \\
+\multicolumn{2}{l}{\int \sqrt{a^2 - x^2} ~ \mathrm{d} x = \dfrac{x}{2} \sqrt{a^2 - x^2} + \dfrac{a^2}{2} \arcsin \dfrac{x}{a} + C} \\
+\multicolumn{2}{l}{\int \sqrt{x^2 \pm a^2} ~ \mathrm{d} x = \dfrac{x}{2} \sqrt{x^2 \pm a^2} \pm \dfrac{a^2}{2} \ln \left\lvert x + \sqrt{x^2 \pm a^2} \right\rvert + C}
+\end{array}
+\]
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的计算}
+
+\begin{block}{变上限积分}
+$f(x) \in \mathfrak{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(t) ~ \mathrm{d} t,$ $x \in [a, b].$
+\end{block}
+
+\pause
+
+\begin{itemize}[<+->]
+\item 若 $f(x) \in C^{(k)}[a, b],$ 则 $F(x) \in C^{(k+1)}[a, b].$
+\item $\dfrac{\mathrm{d}}{\mathrm{d} x} \left( \int_a^{\varphi(x)} f(t) ~ \mathrm{d} t \right) = f(\varphi(x)) \varphi'(x).$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的应用}
+
+\begin{itemize}
+\item 平面区域 (由 $y=f(x), y=g(x), x = a, x = b$ 围成) 面积:
+\[\int_a^b (f(x) - g(x)) ~ \mathrm{d}x\]
+\pause
+极坐标下曲线 $r = r(\theta)$ 与极径 $\theta = \alpha, \theta = \beta$ 围成区域面积
+\[\dfrac{1}{2} \int_{\alpha}^{\beta} r^2(\theta) ~ \mathrm{d} \theta\]
+\pause
+\item 曲线弧长: $\ell = \int_a^b \sqrt{1 + (f'(x))^2} ~ \mathrm{d} x$ \par
+\pause
+参数方程 $x = x(t), y = y(t)$ 下曲线弧长:
+\[\ell = \int_{\alpha}^{\beta} \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d} t\]
+\pause
+极坐标下曲线弧长: $\ell = \int_{\alpha}^{\beta} \sqrt{r^2(\theta) + (r'(\theta))^2} ~ \mathrm{d} \theta$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的应用}
+
+\begin{itemize}
+\item 几何体 (平面 $x = a, x = b$ 之间, 截面积 $A(x)$) 体积: $\int_a^b A(x) ~ \mathrm{d} x$ \par
+\pause
+旋转体 ($y = f(x)$ 绕 $x$ 轴旋转) 体积: $\pi \int_a^b f^2(x) ~ \mathrm{d} x$ \par
+\pause
+由参数方程 $x = x(t), y = y(t)$ 给出曲线绕 $x$ 轴旋转体积:
+\[\pi \int_{\alpha}^{\beta} y^2(t) \cdot \lvert x'(t) \rvert ~ \mathrm{d} t\]
+\pause
+\vspace{-1em}
+\item 旋转曲面面积: $2\pi \int_a^b f(x) ~ \mathrm{d} \ell = 2\pi \int_a^b f(x) \sqrt{1 + (f'(x))^2} ~ \mathrm{d} x$ \par
+\pause
+由参数方程 $x = x(t), y = y(t)$ 给出曲线绕 $x$ 轴旋转曲面面积:
+\[2\pi \int_{\alpha}^{\beta} y(t) \sqrt{(x'(t))^2 + (y'(t))^2} ~ \mathrm{d} t\]
+\pause
+\vspace{-1em}
+\item 曲率: $\kappa = \left\lvert \dfrac{\mathrm{d} \theta}{\mathrm{d} \ell} \right\rvert = \dfrac{\lvert f''(x) \rvert}{(1 + (f'(x))^2)^{3/2}} = \left\lvert \dfrac{x'(t)y''(t) - y'(t)x''(t)}{((x'(t))^2 + (y'(t))^2)^{3/2}} \right\rvert$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的数值计算}
+
+\begin{block}{$n$ 步 Newton-Cotes 求积分公式}
+将 $[a, b]$ 区间 $n$ 等分 $x_i = a + \dfrac{k}{n}(b-a),$ 记
+\[p_n(x) = \sum\limits_{k=0}^n f(x_k) L_k(x) = \sum\limits_{k=0}^n f(x_k) \prod\limits_{j=0, j\neq k}^n \dfrac{x-x_j}{x_k-x_j}\]
+为 $f(x)$ 的 $n$ 次 Lagrange 插值多项式, 那么
+\[\int_a^b f(x) ~ \mathrm{d} x \approx \int_a^b p_n(x) ~ \mathrm{d} x = \sum\limits_{k=0}^n f(x_k) {\color{red}\int_a^b L_k(x) ~ \mathrm{d} x} = \sum\limits_{k=0}^n f(x_k) {\color{red}\omega_k}.\]
+\end{block}
+
+\pause
+
+\begin{itemize}
+\item $n$ 步 Newton-Cotes 求积分公式代数精度为 $n.$
+\item $n=2k$ 步 Newton-Cotes 求积分公式代数精度为 $n+1.$
+\item $\omega_k = \dfrac{b-a}{n} \int_0^n \prod\limits_{j=0, j\neq k}^n \dfrac{x-j}{k-j} ~ \mathrm{d} x$ 与 $f$ 无关.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定积分的数值计算}
+
+\begin{itemize}[<+->]
+\item $n = 1$ (梯形公式):
+\[\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{2} \left( f(a) + f(b) \right)\]
+\item $n = 2$ (Simpson 公式, 抛物形公式):
+\[\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{6} \left( f(a) + 4f\left( \dfrac{a+b}{2} \right) + f(b) \right)\]
+\item $n = 4$ (Cotes 公式):
+\begin{multline*}
+\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{90} \left( 7f(a) + 32f\left( \dfrac{3a+b}{4} \right) \right. \\
++ \left. 12f\left( \dfrac{a+b}{2} \right) + 32f\left( \dfrac{a+3b}{4} \right) + 7f(b) \right)
+\end{multline*}
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{反常积分}
+
+%------------------------------------------------
+
+\begin{frame}{反常积分定义}
+
+\begin{itemize}
+\item 无穷区间
+\[\int_a^{+\infty} f(x) ~ \mathrm{d} x = \lim\limits_{A \to +\infty} \int_a^A f(x) ~ \mathrm{d} x\]
+\item 无界函数
+\[\int_a^b f(x) ~ \mathrm{d} x = \lim\limits_{\delta \to 0+} \int_a^{b-\delta} f(x) ~ \mathrm{d} x\]
+\end{itemize}
+\pause
+若极限存在, 则称反常积分收敛, 否则发散. 以上两种类型积分可以通过 $x \leftrightarrow \dfrac{1}{x}$ 相互转化, 于是可以统一记为
+\[\int_a^\omega f(x) ~ \mathrm{d} x, ~~ \omega ~ \text{是奇点或 $\infty$}\]
+
+\pause
+\vspace{-0.5em}
+
+\begin{attnblock}
+反常积分不是 Riemann 积分, 而是它的一种推广. 当 $f \in \mathfrak{R}[a, b],$ 若把 $\int_a^b f(x) ~ \mathrm{d} x$ 视作反常积分, 则它的值等于 Riemann 积分的值.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反常积分定义}
+
+积分上下限都是奇点或 $\pm\infty:$
+\[\int_{\omega_1}^{\omega_2} f(x) ~ \mathrm{d} x = \lim\limits_{\substack{a \to \omega_1+ \\ b \to \omega_2-}} \int_a^b f(x) ~ \mathrm{d} x\]
+
+\pause
+
+被积区间含有被积函数多个奇点 $a < \omega_1 < \dots < \omega_n < \omega:$
+\[\int_a^{\omega} f(x) ~ \mathrm{d} x = \int_a^{\omega_1} f(x) ~ \mathrm{d} x + \cdots + \int_{\omega_n}^{\omega} f(x) ~ \mathrm{d} x.\]
+
+\pause
+
+Cauchy 主值
+\begin{gather*}
+\text{(cpv)}\int_{-\infty}^{+\infty} f(x) ~ \mathrm{d} x = \lim\limits_{A \to +\infty} \int_{-A}^A f(x) ~ \mathrm{d} x \\
+\text{(cpv)}\int_{\omega_1}^{\omega_2} f(x) ~ \mathrm{d} x = \lim\limits_{\delta \to 0+} \int_{\omega_1+\delta}^{\omega_2-\delta} f(x) ~ \mathrm{d} x \\
+\text{(cpv)}\int_{a}^{b} f(x) ~ \mathrm{d} x = \lim\limits_{\delta \to 0+} \left( \int_a^{\omega-\delta} f(x) ~ \mathrm{d} x + \int_{\omega+\delta}^{b} f(x) ~ \mathrm{d} x \right)
+\end{gather*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反常积分性质}
+
+定积分可以推广到反常积分的性质:
+\begin{itemize}
+\item 线性性.
+\item 保序性.
+\item 区间可加性.
+\item 变量替换.
+\end{itemize}
+
+\pause
+\vspace{1em}
+
+不可以推广到反常积分的性质:
+\begin{itemize}
+\item 乘积可积性.
+\pause
+反例: $f(x) = g(x) = x^{-1/2},$ 区间 $[0, 1]$ 上的反常积分 $\int_0^1 f(x)g(x) ~ \mathrm{d} x$ 发散, 但 $\int_0^1 x^{-1/2} ~ \mathrm{d} x$ 收敛.
+\pause
+\item 绝对可积性.
+\pause
+反例: $f(x) = \dfrac{\sin x}{x},$ 区间 $[0, +\infty)$ 上的反常积分 $\int_0^{+\infty} \lvert f(x) \rvert ~ \mathrm{d} x$ 发散, 但 $\int_0^{+\infty} f(x) ~ \mathrm{d} x$ 收敛.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{条件收敛与绝对收敛}
+
+\begin{attnblock}
+定积分 (Riemann 积分) 的绝对可积性
+\[f(x) \in \mathfrak{R}[a, b] ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathfrak{R}[a, b]\]
+在反常积分中正好反过来了:
+\[\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \int_a^\omega f(x) ~ \mathrm{d} x ~ \text{ 收敛}.\]
+\end{attnblock}
+
+\pause
+
+这可以由反常积分的 Cauchy 收敛原理推出
+
+\pause
+
+\begin{Def}
+\begin{itemize}[<+->]
+\item 条件收敛: $\int_a^\omega f(x) ~ \mathrm{d} x$ 收敛, 但 $\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x$ 发散.
+\item 绝对收敛: $\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x$ 收敛.
+\end{itemize}
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反常积分敛散性判别法}
+
+目的: 判断反常积分 $\int_a^\omega f(x) ~ \mathrm{d} x$ 是否收敛.
+
+\pause
+\vspace{1em}
+
+\begin{itemize}
+\item 定义判别: 找到实数 $I,$ 使得 $\forall~\varepsilon > 0,$ 存在 $\omega$ 的邻域 \colorbox{orange}{$U(\omega)$} 使得对所有 $b \in U(\omega)$ 都有 $\left\lvert \int_a^b f(x) ~ \mathrm{d} x - I \right\rvert < \varepsilon.$
+
+\pause
+
+邻域 $U(\omega) = \begin{cases}
+[A, +\infty), & \omega = +\infty, \\
+(\omega - \delta, \omega), & \omega ~ \text{是 $f(x)$ 奇点.}
+\end{cases}$
+\pause
+\item Cauchy 收敛原理: $\forall~\varepsilon > 0,$ 存在 $\omega$ 的邻域 $U(\omega)$ 使得对所有 $b_1, b_2 \in U(\omega)$ 都有 $\left\lvert \int_{b_1}^{b_2} f(x) ~ \mathrm{d} x \right\rvert < \varepsilon.$
+\end{itemize}
+
+\pause
+\vspace{1em}
+
+特别地, 对于非负函数 $f(x)$,
+\[\int_a^\omega f(x) ~ \mathrm{d} x ~ \text{收敛} ~~ \Longleftrightarrow ~ \int_a^b f(x) ~ \mathrm{d} x ~ \text{有界}\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反常积分敛散性判别法 | {\smaller[1] 非负函数}}
+
+\begin{block}{比较判别法}
+设在 $[a, \omega)$ 上, $0 \leqslant f(x) \leqslant g(x),$ 则
+\begin{itemize}[<+->]
+\item $\int_a^\omega g(x) ~ \mathrm{d} x $ 收敛 $\implies$ $\int_a^\omega f(x) ~ \mathrm{d} x $ 收敛;
+\item $\int_a^\omega f(x) ~ \mathrm{d} x $ 发散 $\implies$ $\int_a^\omega g(x) ~ \mathrm{d} x $ 发散.
+\end{itemize}
+\end{block}
+
+% \pause
+
+\begin{block}{比较判别法的极限形式}
+设在 $[a, \omega)$ 上, $\lim\limits_{x \to \omega} \dfrac{f(x)}{g(x)} = \ell,$ 则
+\begin{itemize}
+\item $\ell = 0$:
+\pause
+归结为 $0 \leqslant f(x) \leqslant g(x);$
+\pause
+\item $\ell = +\infty$:
+\pause
+归结为 $0 \leqslant g(x) \leqslant f(x);$
+\pause
+\item $0 < \ell < +\infty$ (即 $\ell$ 是某个有限正实数):
+\pause
+\vspace{-0.5em}
+\[\int_a^\omega f(x) ~ \mathrm{d} x ~ \text{收敛} ~ \Longleftrightarrow ~ \int_a^\omega g(x) ~ \mathrm{d} x ~ \text{收敛}.\]
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反常积分敛散性判别法 | {\smaller[1] 非负函数}}
+
+\begin{thm}[Cauchy 判别法]
+设 $f(x)$ 在 $[a, +\infty)$ 上非负, $K > 0$ 为常数,
+\begin{itemize}
+\item 若 $f(x) \leqslant \dfrac{K}{x^p}, p > 1,$ 则 $\int_a^{+\infty} f(x) ~ \mathrm{d} x $ 收敛;
+\item 若 $f(x) \geqslant \dfrac{K}{x^p}, p \leqslant 1,$ 则 $\int_a^{+\infty} f(x) ~ \mathrm{d} x $ 发散.
+\end{itemize}
+\end{thm}
+
+\pause
+
+\begin{thm}[Cauchy 判别法的极限形式]
+设 $f(x)$ 在 $[a, +\infty)$ 上非负, 且 $\lim\limits_{x \to +\infty} x^p f(x) = \ell,$
+\begin{itemize}
+\item 若 $0 \leqslant \ell < +\infty, p > 1,$ 则 $\int_a^{+\infty} f(x) ~ \mathrm{d} x $ 收敛;
+\item 若 $0 < \ell \leqslant +\infty, p \leqslant 1,$ 则 $\int_a^{+\infty} f(x) ~ \mathrm{d} x $ 发散.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反常积分敛散性判别法 | {\smaller[1] 一般函数}}
+
+\begin{thm}[A-D 判别法]
+若下列两个条件之一满足, 则 $\int_a^\omega f(x)g(x) ~ \mathrm{d} x$ 收敛:
+\pause
+\begin{itemize}[<+->]
+\item Abel 判别法: $\int_a^\omega f(x) ~ \mathrm{d} x$ 收敛, $g(x)$ 在 $[a, \omega)$ 上单调有界;
+\item Dirichlet 判别法: $\int_a^A f(x) ~ \mathrm{d} x$ 关于 $A \in [a, \omega)$ 有界, $g(x)$ 在 $[a, \omega)$ 上单调, 且 $\lim\limits_{x \to \omega} g(x) = 0.$
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{数项级数}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数敛散性定义}
+
+\begin{Def}
+数项级数指的是{\color{red}按一定顺序排列好}的可列个实数的形式和
+\[\sum\limits_{n=1}^\infty x_n = x_1 + x_2 + \cdots + x_n + \cdots\]
+\pause
+若部分和序列 $s_n = \sum\limits_{k=1}^n x_k, n = 1, 2, \dots$ 收敛, 则称数项级数 $\sum\limits_{n=1}^\infty x_n$ 收敛, 且有
+\[\sum\limits_{n=1}^\infty x_n = \lim\limits_{n\to\infty} \sum\limits_{k=1}^n x_k.\]
+否则称数项级数 $\sum\limits_{n=1}^\infty x_n$ 发散.
+\end{Def}
+
+\pause
+
+注意比较与反常积分的一些异同之处.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{典型的数项级数}
+
+\begin{itemize}[<+->]
+\item 几何级数 $\sum\limits_{n=1}^\infty q^{n-1}.$ \par
+前 $n$ 项和 ($q \neq 1$ 时) 为 $\dfrac{1-q^n}{1-q},$ 所以 $\lvert q \rvert < 1$ 时收敛, 否则发散.
+\item 调和级数 (Riemann $\zeta$) $\sum\limits_{n=1}^\infty \dfrac{1}{n^s}.$
+\begin{itemize}
+\item $s > 1$ 时, $\sum\limits_{n=2^k}^{2^{k+1}-1} \dfrac{1}{n^s} < \sum\limits_{n=2^k}^{2^{k+1}-1} \dfrac{1}{(2^k)^s} = \left(\dfrac{1}{2^{s-1}}\right)^k,$ 所以部分和 $\sum\limits_{n=1}^{2^{k+1}-1} \dfrac{1}{n^s} < \dfrac{1-q^k}{1-q}, 0 < q = \dfrac{1}{2^{s-1}} < 1,$ 级数收敛.
+\item $s \leqslant 1$ 时, $\sum\limits_{n=2^k+1}^{2^{k+1}} \dfrac{1}{n^s} > \sum\limits_{n=2^k+1}^{2^{k+1}} \dfrac{1}{2^k+1} = \dfrac{1}{2},$ 所以部分和 $\sum\limits_{n=1}^{2^{k+1}} \dfrac{1}{n^s} > 1 + \dfrac{k}{2},$ 级数发散.
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数敛散性的判别与分类}
+
+\begin{itemize}[<+->]
+\item 定义判别: 找到实数 $A,$ 使得 $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $n > N,$ 有 $\left\lvert \sum\limits_{k=1}^n x_k - A \right\rvert < \varepsilon.$
+\item Cauchy 收敛原理: $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $m > n > N,$ 有 $\left\lvert \sum\limits_{k=n}^m x_k \right\rvert < \varepsilon.$
+\end{itemize}
+
+% \pause
+
+可以立即得到数项级数收敛的一个必要 (非充分) 条件: $\lim\limits_{n\to\infty} x_n = 0.$
+
+\pause
+
+以及一个充分 (非必要) 条件: $\sum\limits_{n=1}^\infty \lvert x_n \rvert$ 收敛.
+
+\pause
+
+\begin{Def}
+\begin{itemize}[<+->]
+\item 条件收敛: $\sum\limits_{n=1}^\infty x_n$ 本身收敛, 但 $\sum\limits_{n=1}^\infty \lvert x_n \rvert$ 发散;
+\item 绝对收敛: $\sum\limits_{n=1}^\infty \lvert x_n \rvert$ 收敛.
+\end{itemize}
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数的运算性质}
+
+对同一个级数内通项之间的:
+\pause
+\begin{enumerate}[<+->]
+\item 结合律: 对收敛级数成立
+\[(x_1 + \cdots + x_{n_1}) + (x_{n_1+1} + \cdots + x_{n_2}) + \cdots = \sum\limits_{n=1}^\infty x_n.\]
+\item 交换律: 对绝对收敛级数成立
+\[\sum\limits_{n=1}^\infty x_{\sigma(n)} = \sum\limits_{n=1}^\infty x_n.\]
+\end{enumerate}
+
+% \pause
+
+多个级数之间的:
+\pause
+\begin{enumerate}[<+->]
+\setcounter{enumi}{2}
+\item 线性性: 对收敛级数成立
+\[\sum\limits_{n=1}^\infty \left( \alpha \cdot x_n + \beta \cdot y_n \right) = \alpha \sum\limits_{n=1}^\infty x_n + \beta \sum\limits_{n=1}^\infty y_n.\]
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数的运算性质}
+
+对发散级数, 通项的结合律不成立:
+\[(1 - 1) + (1 - 1) + \cdots = 0 ~~ \text{但} ~ \sum\limits_{n=1}^{\infty} (-1)^n ~ \text{发散.}\]
+
+\pause
+\vspace{1em}
+
+对条件收敛级数, 有 Riemann 重排定理:
+\begin{thm}[Riemann 重排定理]
+设 $\sum\limits_{n=1}^{\infty} x_n$ 条件收敛, 那么 $\forall~M \in \mathbb{R} \cup \{ \pm \infty \},$ 存在 $\mathbb{N}$ 的轮换 $\sigma$ ($\mathbb{N} \to \mathbb{N}$ 的一一映射), 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma(n)} = M;$ 存在 $\sigma'$ 使得 $\sum\limits_{n=1}^{\infty} x_{\sigma'(n)}$ 发散且 $\neq \pm\infty.$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性判别法}
+
+由定义 (或 Cauchy 收敛原理)
+\[\text{正项级数} ~ \sum\limits_{n=1}^{\infty} x_n ~ \text{收敛} ~~ \Longleftrightarrow ~ \sum\limits_{k=1}^{n} x_k ~ \text{关于 $n$ 有界}.\]
+
+\pause
+
+\begin{thm}[比较判别法]
+设 $\sum\limits_{n=1}^{\infty} x_n, \sum\limits_{n=1}^{\infty} y_n$ 是两个 (正项) 级数, 若存在 $N \in \mathbb{N},$ 使得对所有 $n > N$ 都有 $0 \leqslant x_n \leqslant y_n,$ 那么
+\begin{itemize}
+\item $\sum\limits_{n=1}^{\infty} y_n$ 收敛 $\implies$ $\sum\limits_{n=1}^{\infty} x_n$ 收敛;
+\item $\sum\limits_{n=1}^{\infty} x_n$ 发散 $\implies$ $\sum\limits_{n=1}^{\infty} y_n$ 发散.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性判别法}
+
+\begin{thm}[比较判别法的极限形式]
+设 $\sum\limits_{n=1}^{\infty} x_n, \sum\limits_{n=1}^{\infty} y_n$ 是两个正项级数, 若 $\lim\limits_{n\to\infty} \dfrac{x_n}{y_n} = \ell,$ 那么
+\begin{itemize}
+\item $\ell = 0$:
+\pause
+归结为 $0 \leqslant x_n \leqslant y_n;$
+\item $\ell = +\infty$:
+\pause
+归结为 $0 \leqslant y_n \leqslant x_n;$
+\pause
+\item $0 < \ell < +\infty$ (即 $\ell$ 是某个有限正实数):
+\pause
+\[\sum\limits_{n=1}^{\infty} x_n ~ \text{收敛} ~ \Longleftrightarrow ~ \sum\limits_{n=1}^{\infty} y_n ~ \text{收敛}.\]
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性判别法 -- Cauchy 判别法}
+
+\begin{thm}[Cauchy 判别法]
+设 $\sum\limits_{n=1}^{\infty} x_n$ 是一个正项级数, $r := \varlimsup\limits_{n\to\infty} \nroot[n]{x_n},$ 则
+\begin{itemize}
+\item $r < 1$ 时, $\sum\limits_{n=1}^{\infty} x_n$ 收敛;
+\item $r > 1$ 时, $\sum\limits_{n=1}^{\infty} x_n$ 发散;
+\item $r = 1$ 时, $\sum\limits_{n=1}^{\infty} x_n$ 可能收敛, 也可能发散.
+\end{itemize}
+\end{thm}
+
+注意: $\nroot[n]{x_n} = \sqrt[\leftroot{-3}\uproot{15}n]{\dfrac{x_n}{x_{n-1}} \cdot \dfrac{x_{n-1}}{x_{n-2}} \cdots \dfrac{x_2}{x_1} \cdot \dfrac{x_1}{1}}$ 相当于相邻项比值序列的前 $n$ 项几何平均.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性判别法 -- d'Alembert 判别法}
+
+\begin{thm}[d'Alembert 判别法]
+设 $\sum\limits_{n=1}^{\infty} x_n$ 是一个正项级数, 则
+\begin{itemize}
+\item $\varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \overline{r} < 1$ 时, $\sum\limits_{n=1}^{\infty} x_n$ 收敛;
+\item $\varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \underline{r} > 1$ 时, $\sum\limits_{n=1}^{\infty} x_n$ 发散;
+\item $\overline{r} \geqslant 1,$ 或 $\underline{r} \leqslant 1$ 时, $\sum\limits_{n=1}^{\infty} x_n$ 可能收敛, 也可能发散.
+\end{itemize}
+\end{thm}
+
+\pause
+
+\begin{attnblock}
+Cauchy 判别法强于 d'Alembert 判别法:
+\vspace{-0.6em}
+\[\varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf\limits_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup\limits_{n\to\infty} \sqrt[n]{x_n} \leqslant \varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n}.\]
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性判别法 -- Raabe 判别法}
+
+\begin{thm}[Raabe 判别法]
+设 $\sum\limits_{n=1}^\infty x_n$ 是正项级数, $x_n \neq 0,$ 且 $\lim\limits_{n\to\infty} n \left( ~ \dfrac{x_n}{x_{n+1}} - 1 \right) = r,$ 那么
+\begin{itemize}
+\item $r > 1$时, $\sum\limits_{n=1}^\infty x_n$ 收敛;
+\item $r < 1$时, $\sum\limits_{n=1}^\infty x_n$ 发散.
+\item $r = 1$时, $\sum\limits_{n=1}^\infty x_n$ 可能收敛, 也可能发散.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正项级数敛散性判别法 -- 积分判别法}
+
+设 $f(x)$ 是定义在 $[a, +\infty)$ 上的非负函数, 且在任意有限区间 $[a, A]$ 上 Riemann 可积. 设 $\{a_n\}$ 是单调增加且趋于 $+\infty$ 的数列:
+\[a = a_1 < a_2 < a_3 < \cdots < a_n < \cdots,\]
+令 $u_n = \int_{a_n}^{a_{n+1}} f(x) ~ \mathrm{d} x.$ 那么反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 与正项级数 $\sum\limits_{n=1}^\infty u_n$ 同时收敛或同时发散到 $+\infty,$ 且有
+\vspace{-1em}
+\[\int_a^{+\infty} f(x) ~ \mathrm{d} x = \sum\limits_{n=1}^\infty u_n = \sum\limits_{n=1}^\infty \int_{a_n}^{a_{n+1}} f(x) ~ \mathrm{d} x.\]
+
+\pause
+
+特别地, 当 $f(x)$ 单减, 且取 $a_n = n,$ 那么反常积分 $\int_a^{+\infty} f(x) ~ \mathrm{d} x$ 与正项级数$\sum\limits_{n=[a]+1}^\infty f(n)$ 具有相同的敛散性. (注意, 一般没有值相等的关系了)
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一般级数敛散性判别法}
+
+\begin{thm}[Leibniz 判别法]
+Leibniz 级数 $\sum\limits_{n=1}^\infty (-1)^{n-1} u_n,$ 其中 $0 < u_n \searrow 0,$ 必收敛.
+\end{thm}
+
+\pause
+
+\begin{thm}[A-D 判别法]
+若下列条件之一满足, 则级数 $\sum\limits_{n=1}^{\infty} a_n b_n$ 收敛:
+\begin{itemize}[<+->]
+\item Abel 判别法:
+\[\sum\limits_{n=1}^{\infty} b_n ~ \text{收敛}, ~~~ a_n ~ \text{单调有界}.\]
+\item Dirichlet 判别法:
+\[\sum\limits_{n=1}^{N} b_n ~ \text{关于 $N$ 有界}, ~~~ a_n \searrow 0.\]
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{数项级数乘法}
+
+数项级数乘法: $\left( \sum\limits_{n=1}^\infty a_n \right) \cdot \left( \sum\limits_{n=1}^\infty b_n \right)$
+
+\pause
+
+\begin{itemize}
+\item 正方形乘积: $\lim\limits_{n\to\infty} d_n = \lim\limits_{n\to\infty} \sum\limits_{\color{red} 1 \leqslant i, j \leqslant n} a_i b_j;$
+\pause
+\item Cauchy 乘积 (卷积): $\lim\limits_{n\to\infty} c_n = \lim\limits_{n\to\infty} \sum\limits_{\color{red} i+j=n} a_i b_j.$
+\end{itemize}
+
+\pause
+
+\begin{prop}[乘积收敛性]
+\begin{itemize}[<+->]
+\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ $\implies$ 正方形乘积 $= AB;$
+\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 且至少有一个绝对收敛 $\implies$ Cauchy 乘积 $= AB.$
+\item $\sum\limits_{n=1}^\infty a_n = A, \sum\limits_{n=1}^\infty b_n = B$ 且 Cauchy 乘积 $\sum\limits_{n=1}^\infty c_n$ 收敛 $\implies$ Cauchy 乘积 $= AB.$
+\end{itemize}
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数求和的 Cesàro 方法与 Tauber 型定理}
+
+\vspace{-2em}
+
+\begin{gather*}
+\sum\limits_{n=1}^\infty a_n, \quad s_n = \sum\limits_{k=1}^n a_k, \quad \sigma_n^{(1)} = \sigma_n = \dfrac{s_1 + \cdots + s_n}{n}\\
+\sigma_n^{(r)} = \dfrac{\sigma_1^{(r-1)} + \cdots + \sigma_n^{(r-1)}}{n}, \dots
+\end{gather*}
+
+\pause
+
+\begin{Def}[Cesàro 意义下可和级数]
+若 $\lim\limits_{n\to\infty} \sigma_n^{(r)} = A,$ 则称级数 $\sum\limits_{n=1}^\infty a_n$ 在 Cesàro $(c,r)$ 意义下可和, 记为 $\sum\limits_{n=1}^\infty a_n = A ~ (c,r).$
+\end{Def}
+
+\pause
+
+\begin{prop}
+设级数 $\sum\limits_{n=1}^{\infty} a_n$ 在通常意义下收敛到有限实数 $A,$ 即 $\lim\limits_{n \to \infty} s_n = A,$ 那么级数 $\sum\limits_{n=1}^{\infty} a_n$ 是 $(c, 1)$ 可和的, 而且有 $\sum\limits_{n=1}^{\infty} a_n = A ~ (c,r).$
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数求和的 Cesàro 方法与 Tauber 型定理}
+
+\begin{thm}[Tauber]
+若级数 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1),$ 且当 $n\to\infty$ 时 $a_n = \mathrm{o} \left( \dfrac{1}{n} \right),$ 那么该级数在通常意义下可和, 且 $\sum\limits_{n=1}^{\infty} a_n = A.$
+\end{thm}
+
+\pause
+
+\begin{thm}[Hardy]
+若级数 $\sum\limits_{n=1}^{\infty} a_n = A~(c, 1),$ 且当 $n\to\infty$ 时 $a_n = \mathrm{O} \left( \dfrac{1}{n} \right),$ 那么该级数在通常意义下可和, 且 $\sum\limits_{n=1}^{\infty} a_n = A.$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无穷乘积}
+
+\begin{Def}
+无穷乘积指的是{\color{red}按一定顺序排列好}的可列个实数的形式积
+\[\prod\limits_{n=1}^\infty p_n = p_1 \cdot p_2 \cdots p_n \cdots\]
+\pause
+若部分积序列 $P_n = \prod\limits_{k=1}^n p_k, n = 1, 2, \dots$ 收敛到一个{\color{red}非零实数}, 则称无穷乘积 $\prod\limits_{n=1}^\infty x_n$ 收敛, 且有
+\[\prod\limits_{n=1}^\infty p_n = \lim\limits_{n\to\infty} \prod\limits_{k=1}^n p_k.\]
+否则称数项级数 $\sum\limits_{n=1}^\infty p_n$ 发散.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无穷乘积收敛性的判别}
+
+\begin{block}{必要条件}
+\begin{itemize}
+\item $\lim\limits_{n\to\infty} p_n = 1;$
+\pause
+\item $\lim\limits_{m\to\infty} \prod\limits_{n=m+1}^\infty p_n = 1.$
+\end{itemize}
+\end{block}
+
+\pause
+
+\begin{block}{级数判别}
+假设收敛必要条件满足 $\lim\limits_{n\to\infty} p_n = 1,$ 即 $p_n = 1 + a_n,$ $a_n \to 0,$ 那么形式上有
+\[\ln \prod\limits_{n=1}^\infty p_n = \sum\limits_{n=1}^\infty \ln p_n = \sum\limits_{n=1}^\infty \ln (1 + a_n).\]
+\pause
+充要条件:
+\[\prod\limits_{n=1}^\infty p_n ~ \text{收敛} ~ \Longleftrightarrow ~ \sum\limits_{n=1}^\infty \ln p_n ~ \text{收敛}.\]
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{无穷乘积收敛性的判别}
+
+\begin{table}
+\centering
+% \begin{tabular}{c@{\hskip 3pt}c@{\hskip 9pt}cc}
+\begin{tabular}{ccc}
+$\prod\limits_{n=1}^\infty (1 + a_n)$ & $\sum\limits_{n=1}^\infty a_n$ & $\sum\limits_{n=1}^\infty a_n^2$ \\
+{\color{cyan}收敛} & {\color{cyan}收敛} & {\color{cyan}收敛} \\
+{\color{cyan}收敛} & {\color{red}发散} & {\color{red}发散} \\
+{\color{red}发散} & {\color{cyan}收敛} & {\color{red}发散} \\
+{\color{red}发散} & {\color{red}发散} & {\color{cyan}收敛} \\
+{\color{red}发散} & {\color{red}发散} & {\color{red}发散}
+\end{tabular}
+\end{table}
+
+\pause
+
+上表是由两个同敛散的正项级数得到的:
+\[\sum\limits_{n=1}^{\infty} b_n = \sum\limits_{n=1}^{\infty} a_n - \ln (1 + a_n), \quad \sum\limits_{n=1}^{\infty} a_n^2\]
+
+\pause
+
+特殊情况: $a_n$ 恒正或恒负时,
+\[\prod\limits_{n=1}^\infty (1 + a_n) ~ \text{收敛} ~ \Longleftrightarrow ~ \sum\limits_{n=1}^\infty a_n ~ \text{收敛}.\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{函数项级数}
+
+%------------------------------------------------
+
+\begin{frame}{函数项级数}
+
+\begin{Def}
+函数项级数指的是{\color{red}按一定顺序排列好}的可列个函数的形式和
+\[\sum\limits_{n=1}^\infty a_n(x) = a_1(x) + a_2(x) + \cdots + a_n(x) + \cdots\]
+\pause
+$D = \left\{x \in \mathbb{R}: ~ \sum\limits_{n=1}^\infty a_n(x) ~ \text{作为数项级数收敛}\right\}$ 称为函数项级数 $\sum\limits_{n=1}^\infty a_n(x)$ 的收敛域.
+在 $D$ 上, $\sum\limits_{n=1}^\infty a_n(x)$ 的和函数 $S(x)$ 定义为
+\[S(x) = \sum\limits_{n=1}^\infty a_n(x),\]
+并称函数项级数 $\sum\limits_{n=1}^\infty a_n(x)$ 在 $D$ 上点态收敛到 $S(x).$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛性}
+
+\begin{Def}[一致收敛]
+设函数项级数 $\sum\limits_{n=1}^\infty a_n(x)$ 的和函数 $S(x)$ 在 $D$ 上有定义, 若对任意 $\varepsilon > 0,$ 存在 $N \in \mathbb{N},$ 使得对任意 $n > N$ 和 $x \in D$ 都有
+\[\left\lvert \sum\limits_{k=1}^n a_k(x) - S(x) \right\rvert < \varepsilon,\]
+那么称函数项级数 $\sum\limits_{n=1}^\infty a_n(x)$ 在 $D$ 上一致收敛到 $S(x),$ 记作 $\sum\limits_{n=1}^\infty a_n(x) \xRightarrow{D} S(x).$
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛性}
+
+\begin{Def}[内闭一致收敛]
+任意给定闭区间 $[a, b] \subset D,$ 若 $\sum\limits_{n=1}^\infty a_n(x)$ 在 $[a, b]$ 上一致收敛, 则称 $\sum\limits_{n=1}^\infty a_n(x)$ 在 $D$ 上内闭一致收敛.
+\end{Def}
+
+\pause
+
+\begin{gather*}
+\sum\limits_{n=1}^\infty a_n(x) ~ \text{点态 / 一致 / 内闭一致收敛} \\
+\big\Updownarrow \\
+S_n(x) = \sum\limits_{k=1}^n a_k(x) ~ \text{点态 / 一致 / 内闭一致收敛}
+\end{gather*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛级数的判别}
+
+\begin{thm}[一致度量判别法]
+定义在 $D$ 上函数 $f,g$ 的一致度量 (距离) 为
+\vspace{-0.5em}
+\[d(f, g) = \sup\limits_{x \in D} \lvert f(x) - g(x) \rvert.\]
+\vspace{-0.5em}
+那么
+\vspace{-0.5em}
+\[S_n(x) \xRightarrow{D} S(x) ~~ \Longleftrightarrow ~~ d(S_n(x), S(x)) \to 0 ~ (n \to \infty).\]
+\end{thm}
+
+\pause
+
+\begin{thm}[Cauchy 收敛原理]
+定义在 $D$ 上的函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 一致收敛当且仅当 $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得对所有 $m > n > N$ 有
+\[d(S_n(x), S_m(x)) < \varepsilon.\]
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛级数的判别}
+
+\begin{thm}[数列判别法]
+定义在 $D$ 上的函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 一致收敛到 $S(x)$ 当且仅当 任取 $D$ 中的数列 $\{x_n\}_{n\in\mathbb{N}}$ 总有
+\[\lim\limits_{n\to\infty} (S_n(x_n) - S(x_n)) = 0.\]
+\end{thm}
+
+\pause
+\vspace{1em}
+
+这个定理经常用于判断不一致收敛, 即构造一个数列 $\{x_n\}_{n\in\mathbb{N}},$ 使得 $S_n(x_n) - S(x_n)$ 发散, 或者收敛到非零值.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛级数的判别}
+
+\begin{thm}[Weierstra\ss 判别法]
+设函数项级数 $\sum\limits_{n=1}^\infty a_n(x)$ 在 $D$ 上点态收敛, 若存在数项级数 $\sum\limits_{n=1}^\infty M_n$ 使得对任意 $x \in D$ 和 $n \in \mathbb{N}$ 都有 $\lvert a_n(x) \rvert \leqslant M_n,$ 且 $\sum\limits_{n=1}^\infty M_n$ 收敛, 那么 $\sum\limits_{n=1}^\infty a_n(x)$ 在 $D$ 上一致收敛.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛级数的判别}
+
+\begin{thm}[A-D 判别法]
+设函数项级数 $\sum\limits_{n=1}^\infty a_n(x)b_n(x)$ 在 $D$ 上点态收敛, 若下列两个条件之一满足, 则 $\sum\limits_{n=1}^\infty a_n(x)b_n(x)$ 在 $D$ 上一致收敛:
+\begin{itemize}[<+->]
+\item Abel 判别法:
+\begin{itemize}
+\item $\sum\limits_{n=1}^\infty b_n(x)$ 在 $D$ 上一致收敛;
+\item $\{a_n(x)\}_{n\in\mathbb{N}}$ 在 $D$ 每点关于 $n$ 单调, 且在 $D$ 上一致有界.
+\end{itemize}
+\item Dirichlet 判别法:
+\begin{itemize}
+\item $S_n(x) := \sum\limits_{k=1}^n b_k(x)$ 在 $D$ 上一致有界;
+\item $\{a_n(x)\}_{n\in\mathbb{N}}$ 在 $D$ 每点关于 $n$ 单调, 且在 $D$ 上一致收敛到 $0.$
+\end{itemize}
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛级数的分析性质}
+
+设函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 在 $D = [a, b]$ 上一致收敛到 $S(x),$ 那么
+\pause
+\begin{itemize}
+\item 若 $S_n(x)$ 在 $D$ 上连续, 那么 $S(x)$ 在 $D$ 上连续;
+\pause
+\item 若 $S_n(x)$ 在 $D$ 上 Riemann 可积, 那么 $S(x)$ 在 $D$ 上 Riemann 可积, 且有
+\[\int_a^b S(x) ~ \mathrm{d} x = \lim\limits_{n\to\infty} \int_a^b S_n(x) ~ \mathrm{d} x\]
+\end{itemize}
+
+\pause
+
+若 $S_n(x)$ 在 $D = [a,b]$ 上连续可导, 点态收敛到 $S(x),$ 并且$\{S_n'(x)\}_{n\in\mathbb{N}}$ 一致收敛到 $\sigma(x),$ 那么 $S(x)$ 在 $D$ 上可导, 且 $S'(x) = \sigma(x).$
+
+\pause
+
+函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 替换为函数项级数 $\sum\limits_{n=1}^\infty a_n(x)$ 可得相关结论:
+\begin{itemize}
+\item 逐项积分: $\int_a^b \sum\limits_{n=1}^\infty a_n(x) ~ \mathrm{d} x = \sum\limits_{n=1}^\infty \int_a^b a_n(x) ~ \mathrm{d} x;$
+\item 逐项微分: $\left( \sum\limits_{n=1}^\infty a_n(x) \right)' = \sum\limits_{n=1}^\infty a_n'(x).$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Dini 定理}
+
+\begin{thm}[Dini 定理]
+设函数列 $\{S_n(x)\}_{n\in\mathbb{N}}$ 在 $D = [a, b]$ 上点态收敛到 $S(x),$ 且满足
+\begin{itemize}
+\item $S_n(x)$ 在 $D$ 上连续;
+\item $S(x)$ 在 $D$ 上连续;
+\item $\{S_n(x)\}_{n\in\mathbb{N}}$ 在 $D$ 上每点关于 $n$ 单调.
+\end{itemize}
+那么 $\{S_n(x)\}_{n\in\mathbb{N}}$ 在 $D$ 上一致收敛到 $S(x).$
+\end{thm}
+
+\pause
+
+\begin{attnblock}
+只有 $S_n(x), S(x)$ 的连续性, 推不出一致收敛性, 还需要``单调性''这样的``正则性''条件.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{处处不可导的连续函数}
+
+\begin{itemize}[<+->]
+\item Weierstra\ss: $f(x) = \sum\limits_{n=1}^\infty a^n \cos(b^n \pi x),$ 其中 $0 < a < 1, b$ 是奇数, 且 $ab > 1 + \dfrac{3\pi}{2}.$
+\item Van der Waerden: $f(x) = \sum\limits_{n=1}^\infty \dfrac{\varphi(10^n x)}{10^n}$, $\varphi(x) = \operatorname{dist}(x, \mathbb{Z})$ 是
+\[\varphi_0(x) = \begin{cases} x, & x \in [0, 1/2) \\ 1-x, & x \in [1/2, 1) \end{cases} \quad \text{以 $1$ 为周期延拓至 $\mathbb{R}$}.\]
+\item Teiji Takagi: $f(x) = \sum\limits_{n=1}^\infty \dfrac{\varphi(2^n x)}{2^n}.$
+\item Generalized Van der Waerden-Takagi:
+\[f(x) = \sum\limits_{n=1}^\infty a^n \varphi(b^n x), ~~ \text{其中} ~ 0 < a < 1, b \in \mathbb{N}, ab \geqslant 1.\]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数收敛半径}
+
+幂级数 $\sum\limits_{n=0}^\infty a_n (x-x_0)^n:$ 特殊的函数项级数, 通项是 $x-x_0$ 的单项式. 它的收敛域 (除端点外) 关于 $x_0$ 对称, 有所谓\alert{收敛半径}的概念:
+
+\pause
+
+\begin{thm}[Cauchy-Hadamard 定理]
+令 $A = \varlimsup\limits_{n\to\infty} \nroot[n]{\lvert a_n \rvert},$ $R = \begin{cases} \dfrac{1}{A}, & A > 0 \\ +\infty, & A = 0 \\ 0, & A = +\infty \end{cases}.$
+\begin{itemize}
+\item $\lvert x \rvert < R (R > 0)$ 时, 幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 绝对收敛;
+\item $\lvert x \rvert > R$ 时, 幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 发散.
+\end{itemize}
+\end{thm}
+
+\pause
+
+$R$ 称为幂级数的收敛半径. 在 $x = \pm R$ 处的收敛性需要单独讨论.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数收敛半径}
+
+\begin{thm}[d'Alembert 判别法]
+设 $\sum\limits_{n=0}^\infty a_n x^n$ 满足 $\lim\limits_{n\to\infty} \left\lvert \dfrac{a_{n+1}}{a_n} \right\rvert = A,$ 那么幂级数收敛半径 $R = \dfrac{1}{A}.$
+\end{thm}
+
+\pause
+
+\begin{attnblock}
+由不等式
+\vspace{-0.5em}
+\[\varliminf\limits_{n\to\infty} \left\lvert \dfrac{a_{n+1}}{a_n} \right\rvert \leqslant \varliminf\limits_{n\to\infty} \sqrt[n]{\left\lvert a_n \right\rvert} \leqslant {\color{red}\varlimsup\limits_{n\to\infty} \sqrt[n]{\left\lvert a_n \right\rvert}} \leqslant \varlimsup\limits_{n\to\infty} \left\lvert \dfrac{a_{n+1}}{a_n} \right\rvert,\]
+若知道 $\varliminf\limits_{n\to\infty} \left\lvert \dfrac{a_{n+1}}{a_n} \right\rvert$ 或 $\varliminf\limits_{n\to\infty} \sqrt[n]{\left\lvert a_n \right\rvert}$ 或 $\varlimsup\limits_{n\to\infty} \left\lvert \dfrac{a_{n+1}}{a_n} \right\rvert,$ 那么只能得到关于收敛半径的不等式估计.
+
+\pause
+
+反过来, 如果知道收敛半径, 那么可以知道 $\varlimsup\limits_{n\to\infty} \sqrt[n]{\left\lvert a_n \right\rvert}$ 的值, 但是不能得到 $\lim\limits_{n\to\infty} \left\lvert \dfrac{a_{n+1}}{a_n} \right\rvert$ 的值, 甚至极限是否存在都不能 (仅依据收敛半径) 下结论.
+
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数性质}
+
+\begin{thm}[Abel 第一定理]
+设幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 在 $x = \xi$ 处收敛, 在 $x = \eta$ 处发散, 那么
+\begin{itemize}
+\item $\lvert x \rvert < \lvert \xi \rvert$ 时, 幂级数绝对收敛;
+\item $\lvert x \rvert > \lvert \eta \rvert$ 时, 幂级数发散.
+\end{itemize}
+\end{thm}
+
+\pause
+
+\begin{thm}[Abel 第二定理]
+设幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 收敛半径 $R > 0,$ 那么
+\begin{itemize}
+\item $\sum\limits_{n=0}^\infty a_n x^n$ 在 $(-R, R)$ 上内闭一致收敛;
+\item 若 $\sum\limits_{n=0}^\infty a_n x^n$ 在 $x = R$ (或 $x = -R$) 处收敛, 那么 $\sum\limits_{n=0}^\infty a_n x^n$ 在 $(-R, R]$ (或 $[-R, R)$) 上内闭一致收敛.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数性质}
+
+\begin{thm}[和函数的连续性]
+设幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 的收敛半径 $R > 0,$ 那么
+\begin{itemize}
+\item 和函数 $S(x)$ 在 $(-R, R)$ 上连续;
+\item 若 $\sum\limits_{n=0}^\infty a_n x^n$ 在 $x = R$ (或 $x = -R$) 处收敛, 那么 $S(x)$ 在 $(-R, R]$ (或 $[-R, R)$) 上连续.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数性质}
+
+\begin{thm}[逐项可积性]
+设 $a, b$ 是幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 收敛域中的两点, 那么
+\vspace{-0.7em}
+\[\int_a^b \sum\limits_{n=0}^\infty a_n x^n ~ \mathrm{d} x = \sum\limits_{n=0}^\infty \int_a^b a_n x^n ~ \mathrm{d} x = \sum\limits_{n=0}^\infty \dfrac{a_n}{n+1} (b^{n+1} - a^{n+1}).\]
+% \vspace{-0.5em}
+特别地, 取 $a = 0, b = x,$ 有 $\int_0^x \sum\limits_{n=0}^\infty a_n t^n ~ \mathrm{d} t = \sum\limits_{n=0}^\infty \dfrac{a_n}{n+1} x^{n+1}.$
+\end{thm}
+
+\pause
+
+\begin{attnblock}
+幂级数逐项积分所得的幂级数的收敛半径与原幂级数相同, 但在收敛域在端点处可能扩大 (原来在端点处发散, 逐项积分后收敛).
+\end{attnblock}
+
+\pause
+
+例如 $\sum\limits_{n=1}^\infty n^s x^{n-1}$ 逐项积分后, 当 $-1 \leqslant s < 0$ 时, 端点 $x = 1$ 处由发散变为收敛; 当 $0 \leqslant s < 1$ 时, 端点 $x = -1$ 处由发散变为收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数性质}
+
+\begin{thm}[逐项可微性]
+设幂级数 $\sum\limits_{n=0}^\infty a_n x^n$ 的收敛半径 $R > 0,$ 那么它在 $(-R, R)$ 上可逐项微分:
+\[\dfrac{\mathrm{d}}{\mathrm{d} x} \sum\limits_{n=0}^\infty a_n x^n = \sum\limits_{n=0}^\infty \dfrac{\mathrm{d}}{\mathrm{d} x} a_n x^n = \sum\limits_{n=1}^\infty n a_n x^{n-1}.\]
+\end{thm}
+
+\pause
+
+\begin{attnblock}
+幂级数逐项微分所得的幂级数的收敛半径与原幂级数相同, 但在收敛域在端点处可能缩小 (原来在端点处收敛, 逐项微分后发散).
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数展开}
+
+幂级数展开: 求幂级数和函数的逆问题.
+
+\pause
+
+\begin{block}{一个必要条件}
+设函数 $f(x)$ 在 $x = x_0$ 处有幂级数展开, 那么 $f(x)$ 在 $x = x_0$ 处无穷次可微. (由幂级数的逐项微分定理得到)
+\end{block}
+
+\pause
+
+\begin{block}{由 Taylor 公式得到的充要条件}
+设函数 $f(x)$ 在 $x = x_0$ 处无穷次可微, 那么 $f(x)$ 在 $x = x_0$ 处的 $n$ 阶 Taylor 公式为
+\[f(x) = f(x_0) + f'(x_0)(x-x_0) + \cdots + \dfrac{f^{(n)}(x_0)}{n!} (x-x_0)^n + r_n(x).\]
+那么函数 $f(x)$ 在 $(x_0 - \rho, x_0 + \rho)$ 上有幂级数展开的充要条件是 $\lim\limits_{n\to\infty} r_n(x) = 0$ 对任意 $x \in (x_0 - \rho, x_0 + \rho)$ 成立.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一个典型的没有幂级数展开函数的例子}
+
+\[f(x) = \begin{cases} \exp(-1/x^2), & x \neq 0 \\ 0, & x = 0 \end{cases}.\]
+\pause
+可以归纳地算得, $x \neq 0$ 时,
+\[f^{(k)}(x) = \exp(-1/x^2) \cdot \left( \text{$\dfrac{1}{x}$ 的多项式} \right),\]
+由此可以归纳地通过定义算得
+\[f^{(k)}(0) = \lim\limits_{x\to 0} \dfrac{f^{(k-1)}(x) - f^{(k-1)}(0)}{x-0} = 0.\]
+\pause
+假设 $f(x)$ 在 $x = 0$ 处有幂级数展开, 那么该幂级数每一项的系数都是 $0,$ 因此幂级数展开为 $0,$ 与 $f(x)$ 不符.
+\pause
+这里, $f(x)$ 的 $n$ 阶 Taylor 公式余项 $r_n(x) = f(x)$ 对任意 $x \neq 0$ 都不趋于 $0$ (等于与 $n$ 无关的常数), 由此也可以看出 $f(x)$ 在 $x = 0$ 处没有幂级数展开.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数的 Abel 求和法}
+
+\begin{Def}[Abel 求和法]
+若 $\lim\limits_{x \to 1-} \sum\limits_{n=1}^\infty a_n x^n = A$ 为一个有限实数, 则称数项级数 $\sum\limits_{n=1}^\infty a_n$ 是 Abel 意义下可和的, 并定义
+\[\sum\limits_{n=1}^\infty a_n = \lim\limits_{x \to 1-} \sum\limits_{n=1}^\infty a_n x^n = A.\]
+\end{Def}
+
+\pause
+
+若数项级数 $\sum\limits_{n=1}^\infty a_n$ 是 Cesàro 意义下可和的, 那么它也是 Abel 意义下可和的, 且两种求和结果相同:
+
+\begin{thm}[Frobeinus]
+若数项级数 $\sum\limits_{n=1}^\infty a_n$ 在 Cesàro $(c, 1)$ 意义的和为 $A \in \mathbb{R},$ 即 $\lim\limits_{n\to\infty} a_n = A ~ (c, 1),$ 那么它在 Abel 意义下的和也为 $A.$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{级数的 Abel 求和法}
+
+证明的关键是, 在 $(-1, 1)$ 上恒有:
+\begin{itemize}
+\item $\sum\limits_{n=1}^\infty a_n x^n = (1 - x)^2 \sum\limits_{n=1}^\infty n \sigma_n x^n;$
+\item $1 = (1 - x)^2 \sum\limits_{n=1}^\infty (n+1) x^n.$
+\end{itemize}
+
+\pause
+\vspace{0.5em}
+
+简单来说, 就是有集合 (空间) 的包含关系:
+\begin{multline*}
+\{\text{Abel 可和级数}\} {\color{magenta} \supsetneqq } \cdots \supsetneqq \{(c,r) ~ \text{可和级数}\} \\
+\supsetneqq \cdots \supsetneqq \{(c,1) ~ \text{可和级数}\} \supsetneqq \{\text{通常可和级数}\}
+\end{multline*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Euclid 空间}
+
+%------------------------------------------------
+
+\begin{frame}{Euclid 空间结构}
+
+$n$ 维 Euclid 空间: $\mathbb{R}^n = \left\{ (x_1, x_2, \dots, x_n): ~ x_i \in \mathbb{R}, i = 1, 2, \dots, n \right\}.$
+
+\begin{itemize}[<+->]
+\item 内积: $\langle x, y \rangle = x_1 y_1 + x_2 y_2 + \cdots + x_n y_n.$
+\item 范数: $\lVert x \rVert = \sqrt{\langle x, x \rangle} = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}.$
+\item 拓扑:
+\begin{itemize}[<+->]
+\item 开邻域: $O(x_0, r) = \left\{ x \in \mathbb{R}^n: ~ \lVert x - x_0 \rVert < r \right\}.$
+\item 开集: $E \subset \mathbb{R}^n$ 是开集, 若对任意 $x \in E,$ 存在 $r > 0,$ 使得 $O(x, r) \subset E.$ (即所有点都是内点)
+\item 闭集: $F \subset \mathbb{R}^n$ 是闭集, 若 $\mathbb{R}^n \setminus F$ 是开集.
+\end{itemize}
+\end{itemize}
+
+% \pause
+
+其他一些重要概念:
+\begin{itemize}[<+->]
+\item 聚点: $x_0$ 是集合 $E$ 的聚点, 若对任意去心邻域 $\mathring{O}(x_0, r) \cap E \neq \varnothing.$ \par
+等价定义: 存在 $x_n \in E, {\color{red} x_n \neq x_0}, x_n \to x_0.$
+\item 闭包: $\overline{E} = E \cup E',$ 其中 $E'$ 是 $E$ 的所有聚点.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{紧集}
+
+\begin{Def}[紧集]
+设 $E \subset \mathbb{R}^n,$ 若对 $E$ 的任意开覆盖 $\{O_\alpha\}$ 都存在有限子覆盖 $\{O_{\alpha_1}, O_{\alpha_2}, \dots, O_{\alpha_k}\},$ 那么称 $E$ 是紧集.
+\end{Def}
+
+\pause
+
+\begin{thm}[Heine-Borel 定理]
+$\mathbb{R}^n$ 中的点集 $E$ 是紧集的充要条件是 $E$ 是有界闭集.
+\end{thm}
+
+\pause
+
+\begin{thm}[Cantor 闭区域套定理]
+设 $\{ E_k \}$ 是 $\mathbb{R}^n$ 中的一列非空闭集, 且满足
+\[E_1 \supset E_2 \supset \cdots \supset E_k \supset \cdots,\]
+以及 $\lim\limits_{k\to\infty} \operatorname{diam} E_k = 0,$ 其中 $\operatorname{diam} E_k = \sup\limits_{x, y \in E_k} \lVert x - y \rVert,$ 则存在唯一的点 $x \in \mathbb{R}^n,$ 使得 $x \in \bigcap\limits_{k=1}^{\infty} E_k.$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数的极限 -- 重极限}
+
+\begin{Def}[重极限]
+设 $D$ 是 $\mathbb{R}^n$ 中的一个非空点集, $x_0 = (x_1^0, x_2^0, \ldots, x_n^0) \in D$ 为一定点, $z = f(x)$ 是定义在 $D \setminus \{x_0\}$ 上的 $n$ 元函数. 如果存在常数 $A$, 对于任意给定的 $\varepsilon > 0$, 存在 $\delta > 0$, 使得当 $x \in \mathring{O}(x_0, \delta) \cap D$ 时, 总有
+\[\lvert f(x) - A \rvert < \varepsilon,\]
+则称当 $x$ 趋于 $x_0$ 时函数 $f$ 收敛, 并称 $A$ 是函数 $f$ 当 $x \to x_0$ 时的~{\color{red}($n$ 重) 极限}, 记作
+\[\lim_{x \to x_0} f(x) = A, ~~ \text{或} ~~ f(x) \to A ~ (x \to x_0), ~~ \text{或} ~~ \lim_{\substack{x_1 \to x_1^0 \\ x_2 \to x_2^0 \\ \cdots \\ x_n \to x_n^0}} f(x) = A.\]
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数的极限 -- 累次极限}
+
+\begin{Def}[二次极限]
+设 $D \subset \mathbb{R}^2$ 是一个非空开集, $(x_0, y_0) \in D$ 为一定点, $z = f(x, y)$ 是定义在 $D \setminus \{(x_0, y_0)\}$ 上的二元函数.
+如果对{\color{red}每个固定的 $y\neq y_0$}, 极限 $\lim\limits_{x \to x_0} f(x, y)$ 存在, 并且极限
+\[\lim_{y \to y_0} \lim_{x \to x_0} f(x, y)\]
+存在, 则称此极限为 $f(x, y)$ 在点 $(x_0, y_0)$ 处的先对 $x$ 后对 $y$ 的二次极限.
+\end{Def}
+
+\pause
+
+类似可以定义 $f(x, y)$ 在点 $(x_0, y_0)$ 处的先对 $y$ 后对 $x$ 的二次极限:
+\[\lim_{x \to x_0} \lim_{y \to y_0} f(x, y).\]
+
+\pause
+\vspace{0.5em}
+
+以及定义在一般 $n$ 维空间 $\mathbb{R}^n$ 中函数 $f$ 在某点 $(x_1^0, x_2^0, \dots, x_n^0) \in \mathbb{R}^n$ 处的累次极限
+\vspace*{-1em}
+\[\lim_{x_{i_1} \to x_{i_1}^0} \cdots \lim_{x_{i_n} \to x_{i_n}^0} f(x_1, \dots, x_n).\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数重极限与累次极限的关系}
+
+\begin{thm}
+若二元函数 $f(x, y)$ 在点 $(x_0, y_0)$ 存在二重极限 $\lim\limits_{(x,y) \to (x_0, y_0)} f(x, y) = A$, 且在 $(x_0, y_0)$ 的某个邻域内, 当 $x \neq x_0$ 时, 存在极限
+\[\lim_{y \to y_0} f(x, y) = \varphi(x),\]
+那么 $f(x, y)$ 在 $(x_0, y_0)$ 处的先对 $y$ 后对 $x$ 的二次极限存在, 且等于函数在该点的二重极限, 即
+\[\lim_{x \to x_0} \lim_{y \to y_0} f(x, y) = \lim_{x \to x_0} \varphi(x) = \lim_{(x,y) \to (x_0, y_0)} f(x, y) = A.\]
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{多元函数重极限与累次极限的关系}
+
+用一张表格总结二元函数 $f(x, y)$ 在点 $(x_0, y_0)$ 处的重极限与累次极限的关系:
+
+\begin{table}
+\centering
+\begin{tabular}{c@{\hskip 15pt}cc}
+二重极限 & \multicolumn{2}{c}{二次极限} \\
+$\lim\limits_{\substack{x \to x_0\\y \to y_0}} f(x, y)$ & $\lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x, y)$ & $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x, y)$ \\[1ex]
+\only<2->{$A$ & $A$ & $A$} \\[1ex]
+\only<3->{$A$ & $A$ & {\color{red}\ding{55}}} \\[1ex]
+\only<4->{$A$ & {\color{red}\ding{55}} & $A$} \\[1ex]
+\only<5->{$A$ & {\color{red}\ding{55}} & {\color{red}\ding{55}}} \\[1ex]
+\only<6->{{\color{red}\ding{55}} & $A$ & $A$} \\[1ex]
+\only<7->{{\color{red}\ding{55}} & $A$ & ${\color{red}B}$} \\[1ex]
+\only<8->{{\color{red}\ding{55}} & {\color{red}\ding{55}} & $A$} \\[1ex]
+\only<9->{{\color{red}\ding{55}} & $A$ & {\color{red}\ding{55}}} \\[1ex]
+\only<10->{{\color{red}\ding{55}} & {\color{red}\ding{55}} & {\color{red}\ding{55}}} \\[1ex]
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{紧集上的连续函数}
+
+\begin{thm}
+连续映射将紧集 (有界闭集) 映射为紧集 (有界闭集).
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+由以上定理, 可以紧集上的连续函数的一系列性质:
+\begin{itemize}
+\item 有界性定理: 连续函数在紧集上有界 (像集是有界集).
+\item 最值定理: 连续函数在紧集上取得最大值和最小值.
+\end{itemize}
+
+\pause
+\vspace{1.5em}
+
+\begin{thm}
+设 $K \subset \mathbb{R}^n$ 为紧集, $f: K \to \mathbb{R}^m$ 为连续映射, 则 $f$ 在 $K$ 上一致连续.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{道路连通性}
+
+\begin{Def}[道路连通集]
+设 $E \subset \mathbb{R}^n$ 是非空子集, 若连续映射
+\[\gamma: [0, 1] \longrightarrow \mathbb{R}^n\]
+的值域落在 $E$ 中, 即满足 $\gamma([0, 1]) \subset E,$ 则称 $\gamma$ 为 $E$ 中的道路, $\gamma(0)$ 与 $\gamma(1)$ 分别称为道路的起点与终点.
+
+\pause
+\vspace{0.5em}
+
+若非空集合 $E \subset \mathbb{R}^n$ 中任意两点 $x, y$ 都存在以 $x$ 为起点, 以 $y$ 为终点的 $E$ 中的道路, 则称 $E$ 是 (道路) 连通集.
+\end{Def}
+
+\pause
+
+\begin{thm}
+连续映射将道路连通集映为道路连通集.
+\end{thm}
+
+\pause
+
+非道路连通集的典型例子:
+\[[0, 1] \xrightarrow{\gamma} ~ {\color{red} \operatorname{GL}_n(\mathbb{R}) := \{A \in M_{n\times n}(\mathbb{R}): ~ \det A \neq 0\} } ~ \xrightarrow{\det} \mathbb{R}\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
