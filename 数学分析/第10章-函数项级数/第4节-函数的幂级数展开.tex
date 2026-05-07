@@ -33,6 +33,28 @@
 %	PRESENTATION SLIDES
 %-----------------------------------
 
+\begin{frame}
+\frametitle{绪言}
+
+设 $f(x) = \sum_{n=0}^\infty a_n (x - x_0)^n$ 在 $x_0$ 的某个邻域 $B(x_0, \rho)$ 内成立, 那么由幂级数的逐项可导性定理, 可以归纳地得出, 在 $B(x_0, \rho)$ 内, $f$ 的任意可导, 且
+\begin{align*}
+f'(x) & = \sum_{n=1}^\infty n a_n (x - x_0)^{n-1}, \\
+f''(x) & = \sum_{n=2}^\infty n (n-1) a_n (x - x_0)^{n-2}, \\
+\vdots \\
+f^{(k)}(x) & = \sum_{n=k}^\infty n (n-1) \cdots (n-k+1) a_n (x - x_0)^{n-k}.
+\end{align*}
+令 $x = x_0$, 可得 $f^{(k)}(x_0) = k! a_k$, 从而 $a_k = \frac{f^{(k)}(x_0)}{k!}$ (所谓 Taylor 系数).
+
+\begin{recall}[Taylor 公式]
+设 $f$ 在 $x_0$ 的某个邻域内具有直到 $k$ 阶导数, 则在 $x_0$ 的某个邻域 $B_k(x_0, \rho_k)$ 内有
+\[
+f(x) = \sum_{n=0}^k \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n + r_k(x),
+\]
+其中 $r_k(x)$ 是余项.
+\end{recall}
+
+\end{frame}
+
 %------------------------------------------------
 
 \begin{frame}
