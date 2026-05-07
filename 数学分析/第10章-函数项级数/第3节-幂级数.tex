@@ -72,7 +72,7 @@
 \begin{frame}
 \frametitle{Cauchy-Hadamard 定理}
 
-幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 对于固定的 $x,$ 由数项级数敛散性的 Cauchy 判别法, 有
+幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 对于固定的 $x,$ 由正项级数敛散性的 Cauchy 判别法, 有
 \begin{equation*}
 \varlimsup_{n\to\infty} \nroot[n]{|a_n x^n|} = |x| \cdot \varlimsup_{n\to\infty} \nroot[n]{|a_n|} ~ \begin{cases}
 < 1 ~ \text{时 (绝对) 收敛}, \\ > 1 ~ \text{时发散}.
@@ -101,6 +101,7 @@
 
 \pause
 
+\startproof[bg=yellow, fg=red](解)
 (1) $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n}$ 的收敛半径为
 \[
 1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n}} \right. = 1
@@ -130,6 +131,7 @@
 
 \pause
 
+\startproof[bg=yellow, fg=red](解)
 $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n!}$ 的收敛半径为
 \[
 1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n!}} \right. = +\infty,
@@ -149,6 +151,40 @@ $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n!}$ 的收敛半径为
 \end{eg}
 
 \pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](解)
+记 $a_n = \dfrac{(2 + (-1)^n)^n}{n},$ 则 $\displaystyle \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{|a_n|} = 3,$ 所以收敛半径 $R = 1/3.$
+
+\pause
+\vspace{0.5em}
+
+$1^{\circ}$ 当 $x - 1/2 = 1/3$ 时, 得到一个正项级数 $\displaystyle \sum_{n=1}^{\infty} a_n \left( \frac{1}{3} \right)^n = \sum_{n=1}^{\infty} \frac{(2 + (-1)^n)^n}{n \cdot 3^n} =: \sum_{n=1}^{\infty} b_n.$
+\[
+b_n = \begin{cases}
+\frac{1}{2m}, & n = 2m, ~ \rightsquigarrow \text{发散}, \\ \frac{1}{(2m - 1) \cdot 3^{2m - 1}}, & n = 2m - 1, ~ \rightsquigarrow \text{收敛}.
+\end{cases}
+~~ \implies \text{发散}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+$2^{\circ}$ 当 $x - 1/2 = -1/3$ 时, 得到 $\displaystyle \sum_{n=1}^{\infty} a_n \left( -\frac{1}{3} \right)^n = \sum_{n=1}^{\infty} \frac{(-2 + (-1)^{n+1})^n}{n \cdot 3^n} =: \sum_{n=1}^{\infty} c_n.$
+\[
+c_n = \begin{cases}
+\frac{1}{2m}, & n = 2m, ~ \rightsquigarrow \text{发散}, \\ \frac{-1}{(2m - 1) \cdot 3^{2m - 1}}, & n = 2m - 1, ~ \rightsquigarrow \text{收敛}.
+\end{cases}
+~~ \implies \text{发散}.
+\]
+
+\pause
+
+综上, 幂级数 $\displaystyle \sum_{n=1}^{\infty} \dfrac{(2 + (-1)^n)^n}{n} \left( x - \frac{1}{2} \right)^n$ 的收敛域为 $\left( \frac{1}{6}, \frac{5}{6} \right).$
 
 \end{frame}
 
@@ -156,6 +192,16 @@ $\displaystyle \sum_{n=1}^{\infty} \dfrac{x^n}{n!}$ 的收敛半径为
 
 \begin{frame}
 \frametitle{d'Alembert 判别法}
+
+正项级数的敛散性判别法除了 Cauchy 判别法之外, 还有 d'Alembert 判别法. 对应地, 幂级数的收敛半径也可以通过 d'Alembert 判别法来计算:
+
+\begin{thm}[d'Alembert 判别法]
+若对幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 成立 $\displaystyle \lim_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right| = A,$ 则收敛半径 $R = 1/A.$
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
 
 \end{frame}
 
