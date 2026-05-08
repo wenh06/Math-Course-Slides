@@ -202,6 +202,88 @@ c_n = \begin{cases}
 \pause
 
 \startproof[bg=yellow, fg=red]
+之前由正项级数的 Cauchy 判别法推导 d'Alembert 判别法时, 使用了不等式
+\[
+\varliminf_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right| \leqslant \varliminf_{n\to\infty} \nroot[n]{|a_n|} \leqslant \varlimsup_{n\to\infty} \nroot[n]{|a_n|} \leqslant \varlimsup_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right|.
+\]
+那么由夹逼准则, 若 $\displaystyle \lim_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right| = A,$ 则 $\displaystyle \lim_{n\to\infty} \nroot[n]{|a_n|} = A,$ 从而由 Cauchy-Hadamard 定理, 收敛半径 $R = 1/A.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{d'Alembert 判别法}
+
+\begin{remark}
+注意, d'Alembert 判别法的条件是极限存在``$\lim_{n\to\infty}$'', 而不是上极限存在``$\varlimsup_{n\to\infty}$''. 例如考虑 $\displaystyle \sum_{n=1}^{\infty} a_n x^n,$ 其中
+\[
+a_n = 2^k, \quad k^2 \leqslant n < (k+1)^2, ~ k = 0, 1, 2, \cdots
+\]
+那么 $\displaystyle \varlimsup_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right| = 2,$ 但
+\[
+\varlimsup_{n\to\infty} \nroot[n]{|a_n|} = \lim_{k\to\infty} \sqrt[k^2]{2^k} = \lim_{k\to\infty} 2^{1/k} = 1,
+\]
+所以收敛半径为 $1,$ 而不是 $1/2.$
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+\begin{eg}
+考察幂级数 $\displaystyle \sum_{n=1}^{\infty} \dfrac{n^n}{n!} x^n$ 的收敛情况.
+\end{eg}
+
+\pause
+\vspace{1em}
+
+\startproof[bg=yellow, fg=red](解)
+记 $a_n = \dfrac{n^n}{n!}.$
+
+\vspace{1em}
+
+{\color{red} \ding{43}} 首先求收敛半径:
+\begin{itemize}
+\item 方法一 (d'Alembert): $\displaystyle \lim_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n\to\infty} \frac{(n+1)^{n+1}}{(n+1)!} \cdot \frac{n!}{n^n} = \lim_{n\to\infty} \left( 1 + \frac{1}{n} \right)^n = e.$
+\item 方法二 (Cauchy-Hadamard): $\displaystyle \varlimsup_{n\to\infty} \nroot[n]{|a_n|} = \varlimsup_{n\to\infty} \frac{n}{\sqrt[n]{n!}} = \varlimsup_{n\to\infty} \frac{n}{\sqrt[n]{\sqrt{2\pi n} \left( \frac{n}{e} \right)^n}} = e.$
+\end{itemize}
+所以收敛半径 $R = 1/e.$
+
+\pause
+\vspace{1em}
+
+接下来判断端点 $x = \pm 1/e$ 的收敛情况.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+{\color{red} \ding{43}} 当 $x = 1/e$ 时, $\sum_{n=1}^{\infty} a_n x^n = \sum_{n=1}^{\infty} \dfrac{n^n}{n!} \cdot \dfrac{1}{e^n}$ 为正项级数, 并且
+\[
+\dfrac{n^n}{n!} \cdot \dfrac{1}{e^n} \sim \dfrac{n^n}{\sqrt{2\pi n} \left( \frac{n}{e} \right)^n} \cdot \dfrac{1}{e^n} = \dfrac{1}{\sqrt{2\pi n}},
+\]
+由比较判别法知其发散.
+
+\pause
+\vspace{1em}
+
+{\color{red} \ding{43}} 当 $x = -1/e$ 时, $\sum_{n=1}^{\infty} a_n x^n = \sum_{n=1}^{\infty} \dfrac{n^n}{n!} \cdot \dfrac{(-1)^n}{e^n} =: \sum_{n=1}^{\infty} (-1)^n b_n$ 为交错级数, 并且
+\[
+\frac{b_{n+1}}{b_n} = \frac{1}{e} \cdot \left( 1 + \frac{1}{n} \right)^n  < 1, ~~~ b_n \sim \dfrac{1}{\sqrt{2\pi n}} \to 0,
+\]
+由 Leibniz 判别法知其收敛.
+
+\pause
+\vspace{1em}
+
+综上, 幂级数 $\displaystyle \sum_{n=1}^{\infty} \dfrac{n^n}{n!} x^n$ 的收敛域为 $\left[ -\frac{1}{e}, \frac{1}{e} \right).$
 
 \end{frame}
 
@@ -212,24 +294,23 @@ c_n = \begin{cases}
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{幂级数的 Abel 定理}
 
 Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \begin{itemize}
 \item 幂级数的收敛域
 \item 幂级数在收敛域内的分析性质
 \end{itemize}
-建立了一系列的定理.
+建立了一系列的定理:
 
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Abel 第一定理}
+\pause
+\vspace{1em}
 
 \begin{thm}[Abel 第一定理]
-
+若 $\sum_{n=0}^{\infty} a_n x^n$ 在点 $x = \xi$ 处收敛, 则当 $|x| < |\xi|$ 时, $\sum_{n=0}^{\infty} a_n x^n$ 绝对收敛; 若其在点 $x = \eta$ 处发散, 则当 $|x| > |\eta|$ 时, $\sum_{n=0}^{\infty} a_n x^n$ 发散.
 \end{thm}
+
+这个定理完全包含于 Cauchy-Hadamard 定理中, 就不详细讨论了. 但接下来的 Abel 第二定理则是全新的内容.
 
 \end{frame}
 
@@ -239,24 +320,62 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \frametitle{Abel 第二定理}
 
 \begin{thm}[Abel 第二定理]
-
+若幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 的收敛半径 $R > 0,$ 那么
+\begin{itemize}
+\item $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 在 $(-R, R)$ 上内闭一致收敛;
+\item 若 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 在 $x = R$ 处收敛, 则它在任意闭区间 $[a, R] \subset (-R, R]$ 上一致收敛, 即它在 $(-R, R]$ 上内闭一致收敛.
+\end{itemize}
 \end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明)
+(1) 任取闭区间 $[a, b] \subset (-R, R),$ 那么 $\forall ~ x \in [a, b],$ 有 $a_n x^n \leqslant a_n \cdot \max\{|a|, |b|\}^n.$ 由于 $\displaystyle \varlimsup_{n\to\infty} \nroot[n]{|a_n|} = 1/R,$ 所以
+\[
+\text{$\forall ~ \max\{|a|, |b|\} < r < R,$ $\exists ~ N,$ 使得 $\forall ~ n > N,$ 有 $\sqrt[n]{|a_n|} < 1/r,$ 即 $|a_n| < 1/r^n.$}
+\]
+于是 $\left| a_n x^n \right| < \left( \max\{|a|, |b|\} / r \right)^n,$ 由 Weierstrass 判别法, $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 在 $[a, b]$ 上一致收敛.
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{Abel 第二定理}
+
+(2) 由 (1) 知, 只要证明 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 在 $[0, R]$ 上一致收敛即可. 有
+\[
+\sum_{n=0}^{\infty} a_n x^n = \sum_{n=0}^{\infty} a_n R^n \cdot \left( \frac{x}{R} \right)^n,
+\]
+由于 $0 \leqslant \frac{x}{R} < 1,$ 因此 $\left( \frac{x}{R} \right)^n$ 在 $[0, R]$ 上一致有界, 且 (关于 $n$) 单调递减. 又由于 $\displaystyle \sum_{n=0}^{\infty} a_n R^n$ (一致, 若视为函数项级数)收敛, 由 Abel 判别法, $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 在 $[0, R]$ 上一致收敛.
+\qed
+
+\pause
+\vspace{1em}
+
+\begin{remark}
+实际上, Abel 第二定理的结论可以概括为: 幂级数在包含于其收敛域内的任意闭区间上都一致收敛.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{级数求和的 Abel 方法}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{级数求和的 Abel 方法}
 
-之前, 我们已经证明了: 若数项级数 $\displaystyle \sum_{n=1}^\infty a_n$ 收敛, 则幂级数 $\displaystyle \sum_{n=1}^\infty a_n x^n$ 的收敛半径 $R \geqslant 1,$ 且收敛域包含 $(-1, 1].$ 于是由 Abel 第二定理, $\displaystyle \sum_{n=1}^\infty a_n x^n$ 在 $[0, 1]$ 上一致收敛, 从而连续, 于是成立
+之前, 我们已经证明了: 若数项级数 $\displaystyle \sum_{n=1}^\infty a_n$ 收敛, 则幂级数 $\displaystyle \sum_{n=1}^\infty a_n x^n$ 的收敛半径 $R \geqslant 1,$ 且收敛域包含 $(-1, 1].$ 由 Abel 第二定理, $\displaystyle \sum_{n=1}^\infty a_n x^n$ 在 $[0, 1]$ 上一致收敛, 从而连续, 于是成立
 \[
-\sum_{n=1}^\infty a_n = \lim_{x \to 1^-} \sum_{n=1}^{\infty} a_n x^n
+\sum_{n=1}^\infty a_n = \lim_{x \to 1^-} \sum_{n=1}^{\infty} a_n x^n.
 \]
 
 \pause
 
-但是, 有时当上式左边发散, 即级数 $\displaystyle \sum_{n=1}^\infty a_n$ 发散时, 右边 (左极限) 却是有意义的.
+但是, 有时当上式左边的数项级数 $\displaystyle \sum_{n=1}^\infty a_n$ 发散, 即级数 $\displaystyle \sum_{n=1}^\infty a_n$ 发散时, 右边 (左极限) 却是有意义的.
 \pause
 例如 $a_n = (-1)^n,$ 左边是一个发散的级数, 但
 \begin{equation*}
@@ -297,7 +416,7 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 
 由于 $\displaystyle \sigma_n = \dfrac{1}{n} \sum_{k=1}^{n} S_k$ 极限为 $A,$ 所以
 \[
-\varlimsup_{n\to\infty} \nroot[n]{|n \sigma_n|} = \sqrt[\leftroot{-1}\uproot{18}n]{\sum_{k=1}^{n} S_k} = 1,
+\varlimsup_{n\to\infty} \nroot[n]{|n \sigma_n|} = \sqrt[\leftroot{-1}\uproot{18}n]{\left| \sum_{k=1}^{n} S_k \right|} = 1,
 \]
 即幂级数 $\displaystyle \sum_{n=1}^{\infty} n \sigma_n x^n$ 收敛半径为 $1.$
 \pause
@@ -355,7 +474,7 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 我们最终约化到了证明第一项 $\displaystyle (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n$ 关于 $x \to 1-$ 的极限也是 $0.$
 
 由于 $\sigma_n \to A,$ 所以 $\varepsilon > 0, ~ \exists N,$ 使得 $\forall~n > N,$ 有 $|\sigma_n - A| < \varepsilon / 2.$ 记 $\displaystyle M = \max_{1 \leqslant n \leqslant N} n |\sigma_n - A|,$ 那么有
-{\smaller[1]
+% {\smaller[1]
 \begin{align*}
 \left\lvert (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n \right\rvert & \leqslant \sum_{n=1}^{\infty} n |\sigma_n - A| (1-x)^2x^n \\
 & = \sum_{n=1}^{N} n |\sigma_n - A| (1-x)^2x^n + \sum_{n=N+1}^{\infty} n |\sigma_n - A|(1-x)^2x^n \\
@@ -363,7 +482,7 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 & \leqslant M x(1-x)(1-x^N) + \dfrac{\varepsilon}{2} \sum_{n=0}^{\infty} (n + 1) (1-x)^2x^n \\
 & \leqslant M(1 - x) + \dfrac{\varepsilon}{2}.
 \end{align*}
-}
+% }
 
 \end{frame}
 
@@ -380,13 +499,65 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \[
 \lim_{x\to 1-} \sum_{n=1}^{\infty} a_n x^n = \lim_{x\to 1-} (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n = A.
 \]
+\qed
+
+\pause
+\vspace{0.5em}
+
+\begin{question}
+$\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subset \{ \text{Abel 可和级数} \}$ 的包含关系是真包含吗?
+\end{question}
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{Cesàro 可和级数与 Abel 可和级数的关系}
+
+是真包含关系 $\{ \text{Cesàro $(c, 1)$ 可和级数} \} \subsetneqq \{ \text{Abel 可和级数} \}$. 例如 $a_n = (-1)^{n+1} n,$ 那么
+\[
+S_n = \sum_{k=1}^{n} a_k = \begin{cases} -m, & n = 2m, \\ m, & n = 2m - 1, \end{cases} \quad \sigma_n = \dfrac{1}{n} \sum_{k=1}^{n} S_k = \begin{cases} 0, & n = 2m, \\ \dfrac{m}{2m - 1}, & n = 2m - 1, \end{cases} ~~ \text{发散},
+\]
+所以 $\displaystyle \sum_{n=1}^\infty a_n$ 在 Cesàro $(c, 1)$ 意义下不可和. 但
+\[
+\lim_{x \to 1^-} \sum_{n=1}^{\infty} a_n x^n = \lim_{x \to 1^-} \sum_{n=1}^{\infty} (-1)^{n+1} n x^n = \lim_{x \to 1^-} \dfrac{x}{(1+x)^2} = \dfrac{1}{4},
+\]
+所以 $\displaystyle \sum_{n=1}^\infty a_n$ 在 Abel 意义下可和, 且和为 $1/4.$
+
+\pause
+
+\begin{remark}
+我们实际上有如下的真包含关系:
+\begin{multline*}
+\{ \text{通常意义可和级数} \} \subsetneqq \{ \text{Cesàro $(c, 1)$ 可和级数} \} \subsetneqq \cdots \\
+\subsetneqq \{ \text{Cesàro $(c, r)$ 可和级数} \} \subsetneqq \cdots \subsetneqq \{ \text{Abel 可和级数} \}.
+\end{multline*}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{幂级数的分析性质}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{和函数连续性}
+
+接下来, 我们利用 Abel 第二定理, 导出幂级数更多的分析性质.
+
+\vspace{1em}
+
+\begin{thm}[幂级数和函数的连续性]
+设幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 的收敛半径 $R > 0,$ 则它的和函数 $f(x) = \sum_{n=0}^{\infty} a_n x^n$ 在 $(-R, R)$ 上连续; 若幂级数在 $x = R$ 处 (或 $x = -R$ 处) 收敛, 则和函数在 $x = R$ 处 (或 $x = -R$ 处) 连续.
+\end{thm}
+
+\pause
+\vspace{1em}
+
+此定理主要由一致收敛的函数项级数的连续性定理得到, 而 Abel 第二定理保证了幂级数在相应区间上内闭一致收敛性. 因此, 该定理的证明就不再赘述了.
 
 \end{frame}
 
@@ -395,12 +566,146 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 \begin{frame}
 \frametitle{逐项可积性}
 
+\begin{thm}[幂级数的逐项可积性]
+设 $[a, b]$ 包含于幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 的收敛域内, 则 (可逐项积分):
+\[
+\int_{a}^{b} \sum_{n=0}^{\infty} a_n t^n ~ \mathrm{d}t = \sum_{n=0}^{\infty} \int_{a}^{b} a_n t^n ~ \mathrm{d}t = \sum_{n=0}^{\infty} \frac{a_n}{n+1} (b^{n+1} - a^{n+1}).
+\]
+特别地, 取 $a = 0, b = x,$ 则有
+\[
+\int_{0}^{x} \sum_{n=0}^{\infty} a_n t^n ~ \mathrm{d}t = \sum_{n=0}^{\infty} \int_{0}^{x} a_n t^n ~ \mathrm{d}t = \sum_{n=0}^{\infty} \frac{a_n}{n+1} x^{n+1}.
+\]
+\end{thm}
+
+\pause
+
+\begin{remark}
+注意, $\sum_{n=0}^{\infty} \frac{a_n}{n+1} x^{n+1}$ 与 $\sum_{n=0}^{\infty} a_n x^n$ 的收敛半径一致, \alert{但它们的收敛域不一定相同.}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{逐项积分后收敛域不一致的例子}
+
+\startproof[bg=yellow, fg=red](例1)
+考虑幂级数 $\displaystyle \sum_{n=0}^{\infty} \frac{1}{n+1} x^n,$ 其收敛半径 $R = 1.$ 当 $x = 1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{1}{n+1}$ 发散; 当 $x = -1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^n}{n+1}$ 收敛. 因此, $\displaystyle \sum_{n=0}^{\infty} \frac{1}{n+1} x^n$ 的收敛域为 $[-1, 1).$
+
+\pause
+
+逐项积分所得幂级数为 $\displaystyle \sum_{n=0}^{\infty} \frac{1}{(n+1)^2} x^{n+1},$ 其收敛半径 $R' = 1.$ 当 $x = 1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{1}{(n+1)^2}$ 收敛; 当 $x = -1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n+1}}{(n+1)^2}$ 收敛. 因此, $\displaystyle \sum_{n=0}^{\infty} \frac{1}{(n+1)^2} x^{n+1}$ 的收敛域为 $[-1, 1].$
+\qed
+
+\pause
+\vspace{1em}
+
+\startproof[bg=yellow, fg=red](例2)
+考虑幂级数 $\displaystyle \sum_{n=0}^{\infty} (-1)^{n-1} x^{2n-2},$ 其收敛半径 $R = 1.$ 当 $x = 1$ 时, $\displaystyle \sum_{n=0}^{\infty} (-1)^{n-1}$ 发散; 当 $x = -1$ 时, $\displaystyle \sum_{n=0}^{\infty} (-1)^{n-1} (-1)^{2n-2} = \displaystyle \sum_{n=0}^{\infty} (-1)^{n-1}$ 发散. 因此, $\displaystyle \sum_{n=0}^{\infty} (-1)^{n-1} x^{2n-2}$ 的收敛域为 $(-1, 1).$
+
+对幂级数进行逐项积分, 有
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{逐项积分后收敛域不一致的例子}
+
+\[
+\int_{0}^{x} \sum_{n=0}^{\infty} (-1)^{n-1} t^{2n-2} ~ \mathrm{d}t = \sum_{n=0}^{\infty} \int_{0}^{x} (-1)^{n-1} t^{2n-2} ~ \mathrm{d}t = \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} x^{2n-1}.
+\tag{$\star$}
+\label{eq:star}
+\]
+其收敛半径 $R' = 1.$ 当 $x = 1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1}$ 收敛; 当 $x = -1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} (-1)^{2n-1} = \displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n}}{2n-1}$ 收敛. 因此, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} x^{2n-1}$ 的收敛域为 $[-1, 1].$
+\qed
+
+\pause
+\vspace{0.5em}
+
+注意, $\displaystyle \sum_{n=0}^{\infty} (-1)^{n-1} x^{2n-2}$ 的和函数为 $f(x) = \dfrac{1}{1+x^2},$ 于是 \eqref{eq:star} 左边为 $\displaystyle \int_{0}^{x} \frac{1}{1+t^2} ~ \mathrm{d}t = \arctan x.$ 那么由和函数的连续性, 有
+\begin{align*}
+\frac{\pi}{4} = \lim_{x \to 1^-} \arctan x & = \lim_{x \to 1^-} \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} x^{2n-1} = \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} \\
+& = 1 - \frac{1}{3} + \frac{1}{5} - \cdots =: L(s=1, \chi_4),
+\end{align*}
+其中 $L(s, \chi_4) = \sum_{n=0}^{\infty} \frac{\chi_4(n)}{n^s}$ 是 Dirichlet L-函数, $\chi_N: \left( \mathbb{Z} / N\mathbb{Z} \right)^\times \to \mathbb{C}^\times$ 是 Dirichlet 特征.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Dirichlet L-函数}
+
+Dirichlet L-函数 $L(s, \chi) = \sum_{n=1}^{\infty} \frac{\chi(n)}{n^s}$ 的特殊值 $L(1, \chi)$ 在数论中有重要的意义, 可以用于计算虚二次域 $K = \mathbb{Q}(\sqrt{m}),$ $m \in \mathbb{Z}_{<0},$ 且无平方因子, 的类数 (class number) $h_K.$ 这里, 类数指的是 $K$ 中理想类群 (ideal class group) 的阶数, 是度量 $K$ 的整数环 $\mathcal{O}_K$ 离唯一析因整环多远的一个重要的量.
+
+\pause
+
+事实上, 令 $N = \begin{cases} |m|, & m \equiv 1 \pmod{4}, \\ 4|m|, & m \equiv 2, 3 \pmod{4}, \end{cases}$ 则 $N$ 是 $K$ 的判别式 (discriminant), 则存在唯一的 Dirichlet 特征 $\chi_K: \left( \mathbb{Z} / N\mathbb{Z} \right)^\times \to \mathbb{C}^\times$ 满足
+\[
+\chi(p \pmod{N}) = \left( \frac{m}{p} \right) = \begin{cases} 1, & x^2 \equiv m \pmod{p} \text{ 有解}, \\ -1, & x^2 \equiv m \pmod{p} \text{ 无解}.\end{cases}
+\]
+令 $\omega_K$ 为 $K$ 中单位根个数, 则有 Dirichlet 类数公式 (Dirichlet class number formula)
+\[
+h_K = \dfrac{\omega_K \sqrt{N}}{2\pi} L(1, \chi_K).
+\]
+
+\pause
+
+对于 $K = \mathbb{Q}(\sqrt{-1}),$ $N = 4, \omega_K = 4, \chi_K = \chi_4,$ 从而 $h_K = \frac{4 \cdot \sqrt{4}}{2\pi} L(1, \chi_4) = 1.$ 也就是说 $\mathbb{Q}(\sqrt{-1})$ 的整数环 $\mathbb{Z}[i]$ 是唯一析因整环.
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
 \frametitle{逐项可导性}
+
+\begin{thm}[幂级数的逐项可导性]
+设幂级数 $\displaystyle \sum_{n=0}^{\infty} a_n x^n$ 的收敛半径 $R > 0,$ 则它在 $(-R, R)$ 上可逐项求导, 即
+\[
+\frac{\mathrm{d}}{\mathrm{d}x} \left( \sum_{n=0}^{\infty} a_n x^n \right) = \sum_{n=1}^{\infty} \frac{\mathrm{d}}{\mathrm{d}x} \left( a_n x^n \right) = \sum_{n=1}^{\infty} n a_n x^{n-1}.
+\]
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+这个定理也是由 Abel 第二定理, 结合一致收敛函数项级数的逐项求导定理得到的.
+
+\pause
+\vspace{0.5em}
+
+更进一步, 由于
+\[
+\varlimsup_{n\to\infty} \nroot[n]{|n a_n|} = \varlimsup_{n\to\infty} \nroot[n]{|a_n|} \cdot \varlimsup_{n\to\infty} \nroot[n]{n} = 1/R,
+\]
+所以 $\displaystyle \sum_{n=1}^{\infty} n a_n x^{n-1}$ 的收敛半径也是 $R,$ \alert{但收敛域可能缩小.}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{幂级数逐项求导的应用示例}
+
+\begin{eg}
+求幂级数 $\displaystyle \sum_{n=0}^{\infty} \frac{x^n}{n!}$ 的和函数.
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red](解)
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{幂级数逐项求导的应用示例}
+
 
 \end{frame}
 
