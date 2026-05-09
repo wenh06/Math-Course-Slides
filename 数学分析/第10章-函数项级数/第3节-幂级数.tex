@@ -695,9 +695,28 @@ h_K = \dfrac{\omega_K \sqrt{N}}{2\pi} L(1, \chi_K).
 \end{eg}
 
 \pause
+\vspace{0.5em}
 
 \startproof[bg=yellow, fg=red](解)
+之前已经讲过了 $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!},$ 但未严格证明. (注意, 这里是下一节要讲的所谓的``幂级数展开'', 跟``Taylor 展开''是两回事)
 
+\pause
+\vspace{0.5em}
+
+事实上, 之前已求得它的收敛半径 $R = +\infty,$ 所以可由逐项求导定理得到
+\[
+S'(x) = \sum_{n=1}^{\infty} \frac{n}{n!} x^{n-1} = \sum_{n=0}^{\infty} \frac{x^n}{n!} = S(x).
+\]
+那么可从常微分方程的角度 $\frac{\mathrm{d}S}{S} = \mathrm{d}x$ 解得 $S(x) = C e^x.$
+
+\pause
+
+也可以由 $\left( e^{-x} S(x) \right)' = e^{-x} \left( S'(x) - S(x) \right) = 0$ 得到 $e^{-x} S(x) = C.$
+
+\pause
+
+代入 $x = 0$ 可得 $C = S(0) = 1,$ 从而 $S(x) = e^x.$
+\qed
 
 \end{frame}
 
@@ -706,6 +725,58 @@ h_K = \dfrac{\omega_K \sqrt{N}}{2\pi} L(1, \chi_K).
 \begin{frame}
 \frametitle{幂级数逐项求导的应用示例}
 
+\begin{eg}
+求数项级数 $\displaystyle \sum_{n=1}^{\infty} \frac{2n+1}{3^n}$ 的和.
+\end{eg}
+
+\vspace{0.5em}
+
+\only<2>{
+{\color{red} \ding{43}} 解法一: 首先很容易判断这个正项级数是收敛的, 于是可以直接计算它的和. 设 $S = \displaystyle \sum_{n=1}^{\infty} \frac{2n+1}{3^n},$ 那么
+\begin{align*}
+2S = 3S - S & = \sum_{n=1}^{\infty} \frac{2n+1}{3^{n-1}} - \sum_{n=1}^{\infty} \frac{2n+1}{3^n} = \sum_{n=0}^{\infty} \frac{2n+3}{3^n} - \sum_{n=1}^{\infty} \frac{2n+1}{3^n} \\
+& = 3 + 2 \sum_{n=1}^{\infty} \frac{1}{3^n} = 3 + 2 \cdot \frac{1/3}{1 - 1/3} = 4.
+\end{align*}
+于是 $S = 2.$
+}
+\only<3->{
+{\color{red} \ding{43}} 解法二: $\displaystyle \sum_{n=1}^{\infty} \frac{2n+1}{3^n} = \sum_{n=1}^{\infty} \frac{1}{3^n} + 2 {\color{red}\sum_{n=1}^{\infty} \frac{n}{3^n}} = \frac{1/3}{1 - 1/3} + 2 {\color{red} \left. \sum_{n=1}^{\infty} n x^n \right|_{x = 1/3}}.$ 对于函数项级数有
+\begin{align*}
+\sum_{n=1}^{\infty} n x^n & = x \sum_{n=0}^{\infty} (n+1) x^n = x \left( \sum_{n=0}^{\infty} x^{n+1} \right)' = x \left( 1 + \sum_{n=1}^{\infty} x^n \right)' \\
+& = x \left( 1 + \frac{x}{1-x} \right)' = \frac{x}{(1-x)^2}.
+\end{align*}
+代入 $x = 1/3$ 可得 $\displaystyle \sum_{n=1}^{\infty} n \left( \frac{1}{3} \right)^n = \frac{1/3}{(1 - 1/3)^2} = \frac{3}{4}.$ 从而 $\displaystyle \sum_{n=1}^{\infty} \frac{2n+1}{3^n} = \frac{1/3}{1 - 1/3} + 2 \cdot \frac{3}{4} = 2.$
+\qed
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{幂级数逐项求导的应用示例}
+
+\begin{eg}
+求幂级数 $\displaystyle \sum_{n=0}^{\infty} \frac{n^2 + 1}{2^n n!} x^n$ 的和函数.
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](解)
+首先, 很容易利用 Cauchy-Hadamard 定理判断该幂级数的收敛半径 $R = +\infty.$ 接下来, 我们把这个幂级数拆成两部分:
+\[
+S(x) := \sum_{n=0}^{\infty} \frac{n^2 + 1}{2^n n!} x^n = \sum_{n=0}^{\infty} \frac{n^2}{n!} \left( \frac{x}{2} \right)^n + \sum_{n=0}^{\infty} \frac{1}{n!} \left( \frac{x}{2} \right)^n =: S_1(x) + S_2(x).
+\]
+\pause
+很容易看到 $S_2(x) = e^{x/2}.$ 对于 $S_1(x),$ 有
+\begin{align*}
+S_1(x) & = \sum_{n=0}^{\infty} \frac{n^2}{n!} \left( \frac{x}{2} \right)^n = \sum_{n=1}^{\infty} \frac{n}{(n-1)!} \left( \frac{x}{2} \right)^n = \frac{x}{2} \left( \sum_{n=0}^{\infty} \frac{n+1}{n!} \left( \frac{x}{2} \right)^n \right) \\
+& = \frac{x}{2} \left( \sum_{n=0}^{\infty} \frac{2}{n!} \left( \frac{x}{2} \right)^{n+1} \right)' = \frac{x}{2} \left( x \sum_{n=0}^{\infty} \frac{1}{n!} \left( \frac{x}{2} \right)^n \right)' = \frac{x}{2} \left( x e^{x/2} \right)' = \frac{x}{2} e^{x/2} + \frac{x^2}{4} e^{x/2}.
+\end{align*}
+\pause
+因此, $S(x) = S_1(x) + S_2(x) = \left( 1 + \frac{x}{2} + \frac{x^2}{4} \right) e^{x/2}.$
+\qed
 
 \end{frame}
 
@@ -739,6 +810,15 @@ g(x) = \sum\limits_{n=1}^{\infty} b_n x^n, ~~
 h(x) = \sum\limits_{n=1}^{\infty} c_{n+1} x^n.
 \]
 由 Abel 第二定理, $f,g,h$ 在 $[0, 1]$ 上一致收敛, 从而连续. 又由 Cauchy-Hadamard 定理 (或者 Abel 第一定理), $\forall ~ |x| < 1,$ $f(x),g(x),h(x)$ 绝对收敛, 于是有等式
+\begin{align*}
+f(x) \cdot g(x) & = \left( \sum\limits_{n=1}^{\infty} a_n x^n \right) \cdot \left( \sum\limits_{n=1}^{\infty} b_n x^n \right) = \sum\limits_{n=2}^{\infty} {\color{magenta}\sum\limits_{k=1}^{n-1} a_k b_{n-k}} x^n \\
+& = x \sum\limits_{n=2}^{\infty} {\color{magenta} c_n} x^{n-1} = x \sum\limits_{n=1}^{\infty} c_{n+1} x^n = x h(x).
+\end{align*}
+由连续性, 取 $x \to 1-$ 可得
+\[
+\left( \sum\limits_{n=1}^{\infty} a_n \right) \cdot \left( \sum\limits_{n=1}^{\infty} b_n \right) = h(1) = \sum\limits_{n=1}^{\infty} c_{n+1} = \sum\limits_{n=2}^{\infty} c_n.
+\]
+\qed
 
 \end{frame}
 
