@@ -33,6 +33,8 @@
 %	PRESENTATION SLIDES
 %-----------------------------------
 
+%------------------------------------------------
+
 \begin{frame}
 \frametitle{绪言}
 
@@ -45,20 +47,204 @@ f^{(k)}(x) & = \sum_{n=k}^\infty n (n-1) \cdots (n-k+1) a_n (x - x_0)^{n-k}.
 \end{align*}
 令 $x = x_0$, 可得 $f^{(k)}(x_0) = k! a_k$, 从而 $a_k = \frac{f^{(k)}(x_0)}{k!}$ (所谓 Taylor 系数).
 
+\end{frame}
+
+%------------------------------------------------
+
+\section{Taylor 级数与余项公式}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Taylor 级数}
+
 \begin{recall}[Taylor 公式]
 设 $f$ 在 $x_0$ 的某个邻域内具有直到 $k$ 阶导数, 则在 $x_0$ 的某个邻域 $B_k(x_0, \rho_k)$ 内有
 \[
-f(x) = \sum_{n=0}^k \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n + r_k(x),
+f(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k + r_n(x),
 \]
-其中 $r_k(x)$ 是余项.
+其中 $r_n(x)$ 是余项.
 \end{recall}
+
+由此, 可以引出 Taylor 级数的概念:
+
+\pause
+\vspace{0.5em}
+
+\begin{Def}[Taylor 级数]
+设 $f$ 在 $x_0$ 的某个邻域 $B(x_0, \rho)$ 内具有任意阶导数, 则称级数
+\[
+\sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n
+\]
+为 $f$ 在 $x_0$ 的 Taylor 级数.
+\end{Def}
 
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{光滑函数与解析函数}
+\frametitle{Taylor 级数的收敛性}
+
+\begin{question}
+是否总存在正的常数 $\rho$ 使得在 $B(x_0, \rho)$ 内, $f$ 的 Taylor 级数收敛且等于 $f$, 即
+\[
+f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n, \quad \forall x \in B(x_0, \rho)?
+\]
+\end{question}
+
+\alert{注意}, 这样的函数称作是 \textbf{解析函数}.
+
+\pause
+\vspace{0.5em}
+
+\alert{答案是否定的}. 在 Taylor 公式中
+\[
+r_k(x) = \frac{f^{(k+1)}(\xi)}{(k+1)!} (x - x_0)^{k+1}, \quad \xi \in B_k(x_0, \rho_k),
+\]
+余项 $r_k(x)$ 一般是用 $(x - x_0)^{k+1}$ 作为``尺''来``测量''的, 但有些无穷小量不能被任何一把这样的``尺''测量 (同阶无穷小), 从而导致 Taylor 级数无法收敛到 $f(x)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{非解析函数的典型例子}
+
+考察函数 ~ $f(x) = \begin{cases} e^{-1/x^2}, & x \neq 0, \\ 0, & x = 0. \end{cases}.$
+
+\pause
+\vspace{0.5em}
+
+可以算得
+\[
+f'(0) = \lim_{x \to 0} \frac{f(x) - f(0)}{x - 0} = lim_{x \to 0} \frac{e^{-1/x^2}}{x} = \lim_{x \to 0} \frac{1/x}{e^{1/x^2}} = \lim_{x \to 0} \frac{-1/x^2}{(-2/x^3) e^{1/x^2}} = \lim_{x \to 0} \frac{x}{2 e^{1/x^2}} = 0.
+\]
+当 $x \neq 0$ 时, $f'(x) = \frac{2}{x^3} e^{-1/x^2} = P_3 \left(\frac{1}{x}\right) e^{-1/x^2}$, 其中 $P_3$ 是一个三次多项式.
+
+\pause
+\vspace{0.5em}
+
+接下来, 可以计算 2 阶导数:
+\[
+f''(0) = \lim_{x \to 0} \frac{f'(x) - f'(0)}{x - 0} = \lim_{x \to 0} \frac{P_3(1/x) e^{-1/x^2}}{x} = \lim_{x \to 0} \frac{2 / x^4}{e^{1/x^2}} = 0.
+\]
+当 $x \neq 0$ 时, $f''(x) = -\frac{6}{x^4} e^{-1/x^2} + \frac{2}{x^3} \cdot \frac{2}{x^3} e^{-1/x^2} = \left(-\frac{6}{x^4} + \frac{4}{x^6}\right) e^{-1/x^2} = P_6 \left(\frac{1}{x}\right) e^{-1/x^2}$, 其中 $P_6$ 是一个六次多项式.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{非解析函数的典型例子}
+
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\text{可以猜测} \quad f^{(n)}(x) = \begin{cases} P_{3n} \left(\frac{1}{x}\right) e^{-1/x^2}, & x \neq 0, \\ 0, & x = 0. \end{cases}
+\tag{$\star$}
+\label{eq:star}
+\end{empheq}
+
+\pause
+\vspace{0.5em}
+
+接下来用数学归纳法证明上述猜测. 我们已经验证了 $n = 0, 1, 2$ 的情况. 对于 $n + 1:$
+\[
+f^{(n+1)}(0) = \lim_{x \to 0} \frac{f^{(n)}(x) - f^{(n)}(0)}{x - 0} = \lim_{x \to 0} \frac{P_{3n}(1/x) e^{-1/x^2}}{x} = \lim_{x \to 0} \frac{P_{3n+1}(1/x)}{e^{1/x^2}} = 0,
+\]
+\pause
+当 $x \neq 0$ 时,
+\begin{align*}
+f^{(n+1)}(x) & = P_{3n}'\left(\frac{1}{x}\right) \cdot \left(\frac{1}{x}\right)' \cdot e^{-1/x^2} + P_{3n}\left(\frac{1}{x}\right) \cdot \left(e^{-1/x^2}\right)' \\
+& = \left(-\frac{1}{x^2} P_{3n}'\left(\frac{1}{x}\right) + \frac{2}{x^3} P_{3n}\left(\frac{1}{x}\right)\right) e^{-1/x^2} = P_{3n+3}\left(\frac{1}{x}\right) e^{-1/x^2}.
+\end{align*}
+
+\pause
+
+于是, 我们证明了 $f(x)$ 在 $x = 0$ 处的 Taylor 级数为 $\sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!} x^n = 0$, 但 $f(x)$ 显然不是常值函数 $0.$ 也就是说, $f(x)$ 不是解析函数.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{计算和函数的反问题}
+
+\begin{question}
+什么条件下, 存在正的常数 $\rho$ 使得在 $B(x_0, \rho)$ 内, $f$ 的 Taylor 级数收敛且等于 $f$, 即
+\[
+f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n, \quad \forall x \in B(x_0, \rho)?
+\]
+\end{question}
+
+\pause
+\vspace{0.5em}
+
+还是从 Taylor 公式出发
+\[
+f(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k + r_n(x),
+\]
+那么 $f(x)$ 在 $B(x_0, \rho)$ 内的 Taylor 级数收敛且等于 $f(x)$ 的\alert{充分必要条件}是
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\lim_{n \to \infty} r_n(x) = 0, \quad \forall x \in B(x_0, \rho). \quad (\text{\color{red}不要求一致性})
+\end{empheq}
+
+\pause
+\vspace{0.5em}
+
+\alert{注意}, 在之前的例子 $f(x) = \begin{cases} e^{-1/x^2}, & x \neq 0, \\ 0, & x = 0. \end{cases}$ 中, $r_n(x) \equiv e^{-1/x^2}$ (\alert{不依赖于 $n$}), 从而 $\lim_{n \to \infty} r_n(x) = e^{-1/x^2} \neq 0$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分形式的余项公式}
+
+于是, 研究一个函数 $f$ 是否是解析函数, 或者说它是否存在幂级数展开 (Taylor 展开), 就转化为了研究 Taylor 公式中的余项 $r_n(x)$ 的极限行为.
+
+\begin{recall}[各种形式的余项公式]
+\begin{itemize}
+\item Peano: $r_n(x) = o((x - x_0)^n)$
+\item Lagrange: $r_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1} = \frac{f^{(n+1)}(x_0 + \theta (x - x_0))}{(n+1)!} (x - x_0)^{n+1}$
+\item Cauchy: $r_n(x) = \frac{f^{(n+1)}(c)}{n!} (x - c)^n (x - x_0) = \frac{f^{(n+1)}(x_0 + \theta (x - x_0))}{n!} (1 - \theta)^n (x - x_0)^{n+1}$
+\end{itemize}
+\end{recall}
+
+\pause
+\vspace{0.5em}
+
+\begin{Def}[积分形式的余项公式]
+设 $f(x)$ 在 $x_0$ 的某个邻域 $B(x_0, \rho)$ 内具有 $n + 1$ 阶导数, 则在 $B(x_0, \rho)$ 内有
+\[
+f(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k + {\color{red} \frac{1}{n!} \int_{x_0}^x f^{(n+1)}(t) (x - t)^n ~ \mathrm{d}t}.
+\]
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{积分形式余项公式的证明}
+
+由定义, 余项 $r_n(x) = f(x) - \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k,$ 那么 $\forall ~ k \leqslant n,$
+\[
+r_n^{(k)}(x) = f^{(k)}(x) - \sum_{j=k}^n \frac{f^{(j)}(x_0)}{j!} j (j-1) \cdots (j-k+1) (x - x_0)^{j-k},
+\]
+从而 $r_n^{(k)}(x_0) = f^{(k)}(x_0) - \frac{f^{(k)}(x_0)}{k!} k (k-1) \cdots 1 = 0.$
+
+\pause
+\vspace{0.5em}
+
+再反过来逐次应用分部积分, 可以得到
+\begin{align*}
+r_n(x) & = \int_{x_0}^x r_n'(t) ~ \mathrm{d}t = \int_{x_0}^x r_n'(t) ~ {\color{red} \mathrm{d} (t-x)} = 0 - \int_{x_0}^x r_n''(t) (t-x) ~ \mathrm{d}t \\
+& = \int_{x_0}^x r_n''(t) \cdot (x - t) ~ \mathrm{d}t = \int_{x_0}^x r_n''(t) ~ \mathrm{d} \frac{(x - t)^2}{2} \\
+& \hspace{1em} \vdots \\
+& = \left( \int_{x_0}^x r_n^{(k)}(t) \cdot (x - t)^{k-1} ~ \mathrm{d} t \right) \cdot \frac{1}{(k-1)!} = \cdots = \frac{1}{n!} \int_{x_0}^x {\color{red} r_n^{(n+1)}(t)} (x - t)^n ~ \mathrm{d}t \\
+& = \frac{1}{n!} \int_{x_0}^x {\color{red} f^{(n+1)}(t)} (x - t)^n ~ \mathrm{d}t.
+\end{align*}
 
 \end{frame}
 
