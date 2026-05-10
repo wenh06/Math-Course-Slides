@@ -1,0 +1,413 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[高等代数]{\LARGE \bfseries 高等代数} % The short title appears at the bottom of every slide, the full title is only on the title page
+\author[伪逆与最小二乘法] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large \bfseries 伪逆与最小二乘法}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{问题的引入}
+
+对于解线性方程组$A\mathbf{x} = \mathbf{b}$的问题, 我们知道当$A$是可逆方阵的时候, 该线性方程组有唯一解$\mathbf{x} = A^{-1}\mathbf{b}$.
+
+\vspace{1em}
+
+当$A$没有逆 (是不可逆方阵, 或者不是方阵) 的时候, 有什么补救办法呢?
+
+\pause
+\vspace{1em}
+
+希望: 定义一个伪逆 (Pseudoinverse), 记作$A^+$, 使得当$A$可逆的时候, $A$的伪逆就是它的逆, 即
+\[A^+ = A^{-1}\]
+如果可能的话, 还要求当$A\mathbf{x} = \mathbf{b}$无解时, $\mathbf{x} = A^+\mathbf{b}$是``近似程度''最好的``解''.
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%------------------------------------------------
+
+\section{广义逆}
+
+%------------------------------------------------
+
+\subsection{广义逆的定义与性质}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{广义逆的定义与性质}
+
+\begin{Def}[矩阵的广义逆, Generalized Inverse]
+$m\times n$ 矩阵 $A$ 的广义逆指的是一个 $n\times m$ 的矩阵 $X,$ 满足
+\[AXA = A.\]
+通常把$A$的广义逆记作$A^-.$
+\end{Def}
+
+\pause
+
+\begin{remark}[广义逆的普遍存在性]
+任意矩阵 $A$ 的广义逆 $A^-$ 总存在. 设 $P,Q$ 分别为 $m$ 阶与 $n$ 阶可逆阵, 使得 $A = P \begin{pmatrix} I_r & 0 \\ 0 & 0 \end{pmatrix}_{m\times n}\!\!\!\!\!\!\!\!\!\!\! Q,$ 那么
+\[A^- = Q^{-1} \begin{pmatrix} I_r & * \\ *' & *'' \end{pmatrix}_{n\times m}\!\!\!\!\!\!\!\!\!\!\! P^{-1}\]
+其中 $r = r(A)$, $*,*',*''$ 分别是大小为 $r \times (m-r)$, $(n-r) \times r,$ 以及 $(n-r) \times (m-r)$ 的块, 块中元素可以任取.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{广义逆与线性方程组的解}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{广义逆与线性方程组的解}
+
+\begin{prop}[广义逆与齐次线性方程组]
+齐次线性方程组 $A\mathbf{x} = \mathbf{0}$ 的解的全体为
+\[\mathbf{x} = (I_n - A^-A)\mathbf{z},\]
+其中 $A^-$ 取遍 $A$ 的所有广义逆, $\mathbf{z}$ 取遍所有的 $n$ 维列向量.
+\end{prop}
+
+\pause
+\vspace{1em}
+
+\begin{prop}[广义逆与非齐次线性方程组]
+非齐次线性方程组 $A\mathbf{x} = \mathbf{b}$ 有解, 当且仅当存在 $A$ 的广义逆 $A^-$ 使得
+\[\mathbf{b} = A A^- \mathbf{b}.\]
+有解时, 它的解的全体为 $A^-\mathbf{b}$, $A^-$ 取遍 $A$ 的所有广义逆.
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+{
+\larger[1]
+广义逆只解决了我们的第一部分要求, 即它``像是''逆, 而且当矩阵的确可逆的时候它就是矩阵通常意义下的逆. 但是它并不唯一, 而且仍然没有解决求``最佳近似解''的需求.
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Moore-Penrose伪逆}
+
+%------------------------------------------------
+
+\subsection{伪逆的定义与性质}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{伪逆的定义}
+
+\begin{Def}[Moore-Penrose伪逆, Pseudoinverse]
+$m\times n$ 矩阵 $A$ 的 Moore-Penrose 伪逆, 或简称伪逆, 指的是同时满足如下四个条件的 $n\times m$ 矩阵 $X$
+\[
+\begin{cases}
+AXA = A \\
+XAX = X \\
+(AX)^T = AX \\
+(XA)^T = XA
+\end{cases}
+\]
+通常, $A$ 的伪逆被记作 $A^+$.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{伪逆的性质}
+
+\begin{prop}[伪逆的存在性与唯一性]
+任意 $m\times n$ 矩阵 $A$ 的伪逆 $A^+$ 都存在, 而且
+\[A^+ = V\Sigma^+U^T,\]
+其中 $A = U\Sigma V^T$ 为矩阵 $A$ 的奇异值分解, 奇异值为 $\sigma_1, \ldots, \sigma_r$,
+\[\Sigma^+ = \begin{pmatrix}
+\frac{1}{\sigma_1} & & & \\ & \ddots & & \\ & & \frac{1}{\sigma_r} & \\ & & & \bigzero \end{pmatrix}_{n\times m}\]
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{伪逆的性质}
+
+\begin{remark}[伪逆的另一种表达]
+$A$ 的奇异值分解又可以写作\(\displaystyle A = U\Sigma V^T = \sum\limits_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i^T \). 于是我们又有 $A^+$ 的另一种表达
+\[A^+ = \sum\limits_{i=1}^r \sigma_i^{-1} \mathbf{v}_i \mathbf{u}_i^T\]
+其中这些 $\mathbf{v}_i, \mathbf{u}_i$ 分别是正交阵 $V$ 与 $U$ 的列.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{伪逆与线性方程组}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{伪逆与线性方程组}
+
+\begin{prop}[伪逆与线性方程组解的关系]
+对于线性方程组 $A\mathbf{x} = \mathbf{b}$ ($\mathbf{b}$ 可以是零向量也可以不是), 它若有解, 则解可以由系数矩阵 $A$ 的 Moore-Penrose 伪逆统一给出:
+\[A^+\mathbf{b} + (I - A^+A)\mathbf{w}\]
+其中 $\mathbf{w}$ 是任意一个 $n$ 维列向量. 当然, $A\mathbf{x} = \mathbf{b}$ 有解的充要条件为
+\[AA^+\mathbf{b} = \mathbf{b}\]
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{最小二乘法}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘法: 问题分析}
+
+我们来考虑非齐次线性方程组 $A\mathbf{x} = \mathbf{b}$ 无解的情况, $A$ 是一个 $m\times n$ 矩阵. 此时, 我们有
+\[A\mathbf{x} = \mathbf{b}\text{无解} \Longleftrightarrow \mathbf{b}\not\in C(A)\]
+
+转而: 在 $C(A)$ 中寻找 $A\widehat{\mathbf{x}}$, 使得它与 $\mathbf{b}$ 最接近, 即求
+\[\argmin_{\widehat{\mathbf{x}}}\lVert A\widehat{\mathbf{x}} - \mathbf{b} \rVert,\]
+并称其为一个最小二乘解.
+
+\vspace{2em}
+
+可以将以上结果与之前的广义逆相关的结果对比来看.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘法: 法方程组}
+
+{\bfseries 事实}: $\mathbb{R}^m$ 中的一个点, 与一个线性子空间中距离最短的点是这个点在这个子空间上的投影 (见下图).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\path[-, thin] (0,0) edge (7,0);
+\path[-, thin] (0,0) edge (-2,-2);
+\path[-, thin] (-2,-2) edge (5,-2);
+\path[-, thin] (7,0) edge (5,-2);
+\path[-Stealth, very thick] (0,0) edge (4,2);
+\path[-Stealth, very thick, dashed] (4,2) edge (4,-1);
+\path[-Stealth, very thick] (0,0) edge (4,-1);
+\path[-Stealth, very thick] (0,0) edge (2.5,-1.5);
+\path[-Stealth, very thick, dashed] (4,2) edge (2.5,-1.5);
+\path[-Stealth, dotted] (4,-1) edge (2.5,-1.5);
+\node at (4.7, 0.5) {$\beta-\alpha$};
+\node at (2.6, 0.5) {$\beta'-\alpha$};
+\node at (1, 0.7) {$\alpha$};
+\node at (2.3, -0.28) {$\beta$};
+\node at (0.6, -0.7) {$\beta'$};
+\node at (-1, -1.6) {$W$};
+\node at (4.1, -1.4) {$\beta'-\beta$};
+\draw[-, very thick] (4,-0.6) -- (3.6, -0.5) -- (3.6, -0.9);
+\end{tikzpicture}
+\end{figure}
+
+\vspace{1em}
+\pause
+
+{\bfseries Hint}: 考察 $\beta'-\alpha, \beta-\alpha, \beta'-\beta$ 围成的直角三角形的边长关系.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘法: 法方程组}
+
+于是
+\begin{align*}
+\lVert A\widehat{\mathbf{x}} - \mathbf{b} \rVert ~ \text{取得最小值} ~ & \Longleftrightarrow A\widehat{\mathbf{x}} - \mathbf{b} \perp C(A) \\
+& \Longleftrightarrow A^T (A\widehat{\mathbf{x}} - \mathbf{b}) = \mathbf{0} \\
+& \Longleftrightarrow A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}
+\end{align*}
+
+那么, 问题转化为了求解非齐次线性方程组
+\[A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}.\]
+
+以上方程组 (被称作法方程组, Normal Equations) 的特点:
+\begin{itemize}
+\item 总有解；
+\item 即使解 $\widehat{\mathbf{x}}$ 不唯一, 投影 $A\widehat{\mathbf{x}}$ 是唯一的.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘法}
+
+\begin{block}{最小二乘解}
+\begin{itemize}
+\item<1-> 若 $r(A) = n$, 那么 $r(A^T) = r(A) = n$. 此时 $A^TA$ 可逆, $A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}$ 有唯一解. 于是我们得到唯一的最小二乘解
+\[\widehat{\mathbf{x}} = (A^TA)^{-1}A^T\mathbf{b}.\]
+\item<2-> 若 $r(A) < n$, 那么 $r(A^T) = r(A) < n$. 此时 $A^TA$ 不可逆, $A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}$ 有无穷多组解, 亦即最小二乘解有无穷多组.
+\end{itemize}
+\end{block}
+
+\pause
+\vspace{1em}
+
+\begin{question}
+在 $A^TA$ 不可逆的情况下, 如何从无穷多组最小二乘解中选出一个``最佳''的解?
+\end{question}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘解与伪逆的关系}
+
+\begin{thm}[最小二乘解与伪逆的关系]
+$\mathbf{x}^+ := A^+\mathbf{b}$ 是长度最小的最小二乘解. 其中 $A^+$ 为矩阵 $A$ 的 Moore-Penrose 伪逆.
+\end{thm}
+
+\vspace{1em}
+\pause
+
+\startproof[bg=yellow, fg=red]
+以下设 $A$ 的奇异值分解为 $A = U\Sigma V^T.$
+
+\vspace{1em}
+
+{\color{red}\ding{43}} $\mathbf{x}^+$ 是最小二乘解:
+
+\pause
+\vspace{0.5em}
+
+将其代入法方程组 $A^TA\widehat{\mathbf{x}} = A^T\mathbf{b}$ 左边有
+\begin{align*}
+A^TA\cdot\mathbf{x}^+ & = A^TAA^+ \cdot \mathbf{b} \\
+& = (V\Sigma^TU^T)(U\Sigma V^T)(V\Sigma^+ U^T) \mathbf{b} = V\Sigma^T\Sigma\Sigma^+ U^T \cdot \mathbf{b} \\
+& = V \begin{pmatrix} \Sigma_0^T & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} \Sigma_0 & 0 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} \Sigma_0^{-1} & 0 \\ 0 & 0 \end{pmatrix} U^T \cdot \mathbf{b} \\
+& = V \Sigma^T U^T \cdot \mathbf{b} = A^T \cdot \mathbf{b} = \text{法方程组右边}
+\end{align*}
+其中 $\Sigma_0 = diag(\sigma_1, \ldots, \sigma_r).$ 由上式即知, $\mathbf{x}^+$ 是最小二乘解.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘解与伪逆的关系}
+
+{\color{red}\ding{43}} $\mathbf{x}^+$ 是最小二乘解中长度最小者:
+
+\pause
+\vspace{0.5em}
+
+设 $\widehat{\mathbf{x}}_0$ 也是一个最小二乘解, 即满足 $A^TA\widehat{\mathbf{x}}_0 = A^T\mathbf{b}.$ 于是
+\begin{align*}
+& A^TA(\widehat{\mathbf{x}}_0-\mathbf{x}^+) = A^T\mathbf{b} - A^T\mathbf{b} = \mathbf{0} \\
+\Longrightarrow & \lVert A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) \rVert^2 = (\widehat{\mathbf{x}}_0-\mathbf{x}^+)^T A^TA (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = 0 \\
+\Longrightarrow & A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \mathbf{0}
+\end{align*}
+
+\pause
+
+$A$ 用其奇异值分解又可写作 $A = \sum\limits_{i=1}^r \sigma_i \mathbf{u}_i \mathbf{v}_i^T$. 于是从上式我们有
+\begin{align*}
+A (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \mathbf{0} & \Longrightarrow \sum\limits_{i=1}^r \sigma_i \mathbf{u}_i \underbrace{\color{red} \mathbf{v}_i^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+)}_{\textbf{这是个数}} = \mathbf{0} \\
+& \Longrightarrow \sum\limits_{i=1}^r \left( \sigma_i \cdot \left( \mathbf{v}_i^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) \right) \right) \mathbf{u}_i = \mathbf{0}
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘解与伪逆的关系}
+
+但是, 我们知道 $\mathbf{u}_1,\ldots,\mathbf{u}_r$ 是线性无关的 (甚至是相互正交的), 而且 $\sigma_1,\ldots,\sigma_r$ 都是大于0的实数. 于是
+\[\mathbf{v}_1^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = \cdots = \mathbf{v}_r^T (\widehat{\mathbf{x}}_0-\mathbf{x}^+) = 0.\]
+那么
+\begin{align*}
+\langle \mathbf{x}^+, \widehat{\mathbf{x}}_0 - \mathbf{x}^+ \rangle & = (\mathbf{x}^+)^T (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) = (A^+\mathbf{b})^T (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \\
+& = \mathbf{b}^T (A^+)^T (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \\
+& = \mathbf{b}^T \left( \sum\limits_{i=1}^r \sigma_i^{-1} \mathbf{v}_i \mathbf{u}_i^T \right)^T (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \\
+& = \mathbf{b}^T \left( \sum\limits_{i=1}^r \sigma_i^{-1} \mathbf{u}_i \underbrace{\mathbf{v}_i^T (\widehat{\mathbf{x}}_0 - \mathbf{x}^+)}_{=\mathbf{0}} \right) = 0
+\end{align*}
+
+因此, 我们有
+\[\lVert \widehat{\mathbf{x}}_0 \rVert^2 = \lVert \mathbf{x}^+ + (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 = \lVert \mathbf{x}^+ \rVert^2 + \lVert (\widehat{\mathbf{x}}_0 - \mathbf{x}^+) \rVert^2 \geqslant \lVert \mathbf{x}^+ \rVert^2\]
+也就是说 $\mathbf{x}^+ = A^+\mathbf{b}$ 的确是长度最小的最小二乘解.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{最小二乘解与伪逆的关系}
+
+\begin{remark}
+{\color{red}注意}! 最小二乘解 $\mathbf{x}^+ = A^+\mathbf{b}$ 包含了 $A^TA$ 可逆时的唯一最小二乘解 $(A^TA)^{-1}A^T\mathbf{b}$.
+\end{remark}
+
+\vspace{1em}
+\pause
+
+\startproof[bg=yellow, fg=red]
+根据矩阵乘积的秩关系
+\[A^TA\text{可逆} \Longrightarrow n = r(A^TA) = r(A) = r(\Sigma),\]
+于是, $\Sigma$ 就必须形如 $\Sigma = \begin{pmatrix} \Sigma_0 \\ 0 \end{pmatrix}$, 其中 $\Sigma_0 = diag(\sigma_1, \ldots, \sigma_n)$. 于是
+\[A^+ = V\begin{pmatrix} \Sigma_0^{-1} & 0 \end{pmatrix} U^T\]
+另一方面,
+\begin{align*}
+(A^TA)^{-1}A^T & = (V\Sigma^TU^TU\Sigma V^T)^{-1} V\Sigma^TU^T \\
+& = V \Sigma_0^{-2} V^T V\Sigma^TU^T = V\begin{pmatrix} \Sigma_0^{-1} & 0 \end{pmatrix} U^T
+\end{align*}
+\qed
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
