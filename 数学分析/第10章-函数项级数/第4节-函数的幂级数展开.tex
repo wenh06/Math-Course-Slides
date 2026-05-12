@@ -111,7 +111,7 @@ r_k(x) = \frac{f^{(k+1)}(\xi)}{(k+1)!} (x - x_0)^{k+1}, \quad \xi \in B_k(x_0, \
 \begin{frame}
 \frametitle{非解析函数的典型例子}
 
-考察函数 ~ $f(x) = \begin{cases} e^{-1/x^2}, & x \neq 0, \\ 0, & x = 0. \end{cases}.$
+考察函数 ~ $f(x) = \begin{cases} e^{-1/x^2}, & x \neq 0, \\ 0, & x = 0. \end{cases}$
 
 \pause
 \vspace{0.5em}
@@ -250,6 +250,30 @@ r_n(x) & = \int_{x_0}^x r_n'(t) ~ \mathrm{d}t = \int_{x_0}^x r_n'(t) ~ {\color{r
 
 %------------------------------------------------
 
+\begin{frame}
+\frametitle{积分形式余项公式}
+
+\begin{remark}
+积分形式的余项公式可以推出其它形式的余项公式:
+\begin{itemize}
+\item Lagrange 形式:
+\begin{align*}
+r_n(x) & = \frac{1}{n!} \int_{x_0}^x f^{(n+1)}(t) \underbrace{(x - t)^n}_{\text{不变号}} ~ \mathrm{d}t = \frac{1}{n!} f^{(n+1)}(\xi) \int_{x_0}^x (x - t)^n ~ \mathrm{d}t \\
+& = \frac{f^{(n+1)}(\xi)}{(n+1)!} \left. \left( -(x-t)^{n+1} \right) \right|_{t=x_0}^{t=x} = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1}.
+\end{align*}
+\pause
+\item Cauchy 形式:
+\begin{align*}
+r_n(x) & = \frac{1}{n!} \int_{x_0}^x f^{(n+1)}(t) (x - t)^n ~ \mathrm{d}t = \frac{1}{n!} f^{(n+1)}(c) (x - c)^n \int_{x_0}^x ~ \mathrm{d}t \\
+& = \frac{f^{(n+1)}(c)}{n!} (x - c)^n (x - x_0).
+\end{align*}
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
 \section{初等函数的 Taylor 展开}
 
 %------------------------------------------------
@@ -257,12 +281,120 @@ r_n(x) & = \int_{x_0}^x r_n'(t) ~ \mathrm{d}t = \int_{x_0}^x r_n'(t) ~ {\color{r
 \begin{frame}
 \frametitle{指数函数的 Taylor 展开}
 
+{\larger[1]{\color{red} \ding{43}} 计算 $e^x$ 在 $x = 0$ 处的 Taylor 展开.}
+
+\pause
+\vspace{0.5em}
+
+之前计算函数项级数 $\sum_{n=0}^\infty \frac{x^n}{n!}$ 的和函数时, 已经验证了 $e^x = \sum_{n=0}^\infty \frac{x^n}{n!}$ 在 $\mathbb{R}$ 内成立. 现在, 从 Taylor 公式出发, 验证其余项 $r_n(x) \to 0$ 的极限行为:
+
+\pause
+\vspace{0.5em}
+
+对于 $x \in \mathbb{R}$ 固定, 余项
+\begin{itemize}
+\item Lagrange 形式: $r_n(x) = \frac{e^\xi}{(n+1)!} x^{n+1} \xrightarrow{n \to \infty} 0$;
+\item Cauchy 形式: $r_n(x) = \frac{e^c}{n!} (x - c)^n x \xrightarrow{n \to \infty} 0$.
+\end{itemize}
+所以 $e^x$ 在 $x = 0$ 处的 Taylor 展开为 $\sum_{n=0}^\infty \frac{x^n}{n!}$.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{三角函数的 Taylor 展开}
+\frametitle{三角函数的 Taylor 展开 | $\sin x, \cos x$}
+
+{\larger[1]{\color{red} \ding{43}} 计算 $\sin x, \cos x, \dots$ 在 $x = 0$ 处的 Taylor 展开.}
+
+\pause
+\vspace{0.5em}
+
+由于 $\sin^{(n)}(x) = \sin (x + n\pi),$ 从而 $\sin^{(n)}(0) = \begin{cases} 0, & n = 2k \text{ 是偶数}, \\ (-1)^{\frac{n-1}{2}}, & n = 2k+1 \text{ 是奇数}. \end{cases}$ 所以 $\sin x$ 在 $x = 0$ 处的 Taylor 展开为
+\[
+\sin x = \sum_{k=0}^n \frac{\sin^{(k)}(0)}{k!} x^k + r_n(x) = \sum_{k=0}^n \frac{(-1)^k}{(2k+1)!} x^{2k+1} + r_{2n + 2}(x),
+\]
+其中 $r_{2n + 2}(x) = \frac{1}{(2n+3)!} \underbrace{\sin^{(2n+3)}(\xi)}_{\text{绝对值} \leqslant 1} x^{2n+3} \xrightarrow{n \to \infty} 0.$ 所以 $\sin x$ 在 $x = 0$ 处的 Taylor 展开为
+\[
+\sin x = \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} x^{2k+1}, ~~ \text{收敛半径为 } R = 1 / \varlimsup_{k \to \infty} \nroot[2k+1]{\frac{1}{(2k+1)!}} = +\infty.
+\]
+
+\pause
+\vspace{0.5em}
+
+类似可求得 $\cos x$ 在 $x = 0$ 处的 Taylor 展开为
+\[
+\cos x = \sum_{k=0}^\infty \frac{(-1)^k}{(2k)!} x^{2k}, ~~ \text{收敛半径为 } R = +\infty.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{三角函数的 Taylor 展开 | $\tan x$}
+
+$f(x) = \tan x$ 的 Taylor 公式为 $f(x) = \sum_{k=0}^n \frac{f^{(k)}(0)}{k!} x^k + r_n(x).$
+\begin{align*}
+f'(x) & = \cos^{-2} x \quad \implies f'(0) = 1, \\
+f''(x) & = 2 \cos^{-3} x \sin x \quad \implies f''(0) = 0, \\
+f'''(x) & = -6 \cos^{-4} x \sin^2 x + 2 \cos^{-3} x \cos x \quad \implies f'''(0) = 2 \cdot 3!, \\
+& \hspace{1em} \vdots \\
+\tan x & = x + \frac{2}{3!} x^3 + (\text{后面系数的直接计算比较麻烦})
+\end{align*}
+需要另想办法计算 $\tan x$ 的 Taylor 展开.
+
+\pause
+\vspace{0.5em}
+
+注意到 $\tan x = \frac{\sin x}{\cos x}$, 于是有 $\sin x = \tan x \cdot \cos x$, 可以通过待定系数法来计算 $\tan x$ 的 Taylor 展开. 由于 $\tan x$ 为奇函数, 可设 $\tan x = c_1 x + c_3 x^3 + c_5 x^5 + \cdots$, 那么
+\[
+\sum_{n=0}^\infty \frac{(-1)^n}{(2n+1)!} x^{2n+1} = \sin x = \tan x \cdot \cos x = \left( \sum_{n=0}^\infty c_{2n+1} x^{2n+1} \right) \left( \sum_{n=0}^\infty \frac{(-1)^n}{(2n)!} x^{2n} \right).
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{三角函数的 Taylor 展开 | $\tan x$}
+
+比较上式两端的系数, 可以得到
+\begin{align*}
+n = 0: & \frac{1}{1!} = c_1 \cdot \frac{1}{0!} \implies c_1 = 1; \\
+n = 1: & \frac{-1}{3!} = c_3 \cdot \frac{1}{0!} + c_1 \cdot \frac{-1}{2!} \implies c_3 = \frac{2}{3!}; \\
+n = 2: & \frac{1}{5!} = c_5 \cdot \frac{1}{0!} + c_3 \cdot \frac{-1}{2!} + c_1 \cdot \frac{1}{4!} \implies c_5 = \frac{16}{5!}; \\
+\vdots
+\end{align*}
+可以通过递推的方式计算 $\tan x$ 的 Taylor 展开, 但是基于这个方法不能计算出收敛半径.
+
+\pause
+\vspace{0.5em}
+
+由于 $\tan x$ 在 $x = \pm \frac{\pi}{2}$ 处有极点, 从而 $\tan x$ 的 Taylor 展开的收敛半径应该满足 $R \leqslant \frac{\pi}{2}$, 那么是严格小于 $\frac{\pi}{2}$ 还是等于 $\frac{\pi}{2}$ 呢?
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{三角函数的 Taylor 展开 | $\tan x$}
+
+我们通过其他方法来计算 $\tan x$ 的 Taylor 展开的收敛半径. 由于
+\begin{align*}
+\tan x & = \frac{\sin x}{\cos x} = \left. \frac{e^{ix} - e^{-ix}}{2i} \middle/ \frac{e^{ix} + e^{-ix}}{2} \right. = \frac{e^{2ix} - 1}{i (e^{2ix} + 1)} = i \cdot \frac{e^{-2ix} - 1}{e^{-2ix} + 1}, \\
+\cot x & = \frac{\cos x}{\sin x} = i \cdot \frac{e^{2ix} + 1}{e^{2ix} - 1} = i \cdot \left( \frac{2}{e^{2ix} - 1} + 1 \right),
+\end{align*}
+所以有 $x \cot x = ix + \frac{2ix}{e^{2ix} - 1} \xlongequal{z = 2ix} \frac{z}{2} + \frac{z}{e^z - 1}.$
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{三角函数的 Taylor 展开 | $\tan x$}
 
 \end{frame}
 
