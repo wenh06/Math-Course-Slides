@@ -10,6 +10,31 @@
 \usepackage{esvect}
 \usepackage{yhmath}
 \usepackage{listings}
+\usepackage{unicode-math}
+% \setmathfont{STIX Two Math}
+
+\makeatletter
+\newcommand{\Otop}{\mathbin{\mathpalette\Otop@\relax}}
+\newcommand{\Otop@}[2]{%
+  \def\mycircradius{0.9ex}%
+  \def\mylinewidth{0.5pt}% 线条粗细
+  \tikz[baseline=-0.85ex, line cap=round, line width=\mylinewidth]{%
+    \draw (0,0) circle (\mycircradius);% 画圆
+    \draw (-\mycircradius, 0) -- (\mycircradius, 0);% 画水平横线
+    \draw (0, 0) -- (0, \mycircradius);% 画上半截竖线
+  }%
+}
+\newcommand{\obot}{\mathbin{\mathpalette\obot@\relax}}
+\newcommand{\obot@}[2]{%
+  \def\mycircradius{0.9ex}%
+  \def\mylinewidth{0.5pt}% 线条粗细
+  \tikz[baseline=-0.85ex, line cap=round, line width=\mylinewidth]{%
+    \draw (0,0) circle (\mycircradius);% 画圆
+    \draw (-\mycircradius, 0) -- (\mycircradius, 0);% 画水平横线
+    \draw (0, 0) -- (0, -\mycircradius);% 画下半截竖线
+  }%
+}
+\makeatother
 
 \graphicspath{{images/}}
 
