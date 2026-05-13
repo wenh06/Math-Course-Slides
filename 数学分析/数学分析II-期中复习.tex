@@ -483,7 +483,7 @@ Cauchy 主值
 
 \pause
 
-这可以由反常积分的 Cauchy 收敛原理推出
+这可以由反常积分的 Cauchy 收敛原理推出.
 
 \pause
 
@@ -528,7 +528,7 @@ Cauchy 主值
 
 %------------------------------------------------
 
-\begin{frame}{反常积分敛散性判别法 | {\smaller[1] 非负函数}}
+\begin{frame}{反常积分敛散性判别法 | 非负函数}
 
 \begin{block}{比较判别法}
 设在 $[a, \omega)$ 上, $0 \leqslant f(x) \leqslant g(x),$ 则
@@ -538,21 +538,16 @@ Cauchy 主值
 \end{itemize}
 \end{block}
 
-% \pause
+\pause
 
 \begin{block}{比较判别法的极限形式}
 设在 $[a, \omega)$ 上, $\lim\limits_{x \to \omega} \dfrac{f(x)}{g(x)} = \ell,$ 则
-\begin{itemize}
+\begin{itemize}[<+->]
 \item $\ell = 0$:
-\pause
 归结为 $0 \leqslant f(x) \leqslant g(x);$
-\pause
 \item $\ell = +\infty$:
-\pause
 归结为 $0 \leqslant g(x) \leqslant f(x);$
-\pause
 \item $0 < \ell < +\infty$ (即 $\ell$ 是某个有限正实数):
-\pause
 \vspace{-0.5em}
 \[\int_a^\omega f(x) ~ \mathrm{d} x ~ \text{收敛} ~ \Longleftrightarrow ~ \int_a^\omega g(x) ~ \mathrm{d} x ~ \text{收敛}.\]
 \end{itemize}
@@ -642,12 +637,13 @@ Cauchy 主值
 
 \begin{frame}{数项级数敛散性的判别与分类}
 
-\begin{itemize}[<+->]
+\begin{itemize}
 \item 定义判别: 找到实数 $A,$ 使得 $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $n > N,$ 有 $\left\lvert \sum\limits_{k=1}^n x_k - A \right\rvert < \varepsilon.$
+\pause
 \item Cauchy 收敛原理: $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得任意 $m > n > N,$ 有 $\left\lvert \sum\limits_{k=n}^m x_k \right\rvert < \varepsilon.$
 \end{itemize}
 
-% \pause
+\pause
 
 可以立即得到数项级数收敛的一个必要 (非充分) 条件: $\lim\limits_{n\to\infty} x_n = 0.$
 
@@ -672,14 +668,15 @@ Cauchy 主值
 
 对同一个级数内通项之间的:
 \pause
-\begin{enumerate}[<+->]
+\begin{enumerate}
 \item 结合律: 对收敛级数成立
 \[(x_1 + \cdots + x_{n_1}) + (x_{n_1+1} + \cdots + x_{n_2}) + \cdots = \sum\limits_{n=1}^\infty x_n.\]
+\pause
 \item 交换律: 对绝对收敛级数成立
 \[\sum\limits_{n=1}^\infty x_{\sigma(n)} = \sum\limits_{n=1}^\infty x_n.\]
 \end{enumerate}
 
-% \pause
+\pause
 
 多个级数之间的:
 \pause
@@ -917,9 +914,9 @@ Leibniz 级数 $\sum\limits_{n=1}^\infty (-1)^{n-1} u_n,$ 其中 $0 < u_n \searr
 无穷乘积指的是{\color{red}按一定顺序排列好}的可列个实数的形式积
 \[\prod\limits_{n=1}^\infty p_n = p_1 \cdot p_2 \cdots p_n \cdots\]
 \pause
-若部分积序列 $P_n = \prod\limits_{k=1}^n p_k, n = 1, 2, \dots$ 收敛到一个{\color{red}非零实数}, 则称无穷乘积 $\prod\limits_{n=1}^\infty x_n$ 收敛, 且有
+若部分积序列 $P_n = \prod\limits_{k=1}^n p_k, n = 1, 2, \dots$ 收敛到一个{\color{red}非零实数}, 则称无穷乘积 $\prod\limits_{n=1}^\infty p_n$ 收敛, 且有
 \[\prod\limits_{n=1}^\infty p_n = \lim\limits_{n\to\infty} \prod\limits_{k=1}^n p_k.\]
-否则称数项级数 $\sum\limits_{n=1}^\infty p_n$ 发散.
+否则称无穷乘积 $\prod\limits_{n=1}^\infty p_n$ 发散.
 \end{Def}
 
 \end{frame}
