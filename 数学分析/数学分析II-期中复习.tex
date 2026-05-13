@@ -162,6 +162,27 @@ $\sum\limits_{i=1}^n \omega(f; \Delta_i) \Delta x_i < \varepsilon,$ 振幅 $\ome
 
 %------------------------------------------------
 
+\begin{frame}{定积分区间可加性的一个应用}
+
+\begin{eg}
+证明当 $x \to +\infty$ 时, 有 $\int_2^x \frac{\mathrm{d} t}{(\ln t)^2} = O\left(\dfrac{x}{(\ln x)^2}\right).$
+\end{eg}
+
+\pause
+\vspace{1em}
+
+\startproof[bg=yellow, fg=red]
+当 $x$ 充分大时, 可以将积分区间 $[2, x]$ 分成 $[2, \sqrt{x}]$ 和 $[\sqrt{x}, x]$ 两部分, 则
+\begin{align*}
+\int_2^x \frac{\mathrm{d} t}{(\ln t)^2} & = \int_2^{\sqrt{x}} \frac{\mathrm{d} t}{(\ln t)^2} + \int_{\sqrt{x}}^x \frac{\mathrm{d} t}{(\ln t)^2} \\
+& \leqslant \int_2^{\sqrt{x}} \frac{\mathrm{d} t}{(\ln 2)^2} + \int_{\sqrt{x}}^x \frac{\mathrm{d} t}{(\ln \sqrt{x})^2} \\
+& = \frac{\sqrt{x}-2}{(\ln 2)^2} + \frac{\sqrt{x}}{(\ln \sqrt{x})^2} = O\left(\dfrac{x}{(\ln x)^2}\right).
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{积分中值定理}
 
 \begin{itemize}
@@ -364,10 +385,9 @@ $f(x) \in \mathfrak{R}[a, b],$ 变上限积分 $F(x) = \int_a^x f(t) ~ \mathrm{d
 \item $n = 2$ (Simpson 公式, 抛物形公式):
 \[\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{6} \left( f(a) + 4f\left( \dfrac{a+b}{2} \right) + f(b) \right)\]
 \item $n = 4$ (Cotes 公式):
-\begin{multline*}
-\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{90} \left( 7f(a) + 32f\left( \dfrac{3a+b}{4} \right) \right. \\
-+ \left. 12f\left( \dfrac{a+b}{2} \right) + 32f\left( \dfrac{a+3b}{4} \right) + 7f(b) \right)
-\end{multline*}
+\[
+\int_a^b f(x) ~ \mathrm{d} x \approx \dfrac{b-a}{90} \left( 7f(a) + 32f\left( \dfrac{3a+b}{4} \right) + 12f\left( \dfrac{a+b}{2} \right) + 32f\left( \dfrac{a+3b}{4} \right) + 7f(b) \right)
+\]
 \end{itemize}
 
 \end{frame}
@@ -456,9 +476,9 @@ Cauchy 主值
 
 \begin{attnblock}
 定积分 (Riemann 积分) 的绝对可积性
-\[f(x) \in \mathfrak{R}[a, b] ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathfrak{R}[a, b]\]
+\[f(x) \in \mathfrak{R}[a, b] ~~ \substack{\implies \\ \cancel\Longleftarrow} ~~ \lvert f(x) \rvert \in \mathfrak{R}[a, b]\]
 在反常积分中正好反过来了:
-\[\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{\implies \\ \centernot\Longleftarrow} ~~ \int_a^\omega f(x) ~ \mathrm{d} x ~ \text{ 收敛}.\]
+\[\int_a^\omega \lvert f(x) \rvert ~ \mathrm{d} x ~ \text{ 收敛} ~~ \substack{\implies \\ \cancel\Longleftarrow} ~~ \int_a^\omega f(x) ~ \mathrm{d} x ~ \text{ 收敛}.\]
 \end{attnblock}
 
 \pause
@@ -954,6 +974,83 @@ $\prod\limits_{n=1}^\infty (1 + a_n)$ & $\sum\limits_{n=1}^\infty a_n$ & $\sum\l
 
 特殊情况: $a_n$ 恒正或恒负时,
 \[\prod\limits_{n=1}^\infty (1 + a_n) ~ \text{收敛} ~ \Longleftrightarrow ~ \sum\limits_{n=1}^\infty a_n ~ \text{收敛}.\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛性的判别 | 空间关系}
+
+我们有如下的空间关系:
+\begin{columns}
+\begin{column}{0.4\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+
+% ===== 中心圆（三集合交集）=====
+\def\r{1.2}
+
+% ===== 三个集合（120° 对称）=====
+\blob{0}{yellow!30}{\r}    % 第一个鼓包 - 黄色
+\blob{120}{green!30}{\r}   % 第二个鼓包 - 绿色
+\blob{240}{blue!30}{\r}    % 第三个鼓包 - 蓝色
+
+% ===== 中心圆（放在最上层）=====
+\fill[red!30] (0,0) circle (\r);
+
+% 添加带圈标签
+\node at (1.7, 1) {\larger[1] \Circled{I}};
+\node at (-1.9, 0.7) {\larger[1] \Circled{II}};
+\node at (0, -2.1) {\larger[1] \Circled{III}};
+\node at (0, 0) {\larger[1] \Circled{IV}};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+其中
+
+\Circled{I} 是仅 $\sum_{n=1}^\infty a_n$ 收敛的序列 $\{a_n\}$ 的集合;
+
+\Circled{II} 是仅 $\sum_{n=1}^\infty a_n^2$ 收敛的序列 $\{a_n\}$ 的集合;
+
+\Circled{III} 是仅 $\prod_{n=1}^\infty (1 + a_n)$ 收敛的序列 $\{a_n\}$ 的集合;
+
+\Circled{IV} 是三者都收敛的序列 $\{a_n\}$ 的集合.
+
+\begin{attnblock}
+不存在仅有两个收敛, 另一个发散的情况.
+\end{attnblock}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{无穷乘积收敛性的判别 | 典型例子}
+
+\Circled{I} 的典型例子 (仅 $\sum_{n=1}^\infty a_n$ 收敛)
+\[
+a_n = (-1)^{n+1} \frac{1}{\sqrt{n}}.
+\]
+
+\pause
+
+\Circled{II} 的典型例子 (仅 $\sum_{n=1}^\infty a_n^2$ 收敛)
+\[
+a_n = \frac{1}{n}.
+\]
+
+\pause
+
+\Circled{III} 的典型例子 (仅 $\prod_{n=1}^\infty (1 + a_n)$ 收敛)
+\[a_n = \begin{cases}
+-\frac{1}{\sqrt{k}}, & n = 2k-1, \\
+\frac{1}{\sqrt{k}} + \frac{1}{k} \left( 1 + \frac{1}{\sqrt{k}} \right), & n = 2k.
+\end{cases}
+\]
 
 \end{frame}
 
