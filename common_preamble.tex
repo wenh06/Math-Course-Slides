@@ -11,6 +11,10 @@
 \usepackage{yhmath}
 \usepackage{listings}
 \usepackage{unicode-math}
+% \setmathfont{XITS Math}
+\setmathfont{latinmodern-math.otf}
+% \setmathfont{Libertinus Math}
+\setmathfont{STIX Two Math}[range={"2AC0-"2AFF}]
 % \setmathfont{STIX Two Math}
 \usepackage[all]{xy}
 \usepackage{cancel}
@@ -80,8 +84,12 @@
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\Irr}{\operatorname{Irr}}
 \newcommand{\Inf}{\operatorname{Inf}}
+
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 \DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccsc}{arccsc}
 
 \def\vi{{\operatorname{VI}}}
 \def\argmin{{\arg\min}}
