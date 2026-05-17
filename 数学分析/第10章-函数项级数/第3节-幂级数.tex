@@ -613,11 +613,11 @@ S_n = \sum_{k=1}^{n} a_k = \begin{cases} -m, & n = 2m, \\ m, & n = 2m - 1, \end{
 \begin{frame}
 \frametitle{逐项积分后收敛域不一致的例子}
 
-\[
+\begin{equation}
 \int_{0}^{x} \sum_{n=0}^{\infty} (-1)^{n-1} t^{2n-2} ~ \mathrm{d}t = \sum_{n=0}^{\infty} \int_{0}^{x} (-1)^{n-1} t^{2n-2} ~ \mathrm{d}t = \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} x^{2n-1}.
 \tag{$\star$}
 \label{eq:star}
-\]
+\end{equation}
 其收敛半径 $R' = 1.$ 当 $x = 1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1}$ 收敛; 当 $x = -1$ 时, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} (-1)^{2n-1} = \displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n}}{2n-1}$ 收敛. 因此, $\displaystyle \sum_{n=0}^{\infty} \frac{(-1)^{n-1}}{2n-1} x^{2n-1}$ 的收敛域为 $[-1, 1].$
 \qed
 

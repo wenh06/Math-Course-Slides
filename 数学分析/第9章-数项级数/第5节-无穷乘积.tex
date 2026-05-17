@@ -680,7 +680,7 @@ n (\ln n - 1) + 1 = \int_1^n \ln t ~ dt \leqslant \sum_{k=2}^n \ln k \leqslant \
 \frametitle{$\sin x$ 的无穷乘积展开}
 
 这部分, 我们要证明一个重要的结论: $\sin x$ 有如下的无穷乘积展开式
-\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation}
 \sin x = x \prod_{n=1}^\infty \left( 1 - \frac{x^2}{n^2 \pi^2} \right).
 \tag{$\star$}
 \label{eq:star}
@@ -739,7 +739,7 @@ n (\ln n - 1) + 1 = \int_1^n \ln t ~ dt \leqslant \sum_{k=2}^n \ln k \leqslant \
 
 \pause
 将上述递推关系回代, 就得到了
-\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation}
 \sin(2n+1)\varphi = \sin \varphi \cdot f_n(\sin^2 \varphi),
 \tag{$\dagger$}
 \label{eq:dagger}
@@ -759,11 +759,11 @@ $\sin^2 \varphi = \sin^2 \left(\frac{k \pi}{2n + 1}\right)$ 是 $n$ 次多项式
 \frametitle{$\sin x$ 的无穷乘积展开的证明}
 
 从而知
-\[
+\begin{equation}
 f_n(t) = \prod_{k=1}^n \left( t - \sin^2 \left(\frac{k \pi}{2n + 1}\right) \right) \cdot \tilde{C}_n = \prod_{k=1}^n \left( 1 - \frac{t}{\sin^2 \left(\frac{k \pi}{2n + 1}\right)} \right) \cdot C_n,
 \tag{$\ddagger$}
 \label{eq:ddagger}
-\]
+\end{equation}
 \pause
 对 $f_n(\sin^2 \varphi) = \frac{\sin(2n+1)\varphi}{\sin \varphi}$ 两边取 $\varphi \to 0$, 就得到了 $f_n(0) = 2n + 1,$ 从而 $C_n = 2n + 1.$
 
@@ -777,11 +777,11 @@ f_n(t) = \prod_{k=1}^n \left( t - \sin^2 \left(\frac{k \pi}{2n + 1}\right) \righ
 \pause
 
 于是, 对于固定的 $m$ 以及 $n > m$, 有
-\[
+\begin{equation}
 \frac{\sin x}{(2n+1) \sin \left( \frac{x}{2n + 1} \right) \cdot \prod\limits_{k=1}^m \left( 1 - \frac{\sin^2 \left( \frac{x}{2n + 1} \right)}{\sin^2 \left( \frac{k \pi}{2n + 1} \right)} \right)} = \prod\limits_{k=m+1}^n \left( 1 - \frac{\sin^2 \left( \frac{x}{2n + 1} \right)}{\sin^2 \left( \frac{k \pi}{2n + 1} \right)} \right).
 \tag{$\star\star$}
 \label{eq:starstar}
-\]
+\end{equation}
 对上式, 令 $n \to \infty$, 左边 $\xrightarrow[]{n \to \infty} \frac{\sin x}{x \prod\limits_{k=1}^m \left( 1 - \frac{x^2}{k^2 \pi^2} \right)}.$
 
 \end{frame}
