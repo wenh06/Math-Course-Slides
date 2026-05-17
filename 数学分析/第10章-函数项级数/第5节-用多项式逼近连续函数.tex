@@ -43,7 +43,7 @@
 \pause
 \vspace{1em}
 
-\begin{block}{问题}
+\begin{question}
 \pause
 \begin{itemize}
 \item 有哪些函数足够简单? \pause ~ $\rightsquigarrow$ ~ 多项式, 三角函数, $\dots$
@@ -51,7 +51,7 @@
 \item \alert{近似}如何定义? \pause ~ $\rightsquigarrow$ ~ 需要定义某种``距离''
 \item 是不是任何``复杂函数''都能被``简单函数''近似?
 \end{itemize}
-\end{block}
+\end{question}
 
 \pause
 \vspace{1em}
@@ -90,7 +90,7 @@
 \begin{frame}
 \frametitle{Weierstraß 第一逼近定理}
 
-\alert{问题}: 是所有函数都能用多项式一致逼近吗?
+\alert{问题}: 所有函数都能用多项式一致逼近吗?
 
 \pause
 \vspace{1em}
@@ -148,10 +148,10 @@ Weierstraß 第一逼近定理的证明需要一些预备知识与定理, 我们
 \frametitle{Korovkin 定理}
 
 \begin{thm}[Korovkin]
-设 $\{ L_n \}$ 为 $C[a,b]$ 上一列正线性算子, 且 $\forall ~ i \in \{0, 1, 2\}$ 有 $L_n(\alpha_i; x) \xRightarrow{[a,b]} \alpha_i,$ 其中 $\alpha_i(t) = t^i$ 为单项式. 那么 $\forall ~ f \in C[a,b],$ $L_n(f; x) \xRightarrow{[a,b]} f(x).$
+设 $\{ L_n \}$ 为 $C[a,b]$ 上一列正线性算子, 且 $\forall ~ i \in \{0, 1, 2\}$ 有 $L_n(\alpha_i; x) \stackrel{[a,b]}{\rightrightarrows} \alpha_i,$ 其中 $\alpha_i(t) = t^i$ 为单项式. 那么 $\forall ~ f \in C[a,b],$ $L_n(f; x) \stackrel{[a,b]}{\rightrightarrows} f(x).$
 \end{thm}
 
-Korovkin 定理的重要之处在于, 若希望验证 $L_n(f; x) \xRightarrow{[a,b]} f(x)$ 对所有连续函数 $f$ 成立, 只需要对最简单的三个单项式进行验证即可.
+Korovkin 定理的重要之处在于, 若希望验证 $L_n(f; x) \stackrel{[a,b]}{\rightrightarrows} f(x)$ 对所有连续函数 $f$ 成立, 只需要对最简单的三个单项式进行验证即可.
 
 \pause
 \vspace{1em}
@@ -160,7 +160,7 @@ Korovkin 定理的一个直接推论是
 
 \begin{cor}[Bernstein 定理]
 $\forall ~ f \in C[0,1], \forall ~ n \in \mathbb{N},$ Bernstein 多项式
-\[B_n(f; x) = \sum_{k=0}^{n} f ( \frac{k}{n} ) C_n^k x^k (1-x)^{n-k} \xRightarrow{[0,1]} f(x).\]
+\[B_n(f; x) = \sum_{k=0}^{n} f ( \frac{k}{n} ) C_n^k x^k (1-x)^{n-k} \stackrel{[0,1]}{\rightrightarrows} f(x).\]
 \end{cor}
 
 \end{frame}
@@ -187,9 +187,10 @@ B_n(\alpha_1; x) & = \sum_{k=0}^{n} \frac{k}{n} C_n^k x^k (1-x)^{n-k} = \sum_{k=
 \begin{flalign*}
 B_n(\alpha_2; x) & = \sum_{k=0}^{n} \frac{k^2}{n^2} C_n^k x^k (1-x)^{n-k} = \sum_{k=1}^{n} \frac{k-1+1}{n} C_{n-1}^{k-1} x^k (1-x)^{n-k} \\
 & = \sum_{k=2}^{n} \frac{n-1}{n} C_{n-2}^{k-2} x^k (1-x)^{n-k} + \sum_{k=1}^{n} \frac{1}{n} C_{n-1}^{k-1} x^k (1-x)^{n-k} \\
-& = \frac{n-1}{n}x^2 + \frac{1}{n}x = x^2 + \frac{x(1-x)}{n} \xRightarrow{[0,1]} x^2.
+& = \frac{n-1}{n}x^2 + \frac{1}{n}x = x^2 + \frac{x(1-x)}{n} \stackrel{[0,1]}{\rightrightarrows} x^2.
 \end{flalign*}
 }
+\qed
 
 \end{frame}
 
@@ -200,14 +201,16 @@ B_n(\alpha_2; x) & = \sum_{k=0}^{n} \frac{k^2}{n^2} C_n^k x^k (1-x)^{n-k} = \sum
 
 令 $g(z) = f((b-a)z + a,$ 那么 $g \in C[0, 1],$ 那么由 Bernstein 定理有
 \begin{equation*}
-\widetilde{P}_n (z) := B_n(g; z) \xRightarrow{[0,1]} g(z).
+\widetilde{P}_n (z) := B_n(g; z) \stackrel{[0,1]}{\rightrightarrows} g(z).
 \end{equation*}
 于是
 \begin{equation*}
-P_n(x) := \widetilde{P}_n (\frac{x-a}{b-a}) \xRightarrow{[a,b]} g (\frac{x-a}{b-a}) = f(x).
+P_n(x) := \widetilde{P}_n (\frac{x-a}{b-a}) \stackrel{[a,b]}{\rightrightarrows} g (\frac{x-a}{b-a}) = f(x).
 \end{equation*}
+\qed
 
 \pause
+\vspace{1em}
 
 那么, Weierstraß 第一逼近定理的证明只差证明 Korovkin 定理了.
 
@@ -218,7 +221,54 @@ P_n(x) := \widetilde{P}_n (\frac{x-a}{b-a}) \xRightarrow{[a,b]} g (\frac{x-a}{b-
 \begin{frame}
 \frametitle{Korovkin 定理的证明}
 
-由于 $f \in C[a,b]$ 为闭区间 $[a, b]$ 上连续函数, 从而一致连续, 即 $\forall ~ \varepsilon > 0,$ $\exists \delta > 0,$ 使得对任意 $x, t \in [a,b],$ 只要 $|x - t| < \delta,$ 就有 $|f(x) - f(t)| < \varepsilon.$ 令 $M > 0$ 为 $f$ 的一个界, 即 $\forall ~ x \in [a,b],$
+由于 $f \in C[a,b]$ 为闭区间 $[a, b]$ 上连续函数, 从而一致连续, 即 $\forall ~ \varepsilon > 0,$ $\exists ~ \delta > 0,$ 使得对任意 $x, t \in [a,b],$ 只要 $|x - t| < \delta,$ 就有 $|f(x) - f(t)| < \varepsilon.$ 令 $M > 0$ 为 $f$ 的一个界, 即 $\forall ~ x \in [a,b],$ $|f(x)| \leqslant M.$
+
+\pause
+\vspace{0.5em}
+
+令 $\varphi(t) = (t-x)^2,$ 则 $\forall ~ x, t \in [a,b],$ 下列不等式恒成立
+\[
+|f(t) - f(x)| < \varepsilon + \frac{2M}{\delta^2} \varphi(t).
+\]
+这是因为 $\begin{cases} |t - x| < \delta ~ \text{时}, & |f(t) - f(x)| < \varepsilon \leqslant \varepsilon + \frac{2M}{\delta^2} \varphi(t); \\ |t - x| \geqslant \delta ~ \text{时}, & |f(t) - f(x)| \leqslant 2M \leqslant \frac{2M}{\delta^2} \varphi(t) < \varepsilon + \frac{2M}{\delta^2} \varphi(t). \end{cases}$
+
+\pause
+\vspace{0.5em}
+
+将 $t$ 视为变元, $x$ 视为参数 (常量), 将正的线性算子 $L_n$ 作用于
+\[
+- \left( \varepsilon + \frac{2M}{\delta^2} \varphi(t) \right) < f(t) - f(x) < \varepsilon + \frac{2M}{\delta^2} \varphi(t),
+\]
+可得
+\[
+- \varepsilon L_n(1; z) - \frac{2M}{\delta^2} L_n(\varphi; z) < L_n(f; z) - f(x) L_n(1; z) < \varepsilon L_n(1; z) + \frac{2M}{\delta^2} L_n(\varphi; z).
+\]
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Korovkin 定理的证明}
+
+由条件
+\begin{align*}
+L_n(1; z) & \stackrel{[a,b]}{\rightrightarrows} 1, \\
+L_n(\varphi; z) & = L_n(t^2 - 2xt + x^2; z) = L_n(t^2; z) - 2x L_n(t; z) + x^2 L_n(1; z) \\
+& \stackrel{[a,b]}{\rightrightarrows} z^2 - 2xz + x^2 = (z-x)^2,
+\end{align*}
+可得
+\begin{align*}
+\left| L_n(f; z) - f(x) \right| & \leqslant \left| L_n(f; z) - f(x) L_n(1; z) \right| + \left| f(x) L_n(1; z) - f(x) \right| \\
+& < \varepsilon L_n(1; z) + \frac{2M}{\delta^2} L_n(\varphi; z) + |f(x)| \cdot |L_n(1; z) - 1| \\
+(\text{$n$ 充分大}) & \leqslant \varepsilon (1 + \varepsilon) + \frac{2M}{\delta^2} ((z-x)^2 + \varepsilon) + M \varepsilon.
+\end{align*}
+\pause
+特别地, 取 $z = x,$ 可得
+\[
+\left| L_n(f; x) - f(x) \right| < \varepsilon \left(1 + \varepsilon + \frac{2M}{\delta^2} \varepsilon + M \right).
+\]
+这就证明了 $L_n(f; x) \stackrel{[a,b]}{\rightrightarrows} f(x).$
+\qed
 
 \end{frame}
 
