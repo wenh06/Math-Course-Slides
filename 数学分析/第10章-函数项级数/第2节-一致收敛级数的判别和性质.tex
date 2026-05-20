@@ -487,6 +487,9 @@ $\forall ~ x_0 \in [a, b], \forall ~ \varepsilon > 0,$
 \item $S_n(x) \stackrel{[a, b]}{\rightrightarrows} S(x)$ ~~ $\implies$ ~~ $\exists ~ N(\varepsilon) \in \mathbb{N}$ 使得 $\forall ~ n \geqslant N(\varepsilon), \forall ~ x \in [a, b], |S_n(x) - S(x)| < \varepsilon.$
 \end{itemize}
 
+\pause
+\vspace{0.5em}
+
 {\color{red}\ding{43}} 希望证明 $\exists ~ \delta_0 > 0$ 使得当 $|x - x_0| < \delta_0$ 时, $|S(x) - S(x_0)| < \varepsilon.$
 
 \end{frame}
@@ -519,17 +522,17 @@ $\forall ~ x_0 \in [a, b], \forall ~ \varepsilon > 0,$
 \left| S(x) - S(x_0) \right| \leqslant \underbrace{|S(x_0) - S_n(x_0)|}_{\Circled{1}} + \underbrace{|S_n(x_0) - S_n(x)|}_{\Circled{2}} + \underbrace{|S_n(x) - S(x)|}_{\Circled{3}}.
 \]
 
-{\color{red}\Circled{1}}: 取 $N(\varepsilon)$ 使得 $\forall ~ n \geqslant N(\varepsilon),$ $\forall ~ x \in [a, b],$ $|S_n(x) - S(x)| < \varepsilon/3.$
+{\color{red}\Circled{3}} 取 $N(\varepsilon)$ 使得 $\forall ~ n \geqslant N(\varepsilon),$ $\forall ~ x \in [a, b],$ $|S_n(x) - S(x)| < \varepsilon/3.$
 
 \pause
 \vspace{0.5em}
 
-{\color{red}\Circled{3}}: 特别地, 有 $|S_n(x_0) - S(x_0)| < \varepsilon/3.$
+{\color{red}\Circled{1}} 特别地, 有 $|S_n(x_0) - S(x_0)| < \varepsilon/3.$
 
 \pause
 \vspace{0.5em}
 
-{\color{red}\Circled{2}}: 任取一个 $n > N(\varepsilon),$ 并取一个 $\delta_0 > 0$ ({\color{red} 与 $n, x_0$ 相关}), 使得当 $|x - x_0| < \delta_0$ 时, $|S_n(x) - S_n(x_0)| < \varepsilon/3.$
+{\color{red}\Circled{2}} 任取一个 $n > N(\varepsilon),$ 并取一个 $\delta_0 > 0$ ({\color{red} 与 $n, x_0$ 相关}), 使得当 $|x - x_0| < \delta_0$ 时, $|S_n(x) - S_n(x_0)| < \varepsilon/3.$
 
 \pause
 \vspace{0.5em}
@@ -569,24 +572,24 @@ $\forall ~ x_0 \in [a, b], \forall ~ \varepsilon > 0,$
 }
 \end{center}
 
-在一致收敛的情形, 以 {\color{red}\Circled{2}} 为桥梁, {\color{red}\Circled{1}} 和 {\color{red}\Circled{3}} 是被\alert{同步}控制住的.
+在一致收敛的情形, 以~{\color{red}\Circled{2}} 为桥梁, {\color{red}\Circled{1}} 和~{\color{red}\Circled{3}} 是被\alert{同步}控制住的.
 
 \pause
 \vspace{0.5em}
 
-但在收敛不一致的情形, {\color{red}\Circled{1}} 和 {\color{red}\Circled{3}} 的``\alert{收敛速度}''(关于 $n$) 可能差别非常大:
+但在收敛不一致的情形, {\color{red}\Circled{1}} 和~{\color{red}\Circled{3}} 的``\alert{收敛速度}''(关于 $n$) 可能差别非常大:
 
 \vspace{0.5em}
 
-{\color{red}\Circled{1}}: 取好 $N,$ 使得 $\forall ~ n \geqslant N, |S_n(x_0) - S(x_0)| < \varepsilon/3.$
+{\color{red}\Circled{1}} 取好 $N,$ 使得 $\forall ~ n \geqslant N, |S_n(x_0) - S(x_0)| < \varepsilon/3.$
 
 \vspace{0.5em}
 
-{\color{red}\Circled{2}}: 取好 $n > N,$ 以及相应的 $\delta$ (依赖于 $n$ 与 $x_0$), 使得当 $|x - x_0| < \delta$ 时, $|S_n(x) - S_n(x_0)| < \varepsilon/3.$
+{\color{red}\Circled{2}} 取好 $n > N,$ 以及相应的 $\delta$ (依赖于 $n$ 与 $x_0$), 使得当 $|x - x_0| < \delta$ 时, $|S_n(x) - S_n(x_0)| < \varepsilon/3.$
 
 \vspace{0.5em}
 
-{\color{red}\Circled{3}}: $\left| S_n(x) - S(x) \right|$ 对于固定好的 $n,$ 可能总可以取到 $|x - x_0| < \delta$ 使得 $\left| S_n(x) - S(x) \right|$ 充分大.
+{\color{red}\Circled{3}} $\left| S_n(x) - S(x) \right|$ 对于固定好的 $n,$ 可能总可以取到 $|x - x_0| < \delta$ 使得 $\left| S_n(x) - S(x) \right|$ 充分大.
 \pause
 例如 $S_n(x) = x^n, x \in [0, 1].$ 在 $x_0 = 1$ 处, $N$ 可以任取, 因为 $S_n(1) \equiv 1.$ 现在取好 $n,$ 不管 $\delta > 0$ 如何取, 只要让
 \[
@@ -637,6 +640,11 @@ $\forall ~ x_0 \in [a, b], \forall ~ \varepsilon > 0,$
 \pause
 
 \startproof[bg=yellow, fg=red]
+由一致收敛函数列极限函数的连续性定理, 可以得出 $S(x)$ 在 $[a, b]$ 上连续, 从而 $S(x) \in \mathfrak{R}[a, b].$
+
+\pause
+\vspace{0.5em}
+
 由于 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛到 $S(x),$ 所以对任意 $\varepsilon > 0,$ 存在只与 $\varepsilon$ 有关的正整数 $N(\varepsilon)$, 使得当 $n > N(\varepsilon)$ 时, 对任意 $x \in [a, b],$ 都有
 \[
 |S_n(x) - S(x)| < \varepsilon / (b - a).
@@ -663,10 +671,11 @@ $\forall ~ x_0 \in [a, b], \forall ~ \varepsilon > 0,$
 \item $S_n(x) \in \mathfrak{R}[a, b]$ ~~ $\implies$ ~~ $S_n(x)$ 在 $[a, b]$ 上有界;
 \item $S_n(x) \stackrel{[a, b]}{\rightrightarrows} S(x)$ ~~ $\implies$ ~~ $\forall ~ \varepsilon > 0, \exists ~ N(\varepsilon) \in \mathbb{N}$ 使得 $\forall ~ n \geqslant N(\varepsilon), \forall ~ x \in [a, b], |S_n(x) - S(x)| < \varepsilon,$ 从而有 $|S(x)| \leqslant |S_n(x)| + \varepsilon.$
 \end{itemize}
+\vspace{0.5em}
 由此可知 $S(x)$ 在 $[a, b]$ 上有界, 满足 Riemann 可积的必要条件.
 
 \pause
-\vspace{0.5em}
+\vspace{0.8em}
 
 由 $\left| S(x) - S_n(x) \right| < \varepsilon,$ 即 $S_n(x) - \varepsilon < S(x) < S_n(x) + \varepsilon,$ 可知
 
@@ -909,6 +918,16 @@ $\forall x \in (-1, 1),$ 都有 $\displaystyle \sum_{n=1}^\infty n x^{n} = \frac
 \begin{itemize}
 \item 条件 (1): $u_n(x) = x^n \in C^{(1)}(-1, 1)$;
 \item 条件 (2): $\sum_{n=1}^\infty u_n(x) = \sum_{n=1}^\infty x^n$ 在 $(-1, 1)$ 上点态收敛到函数 $S(x) = 1/(1 - x)$;
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{例题}
+
+\begin{itemize}
 \item 条件 (3): $\sum_{n=1}^\infty u_n'(x) = \sum_{n=1}^\infty n x^{n-1}$ 在闭区间 $[a, b] \subset (-1, 1)$ 上有
 \[
 \left| \sum_{k=n+1}^m u_k'(x) \right| = \left| \sum_{k=n+1}^m k x^{k-1} \right| \leqslant \sum_{k=n+1}^m k \max\{|a|, |b|\}^{k-1} \to 0, ~~ n, m \to \infty,
@@ -1263,6 +1282,7 @@ b^m u_n = \dfrac{b^{m-n} \cdot k_n}{2}, ~~ b^m v_n = \dfrac{b^{m-n} \cdot (k_n+1
 = \sum\limits_{m=1}^n \left( \pm (ab)^m \right).
 \end{equation*}
 由于 $ab \geqslant 1,$ 所以 $\displaystyle \lim\limits_{n\to\infty} \sum\limits_{m=1}^n \left( \pm (ab)^m \right) = \sum\limits_{m=1}^{\infty} \left( \pm (ab)^m \right)$ 发散. 于是, 由引理知 Generalized van der Waerden - Takagi 函数处处不可导.
+\qed
 
 \end{frame}
 
