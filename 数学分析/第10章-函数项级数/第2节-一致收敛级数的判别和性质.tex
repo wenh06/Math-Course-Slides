@@ -841,10 +841,22 @@ S_n(x) = \sum_{k=1}^n (-x^2)^{k-1} = \frac{1 - (-x^2)^n}{1 + x^2}.
 \begin{remark}
 在一致收敛函数列极限函数的可导性定理中, 条件 (2) $\{S_n(x)\}$ 在 $[a, b]$ 上点态收敛到函数 $S(x)$ 可以有其他条件推出, 它的收敛性其实是一致的.
 
-这是因为条件 (3) $S_n'(x) \stackrel{[a, b]}{\rightrightarrows} \sigma(x)$ $\implies$ $\forall ~ \varepsilon > 0,$ $\exists ~ N(\varepsilon) \in \mathbb{N}$ 使得 $\forall ~ n \geqslant N(\varepsilon),$ $\forall ~ x \in [a, b],$ $|S_n'(x) - \sigma(x)| < \varepsilon.$ 那么
+\pause
+\vspace{0.5em}
+
+这是因为条件 (3) $S_n'(x) \stackrel{[a, b]}{\rightrightarrows} \sigma(x)$ $\implies$ $\forall ~ \varepsilon > 0,$ $\exists ~ N_2(\varepsilon) \in \mathbb{N}$ 使得 $\forall ~ n \geqslant N_1(\varepsilon),$ $\forall ~ x \in [a, b],$ $|S_n'(x) - \sigma(x)| < \varepsilon.$ 那么
 \[
-\left| S_n(x) - S(x) \right| = \left| \int_a^x (S_n'(t) - \sigma(t)) ~ \mathrm{d}t \right| \leqslant \int_a^x |S_n'(t) - \sigma(t)| ~ \mathrm{d}t \leqslant \varepsilon (b - a).
+\left| S_n(x) - S(x) - (S_n(a) - S(a)) \right| = \left| \int_a^x (S_n'(t) - \sigma(t)) ~ \mathrm{d}t \right| \leqslant \int_a^x |S_n'(t) - \sigma(t)| ~ \mathrm{d}t \leqslant \varepsilon (b - a).
 \]
+
+\pause
+\vspace{0.5em}
+
+由于 $S_n(a) \to S(a),$ $\exists ~ N_2(\varepsilon) \in \mathbb{N}$ 使得 $\forall ~ n \geqslant N_2(\varepsilon),$ $|S_n(a) - S(a)| < \varepsilon.$ 取 $N(\varepsilon) = \max \{ N_1(\varepsilon), N_2(\varepsilon) \},$ 当 $n \geqslant N(\varepsilon)$ 时, 对任意 $x \in [a, b],$ 都有
+\[
+\left| S_n(x) - S(x) \right| \leqslant \left| S_n(x) - S(x) - (S_n(a) - S(a)) \right| + |S_n(a) - S(a)| < 2\varepsilon.
+\]
+从而 $\{S_n(x)\}$ 在 $[a, b]$ 上一致收敛到 $S(x).$
 \end{remark}
 
 \end{frame}
@@ -896,8 +908,12 @@ S_n(x) = S_n(x_0) + \int_{x_0}^x S_n'(t) ~ \mathrm{d}t.
 \]
 \end{thm}
 
-\pause
-\vspace{0.5em}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{逐项求导定理}
 
 \begin{remark}
 与连续性定理类似, 可导是 (一点处) 局部性质, 所以在一致收敛函数项级数的逐项求导定理中, 条件中的``一致收敛'' 可以改为``\alert{内闭一致收敛}'', 从而得到相应\alert{开区间}上的逐项求导定理.
@@ -910,6 +926,14 @@ S_n(x) = S_n(x_0) + \int_{x_0}^x S_n'(t) ~ \mathrm{d}t.
 \begin{frame}
 \frametitle{例题}
 
+\begin{eg}
+证明当 $x \in (-1, 1)$ 时, 成立 $\displaystyle \sum_{n=1}^\infty n x^{n} = \frac{x}{(1 - x)^2}.$
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](分析)
 $\forall x \in (-1, 1),$ 都有 $\displaystyle \sum_{n=1}^\infty n x^{n} = \frac{x}{(1 - x)^2},$ 可以改写为
 \[\sum_{n=1}^\infty n x^{n-1} = \frac{1}{(1 - x)^2}.\]
 那么上式左边等于 $\sum_{n=1}^\infty x^n =: \sum_{n=1}^\infty u_n(x)$ 形式上逐项求导的结果; 右边等于函数 $S(x) = 1/(1 - x)$ 的求导结果.
@@ -934,6 +958,16 @@ $\forall x \in (-1, 1),$ 都有 $\displaystyle \sum_{n=1}^\infty n x^{n} = \frac
 \]
 可得 $\sum_{n=1}^\infty u_n'(x) = \sum_{n=1}^\infty n x^{n-1}$ 在 $(-1, 1)$ 上内闭一致收敛到 $\sigma(x) = 1/(1 - x)^2.$
 \end{itemize}
+\pause
+综合起来, 可以对函数项级数 $\displaystyle \sum_{n=1}^\infty x^n$ 使用逐项求导定理, 得到 $\displaystyle \sum_{n=1}^\infty n x^{n-1} = \frac{1}{(1 - x)^2},$ 从而 $\displaystyle \sum_{n=1}^\infty n x^{n} = \frac{x}{(1 - x)^2}.$
+\qed
+
+\pause
+\vspace{0.5em}
+
+\begin{question}
+这题能否使用逐项积分定理来证明?
+\end{question}
 
 \end{frame}
 
