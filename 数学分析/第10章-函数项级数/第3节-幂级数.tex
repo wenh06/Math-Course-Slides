@@ -107,9 +107,10 @@
 1 \left/ \varlimsup_{n\to\infty} \sqrt[\leftroot{-3}\uproot{7}n]{\frac{1}{n}} \right. = 1
 \]
 \pause
-分别代入 $x = -1, 1$ 可得收敛域为 $[-1, 1).$
+分别代入 $x = -1, 1,$ 可得收敛域为 $[-1, 1).$
 
 \pause
+\vspace{0.5em}
 
 (2) $\displaystyle \sum_{n=1}^{\infty} \dfrac{(-1)^{n+1}}{n}x^n$ 的收敛半径为
 \[
@@ -289,7 +290,7 @@ a_n = 2^k, \quad k^2 \leqslant n < (k+1)^2, ~ k = 0, 1, 2, \cdots
 
 %------------------------------------------------
 
-\section{幂级数的分析性质}
+\section{幂级数的初步分析性质 -- Abel 定理}
 
 %------------------------------------------------
 
@@ -442,11 +443,12 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 那么 $\displaystyle \sum_{n=1}^{\infty} n \sigma_n x^n = \dfrac{1}{(1-x)^2} \sum_{n=1}^{\infty} a_n x^n$ 对 $|x| < 1$ 恒成立.
 
 \pause
+\vspace{0.5em}
 
 接下来, 我们要证明
-\[
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
 \lim_{x\to 1-} (1-x)^2 \sum_{n=1}^{\infty} n \sigma_n x^n = \lim_{x\to 1-} \sum_{n=1}^{\infty} a_n x^n = A.
-\]
+\end{empheq}
 
 \end{frame}
 
@@ -473,7 +475,7 @@ Abel 曾系统地研究过幂级数, 对于本节一开始提的两个问题
 
 我们最终约化到了证明第一项 $\displaystyle (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n$ 关于 $x \to 1-$ 的极限也是 $0.$
 
-由于 $\sigma_n \to A,$ 所以 $\varepsilon > 0, ~ \exists N,$ 使得 $\forall~n > N,$ 有 $|\sigma_n - A| < \varepsilon / 2.$ 记 $\displaystyle M = \max_{1 \leqslant n \leqslant N} n |\sigma_n - A|,$ 那么有
+由于 $\sigma_n \to A,$ 所以 $\varepsilon > 0, ~ \exists N,$ 使得 $\forall~n > N,$ 有 $|\sigma_n - A| < \varepsilon / 2.$ 记 $\displaystyle M = \max_{1 \leqslant n \leqslant N} n |\sigma_n - A|,$ 那么有 (以下都假设 $x$ 足够接近 $1$ 以至于 $0 < x, 1-x < 1$)
 % {\smaller[1]
 \begin{align*}
 \left\lvert (1-x)^2 \sum_{n=1}^{\infty} n (\sigma_n - A) x^n \right\rvert & \leqslant \sum_{n=1}^{\infty} n |\sigma_n - A| (1-x)^2x^n \\
@@ -539,7 +541,7 @@ S_n = \sum_{k=1}^{n} a_k = \begin{cases} -m, & n = 2m, \\ m, & n = 2m - 1, \end{
 
 %------------------------------------------------
 
-\section{幂级数的分析性质}
+\section{幂级数的更多分析性质}
 
 %------------------------------------------------
 

@@ -1092,6 +1092,25 @@ a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos nx ~ \mathrm{d}x, ~~ b_n = \frac{1
 %------------------------------------------------
 
 \begin{frame}
+\frametitle{几个重要的注记}
+
+{\color{red}\ding{43}} 注记5: 本节介绍的一致收敛函数项级数和函数 (函数列极限函数) 分析性质, 大部分是以收敛域 (或定义域) 是 \alert{有限区间} 为前提的. 对于无穷区间, 例如 $[a, +\infty)$, 或者 $(-\infty, +\infty)$ 上的一致收敛函数项级数和函数 (函数列极限函数), 其分析性质的结论 \alert{可能不成立}.
+
+\pause
+\vspace{0.5em}
+
+例如 $\displaystyle \sum_{n=1}^\infty \frac{x}{n^2 x^2 + 1}$ 在 $(-\infty, +\infty)$ 上一致收敛到 $0,$ 但是 $\displaystyle \lim_{n\to\infty} \int_{-\infty}^{+\infty} \frac{x}{n^2 x^2 + 1} ~ \mathrm{d}x = \pi \neq 0 = \int_{-\infty}^{+\infty} 0 ~ \mathrm{d}x.$
+
+\pause
+\vspace{0.5em}
+
+其原因在于, 在无穷区间上, 函数项级数和函数 (函数列极限函数) 的分析性质的结论, 可能涉及不止 2 个极限的交换, 上例还涉及第 3 个极限过程 (反常积分), 从而导致结论不成立. 这也是为什么我们在介绍一致收敛函数项级数和函数 (函数列极限函数) 的分析性质时, 都是以有限区间为前提的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
 \frametitle{Dini 定理的证明}
 
 \begin{thm}[Dini 定理]
@@ -1184,14 +1203,14 @@ S_n(x_n) - S(x_n) \nrightarrow 0, ~~ n \to \infty.
 \frametitle{Generalized van der Waerden - Takagi 函数}
 
 将 van der Waerden 定义的函数与 Takagi 定义的函数一般化, 得到所谓的 Generalized van der Waerden - Takagi (GWT) 函数:
-\[f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x), ~~ 0 < a < 1, b \in \mathbb{N}, ab \geqslant 1.\]
+\[f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x), ~~ 0 < a < 1, b \in 2\mathbb{N}, ab \geqslant 1.\]
 
 \pause
 
 该函数满足如下性质:
 \begin{itemize}
 \item 性质一: 若 $0 < a < 1,$ 那么 $\displaystyle f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x)$ 在 $\mathbb{R}$ 上一致收敛.
-\item 性质二: 若 $0 < a < 1, b \in \mathbb{N}, ab \geqslant 1,$ 则 $\displaystyle f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x)$ 在 $\mathbb{R}$ 上处处不可导.
+\item 性质二: 若 $0 < a < 1,$ $b \in 2\mathbb{N}$ 为偶数, $ab \geqslant 1,$ 则 $\displaystyle f(x) = \sum_{n=0}^\infty a^n \varphi(b^n x)$ 在 $\mathbb{R}$ 上处处不可导.
 \end{itemize}
 
 \end{frame}
@@ -1201,7 +1220,8 @@ S_n(x_n) - S(x_n) \nrightarrow 0, ~~ n \to \infty.
 \begin{frame}
 \frametitle{GWT 函数连续性}
 
-性质一的证明: 由于 $0 \leqslant \varphi(x) \leqslant 1/2,$
+\startproof[bg=yellow, fg=red](性质一的证明)
+由于 $0 \leqslant \varphi(x) \leqslant 1/2,$
 所以 $0 \leqslant a^n \varphi(b^n x) \leqslant a^n/2.$ 由于正项级数 $\displaystyle \sum_{n=0}^{\infty} a^n$ 收敛,
 于是由 Weierstraß 判别法, 函数项级数 $\displaystyle \sum_{n=0}^{\infty} a^n \varphi(b^n x)$ 一致收敛. \qed
 
@@ -1229,7 +1249,8 @@ S_n(x_n) - S(x_n) \nrightarrow 0, ~~ n \to \infty.
 
 \pause
 
-证明: 记 $h_{1,n} = x_0 - u_n,$ $h_{2,n} = v_n - x_0,$ 那么 $h_{1,n}, h_{2,n} \geqslant 0$ 且 $h_{1,n} \to 0,$ $h_{2,n} \to 0.$ 由于 $g(x)$ 在点 $x_0$ 处可导, 所以在 $x_0$ 附近有
+\startproof[bg=yellow, fg=red](引理证明)
+记 $h_{1,n} = x_0 - u_n,$ $h_{2,n} = v_n - x_0,$ 那么 $h_{1,n}, h_{2,n} \geqslant 0$ 且 $h_{1,n} \to 0,$ $h_{2,n} \to 0.$ 由于 $g(x)$ 在点 $x_0$ 处可导, 所以在 $x_0$ 附近有
 \begin{equation*}
 g(x) = g(x_0) + A (x - x_0) + o(|x - x_0|),
 \end{equation*}
@@ -1239,6 +1260,7 @@ g(x) = g(x_0) + A (x - x_0) + o(|x - x_0|),
 & = A + \lim_{n\to\infty} \dfrac{o(h_{1,n}) + o(h_{1,n})}{h_{1,n} + h_{2,n}} \\
 & = A + 0 = A.
 \end{align*}
+\qed
 
 \end{frame}
 
@@ -1247,6 +1269,7 @@ g(x) = g(x_0) + A (x - x_0) + o(|x - x_0|),
 \begin{frame}
 \frametitle{GWT 函数处处不可导}
 
+\startproof[bg=yellow, fg=red](性质二的证明)
 由于 $\varphi(x)$ 是周期为 $1$ 的函数, 所以 $f$ 也以 $1$ 为周期, 所以只要对任意 $x \in [0, 1)$ 证明 $f$ 在 $x$ 处不可导即可. 由引理, 希望可以选取序列 $u_n \rightarrow x \leftarrow v_n,$ 使得
 \begin{equation*}
 \dfrac{f(u_n) - f(v_n)}{u_n - v_n}
@@ -1281,7 +1304,7 @@ b^m u_n = \dfrac{k_n}{2} \cdot \dfrac{1}{b^{n-m}}, ~~ b^m v_n = \dfrac{k_n + 1}{
 从而有
 \begin{equation*}
 \dfrac{a^m (\varphi(b^m u_n) - \varphi(b^m v_n))}{u_n - v_n}
-= \pm a^m \dfrac{1}{2 b^{n-m}} \left/ \left( \dfrac{1}{2 b^n}\right) \right.
+= \left. \pm a^m \dfrac{1}{2 b^{n-m}} \middle/ \left( \dfrac{1}{2 b^n}\right) \right.
 = \pm (ab)^m.
 \end{equation*}
 
@@ -1302,8 +1325,8 @@ b^m u_n = \dfrac{b^{m-n} \cdot k_n}{2}, ~~ b^m v_n = \dfrac{b^{m-n} \cdot (k_n+1
 \begin{equation*}
 \dfrac{a^m (\varphi(b^m u_n) - \varphi(b^m v_n))}{u_n - v_n}
 = \begin{cases}
-    0, & \text{当 } m > n \text{ 时}, \\
-    \dfrac{\pm a^m / 2}{1 / (2 b^{m})} = \pm (ab)^m, & \text{当 } m = n \text{ 时}.
+0, & \text{当 } m > n \text{ 时}, \\
+\dfrac{\pm a^m / 2}{1 / (2 b^{m})} = \pm (ab)^m, & \text{当 } m = n \text{ 时}.
 \end{cases}
 \end{equation*}
 
