@@ -1,3 +1,4 @@
+\everymath{\displaystyle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -242,7 +243,51 @@
 
 \begin{frame}{回顾: 基本的集合论知识}
 
+我们依照朴素集合论的框架来回顾一些基本概念和记号. 关于公理化集合论, 感兴趣的同学可以参考相关书籍, 例如 Zorich 《数学分析》第 1 章第 4 节.
 
+\vspace{0.5em}
+
+\begin{Def}[集合]
+集合是一些\alert{确定的}、\alert{互异的}对象, 或者适合\alert{某种条件}的对象的\alert{全体}.
+\end{Def}
+
+\pause
+
+\begin{block}{基本记号}
+\begin{itemize}
+\item $a \in A$ ($a \notin A$): 元素的归属关系
+\item $A \subset B$: $A$ 是 $B$ 的\alert{子集}，即 $\forall ~ x \in A \Rightarrow x \in B$
+\begin{itemize}
+\item 集合相等：$A = B \iff A \subset B$ 且 $B \subset A$
+\item 真子集：$A \subset B$ 且 $A \neq B$ (或者说 $\exists ~ x \in B, x \notin A$) 记为 $A \subsetneqq B$
+\end{itemize}
+\item $\emptyset$：空集, 不含有任何元素的集合 ($\emptyset \subset A$ 对任意集 $A$)
+\item $X$：基本集 (全集)，讨论所处的范围
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{回顾: 基本的集合论知识}
+
+\begin{block}{集合的表示}
+\begin{itemize}
+\item \alert{列举法}: $\{1, 2, 3\},$ $\mathbb{N} = \{1, 2, 3, \ldots\}$
+\item \alert{描述法}: $\{x \in X : P(x)\},$ $P$ 是 $x$ 的某种性质或条件. 例如 $\{x \in \mathbb{R} : x^2 < 2\}$.
+\end{itemize}
+\end{block}
+
+\pause
+\vspace{0.5em}
+
+\begin{block}{几类特殊集合}
+\begin{itemize}
+\item \alert{集族与指标集}: 设 $I$ 是给定集合, 对于每个 $\alpha \in I$ 赋予一个集合 $A_\alpha$, 则 $\{A_\alpha\}_{\alpha \in I}$ 是以 $I$ 为指标集 (index set) 的集族 (family of sets). 指标集 $I$ 可以是有限、可列或不可列的.
+\item \alert{幂集}: 集合 $A$ 的全体子集构成的集族 $\mathscr{P}(A) = \{B : B \subset A\}$ 被称作 $A$ 的幂集 (power set). $A$ 为有限集时, $|\mathscr{P}(A)| = 2^{|A|}$.
+\end{itemize}
+\end{block}
 
 \end{frame}
 
@@ -254,6 +299,93 @@
 
 \begin{frame}{集的基本运算}
 
+设 $A, B \subset X$，基本运算包括：
+
+\pause
+
+\begin{itemize}
+\item \alert{交} (intersection) $A \cap B$, \quad \alert{并} (union) $A \cup B$, \quad \alert{补} (complement) $\mathscr{C} A = \mathscr{C}_X A = A^c = X \setminus A$
+\item \alert{差} (difference) $A \setminus B = A \cap \mathscr{C}B \;(= \{x \in A : x \notin B\})$
+\item \alert{对称差} (symmetric difference) $A \triangle B = (A \setminus B) \cup (B \setminus A)$
+\end{itemize}
+
+\pause
+\vspace{0.5em}
+
+推广至任意集族 $\{A_\alpha\}_{\alpha \in I}$ ($I$ 可有限、可列或不可列):
+\[
+\bigcup_{\alpha \in I} A_\alpha = \{x : {\color{red}\exists} ~ \alpha \in I,\ x \in A_\alpha\},
+\qquad
+\bigcap_{\alpha \in I} A_\alpha = \{x : {\color{red}\forall} ~ \alpha \in I,\ x \in A_\alpha\}
+\]
+
+\pause
+\vspace{0.5em}
+
+\begin{remark}
+写 $A \setminus B = A \cap \mathscr{C}B$ 可将差集化为交与补, 在推导集合等式时十分有用.
+\end{remark}
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+$A = \{ 2n - 1 : n \in \mathbb{Z} \},$ $B = \{ n : n \in \mathbb{Z}, |n| \leqslant 3 \}$, 则
+\[
+\begin{array}{ll}
+A \cap B = \{-3, -1, 1, 3\},  & A \cup B = \{2n - 1 : n \in \mathbb{Z}\} \cup \{-2, 0, 2\}, \\
+A \setminus B = \{2n - 1 : n \in \mathbb{Z}, n > 2, \text{或} ~ n \leqslant -2\}, & B \setminus A = \{-2, 0, 2\}.
+\end{array}
+\]
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{集的运算法则}
+
+\begin{thm}[交、并的基本运算法则]
+设 $A, B, C$ 是任意集合, 则有如下的 (关于集合交、并) 基本运算法则:
+\begin{itemize}
+\item \alert{交换律}: $A \cap B = B \cap A$, $A \cup B = B \cup A$;
+\item \alert{结合律}: $(A \cap B) \cap C = A \cap (B \cap C)$, $(A \cup B) \cup C = A \cup (B \cup C)$;
+\item \alert{分配律}: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$, $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+\end{itemize}
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+\begin{cor}
+设 $\{A_\alpha\}_{\alpha \in I}$ 是任意集族, $E$ 是任意集合, 则
+\[
+E \cap \!\left(\bigcup_{\alpha \in I} A_\alpha\right) = \bigcup_{\alpha \in I} (E \cap A_\alpha),
+\qquad
+E \cup \!\left(\bigcap_{\alpha \in I} A_\alpha\right) = \bigcap_{\alpha \in I} (E \cup A_\alpha).
+\]
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{集的运算法则}
+
+\begin{prop}[补、差的基本运算法则]
+设 $X$ 是基本集, $A, B \subset X$ 是任意集合, 则有如下的 (关于集合补、差) 基本运算法则:
+\begin{itemize}
+\item $A \cup \mathscr{C}A = X,$ $A \cap \mathscr{C}A = \emptyset$;
+\item $\mathscr{C}(\mathscr{C}A) = A,$ $\mathscr{C} X = \emptyset,$ $\mathscr{C} \emptyset = X$;
+\item $A \setminus B = A \cap \mathscr{C}B,$ $\mathscr{C}(A \cap B) = \mathscr{C}A \cup \mathscr{C}B,$ $\mathscr{C}(A \cup B) = \mathscr{C}A \cap \mathscr{C}B$;
+\item $A \subset B \iff \mathscr{C}A \supset \mathscr{C}B$;
+\item $A \cap B = \emptyset \iff A \subset \mathscr{C}B \iff B \subset \mathscr{C}A$.
+\end{itemize}
+\end{prop}
+
+\vspace{0.5em}
+
+以上性质可以类似地推广至任意集族 $\{A_\alpha\}_{\alpha \in I}.$
 
 \end{frame}
 
@@ -261,6 +393,105 @@
 
 \begin{frame}{De Morgan 律}
 
+\begin{thm}[De Morgan 律]
+设 $\{A_\alpha\}_{\alpha \in I}$ 为集族，$I$ 为\alert{任意}指标集，则
+\[
+\mathscr{C}\!\left(\bigcup_{\alpha \in I} A_\alpha\right) = \bigcap_{\alpha \in I} \mathscr{C} A_\alpha,
+\qquad
+\mathscr{C}\!\left(\bigcap_{\alpha \in I} A_\alpha\right) = \bigcup_{\alpha \in I} \mathscr{C} A_\alpha.
+\]
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明要点)
+
+\vspace{0.3em}
+以第一式为例：
+\begin{align*}
+x \in \mathscr{C}\!\left(\bigcup_{\alpha \in I} A_\alpha\right)
+& \iff x \notin A_\alpha,\ \forall ~ \alpha \in I \\
+& \iff x \in \mathscr{C} A_\alpha,\ \forall ~ \alpha \in I
+\iff x \in \bigcap_{\alpha \in I} \mathscr{C} A_\alpha. \quad\square
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{集列的上、下极限}
+
+%------------------------------------------------
+
+\begin{frame}{集列的上极限与下极限}
+
+\begin{Def}[上极限集与下极限集]
+设 $\{E_n\}_{n=1}^{\infty}$ 为集列，定义
+\[
+\varlimsup_{n\to\infty} E_n = \bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} E_n,
+\qquad
+\varliminf_{n\to\infty} E_n = \bigcup_{k=1}^{\infty} \bigcap_{n=k}^{\infty} E_n.
+\]
+\end{Def}
+
+\pause
+
+\textbf{直观解释：}
+\begin{itemize}
+\item $\displaystyle x \in \varlimsup_{n\to\infty} E_n \iff x$ 属于\alert{无穷多个} $E_n$
+\item $\displaystyle x \in \varliminf_{n\to\infty} E_n \iff x$ 属于\alert{除有限个外所有的} $E_n$，即 $\exists ~ N,\ \forall ~ n \geqslant N,\ x \in E_n$
+\end{itemize}
+
+\pause
+
+\begin{block}{基本性质}
+\begin{itemize}
+\item \alert{包含关系}:  $\displaystyle \varliminf_{n\to\infty} E_n \subset \varlimsup_{n\to\infty} E_n$
+\item \alert{集列收敛}: 若两者相等，称集列收敛，极限记 $\displaystyle \lim_{n\to\infty} E_n = \varlimsup_{n\to\infty} E_n = \varliminf_{n\to\infty} E_n$
+% \item \alert{单调集列}必收敛: 渐张时 $\displaystyle \lim_{n\to\infty} E_n = \bigcup_{n=1}^\infty E_n$；渐缩时 $\displaystyle \lim_{n\to\infty} E_n = \bigcap_{n=1}^\infty E_n$
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{集列上下极限 \texorpdfstring{$|$}{|} 例}
+
+\begin{eg}
+设 $E_n = \left\{ \dfrac{m}{n} : m \in \mathbb{Z} \right\} = \dfrac{1}{n}\mathbb{Z}$，则
+$\displaystyle \varliminf_{n\to\infty} E_n = \mathbb{Z}$, $\displaystyle \varlimsup_{n\to\infty} E_n = \mathbb{Q}$.
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明要点)
+\vspace{0.3em}
+
+\begin{columns}
+\begin{column}[T]{0.49\textwidth}
+
+\alert{$\displaystyle \varliminf_{n\to\infty} E_n = \mathbb{Z}$}:
+
+\medskip
+$\supset$：对任意 $p \in \mathbb{Z}$，有 $p = \frac{pn}{n} \in E_n$ 对所有 $n$ 成立，故 $\mathbb{Z} \subset \bigcap_{n=1}^\infty E_n \subset \varliminf_{n\to\infty} E_n$.
+
+\medskip
+$\subset$：若 $x \in \varliminf_{n\to\infty} E_n$，则从某个 $N$ 起 $x \in E_n$. 设 $x = p/q$（既约, $q > 0$），可证必有 $q = 1$，即 $x \in \mathbb{Z}$.
+
+\end{column}
+\begin{column}[T]{0.49\textwidth}
+
+\alert{$\displaystyle \varlimsup_{n\to\infty} E_n = \mathbb{Q}$}:
+
+\medskip
+$\subset$：由 $E_n \subset \mathbb{Q}$ 对所有 $n$ 成立，得 $\displaystyle \varlimsup_{n\to\infty} E_n \subset \mathbb{Q}$.
+
+\medskip
+$\supset$：对任意 $\frac{p}{q} \in \mathbb{Q}$ ($q > 0$, 既约) 和任意 $k \in \mathbb{N}$，取 $n = kq$，则 $\frac{p}{q} = \frac{kp}{kq} \in E_n$，故 $\frac{p}{q} \in \bigcup_{n \geqslant k} E_n$ 对所有 $k$ 成立.
+
+\end{column}
+\end{columns}
 
 \end{frame}
 
