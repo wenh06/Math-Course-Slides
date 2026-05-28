@@ -1,3 +1,4 @@
+\everymath{\displaystyle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -41,6 +42,17 @@
 
 %------------------------------------------------
 
+\begin{frame}{绪言}
+
+{
+\larger[1]
+我们已经学习了开集、闭集的概念 (\textbf{只是描述性的, 非构造性的}), 以及它们的一些性质. 本节我们将给出 $\mathbb{R}$ 中开集的\textbf{构造性}描述, 即任一开集都可以表示为一些开区间的并, 反之任意一些开区间的并也是开集. 这一结果是 $\mathbb{R}$ 的特殊性质 (依赖于 $\mathbb{R}$ 的全序结构); 在高维欧氏空间 $\mathbb{R}^n$ ($n \geqslant 2$) 中, 开集不一定能表示为互不相交开球之并.
+}
+
+\end{frame}
+
+%------------------------------------------------
+
 \section{开集的结构定理}
 
 %------------------------------------------------
@@ -56,7 +68,7 @@ G = \bigcup_{k} (a_k, b_k), \quad (a_k, b_k) \cap (a_j, b_j) = \emptyset\ (k \ne
 
 \pause
 
-\startproof[bg=yellow, fg=red](证明)
+\startproof[bg=yellow, fg=red]
 对每个 $x \in G,$ 令 $I_x = \bigcup\{(a, b) : x \in (a, b) \subset G\}.$ 由 $G$ 开知 $x$ 是 $G$ 的内点, 故 $\{x\}$ 本身可嵌入某开区间 $\subset G,$ 即 $I_x$ 非空. $I_x$ 是包含 $x$ 且含于 $G$ 的最大开区间.
 
 \pause
@@ -65,8 +77,8 @@ G = \bigcup_{k} (a_k, b_k), \quad (a_k, b_k) \cap (a_j, b_j) = \emptyset\ (k \ne
 
 \pause
 
-\textbf{至多可列}: 各 $I_x$ 互不相交, 每个含至少一个有理数, 不同的含不同的有理数, 故个数至多可列. $\square$
-
+\textbf{至多可列}: 各 $I_x$ 互不相交, 每个含至少一个有理数, 不同的含不同的有理数, 故个数至多可列.
+\qed
 \end{frame}
 
 %------------------------------------------------
@@ -74,8 +86,8 @@ G = \bigcup_{k} (a_k, b_k), \quad (a_k, b_k) \cap (a_j, b_j) = \emptyset\ (k \ne
 \begin{frame}{唯一性与注记}
 
 \startproof[bg=yellow, fg=red](唯一性)
-若 $G = \bigcup_k (a_k, b_k)$ 是另一个至多可列互不相交开区间分解, 则对每个 $x \in G,$ $x$ 所在的区间 $(a_k, b_k)$ 是一个包含 $x$ 的开区间且 $\subset G,$ 故 $(a_k, b_k) \subset I_x.$ 反之 $I_x \subset (a_k, b_k)$ 由极大性. 故两种分解的构成区间相同. $\square$
-
+若 $G = \bigcup_k (a_k, b_k)$ 是另一个至多可列互不相交开区间分解, 则对每个 $x \in G,$ $x$ 所在的区间 $(a_k, b_k)$ 是一个包含 $x$ 的开区间且 $\subset G,$ 故 $(a_k, b_k) \subset I_x.$ 反之 $I_x \subset (a_k, b_k)$ 由极大性. 故两种分解的构成区间相同.
+\qed
 \pause
 \vspace{0.5em}
 
@@ -87,9 +99,9 @@ G = \bigcup_{k} (a_k, b_k), \quad (a_k, b_k) \cap (a_j, b_j) = \emptyset\ (k \ne
 
 \begin{eg}
 \begin{itemize}
-  \item $G = (0, 1) \cup (2, 5):$ 构成区间为 $(0, 1)$ 和 $(2, 5).$
-  \item $G = \mathbb{R} \setminus \mathbb{Z} = \bigcup_{n \in \mathbb{Z}} (n, n+1):$ 构成区间为 $(n, n+1)$ ($n \in \mathbb{Z}$), 共可列个.
-  \item $G = \mathbb{R}:$ 唯一的构成区间是 $(-\infty, +\infty).$
+\item $G = (0, 1) \cup (2, 5):$ 构成区间为 $(0, 1)$ 和 $(2, 5).$
+\item $G = \mathbb{R} \setminus \mathbb{Z} = \bigcup_{n \in \mathbb{Z}} (n, n+1):$ 构成区间为 $(n, n+1)$ ($n \in \mathbb{Z}$), 共可列个.
+\item $G = \mathbb{R}:$ 唯一的构成区间是 $(-\infty, +\infty).$
 \end{itemize}
 \end{eg}
 

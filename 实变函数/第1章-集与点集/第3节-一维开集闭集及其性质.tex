@@ -1,3 +1,4 @@
+\everymath{\displaystyle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -63,14 +64,14 @@
 \[
 U(x, \delta) = (x - \delta,\, x + \delta) = \{ y \in \mathbb{R} : |y - x| < \delta \}
 \]
-为点 $x$ 的 \alert{$\delta$-邻域}. 称 $\mathring{U}(x, \delta) = U(x, \delta) \setminus \{x\}$ 为 $x$ 的\alert{去心邻域}.
+为点 $x$ 的 \alert{$\delta$-邻域} (neighborhood). 称 $\mathring{U}(x, \delta) = U(x, \delta) \setminus \{x\}$ 为 $x$ 的\alert{去心邻域}.
 \end{Def}
 
 \pause
 \vspace{1em}
 
 \begin{Def}[内点与内部]
-设 $E \subset \mathbb{R}.$ 称 $x \in E$ 为 $E$ 的\alert{内点}, 若 $\exists\, \delta > 0$ 使 $U(x, \delta) \subset E.$ $E$ 的所有内点的集合称为 $E$ 的\alert{内部}:
+设 $E \subset \mathbb{R}.$ 称 $x \in E$ 为 $E$ 的\alert{内点}, 若 $\exists\, \delta > 0$ 使 $U(x, \delta) \subset E.$ $E$ 的所有内点的集合称为 $E$ 的\alert{内部} (interior):
 \[
 \mathring{E} = \{ x \in E : \exists\, \delta > 0,\ U(x, \delta) \subset E \}.
 \]
@@ -88,8 +89,8 @@ U(x, \delta) = (x - \delta,\, x + \delta) = \{ y \in \mathbb{R} : |y - x| < \del
 
 \begin{Def}[开集与闭集]
 \begin{itemize}
-\item 若 $E \subset \mathbb{R}$ 的每个点都是内点, 则称 $E$ 为\alert{开集}.
-\item 若 $\mathbb{R} \setminus F$ 是开集, 则称 $F \subset \mathbb{R}$ 为\alert{闭集}.
+\item 若 $E \subset \mathbb{R}$ 的每个点都是内点, 则称 $E$ 为\alert{开集} (open set).
+\item 若 $\mathbb{R} \setminus F$ 是开集, 则称 $F \subset \mathbb{R}$ 为\alert{闭集} (closed set).
 \end{itemize}
 \end{Def}
 
@@ -104,11 +105,14 @@ U(x, \delta) = (x - \delta,\, x + \delta) = \{ y \in \mathbb{R} : |y - x| < \del
 
 \pause
 
-\begin{attnblock}[无限交/并的反例]
-无限多个开集之交不一定是开集: $\displaystyle\bigcap_{n=1}^{\infty} \!\left(-\tfrac{1}{n}, \tfrac{1}{n}\right) = \{0\}$ 是闭集.
+\startproof[bg=yellow, fg=red]
+设 $\{G_\alpha\}$ 是开集族, $G = \bigcup_\alpha G_\alpha.$ 任取 $x \in G,$ 则 $x \in G_{\alpha_0}$ 对某 $\alpha_0,$ 由 $G_{\alpha_0}$ 开, $\exists ~ \delta > 0$ 使得 $U(x, \delta) \subset G_{\alpha_0} \subset G,$ 即 $x$ 是 $G$ 的内点.
 
-无限多个闭集之并不一定是闭集: $\displaystyle\bigcup_{n=1}^{\infty} \!\left[\tfrac{1}{n}, 1\right] = (0, 1]$ 不是闭集.
-\end{attnblock}
+\pause
+\vspace{0.5em}
+
+设 $G_1, G_2, \ldots, G_n$ 是开集, $G = \bigcap_{k=1}^n G_k.$ 任取 $x \in G,$ 则 $x \in G_k$ 对所有 $k=1,2,\ldots,n$ 成立. 由 $G_k$ 开, $\exists\, \delta_k > 0$ 使得 $U(x, \delta_k) \subset G_k.$ 令 $\delta = \min\{\delta_1, \ldots, \delta_n\},$ 则 $U(x, \delta) \subset U(x, \delta_k) \subset G_k$ 对所有 $k,$ 即 $U(x, \delta) \subset G,$ $x$ 是 $G$ 的内点.
+\qed
 
 \end{frame}
 
@@ -122,15 +126,57 @@ U(x, \delta) = (x - \delta,\, x + \delta) = \{ y \in \mathbb{R} : |y - x| < \del
 \mathscr{C}\!\left(\bigcup_{k=1}^n F_k\right) = \bigcap_{k=1}^n \mathscr{C} F_k \text{ 开}.
 \]
 
+\vspace{0.5em}
 \pause
-\vspace{1em}
+
+\begin{attnblock}[无限交/并的反例]
+无限多个开集之交不一定是开集: $\displaystyle\bigcap_{n=1}^{\infty} \!\left(-\tfrac{1}{n}, \tfrac{1}{n}\right) = \{0\}$ 是闭集.
+
+无限多个闭集之并不一定是闭集: $\displaystyle\bigcup_{n=1}^{\infty} \!\left[\tfrac{1}{n}, 1\right] = (0, 1]$ 不是闭集.
+\end{attnblock}
+
+\pause
+\vspace{0.5em}
 
 \begin{prop}
 $\mathring{E}$ 是开集, 且 $\mathring{E}$ 是包含于 $E$ 的最大开集.
 \end{prop}
 
-\startproof[bg=yellow, fg=red](证明)
-任取 $x \in \mathring{E},$ 由定义 $\exists\, U(x,\delta) \subset E.$ 对任意 $y \in U(x,\delta),$ $U(x,\delta)$ 也是 $y$ 的邻域且 $\subset E,$ 故 $y \in \mathring{E},$ 即 $U(x,\delta) \subset \mathring{E}.$ 因此 $x$ 是 $\mathring{E}$ 的内点. $\square$
+\startproof[bg=yellow, fg=red]
+任取 $x \in \mathring{E},$ 由定义 $\exists\, U(x,\delta) \subset E.$ 对任意 $y \in U(x,\delta),$ $U(x,\delta)$ 也是 $y$ 的邻域且 $\subset E,$ 故 $y \in \mathring{E},$ 即 $U(x,\delta) \subset \mathring{E}.$ 因此 $x$ 是 $\mathring{E}$ 的内点.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一般拓扑空间}
+
+{\color{red}\ding{43}} 对一个集合 $X$ 赋予一个\alert{拓扑}, 指的是指定它的一个子集类 $\tau \subset \mathcal{P}(X)$ 满足:
+\begin{itemize}
+\item $\emptyset, X \in \tau.$
+\item 任意多个 $\tau$ 中的集合的并仍在 $\tau$ 中.
+\item 有限多个 $\tau$ 中的集合的交仍在 $\tau$ 中.
+\end{itemize}
+子集类 $\tau$ 中的集合称为\alert{开集}, $\tau$ 定义了 $X$ 的一个\alert{拓扑空间}结构. 例如 $\mathbb{R}$ 上的 (通常的) 开集定义了 $\mathbb{R}$ 的一个拓扑空间结构, 这也是我们在分析学中最常用的拓扑空间.
+
+\pause
+\vspace{0.5em}
+
+{\color{red}\ding{43}} 等价地, 对 $X$ 赋予一个\alert{闭集}类 $\mathcal{F} \subset \mathcal{P}(X)$ 满足:
+\begin{itemize}
+\item $\emptyset, X \in \mathcal{F}.$
+\item 任意多个 $\mathcal{F}$ 中的集合的交仍在 $\mathcal{F}$ 中.
+\item 有限多个 $\mathcal{F}$ 中的集合的并仍在 $\mathcal{F}$ 中.
+\end{itemize}
+也是定义拓扑结构的一种方式.
+
+\pause
+\vspace{0.5em}
+
+\begin{remark}
+$\mathbb{R}$ 上不止有一种非平凡拓扑结构, 其他常用的还有 Zariski 拓扑 (也被称为余有限拓扑), 其开集定义为 $\emptyset$ 与 $\mathbb{R}$ 的有限集的补集. Zariski 拓扑在代数几何中非常重要, 但在分析学中不常用.
+\end{remark}
 
 \end{frame}
 
@@ -147,33 +193,54 @@ $\mathring{E}$ 是开集, 且 $\mathring{E}$ 是包含于 $E$ 的最大开集.
 \[
 \forall\, \delta > 0,\quad \mathring{U}(x, \delta) \cap E \neq \emptyset,
 \]
-则称 $x$ 为 $E$ 的\alert{聚点}(\alert{极限点}).
+则称 $x$ 为 $E$ 的\alert{聚点}, 或\alert{极限点} (limit/cluster/accumulation point).
 \end{Def}
 
 \pause
 
-\begin{remark}
+\begin{attnblock}
 \begin{itemize}
 \item 聚点 $x$ 不必属于 $E,$ 例如 $0$ 是 $(0,1)$ 的聚点但 $0 \notin (0,1).$
-\item 等价条件: $x$ 是 $E$ 的聚点 $\iff$ $E$ 中存在互不相同且收敛到 $x$ 的点列.
+\item 对于 $E$ 的聚点 $x$ 来说, $x$ 的所有去心邻域 $\mathring{U}(x, \delta) \cap E \neq \emptyset,$ 并且必然是无限集.
 \end{itemize}
-\end{remark}
+\end{attnblock}
 
 \pause
 
 \begin{Def}[孤立点]
-若 $x \in E$ 且 $x$ 不是 $E$ 的聚点, 则称 $x$ 为 $E$ 的\alert{孤立点}.
+若 $x \in E$ 且 $x$ 不是 $E$ 的聚点, 则称 $x$ 为 $E$ 的\alert{孤立点} (isolated point).
 \end{Def}
 
 \pause
 
-\begin{prop}[Bolzano-Weierstrass 定理]
-$\mathbb{R}$ 中任一有界无限集至少有一个聚点.
+\begin{eg}
+$\mathbb{N}$ 的每个点都是孤立点; $\{0\} \cup \{1/n : n \in \mathbb{N}\}$ 的聚点是 $0,$ 其余点都是孤立点; $(0,1)$ 的每个点都是聚点, 没有孤立点.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{聚点与孤立点}
+
+\begin{prop}
+$x$ 是 $E$ 的聚点 $\iff$ $E$ 中存在点列 $\{x_n\}$ (即 $x_n \in E$ 对所有 $n$), $x_n \neq x,$ 使得 $x_n \to x.$
 \end{prop}
 
-\begin{eg}
-$\mathbb{N}$ 的每个点都是孤立点, $\mathbb{N}' = \emptyset.$\quad $\mathbb{Q}' = \mathbb{R}.$
-\end{eg}
+\pause
+\vspace{1em}
+
+\startproof[bg=yellow, fg=red]
+
+\vspace{0.5em}
+
+$\Longrightarrow$: 设 $x$ 是 $E$ 的聚点, 令 $d_1 = 1,$  则 $\mathring{U}(x, d_1) \cap E \neq \emptyset,$ 取 $x_1 \in \mathring{U}(x, d_1) \cap E.$ 令 $d_2 = \frac{|x - x_1|}{2} > 0,$ 则 $\mathring{U}(x, d_2) \cap E \neq \emptyset,$ 取 $x_2 \in \mathring{U}(x, d_2) \cap E.$ 依此类推, 可构造 (互异的) 点列 $\{x_n\}$ 满足 $x_n \in E,$ $|x_n - x| < d_n,$ 从而 $x_n \to x.$
+
+\pause
+\vspace{0.5em}
+
+$\Longleftarrow$: 设 $\{x_n\}$ 是 $E$ 中的点列, $x_n \neq x,$ 且 $x_n \to x.$ 任取 $\delta > 0,$ 存在 $N$ 使得 $|x_n - x| < \delta$ 对所有 $n > N,$ 即 $\mathring{U}(x, \delta) \cap E$ 包含无穷多个点列项, 从而非空.
+\qed
 
 \end{frame}
 
@@ -182,29 +249,82 @@ $\mathbb{N}$ 的每个点都是孤立点, $\mathbb{N}' = \emptyset.$\quad $\math
 \begin{frame}{导集及其性质}
 
 \begin{Def}[导集]
-$E$ 的所有聚点构成的集合称为 $E$ 的\alert{导集}, 记作 $E'.$
+$E$ 的所有聚点构成的集合称为 $E$ 的\alert{导集} (derived set), 记作 $E'.$
 \end{Def}
 
 \pause
+\vspace{0.5em}
+
+\begin{remark}
+导集 $E'$ 的余集 $E \setminus E'$ 即是 $E$ 的所有孤立点构成的集合.
+\end{remark}
+
+\pause
+\vspace{0.5em}
+
+\begin{thm}[导集给出的闭集刻画]
+$F \subset \mathbb{R}$ 是闭集 $\iff F' \subset F.$
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red]
+\vspace{0.5em}
+
+$\Longrightarrow$: 设 $F$ 是闭集, 则 $\mathbb{R} \setminus F$ 是开集. 任取 $x \in F',$ 由 $x$ 是 $F$ 的聚点, $\forall\, \delta > 0,$ $\mathring{U}(x, \delta) \cap F \neq \emptyset.$ 若 $x \notin F,$ 则 $\exists\, \delta_0 > 0$ 使得 $U(x, \delta_0) \subset \mathbb{R} \setminus F,$ 从而 $\mathring{U}(x, \delta_0) \cap F = \emptyset,$ 矛盾. 因此 $x \in F,$ $F' \subset F.$
+
+\pause
+\vspace{0.5em}
+
+$\Longleftarrow$: 设 $F' \subset F,$ 任取 $x \in \mathbb{R} \setminus F.$ 则 $x \notin F',$ $\exists\, \delta > 0$ 使 $\mathring{U}(x, \delta) \cap F = \emptyset.$ 又 $x \notin F,$ 故 $U(x, \delta) \cap F = \emptyset,$ 即 $U(x, \delta) \subset \mathbb{R} \setminus F.$ 因此 $\mathbb{R} \setminus F$ 是开集, $F$ 是闭集.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{导集及其性质}
 
 \begin{prop}[导集的性质]
 \begin{enumerate}
-  \item \textbf{单调性}: $A \subset B \Rightarrow A' \subset B'.$
-  \item \textbf{并的导集}: $(A \cup B)' = A' \cup B'.$
-  \item \textbf{导集是闭集}: $E'$ 是闭集, 即 $(E')' \subset E'.$
+\item \textbf{单调性}: $A \subset B \Rightarrow A' \subset B'.$
+\item \textbf{并的导集}: $(A \cup B)' = A' \cup B'.$
+\item \textbf{导集是闭集}: $E'$ 是闭集, 即 $(E')' \subset E'.$
 \end{enumerate}
 \end{prop}
 
 \pause
+\vspace{0.5em}
 
 \startproof[bg=yellow, fg=red]($E'$ 是闭集)
-设 $x \in (E')',$ $\delta > 0.$ 取 $y \in \mathring{U}(x,\delta) \cap E',$ 令 $r = |y-x| \in (0, \delta),$ 取 $\varepsilon = \min\!\left(\tfrac{r}{2},\, \delta - r\right) > 0.$
+\vspace{0.3em}
 
-由 $y \in E',$ $\exists\, z \in \mathring{U}(y, \varepsilon) \cap E.$ 则
+我们证明 $E'$ 的补集 $\mathscr{C} E' = \mathbb{R} \setminus E'$ 是开集.
+
+\pause
+\vspace{0.5em}
+
+设 $x \in \mathscr{C} E'$, 则 $x \notin E'$, $\exists\, \delta > 0$ 使 $\mathring{U}(x, \delta) \cap E = \emptyset.$
+
+\pause
+\vspace{0.3em}
+
+任取 $\widetilde{x} \in \mathring{U}(x, \delta),$ 并令
 \[
-|z - x| \leqslant |z - y| + r < \varepsilon + r \leqslant \delta, \qquad |z - x| \geqslant r - |z-y| \geqslant \tfrac{r}{2} > 0,
+\widetilde{\delta} = \min\{\delta - |\widetilde{x} - x|, |\widetilde{x} - x|\} / 2 > 0,
 \]
-故 $z \in \mathring{U}(x, \delta) \cap E,$ 即 $x \in E',$ 从而 $(E')' \subset E'.$ $\square$
+则 $\mathring{U}(\widetilde{x}, \widetilde{\delta}) \subset \mathring{U}(x, \delta)$ (三角不等式), 从而 $\mathring{U}(\widetilde{x}, \widetilde{\delta}) \cap E = \emptyset.$ 因此 $\widetilde{x} \in \mathscr{C} E'.$
+
+\pause
+\vspace{0.3em}
+
+由于 $\widetilde{x}$ 是 $\mathring{U}(x, \delta)$ 中的任意点, 从而有 $\mathring{U}(x, \delta) \subset \mathscr{C} E',$ 于是
+\[
+U(x, \delta) = \mathring{U}(x, \delta) \cup \{x\} \subset \mathscr{C} E'.
+\]
+因此 $\mathscr{C} E'$ 是开集, $E'$ 是闭集.
+\qed
 
 \end{frame}
 
@@ -217,25 +337,66 @@ $E$ 的所有聚点构成的集合称为 $E$ 的\alert{导集}, 记作 $E'.$
 \begin{frame}{完全集}
 
 \begin{Def}[完全集]
-若\alert{闭集} $P$ 满足 $P' = P$ (即 $P$ 无孤立点, 每个点都是聚点), 则称 $P$ 为\alert{完全集} (perfect set).
+若 (闭集) $P$ 满足 $P' = P$ (即 $P$ 无孤立点, 每个点都是聚点), 则称 $P$ 为\alert{完全集} (perfect set).
 \end{Def}
 
 \pause
+\vspace{0.5em}
 
 \begin{eg}
-$\emptyset,$ $\mathbb{R},$ $[a, b]$ ($a < b$) 均为完全集. 后续章节将构造的 \alert{Cantor 集}是一个有界的无处稠密完全集 (有界 + 完全 + 无处稠密三性质并存).
+$\emptyset,$ $\mathbb{R},$ $[a, b]$ ($a < b$) 均为完全集. 后续章节将构造的 \alert{Cantor 三分集}是一个有界的无处稠密完全集.
 \end{eg}
 
 \pause
+\vspace{0.5em}
 
 \begin{thm}
-$\mathbb{R}$ 中非空完全集不可列 (具有连续统的势 $\mathfrak{c}$).
+$\mathbb{R}$ 中非空完全集不可列.
 \end{thm}
 
 \pause
+\vspace{0.3em}
 
 \startproof[bg=yellow, fg=red](证明思路)
-设 $P$ 非空完全集, 反设 $P = \{x_1, x_2, \ldots\}$ 可列. 利用 $P$ 无孤立点, 可逐步构造闭区间嵌套列 $I_1 \supset I_2 \supset \cdots,$ 使得 $I_n \cap P \neq \emptyset,$ $x_n \notin I_n,$ $|I_n| \to 0$ (与 $[0,1]$ 不可列的三等分证明类似). 由\alert{闭区间套定理}, $\exists\, \xi \in \bigcap_n I_n \subset P,$ 但 $\xi \neq x_n$ 对所有 $n,$ 矛盾. $\square$
+\vspace{0.3em}
+
+设 $P \subset \mathbb{R}$ 为非空完全集. 首先, $P$ 不能是有限集, 否则 $P$ 中必然存在孤立点, 矛盾.
+
+\vspace{0.5em}
+
+反设 $P = \{x_1, x_2, \ldots\}$ 可列. 由于 $P$ 无孤立点, 可递归构造闭区间套
+\[
+I_1 \supset I_2 \supset \cdots,
+\quad
+I_n \cap P \neq \emptyset,
+\quad
+x_n \notin I_n,
+\quad
+|I_n| < \frac1n.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{完全集}
+
+事实上, 若已取到 $I_n,$ 则存在 $y \in (I_n \cap P)\setminus \{x_{n+1}\}.$ 由于 $y$ 不是孤立点, 可取充分小的闭区间 $I_{n+1} \subset \mathring{I}_n,$ 使得 $y \in I_{n+1},$ 且 $x_{n+1} \notin I_{n+1}.$
+
+\pause
+\vspace{0.5em}
+
+由闭区间套定理,
+\[
+\bigcap_{n=1}^{\infty} I_n = \{\xi\}
+\]
+又因为每个 $I_n \cap P \neq \emptyset,$ 可取 $y_n \in I_n \cap P.$ 由 $|I_n| \to 0$ 可知 $y_n \to \xi.$ 由于 $P$ 为闭集, 故 $\xi \in P.$
+
+\pause
+\vspace{0.5em}
+
+另一方面, $\bigcap_{k=1}^{\infty} I_k \subset I_n,$ 且 $x_n \notin I_n,$ 故 $\xi \neq x_n$ 对所有 $n$ 成立, 矛盾. 故 $P$ 不可列.
+\qed
 
 \end{frame}
 
@@ -263,14 +424,9 @@ $E$ 与其导集的并称为 $E$ 的\alert{闭包}: $\overline{E} = E \cup E'.$
 \begin{thm}[闭集的充要条件]
 以下三个条件等价:
 \[
-F \text{ 是闭集} \iff F = \overline{F} \iff F' \subset F.
+F \text{ 是闭集} \iff F' \subset F \iff F = \overline{F}.
 \]
 \end{thm}
-
-\pause
-
-\startproof[bg=yellow, fg=red](证明)
-$F = \overline{F} = F \cup F'$ iff $F' \subset F.$ 若 $F' \subset F,$ 设 $x \notin F$: 则 $x \notin F',$ 故 $\exists\, \delta > 0$ 使 $\mathring{U}(x,\delta) \cap F = \emptyset.$ 又 $x \notin F,$ 故 $U(x, \delta) \cap F = \emptyset,$ 即 $U(x, \delta) \subset \mathbb{R} \setminus F.$ 所以 $\mathbb{R} \setminus F$ 是开集, $F$ 是闭集. $\square$
 
 \end{frame}
 
@@ -290,17 +446,23 @@ f \text{ 连续} \iff \forall \text{ 开集 } G \subset \mathbb{R},\quad f^{-1}(
 \end{thm}
 
 \pause
-
-\startproof[bg=yellow, fg=red]($\Rightarrow$: 连续 $\Rightarrow$ 开集原像开)
-设 $G$ 开, $x_0 \in f^{-1}(G).$ 由 $f(x_0) \in G$ 开, $\exists\, \varepsilon > 0: U(f(x_0), \varepsilon) \subset G.$ 由 $f$ 连续, $\exists\, \delta > 0:$ $|x - x_0| < \delta \Rightarrow |f(x) - f(x_0)| < \varepsilon,$ 即 $f(U(x_0, \delta)) \subset U(f(x_0), \varepsilon) \subset G,$ 故 $U(x_0, \delta) \subset f^{-1}(G),$ $x_0$ 是内点. $\square$
-
-\pause
-
-\startproof[bg=yellow, fg=red]($\Leftarrow$: 开集原像开 $\Rightarrow$ 连续)
-设 $x_0 \in \mathbb{R},$ $\varepsilon > 0.$ $G = U(f(x_0), \varepsilon)$ 是开集, 故 $f^{-1}(G)$ 是开集且 $x_0 \in f^{-1}(G).$ 由开集定义, $\exists\, \delta > 0: U(x_0, \delta) \subset f^{-1}(G),$ 即 $|x - x_0| < \delta \Rightarrow |f(x) - f(x_0)| < \varepsilon.$ $\square$
-
-\pause
 \vspace{0.3em}
+
+\startproof[bg=yellow, fg=red]
+\vspace{0.3em}
+
+\textbf{连续 $\Rightarrow$ 开集原像开:} ~~
+设 $G$ 开, $x_0 \in f^{-1}(G).$ 由 $f(x_0) \in G$ 开, $\exists\, \varepsilon > 0: U(f(x_0), \varepsilon) \subset G.$ 由 $f$ 连续, $\exists\, \delta > 0:$ $|x - x_0| < \delta \Rightarrow |f(x) - f(x_0)| < \varepsilon,$ 即 $f(U(x_0, \delta)) \subset U(f(x_0), \varepsilon) \subset G,$ 故 $U(x_0, \delta) \subset f^{-1}(G),$ $x_0$ 是内点.
+
+\pause
+\vspace{0.5em}
+
+\textbf{开集原像开 $\Rightarrow$ 连续:} ~~
+设 $x_0 \in \mathbb{R},$ $\varepsilon > 0.$ $G = U(f(x_0), \varepsilon)$ 是开集, 故 $f^{-1}(G)$ 是开集且 $x_0 \in f^{-1}(G).$ 由开集定义, $\exists\, \delta > 0: U(x_0, \delta) \subset f^{-1}(G),$ 即 $|x - x_0| < \delta \Rightarrow |f(x) - f(x_0)| < \varepsilon.$
+\qed
+
+\pause
+\vspace{0.5em}
 
 \begin{remark}
 等价地: $f$ 连续 $\iff$ 每个\alert{闭集}的原像是闭集 (取补即得). 此刻画可直接推广为一般拓扑空间上连续映射的定义.
