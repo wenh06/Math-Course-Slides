@@ -3,4 +3,9 @@ $ENV{'TZ'}='Asia/Shanghai';
 $pdf_mode = 5;
 $dvi_mode = 0;
 $postscript_mode = 0;
-$clean_ext = 'thm glo gls bbl hd loe synctex.gz synctex.gz(busy) run.xml tex.bak bcf fdb_latexmk run vrb tdo %R-blx.bib toe fls spl nav snm 4tc xref tmp 4ct idv lg gnuplot table xelatex*.fls';
+# In latexmk 4.83+, bare names in $clean_ext are literal globs, not extensions.
+# Use %R.EXT so they expand to $JOBNAME.EXT (e.g. %R.bbl -> main.bbl).
+$clean_ext = '%R.thm %R.glo %R.gls %R.bbl %R.hd %R.loe %R.synctex.gz %R.run.xml %R.bcf %R.run %R.vrb %R.tdo %R-blx.bib %R.toe %R.fls %R.spl %R.nav %R.snm %R.4tc %R.xref %R.tmp %R.4ct %R.idv %R.lg %R.gnuplot %R.table xelatex*.fls *.tex.bak';
+
+# Explicitly use biber for biblatex (auto-detected via .bcf, but made explicit here)
+$biber = 'biber %O %S';
