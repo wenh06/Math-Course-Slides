@@ -103,9 +103,7 @@ f^{-1}(B) \subset f^{-1}(\widetilde{B}).
 
 \pause
 
-\begin{remark}
-原像运算与集合的\alert{并、交、补均相容}.
-\end{remark}
+也就是说, 原像运算与集合的\alert{并、交、补均相容}.
 
 \end{frame}
 
@@ -373,21 +371,35 @@ X = A \cup \widetilde{A}, \quad Y = B \cup \widetilde{B},
 \pause
 \vspace{0.3em}
 
-\startproof[bg=yellow, fg=red](证明)
-称 $C \subset X$ 为\alert{分离集}, 若 $g(Y \setminus f(C)) \cap C = \emptyset$. 设 $\mathscr{F}$ 为所有分离集构成的集族, 令
+\startproof[bg=yellow, fg=red]
+\vspace{0.3em}
+
+对于 $f$ 或 $g$ 是满射的情况, 分解显然成立: 取 $A = X, B = Y$ 或 $A = \emptyset, B = \emptyset$ 即可. 以下设 $f(X) \neq Y$ 且 $g(Y) \neq X$.
+
+\pause
+\vspace{0.5em}
+
+{\color{red}\ding{43}} 称 $C \subset X$ 为\alert{分离集}, 若 $g(Y \setminus f(C)) \cap C = \emptyset$. （$\emptyset \in \mathscr{F}$ 平凡成立，故 $\mathscr{F} \neq \emptyset$.）设 $\mathscr{F}$ 为所有分离集构成的集族, 令
 \[
 A = \bigcup_{C \in \mathscr{F}} C.
 \]
 
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{集在映射下的分解引理}
+
+{\color{red}\ding{43}} \textbf{$A$ 是分离集}: 任取 $y \in Y \setminus f(A)$, $x = g(y)$. 若 $x \in A$, 则 $\exists ~ C \in \mathscr{F}$ 使得 $x \in C$. 由 $y \notin f(A) \supset f(C)$ 知 $y \in Y \setminus f(C)$, 故 $g(y) \notin C$ (因 $C \in \mathscr{F}$), 即 $x \notin C$, 矛盾. 故 $g(Y \setminus f(A)) \cap A = \emptyset$, $A \in \mathscr{F}$.
+
 \pause
+\vspace{1em}
 
-{\color{red}\ding{43}} \textbf{$A$ 是分离集}: 不妨设 $Y \neq f(A),$ 任取 $y \in Y \setminus f(A)$, $x = g(y)$. 若 $x \in A$, 则 $\exists ~ C \in \mathscr{F}$ 使得 $x \in C$. 由 $y \notin f(A) \supset f(C)$ 知 $y \in Y \setminus f(C)$, 故 $g(y) \notin C$ (因 $C \in \mathscr{F}$), 即 $x \notin C$, 矛盾. 故 $g(Y \setminus f(A)) \cap A = \emptyset$, $A \in \mathscr{F}$.
-
-\pause
-\vspace{0.3em}
-
-{\color{red}\ding{43}} \textbf{等号成立}: 取 $B = f(A)$, 由 $A \in \mathscr{F}$ 得 $g(\widetilde{B}) = g(Y \setminus f(A)) \subset \widetilde{A} = X \setminus A$. 任取 $x \in \widetilde{A}$. 若 $A \cup \{x\}$ 仍是分离集, 则可加入 $A$, 与极大性矛盾. 故 $\exists\, y \in Y \setminus f(A \cup \{x\}) \subset \widetilde{B}$ 使 $g(y) \in A \cup \{x\}$. 由 $A \in \mathscr{F}$ 得 $g(y) \notin A$, 故 $g(y) = x$, 即 $x \in g(\widetilde{B})$.
-\qed
+{\color{red}\ding{43}} \textbf{分解成立}: 取 $B = f(A)$, 由 $A \in \mathscr{F},$ 即 $g(Y \setminus f(A)) \cap A = \emptyset,$ 可得
+\[
+g(\widetilde{B}) = g(Y \setminus f(A)) \subset \widetilde{A} = X \setminus A.
+\]
+任取 $x \in \widetilde{A}$, 则 $A \cup \{x\} \notin \mathscr{F},$ 否则 $x \in \bigcup_{C \in \mathscr{F}} C = A$，矛盾.
 
 \end{frame}
 

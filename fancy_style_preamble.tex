@@ -239,12 +239,12 @@
 \begin{block}{#1}}{\end{block}
 }
 
-\newenvironment{attnblock}{%
+\newenvironment{attnblock}[1][注意]{%
 \ifHighContrast
 \setbeamercolor{block body}{bg=red!15,fg=black}
 \else
 \setbeamercolor{block body}{bg=red!15,fg=themecolor}
 \fi
 \setbeamercolor{block title}{bg=red!80,fg=white}
-\begin{block}{注意}}{\end{block}
+\begin{block}{#1}}{\end{block}
 }
