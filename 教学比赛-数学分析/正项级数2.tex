@@ -57,7 +57,7 @@
 \begin{columns}
 \begin{column}{0.51\textwidth}
 \centering
-\includegraphics[width=0.75\textwidth]{images/zeno-paradox.jpg}
+\includegraphics[width=0.65\textwidth]{images/zeno-paradox.jpg}
 \end{column}
 \begin{column}{0.47\textwidth}
 $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
@@ -81,9 +81,9 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 \pause
 
 \begin{itemize}[<+->]
-\item[\ding{43}] Cauchy 判别法
-\item[\ding{43}] d'Alembert 判别法
-\item[\ding{43}] Raabe 判别法
+\item[{\color{red}\ding{43}}] Cauchy 判别法
+\item[{\color{red}\ding{43}}] d'Alembert 判别法
+\item[{\color{red}\ding{43}}] Raabe 判别法
 \end{itemize}
 
 \end{frame}
@@ -97,7 +97,7 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 \begin{frame}{正项级数敛散性的 Cauchy 判别法}
 
 \begin{thm}[Cauchy 判别法]
-设 $\sum\limits_{n=1}^\infty x_n$ 是正项级数, $r = \varlimsup_{n\to\infty} \nroot[n]{x_n},$ 则
+设 $\sum\limits_{n=1}^\infty x_n$ 是正项级数, $r = \varlimsup\limits_{n\to\infty} \nroot[n]{x_n},$ 则
 \begin{itemize}
 \item[(1).] 当 $r < 1$ 时, 级数 $\sum\limits_{n=1}^\infty x_n$ 收敛;
 \item[(2).] 当 $r > 1$ 时, 级数 $\sum\limits_{n=1}^\infty x_n$ 发散;
@@ -111,7 +111,7 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 
 \begin{frame}{Cauchy 判别法的证明}
 
-(1). 当 $r = \varlimsup_{n\to\infty} \nroot[n]{x_n} < 1$ 时, 由上极限的性质, 对任意满足 $r < q < 1$ 的实数 $q,$
+(1). 当 $r = \varlimsup\limits_{n\to\infty} \nroot[n]{x_n} < 1$ 时, 由上极限的性质, 对任意满足 $r < q < 1$ 的实数 $q,$
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
 \text{\bfseries\color{red!80} 存在正整数 $N,$ 使得 $\forall~n > N,$ 都有 $\nroot[n]{x_n} < q.$}
 \end{empheq}
@@ -176,8 +176,8 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 \begin{thm}[d'Alembert 判别法]
 设 $\sum\limits_{n=1}^\infty x_n ~ (x_n \neq 0)$ 是正项级数, 则
 \begin{itemize}
-\item[(1).] 当 $\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \overline{r} < 1$ 时, 级数 $\sum\limits_{n=1}^\infty x_n$ 收敛;
-\item[(2).] 当 $\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \underline{r} > 1$ 时, 级数 $\sum\limits_{n=1}^\infty x_n$ 发散;
+\item[(1).] 当 $\varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \overline{r} < 1$ 时, 级数 $\sum\limits_{n=1}^\infty x_n$ 收敛;
+\item[(2).] 当 $\varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} =: \underline{r} > 1$ 时, 级数 $\sum\limits_{n=1}^\infty x_n$ 发散;
 \item[(3).] 当 $\overline{r} \geqslant 1$ 或 $\underline{r} \leqslant 1$ 时, 判别法失效, 级数 $\sum\limits_{n=1}^\infty x_n$ 可能收敛也可能发散.
 \end{itemize}
 \end{thm}
@@ -200,17 +200,19 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 
 \begin{lem}
 设 $\{x_n\}$ 是正项数列, 则
-\[\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.\]
+\[
+\varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf\limits_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup\limits_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n}.
+\]
 \end{lem}
 
 \pause
 \vspace*{0.6em}
 
-当 $\overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$ 时, 由引理中的不等式, 有 $\varlimsup_{n\to\infty} \nroot[n]{x_n} < 1,$ 从而可以由 Cauchy 判别法推出收敛性;
+当 $\overline{r} = \varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} < 1$ 时, 由引理中的不等式, 有 $\varlimsup\limits_{n\to\infty} \nroot[n]{x_n} < 1,$ 从而可以由 Cauchy 判别法推出收敛性;
 
 \pause
 \vspace*{0.6em}
-当 $\underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$ 时, 由引理中的不等式, 有 $\varlimsup_{n\to\infty} \nroot[n]{x_n} > 1,$ 从而可以由 Cauchy 判别法推出发散性.
+当 $\underline{r} = \varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} > 1$ 时, 由引理中的不等式, 有 $\varlimsup\limits_{n\to\infty} \nroot[n]{x_n} > 1,$ 从而可以由 Cauchy 判别法推出发散性.
 
 \end{frame}
 
@@ -218,18 +220,24 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 
 \begin{frame}{引理的证明}
 
-第一个不等式 $\varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf_{n\to\infty} \nroot[n]{x_n}:$
+第一个不等式 $\varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} \leqslant \varliminf\limits_{n\to\infty} \nroot[n]{x_n}:$
 
 \pause
 \vspace{1em}
 
 由下极限的性质, $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得 $\forall~n > N$ 成立 $\dfrac{x_{n+1}}{x_n} > \underline{r} - \varepsilon,$ 即有
 \vspace*{-0.5em}
-\[x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},\]
+\[
+x_{n+1} > (\underline{r} - \varepsilon) x_n > (\underline{r} - \varepsilon)^2 x_{n-1} > \cdots > (\underline{r} - \varepsilon)^{n-N} x_{N+1},
+\]
 从而有 $\nroot[n]{x_n} > \sqrt[\leftroot{-6}\uproot{9}n]{(\underline{r} - \varepsilon)^{n-N} x_{N+1}}$ 对所有$n > N$ 成立. 于是
-\[\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \varliminf_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.\]
+\[
+\varliminf\limits_{n\to\infty} \nroot[n]{x_n} \geqslant \varliminf\limits_{n\to\infty} (\underline{r} - \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \underline{r} - \varepsilon.
+\]
 由 $\varepsilon$ 的任意性知
-\[\varliminf_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n}.\]
+\[
+\varliminf\limits_{n\to\infty} \nroot[n]{x_n} \geqslant \underline{r} = \varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n}.
+\]
 
 \end{frame}
 
@@ -237,18 +245,23 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 
 \begin{frame}{引理的证明}
 
-第二个不等式 $\varliminf_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \nroot[n]{x_n}$ 来自于上、下极限的性质. 下面我们来证明第三个不等式 $\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}:$
+第二个不等式 $\varliminf\limits_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup\limits_{n\to\infty} \nroot[n]{x_n}$ 来自于上、下极限的性质. 下面我们来证明第三个不等式 $\varlimsup\limits_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n}:$
 
 \pause
 \vspace{1em}
 
 由上极限的性质, $\forall~\varepsilon > 0,$ 存在正整数 $N,$ 使得 $\forall~n > N$ 成立 $\dfrac{x_{n+1}}{x_n} < \overline{r} + \varepsilon,$ 即有
 \vspace*{-0.5em}
-\[x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},\]
+\[
+x_{n+1} < (\overline{r} + \varepsilon) x_n < (\overline{r} + \varepsilon)^2 x_{n-1} < \cdots < (\overline{r} + \varepsilon)^{n-N} x_{N+1},\]
 从而有 $\nroot[n]{x_n} < \sqrt[\leftroot{-6}\uproot{9}n]{(\overline{r} + \varepsilon)^{n-N} x_{N+1}}$ 对所有 $n > N$ 成立. 于是
-\[\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.\]
+\[
+\varlimsup\limits_{n\to\infty} \nroot[n]{x_n} \leqslant \varlimsup\limits_{n\to\infty} (\overline{r} + \varepsilon)^{1-\frac{N}{n}} \cdot x_{N+1}^{\frac{1}{n}} = \overline{r} + \varepsilon.
+\]
 由 $\varepsilon$ 的任意性知
-\[\varlimsup_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n}.\]
+\[
+\varlimsup\limits_{n\to\infty} \nroot[n]{x_n} \leqslant \overline{r} = \varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n}.
+\]
 
 \end{frame}
 
@@ -268,8 +281,8 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 \startproof[bg=yellow, fg=red](解)
 令 $x_n = \dfrac{n^n}{3^n\cdot n!},$ 那么有
 \begin{align*}
-\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} & = \varlimsup_{n\to\infty} \left[ \dfrac{(n+1)^{n+1}}{3^{n+1}\cdot (n+1)!} \cdot \dfrac{3^n\cdot n!}{n^n} \right] \\
-& = \lim_{n\to\infty} \dfrac{1}{3} \left( 1 + \dfrac{1}{n} \right)^n = \dfrac{e}{3} < 1,
+\varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} & = \varlimsup\limits_{n\to\infty} \left[ \dfrac{(n+1)^{n+1}}{3^{n+1}\cdot (n+1)!} \cdot \dfrac{3^n\cdot n!}{n^n} \right] \\
+& = \lim\limits_{n\to\infty} \dfrac{1}{3} \left( 1 + \dfrac{1}{n} \right)^n = \dfrac{e}{3} < 1,
 \end{align*}
 由 d'Alembert 判别法知级数 $\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$ 的收敛.
 \qed
@@ -291,8 +304,8 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 \[x_{2n-1} = \dfrac{1}{2^n}, ~~ x_{2n} = \dfrac{1}{3^n}\]
 那么
 \begin{gather*}
-\varlimsup_{n\to\infty} \nroot[n]{x_n} = \lim_{n\to\infty} \sqrt[\leftroot{-6}\uproot{13}2n-1]{\frac{1}{2^n}} = \dfrac{1}{\sqrt{2}} \\
-\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim_{n\to\infty} \dfrac{3^n}{2^{n+1}} = +\infty, ~~ \varliminf_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim_{n\to\infty} \dfrac{2^n}{3^n} = 0.
+\varlimsup\limits_{n\to\infty} \nroot[n]{x_n} = \lim\limits_{n\to\infty} \sqrt[\leftroot{-6}\uproot{13}2n-1]{\frac{1}{2^n}} = \dfrac{1}{\sqrt{2}} \\
+\varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim\limits_{n\to\infty} \dfrac{3^n}{2^{n+1}} = +\infty, ~~ \varliminf\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \lim\limits_{n\to\infty} \dfrac{2^n}{3^n} = 0.
 \end{gather*}
 \end{eg}
 
@@ -309,10 +322,14 @@ $S_1(1 + q + q^2 + \cdots + q^n + \cdots)$
 
 \begin{eg}
 正项级数 $\sum\limits_{n=1}^\infty \dfrac{n^n}{3^n\cdot n!}$ 收敛性的判定, 我们之前是用的 d'Alembert 判别法:
-\[\varlimsup_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \dfrac{e}{3} < 1.\]
+\[
+\varlimsup\limits_{n\to\infty} \dfrac{x_{n+1}}{x_n} = \dfrac{e}{3} < 1.
+\]
 \pause
 而
-\[\nroot[n]{x_n} = \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = \dfrac{n}{3} \cdot \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n!}}\]
+\[
+\varlimsup\limits_{n\to\infty} \nroot[n]{x_n} = \lim\limits_{n\to\infty} \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{n^n}{3^n\cdot n!}} = \lim\limits_{n\to\infty} \dfrac{n}{3} \cdot \sqrt[\leftroot{-7}\uproot{15}n]{\dfrac{1}{n!}}
+\]
 极限不太好求, 故不太方便适用 Cauchy 判别法.
 
 \pause

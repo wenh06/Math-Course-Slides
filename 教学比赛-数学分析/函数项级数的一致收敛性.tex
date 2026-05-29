@@ -9,7 +9,7 @@
 
 \title[数学分析]{\texorpdfstring{\LARGE \bfseries 第十章\quad 函数项级数}{第十章 函数项级数}} % The short title appears at the bottom of every slide, the full title is only on the title page
 \author[函数项级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
-{\Large \bfseries 数项级数的一致收敛性}
+{\Large \bfseries 函数项级数的一致收敛性}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date, can be changed to a custom date
 \date{}
@@ -39,29 +39,169 @@
 
 %------------------------------------------------
 
-\begin{frame}{芝诺悖论 (Zeno's Paradox)}
+\begin{frame}{极限运算能否任意交换次序?}
 
-\includegraphics[width=0.6\textwidth]{images/zeno-paradox.jpg}
+设每个 $u_n(x)$ 在 $[a, b]$ 上连续, 函数项级数 $\sum\limits_{n=1}^\infty u_n(x)$ 在 $[a, b]$ 上逐点收敛于 $S(x).$
+
+\begin{question}
+$S(x)$ 是否也连续? 即能否有
+\[
+\lim_{x \to x_0} \sum_{n=1}^\infty u_n(x) = \sum_{n=1}^\infty \lim_{x \to x_0} u_n(x)?
+\]
+\end{question}
+
+\pause
+\vspace{0.4em}
+
+\alert{答案是否定的.} 以函数列 $S_n(x) = x^n$ 在 $[0, 1]$ 为例:
+\[
+S(x) = \lim_{n\to\infty} x^n = \begin{cases} 0, & x \in [0, 1), \\ 1, & x = 1. \end{cases}
+\]
+每个 $x^n$ 在 $[0, 1]$ 上连续, 但极限函数 $S(x)$ 在 $x = 1$ 处间断!
+
+\pause
+\vspace{0.4em}
+
+\alert{原因在于:} 对不同的 $x,$ $x^n \to 0$ 的速度差别悬殊: 靠近 $x = 1$ 处, 收敛越来越慢, 导致``收敛不一致''.
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{一尺之捶, 日取其半, 万世不竭 | {\smaller[2] 《庄子·天下》}}
+\section[一致收敛]{一致收敛的概念}
 
-\includegraphics[width=0.9\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
+%------------------------------------------------
+
+\begin{frame}{一致收敛的定义}
+
+\begin{Def}[一致收敛]
+称函数项级数 $\sum\limits_{n=1}^\infty u_n(x)$ 在 $D$ 上\textbf{一致收敛}到 $S(x),$ 是指:
+\[
+\forall ~ \varepsilon > 0, ~ \exists ~ N(\varepsilon) ~ (\text{只与 } \varepsilon \text{ 有关}), ~ \text{使得} ~ \forall ~ n \geqslant N, ~ \forall ~ x \in D: ~ \left| S_n(x) - S(x) \right| < \varepsilon.
+\]
+\end{Def}
+
+\pause
+\vspace{0.5em}
+
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\text{\bfseries\color{red!80} 逐点收敛: $N$ 与 $\varepsilon$ 和 $x$ 都有关; \quad 一致收敛: $N$ 只与 $\varepsilon$ 有关.}
+\end{empheq}
+
+\pause
+\vspace{0.5em}
+
+等价地: $\sum u_n(x)$ 在 $D$ 上一致收敛 $\Longleftrightarrow$ $\sup\limits_{x \in D} |S_n(x) - S(x)| \to 0.$
+
+\pause
+
+回到上例: $\sup\limits_{x \in [0,1)} |x^n - 0| = 1 \not\to 0,$ 故 $x^n$ 在 $[0, 1)$ 上\alert{不一致收敛}到 $0.$
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[定义]{数项级数定义}
+\section[判别法]{一致收敛的判别法}
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{Weierstra\ss{} 判别法}
 
+\begin{thm}[Weierstra\ss{} 判别法]
+设 $|u_n(x)| \leqslant a_n$ 对所有 $x \in D$ 和 $n \in \mathbb{N}$ 成立. 若数项级数 $\sum\limits_{n=1}^\infty a_n$ 收敛, 则函数项级数 $\sum\limits_{n=1}^\infty u_n(x)$ 在 $D$ 上一致 (且绝对) 收敛.
+\end{thm}
 
+\pause
+
+\startproof[bg=yellow, fg=red]
+对 $m > n > N(\varepsilon)$ (其中 $N$ 由正项级数 $\sum\limits_{n=1}^\infty a_n$ 的 Cauchy 收敛原理确定), 对所有 $x \in D:$
+\[
+\left| \sum_{k=n+1}^m u_k(x) \right| \leqslant \sum_{k=n+1}^m |u_k(x)| \leqslant \sum_{k=n+1}^m a_k < \varepsilon.
+\]
+由 Cauchy 收敛原理, $\sum\limits_{n=1}^\infty u_n(x)$ 在 $D$ 上一致收敛.
+\qed
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+设 $\sum\limits_{n=1}^\infty |a_n|$ 收敛, 则 $\sum\limits_{n=1}^\infty a_n \sin(nx)$ 在 $\mathbb{R}$ 上一致收敛. (取 $|a_n \sin(nx)| \leqslant |a_n|.$)
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{内闭一致收敛}
+
+\begin{eg}
+判断 $\sum_{n=0}^\infty x^n$ 在 $D = (-1, 1)$ 上的一致收敛性.
+\end{eg}
+
+\pause
+
+在整个 $D = (-1, 1)$ 上, $\sup\limits_{x \in D} |x^n| = 1,$ 无法直接用 Weierstra\ss{} 判别法.
+
+\pause
+\vspace{0.5em}
+
+实际上, 和函数 $S(x) = \dfrac{1}{1-x}$ 在 $x \to 1^-$ 时趋于无穷, 而各项 $|x^n| \leqslant 1$ 有界, 故 $\sum x^n$ 在 $(-1, 1)$ 上\alert{不一致收敛.}
+
+\pause
+\vspace{0.5em}
+
+但对任意 $r \in (0, 1),$ 在 $D_r = [-r, r]$ 上有 $|x^n| \leqslant r^n,$ 而 $\sum r^n < \infty,$ 故 $\sum_{n=0}^\infty x^n$ 在 $(-1, 1)$ 上\alert{内闭一致收敛}: 在每个 $[-r, r] \subset (-1, 1)$ 上一致收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[分析性质]{和函数的分析性质}
+
+%------------------------------------------------
+
+\begin{frame}{和函数的连续性}
+
+\begin{thm}[连续性定理]
+设函数项级数 $\sum_{n=1}^\infty u_n(x)$ 在 $[a, b]$ 上一致收敛到 $S(x),$ 且每项 $u_n(x)$ 在 $[a, b]$ 上连续, 则 $S(x)$ 在 $[a, b]$ 上连续, 即极限运算与求和可以交换次序:
+\[
+\lim_{x \to x_0} \sum_{n=1}^\infty u_n(x) = \sum_{n=1}^\infty \lim_{x \to x_0} u_n(x), \quad \forall ~ x_0 \in [a, b].
+\]
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+固定 $x_0.$ 由三角不等式:
+\[
+|S(x) - S(x_0)| \leqslant \underbrace{|S(x) - S_n(x)|}_{\text{\Circled{1}}} + \underbrace{|S_n(x) - S_n(x_0)|}_{\text{\Circled{2}}} + \underbrace{|S_n(x_0) - S(x_0)|}_{\text{\Circled{3}}}.
+\]
+\pause
+由\alert{一致收敛性,} 取 $N$ 使得对所有 $n \geqslant N$ 及所有 $x \in [a, b],$ $\text{\Circled{1}} < \varepsilon/3$ 且 $\text{\Circled{3}} < \varepsilon/3.$ 固定该 $n,$ 再由 $S_n$ 的\alert{连续性}取 $\delta > 0$ 使得 $|x - x_0| < \delta$ 时 $\text{\Circled{2}} < \varepsilon/3.$
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{逐项积分定理与应用}
+
+\begin{thm}[逐项积分定理]
+设 $\sum_{n=1}^\infty u_n(x)$ 在 $[a, b]$ 上一致收敛到 $S(x),$ 且每项连续, 则积分与求和可以交换次序:
+\[
+\int_a^b S(x) ~ \mathrm{d}x = \sum_{n=1}^\infty \int_a^b u_n(x) ~ \mathrm{d}x.
+\]
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+利用 $\dfrac{1}{1+t^2} = \sum_{n=0}^\infty (-1)^n t^{2n}$ 在任意 $|t| \leqslant r < 1$ 上内闭一致收敛, 对 $|x| < 1$ 逐项积分:
+\[
+\arctan x = \int_0^x \frac{\mathrm{d}t}{1+t^2} = \sum_{n=0}^\infty \frac{(-1)^n}{2n+1} x^{2n+1} = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots
+\]
+\end{eg}
 
 \end{frame}
 
@@ -73,17 +213,31 @@
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 待写
+\begin{itemize}
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{一致收敛的本质:} $N(\varepsilon)$ 与 $x$ 无关; 等价于 $\sup\limits_{x \in D} |S_n(x) - S(x)| \to 0.$
 
 \pause
-\vspace{0.8em}
+\vspace{0.5em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{Weierstra\ss{} 判别法:} $|u_n(x)| \leqslant a_n$ 且 $\sum\limits_{n=1}^\infty a_n < \infty$ $\Rightarrow$ $\sum\limits_{n=1}^\infty u_n(x)$ 在 $D$ 上一致收敛.
 
 \pause
-\vspace{0.8em}
+\vspace{0.5em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{分析性质 (一致收敛是充分条件):}
+\begin{itemize}
+\item 连续性: 各项连续 $+$ 一致收敛 $\Rightarrow$ 和函数连续;
+\item 可积性 (逐项积分): 积分与求和可以交换次序;
+\item 可微性 (逐项求导): 导函数的级数一致收敛时可逐项求导.
+\end{itemize}
+\end{itemize}
+
+\pause
+\vspace{0.5em}
+
+\begin{attnblock}
+一致收敛是上述性质的充分条件, 但并\alert{非}必要条件. 没有一致收敛性时, 上述性质也可能成立.
+\end{attnblock}
 
 \end{frame}
 

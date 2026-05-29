@@ -39,29 +39,196 @@
 
 %------------------------------------------------
 
-\begin{frame}{Zeno悖论 (Zeno's Paradox)}
+\begin{frame}{引言 | {\smaller[2] $\pi$ 与无穷乘积}}
 
-\includegraphics[width=0.6\textwidth]{images/zeno-paradox.jpg}
+历史上最早出现的两个关于 $\pi$ 的美丽公式, 都是无穷乘积的形式:
+
+\pause
+\vspace{0.5em}
+
+{\larger[1]
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\color{red!80} \frac{\pi}{2} = \frac{2}{1} \cdot \frac{2}{3} \cdot \frac{4}{3} \cdot \frac{4}{5} \cdot \frac{6}{5} \cdot \frac{6}{7} \cdots = \prod_{n=1}^\infty \frac{4n^2}{4n^2 - 1} \quad \text{(Wallis, 1655)}
+\end{empheq}
+}
+
+\pause
+\vspace{0.5em}
+
+{\larger[1]
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\color{red!80} \frac{2}{\pi} = \frac{\sqrt{2}}{2} \cdot \frac{\sqrt{2 + \sqrt{2}}}{2} \cdot \frac{\sqrt{2 + \sqrt{2 + \sqrt{2}}}}{2} \cdots \quad \text{(Viète, 1593)}
+\end{empheq}
+}
+
+\pause
+\vspace{0.5em}
+
+这些``无穷多个数相乘''的公式需要精确的定义和分析工具来理解.
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{一尺之捶, 日取其半, 万世不竭 | {\smaller[2] 《庄子·天下》}}
+\begin{frame}{引言 | {\smaller[2] Euler 乘积公式}}
 
-\includegraphics[width=0.9\textwidth]{images/一尺之捶-日取其半-万世不竭.jpg}
+Riemann $\zeta$ 函数与素数分布有深刻的联系:
+\[
+\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s} = \prod_{p ~ \text{prime}} \frac{1}{1 - p^{-s}} = \frac{1}{1-2^{-s}} \cdot \frac{1}{1-3^{-s}} \cdot \frac{1}{1-5^{-s}} \cdots
+\]
+
+\pause
+\vspace{0.5em}
+
+这一等式称为 \textbf{Euler 乘积公式,} 它将 $\zeta$ 函数表示为无穷乘积. 无穷乘积中每个因子对应一个素数, 揭示了 $\zeta$ 函数与素数分布之间的深刻联系.
+
+\pause
+\vspace{0.5em}
+
+以上例子表明无穷乘积在数学中有重要的地位. 接下来我们将给出无穷乘积的严格定义, 并研究它的性质.
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[定义]{数项级数定义}
+\section[定义]{无穷乘积的定义}
 
 %------------------------------------------------
 
-\begin{frame}{待写}
+\begin{frame}{无穷乘积的定义}
 
+设 $p_1, p_2, \ldots$ 是一个数列, 形式地称它们的``积''为\textbf{无穷乘积}:
+\[
+\prod_{n=1}^\infty p_n = p_1 \cdot p_2 \cdot p_3 \cdots
+\]
 
+\pause
+\vspace{0.3em}
+
+类比数项级数, 定义前 $n$ 项的\textbf{部分积}为 $P_n = \prod\limits_{k=1}^n p_k.$
+
+\pause
+
+\begin{Def}[无穷乘积的收敛性]
+若部分积序列 $\{P_n\}$ 收敛于\alert{非零}有限实数 $P,$ 则称无穷乘积 $\prod\limits_{n=1}^\infty p_n$ \textbf{收敛,} 并称 $P$ 为其值. 若 $\{P_n\}$ 发散或收敛于零, 则称其\textbf{发散.}
+\end{Def}
+
+\pause
+\vspace{0.3em}
+
+\begin{attnblock}
+与数项级数相比, 要求极限值\alert{非零}. 若 $P_n \to 0,$ 称为\textbf{发散到零}, 是一种特殊的发散情况.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[典型例子]{典型例子}
+
+%------------------------------------------------
+
+\begin{frame}{收敛的必要条件与基本例子}
+
+\begin{thm}[收敛的必要条件]
+若 $\prod\limits_{n=1}^\infty p_n$ 收敛, 则 $\lim\limits_{n \to \infty} p_n = 1.$
+\end{thm}
+
+\startproof[bg=yellow, fg=red]
+$\lim\limits_{n \to \infty} p_n = \lim\limits_{n \to \infty} \dfrac{P_n}{P_{n-1}} = \dfrac{P}{P} = 1.$
+\qed
+
+\pause
+\vspace{0.5em}
+
+因此收敛的无穷乘积的通项可以写成 $p_n = 1 + a_n,$ 其中 $a_n \to 0.$
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}
+$\prod\limits_{n=1}^\infty \left(1 + \dfrac{1}{n}\right)$ 满足必要条件, 但部分积 $P_n = n + 1 \to +\infty,$ 故发散.
+
+$\prod\limits_{n=1}^\infty \left(1 - \dfrac{1}{n+1}\right)$ 的部分积 $P_n = \dfrac{1}{n+1} \to 0,$ 发散到零.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Wallis 公式}
+
+\begin{thm}[Wallis 公式, 1655]
+\[
+\frac{\pi}{2} = \prod_{n=1}^\infty \frac{4n^2}{4n^2 - 1} = \lim_{n \to \infty} \frac{((2n)!!)^2}{(2n-1)!! \cdot (2n+1)!!}.
+\]
+\end{thm}
+
+\startproof[bg=yellow, fg=red]
+部分积 $P_n = \dfrac{((2n)!!)^2}{(2n-1)!! \cdot (2n+1)!!}.$ 令 $\displaystyle I_m = \int_0^{\pi/2} \sin^m x ~ \mathrm{d}x,$ 由递推可得
+\[
+I_{2n} = \frac{(2n-1)!!}{(2n)!!} \cdot \frac{\pi}{2}, \quad I_{2n+1} = \frac{(2n)!!}{(2n+1)!!},
+\]
+故 $\dfrac{I_{2n}}{I_{2n+1}} = \dfrac{\pi}{2P_n}.$ 由于 $\sin^{2n+1} x \leqslant \sin^{2n} x \leqslant \sin^{2n-1} x$ 在 $[0, \pi/2]$ 上成立, 有
+\[
+1 \leqslant \frac{I_{2n}}{I_{2n+1}} \leqslant \frac{I_{2n-1}}{I_{2n+1}} = \frac{2n+1}{2n} \to 1,
+\]
+由夹逼准则 $\dfrac{I_{2n}}{I_{2n+1}} \to 1,$ 故 $P_n \to \dfrac{\pi}{2}.$
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Viète 公式}
+
+\begin{thm}[Viète 公式, 1593]
+对 $x \neq 0,$ 有
+\[
+\prod_{n=1}^\infty \cos \frac{x}{2^{n}} = \frac{\sin x}{x}.
+\]
+令 $x = \pi/2,$ 即得 $\dfrac{2}{\pi} = \dfrac{\sqrt{2}}{2} \cdot \dfrac{\sqrt{2+\sqrt{2}}}{2} \cdot \dfrac{\sqrt{2+\sqrt{2+\sqrt{2}}}}{2} \cdots$
+\end{thm}
+
+\startproof[bg=yellow, fg=red]
+部分积 $P_n = \prod\limits_{k=1}^n \cos \dfrac{x}{2^k}.$ 反复利用二倍角公式 $\sin 2\theta = 2\sin\theta\cos\theta:$
+\[
+\sin\frac{x}{2^n} \cdot P_n = \frac{\sin x}{2^n},
+\]
+故 $P_n = \dfrac{\sin x}{2^n \sin\frac{x}{2^n}} \to \dfrac{\sin x}{x}$ 当 $n \to \infty.$
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[与级数的关系]{与数项级数的关系}
+
+%------------------------------------------------
+
+\begin{frame}{与数项级数的关系 | {\smaller[2] 充要条件}}
+
+\begin{thm}
+无穷乘积 $\prod\limits_{n=1}^\infty p_n$ ($p_n > 0$) 收敛的充要条件是数项级数 $\sum\limits_{n=1}^\infty \ln p_n$ 收敛.
+\end{thm}
+
+\startproof[bg=yellow, fg=red]
+设部分和 $S_n = \sum\limits_{k=1}^n \ln p_k = \ln P_n.$ 则 $P_n \to P > 0$ $\Longleftrightarrow$ $S_n \to \ln P.$
+\qed
+
+\pause
+\vspace{0.5em}
+
+\begin{cor}
+设 $a_n$ 从某项起恒正或恒负, 则 $\prod\limits_{n=1}^\infty (1 + a_n)$ 收敛 $\Longleftrightarrow$ $\sum\limits_{n=1}^\infty a_n$ 收敛.
+\end{cor}
+
+这是因为 $a_n \to 0$ 时 $\dfrac{\ln(1 + a_n)}{a_n} \to 1,$ 由比较判别法的极限形式即得.
+
+\pause
+\vspace{0.5em}
+
+由此推论可快速判断: Wallis 乘积中 $a_n = -\dfrac{1}{4n^2},$ $\sum\limits_{n=1}^\infty a_n$ 收敛, 故收敛; Viète 乘积中 $a_n = \cos\dfrac{x}{2^n} - 1 \sim -\dfrac{x^2}{2^{2n+1}},$ $\sum\limits_{n=1}^\infty a_n$ 收敛, 故收敛.
 
 \end{frame}
 
@@ -73,17 +240,27 @@
 
 \begin{frame}{总结}
 
-{\larger[2] \color{red} \ding{43}} 待写
+\begin{itemize}
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{定义:} $\prod\limits_{n=1}^\infty p_n := \lim_{n\to\infty} P_n$ (要求极限\alert{非零}).
 
 \pause
 \vspace{0.8em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{必要条件:} $p_n \to 1$ (即 $a_n \to 0,$ 其中 $p_n = 1 + a_n$).
 
 \pause
 \vspace{0.8em}
 
-{\larger[2] \color{red} \ding{43}} 待写
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{典型例子:}
+\begin{align*}
+&\text{Wallis:} \quad \frac{\pi}{2} = \prod\limits_{n=1}^\infty \frac{4n^2}{4n^2-1}; \qquad \text{Viète:} \quad \frac{\sin x}{x} = \prod\limits_{n=1}^\infty \cos \frac{x}{2^n}.
+\end{align*}
+
+\pause
+\vspace{0.4em}
+
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{与数项级数的关系:} $\prod\limits_{n=1}^\infty (1+a_n)$ 收敛 $\Longleftrightarrow$ $\sum\limits_{n=1}^\infty \ln(1+a_n)$ 收敛; 若 $a_n$ 恒号, 还等价于 $\sum\limits_{n=1}^\infty a_n$ 收敛.
+\end{itemize}
 
 \end{frame}
 

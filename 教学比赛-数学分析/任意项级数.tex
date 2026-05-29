@@ -43,7 +43,7 @@
 
 \begin{columns}
 \begin{column}{0.55\textwidth}
-一个级数, 如果只有有限个负项或有限个正项, 都可以用正项级数的~{\color{red}各种判别法}来判断它的敛散性.
+一个级数, 如果只有有限个负项或有限个正项, 都可以用正项级数的~{\color{red}各种判别法}~来判断它的敛散性.
 
 \vspace{0.6em}
 
@@ -85,7 +85,9 @@
 
 \begin{thm}[Cauchy 收敛原理]
 级数 $\sum\limits_{n=1}^\infty x_n$ 收敛的充分必要条件是: 对任意给定的 $\varepsilon > 0,$ 存在正整数$N,$ 使得
-\[\left\lvert x_{n+1} + x_{n+2} + \cdots + x_m \right\rvert = \left\lvert \sum\limits_{k=n+1}^m x_k \right\rvert < \varepsilon\]
+\[
+\left\lvert x_{n+1} + x_{n+2} + \cdots + x_m \right\rvert = \left\lvert \sum\limits_{k=n+1}^m x_k \right\rvert < \varepsilon
+\]
 对一切 $m > n > N$ 成立.
 \end{thm}
 
@@ -123,7 +125,7 @@
 \pause
 
 \begin{block}{Leibniz 级数的一些例子}
-\vspace{-1.5em}
+\vspace{-1em}
 \[\sum\limits_{n=1}^\infty \dfrac{(-1)^{n+1}}{n^s} (s > 0), ~~~ \sum\limits_{n=2}^\infty (-1)^{n} \dfrac{\ln{n}}{n}, ~~~ \sum\limits_{n=1}^\infty (-1)^{n+1} \dfrac{n^2}{n^3 + 1}, ~~ \cdots\]
 \end{block}
 
@@ -147,7 +149,7 @@
 
 \pause
 
-容易看出 $\{u_n = \sin \dfrac{\pi}{\sqrt{n^2+1} + n}\}$ 是单调减小数列, 且
+容易看出 $\left\{ u_n = \sin \dfrac{\pi}{\sqrt{n^2+1} + n} \right\}$ 是单调减小数列, 且
 \[\lim\limits_{n\to\infty} \sin \dfrac{\pi}{\sqrt{n^2+1} + n} = 0,\]
 可知 $\sum\limits_{n=1}^\infty \sin \left( \sqrt{n^2+1} \pi \right)$ 是 Leibniz 级数.
 
@@ -171,13 +173,13 @@ Leibniz 级数必定收敛.
 \[\left\lvert x_{n+1} + x_{n+2} + \cdots + x_{n+p} \right\rvert = \left\lvert u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \right\rvert.\]
 \pause
 当 $p$ 是奇数时, 有
-\begin{multline*}
-u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \\
+\begin{equation*}
+u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p}
 = \begin{cases}
 (u_{n+1} - u_{n+2}) + \cdots + (u_{n+p-2} - u_{n+p-1}) + u_{n+p} ~ {\color{red} \geqslant u_{n+p}}, \\
 u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - (u_{n+p-1} - u_{n+p}) ~ {\color{red} \leqslant u_{n+1}}
 \end{cases}
-\end{multline*}
+\end{equation*}
 
 \end{frame}
 
@@ -186,21 +188,20 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - (u_{n+p-1} - u_{n+p}) ~ {\color{red} \l
 \begin{frame}{Leibniz 判别法的证明}
 
 当 $p$ 是偶数时, 有
-\begin{multline*}
-u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \\
+\begin{equation*}
+u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p}
 = \begin{cases}
 (u_{n+1} - u_{n+2}) + \cdots + (u_{n+p-2} - u_{n+p-1}) ~ {\color{red} \geqslant 0}, \\
 u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1}}.
 \end{cases}
-\end{multline*}
+\end{equation*}
 
 \pause
 
 总之, 成立
-\begin{align*}
-\left\lvert x_{n+1} + x_{n+2} + \cdots + x_{n+p} \right\rvert & = \left\lvert u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \right\rvert \\
-& \leqslant u_{n+1}.
-\end{align*}
+\[
+\left\lvert x_{n+1} + x_{n+2} + \cdots + x_{n+p} \right\rvert = \left\lvert u_{n+1} - u_{n+2} + \cdots + (-1)^{p+1} u_{n+p} \right\rvert \leqslant u_{n+1}.
+\]
 
 由于 $\lim\limits_{n\to\infty} u_n = 0,$ 所以对于任意给定的 $\varepsilon > 0,$ 存在正整数 $N,$ 使得对一切 $n > N,$ 成立
 \only<2-2>{
@@ -231,12 +232,14 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 考虑 $\int_a^{+\infty} f(x)g(x) \mathrm{d} x,$ 有
 \begin{itemize}
 \item[(1)] Abel 判别法:
-\[\int_a^{+\infty} f(x) \mathrm{d} x ~ \text{收敛}, ~ g(x) ~ \text{单调有界} ~ \Longrightarrow ~ \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛};\]
+\[
+\int_a^{+\infty} f(x) \mathrm{d} x ~ \text{收敛}, ~ g(x) ~ \text{单调有界} ~ \Longrightarrow ~ \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛};
+\]
 \item[(2)] Dirichlet判别法:
-\begin{multline*}
-\int_a^{A} f(x) \mathrm{d} x ~ \text{关于 $A$ 有界}, ~ g(x) ~ \text{单调}, ~ \lim\limits_{x\to\infty} g(x) = 0 \\
+\[
+\int_a^{A} f(x) \mathrm{d} x ~ \text{关于 $A$ 有界}, ~ g(x) ~ \text{单调}, ~ \lim\limits_{x\to\infty} g(x) = 0
 \Longrightarrow \int_a^{+\infty} f(x)g(x) \mathrm{d} x ~ \text{收敛}
-\end{multline*}
+\]
 \end{itemize}
 
 \pause
@@ -271,15 +274,12 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 \pause
 
 (1). Abel 判别法: 条件为 $\sum\limits_{n=1}^{\infty} b_n$ 收敛, $a_n$ 单调有界.
-\vspace{-1em}
 \begin{align*}
 \sum\limits_{n=1}^{\infty} b_n ~ \text{收敛} ~~ & ~ {\color{red}\Longrightarrow} ~~
 \only<2>{\phantom{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall ~ m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.}}
 \only<3->{\forall~\varepsilon > 0, \exists N, ~ \text{使得} ~ \forall ~ m > n > N, \left\lvert \sum\limits_{k=n+1}^{m} b_k \right\rvert < \varepsilon.} \\
 \only<4->{a_n ~ \text{单调有界} ~~ & ~ {\color{red}\Longrightarrow}} ~~ \only<5->{\exists M > 0, ~ \text{使得} ~ \lvert a_n \rvert < M ~ \text{对所有 $n$ 成立}}
 \end{align*}
-
-\vspace{-1em}
 
 \only<6->{
 \begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
@@ -294,14 +294,12 @@ u_{n+1} - (u_{n+2} - u_{n+3}) - \cdots - u_{n+p} ~ {\color{red} \leqslant u_{n+1
 \begin{frame}{A-D 判别法的分析与证明}
 
 事实上, 如果记 $B_t = \sum\limits_{k=n+1}^{t} b_k, t > n,$ 并约定 ${\color{red}B_n = 0},$ 那么所有的 $B_t$ 都满足 $\lvert B_t \rvert < \varepsilon,$ 并且有
-{\smaller[1]
 \begin{align*}
 \left\lvert \sum\limits_{k=n+1}^{m} a_k b_k \right\rvert & = \left\lvert \sum\limits_{k=n+1}^{m} a_k \left( B_{k} - B_{k-1} \right) \right\rvert = \left\lvert \sum\limits_{k=n+1}^{m} a_k B_{k} - \sum\limits_{k = ~ {\color{red}n+1}}^{{\color{red}m}} a_{{\color{red}k}} B_{{\color{red}k-1}} \right\rvert \\
 & = \left\lvert \sum\limits_{k=n+1}^{m} a_k B_{k} - \sum\limits_{k = ~ {\color{red}n}}^{{\color{red}m-1}} a_{{\color{red}k+1}} B_{{\color{red}k}} \right\rvert \\
 & = \left\lvert a_mB_m - \sum\limits_{k=n+1}^{m-1} (a_{k+1} - a_k) B_{k} + a_{n+1}{\color{red}B_n} \right\rvert \\
 & \leqslant \left\lvert a_m \right\rvert \varepsilon + \sum\limits_{k=n+1}^{m-1} \left\lvert a_{k+1} - a_k \right\rvert \varepsilon
 \end{align*}
-}
 
 \end{frame}
 
@@ -340,6 +338,7 @@ a_n ~ \text{单调趋于 $0$} ~~ & {\color{red}\Longrightarrow} ~~
 & = \left( \left\lvert a_m \right\rvert + \left\lvert a_{n+1} - a_{m} \right\rvert \right) \cdot 2M \\
 & < 6M\varepsilon
 \end{align*}
+\qed
 }
 
 \end{frame}
@@ -450,26 +449,20 @@ $\{a_n\}$ 单调趋于 $0,$ 这一条件是 Dirichlet 判别法的一半; 自然
 \begin{frame}{A-D 判别法的应用}
 
 \textbf{方法二:} 利用三角函数的和差化积、积化和差公式:
-{
-% \smaller[1]
 \begin{align*}
 2\sum\limits_{n=1}^N \sin nx & = \sin x + \left( \sin x + \sin 2x \right) + \cdots + \sin Nx \\
 & = \sin x + ~ {\color{red} \sin \dfrac{3}{2}x} \cos \dfrac{1}{2}x + \cdots + ~ {\color{red} \sin \dfrac{2N-1}{2}x} \cos \dfrac{1}{2}x + \sin Nx
 \end{align*}
-}
 \pause
 两边同时乘以 ${\color{red} \sin \dfrac{1}{2}x},$ 再利用
 \[\sin \dfrac{1}{2}x \sin \sin \dfrac{2k-1}{2}x = \cos (k-1)x - \cos kx,\]
 相邻项交错相消, 有
-{
-% \smaller[1]
 \begin{align*}
 2\sin \dfrac{1}{2}x\sum\limits_{n=1}^N \sin nx
 = & \sin \dfrac{1}{2}x \sin x + \cos \dfrac{1}{2}x \cos x - \cos \dfrac{1}{2}x \cos Nx \\
 & + \sin \dfrac{1}{2}x \sin Nx
 = \cos\dfrac{x}{2} - \cos \left(N + \dfrac{1}{2}\right) x
 \end{align*}
-}
 \qed
 
 \end{frame}
