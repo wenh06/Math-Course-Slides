@@ -342,17 +342,17 @@ r_n(x) & = \int_{x_0}^x r_n'(t) ~ \mathrm{d}t = \int_{x_0}^x r_n'(t) ~ {\color{r
 \frametitle{积分形式余项公式}
 
 \begin{remark}
-积分形式的余项公式可以推出其它形式的余项公式:
+积分形式的余项公式可以 ({\color{red}利用积分第一中值定理}) 推出其它形式的余项公式:
 \begin{itemize}
 \item Lagrange 形式:
 \begin{align*}
-r_n(x) & = \frac{1}{n!} \int_{x_0}^x f^{(n+1)}(t) \underbrace{(x - t)^n}_{\text{不变号}} ~ \mathrm{d}t = \frac{1}{n!} f^{(n+1)}(\xi) \int_{x_0}^x (x - t)^n ~ \mathrm{d}t \\
+r_n(x) & = \frac{1}{n!} \int_{x_0}^x ~ {\color{red} f^{(n+1)}(t)} \underbrace{{\color{cyan}(x - t)^n}}_{\text{不变号}} ~ \mathrm{d}t = \frac{1}{n!} ~ {\color{red} f^{(n+1)}(\xi)} \int_{x_0}^x ~ {\color{cyan} (x - t)^n} ~ \mathrm{d}t \\
 & = \frac{f^{(n+1)}(\xi)}{(n+1)!} \left. \left( -(x-t)^{n+1} \right) \right|_{t=x_0}^{t=x} = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1}.
 \end{align*}
 \pause
 \item Cauchy 形式:
 \begin{align*}
-r_n(x) & = \frac{1}{n!} \int_{x_0}^x f^{(n+1)}(t) (x - t)^n ~ \mathrm{d}t = \frac{1}{n!} f^{(n+1)}(c) (x - c)^n \int_{x_0}^x ~ \mathrm{d}t \\
+r_n(x) & = \frac{1}{n!} \int_{x_0}^x ~ {\color{red} f^{(n+1)}(t) (x - t)^n} ~ \mathrm{d}t = \frac{1}{n!} ~ {\color{red} f^{(n+1)}(c) (x - c)^n} \int_{x_0}^x ~ \mathrm{d}t \\
 & = \frac{f^{(n+1)}(c)}{n!} (x - c)^n (x - x_0).
 \end{align*}
 \end{itemize}
