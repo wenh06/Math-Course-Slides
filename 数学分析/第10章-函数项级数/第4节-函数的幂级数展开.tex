@@ -329,7 +329,7 @@ r_n^{(k)}(x) = f^{(k)}(x) - \sum_{j=k}^n \frac{f^{(j)}(x_0)}{j!} j (j-1) \cdots 
 
 再反过来逐次应用分部积分, 可以得到
 \begin{align*}
-r_n(x) & = \int_{x_0}^x r_n'(t) ~ \mathrm{d}t = \int_{x_0}^x r_n'(t) ~ {\color{red} \mathrm{d} (t-x)} = \int_{x_0}^x r_n''(t) \cdot (x - t) ~ \mathrm{d}t = \int_{x_0}^x r_n''(t) ~ \mathrm{d} \frac{(x - t)^2}{2} \\
+r_n(x) & = \int_{x_0}^x r_n'(t) ~ \mathrm{d}t = \int_{x_0}^x r_n'(t) ~ {\color{red} \mathrm{d} (t-x)} = \int_{x_0}^x r_n''(t) \cdot (x - t) ~ \mathrm{d}t = - \int_{x_0}^x r_n''(t) ~ \mathrm{d} \frac{(x - t)^2}{2} \\
 & = \cdots = \left( \int_{x_0}^x r_n^{(k)}(t) \cdot (x - t)^{k-1} ~ \mathrm{d} t \right) \cdot \frac{1}{(k-1)!} = \cdots = \frac{1}{n!} \int_{x_0}^x {\color{red} r_n^{(n+1)}(t)} (x - t)^n ~ \mathrm{d}t \\
 & = \frac{1}{n!} \int_{x_0}^x {\color{red} f^{(n+1)}(t)} (x - t)^n ~ \mathrm{d}t.
 \end{align*}
@@ -399,9 +399,9 @@ r_n(x) & = \frac{1}{n!} \int_{x_0}^x f^{(n+1)}(t) (x - t)^n ~ \mathrm{d}t = \fra
 \pause
 \vspace{0.5em}
 
-由于 $\sin^{(n)}(x) = \sin (x + n\pi),$ 从而 $\sin^{(n)}(0) = \begin{cases} 0, & n = 2k \text{ 是偶数}, \\ (-1)^{\frac{n-1}{2}}, & n = 2k+1 \text{ 是奇数}. \end{cases}$ 所以 $\sin x$ 在 $x = 0$ 处的幂级数展开为
+由于 $\sin^{(n)}(x) = \sin (x + n\pi/2),$ 从而 $\sin^{(n)}(0) = \begin{cases} 0, & n = 2k \text{ 是偶数}, \\ (-1)^{\frac{n-1}{2}}, & n = 2k+1 \text{ 是奇数}. \end{cases}$ 所以 $\sin x$ 在 $x = 0$ 处的幂级数为
 \[
-\sin x = \sum_{k=0}^n \frac{\sin^{(k)}(0)}{k!} x^k + r_n(x) = \sum_{k=0}^n \frac{(-1)^k}{(2k+1)!} x^{2k+1} + r_{2n + 2}(x),
+\sum_{k=0}^n \frac{\sin^{(k)}(0)}{k!} x^k + r_n(x) = \sum_{k=0}^n \frac{(-1)^k}{(2k+1)!} x^{2k+1} + r_{2n + 2}(x),
 \]
 其中 $r_{2n + 2}(x) = \frac{1}{(2n+3)!} \underbrace{\sin^{(2n+3)}(\xi)}_{\text{绝对值} \leqslant 1} x^{2n+3} \xrightarrow{n \to \infty} 0.$ 所以 $\sin x$ 在 $x = 0$ 处的幂级数展开为
 \[
@@ -700,7 +700,7 @@ f^{(n)}(x) = \alpha (\alpha - 1) \cdots (\alpha - n + 1) (1 + x)^{\alpha - n} = 
 \begin{itemize}
 \item Lagrange 形式:
 \[
-r_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} x^{n+1} = C_\alpha^{n+1} (1 + \xi)^{\alpha - n - 1} x^{n+1} = (1 + \xi)^{\alpha} \underbrace{C_\alpha^{n+1} x^{n+1}}_{\text{d'Alembert}, \to 0} \underbrace{\left( \frac{1}{1 + \xi} \right)^{n+1}}_{\text{$x < 0$ 时不好判断}}.
+r_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} x^{n+1} = C_\alpha^{n+1} (1 + \xi)^{\alpha - n - 1} x^{n+1} = (1 + \xi)^{\alpha} \underbrace{C_\alpha^{n+1} x^{n+1}}_{\text{收敛级数通项} \to 0} \underbrace{\left( \frac{1}{1 + \xi} \right)^{n+1}}_{\text{$x < 0$ 时不好判断}}.
 \]
 \end{itemize}
 
@@ -716,7 +716,7 @@ r_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} x^{n+1} = C_\alpha^{n+1} (1 + \xi)^{\alph
 \begin{align*}
 r_n(x) & = \frac{f^{(n+1)}(c)}{n!} (x - c)^n x = (n + 1) C_\alpha^{n+1} (1 + c)^{\alpha - n - 1} (x - c)^n x \\
 & = (n + 1) C_\alpha^{n+1} (1 + \theta x)^{\alpha - n - 1} \cdot (1 - \theta)^n x^{n+1} \\
-& = (1 + \theta x)^{\alpha-1} \cdot \underbrace{(n + 1) C_\alpha^{n+1} x^{n+1}}_{\text{d'Alembert}, \to 0} \cdot \left( \underbrace{\frac{1 - \theta}{1 + \theta x}}_{\in (0, 1)} \right)^n \to 0.
+& = (1 + \theta x)^{\alpha-1} \cdot \underbrace{(n + 1) C_\alpha^{n+1} x^{n+1}}_{\text{收敛级数通项} \to 0} \cdot \left( \underbrace{\frac{1 - \theta}{1 + \theta x}}_{\in (0, 1)} \right)^n \to 0.
 \end{align*}
 \end{itemize}
 因此在 $|x| < 1$ 内, $f(x) = (1 + x)^{\alpha}$ 的幂级数展开为 $\sum_{n=0}^\infty C_\alpha^n x^n.$
@@ -1019,7 +1019,7 @@ h_1(t) = \frac{1+t}{2(1-t)} = -\frac{1}{2 i \pi} \sum_{n \in \mathbb{Z}} \frac{1
 取 $x = i,$ 那么 $t = e^{2 i \pi x} = e^{-2 \pi}.$ 代入 $h_1(t),$ 可得
 \begin{align*}
 \frac{1 + e^{-2 \pi}}{2(1 - e^{-2 \pi})} & = h_1(t) = -\frac{1}{2 i \pi} \left( \frac{1}{x} + \sum_{n=1}^\infty \frac{-2x}{n^2 - x^2} \right) = -\frac{1}{2 i \pi} \left( \frac{1}{i} + \sum_{n=1}^\infty \frac{-2i}{n^2 + 1} \right) \\
-& = -\frac{1}{2 i \pi} \cdot i \left( 1 + 2 \sum_{n=1}^\infty \frac{1}{n^2 + 1} \right) = \frac{1}{2 \pi} \left( 1 + 2 \sum_{n=1}^\infty \frac{1}{n^2 + 1} \right).
+& = -\frac{1}{2 i \pi} \cdot \frac{1}{i} \left( 1 + 2 \sum_{n=1}^\infty \frac{1}{n^2 + 1} \right) = \frac{1}{2 \pi} \left( 1 + 2 \sum_{n=1}^\infty \frac{1}{n^2 + 1} \right).
 \end{align*}
 \pause
 从而
