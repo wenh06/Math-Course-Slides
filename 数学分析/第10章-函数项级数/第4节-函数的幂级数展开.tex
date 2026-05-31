@@ -607,7 +607,8 @@ x \cot x = ix + \left( 1 - \frac{2ix}{2} + \sum_{n=1}^\infty \frac{B_{2n}}{(2n)!
 \begin{align*}
 \tan x & = \cot x - 2 \cot 2x \\
 & = \left( \frac{1}{x} + \sum_{n=1}^\infty (-1)^n \cdot \frac{2^{2n} B_{2n}}{(2n)!} x^{2n-1} \right) - 2 \left( \frac{1}{2x} + \sum_{n=1}^\infty (-1)^n \cdot \frac{2^{2n} B_{2n}}{(2n)!} (2x)^{2n-1} \right) \\
-& = \sum_{n=1}^\infty (-1)^n \cdot \frac{4^n (1 - 4^n) B_{2n}}{(2n)!} x^{2n-1}.
+& = \sum_{n=1}^\infty (-1)^n \cdot \frac{4^n (1 - 4^n) B_{2n}}{(2n)!} x^{2n-1} \\
+& = \sum_{n=1}^\infty \frac{2 \cdot 4^n (4^n - 1)}{(2\pi)^{2n}} \zeta(2n) \cdot x^{2n-1}.
 \end{align*}
 
 \end{frame}
@@ -624,7 +625,7 @@ x \cot x = ix + \left( 1 - \frac{2ix}{2} + \sum_{n=1}^\infty \frac{B_{2n}}{(2n)!
 & = \lim_{n \to \infty} \left| 2 \cdot \frac{4^{n+1} - 1}{4^n - 1} \cdot \frac{(2n+2)(2n+1)}{(2n + 1)(n + 1)} \cdot \frac{\zeta(2n+2)}{\zeta(2n)} \cdot \frac{1}{4\pi^2} \right| \\
 & = 2 \cdot 4 \cdot 2 \cdot 1 \cdot \frac{1}{4\pi^2} = \frac{4}{\pi^2} ~~ \implies ~~ r = \frac{\pi}{2}.
 \end{align*}
-注意, 这里用了 $\lim_{s \to +\infty} \zeta(s) = \lim_{s \to +\infty} \sum_{n=1}^\infty \frac{1}{n^s} = 1$ 的性质.
+注意, 这里用了 $\lim_{s \to +\infty} \zeta(s) = \lim_{s \to +\infty} \sum_{n=1}^\infty \frac{1}{n^s} = 1$ 的性质. (\alert{思考一下如何证明})
 
 \pause
 \vspace{0.5em}
@@ -653,6 +654,54 @@ x \cot x = ix + \left( 1 - \frac{2ix}{2} + \sum_{n=1}^\infty \frac{B_{2n}}{(2n)!
 \vspace{0.5em}
 
 \alert{注意}, 用 Taylor 公式余项 $r_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} x^{n+1}$ 的极限行为来验证 $\tan x$ 的幂级数展开的正确性是比较麻烦的, 因为 $\tan x$ 的 $n$ 阶导数的表达式比较复杂, 从而 $r_n(x)$ 的表达式也比较复杂. 但是通过上面的方法, 可以比较简洁地验证 $\tan x$ 的幂级数展开的正确性.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{三角函数的幂级数展开 | 几个注记}
+
+{\color{red} \ding{43}} \textbf{注 1: 为何不从 $\tan x = \frac{e^{2ix}-1}{i(e^{2ix}+1)}$ 直接推导?}
+\vspace{0.3em}
+
+令 $z = 2ix,$ 直接展开 $\frac{e^z-1}{e^z+1}$ 需要代数恒等式
+\[
+\frac{z}{e^z+1} = \frac{z}{e^z-1} - \frac{2z}{e^{2z}-1}.
+\]
+代入 $z = 2ix$ 后此式即化为 $\tan x = \cot x - 2\cot 2x,$ 故``直接路径''与上述推导代数等价, 并无捷径.
+
+\pause
+\vspace{0.5em}
+
+{\color{red} \ding{43}} \textbf{注 2: $\tan x$ 的展开与 Riemann $\zeta$ 函数在正偶数处的特殊值}
+\vspace{0.3em}
+
+由展开式 $\tan x = \sum_{n=1}^\infty \frac{2 \cdot 4^n(4^n-1)}{(2\pi)^{2n}} \zeta(2n) \cdot x^{2n-1} = \sum_{n=1}^\infty \frac{\tan^{(n)}(0)}{n!} x^n = \sum_{n=1}^\infty c_n x^n$ 比较系数, 一般地有
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\zeta(2n) = \frac{(2\pi)^{2n}}{2 \cdot 4^n(4^n-1)} \cdot \frac{\tan^{(2n-1)}(0)}{(2n-1)!} = \frac{(2\pi)^{2n}}{2 \cdot 4^n(4^n-1)} \cdot c_{2n-1}.
+\end{empheq}
+\pause
+利用 $c_1 = 1, c_3 = \frac{1}{3}, c_5 = \frac{2}{15}$ 可得 \quad $\zeta(2) = \frac{\pi^2}{6}, \quad \zeta(4) = \frac{\pi^4}{90}, \quad \zeta(6) = \frac{\pi^6}{945}, \quad \dots$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{三角函数的幂级数展开 | 几个注记}
+
+{\color{red} \ding{43}} \textbf{注 3: $\tan x$ 幂级数展开的收敛域}
+\vspace{0.5em}
+
+由 $\tan x = \sum_{n=1}^\infty \frac{2 \cdot 4^n (4^n - 1)}{(2\pi)^{2n}} \zeta(2n) \cdot x^{2n-1},$ 代入 $x = \pm \frac{\pi}{2}$ 可得
+\[
+\sum_{n=1}^\infty \frac{2 \cdot 4^n (4^n - 1)}{(2\pi)^{2n}} \zeta(2n) \cdot \left( \pm \frac{\pi}{2} \right)^{2n-1} = \pm \sum_{n=1}^\infty \frac{4^n - 1}{4^n} \zeta(2n).
+\]
+由于 $\zeta(2n) \to 1$ ($n \to \infty$), 从而通项不趋于零, 故 $\sum_{n=1}^\infty \frac{4^n - 1}{4^n} \zeta(2n)$ 发散, 所以 $\tan x$ 的幂级数展开在 $x = \pm \frac{\pi}{2}$ 处发散, 从而 $\tan x$ 的幂级数展开的收敛域为
+\[
+\left( -\frac{\pi}{2}, \frac{\pi}{2} \right).
+\]
 
 \end{frame}
 
