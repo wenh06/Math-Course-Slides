@@ -1,0 +1,304 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[数学分析]{\texorpdfstring{\LARGE \bfseries 第十章\quad 函数项级数}{第十章 函数项级数}}
+\author[$\tan x$ 的幂级数展开]
+{\Large \bfseries $\tan x$ 的幂级数展开}
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要}
+% \tableofcontents
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+%------------------------------------------------
+
+\begin{frame}{引言 | 一个自然的问题}
+
+$\sin x$ 与 $\cos x$ 都有简洁的 Taylor 展开:
+\[
+\sin x = \sum_{n=0}^\infty \frac{(-1)^n}{(2n+1)!} x^{2n+1}, \quad \cos x = \sum_{n=0}^\infty \frac{(-1)^n}{(2n)!} x^{2n}.
+\]
+
+\pause
+\vspace{0.5em}
+
+\begin{question}
+作为商 $\dfrac{\sin x}{\cos x},$ $\tan x$ 的幂级数展开是什么?
+\end{question}
+
+\pause
+\vspace{0.4em}
+
+\begin{attnblock}
+\textbf{直接求导的困难:} Taylor 公式要求计算 $\tan^{(n)}(0).$ 然而 $\tan x$ 的高阶导数越来越复杂 (如三阶导 $(\tan x)''' = -6 \cos^{-4} x \sin^2 x + 2 \cos^{-3} x \cos x$), 难以给出统一的闭形式的表达式, 余项估计也非常麻烦.
+\end{attnblock}
+
+\pause
+\vspace{0.3em}
+
+\alert{关键思路:} 绕开直接求导, 利用 \textbf{Bernoulli 数}及一个关于 $\tan$ 与 $\cot$ 的\textbf{代数恒等式}来推导.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Bernoulli 数]{Bernoulli 数}
+
+%------------------------------------------------
+
+\begin{frame}{Bernoulli 数}
+
+\begin{Def}[Bernoulli 数]
+Bernoulli 数 $\{B_n\}_{n \geqslant 0}$ 由以下生成函数隐式定义:
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\frac{z}{e^z - 1} = \sum_{n=0}^\infty \frac{B_n}{n!} z^n, \quad |z| < 2\pi.
+\end{empheq}
+\end{Def}
+
+\pause
+\vspace{0.4em}
+
+可以用待定系数法递推计算得到前几个值:
+\[
+B_0 = 1, \quad B_1 = -\frac{1}{2}, \quad B_2 = \frac{1}{6}, \quad B_4 = -\frac{1}{30}, \quad B_6 = \frac{1}{42}, \quad \ldots
+\]
+
+\pause
+\vspace{0.3em}
+
+\begin{prop}[Bernoulli 数的关键性质]
+$B_{2k+1} = 0$ 对所有 $k \geqslant 1$ 成立, 即 $B_1 = -\dfrac{1}{2}$ 是唯一非零奇数阶 Bernoulli 数.
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[$\cot x$ 的展开]{$\cot x$ 的展开}
+
+%------------------------------------------------
+
+\begin{frame}{$\cot x$ 的展开}
+
+注意恒等式 $x\cot x = ix + \dfrac{2ix}{e^{2ix}-1}.$ 令 $z = 2ix,$ 将生成函数展开
+\[
+\frac{z}{e^z-1} = 1 - \frac{z}{2} + \sum_{n=1}^\infty \frac{B_{2n}}{(2n)!} z^{2n}
+\]
+代入 (奇数阶 Bernoulli 数 $B_{2k+1}=0$ 使得代换后只剩偶次项), 化简可得:
+
+\pause
+\vspace{0.4em}
+
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\cot x = \frac{1}{x} + \sum_{n=1}^\infty (-1)^n \cdot \frac{2^{2n} B_{2n}}{(2n)!} x^{2n-1}, \quad 0 < |x| < \pi.
+\end{empheq}
+
+\pause
+\vspace{0.4em}
+
+\begin{attnblock}
+$\cot x$ 在 $x = 0$ 处有极点, 展开式中含有 $\dfrac{1}{x}$ 项, 这更接近 Laurent 展开而非 Taylor 展开.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$B_{2n}$ 与 $\zeta(2n)$ 的关系 | $\sin x$ 的无穷乘积}
+
+Euler 的 $\sin x$ 无穷乘积公式:
+\[
+\frac{\sin \pi x}{\pi x} = \prod_{n=1}^\infty \left(1 - \frac{x^2}{n^2}\right).
+\]
+
+\pause
+\vspace{0.4em}
+
+两边取对数后对 $x$ 求导, 整理得 $\pi x \cot \pi x = 1 - 2x^2 \sum\limits_{n=1}^\infty \dfrac{1}{n^2 - x^2}.$ 展开 $\dfrac{1}{n^2-x^2}$ 为幂级数并交换求和次序:
+\[
+\pi x \cot \pi x = 1 - 2\sum_{k=1}^\infty \zeta(2k)\, x^{2k}.
+\]
+
+\pause
+\vspace{0.4em}
+
+以 $x/\pi$ 代 $x,$ 与 Bernoulli 生成函数给出的 $x\cot x = 1 + \sum\limits_{n=1}^\infty (-1)^n \cdot \dfrac{2^{2n}B_{2n}}{(2n)!} x^{2n}$ 比较系数:
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+B_{2n} = (-1)^{n+1} \cdot \frac{2(2n)!}{(2\pi)^{2n}} \cdot \zeta(2n).
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[主结果]{$\tan x$ 的幂级数展开}
+
+%------------------------------------------------
+
+\begin{frame}{关键恒等式 | $\tan x = \cot x - 2\cot 2x$}
+
+若直接用 $\tan x = \dfrac{1}{\cot x},$ 求展开系数仍然麻烦. 利用二倍角公式得到更好的出路:
+\[
+\sin 2x = 2\sin x \cos x, \quad \cos 2x = \cos^2 x - \sin^2 x.
+\]
+
+\pause
+\vspace{0.4em}
+
+因此
+\[
+2\cot 2x = \frac{2\cos 2x}{\sin 2x} = \frac{\cos^2 x - \sin^2 x}{\sin x \cos x} = \cot x - \tan x.
+\]
+
+\pause
+\vspace{0.4em}
+
+整理即得关键恒等式:
+
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\tan x = \cot x - 2\cot 2x.
+\end{empheq}
+
+\pause
+\vspace{0.3em}
+
+这将 $\tan x$ 表示为两个\alert{已知展开式}之差, 展开 $\cot x$ 与 $\cot 2x$ 即可展开 $\tan x.$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\tan x$ 的幂级数展开 | 计算}
+
+将 $\cot x$ 的展开式代入 $\tan x = \cot x - 2\cot 2x:$
+\begin{align*}
+\tan x &= \left(\frac{1}{x} + \sum_{n=1}^\infty (-1)^n \cdot \frac{2^{2n} B_{2n}}{(2n)!} x^{2n-1}\right) - 2\left(\frac{1}{2x} + \sum_{n=1}^\infty (-1)^n \cdot \frac{2^{2n} B_{2n}}{(2n)!} (2x)^{2n-1}\right).
+\end{align*}
+
+\pause
+\vspace{0.3em}
+
+$\dfrac{1}{x}$ 与 $\dfrac{2}{2x}$ 恰好抵消, 合并剩余各项:
+\[
+\tan x = \sum_{n=1}^\infty (-1)^n \cdot \frac{2^{2n} B_{2n}}{(2n)!}\bigl(1 - 2^{2n}\bigr) x^{2n-1} = \sum_{n=1}^\infty (-1)^n \cdot \frac{4^n(1-4^n)B_{2n}}{(2n)!} x^{2n-1}.
+\]
+
+\pause
+\vspace{0.4em}
+
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + \cdots = \sum_{n=1}^\infty (-1)^n \cdot \frac{4^n(1-4^n)B_{2n}}{(2n)!} x^{2n-1}.
+\end{empheq}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{收敛半径与解析性的验证}
+
+\textbf{收敛半径:} 利用 $B_{2n} \sim (-1)^{n+1} \dfrac{2(2n)!}{(2\pi)^{2n}}$ (来自 $\zeta(2n)\to 1$) 及比值法 (d'Alembert):
+\[
+\frac{1}{r^2} = \lim_{n\to\infty} \left|\frac{4^{n+1}(1-4^{n+1})B_{2n+2} / (2n+2)!}{4^n(1-4^n)B_{2n} / (2n)!}\right| = 2 \cdot 4 \cdot 2 \cdot 1 \cdot \frac{1}{4\pi^2} = \frac{4}{\pi^2},
+\]
+故 $r = \dfrac{\pi}{2}.$ 这与 $\tan x$ 在 $x = \pm\dfrac{\pi}{2}$ 处的极点完全吻合.
+
+\pause
+\vspace{0.5em}
+
+\textbf{解析性验证:} 由于 $\tan x$ 的高阶导数无简洁公式, 余项估计困难, 我们转而用\textbf{待定系数法}: 设 $T(x) = \sum c_{2n-1}x^{2n-1}$ 满足 $T(x)\cos x = \sin x,$ 比较系数逐一确定各 $c_{2n-1},$ 得到上面的级数; 又 $T(x)$ 的收敛半径为 $\dfrac{\pi}{2},$ 故在此范围内 $T(x) = \tan x.$ 由幂级数展开的\textbf{唯一性}即得.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[应用]{与 Riemann $\zeta$ 函数的联系}
+
+%------------------------------------------------
+
+\begin{frame}{应用 | $\zeta(2n)$ 的精确值}
+
+将 $B_{2n} = (-1)^{n+1} \cdot \dfrac{2(2n)!}{(2\pi)^{2n}} \cdot \zeta(2n)$ 代入展开式, 得到另一形式:
+\begin{empheq}[box={\fancymath[colback=cyan!30, drop lifted shadow, sharp corners]}]{equation*}
+\tan x = \sum_{n=1}^\infty \frac{2 \cdot 4^n(4^n-1)}{(2\pi)^{2n}} \zeta(2n) \cdot x^{2n-1}.
+\end{empheq}
+
+\pause
+\vspace{0.4em}
+
+比较 $x^{2n-1}$ 的系数, 立得 $\zeta(2n)$ 关于 $\tan x$ 展开系数的精确公式:
+\[
+\zeta(2n) = \frac{(2\pi)^{2n}}{2 \cdot 4^n(4^n-1)} \cdot \frac{\tan^{(2n-1)}(0)}{(2n-1)!}.
+\]
+
+\pause
+\vspace{0.5em}
+
+代入前三项系数 $c_1 = 1,$ $c_3 = \dfrac{1}{3},$ $c_5 = \dfrac{2}{15},$ 立得经典结果:
+\[
+{\color{red} \zeta(2) = \frac{\pi^2}{6}, \quad \zeta(4) = \frac{\pi^4}{90}, \quad \zeta(6) = \frac{\pi^6}{945}.}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{总结}
+
+%------------------------------------------------
+
+\begin{frame}{总结}
+
+\begin{itemize}
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{核心工具:} Bernoulli 数生成函数 $\dfrac{z}{e^z-1} = \sum\limits_{n=0}^\infty \dfrac{B_n}{n!} z^n$ 给出 $\cot x$ 的展开.
+
+\pause
+\vspace{0.6em}
+
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{关键技巧:} 二倍角恒等式 $\tan x = \cot x - 2\cot 2x$ 将问题转化为已知展开式的线性组合.
+
+\pause
+\vspace{0.5em}
+
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{主结果:}
+\[
+\tan x = \sum_{n=1}^\infty (-1)^n \cdot \frac{4^n(1-4^n)B_{2n}}{(2n)!} x^{2n-1}, \quad |x| < \frac{\pi}{2}.
+\]
+
+\pause
+\vspace{0.4em}
+
+\item[{\larger[2] \color{red} \ding{43}}] \textbf{深层联系:} 展开系数直接给出 $\zeta(2) = \dfrac{\pi^2}{6},$ $\zeta(4) = \dfrac{\pi^4}{90},$ $\zeta(6) = \dfrac{\pi^6}{945},$ $\ldots$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
