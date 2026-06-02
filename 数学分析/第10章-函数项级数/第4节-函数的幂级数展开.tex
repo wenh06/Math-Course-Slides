@@ -696,9 +696,9 @@ x \cot x = ix + \left( 1 - \frac{2ix}{2} + \sum_{n=1}^\infty \frac{B_{2n}}{(2n)!
 
 由 $\tan x = \sum_{n=1}^\infty \frac{2 \cdot 4^n (4^n - 1)}{(2\pi)^{2n}} \zeta(2n) \cdot x^{2n-1},$ 代入 $x = \pm \frac{\pi}{2}$ 可得
 \[
-\sum_{n=1}^\infty \frac{2 \cdot 4^n (4^n - 1)}{(2\pi)^{2n}} \zeta(2n) \cdot \left( \pm \frac{\pi}{2} \right)^{2n-1} = \pm \sum_{n=1}^\infty \frac{4^n - 1}{4^n} \zeta(2n).
+\sum_{n=1}^\infty \frac{2 \cdot 4^n (4^n - 1)}{(2\pi)^{2n}} \zeta(2n) \cdot \left( \pm \frac{\pi}{2} \right)^{2n-1} = \pm \sum_{n=1}^\infty \frac{4^n - 1}{4^{n+1}\pi} \zeta(2n).
 \]
-由于 $\zeta(2n) \to 1$ ($n \to \infty$), 从而通项不趋于零, 故 $\sum_{n=1}^\infty \frac{4^n - 1}{4^n} \zeta(2n)$ 发散, 所以 $\tan x$ 的幂级数展开在 $x = \pm \frac{\pi}{2}$ 处发散, 从而 $\tan x$ 的幂级数展开的收敛域为
+由于 $\zeta(2n) \to 1$ ($n \to \infty$), 从而通项不趋于零, 故 $\sum_{n=1}^\infty \frac{4^n - 1}{4^{n+1}\pi} \zeta(2n)$ 发散, 所以 $\tan x$ 的幂级数展开在 $x = \pm \frac{\pi}{2}$ 处发散, 从而 $\tan x$ 的幂级数展开的收敛域为
 \[
 \left( -\frac{\pi}{2}, \frac{\pi}{2} \right).
 \]
@@ -956,21 +956,18 @@ f(x) = -g'(x) = -\sum_{n=1}^\infty (-1)^n n (x - 1)^{n-1} = \sum_{n=0}^\infty (-
 \end{eg}
 
 \pause
-\vspace{0.5em}
 
 \startproof[bg=yellow, fg=red](解)
 直接进行分解
 \begin{align*}
-f(x) & = \frac{1}{3 + 5x - 2x^2} = \frac{1}{(3 - x)(1 + 2x)} = \frac{1}{7} \cdot \frac{2(3 - x) + (1 + 2x)}{(3 - x)(1 + 2x)} \\
-& = \frac{1}{7} \cdot \left( \frac{2}{1 + 2x} + \frac{1}{3 - x} \right) = \frac{1}{7} \cdot \left( 2 \sum_{n=0}^\infty (-2)^n x^n + \sum_{n=0}^\infty \frac{1}{3^{n+1}} x^n \right) \\
-& = \frac{1}{7} \cdot \sum_{n=0}^\infty \left( (-1)^n \cdot 2^{n+1} + \frac{1}{3^{n+1}} \right) x^n.
+f(x) & = \frac{1}{(3 - x)(1 + 2x)} = \frac{1}{7} \cdot \frac{2(3 - x) + (1 + 2x)}{(3 - x)(1 + 2x)} = \frac{1}{7} \cdot \left( \frac{2}{1 + 2x} + \frac{1}{3 - x} \right) \\
+& = \frac{1}{7} \cdot \left( 2 \sum_{n=0}^\infty (-2)^n x^n + \sum_{n=0}^\infty \frac{1}{3^{n+1}} x^n \right) = \frac{1}{7} \cdot \sum_{n=0}^\infty \left( (-1)^n \cdot 2^{n+1} + \frac{1}{3^{n+1}} \right) x^n.
 \end{align*}
 \pause
-利用 Cauchy-Hadamard 定理, 可得幂级数展开的收敛半径为 $r = \frac{1}{2},$ 并可进一步验证其收敛域为 $\left(-\frac{1}{2}, \frac{1}{2}\right).$
+利用 Cauchy-Hadamard 定理, 可得收敛半径为 $r = \frac{1}{2},$ 并可进一步验证其收敛域为 $\left(-\frac{1}{2}, \frac{1}{2}\right).$
 \qed
 
 \pause
-\vspace{0.5em}
 
 \begin{remark}
 设幂级数 $\sum_{n=0}^\infty a_n x^n$ 与 $\sum_{n=0}^\infty b_n x^n$ 的收敛半径分别为 $r_a$ 与 $r_b$, 那么 $\sum_{n=0}^\infty (a_n + b_n) x^n$ 的收敛半径为 $r \geqslant \min \{ r_a, r_b \}.$

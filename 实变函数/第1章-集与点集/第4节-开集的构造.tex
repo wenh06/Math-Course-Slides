@@ -107,7 +107,133 @@ G = \bigcup_{k} (a_k, b_k), \quad (a_k, b_k) \cap (a_j, b_j) = \emptyset\ (k \ne
 
 \end{frame}
 
-% TODO: check from here
+%------------------------------------------------
+
+\section{Borel 集类}
+
+%------------------------------------------------
+
+\begin{frame}{$\sigma$-代数}
+
+我们接下来再来看几类重要的集合.
+
+\vspace{0.5em}
+
+之前已经讲过, 开集的任意并、有限交仍是开集; 闭集的任意交、有限并仍是闭集. 一个自然的问题是:
+
+\begin{question}
+开集的任意交, 闭集的任意并是什么样的集合? 是否常见? 有无重要性质?
+\end{question}
+
+\pause
+\vspace{0.5em}
+
+先来引入所谓的 $\sigma$-代数 (sigma-algebra) 的概念, 以便更系统地讨论这些集合.
+
+\begin{Def}[$\sigma$-代数]
+设 $X$ 是一个非空集合. $\Gamma$ 是 $X$ 的子集族, 满足:
+\begin{itemize}
+\item $\emptyset \in \Gamma;$
+\item $A \in \Gamma \implies X \setminus A \in \Gamma;$
+\item $A_1, A_2, \ldots \in \Gamma \implies \bigcup_{n=1}^\infty A_n \in \Gamma$ (由 De Morgan 律, 也等价于 $\bigcap_{n=1}^\infty A_n \in \Gamma$).
+\end{itemize}
+则称 $\Gamma$ 是 $X$ 的一个\alert{$\sigma$-代数}, 或称 Borel field.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\sigma$-代数}
+
+\begin{prop}
+对非空集合 $X$ 的任意子集族 $\Omega,$ 总存在一个包含它的最小 $\sigma$-代数 $\Gamma(\Omega).$ 也就是说, 对任意 $\sigma$-代数 $\Gamma'$ 满足 $\Omega \subset \Gamma',$ 都有 $\Gamma(\Omega) \subset \Gamma'.$
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+实际上有 $\Gamma(\Omega) = \bigcap\{\Gamma' : \Gamma' \text{ 是 } X \text{ 的 } \sigma\text{-代数},\ \Omega \subset \Gamma'\}.$ 只要验证它是 $\sigma$-代数即可:
+\pause
+\begin{itemize}
+\item $\emptyset \in \Gamma(\Omega)$: 因为 $\emptyset \in \Gamma'$ 对任意 $\Gamma'$ 都成立.
+\pause
+\item $A \in \Gamma(\Omega) \implies A \in \Gamma'$ 对任意 $\Gamma'$ 都成立, 故 $X \setminus A \in \Gamma'$ 对任意 $\Gamma'$ 都成立, 即 $X \setminus A \in \Gamma(\Omega).$
+\pause
+\item $A_1, A_2, \ldots \in \Gamma(\Omega) \implies A_n \in \Gamma'$ 对任意 $\Gamma'$ 都成立, 故 $\bigcup_{n=1}^\infty A_n \in \Gamma'$ 对任意 $\Gamma'$ 都成立, 即 $\bigcup_{n=1}^\infty A_n \in \Gamma(\Omega).$
+\end{itemize}
+\qed
+
+\pause
+
+\begin{Def}
+称 $\Gamma(\Omega)$ 是由 $X$ 的子集族 $\Omega$ 生成的 $\sigma$-代数. 也称其为包含 $\Omega$ 的最小 $\sigma$-代数.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Borel 集类}
+
+\begin{Def}[Borel 集类]
+$\mathbb{R}$ 中由开集生成的 $\sigma$-代数 $\Gamma(\text{开集})$ 称为\alert{Borel 集类}, 其元素称为\alert{Borel 集}.
+\end{Def}
+
+\begin{eg}[$G_\delta$ 集与 $F_\sigma$ 集]
+\begin{itemize}
+\item \alert{$G_\delta$ 集}: 可列个开集之交 ~~ ($G:$ 德文 Gebiet = 开域; $\delta:$ Durchschnitt = 交).
+\item \alert{$F_\sigma$ 集}: 可列个闭集之并 ~~ ($F:$ 法文 fermé = 闭; $\sigma:$ Summe = 和).
+\end{itemize}
+很容易看出来 $G_\delta$ 集与 $F_\sigma$ 集都是 Borel 集, 但它们不一定是开集或闭集.
+\end{eg}
+
+\pause
+
+\begin{prop}
+每个闭集是 $G_\delta$ 集; 每个开集是 $F_\sigma$ 集.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+设 $F$ 闭. 令 $G_n = \{x : d(x, F) < 1/n\},$ 则各 $G_n$ 是开集, 且
+\[
+\bigcap_{n=1}^\infty G_n = \{x : d(x,F) = 0\} = \overline{F} = F.
+\]
+故 $F$ 是 $G_\delta$ 集. 开集情形利用 De Morgan 律即可得.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Borel 集类}
+
+进一步迭代可得 $G_{\delta\sigma}$-集, $G_{\delta\sigma\delta}$-集, $\ldots$ 以及 $F_{\sigma\delta}$-集, $F_{\sigma\delta\sigma}$-集, $\ldots$ 这些集合都属于 Borel 集类.
+\pause
+但是, \alert{并不是所有的 Borel 集都可以通过有限次迭代 $G_\delta$ 和 $F_\sigma$ 的构造得到.}
+
+\pause
+
+\begin{eg}
+\begin{itemize}
+\item $\mathbb{Q}$ 是 $F_\sigma$ 集 (可列个单点集之并), 但不是 $G_\delta$ 集.
+\item $\mathbb{R} \setminus \mathbb{Q}$ (无理数集) 是 $G_\delta$ 集, 但不是 $F_\sigma$ 集.
+\item 设 $f(x)$ 是定义在开集上的实值函数, 则 $f(x)$ 的连续点集是 $G_\delta$ 集.
+\item 设 $f(x) \in C(\mathbb{R}),$ 则 $f(x)$ 的可微点集是 $F_{\sigma\delta}$ 集.
+\end{itemize}
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+简要证明一下最后一个结论. 记 $g(x, h) = \frac{f(x+h) - f(x)}{h},$ 并令
+\[
+E_{m,n} = \bigcap_{\substack{h, k \in \mathbb{Q} \\ 0 < |h|, |k| < 1/n}} \left\{x : |g(x,h) - g(x,k)| \leqslant \frac{1}{m}\right\}.
+\]
+则 $E_{m,n}$ 是闭集, 且 $f$ 的可微点集 $E = \bigcap_{m=1}^\infty \bigcup_{n=1}^\infty E_{m,n}$ 是 $F_{\sigma\delta}$ 集.
+\qed
+
+\end{frame}
 
 %------------------------------------------------
 
@@ -122,8 +248,14 @@ G = \bigcup_{k} (a_k, b_k), \quad (a_k, b_k) \cap (a_j, b_j) = \emptyset\ (k \ne
 \[
   x = \sum_{k=1}^{\infty} \frac{a_k}{n^k}, \quad a_k \in \{0, 1, \ldots, n-1\}
 \]
-为 $x$ 的 \alert{$n$ 进制展开}. 分母为 $n$ 的幂次的有理数 ($n$ 进制有理数) 有恰好两种展开 (有限展开与无限展开); 其余点展开唯一.
+为 $x$ 的 \alert{$n$ 进制展开}.
 \end{Def}
+
+\pause
+
+\begin{attnblock}[$n$ 进制展开的非唯一性]
+分母为 $n$ 的幂次的有理数有恰好两种展开 (有限展开与无限展开); 其余点展开唯一.
+\end{attnblock}
 
 \pause
 
@@ -136,7 +268,7 @@ $\dfrac{1}{3} = 0.1_3 = 0.0\overline{2}_3,$ \quad $\dfrac{2}{3} = 0.2_3 = 0.1\ov
 \begin{prop}
 $[0,1]$ 通过二进制展开 (至多两种) 与 $\{0,1\}^{\mathbb{N}}$ 建立几乎处处的对等, 故
 \[
-  |[0,1]| = |\{0,1\}^{\mathbb{N}}| = 2^{\aleph_0} = \mathfrak{c}.
+|[0,1]| = |\{0,1\}^{\mathbb{N}}| = 2^{\aleph_0} = \mathfrak{c}.
 \]
 \end{prop}
 
@@ -390,52 +522,6 @@ $A = \mathbb{N},$ $B = \bigl\{n + 1/n : n \geqslant 2\bigr\}$ 均是闭集, $A \
 \startproof[bg=yellow, fg=red](证明)
 函数 $f(x) = d(x, B)$ 在 $\mathbb{R}^n$ 上连续. 由 $A$ 紧, $f$ 在 $A$ 上取到最小值 $m.$ 对每个 $x \in A,$ 由 $x \notin B$ 及 $B$ 闭知 $f(x) = d(x, B) > 0.$ 故 $m > 0,$ 即 $d(A, B) = m > 0.$
 \qed
-
-\end{frame}
-
-%------------------------------------------------
-
-\section{$G_\delta$ 集与 $F_\sigma$ 集}
-
-%------------------------------------------------
-
-\begin{frame}{$G_\delta$ 集与 $F_\sigma$ 集}
-
-\begin{Def}[$G_\delta$ 集与 $F_\sigma$ 集]
-\begin{itemize}
-  \item \alert{$G_\delta$ 集}: 可列个开集之交
-        ($G:$ 德文 Gebiet = 开域; $\delta:$ Durchschnitt = 交).
-  \item \alert{$F_\sigma$ 集}: 可列个闭集之并
-        ($F:$ 法文 fermé = 闭; $\sigma:$ Summe = 和).
-\end{itemize}
-\end{Def}
-
-\pause
-
-\begin{prop}
-每个闭集是 $G_\delta$ 集; 每个开集是 $F_\sigma$ 集.
-\end{prop}
-
-\startproof[bg=yellow, fg=red](证明)
-设 $F$ 闭. 令 $G_n = \{x : d(x, F) < 1/n\},$ 则各 $G_n$ 是开集, 且
-$\bigcap_{n=1}^\infty G_n = \{x : d(x,F) = 0\} = \overline{F} = F.$
-故 $F$ 是 $G_\delta$ 集. 开集情形对偶.
-\qed
-
-\pause
-
-\begin{eg}
-\begin{itemize}
-  \item $\mathbb{Q}$ 是 $F_\sigma$ 集 (可列个单点集之并), 但不是 $G_\delta$ 集.
-  \item $\mathbb{R} \setminus \mathbb{Q}$ (无理数集) 是 $G_\delta$ 集, 但不是 $F_\sigma$ 集.
-\end{itemize}
-\end{eg}
-
-\pause
-
-\begin{center}
-进一步迭代得 $G_{\delta\sigma}$-集, $F_{\sigma\delta}$-集, $\ldots,$ 共同构成\alert{Borel 集类}.
-\end{center}
 
 \end{frame}
 
