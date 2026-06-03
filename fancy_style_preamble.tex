@@ -248,3 +248,56 @@
 \setbeamercolor{block title}{bg=red!80,fg=white}
 \begin{block}{#1}}{\end{block}
 }
+
+% ============================================================
+% 灰色模式：将紧跟的 frame 的配色（包括 sidebar / 导航条等）
+% 全部切换为灰色调，用于不做要求的页面。
+%
+% 关键：Berkeley 的 palette/sidebar 颜色通过 \usecolortheme
+% 动态引用 structure.fg (= themecolor) 和 normal text.fg，
+% 因此只需改这些根变量，palette/sidebar 会自动跟随。
+%
+% 用法（\graymode 必须在 \begin{frame} 之前）：
+%     \graymode
+%     \begin{frame}{...}
+%       ...
+%     \end{frame}
+%     \normalmode
+% ============================================================
+\colorlet{saved-themecolor}{themecolor}
+\newcommand{\graymode}{%
+  \colorlet{themecolor}{darkgray}%
+  \setbeamercolor{structure}{fg=darkgray!80}%
+  \ifHighContrast
+    \setbeamercolor{normal text}{fg=black}%
+    \setbeamercolor{block body}{bg=lightgray!20,fg=black}%
+  \else
+    \setbeamercolor{normal text}{fg=darkgray}%
+    \setbeamercolor{block body}{bg=lightgray!20,fg=darkgray}%
+  \fi
+  \setbeamercolor{alerted text}{fg=darkgray!80}%
+  \setbeamercolor{frametitle}{fg=white,bg=darkgray!70}%
+  \setbeamercolor{block title}{fg=white,bg=darkgray!70}%
+  \setbeamercolor{author}{fg=darkgray}%
+  \setbeamercolor{institute}{fg=darkgray}%
+  \setbeamercolor{date}{fg=darkgray}%
+  \setbeamercolor{section in head/foot}{fg=white}%
+}
+\newcommand{\normalmode}{%
+  \colorlet{themecolor}{saved-themecolor}%
+  \setbeamercolor{structure}{fg=saved-themecolor}%
+  \ifHighContrast
+    \setbeamercolor{normal text}{fg=black}%
+    \setbeamercolor{block body}{bg=saved-themecolor!25,fg=black}%
+  \else
+    \setbeamercolor{normal text}{fg=saved-themecolor}%
+    \setbeamercolor{block body}{bg=saved-themecolor!25,fg=saved-themecolor}%
+  \fi
+  \setbeamercolor{alerted text}{fg=red}%
+  \setbeamercolor{frametitle}{fg=white,bg=saved-themecolor}%
+  \setbeamercolor{block title}{fg=white,bg=saved-themecolor}%
+  \setbeamercolor{author}{fg=saved-themecolor}%
+  \setbeamercolor{institute}{fg=saved-themecolor}%
+  \setbeamercolor{date}{fg=saved-themecolor}%
+  \setbeamercolor{section in head/foot}{fg=white}%
+}

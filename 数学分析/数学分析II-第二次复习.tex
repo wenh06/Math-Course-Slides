@@ -1,0 +1,1186 @@
+\everymath{\displaystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[数分II\\
+第二次复习]{\texorpdfstring{\Huge \bfseries 数学分析II第二次复习}{数学分析II第二次复习}} % The short title appears at the bottom of every slide, the full title is only on the title page
+% \author[\S 10\\
+% 函数项级数] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+% {\Large \bfseries 第十章\quad 函数项级数}
+% \author{Singular Value Decomposition} % Your name
+% \date{\today} % Date, can be changed to a custom date
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}
+% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \end{frame}
+
+%-----------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------
+
+\section{函数项级数的一致收敛性}
+
+%------------------------------------------------
+
+\begin{frame}{函数项级数的基本概念}
+
+\begin{Def}[函数项级数]
+函数项级数指的是{\color{red}按一定顺序排列好}的可列个函数的形式和
+\[\sum_{n=1}^\infty u_n(x) = u_1(x) + u_2(x) + \cdots + u_n(x) + \cdots\]
+\end{Def}
+
+\pause
+
+\begin{Def}[收敛域与和函数]
+$D = \{ x \in \mathbb{R}: \sum_{n=1}^\infty u_n(x) \text{ 作为数项级数收敛} \}$ 称为收敛域.
+在 $D$ 上定义和函数 $S(x) = \sum_{n=1}^\infty u_n(x),$ 并称该函数项级数在 $D$ 上{\color{red}点态收敛}到 $S(x).$
+\end{Def}
+
+\pause
+
+\begin{itemize}[<+->]
+\item 部分和函数列: $S_n(x) = \sum_{k=1}^n u_k(x).$
+\item 函数项级数的收敛性与函数列的收敛性等价:
+\[\sum_{n=1}^\infty u_n(x) \text{ 点态/一致/内闭一致收敛} \Longleftrightarrow S_n(x) \text{ 点态/一致/内闭一致收敛}\]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛性的定义}
+
+\begin{Def}[一致收敛]
+设函数项级数 $\sum_{n=1}^\infty u_n(x)$ 的和函数 $S(x)$ 在 $D$ 上有定义. 若对任意 $\varepsilon > 0,$ 存在 {\color{red}只与 $\varepsilon$ 有关的} $N \in \mathbb{N},$ 使得对任意 $n > N$ 和 {\color{red}任意 $x \in D$} 都有
+\[\left\lvert \sum_{k=1}^n u_k(x) - S(x) \right\rvert < \varepsilon,\]
+则称函数项级数在 $D$ 上一致收敛到 $S(x),$ 记作 $\sum_{n=1}^\infty u_n(x) \stackrel{D}{\rightrightarrows} S(x).$
+\end{Def}
+
+\pause
+
+\begin{Def}[内闭一致收敛]
+任意给定闭区间 $[a, b] \subset D,$ 若 $\sum_{n=1}^\infty u_n(x)$ 在 $[a, b]$ 上一致收敛, 则称其在 $D$ 上内闭一致收敛.
+\end{Def}
+
+\pause
+
+\begin{attnblock}
+一致收敛 $\implies$ 内闭一致收敛 $\implies$ 点态收敛. 反之均不成立.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛性的等价刻画}
+
+考察方法: 以函数列为对象, 再转化为函数项级数.
+
+\pause
+\vspace{1em}
+
+\begin{thm}[一致度量判别法]
+定义在 $D$ 上函数 $f, g$ 的一致度量 (距离) 为
+\[d(f, g) = \sup_{x \in D} \lvert f(x) - g(x) \rvert.\]
+那么
+\[S_n(x) \stackrel{D}{\rightrightarrows} S(x) \Longleftrightarrow d(S_n(x), S(x)) \to 0 \ (n \to \infty).\]
+\end{thm}
+
+\pause
+
+\begin{thm}[数列判别法]
+$S_n(x) \stackrel{D}{\rightrightarrows} S(x)$ 当且仅当 任取 $D$ 中的数列 $\{x_n\}$ 总有
+\[\lim_{n\to\infty} (S_n(x_n) - S(x_n)) = 0.\]
+\end{thm}
+
+\pause
+
+{\color{red}常用于判断不一致收敛}: 构造数列 $\{x_n\}$ 使得 $S_n(x_n) - S(x_n)$ 发散或收敛到非零值.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛的必要条件}
+
+\begin{block}{一致收敛的必要条件}
+若 $\sum_{n=1}^\infty u_n(x) \stackrel{D}{\rightrightarrows} S(x),$ 那么
+\begin{itemize}
+\item 通项 $u_n(x) \stackrel{D}{\rightrightarrows} 0;$ (即 $d(u_n, 0) \to 0$)
+\pause
+\item 部分和函数列 $\{S_n(x)\}$ 在 $D$ 上一致有界.
+\end{itemize}
+\end{block}
+
+\pause
+\vspace{1em}
+
+反过来, 若通项 $u_n(x) \stackrel{D}{\rightrightarrows} 0$ 不成立 (例如 $\sup_{x \in D} |u_n(x)| \nrightarrow 0$), 则函数项级数在 $D$ 上不可能一致收敛.
+
+\pause
+
+\begin{eg}
+$\sum_{n=1}^\infty x^n$ 在 $[0, 1)$ 上不一致收敛: 取 $x_n = 1 - \frac{1}{n},$ 则
+\[|u_n(x_n)| = \left(1 - \frac{1}{n}\right)^n \to \frac{1}{e} \neq 0.\]
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{一致收敛级数的判别}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛的判别方法总览}
+
+{\larger[1]
+\begin{itemize}[<+->]
+\item Cauchy 收敛原理 ~~ (充要条件, 但使用不便)
+\vspace{0.5em}
+\item Weierstraß 判别法 ~~ — ~~ 对应正项级数的比较判别法
+\vspace{0.5em}
+\item Abel 判别法 ~~ — ~~ 对应任意项级数的 Abel 判别法
+\vspace{0.5em}
+\item Dirichlet 判别法 ~~ — ~~ 对应任意项级数的 Dirichlet 判别法
+\vspace{0.5em}
+\item Dini 定理 ~~ — ~~ 需要正则性条件
+\end{itemize}
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy 收敛原理}
+
+\begin{thm}[函数项级数一致收敛的 Cauchy 收敛原理]
+$\sum_{n=1}^\infty u_n(x)$ 在 $D$ 上一致收敛的充要条件是: $\forall~\varepsilon > 0,$ 存在只与 $\varepsilon$ 有关的 $N(\varepsilon),$ 使得当 $m > n \geqslant N(\varepsilon)$ 时, 对任意 $x \in D$ 都有
+\[\left\lvert \sum_{k=n+1}^m u_k(x) \right\rvert < \varepsilon.\]
+\end{thm}
+
+\pause
+
+\begin{remark}
+\begin{itemize}[<+->]
+\item 函数列版本: $S_n(x) \stackrel{D}{\rightrightarrows}$ 当且仅当 $\forall~\varepsilon > 0,$ $\exists~N,$ 使得 $\forall~m > n \geqslant N,$ $\forall~x \in D,$ $|S_m(x) - S_n(x)| < \varepsilon.$
+\item 充要条件, 但验证所有 $m > n \geqslant N$ 和所有 $x$ 较繁琐.
+\item Cauchy 收敛原理的反面常用于证明{\color{red}不一致收敛}.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Weierstraß 判别法 (M-判别法)}
+
+\begin{thm}[Weierstraß 判别法]
+设 $\{u_n(x)\}$ 是定义在 $D$ 上的函数列, $\{a_n\}$ 是正数列, 满足 $|u_n(x)| \leqslant a_n$ 对任意 $n$ 和 $x \in D$ 成立. 若 $\sum_{n=1}^\infty a_n$ 收敛, 则 $\sum_{n=1}^\infty u_n(x)$ 在 $D$ 上一致收敛 (且绝对收敛).
+\end{thm}
+
+\pause
+
+\begin{eg}
+设 $\sum_{n=1}^\infty a_n$ 绝对收敛, 则
+\[\sum_{n=1}^\infty a_n \sin(nx), \quad \sum_{n=1}^\infty a_n \cos(nx)\]
+在 $\mathbb{R}$ 上一致收敛.
+\end{eg}
+
+\pause
+
+\begin{attnblock}
+Weierstraß 判别法是{\color{red}充分非必要}条件: 即使 $\sum_{n=1}^\infty a_n$ 发散, 原函数项级数仍可能一致收敛. 此时需要用其他方法.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{函数项级数的 A-D 判别法}
+
+\begin{thm}[A-D 判别法]
+设 $\sum_{n=1}^\infty a_n(x) b_n(x)$ 的收敛域为 $D,$ 若如下条件之一成立, 则其在 $D$ 上一致收敛:
+\pause
+\begin{itemize}
+\item {\color{red}Abel 判别法}:
+  \begin{enumerate}
+  \item $\{a_n(x)\}$ 对每个 $x \in D$ 关于 $n$ 单调, 且在 $D$ 上{\color{red}一致有界};
+  \item $\sum_{n=1}^\infty b_n(x)$ 在 $D$ 上{\color{red}一致收敛}.
+  \end{enumerate}
+\pause
+\item {\color{red}Dirichlet 判别法}:
+  \begin{enumerate}
+  \item $\{a_n(x)\}$ 对每个 $x \in D$ 关于 $n$ 单调, 且在 $D$ 上{\color{red}一致收敛到 $0$};
+  \item $\sum_{k=1}^n b_k(x)$ 在 $D$ 上{\color{red}一致有界}.
+  \end{enumerate}
+\end{itemize}
+\end{thm}
+
+\pause
+
+证明的核心是 Abel 引理 (分部求和公式):
+\[\sum_{k=n+1}^m a_k b_k = \sum_{k=n+1}^{m-1} (a_k - a_{k+1}) B_k + a_m B_m - a_{n+1} B_n.\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{A-D 判别法的典型应用}
+
+\begin{eg}[三角函数级数]
+考察 $\sum_{n=1}^\infty a_n \sin(nx), \sum_{n=1}^\infty a_n \cos(nx),$ 其中 $a_n \searrow 0.$
+\end{eg}
+
+\pause
+
+\begin{itemize}[<+->]
+\item 记 $b_n(x) = \sin(nx)$ (或 $\cos(nx)$), 则
+  \[\left\lvert \sum_{k=1}^n \sin(kx) \right\rvert = \left\lvert \frac{\cos\frac{x}{2} - \cos\frac{(2n+1)x}{2}}{2\sin\frac{x}{2}} \right\rvert \leqslant \frac{1}{|\sin\frac{x}{2}|}.\]
+\item 在 $D = [a, b] \subset (0, 2\pi)$ 上, 上述部分和一致有界.
+\item 由 Dirichlet 判别法 ($a_n \searrow 0$ 视为常值函数列), 级数在 $(0, 2\pi)$ 上内闭一致收敛.
+\item 注意: 在 $x = 0$ 附近不一致收敛, 因为 $\frac{1}{|\sin\frac{x}{2}|}$ 无界.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{A-D 判别法的典型应用}
+
+\begin{eg}[Abel 判别法的应用]
+设 $\sum_{n=1}^\infty a_n$ 收敛, 考察 $\sum_{n=1}^\infty a_n x^n.$
+\end{eg}
+
+\pause
+
+\begin{itemize}[<+->]
+\item 收敛域: $(-1, 1] \subset D.$ 具体取决于 $\{a_n\}.$
+\item 在 $[0, 1]$ 上: $x^n$ 关于 $n$ 单调且一致有界 ($\leqslant 1$), $\sum_{n=1}^\infty a_n$ 收敛 $\implies$ 由 Abel 判别法知一致收敛.
+\item 在 $[a, b] \subset (-1, 0]$ 上: 当 $n$ 充分大时 $|a_n| < 1,$ 有
+  \[\left\lvert \sum_{k=n+1}^m a_k x^k \right\rvert \leqslant \sum_{k=n+1}^m |a|^k \to 0,\]
+  由 Cauchy 收敛原理知一致收敛.
+\item 综上, $\sum_{n=1}^\infty a_n x^n$ 在 $(-1, 1]$ 上内闭一致收敛.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{一致收敛级数的分析性质}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛函数列极限函数的连续性}
+
+\begin{thm}[连续性定理]
+设 $\{S_n(x)\}$ 的每项在 $[a, b]$ 上连续, 且 $\{S_n(x)\} \stackrel{[a, b]}{\rightrightarrows} S(x),$ 则 $S(x)$ 在 $[a, b]$ 上连续.
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明要点)
+$\forall~x_0 \in [a,b], \forall~\varepsilon > 0,$ 通过三角不等式:
+\[|S(x) - S(x_0)| \leqslant \underbrace{|S(x_0) - S_n(x_0)|}_{\text{\Circled{1} 一致收敛}} + \underbrace{|S_n(x_0) - S_n(x)|}_{\text{\Circled{2} $S_n$ 连续}} + \underbrace{|S_n(x) - S(x)|}_{\text{\Circled{3} 一致收敛}}.\]
+
+\pause
+\vspace{0.5em}
+
+{\color{red}一致收敛保证了 \Circled{1} 和 \Circled{3} 被同步控制.} 若仅为点态收敛, 则 \Circled{1} 和 \Circled{3} 的收敛速度可能差异巨大, 导致结论失效.
+\qed
+
+\pause
+
+\begin{cor}[极限与求和可交换]
+设 $\sum_{n=1}^\infty u_n(x) \stackrel{[a,b]}{\rightrightarrows} S(x),$ 每项 $u_n(x)$ 连续, 则 $S(x)$ 连续, 且对任意 $x_0 \in [a,b],$
+\[\lim_{x \to x_0} \sum_{n=1}^\infty u_n(x) = \sum_{n=1}^\infty \lim_{x \to x_0} u_n(x).\]
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛函数列极限函数的可积性}
+
+\begin{thm}[可积性定理]
+设 $\{S_n(x)\}$ 的每项在 $[a, b]$ 上可积 (连续可推出可积), 且 $\{S_n(x)\} \stackrel{[a,b]}{\rightrightarrows} S(x),$ 则 $S(x) \in \mathfrak{R}[a, b],$ 且
+\[\int_a^b S(x) ~ \mathrm{d}x = \lim_{n\to\infty} \int_a^b S_n(x) ~ \mathrm{d}x.\]
+\end{thm}
+
+\pause
+
+\begin{thm}[逐项积分定理]
+设 $\sum_{n=1}^\infty u_n(x) \stackrel{[a,b]}{\rightrightarrows} S(x),$ 每项 $u_n(x) \in \mathfrak{R}[a,b],$ 则 ~~ $\int_a^b \sum_{n=1}^\infty u_n(x) ~ \mathrm{d}x = \sum_{n=1}^\infty \int_a^b u_n(x) ~ \mathrm{d}x.$
+\end{thm}
+
+\pause
+
+\begin{cor}[变上限积分的逐项积分]
+在相同条件下, $\forall~x \in [a, b],$ ~~ $\int_a^x \sum_{n=1}^\infty u_n(t) ~ \mathrm{d}t = \sum_{n=1}^\infty \int_a^x u_n(t) ~ \mathrm{d}t,$ ~~ 且右端关于 $x$ 一致收敛.
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛函数列极限函数的可导性}
+
+\begin{thm}[可导性定理]
+设 $\{S_n(x)\}$ 满足:
+
+\begin{tikzpicture}
+\node[anchor=west] (cond) {
+\begin{minipage}{0.45\textwidth}
+\begin{enumerate}
+\item $S_n(x)\in C^1[a,b]$;
+\item $S_n(x)\to S(x)$ 在 $[a,b]$ 上点态收敛;
+\item $S_n'(x)\rightrightarrows \sigma(x)$.
+\end{enumerate}
+\end{minipage}
+};
+
+\draw[
+decorate,
+decoration={brace,amplitude=6pt}
+]
+(cond.north east) --
+(cond.south east);
+
+\node[
+right=1.5cm of cond.east,
+align=left
+]
+{
+则 $S(x)$ 在 $[a,b]$ 上可导,\\[0.3em]
+且 $S'(x)=\sigma(x)$.
+};
+\end{tikzpicture}
+\end{thm}
+
+\pause
+
+\begin{thm}[逐项求导定理]
+设 $\sum_{n=1}^\infty u_n(x)$ 满足:
+
+\begin{tikzpicture}
+\node[anchor=west] (cond) {
+\begin{minipage}{0.45\textwidth}
+\begin{enumerate}
+\item 每项 $u_n(x) \in C^{(1)}[a, b];$
+\item $\sum_{n=1}^\infty u_n(x)$ 在 $[a, b]$ 上点态收敛到 $S(x);$
+\item $\sum_{n=1}^\infty u_n'(x) \stackrel{[a,b]}{\rightrightarrows} \sigma(x).$
+\end{enumerate}
+\end{minipage}
+};
+
+\draw[
+decorate,
+decoration={brace,amplitude=6pt}
+]
+(cond.north east) --
+(cond.south east);
+
+\node[
+right=1.5cm of cond.east,
+align=left
+]
+{
+则 $\left( \sum_{n=1}^\infty u_n(x) \right)' = \sum_{n=1}^\infty u_n'(x).$
+};
+\end{tikzpicture}
+\end{thm}
+
+% \pause
+
+% \begin{attnblock}
+% 可导性定理的条件比连续性、可积性强: 要求{\color{red}导函数列一致收敛}, 而非原函数列一致收敛. 但条件 (2) 可减弱为在{\color{red}某点处}收敛.
+% \end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{逐项积分与逐项求导的典型例题}
+
+\begin{eg}[逐项积分]
+证明 $\arctan x = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{2n-1} x^{2n-1},$ $x \in (-1, 1).$
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red](分析)
+形式求导: $\sum_{n=1}^\infty (-1)^{n-1} x^{2n-2} = \frac{1}{1+x^2}.$
+\begin{itemize}[<+->]
+\item 左端是几何级数, 在 $(-1, 1)$ 上内闭一致收敛.
+\item 由逐项积分定理, 对任意 $x \in (-1, 1),$
+\[\int_0^x \sum_{n=1}^\infty (-1)^{n-1} t^{2n-2} ~ \mathrm{d}t = \sum_{n=1}^\infty \int_0^x (-1)^{n-1} t^{2n-2} ~ \mathrm{d}t = \sum_{n=1}^\infty \frac{(-1)^{n-1}}{2n-1} x^{2n-1}.\]
+\item 另一方面, $\int_0^x \frac{1}{1+t^2} ~ \mathrm{d}t = \arctan x.$
+\item 结合即得结论. 且在端点 $x = \pm 1$ 处级数收敛 (Leibniz), 利用 Abel 第二定理可延拓.
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{逐项积分与逐项求导的典型例题}
+
+\begin{eg}[逐项求导]
+证明 $\sum_{n=1}^\infty n x^n = \frac{x}{(1-x)^2},$ $x \in (-1, 1).$
+\end{eg}
+
+\pause
+\vspace{0.5em}
+
+\startproof[bg=yellow, fg=red]
+考虑几何级数 $\sum_{n=0}^\infty x^n = \frac{1}{1-x},$ $|x| < 1.$
+\pause
+验证逐项求导定理的条件:
+\begin{itemize}
+\item 每项 $x^n \in C^\infty(-1, 1);$
+\pause
+\item $\sum_{n=0}^\infty x^n$ 在 $(-1, 1)$ 上点态收敛;
+\pause
+\item $\sum_{n=1}^\infty n x^{n-1}$ 在任意 $[a,b] \subset (-1,1)$ 上,
+\[\left\lvert \sum_{k=n+1}^m k x^{k-1} \right\rvert \leqslant \sum_{k=n+1}^m k \max\{|a|,|b|\}^{k-1} \to 0,\]
+故内闭一致收敛.
+\end{itemize}
+\pause
+由逐项求导定理, $\sum_{n=1}^\infty n x^{n-1} = \frac{1}{(1-x)^2},$ 两边乘 $x$ 即得结论.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{几个重要的注记}
+
+{\color{red}\ding{43}} \textbf{注记1}: 一致收敛是充分非必要条件. 没有一致收敛性, 逐项积分/逐项求导仍可能成立.
+
+\pause
+\vspace{0.5em}
+
+\begin{eg}[可积性不需要一致收敛]
+\begin{itemize}
+\item $S_n(x) = \begin{cases} 1, & x \in (0, 1/n], \\ 0, & x \in (1/n, 1] \cup \{0\}. \end{cases}$ 点态收敛到 $0,$ 不一致收敛, 但 $\int_0^1 S_n(x) ~ \mathrm{d}x \to 0 = \int_0^1 S(x) ~ \mathrm{d}x.$
+\pause
+\item $S_n(x) = \frac{nx}{1+n^2x^2}$ 点态收敛到 $0,$ 不一致收敛, 但 $\int_0^1 S_n(x) ~ \mathrm{d}x = \frac{\ln(1+n^2)}{2n} \to 0 = \int_0^1 S(x) ~ \mathrm{d}x.$
+\end{itemize}
+\end{eg}
+
+\pause
+
+{\color{red}\ding{43}} \textbf{注记2}: 逆命题不成立. 由极限函数具有连续性/可积性/可导性, 不能推出函数列一致收敛. 但附加正则性条件后可以 (Dini 定理).
+
+\pause
+\vspace{0.5em}
+
+{\color{red}\ding{43}} \textbf{注记3}: 以上结论以{\color{red}有限区间}为前提. 在无穷区间上, 可能涉及反常积分等第三极限过程, 结论可能不成立.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Dini 定理}
+
+\begin{thm}[Dini 定理]
+设 $\{S_n(x)\}$ 在 $[a, b]$ 上点态收敛到 $S(x),$ 若
+\begin{enumerate}
+\item 每项 $S_n(x)$ 在 $[a, b]$ 上连续;
+\item $S(x)$ 在 $[a, b]$ 上连续;
+\item ({\color{red}正则性条件}) $\{S_n(x)\}$ 关于 $n$ 单调.
+\end{enumerate}
+则 $\{S_n(x)\} \stackrel{[a, b]}{\rightrightarrows} S(x).$
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](反证法思路)
+假设不一致收敛, 则存在 $\varepsilon_0 > 0$ 和 $x_n \in [a,b]$ 使 $|S_n(x_n) - S(x_n)| \geqslant \varepsilon_0.$ 取 $\{x_n\}$ 的收敛子列 $x_n \to \xi.$ 在 $\xi$ 处, 同时利用 $S_n$ 的连续性、$S$ 的连续性、以及单调性, 导出矛盾.
+\qed
+
+\pause
+
+\begin{attnblock}
+仅有 $S_n$ 和 $S$ 的连续性, 推不出{\color{red}闭区间上}的一致收敛性 (但可推出{\color{red}内闭}一致收敛性). 单调性是关键的正则性条件.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\graymode
+\begin{frame}{有界收敛定理与 Fourier 级数的逐项积分}
+
+\begin{thm}[有界收敛定理]
+设 $\{S_n(x)\}$ 在 $[a, b]$ 上点态收敛到 $S(x),$ 且
+\begin{enumerate}
+\item 每项 $S_n(x) \in \mathfrak{R}[a,b];$
+\item $\{S_n(x)\}$ 在 $[a, b]$ 上{\color{red}一致有界};
+\end{enumerate}
+则 $S(x) \in \mathfrak{R}[a,b],$ 且 $\lim_{n\to\infty} \int_a^b S_n(x) ~ \mathrm{d}x = \int_a^b S(x) ~ \mathrm{d}x.$
+\end{thm}
+
+\pause
+
+\begin{thm}[Fourier 级数的逐项积分定理]
+设 $f(x) \in \mathfrak{R}[-\pi, \pi],$ 其 Fourier 级数不一定点态收敛到 $f,$ 但对任意 $\alpha, \beta \in [-\pi, \pi],$
+\[\int_\alpha^\beta f(x) ~ \mathrm{d}x = \int_\alpha^\beta \frac{a_0}{2} ~ \mathrm{d}x + \sum_{n=1}^\infty \int_\alpha^\beta (a_n \cos nx + b_n \sin nx) ~ \mathrm{d}x.\]
+\end{thm}
+
+\end{frame}
+\normalmode
+
+%------------------------------------------------
+
+\section{幂级数}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数的收敛半径}
+
+\begin{Def}[幂级数]
+形如 $\sum_{n=0}^\infty a_n (x - x_0)^n$ 的函数项级数称为幂级数. 通常考虑 $x_0 = 0,$ 因为平移即可推广.
+\end{Def}
+
+\pause
+
+\begin{thm}[Cauchy-Hadamard 定理]
+令 $A = \varlimsup_{n\to\infty} \nroot[n]{|a_n|},$ $R = \begin{cases} +\infty, & A = 0, \\ 1/A, & A \in (0, +\infty), \\ 0, & A = +\infty. \end{cases}$ 则
+\begin{itemize}
+\item $|x| < R$ 时, 幂级数{\color{red}绝对收敛};
+\item $|x| > R$ 时, 幂级数{\color{red}发散}.
+\end{itemize}
+$R$ 称为收敛半径. $x = \pm R$ 处需单独讨论.
+\end{thm}
+
+\pause
+
+\begin{thm}[d'Alembert 判别法求收敛半径]
+若 $\lim_{n\to\infty} \left\lvert \frac{a_{n+1}}{a_n} \right\rvert = A,$ 则收敛半径 $R = 1/A.$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{收敛半径计算例题}
+
+\begin{eg}
+求 $\sum_{n=1}^\infty \frac{n^n}{n!} x^n$ 的收敛半径和收敛域.
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red](解)
+\begin{itemize}[<+->]
+\item d'Alembert 法: $\lim_{n\to\infty} \left\lvert \frac{a_{n+1}}{a_n} \right\rvert = \lim_{n\to\infty} \left(1 + \frac{1}{n}\right)^n = e,$ 故 $R = 1/e.$
+\item 或用 Cauchy-Hadamard: $\varlimsup \frac{n}{\sqrt[n]{n!}} = e,$ 故 $R = 1/e.$
+\item $x = 1/e$: 正项级数 $a_n/e^n \sim 1/\sqrt{2\pi n},$ 发散.
+\item $x = -1/e$: 交错级数 $\sum (-1)^n a_n/e^n,$ 由 Leibniz 判别法知收敛 ($b_n \sim 1/\sqrt{2\pi n} \to 0,$ $b_{n+1}/b_n < 1$).
+\item 收敛域: $[-1/e, 1/e).$
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cauchy-Hadamard 与 d'Alembert 判别法的关系}
+
+由不等式
+\[\varliminf_{n\to\infty} \left\lvert \frac{a_{n+1}}{a_n} \right\rvert \leqslant \varliminf_{n\to\infty} \nroot[n]{|a_n|} \leqslant {\color{red}\varlimsup_{n\to\infty} \nroot[n]{|a_n|}} \leqslant \varlimsup_{n\to\infty} \left\lvert \frac{a_{n+1}}{a_n} \right\rvert\]
+
+\pause
+
+\begin{itemize}[<+->]
+\item 若 $\lim \left\lvert \frac{a_{n+1}}{a_n} \right\rvert = A,$ 则 $\lim \nroot[n]{|a_n|} = A,$ 收敛半径 $R = 1/A.$
+\item 但 d'Alembert 判别法要求极限存在, 而 Cauchy-Hadamard 只要求上极限存在.
+\item Cauchy-Hadamard 定理{\color{red}强于} d'Alembert 判别法: 反例 — $a_n$ 取 $2^k$ 当 $k^2 \leqslant n < (k+1)^2,$ 则 $\varlimsup \left\lvert \frac{a_{n+1}}{a_n} \right\rvert = 2,$ 但 $\varlimsup \nroot[n]{|a_n|} = 1,$ 收敛半径 $R = 1 \neq 1/2.$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Abel 定理}
+
+\begin{thm}[Abel 第一定理]
+若 $\sum_{n=0}^\infty a_n x^n$ 在 $x = \xi$ 处收敛, 则当 $|x| < |\xi|$ 时绝对收敛; 若在 $x = \eta$ 处发散, 则当 $|x| > |\eta|$ 时发散.
+\end{thm}
+
+\pause
+
+\begin{thm}[Abel 第二定理]
+若 $\sum_{n=0}^\infty a_n x^n$ 的收敛半径 $R > 0,$ 则
+\begin{itemize}
+\item 在 $(-R, R)$ 上内闭一致收敛;
+\pause
+\item 若在 $x = R$ (或 $x = -R$) 处收敛, 则在 $(-R, R]$ (或 $[-R, R)$) 上内闭一致收敛.
+\end{itemize}
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+{\color{red}概括}: 幂级数在包含于其收敛域内的任意闭区间上都一致收敛.
+
+\pause
+\vspace{0.5em}
+
+{\color{red}Abel 第二定理的意义}: 为利用一致收敛级数的分析性质 (连续性、逐项积分、逐项求导) 提供了保障.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数的分析性质}
+
+\begin{thm}[和函数的连续性]
+$\sum_{n=0}^\infty a_n x^n$ 的收敛半径 $R > 0,$ 则和函数 $S(x)$ 在 $(-R, R)$ 上连续; 若在端点收敛, 则连续性能延拓到该端点.
+\end{thm}
+
+\pause
+
+\begin{thm}[逐项可积性]
+设 $[a, b]$ 包含在收敛域内, 则
+\[\int_a^b \sum_{n=0}^\infty a_n x^n ~ \mathrm{d}x = \sum_{n=0}^\infty \frac{a_n}{n+1} (b^{n+1} - a^{n+1}).\]
+特别地, $\int_0^x \sum_{n=0}^\infty a_n t^n ~ \mathrm{d}t = \sum_{n=0}^\infty \frac{a_n}{n+1} x^{n+1}.$
+\end{thm}
+
+\pause
+
+{\color{red}收敛半径不变, 但收敛域在端点可能扩大.} 例如 $\sum_{n=1}^\infty x^{n-1}$ 在 $x=1$ 发散, 逐项积分后 $\sum \frac{x^n}{n}$ 在 $x=1$ 收敛.
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数的分析性质}
+
+\begin{thm}[逐项可微性]
+$\left( \sum_{n=0}^\infty a_n x^n \right)' = \sum_{n=1}^\infty n a_n x^{n-1},$ 收敛半径不变, 但收敛域在端点可能缩小.
+\end{thm}
+
+\pause
+\vspace{0.5em}
+
+例如 $\sum_{n=0}^\infty \frac{(-1)^n}{n+1} x^n$ 在 $x=1$ 收敛, 逐项求导后 $\sum_{n=1}^\infty \frac{(-1)^n}{n+1} n x^{n-1}$ 在 $x=1$ 发散.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数性质的应用例题}
+
+\begin{eg}
+求 $\sum_{n=1}^\infty \frac{2n+1}{3^n}$ 的和.
+\end{eg}
+
+\pause
+
+\begin{itemize}[<+->]
+\item 方法一 (初等): $3S - S = \sum_{n=1}^\infty \frac{2n+1}{3^{n-1}} - \sum_{n=1}^\infty \frac{2n+1}{3^n} = 3 + 2\sum_{n=1}^\infty \frac{1}{3^n} = 4,$ $S = 2.$
+\item 方法二 (幂级数):
+\[\sum_{n=1}^\infty \frac{2n+1}{3^n} = \sum_{n=1}^\infty \frac{1}{3^n} + 2 \left. \sum_{n=1}^\infty n x^n \right|_{x=1/3}.\]
+由逐项求导 $\sum_{n=1}^\infty n x^{n-1} = \frac{1}{(1-x)^2},$ 故 $\sum_{n=1}^\infty n x^n = \frac{x}{(1-x)^2}.$
+代入 $x = 1/3$ 得 $\sum_{n=1}^\infty n/3^n = 3/4,$ 从而 $S = \frac{1/3}{1-1/3} + 2 \cdot \frac{3}{4} = 2.$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\graymode
+\begin{frame}{级数求和的 Abel 方法}
+
+\begin{Def}[Abel 可和级数]
+若 $\lim_{x \to 1^-} \sum_{n=1}^\infty a_n x^n = A$ 存在且为有限实数, 则称 $\sum_{n=1}^\infty a_n$ 是 Abel 意义下可和的, 和为 $A.$
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 若 $\sum_{n=1}^\infty a_n$ 通常收敛, 则由 Abel 第二定理,
+\[\sum_{n=1}^\infty a_n = \lim_{x \to 1^-} \sum_{n=1}^\infty a_n x^n.\]
+\pause
+\item 即: 通常可和级数必为 Abel 可和, 且和相同.
+\pause
+\item 反例: $a_n = (-1)^n,$ 通常发散, 但 $\lim_{x \to 1^-} \sum (-1)^n x^n = \lim_{x \to 1^-} \frac{1}{1+x} = \frac{1}{2},$ 故在 Abel 意义下可和.
+\end{itemize}
+
+\pause
+
+\begin{thm}
+若 $\sum_{n=1}^\infty a_n$ 在 Cesàro $(c, 1)$ 意义下可和于 $A,$ 则它在 Abel 意义下也可和于 $A.$
+\end{thm}
+
+\pause
+
+\begin{center}
+\{通常可和\} $\subsetneqq$ \{Cesàro $(c,1)$ 可和\} $\subsetneqq \cdots \subsetneqq$ \{Cesàro $(c,r)$ 可和\} $\subsetneqq \cdots \subsetneqq$ \{Abel 可和\}
+\end{center}
+
+\end{frame}
+\normalmode
+
+%------------------------------------------------
+
+\section{函数的幂级数展开}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数展开的必要条件与 Taylor 级数}
+
+\begin{block}{幂级数展开的必要条件}
+若 $f(x)$ 在 $x = x_0$ 处有幂级数展开 $f(x) = \sum_{n=0}^\infty a_n (x-x_0)^n,$ 则由逐项可微性,
+\[f^{(k)}(x_0) = k! a_k \implies a_k = \frac{f^{(k)}(x_0)}{k!}.\]
+所以 $f(x)$ 必须在 $x_0$ 处{\color{red}无穷次可微}, 且展开系数只能是 Taylor 系数.
+\end{block}
+
+\pause
+
+\begin{Def}[Taylor 级数]
+设 $f$ 在 $x_0$ 处无穷次可微, 则称 ~~ $\sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n$ ~~ 是 $f$ 在 $x_0$ 处的 {\color{red}Taylor 级数}.
+\end{Def}
+
+\pause
+
+\begin{block}{由 Taylor 公式得到的充要条件}
+$f(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x-x_0)^k + r_n(x).$
+$f(x)$ 在 $(x_0-\rho, x_0+\rho)$ 上有幂级数展开 $\Longleftrightarrow$ $\lim_{n\to\infty} r_n(x) = 0$ 对任意 $x \in (x_0-\rho, x_0+\rho)$ 成立.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{光滑函数与解析函数}
+
+\begin{Def}
+\begin{itemize}
+\item $C^\infty(\mathbb{R})$: {\color{red}光滑函数}全体, 即具有任意阶导数的函数.
+\item $C^\omega(\mathbb{R})$: {\color{red}实解析函数}全体, 即在每点附近都能展开为收敛幂级数的函数.
+\end{itemize}
+\end{Def}
+
+\pause
+
+显然 $C^\omega \subseteq C^\infty,$ 但这一包含关系是{\color{red}严格的}:
+
+\pause
+
+\begin{eg}[光滑但非解析的典型例子]
+\[f(x) = \begin{cases} e^{-1/x^2}, & x \neq 0, \\ 0, & x = 0. \end{cases}\]
+\end{eg}
+
+\pause
+
+可归纳证得: $f^{(k)}(0) = 0$ 对所有 $k \geqslant 0$ 成立, 因此其 Taylor 级数为 $0.$ 但 $f(x) \not\equiv 0.$
+
+余项 $r_n(x) = f(x)$ 对所有 $n$ 都不趋于 $0.$
+
+% \pause
+% \vspace{0.5em}
+
+% \begin{prop}[Borel 引理]
+% 任给一列实数 $\{a_k\},$ 存在 $f \in C^\infty(\mathbb{R})$ 使得 $f^{(k)}(0) = a_k,$ $\forall~k \geqslant 0.$ 即 $C^\infty$ 函数的导数值是完全自由的.
+% \end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Taylor 公式的各种余项形式}
+
+\begin{recall}[余项公式总结]
+\begin{itemize}
+\item Peano: $r_n(x) = o((x-x_0)^n).$
+\pause
+\item Lagrange: $r_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1},$ $\xi$ 在 $x_0$ 与 $x$ 之间.
+\pause
+\item Cauchy: $r_n(x) = \frac{f^{(n+1)}(c)}{n!} (x-c)^n (x-x_0),$ $c$ 在 $x_0$ 与 $x$ 之间.
+\pause
+\item {\color{red}积分形式}: $r_n(x) = \frac{1}{n!} \int_{x_0}^x f^{(n+1)}(t) (x-t)^n ~ \mathrm{d}t.$
+\end{itemize}
+\end{recall}
+
+\pause
+
+积分形式的余项可以通过逐次分部积分得到, 并可推出 Lagrange 和 Cauchy 形式 (利用积分第一中值定理).
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Taylor 公式的各种余项形式}
+
+\begin{remark}
+验证幂级数展开时, 需选取合适的余项形式来计算 $\lim_{n\to\infty} r_n(x) = 0.$
+\begin{itemize}[<+->]
+\item Lagrange 形式简单, 但 $x < 0$ 时因子 $\left(\frac{1}{1+\xi}\right)^{n+1}$ 不易处理.
+\item Cauchy 形式额外引入了 $\left(\frac{1-\theta}{1+\theta x}\right)^n \in (0, 1),$ 更易处理.
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{初等函数的幂级数展开 | $e^x$, $\sin x$, $\cos x$}
+
+\begin{itemize}
+\item $e^x = \sum_{n=0}^\infty \dfrac{x^n}{n!},$ 收敛半径 $R = +\infty$ (验证: Lagrange 余项 $r_n(x) = \frac{e^\xi}{(n+1)!} x^{n+1} \to 0$).
+\pause
+\item $\sin x = \sum_{k=0}^\infty \dfrac{(-1)^k}{(2k+1)!} x^{2k+1},$ $R = +\infty.$ (验证: $|\sin^{(n)}(\xi)| \leqslant 1$)
+\pause
+\item $\cos x = \sum_{k=0}^\infty \dfrac{(-1)^k}{(2k)!} x^{2k},$ $R = +\infty.$
+\end{itemize}
+
+\pause
+
+\begin{itemize}[<+->]
+\item $\ln(1+x) = \sum_{n=1}^\infty \dfrac{(-1)^{n-1}}{n} x^n,$ 收敛半径 $R = 1,$ 收敛域 $(-1, 1].$ (验证: Cauchy 余项)
+\item $(1+x)^\alpha = \begin{cases} \sum_{n=0}^{\infty \text{ or } \alpha} C_\alpha^n x^n \end{cases},$ 收敛域:
+\[D = \begin{cases}
+\mathbb{R}, & \alpha \in \mathbb{N}, \\
+(-1, 1), & \alpha \leqslant -1, \\
+[-1, 1), & -1 < \alpha < 0, \\
+[-1, 1], & \alpha \geqslant 0, \alpha \notin \mathbb{N}.
+\end{cases}\]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{初等函数的幂级数展开 | 反三角函数}
+
+由 $(1+x)^\alpha$ 的展开结合逐项积分:
+
+\pause
+
+\begin{itemize}
+\item $(\arcsin x)' = (1-x^2)^{-1/2},$ 故
+\[\arcsin x = \int_0^x (1-t^2)^{-1/2} ~ \mathrm{d}t = \sum_{n=0}^\infty \frac{(2n-1)!!}{(2n)!!} \cdot \frac{x^{2n+1}}{2n+1},\]
+收敛域 $[-1, 1].$
+\pause
+\item $(\arctan x)' = (1+x^2)^{-1},$ 故
+\[\arctan x = \int_0^x (1+t^2)^{-1} ~ \mathrm{d}t = \sum_{n=0}^\infty \frac{(-1)^n}{2n+1} x^{2n+1},\]
+收敛域 $[-1, 1].$
+\end{itemize}
+
+\pause
+
+注意: $(\arctan x)'$ 的展开收敛域为 $(-1, 1),$ 逐项积分后收敛域扩大到 $[-1, 1].$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\tan x$ 的幂级数展开}
+
+$\tan x$ 的各阶导数表达式复杂, 直接通过 Taylor 公式计算较为困难. 采用待定系数法:
+
+\pause
+\vspace{0.5em}
+
+\begin{itemize}[<+->]
+\item 设 $\tan x = \sum_{n=1}^\infty c_{2n-1} x^{2n-1}$ (奇函数).
+\item 由 $\sin x = \tan x \cdot \cos x,$ 比较系数可得 $c_1=1, c_3=2/3!, c_5=16/5!, \dots$
+\item 借助 Bernoulli 数: $\frac{z}{e^z-1} = \sum_{n=0}^\infty \frac{B_n}{n!} z^n,$ 可得
+  \[\cot x = \frac{1}{x} + \sum_{n=1}^\infty (-1)^n \frac{2^{2n} B_{2n}}{(2n)!} x^{2n-1}.\]
+\item 利用 $2\cot 2x = \cot x - \tan x,$ 得
+  \[\tan x = \sum_{n=1}^\infty (-1)^{n-1} \cdot \frac{4^n(4^n-1) B_{2n}}{(2n)!} x^{2n-1}.\]
+\item Bernoulli 数的性质: $B_{2n+1} = 0$ ($n \geqslant 1$), $B_{2n} = (-1)^{n+1} \frac{2(2n)!}{(2\pi)^{2n}} \zeta(2n).$
+\item 收敛半径: $R = \pi/2,$ 收敛域: $(-\pi/2, \pi/2).$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{复合函数的幂级数展开}
+
+\begin{eg}
+求 $f(x) = \frac{1}{3+5x-2x^2}$ 在 $x = 0$ 处的幂级数展开.
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red](解)
+分解为部分分式:
+\begin{align*}
+f(x) & = \frac{1}{(3-x)(1+2x)} = \frac{1}{7} \left( \frac{2}{1+2x} + \frac{1}{3-x} \right) \\
+& = \frac{1}{7} \left( 2 \sum_{n=0}^\infty (-2)^n x^n + \sum_{n=0}^\infty \frac{1}{3^{n+1}} x^n \right).
+\end{align*}
+\pause
+收敛半径: $\min\{1/2, 3\} = 1/2,$ 收敛域: $(-1/2, 1/2).$
+\qed
+
+\pause
+
+\begin{block}{一般方法}
+对 $\frac{f(x)}{g(x)},$ 若 $f, g$ 有幂级数展开, 设 $\frac{f}{g} = \sum_{n=0}^\infty c_n x^n,$ 则 ~ $\sum_{n=0}^\infty a_n x^n = \left(\sum_{n=0}^\infty b_n x^n \right) \left( \sum_{n=0}^\infty c_n x^n \right),$ 通过比较系数求得 $c_n$ 的递推关系.
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{幂级数展开的更多例子}
+
+\begin{eg}
+求 $f(x) = \ln \frac{\sin x}{x}$ 在 $x = 0$ 处的幂级数展开.
+\end{eg}
+
+\pause
+
+\startproof[bg=yellow, fg=red](利用无穷乘积展开)
+由 $\frac{\sin x}{x} = \prod_{n=1}^\infty \left( 1 - \frac{x^2}{n^2\pi^2} \right),$ 取对数:
+\begin{align*}
+\ln \frac{\sin x}{x} & = \sum_{n=1}^\infty \ln \left( 1 - \frac{x^2}{n^2\pi^2} \right) = - \sum_{n=1}^\infty \sum_{k=1}^\infty \frac{1}{k} \cdot \frac{x^{2k}}{n^{2k} \pi^{2k}} \\
+& = - \sum_{k=1}^\infty \frac{\zeta(2k)}{k \pi^{2k}} x^{2k}.
+\end{align*}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{用多项式逼近连续函数}
+
+%------------------------------------------------
+
+\begin{frame}{多项式逼近问题的引入}
+
+\begin{Def}[多项式一致逼近]
+设 $f(x)$ 定义在 $[a, b]$ 上, 若存在多项式序列 $\{P_n(x)\}$ 在 $[a, b]$ 上一致收敛于 $f(x),$ 则称 $f(x)$ 在 $[a, b]$ 上可用多项式一致逼近.
+\end{Def}
+
+\pause
+
+\begin{question}
+哪些函数可以用多项式一致逼近?
+\end{question}
+
+\pause
+
+幂级数部分和是一种自然的候选, 但有两方面局限:
+\begin{itemize}
+\item 对函数要求高 (需解析);
+\pause
+\item 形式固定, 灵活性差: $P_n - P_{n-1} = a_n (x-x_0)^n.$
+\end{itemize}
+
+\pause
+\vspace{0.5em}
+
+{\color{red}Weierstraß 第一逼近定理} 给出了对于连续函数的肯定回答.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Weierstraß 第一逼近定理}
+
+\begin{thm}[Weierstraß 第一逼近定理]
+设 $f(x) \in C[a, b],$ 则 $\forall~\varepsilon > 0,$ 存在多项式 $P(x)$ 使得 $\forall~x \in [a, b],$
+\[|P(x) - f(x)| < \varepsilon.\]
+等价地, 存在多项式序列 $\{P_n\}$ 使得 $d(P_n, f) := \sup_{x \in [a,b]} |P_n(x) - f(x)| \to 0.$
+\end{thm}
+
+\pause
+
+证明路径:
+\begin{center}
+\begin{tikzpicture}[every node/.append style={scale=0.9}]
+\node[draw, rectangle, rounded corners] at (0, 3) (korovkin) {Korovkin 定理};
+\node[draw, rectangle, rounded corners] at (3, 1.5) (bernstein) {Bernstein 定理 ($[0,1]$)};
+\node[draw, rectangle, rounded corners] at (-3, 1.5) (poslin) {正线性算子};
+\node[draw, rectangle, rounded corners] at (0, 0) (weierstrass) {Weierstraß 第一逼近定理};
+\draw[->] (poslin) -- (korovkin);
+\draw[->] (korovkin) -- (bernstein);
+\draw[->] (bernstein) -- (weierstrass);
+\end{tikzpicture}
+\end{center}
+
+\pause
+
+该定理也是 $L^p$ 空间可分性证明的重要组成部分.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正线性算子与 Korovkin 定理}
+
+\begin{Def}[正线性算子]
+称线性映射 $L: C[a,b] \to C[a,b]$ 为:
+\begin{itemize}
+\item 正算子: 若 $f \geqslant 0 \implies L(f) \geqslant 0;$
+\item 多项式算子: 若 $L(f)$ 恒为多项式.
+\end{itemize}
+\end{Def}
+
+\pause
+
+\begin{eg}
+\begin{itemize}
+\item {\color{red}Bernstein 多项式}: $f \mapsto B_n(f; x) = \sum_{k=0}^n f\!\left(\frac{k}{n}\right) C_n^k x^k (1-x)^{n-k}$ (正线性多项式算子).
+\end{itemize}
+\end{eg}
+
+\pause
+
+\begin{thm}[Korovkin 定理]
+设 $\{L_n\}$ 是 $C[a,b]$ 上一列正线性算子, 且对 $i = 0, 1, 2$ 有
+\[L_n(t^i; x) \stackrel{[a,b]}{\rightrightarrows} x^i,\]
+则 $\forall~f \in C[a,b],$ $L_n(f; x) \stackrel{[a,b]}{\rightrightarrows} f(x).$
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Bernstein 定理}
+
+\begin{thm}[Bernstein 定理]
+$\forall~f \in C[0, 1],$ Bernstein 多项式
+\[B_n(f; x) = \sum_{k=0}^n f\left( \frac{k}{n} \right) C_n^k x^k (1-x)^{n-k} \stackrel{[0, 1]}{\rightrightarrows} f(x).\]
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](验证 Korovkin 定理的三个条件)
+\begin{align*}
+B_n(1; x) & = \sum_{k=0}^n C_n^k x^k (1-x)^{n-k} = (x + 1 - x)^n = 1. \\[0.5em]
+B_n(t; x) & = \sum_{k=0}^n \frac{k}{n} C_n^k x^k (1-x)^{n-k} = x (x+1-x)^{n-1} = x. \\[0.5em]
+B_n(t^2; x) & = \sum_{k=0}^n \frac{k^2}{n^2} C_n^k x^k (1-x)^{n-k} = \frac{n-1}{n} x^2 + \frac{1}{n} x = x^2 + \frac{x(1-x)}{n} \stackrel{[0,1]}{\rightrightarrows} x^2.
+\end{align*}
+\qed
+
+\pause
+
+Weierstraß 第一逼近定理通过变量代换 $g(z) = f((b-a)z + a)$ 即可从 Bernstein 定理推出.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Korovkin 定理的证明概要}
+
+由于 $f \in C[a, b]$ 一致连续, $\forall~\varepsilon > 0,$ $\exists~\delta > 0$ 使得 $|x-t| < \delta$ 时 $|f(x) - f(t)| < \varepsilon.$ 令 $M$ 为 $f$ 的界.
+
+\pause
+\vspace{0.5em}
+
+令 $\varphi(t) = (t-x)^2.$ 对任意 $x, t \in [a,b],$
+\[|f(t) - f(x)| < \varepsilon + \frac{2M}{\delta^2} \varphi(t).\]
+(分 $|t-x| < \delta$ 和 $|t-x| \geqslant \delta$ 两种情况验证)
+
+\pause
+\vspace{0.5em}
+
+将正线性算子 $L_n$ 作用于不等式 (把 $t$ 视为变量, $x$ 视为参数):
+\[-\varepsilon L_n(1) - \frac{2M}{\delta^2} L_n(\varphi) < L_n(f) - f(x) L_n(1) < \varepsilon L_n(1) + \frac{2M}{\delta^2} L_n(\varphi).\]
+
+\pause
+\vspace{0.5em}
+
+由条件 $L_n(1) \rightrightarrows 1,$ $L_n(t) \rightrightarrows t,$ $L_n(t^2) \rightrightarrows t^2,$ 可得
+$L_n(\varphi) \rightrightarrows (z-x)^2.$ 代入后取 $z = x,$ 令 $n \to \infty,$ 即得 $L_n(f; x) \rightrightarrows f(x).$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{重要公式总结 | 常见幂级数展开}
+
+{\smaller[1]
+\[
+\begin{array}{ll}
+e^x = \displaystyle\sum_{n=0}^\infty \dfrac{x^n}{n!}, & R = +\infty \\[1.5em]
+\sin x = \displaystyle\sum_{k=0}^\infty \dfrac{(-1)^k}{(2k+1)!} x^{2k+1}, & R = +\infty \\[1.5em]
+\cos x = \displaystyle\sum_{k=0}^\infty \dfrac{(-1)^k}{(2k)!} x^{2k}, & R = +\infty \\[1.5em]
+\ln(1+x) = \displaystyle\sum_{n=1}^\infty \dfrac{(-1)^{n-1}}{n} x^n, & R = 1,\ D = (-1, 1] \\[1.5em]
+(1+x)^\alpha = \displaystyle\sum_{n=0}^\infty C_\alpha^n x^n, & R = 1,\ D \text{ 取决于 } \alpha \\[1.5em]
+\arctan x = \displaystyle\sum_{n=0}^\infty \dfrac{(-1)^n}{2n+1} x^{2n+1}, & R = 1,\ D = [-1, 1] \\[1.5em]
+\arcsin x = \displaystyle\sum_{n=0}^\infty \dfrac{(2n-1)!!}{(2n)!!} \cdot \dfrac{x^{2n+1}}{2n+1}, & R = 1,\ D = [-1, 1] \\[1.5em]
+\dfrac{1}{1-x} = \displaystyle\sum_{n=0}^\infty x^n, & R = 1,\ D = (-1, 1)
+\end{array}
+\]
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{重要公式总结 | 常见幂级数求和}
+
+{\smaller[1]
+\[
+\begin{array}{ll}
+\displaystyle\sum_{n=0}^\infty x^n = \dfrac{1}{1-x}, & |x| < 1 \\[1.5em]
+\displaystyle\sum_{n=1}^\infty n x^{n-1} = \dfrac{1}{(1-x)^2}, & |x| < 1 \\[1.5em]
+\displaystyle\sum_{n=1}^\infty n x^n = \dfrac{x}{(1-x)^2}, & |x| < 1 \\[1.5em]
+\displaystyle\sum_{n=1}^\infty \dfrac{x^n}{n} = -\ln(1-x), & |x| < 1,\ x = -1 \text{ 收敛} \\[1.5em]
+\displaystyle\sum_{n=0}^\infty \dfrac{x^{2n+1}}{2n+1} = \dfrac{1}{2} \ln \dfrac{1+x}{1-x}, & |x| < 1 \\[1.5em]
+\displaystyle\sum_{n=0}^\infty (n+1) x^n = \dfrac{1}{(1-x)^2}, & |x| < 1
+\end{array}
+\]
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{判别法总览对比}
+
+\begin{table}
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+\hline
+\bfseries 判别法 & \bfseries 正项/数项级数 & \bfseries 函数项级数 (一致收敛) \\
+\hline
+比较判别法 & $0 \leqslant a_n \leqslant b_n$ & Weierstraß 判别法 \\[0.5em]
+Cauchy 判别法 & $\varlimsup_{n\to\infty} \nroot[n]{a_n}$ & $\longrightarrow$ Cauchy-Hadamard (收敛半径) \\[0.5em]
+d'Alembert 判别法 & $\varlimsup_{n\to\infty} a_{n+1}/a_n$ & $\longrightarrow$ d'Alembert (收敛半径) \\[0.5em]
+Raabe 判别法 & $n(a_n/a_{n+1} - 1)$ & --- \\[0.5em]
+积分判别法 & $\int_a^{+\infty} f(x) ~ \mathrm{d}x$ 与 $\sum_{n=[a]+1}^\infty f(n)$ & --- \\[0.5em]
+Leibniz 判别法 & 交错级数 & --- \\[0.5em]
+A-D 判别法 & 一般级数 & 函数项级数 A-D 判别法 \\
+\hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
