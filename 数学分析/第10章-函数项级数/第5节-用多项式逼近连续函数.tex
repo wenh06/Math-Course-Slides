@@ -136,7 +136,7 @@ Weierstraß 第一逼近定理的证明需要一些预备知识与定理, 我们
 \begin{eg}
 \begin{enumerate}
 \item Fourier 级数部分和 $\displaystyle f \mapsto \dfrac{1}{\pi}\int_{-\pi}^{\pi} f(x+t) \dfrac{\sin(n+\frac{1}{2})t}{2\sin\frac{t}{2}} ~ \mathrm{d} t.$
-\item Bernstein 多项式 $\displaystyle f \mapsto B_n(f; x) = \sum_{k=0}^{n} f ( \frac{k}{n} ) C_n^k x^k (1-x)^{n-k}.$
+\item Bernstein 多项式 $\displaystyle f \mapsto B_n(f; x) = \sum_{k=0}^{n} f \left( \frac{k}{n} \right) C_n^k x^k (1-x)^{n-k}.$
 \end{enumerate}
 \end{eg}
 
@@ -160,7 +160,7 @@ Korovkin 定理的一个直接推论是
 
 \begin{cor}[Bernstein 定理]
 $\forall ~ f \in C[0,1], \forall ~ n \in \mathbb{N},$ Bernstein 多项式
-\[B_n(f; x) = \sum_{k=0}^{n} f ( \frac{k}{n} ) C_n^k x^k (1-x)^{n-k} \stackrel{[0,1]}{\rightrightarrows} f(x).\]
+\[B_n(f; x) = \sum_{k=0}^{n} f \left( \frac{k}{n} \right) C_n^k x^k (1-x)^{n-k} \stackrel{[0,1]}{\rightrightarrows} f(x).\]
 \end{cor}
 
 \end{frame}
@@ -199,13 +199,13 @@ B_n(\alpha_2; x) & = \sum_{k=0}^{n} \frac{k^2}{n^2} C_n^k x^k (1-x)^{n-k} = \sum
 \begin{frame}
 \frametitle{Weierstraß 第一逼近定理的证明}
 
-令 $g(z) = f((b-a)z + a,$ 那么 $g \in C[0, 1],$ 那么由 Bernstein 定理有
+令 $g(z) = f((b-a)z + a),$ 那么 $g \in C[0, 1],$ 那么由 Bernstein 定理有
 \begin{equation*}
 \widetilde{P}_n (z) := B_n(g; z) \stackrel{[0,1]}{\rightrightarrows} g(z).
 \end{equation*}
 于是
 \begin{equation*}
-P_n(x) := \widetilde{P}_n (\frac{x-a}{b-a}) \stackrel{[a,b]}{\rightrightarrows} g (\frac{x-a}{b-a}) = f(x).
+P_n(x) := \widetilde{P}_n \left( \frac{x-a}{b-a} \right) \stackrel{[a,b]}{\rightrightarrows} g \left( \frac{x-a}{b-a} \right) = f(x).
 \end{equation*}
 \qed
 
