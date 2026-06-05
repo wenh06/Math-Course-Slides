@@ -1101,7 +1101,7 @@ h_r(t) & := \left( t \cdot \frac{\mathrm{d}}{\mathrm{d}t} \right)^{r-1} h_1(t) =
 & = \left(\frac{-1}{2 i \pi}\right)^{r} \cdot (r - 1)! \cdot \sum_{n \in \mathbb{Z}} \frac{1}{(x + n)^r}.
 \end{align*}
 \pause
-现任取 $\chi$ 为 $\mod N$ 的 Dirichlet 特征, 则对 $r \in \mathbb{N}$ 有
+现任取 $\chi$ 为 $\mod N$ 的 Dirichlet 特征, 则对 $r \in \mathbb{N}$ 有 (假设 $\chi(-1) = (-1)^r$):
 \begin{align*}
 L(r, \chi) & = \sum_{n=1}^\infty \frac{\chi(n)}{n^r} = \sum_{a \in \left( \mathbb{Z}/N\mathbb{Z} \right)^\times} \sum_{n \equiv a \mod N} \frac{\chi(n)}{n^r} = \sum_{a \in \left( \mathbb{Z}/N\mathbb{Z} \right)^\times} \chi(a) \sum_{k=0}^\infty \frac{1}{(kN + a)^r} \\
 & = \sum_{a \in \left( \mathbb{Z}/N\mathbb{Z} \right)^\times} \chi(a) \sum_{k=0}^\infty \frac{1}{N^r \cdot \left( k + \frac{a}{N} \right)^r} = \frac{1}{2} \sum_{a \in \left( \mathbb{Z}/N\mathbb{Z} \right)^\times} \frac{\chi(a)}{(r-1)!} \cdot \left( -\frac{2 i \pi}{N} \right)^r \cdot h_r\left( e^{2 i \pi \frac{a}{N}} \right).
