@@ -104,7 +104,7 @@
 \begin{frame}
 \frametitle{对称矩阵的性质}
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
 设实对称矩阵$A$为$n$阶的，任取一个（复）特征值$\lambda_0$, 依定义存在（复系数）的$n$维非零向量$\xi = (x_1,x_2,\ldots,x_n)^T$，使得
 \[A\xi = \lambda_0\xi.\]
 上式左乘$\overline{\xi}^T$，有
@@ -112,7 +112,7 @@
 由于$A$是实对称矩阵，有$A = \overline{A}^T$，于是上式左边有
 \[\overline{\xi}^TA\xi = \overline{\xi}^T\overline{A}^T\xi = (\overline{A\xi})^T\xi = (\overline{\lambda_0\xi})^T\xi = \overline{\lambda}_0 ~ \overline{\xi}^T\xi.\]
 由于$\xi$为非零向量，即$\displaystyle \overline{\xi}^T\xi = \sum\limits_{i=1}^n \lvert x_i \rvert^2 \neq 0$，因此必须有$\lambda_0 = \overline{\lambda}_0$，即$\lambda_0$为一个实数。
-\end{proof}
+\qed
 
 \end{frame}
 
@@ -152,14 +152,14 @@
 \begin{frame}
 \frametitle{对称矩阵的性质}
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
 只要证明后一等式即可：
 \begin{align*}
     \beta^T (A\alpha) & = \beta^T A \alpha = \beta^T A^T \alpha \\
     & = (A\beta)^T \alpha = \left( (A\beta)^T \alpha \right)^T \\
     & = \alpha^T (A\beta).
 \end{align*}
-\end{proof}
+\qed
 
 \end{frame}
 
@@ -193,7 +193,7 @@
 \vspace{1em}
 \pause
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
 要证明$V_1^{\perp}$也是$\mathscr{A}$-子空间，只要证明任取$\alpha\in V_1^{\perp}$，都有$\mathscr{A}\alpha\in V_1^{\perp}$，即任取$\beta\in V_1$有$\langle \mathscr{A}\alpha, \beta \rangle = 0$。实际上
 \begin{align*}
     \langle \mathscr{A}\alpha, \beta \rangle = \langle \alpha, \mathscr{A}\beta \rangle = 0.
@@ -202,7 +202,7 @@
 \pause
 
 上面第一个等号是因为$\mathscr{A}$是对称变换；第二个等号是因为$V_1$是$\mathscr{A}$-子空间且$\beta\in V_1$，故$\mathscr{A}\beta \in V_1$，而$\alpha\in V_1^{\perp}$，从而有$\langle \alpha, \mathscr{A}\beta \rangle = 0$。于是，$V_1^{\perp}$也是$\mathscr{A}$-子空间。
-\end{proof}
+\qed
 
 \end{frame}
 
@@ -218,7 +218,7 @@
 \vspace{0.5em}
 \pause
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
 设$\alpha_1, \alpha_2$为分别属于实对称阵$A$的两个不相等特征值$\lambda_1, \lambda_2$, 即
 \[A\alpha_1 = \lambda_1\alpha_1, \; A\alpha_2 = \lambda_2\alpha_2.\]
 于是，我们有
@@ -227,7 +227,7 @@
 \alpha_2^T A\alpha_1 = (\alpha_2^T A^T)\alpha_1 = (A\alpha_2)^T\alpha_1 = \lambda_2 \langle \alpha_2, \alpha_1 \rangle
 \end{cases}\]
 由于$\lambda_1 \neq \lambda_2$, 因此$\langle \alpha_2, \alpha_1 \rangle = 0$，即$\alpha_1, \alpha_2$正交。
-\end{proof}
+\qed
 
 \end{frame}
 
@@ -253,7 +253,9 @@
 \begin{frame}
 \frametitle{主要定理的证明}
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
+\vspace{0.3em}
+
 \phantom{一一}令$\mathscr{A}$为$n$维欧氏空间$\mathbb{R}^n$中由$A$给出的对称变换，即
 \[\mathscr{A} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} := A \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix},\]
 那么只要证明$\mathscr{A}$有$n$个特征向量组成一组标准正交基即可。
@@ -268,7 +270,7 @@
 
 \phantom{一一}$n=1$时，命题平凡成立。
 \renewcommand{\qedsymbol}{}
-\end{proof}
+\qed
 
 \end{frame}
 
@@ -277,7 +279,7 @@
 \begin{frame}
 \frametitle{主要定理的证明}
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
 \phantom{一一}设$n-1$时定理结论成立。设对称变换$\mathscr{A}$有一个特征向量$\alpha_1$，其特征值为实数$\lambda_1$，即$\mathscr{A}\alpha_1 = \lambda_1\alpha_1$。不妨设$\alpha_1$为单位长度的向量，否则用$\displaystyle \dfrac{\alpha_1}{\lvert \alpha_1 \rvert}$代替$\alpha_1$即可。
 
 \vspace{0.6em}
@@ -291,7 +293,7 @@
 \pause
 
 \phantom{一一}由归纳假设，$\mathscr{A}|_{V_1}$有$n-1$个特征向量$\alpha_2,\ldots,\alpha_n$构成$V_1$的一组标准正交基。于是，$\alpha_1,\alpha_2,\ldots,\alpha_n$是$\mathbb{R}^n$的一组标准正交基，同时也是$\mathscr{A}$的$n$个特征向量。
-\end{proof}
+\qed
 
 \end{frame}
 

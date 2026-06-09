@@ -114,7 +114,7 @@ $MM^T$与$M^TM$的特征值非负，且二者的正特征值之集相同。
 
 \pause
 
-\begin{proof}[证明\nopunct]
+\startproof[bg=yellow, fg=red]
 任取$MM^T$的一个特征值$\lambda$以及相应的一个特征向量$\mathbf{x}$，即有$MM^T\mathbf{x} = \lambda\mathbf{x}$。那么$\mathbf{x}^TMM^T\mathbf{x} = \mathbf{x}^T\lambda\mathbf{x}$，即
 \begin{equation}
 \label{eq1}
@@ -127,7 +127,7 @@ $MM^T$与$M^TM$的特征值非负，且二者的正特征值之集相同。
 M^TMM^T\mathbf{x} = \lambda M^T\mathbf{x},
 \end{equation}
 又由\eqref{eq1}式知$M^T\mathbf{x}$非零向量，故$\lambda$也是$M^TM$的正特征值。
-\end{proof}
+\qed
 
 \end{frame}
 

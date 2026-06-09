@@ -686,11 +686,11 @@ $\implies:$ 只要证明 $E$ 的任意聚点 $x$ 都在 $E$ 中即可.
 
 \pause
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
 $\forall~y \in O(x, \delta),$ 则 $d(x, y) < \delta,$ 取 $\varepsilon = (\delta - d(x, y)) / 2 > 0.$ 任取 $z \in O(y, \varepsilon),$ 则 $d(y, z) < \varepsilon,$ 由三角不等式知
 \[d(x, z) \leqslant d(x, y) + d(y, z) < d(x, y) + \varepsilon = (\delta + d(x, y) / 2 < \delta,\]
 即 $z \in O(x, \delta),$ 从而 $O(y, \varepsilon) \subset O(x, \delta),$ 即 $O(x, \delta)$ 是开集.
-\end{proof}
+\qed
 
 % \pause
 
@@ -911,7 +911,7 @@ $\mathbb{R}^n$ 中任意多闭集的并不一定仍是闭集,
 \pause
 \vspace{1em}
 
-\begin{proof}
+\startproof[bg=yellow, fg=red]
 由于 $\{ x_k \}_{k\in\mathbb{N}}$ 是 $\mathbb{R}^n$ 中的有界点列, 于是对每一个坐标 $x_i$ 的数列 $\{ x_i^k \}$ 都是有界的.
 
 \pause
@@ -924,7 +924,7 @@ $\{ x_1^k\}$ 相应的子列 $\{ x_1^{k_{j_\ell}} \}$ 是收敛数列 $\{ x_1^{k
 \pause
 
 于是可以归纳地找到  $\{ x_k \}_{k\in\mathbb{N}}$ 的一个子列, 收敛到 $a = (a_1, \dots, a_n).$
-\end{proof}
+\qed
 
 \end{frame}
 
