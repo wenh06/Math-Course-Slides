@@ -494,6 +494,7 @@ y \sin\dfrac{1}{x}, & x \neq 0 ~ \text{且} ~ y \neq 0, \\
 \[\lvert \varphi(x) - A \rvert = \lim_{y \to y_0} \lvert f(x, y) - A \rvert \leqslant \varepsilon / 2 < \varepsilon.\]
 也就是说, 我们证明了, $\forall~\varepsilon > 0, \exists \delta > 0,$ 当 $0 < \lvert x - x_0 \rvert < \delta$ 时, 有 $\lvert \varphi(x) - A \rvert < \varepsilon.$
 即有 $\lim\limits_{x \to x_0} \varphi(x) = A.$
+\qed
 
 \pause
 \vspace{0.5em}
@@ -527,6 +528,36 @@ $\lim\limits_{\substack{x \to x_0\\y \to y_0}} f(x, y)$ & $\lim\limits_{y \to y_
 \only<10->{{\color{red}\ding{55}} & {\color{red}\ding{55}} & {\color{red}\ding{55}}} \\[1ex]
 \end{tabular}
 \end{table}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例题}
+
+\begin{eg}[2024年期末考试题目]
+设二元函数 $f(x, y)$ 在点 $(x_0, y_0) \in \mathbb{R}^2$ 的某个去心邻域 $\mathring{O}((x_0, y_0), \delta)$ 内有定义. 那么关于 $f(x, y)$ 在点 $(x_0, y_0)$ 处的二重极限 $\lim\limits_{(x,y)\to(x_0,y_0)} f(x,y)$ 以及二次极限 $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x,y),$ $\lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x,y)$ 的存在性以及取值的情况, 下面哪一种情况是\textbf{不可能的} (\only<1>{\phantom{D}} \only<2->{{\color{red}D}})
+
+\vspace{0.5em}
+
+\textbf{A.} $\lim\limits_{(x,y)\to(x_0,y_0)} f(x,y) = \lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x,y) = \lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x,y) = 1$
+
+\vspace{0.5em}
+\textbf{B.} $\lim\limits_{(x,y)\to(x_0,y_0)} f(x,y)$ 不存在, $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x,y) = 2, \lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x,y) = 1$
+
+\vspace{0.5em}
+\textbf{C.} $\lim\limits_{(x,y)\to(x_0,y_0)} f(x,y)$ 不存在, $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x,y)$ 也不存在, $\lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x,y) = 2$
+
+\vspace{0.5em}
+\textbf{D.} $\lim\limits_{(x,y)\to(x_0,y_0)} f(x,y) = 1,$ $\lim\limits_{x \to x_0} \lim\limits_{y \to y_0} f(x,y) = 2,$ $\lim\limits_{y \to y_0} \lim\limits_{x \to x_0} f(x,y)$ 不存在
+\end{eg}
+
+\vspace{1em}
+
+\only<3>{
+\startproof[bg=yellow, fg=red](解析)
+直接对照上一页总结的累次极限与重极限所有可能的取值情况的表格即可.
+}
 
 \end{frame}
 
@@ -598,31 +629,25 @@ $\forall~\varepsilon > 0, \exists~\delta > 0,$ 当 $\lVert x - x_0 \rVert < \del
 
 \pause
 
-一种方法是直接用定义进行验证.
+\startproof[bg=yellow, fg=red]
+一种方法是直接用定义验证.
 \pause
 任取 $(x_0, y_0) \in \mathbb{R}^2$, 对 $f$ 在这点附近的函数值增量有估计
 % {\smaller[1]
 \begin{align*}
-& \lvert f(x, y) - f(x_0, y_0) \rvert \\
-= & \left\lvert \sin \sqrt{x^2 + y^2} - \sin \sqrt{x_0^2 + y_0^2} \right\rvert \\
+\lvert f(x, y) - f(x_0, y_0) \rvert = & \left\lvert \sin \sqrt{x^2 + y^2} - \sin \sqrt{x_0^2 + y_0^2} \right\rvert \\
 = & 2 \left\lvert \sin \dfrac{\sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2}}{2} \cos \dfrac{\sqrt{x^2 + y^2} + \sqrt{x_0^2 + y_0^2}}{2} \right\rvert \\
 \leqslant & 2 \left\lvert \sin\dfrac{\sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2}}{2} \right\rvert \cdot 1  \leqslant \sqrt{x^2 + y^2} - \sqrt{x_0^2 + y_0^2} \\
 \leqslant & \sqrt{(x - x_0)^2 + (y - y_0)^2} = \lVert (x, y) - (x_0, y_0) \rVert_2.
 \end{align*}
-% }
-
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}{多元连续函数的例子}
-
+\pause
 那么 $\forall~\varepsilon > 0,$ 取 $\delta = \varepsilon > 0,$ 当 $\lVert (x, y) - (x_0, y_0) \rVert_2 < \delta$ 时, 有 $\lvert f(x, y) - f(x_0, y_0) \rvert < \varepsilon.$
 
 \pause
 \vspace{0.5em}
 
 另一种方法是利用 $\varphi(u) = \sin \sqrt{u}, g(x, y) = x^2 + y^2$ 的连续性, 由复合函数的连续性知 $f(x, y) = \varphi(g(x, y))$ 也是连续的.
+\qed
 
 \end{frame}
 
@@ -809,6 +834,7 @@ zmin=0.0, zmax=3
 
 %------------------------------------------------
 
+\graymode
 \begin{frame}{向量值函数的例子 -- 方阵函数}
 
 方阵函数 $f: M_{n\times n}(\mathbb{R}) \to M_{n\times n}(\mathbb{R}).$
@@ -894,6 +920,7 @@ f(J_i) = f(\lambda_i) I_{n_i} + f'(\lambda_i) N_{n_i} + \cdots + \dfrac{f^{(n_i-
 \end{itemize}
 
 \end{frame}
+\normalmode
 
 %------------------------------------------------
 
