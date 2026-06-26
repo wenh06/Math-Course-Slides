@@ -61,7 +61,7 @@ P & : a = x_0 & < & ~ x_1 & < & ~ x_2 & ~ < & ~ \cdots & ~ < & ~ x_n = b \\
 {\color{red}\xi} & : & ~ {\color{red}\xi_1} & & ~ {\color{red}\xi_2} & & ~ {\color{red}\xi_3} & ~ \cdots & ~ {\color{red}\xi_n} &
 \end{alignat*}
 $\Delta_i = [x_{i-1}, x_i], ~ \Delta x_i = x_i - x_{i-1}, ~ \lambda(P) = \max_{1 \leqslant i \leqslant n} \Delta x_i$
-\item 积分和: $S(f; P; \xi) = \sum\limits_{i=1}^n f(\xi) \Delta x_i.$
+\item 积分和: $S(f; P; \xi) = \sum\limits_{i=1}^n f(\xi_i) \Delta x_i.$
 \item Darboux 大和: $\overline{S}(f; P) = \sum\limits_{i=1}^n \sup_{t\in\Delta_i} f(t) \cdot \Delta x_i =: \sum\limits_{i=1}^n M_i(f) \cdot \Delta x_i$ \par
 Darboux 小和: $\underline{S}(f; P) = \sum\limits_{i=1}^n \inf_{t\in\Delta_i} f(t) \cdot \Delta x_i =: \sum\limits_{i=1}^n m_i(f) \cdot \Delta x_i$
 \end{itemize}
@@ -1711,7 +1711,6 @@ $\mathbb{R}^n$ 中的点集 $E$ 是紧集的充要条件是 $E$ 是有界闭集.
 \vspace{0.5em}
 
 以及定义在一般 $n$ 维空间 $\mathbb{R}^n$ 中函数 $f$ 在某点 $(x_1^0, x_2^0, \dots, x_n^0) \in \mathbb{R}^n$ 处的累次极限
-\vspace*{-1em}
 \[\lim_{x_{i_1} \to x_{i_1}^0} \cdots \lim_{x_{i_n} \to x_{i_n}^0} f(x_1, \dots, x_n).\]
 
 \end{frame}
