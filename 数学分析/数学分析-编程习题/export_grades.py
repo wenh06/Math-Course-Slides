@@ -37,7 +37,9 @@ ORDER BY a.name, st.id, n.name;
 
 
 def fmt_score(v):
-    """格式化分数：整数显示整数，否则保留 1 位小数"""
+    """格式化分数：整数显示整数，否则保留 1 位小数；None 显示为 '-'"""
+    if v is None:
+        return "-"
     return f"{v:.0f}" if v == int(v) else f"{v:.1f}"
 
 
@@ -106,9 +108,8 @@ def main():
             print(rows_to_table(rows, headers))
         return
 
-    # 合并：同一学号 + 同一作业，取 (score, max_score) 中 score/max_score 比值最高的那一版
-    # 但满分不同时，用得分率来比较更合理；若得分率相同取满分更高的
-    merged = {}
+    # 合并：同一学号 + 同一作业，取 (score, max_score) 中得分率最高的那一版
+    # 若得分率相同取满分更高的
     detail = defaultdict(list)  # (student_id, assignment) -> [notebooks]
     for r in raw:
         key = (r["student_id"], r["assignment"])
@@ -117,7 +118,13 @@ def main():
     results = []
     for (student_id, assignment), versions in detail.items():
         # 选最佳版本：按得分率降序，再按满分降序
-        best = max(versions, key=lambda v: (v["score"] / v["max_score"] if v["max_score"] > 0 else 0, v["max_score"]))
+        best = max(
+            versions,
+            key=lambda v: (
+                (v["score"] / v["max_score"] if v["max_score"] and v["max_score"] > 0 and v["score"] is not None else 0),
+                v["max_score"] if v["max_score"] else 0,
+            ),
+        )
         results.append(
             {
                 "student_id": student_id,
