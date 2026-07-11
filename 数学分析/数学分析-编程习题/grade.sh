@@ -40,6 +40,7 @@ if ! $only_grade; then
         tmpdir="$(mktemp -d)"
         unzip -q -o "$zip" -d "$tmpdir"
 
+        # 整理目录结构到 target
         mkdir -p "$target"
         if [ -d "$tmpdir/$EXTRACT_SUBDIR" ]; then
             mv "$tmpdir/$EXTRACT_SUBDIR"/* "$target/"
@@ -47,6 +48,18 @@ if ! $only_grade; then
             mv "$tmpdir"/* "$target/"
         fi
         rm -rf "$tmpdir"
+
+        # 验证：目标目录中必须包含至少一个 .ipynb 文件
+        if ! ls "$target"/*.ipynb >/dev/null 2>&1; then
+            echo "  ⚠️  $student_id 解压后未找到 .ipynb 文件，请检查 zip 结构："
+            # 打印 zip 内部结构供排查
+            echo "    zip 内部顶层结构："
+            unzip -l "$zip" | awk '{print $4}' | grep -v '^Name$' | grep -v '^-' | sed 's|[^/]*$||' | sort -u | sed 's/^/      /'
+            echo "  跳过 $student_id（结构异常）"
+            rm -rf "$target"
+            continue
+        fi
+
         found=$((found + 1))
     done
     [[ $found -eq 0 ]] && echo "  没有新的 zip 需要解压"
