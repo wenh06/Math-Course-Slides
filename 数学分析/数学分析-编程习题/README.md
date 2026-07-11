@@ -51,10 +51,31 @@
 docker build -t nbgrader-math .
 ```
 
-镜像基于 `python:3.10-slim`，仅包含：
+镜像基于 `python:3.12-slim`，仅包含：
 - `numpy` / `sympy` / `mpmath`（作业所需包）
 - `nbgrader`（自动批改，依赖 `nbconvert` 等）
 - `gcc` / `make`（仅 C 语言作业需要，纯 Python 可从 Dockerfile 删去）
+
+### 1.1 网络受限时（代理 / Docker Hub 不稳定）
+
+如果构建时报 `DeadlineExceeded` / `i/o timeout`，通常是 Docker Hub 在国内访问不稳定。可通过代理构建：
+
+```bash
+docker build --network host \
+  --build-arg HTTP_PROXY=http://<PROXY_HOST>:<PROXY_PORT> \
+  --build-arg HTTPS_PROXY=http://<PROXY_HOST>:<PROXY_PORT> \
+  -t nbgrader-math .
+```
+
+- `<PROXY_HOST>:<PROXY_PORT>` 替换为本机代理地址。
+- `--network host` 确保构建阶段 `RUN` 指令也走宿主机网络从而可达代理。
+- 若 `FROM` 拉取基础镜像仍超时，可在 `/etc/docker/daemon.json` 中配置：
+  ```json
+  { "proxies": { "http-proxy": "http://<PROXY_HOST>:<PROXY_PORT>", "https-proxy": "http://<PROXY_HOST>:<PROXY_PORT>" } }
+  ```
+  然后 `sudo systemctl restart docker` 后再 build。
+
+> `--build-arg` 的值仅作用于构建阶段，不会固化到镜像中。
 
 ---
 
