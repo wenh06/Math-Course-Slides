@@ -11,8 +11,10 @@ ARG HTTP_PROXY
 ARG HTTPS_PROXY
 
 # gcc/make: 仅当需要支持 C 语言提交时才需要；纯 Python 作业可删去
+# libc6-dev 提供 math.h 等标准库头文件，gcc 本身不包含它们
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gcc \
+        libc6-dev \
         make \
     && rm -rf /var/lib/apt/lists/*
 

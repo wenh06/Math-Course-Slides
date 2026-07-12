@@ -48,47 +48,63 @@ def get_graded_students() -> set[str]:
         con.close()
 
 
-def find_notebook_dir(root: Path) -> Path | None:
-    """在 root 下定位包含目标 notebook 的目录，找不到返回 None。
-    返回的目录中应包含至少一个 .ipynb 文件（最终可执行 grading 的 notebook）。"""
+def collect_submission_files(
+    root: Path,
+) -> tuple[list[Path], list[Path]]:
+    """从提取目录中收集所有提交文件 (.ipynb, .c, .h)。
+
+    遍历所有非垃圾目录。不按单个目录筛选——因为：
+    - Windows 解压可能把不同编码的目录项合并
+    - zip 可能内含多个作业目录
+    - 学生可能多次压缩导致目录结构混乱
+
+    返回 (notebook_files, aux_files)。
+    """
 
     def is_junk(path: Path) -> bool:
-        return "__MACOSX" in path.parts
+        return "__MACOSX" in path.parts or ".ipynb_checkpoints" in path.parts
 
-    def has_real_notebook(dir_path: Path) -> bool:
-        return any(f.suffix == ".ipynb" and f.is_file() for f in dir_path.iterdir())
-
-    # 优先：直接子目录 == EXTRACT_SUBDIR
-    direct = root / EXTRACT_SUBDIR
-    if direct.is_dir() and has_real_notebook(direct):
-        return direct
-
-    # 递归：找包含 "*第6节*.ipynb" 的目录（排除系统垃圾）
-    for nb in root.rglob("*第6节*.ipynb"):
-        if is_junk(nb):
+    notebooks: list[Path] = []
+    aux: list[Path] = []
+    seen: set[Path] = set()
+    for f in root.rglob("*"):
+        if not f.is_file() or is_junk(f) or f in seen:
             continue
-        # 如果在 .ipynb_checkpoints 里且外面有同名 notebook → 用外面那个
-        if ".ipynb_checkpoints" in nb.parts:
-            # 看看外层有没有真正的 notebook
-            outer = nb.parent.parent / nb.name.replace("-checkpoint", "")
-            if outer.is_file():
-                return nb.parent.parent
-            continue  # 否则跳过 checkpoint
-        return nb.parent
+        seen.add(f)
+        if f.suffix == ".ipynb":
+            notebooks.append(f)
+        elif f.suffix in (".c", ".h"):
+            aux.append(f)
+    return notebooks, aux
 
-    # 兜底 1：找任意 .ipynb 的目录（排除 checkpoints + 垃圾）
-    for nb in root.rglob("*.ipynb"):
-        if is_junk(nb) or ".ipynb_checkpoints" in nb.parts:
-            continue
-        return nb.parent
 
-    # 兜底 2：如果只剩 checkpoint 文件，也算（比完全没有好）
-    for nb in root.rglob("*.ipynb"):
-        if is_junk(nb):
-            continue
-        return nb.parent
+def compute_zip_hash(zip_path: Path) -> str:
+    """计算 zip 文件内容的 hash（SHA256）"""
+    import hashlib
 
-    return None
+    h = hashlib.sha256()
+    with zip_path.open("rb") as f:
+        for chunk in iter(lambda: f.read(8192), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def load_zip_hashes() -> dict[str, str]:
+    """加载已记录的 zip hash（路径: hash）"""
+    hash_file = SUBMITTED_DIR / ".zip_hashes.json"
+    if hash_file.exists():
+        import json
+
+        return json.loads(hash_file.read_text())
+    return {}
+
+
+def save_zip_hashes(hashes: dict[str, str]) -> None:
+    """保存 zip hash 记录"""
+    import json
+
+    hash_file = SUBMITTED_DIR / ".zip_hashes.json"
+    hash_file.write_text(json.dumps(hashes, indent=2, ensure_ascii=False))
 
 
 def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str]:
@@ -103,25 +119,24 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str]:
         except zipfile.BadZipFile:
             return False, "zip 文件损坏"
 
-        src_dir = find_notebook_dir(tmp_path)
-        if src_dir is None:
-            # 打印 zip 内部结构供排查
-            names = []
-            with zipfile.ZipFile(zip_path, "r") as zf:
-                for info in zf.infolist():
-                    if not info.is_dir():
-                        names.append(info.filename)
+        notebooks, aux = collect_submission_files(tmp_path)
+        if not notebooks:
+            names = [info.filename for info in zipfile.ZipFile(zip_path, "r").infolist() if not info.is_dir()]
             return False, f"未找到 .ipynb 文件，zip 内容：{names[:10]}"
 
-        # 只复制需要的文件
+        # 把收集到的文件复制到目标目录
+        # 同名文件加 (1) (2) 后缀避免覆盖
         copied = 0
-        for f in src_dir.iterdir():
-            if f.suffix in (".ipynb", ".c", ".h") and f.is_file():
-                (target / f.name).write_bytes(f.read_bytes())
-                copied += 1
-
-        if copied == 0:
-            return False, "未提取到有效文件"
+        for f in notebooks + aux:
+            dest = target / f.name
+            if dest.exists():
+                stem, suffix = f.stem, f.suffix
+                i = 1
+                while dest.exists():
+                    dest = target / f"{stem} ({i}){suffix}"
+                    i += 1
+            dest.write_bytes(f.read_bytes())
+            copied += 1
 
         return True, ""
 
@@ -132,14 +147,23 @@ def is_valid_student_id(s: str) -> bool:
 
 
 def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str]]]:
-    """解压所有新提交。返回 (成功学号列表, 跳过原因列表)"""
+    """解压所有新提交。返回 (成功学号列表, 跳过原因列表)
+
+    逻辑：
+      - 默认模式：有成绩就跳过
+      - --overwrite：满分跳过；zip 没变 + 有成绩也跳过；zip 变了重解压
+    """
     graded = get_graded_students()
+    full_mark = get_full_mark_students() if overwrite else set()
+    saved_hashes = load_zip_hashes()
     successes: list[str] = []
     skipped: list[tuple[str, str]] = []
 
     zip_files = sorted(SUBMITTED_DIR.glob("*.zip"))
     if not zip_files:
         return successes, skipped
+
+    updated_hashes = dict(saved_hashes)
 
     for zip_path in zip_files:
         student_id = zip_path.stem
@@ -151,21 +175,43 @@ def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str
 
         target = SUBMITTED_DIR / student_id / EXTRACT_SUBDIR
 
+        # --overwrite 下满分直接跳过
+        if overwrite and student_id in full_mark:
+            skipped.append((student_id, "满分，跳过"))
+            continue
+
+        # 非 overwrite：有成绩就跳过
         if not overwrite and student_id in graded:
             skipped.append((student_id, "已有成绩"))
             continue
 
-        if target.exists():
-            # 已解压过，算成功（进入批改队列）
-            if not overwrite and student_id in graded:
-                skipped.append((student_id, "已有成绩"))
-            else:
-                successes.append(student_id)
+        # 计算当前 zip hash，判断内容是否变化
+        zip_hash = compute_zip_hash(zip_path)
+        zip_key = str(zip_path)
+        hash_unchanged = saved_hashes.get(zip_key) == zip_hash
+
+        # --overwrite 下：zip 没变 + 有成绩 → 跳过
+        if overwrite and hash_unchanged and student_id in graded:
+            skipped.append((student_id, "zip 未变，已有成绩，跳过"))
+            updated_hashes[zip_key] = zip_hash
             continue
+
+        # 已解压 + zip 没变 + 非 overwrite → 跳过
+        if not overwrite and target.exists() and hash_unchanged:
+            skipped.append((student_id, "zip 未变，已解压，跳过"))
+            updated_hashes[zip_key] = zip_hash
+            continue
+
+        # 需要解压：先清掉旧解压目录（--overwrite 或首次）
+        if target.exists():
+            import shutil
+
+            shutil.rmtree(target)
 
         ok, reason = extract_submission(zip_path, target)
         if ok:
             successes.append(student_id)
+            updated_hashes[zip_key] = zip_hash
             print(f"  ✓ {student_id}")
         else:
             skipped.append((student_id, reason))
@@ -189,12 +235,35 @@ def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str
                 if src.is_file():
                     nb_path.write_bytes(src.read_bytes())
 
+    # 保存更新后的 hash 记录
+    save_zip_hashes(updated_hashes)
+
     return successes, skipped
+
+
+def clear_autograded(students: list[str]) -> None:
+    """在 Docker 容器内删除学生的 autograded 目录（容器内是 root，无需 sudo）"""
+    for sid in students:
+        ag_path = f"/course/autograded/{sid}"
+        cmd = [
+            "docker",
+            "run",
+            "--rm",
+            "-v",
+            f"{os.getcwd()}:/course",
+            "nbgrader-math",
+            "rm",
+            "-rf",
+            ag_path,
+        ]
+        subprocess.run(cmd, check=False, capture_output=True)
 
 
 def run_grading(students: list[str]) -> int:
     """逐个调用 Docker 跑 nbgrader autograde（0.9.x 不支持逗号分隔多学生）"""
     print(f"\n=== 开始批改 ({len(students)} 人) ===")
+    # 先清 autograded，避免 nbgrader 因目录已存在而跳过
+    clear_autograded(students)
     failed: list[str] = []
     for sid in students:
         cmd = [
@@ -221,6 +290,37 @@ def run_grading(students: list[str]) -> int:
         print(f"\n批改失败 {len(failed)} 人: {', '.join(failed)}")
         return 1
     return 0
+
+
+def get_full_mark_students() -> set[str]:
+    """从数据库取本作业满分（最佳版本得分 == 满分 5）的学号"""
+    if not Path(DB_PATH).exists():
+        return set()
+    con = sqlite3.connect(DB_PATH)
+    cur = con.cursor()
+    try:
+        # 每个 notebook 满分 5 分；学生有 Python/C 两个版本
+        # 只要任一版本满分（得分 == 该版本满分）就算满分
+        cur.execute(
+            """
+            SELECT st.id
+            FROM grade g
+            JOIN submitted_notebook sn ON g.notebook_id = sn.id
+            JOIN submitted_assignment sa ON sn.assignment_id = sa.id
+            JOIN student st ON sa.student_id = st.id
+            JOIN assignment a ON sa.assignment_id = a.id
+            JOIN grade_cells gc ON g.cell_id = gc.id
+            WHERE a.name = ?
+            GROUP BY st.id, sn.id
+            HAVING ABS(SUM(g.auto_score) - SUM(gc.max_score)) < 1e-9;
+            """,
+            (ASSIGNMENT,),
+        )
+        return {row[0] for row in cur.fetchall()}
+    except Exception:
+        return set()
+    finally:
+        con.close()
 
 
 def main():
@@ -253,6 +353,14 @@ def main():
                 skipped_all.append((sid, "已有成绩"))
                 continue
             successes.append(sid)
+
+    # ── 排除满分（即使 --overwrite 也不重判） ────────────────────────────
+    if args.overwrite and successes:
+        full_mark = get_full_mark_students()
+        excluded = [sid for sid in successes if sid in full_mark]
+        if excluded:
+            successes = [sid for sid in successes if sid not in full_mark]
+            skipped_all.extend([(sid, "满分，跳过") for sid in excluded])
 
     # ── 批改 ───────────────────────────────────────────────────────────────
     print()
