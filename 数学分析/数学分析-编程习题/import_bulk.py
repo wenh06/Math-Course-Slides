@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
-"""import_bulk.py — 从教学系统的批量导出 zip 中提取各学生提交，放入 submitted/
+"""import_bulk.py — 从教学系统的批量导出 zip 中复制各学生提交，放入 submitted/
 
 用法：
-  python3 import_bulk.py <bulk_zip_path>
+  python3 import_bulk.py <bulk_zip_path>                # 默认：覆盖已有 zip
+  python3 import_bulk.py <bulk_zip_path> --skip-existing # 跳过已存在的提交
 
 教学系统导出的 zip 结构通常为：
   homework/
-  ├── <学号1>_<学生名>/          ← 学生名常被编码为乱码
-  │   ├── <学号1>_<学生名>_1_<学号1>.zip  ← 学生真正提交的 zip
+  ├── <学号1>_<学生名>/                           ← 目录名以学号开头
+  │   ├── <学号1>_<学生名>_1_<学号1>.zip           ← 学生真正提交的 zip
   │   └── <学号1>_<学生名>.htm
   ├── <学号2>_<学生名>/
   └── ...
 
 本脚本：
-  1. 解析目录名/文件名开头的数字串作为学号
-  2. 找到学生提交（优先匹配「学号_…_1_学号.zip」模式，否则取目录下任意 .zip）
-  3. 复制到 submitted/<学号>.zip
-  4. 已有 <学号>.zip 或 <学号>/ 目录则跳过
+  1. 遍历整个批量导出 zip 的目录树，找到以学号开头的目录
+  2. 在该目录下（仅一层）寻找恰好一个 .zip 文件
+     - 零个 → 报错（说明学生没提交或结构异常）
+     - 多个 → 按启发式规则选一个（优先含 "_" 分隔的多段命名，其次最大）
+  3. 原样复制到 submitted/<学号>.zip（不检查内容，不解压，不读文件名）
+
+解压、校验内容、写入 autograded 均由 grade.py 负责 —— grade.py 的
+extract_all 会用 collect_submission_files 扫描整棵子树收集 .ipynb/.c/.h,
+并用 hash 判断 zip 是否变化以决定是否重新解压。
 """
 
 import os
@@ -33,40 +39,20 @@ def extract_student_id(name: str) -> str | None:
     return m.group(1) if m else None
 
 
-def find_submission_zip(folder: str) -> str | None:
-    """在学生目录中找到提交 zip 的路径，找不到返回 None"""
-    if not os.path.isdir(folder):
-        return None
-
-    candidates = []
-    for entry in os.listdir(folder):
-        full = os.path.join(folder, entry)
-        if not os.path.isfile(full):
-            continue
-        lower = entry.lower()
-        if not lower.endswith(".zip"):
-            continue
-        # 判断是否是「提交 zip」：文件名含 "学号_..._学号.zip" 模式
-        stem = entry  # 含扩展名
-        sid_match = re.match(r"^(\d{6,})", stem)
-        if sid_match:
-            sid = sid_match.group(1)
-            if re.search(rf"^{sid}.*_{sid}{{1,2}}_{sid}\.zip$", stem) or re.search(rf"^{sid}.*_{sid}\.zip$", stem):
-                candidates.append(full)
-        elif lower.endswith(".zip"):
-            candidates.append(full)
-
-    if not candidates:
-        return None
-    # 优先选最像「提交」的（含 _1_ 模式的），否则选最大的
-    for c in candidates:
-        if "_1_" in os.path.basename(c):
-            return c
-    # 没有一个匹配的，取体积最大的 zip
-    return max(candidates, key=lambda p: os.path.getsize(p))
+def pick_zip(zips: list[str]) -> str:
+    """从一个学生目录中找到的多个 zip 中选一个最像正式提交的"""
+    if len(zips) == 1:
+        return zips[0]
+    # 优先含多段命名（如 xxx_xxx_1_xxx.zip）的
+    for z in zips:
+        base = os.path.basename(z)
+        if re.search(r"^\d{6,}_.+_.+_\d{6,}$", base):
+            return z
+    # 其次选最大的
+    return max(zips, key=lambda p: os.path.getsize(p))
 
 
-def import_bulk(bulk_zip: str, submitted_dir: str = "submitted") -> None:
+def import_bulk(bulk_zip: str, submitted_dir: str = "submitted", skip_existing: bool = False) -> None:
     if not os.path.isfile(bulk_zip):
         print(f"文件不存在: {bulk_zip}", file=sys.stderr)
         sys.exit(1)
@@ -76,63 +62,89 @@ def import_bulk(bulk_zip: str, submitted_dir: str = "submitted") -> None:
         with zipfile.ZipFile(bulk_zip, "r") as zf:
             zf.extractall(tmp)
 
-        # 找到所有学生目录（跳过非目录和非学号开头的）
-        entries = []
-        for root, dirs, files in os.walk(tmp):
+        # 整个目录树中找所有以学号开头的目录（保留最上层）
+        student_dirs: dict[str, str] = {}
+        for root, dirs, _ in os.walk(tmp):
             for d in dirs:
                 sid = extract_student_id(d)
                 if sid:
-                    entries.append((sid, os.path.join(root, d)))
-            break  # 只看第一层？继续往下找，因为有些嵌套
+                    full = os.path.join(root, d)
+                    if sid not in student_dirs:
+                        student_dirs[sid] = full
+                    else:
+                        # 已有记录，保留更上层的（路径更短的）
+                        if len(full) < len(student_dirs[sid]):
+                            student_dirs[sid] = full
 
-        # 如果第一层没找到（比如有 homework/ 包装层），往下钻一层
-        if not entries:
-            for root, dirs, files in os.walk(tmp):
-                for d in dirs:
-                    sid = extract_student_id(d)
-                    if sid:
-                        entries.append((sid, os.path.join(root, d)))
-
-        if not entries:
+        if not student_dirs:
             print("（未找到任何学生提交）")
             return
 
-        # 去重：同一学号只取第一次出现
-        seen = set()
-        unique = []
-        for sid, path in entries:
-            if sid not in seen:
-                seen.add(sid)
-                unique.append((sid, path))
-
-        print(f"发现 {len(unique)} 个学生目录\n")
+        print(f"发现 {len(student_dirs)} 个学生目录\n")
 
         copied = 0
+        overwritten = 0
         skipped = 0
-        for sid, folder in unique:
+        errors: list[tuple[str, str]] = []
+
+        for sid in sorted(student_dirs):
+            folder = student_dirs[sid]
             target_zip = os.path.join(submitted_dir, f"{sid}.zip")
             target_dir = os.path.join(submitted_dir, sid)
 
-            if os.path.exists(target_zip) or os.path.exists(target_dir):
+            if skip_existing and (os.path.exists(target_zip) or os.path.exists(target_dir)):
                 print(f"  跳过 {sid}（已存在）")
                 skipped += 1
                 continue
 
-            sub_zip = find_submission_zip(folder)
-            if sub_zip is None:
-                print(f"  ⚠️  {sid} 未找到提交 zip，跳过")
-                skipped += 1
+            # 在目录下（仅一层）找所有 .zip 文件
+            zips = [
+                os.path.join(folder, f)
+                for f in os.listdir(folder)
+                if f.lower().endswith(".zip") and os.path.isfile(os.path.join(folder, f))
+            ]
+
+            if not zips:
+                errors.append((sid, f"目录 {os.path.basename(folder)} 下未找到 .zip 文件"))
+                print(f"  ✗ {sid} — 目录下无 .zip")
                 continue
 
+            sub_zip = pick_zip(zips)
+            existed = os.path.exists(target_zip)
             shutil.copy2(sub_zip, target_zip)
-            print(f"  ✓ {sid} ← {os.path.basename(sub_zip)}")
-            copied += 1
+            if existed:
+                print(f"  ↻ {sid} ← {os.path.basename(sub_zip)}（覆盖）")
+                overwritten += 1
+            else:
+                print(f"  ✓ {sid} ← {os.path.basename(sub_zip)}")
+                copied += 1
 
-        print(f"\n完成：复制 {copied} 个，跳过 {skipped} 个")
+        # 汇总输出
+        parts = []
+        if copied:
+            parts.append(f"新增 {copied} 个")
+        if overwritten:
+            parts.append(f"覆盖 {overwritten} 个")
+        if skipped:
+            parts.append(f"跳过 {skipped} 个")
+        print(f"\n完成：{', '.join(parts) if parts else '无操作'}")
+
+        if errors:
+            print(f"\n⚠️  {len(errors)} 个错误：")
+            for sid, reason in errors:
+                print(f"  - {sid}: {reason}")
+            sys.exit(1)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("用法: python3 import_bulk.py <bulk_zip_path>")
-        sys.exit(1)
-    import_bulk(sys.argv[1])
+    import argparse
+
+    parser = argparse.ArgumentParser(description="从教学系统批量导出 zip 中复制学生提交")
+    parser.add_argument("bulk_zip", help="教学系统导出的批量 zip 文件路径")
+    parser.add_argument(
+        "--skip-existing",
+        action="store_true",
+        help="跳过已存在的提交（默认：覆盖已有 zip，以便更新）",
+    )
+    args = parser.parse_args()
+    import_bulk(args.bulk_zip, skip_existing=args.skip_existing)
