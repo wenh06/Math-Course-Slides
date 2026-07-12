@@ -1645,7 +1645,12 @@ c = get_config()  # noqa
 #  NOT be overwritten with the source version. This is to allow students to e.g.
 #  edit a python file and submit it alongside the notebooks in their assignment.
 #  Default: {}
-# c.Autograde.exclude_overwriting = {}
+c.Autograde.exclude_overwriting = {
+    "第7章-定积分": [
+        "solution.c",
+        "integration.h",
+    ],
+}
 
 #  See also: BaseConverter.exporter_class
 # c.Autograde.exporter_class = 'nbconvert.exporters.notebook.NotebookExporter'

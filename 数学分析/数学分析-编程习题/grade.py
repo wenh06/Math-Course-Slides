@@ -107,7 +107,56 @@ def save_zip_hashes(hashes: dict[str, str]) -> None:
     hash_file.write_text(json.dumps(hashes, indent=2, ensure_ascii=False))
 
 
-def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str]:
+def expected_notebook_names() -> list[str]:
+    """从 release 目录获取预期的 notebook 文件名"""
+    release_dir = Path("release") / EXTRACT_SUBDIR
+    if release_dir.exists():
+        return [f.name for f in release_dir.glob("*.ipynb")]
+    return []
+
+
+def is_unexpected_name(name: str, expected: list[str]) -> bool:
+    """判断文件名是否含有不期望的前缀/后缀"""
+    stem = Path(name).stem
+    # strip common whitespace variants
+    stem = stem.rstrip(" \t　_-")
+    return stem not in expected
+
+
+def fuzzy_rename(name: str, expected: list[str]) -> str:
+    """把改名后的 notebook 名纠正回标准名。返回纠正后的文件名，匹配不到则返回原名。
+
+    按 expected 列表顺序（-c 在前，普通在后）依次做前缀匹配：
+    - 某 expected 的 stem 是 name 的前缀，且 name 比它长 → 命中，返回该 expected
+    - 这样 "xxx-c最终版" 会被 -c 优先命中，不会错误地退化为普通版
+    - 都不匹配 → 返回原名
+    """
+    stem = Path(name).stem
+    for e in expected:
+        e_stem = Path(e).stem
+        if stem == e_stem:
+            return name  # 已是标准名
+        if stem.startswith(e_stem):
+            return e
+    return name
+
+
+def rename_unexpected_notebooks(notebooks: list[Path]) -> list[tuple[Path, str]]:
+    """检测改名文件，返回 (原文件, 纠正后文件名) 列表。不在此函数内重命名磁盘文件。"""
+    expected = expected_notebook_names()
+    if not expected:
+        return []
+    # 按 stem 长度降序：更具体的（如 -c 版本）优先匹配，避免被短前缀截胡
+    expected_sorted = sorted(expected, key=lambda e: len(Path(e).stem), reverse=True)
+    renames: list[tuple[Path, str]] = []
+    for nb in notebooks:
+        new_name = fuzzy_rename(nb.name, expected_sorted)
+        if new_name != nb.name:
+            renames.append((nb, new_name))
+    return renames
+
+
+def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
     """解压单个学生提交到 target。返回 (是否成功, 失败原因)"""
     target.mkdir(parents=True, exist_ok=True)
 
@@ -117,20 +166,25 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str]:
             with zipfile.ZipFile(zip_path, "r") as zf:
                 zf.extractall(tmp_path)
         except zipfile.BadZipFile:
-            return False, "zip 文件损坏"
+            return False, "zip 文件损坏", []
 
         notebooks, aux = collect_submission_files(tmp_path)
         if not notebooks:
             names = [info.filename for info in zipfile.ZipFile(zip_path, "r").infolist() if not info.is_dir()]
-            return False, f"未找到 .ipynb 文件，zip 内容：{names[:10]}"
+            return False, f"未找到 .ipynb 文件，zip 内容：{names[:10]}", []
+
+        # 检测并纠正改名的 notebook
+        renames = rename_unexpected_notebooks(notebooks)
+        rename_map = {nb.name: new_name for nb, new_name in renames}
 
         # 把收集到的文件复制到目标目录
         # 同名文件加 (1) (2) 后缀避免覆盖
         copied = 0
         for f in notebooks + aux:
-            dest = target / f.name
+            dest_name = rename_map.get(f.name, f.name)
+            dest = target / dest_name
             if dest.exists():
-                stem, suffix = f.stem, f.suffix
+                stem, suffix = Path(dest_name).stem, Path(dest_name).suffix
                 i = 1
                 while dest.exists():
                     dest = target / f"{stem} ({i}){suffix}"
@@ -138,7 +192,8 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str]:
             dest.write_bytes(f.read_bytes())
             copied += 1
 
-        return True, ""
+        # 返回纠正信息，让调用方决定是否显示
+        return True, "", renames
 
 
 def is_valid_student_id(s: str) -> bool:
@@ -208,11 +263,14 @@ def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str
 
             shutil.rmtree(target)
 
-        ok, reason = extract_submission(zip_path, target)
+        ok, reason, renames = extract_submission(zip_path, target)
         if ok:
             successes.append(student_id)
             updated_hashes[zip_key] = zip_hash
-            print(f"  ✓ {student_id}")
+            if renames:
+                print(f"  ✓ {student_id}  （纠正文件名：{'，'.join(f'{old} → {new}' for old, new in renames)}）")
+            else:
+                print(f"  ✓ {student_id}")
         else:
             skipped.append((student_id, reason))
             print(f"  ⚠️  {student_id}: {reason}")
