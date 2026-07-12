@@ -159,6 +159,35 @@ def main():
     else:
         print(rows_to_table(rows, rows and [headers[0], headers[1], headers[2], headers[3]]))
 
+    # ── 统计：每个分数段的人数 ──────────────────────────────────────────
+    if not args.csv and results:
+        from collections import Counter
+
+        def score_bucket(s):
+            if s is None:
+                return "缺交"
+            return fmt_score(s)
+
+        counts = Counter(score_bucket(r["score"]) for r in results)
+
+        # 排序：按分数数值降序，缺交放最后
+        def sort_key(item):
+            label = item[0]
+            if label == "缺交":
+                return (1, 0)
+            try:
+                return (0, -float(label))
+            except ValueError:
+                return (0, 0)
+
+        print("\n=== 分数统计 ===")
+        total = len(results)
+        for score_label, n in sorted(counts.items(), key=sort_key):
+            pct = n / total * 100
+            bar = "█" * max(1, int(pct / 2))
+            print(f"  {score_label:>6s}  {n:>3d} 人  ({pct:5.1f}%)  {bar}")
+        print(f"  {'合计':>6s}  {total:>3d} 人")
+
 
 if __name__ == "__main__":
     main()
