@@ -162,6 +162,39 @@ def rename_unexpected_notebooks(notebooks: list[Path]) -> list[tuple[Path, str]]
     return renames
 
 
+def _fix_gbk_filenames(root: Path) -> None:
+    """Windows 中文系统打包的 zip 常以 GBK 编码存储文件名，Python 默认按 UTF-8 解压
+    会生成乱码文件名（如 "╡┌6╜┌-╢¿╗².ipynb"）。对每个条目尝试重编码：
+    原名 encode('cp437') → 还原 zip 内部原始字节 → decode('gbk')，
+    若结果不同则重命名。对已是正确 UTF-8 的文件名，encode('cp437') 会抛
+    UnicodeEncodeError（出现高码位 box-drawing 字符才需要修复），安全跳过。
+    """
+
+    def _try_fix(name: str) -> str | None:
+        # 已经正确的 UTF-8 文件名不会出现这种高码位 box-drawing 字符，跳过即可
+        try:
+            raw = name.encode("cp437", errors="strict")
+        except UnicodeEncodeError:
+            return None
+        if not raw:
+            return None
+        try:
+            decoded = raw.decode("gbk")
+        except (UnicodeDecodeError, ValueError):
+            return None
+        return decoded if decoded != name else None
+
+    # 先扫一遍确认有要改的
+    if not any(_try_fix(p.name) for p in root.rglob("*")):
+        return
+
+    # 自深至浅重命名，避免目录先改名导致子路径失效
+    for p in sorted(root.rglob("*"), key=lambda x: len(x.parts), reverse=True):
+        new_name = _try_fix(p.name)
+        if new_name:
+            p.rename(p.parent / new_name)
+
+
 def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
     """解压单个学生提交到 target。返回 (是否成功, 失败原因)"""
     target.mkdir(parents=True, exist_ok=True)
@@ -173,6 +206,9 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
                 zf.extractall(tmp_path)
         except zipfile.BadZipFile:
             return False, "zip 文件损坏", []
+
+        # 修复 GBK 编码文件名（Windows 中文系统打包常见）
+        _fix_gbk_filenames(tmp_path)
 
         notebooks, aux = collect_submission_files(tmp_path)
         if not notebooks:
