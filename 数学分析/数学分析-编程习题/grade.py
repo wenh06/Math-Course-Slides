@@ -162,37 +162,31 @@ def rename_unexpected_notebooks(notebooks: list[Path]) -> list[tuple[Path, str]]
     return renames
 
 
-def _fix_gbk_filenames(root: Path) -> None:
-    """Windows 中文系统打包的 zip 常以 GBK 编码存储文件名，Python 默认按 UTF-8 解压
-    会生成乱码文件名（如 "╡┌6╜┌-╢¿╗².ipynb"）。对每个条目尝试重编码：
-    原名 encode('cp437') → 还原 zip 内部原始字节 → decode('gbk')，
-    若结果不同则重命名。对已是正确 UTF-8 的文件名，encode('cp437') 会抛
-    UnicodeEncodeError（出现高码位 box-drawing 字符才需要修复），安全跳过。
+def _try_decode_gbk(name: str) -> str | None:
+    """尝试把 cp437 box-drawing 乱码文件名还原为 GBK 中文。
+    安全过滤：cp437 无法编码（含几乎所有非拉丁字符）或 GBK 解码失败时返回 None。
     """
+    try:
+        raw = name.encode("cp437", errors="strict")
+        decoded = raw.decode("gbk")
+    except (UnicodeEncodeError, UnicodeDecodeError, ValueError):
+        return None
+    return decoded if decoded != name else None
 
-    def _try_fix(name: str) -> str | None:
-        # 已经正确的 UTF-8 文件名不会出现这种高码位 box-drawing 字符，跳过即可
-        try:
-            raw = name.encode("cp437", errors="strict")
-        except UnicodeEncodeError:
-            return None
-        if not raw:
-            return None
-        try:
-            decoded = raw.decode("gbk")
-        except (UnicodeDecodeError, ValueError):
-            return None
-        return decoded if decoded != name else None
 
-    # 先扫一遍确认有要改的
-    if not any(_try_fix(p.name) for p in root.rglob("*")):
-        return
-
+def _fix_gbk_filenames(root: Path, expected_names: list[str]) -> None:
+    """Windows 中文系统打包的 zip 常以 GBK 编码存储文件名，Python 默认按 UTF-8 解压
+    会生成乱码文件名（如 "╡┌6╜┌-╢¿╗².ipynb"）。仅当 GBK 解码后的名字命中某个预期文件名
+    时才重原名 —— 避免误改无法确认是 GBK 乱码的文件名（如含特殊数学符号等）。
+    """
+    expected_set = set(expected_names)
     # 自深至浅重命名，避免目录先改名导致子路径失效
     for p in sorted(root.rglob("*"), key=lambda x: len(x.parts), reverse=True):
-        new_name = _try_fix(p.name)
-        if new_name:
-            p.rename(p.parent / new_name)
+        if p.name in expected_set:
+            continue  # 已经是标准名，不动
+        decoded = _try_decode_gbk(p.name)
+        if decoded and decoded in expected_set:
+            p.rename(p.parent / decoded)
 
 
 def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
@@ -208,7 +202,7 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
             return False, "zip 文件损坏", []
 
         # 修复 GBK 编码文件名（Windows 中文系统打包常见）
-        _fix_gbk_filenames(tmp_path)
+        _fix_gbk_filenames(tmp_path, expected_notebook_names())
 
         notebooks, aux = collect_submission_files(tmp_path)
         if not notebooks:
