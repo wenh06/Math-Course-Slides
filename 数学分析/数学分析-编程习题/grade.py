@@ -62,7 +62,13 @@ def collect_submission_files(
     """
 
     def is_junk(path: Path) -> bool:
-        return "__MACOSX" in path.parts or ".ipynb_checkpoints" in path.parts
+        if "__MACOSX" in path.parts or ".ipynb_checkpoints" in path.parts:
+            return True
+        # Jupyter 自动保存的 -checkpoint 文件（如 "xxx-checkpoint.ipynb"）不是学生提交
+        stem = path.stem
+        if stem.endswith("-checkpoint") or stem.endswith("-nbautoexport"):
+            return True
+        return False
 
     notebooks: list[Path] = []
     aux: list[Path] = []
