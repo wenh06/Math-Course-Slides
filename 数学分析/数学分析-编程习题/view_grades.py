@@ -5,11 +5,18 @@
   streamlit run view_grades.py
 """
 
+import os
 import sqlite3
+from datetime import datetime
 
 import streamlit as st
 
 DB_PATH = "gradebook.db"
+
+
+def fmt_ts(ts: float) -> str:
+    """把时间戳格式化为易读字符串"""
+    return datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
 
 
 @st.cache_resource
@@ -49,6 +56,13 @@ def fmt_score(v):
 
 st.set_page_config(page_title="数学分析编程习题成绩查询", layout="centered")
 st.title("数学分析编程习题 — 成绩查询")
+
+# ── 成绩最后更新时间 ─────────────────────────────────────────────────
+db_mtime = os.path.getmtime(DB_PATH)
+st.markdown(
+    f"> 🕗 **成绩最后更新：{fmt_ts(db_mtime)}**",
+)
+st.divider()
 
 student_id = st.text_input("请输入学号：", placeholder="例如 2025310030313")
 
