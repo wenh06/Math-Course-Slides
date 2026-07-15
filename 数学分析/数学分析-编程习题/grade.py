@@ -162,29 +162,31 @@ def rename_unexpected_notebooks(notebooks: list[Path]) -> list[tuple[Path, str]]
     return renames
 
 
-def _try_decode_gbk(name: str) -> str | None:
-    """尝试把 cp437 box-drawing 乱码文件名还原为 GBK 中文。
-    安全过滤：cp437 无法编码（含几乎所有非拉丁字符）或 GBK 解码失败时返回 None。
+def _try_decode_encode(name: str, target_enc: str) -> str | None:
+    """把 cp437 乱码文件名按目标编码还原。
+    先用 cp437 strict 还原 zip 内部原始字节（出现高码位 box-drawing 字符才进得来），
+    再用目标编码解码。任一步失败返回 None。
     """
     try:
         raw = name.encode("cp437", errors="strict")
-        decoded = raw.decode("gbk")
+        decoded = raw.decode(target_enc)
     except (UnicodeEncodeError, UnicodeDecodeError, ValueError):
         return None
     return decoded if decoded != name else None
 
 
 def _fix_gbk_filenames(root: Path, expected_names: list[str]) -> None:
-    """Windows 中文系统打包的 zip 常以 GBK 编码存储文件名，Python 默认按 UTF-8 解压
-    会生成乱码文件名（如 "╡┌6╜┌-╢¿╗².ipynb"）。仅当 GBK 解码后的名字命中某个预期文件名
-    时才重原名 —— 避免误改无法确认是 GBK 乱码的文件名（如含特殊数学符号等）。
+    """zip 内中文文件名常见两种乱码来源：
+      - Windows 中文系统用 GBK 编码，Python 按 UTF-8 解压 → box-drawing 乱码
+      - macOS 归档用 UTF-8 但未设 flag，Python 按 cp437 解码 → 希腊字母/重音乱码
+    对每种尝试还原，仅当结果命中某个预期文件名时才重命名，避免误伤。
     """
     expected_set = set(expected_names)
-    # 自深至浅重命名，避免目录先改名导致子路径失效
     for p in sorted(root.rglob("*"), key=lambda x: len(x.parts), reverse=True):
         if p.name in expected_set:
-            continue  # 已经是标准名，不动
-        decoded = _try_decode_gbk(p.name)
+            continue
+        # 先试 GBK（Windows），再试 UTF-8（macOS）
+        decoded = _try_decode_encode(p.name, "gbk") or _try_decode_encode(p.name, "utf-8")
         if decoded and decoded in expected_set:
             p.rename(p.parent / decoded)
 
