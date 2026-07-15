@@ -211,6 +211,23 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
             names = [info.filename for info in zipfile.ZipFile(zip_path, "r").infolist() if not info.is_dir()]
             return False, f"未找到 .ipynb 文件，zip 内容：{names[:10]}", []
 
+        # 校验 notebook JSON 合法性，避免 nbgrader 因解析失败报错
+        import json
+
+        for nb in notebooks:
+            try:
+                json.loads(nb.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, UnicodeDecodeError, ValueError) as e:
+                return (
+                    False,
+                    (
+                        f"notebook {nb.name} 不是有效的 JSON，无法批改。"
+                        f"常见原因：在 solution cell 里直接敲入了含换行/引号的代码，"
+                        f"导致 JSON 结构被破坏。请在 Jupyter 里重新编辑保存。详情：{e}"
+                    ),
+                    [],
+                )
+
         # 检测并纠正改名的 notebook
         renames = rename_unexpected_notebooks(notebooks)
         rename_map = {nb.name: new_name for nb, new_name in renames}
