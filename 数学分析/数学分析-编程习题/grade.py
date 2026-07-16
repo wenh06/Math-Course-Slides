@@ -16,17 +16,15 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-ASSIGNMENT = "第7章-定积分"
 SUBMITTED_DIR = Path("submitted")
-EXTRACT_SUBDIR = "第7章-定积分"
 DB_PATH = "gradebook.db"
 
 
-def get_graded_students() -> set[str]:
+def get_graded_students(assignment: str, db_path: str = DB_PATH) -> set[str]:
     """从数据库取已有本作业成绩的学号"""
-    if not Path(DB_PATH).exists():
+    if not Path(db_path).exists():
         return set()
-    con = sqlite3.connect(DB_PATH)
+    con = sqlite3.connect(db_path)
     cur = con.cursor()
     try:
         cur.execute(
@@ -39,7 +37,7 @@ def get_graded_students() -> set[str]:
             JOIN assignment a ON sa.assignment_id = a.id
             WHERE a.name = ? AND g.auto_score IS NOT NULL;
             """,
-            (ASSIGNMENT,),
+            (assignment,),
         )
         return {row[0] for row in cur.fetchall()}
     except Exception:
@@ -113,9 +111,9 @@ def save_zip_hashes(hashes: dict[str, str]) -> None:
     hash_file.write_text(json.dumps(hashes, indent=2, ensure_ascii=False))
 
 
-def expected_notebook_names() -> list[str]:
+def expected_notebook_names(extract_subdir: str) -> list[str]:
     """从 release 目录获取预期的 notebook 文件名"""
-    release_dir = Path("release") / EXTRACT_SUBDIR
+    release_dir = Path("release") / extract_subdir
     if release_dir.exists():
         return [f.name for f in release_dir.glob("*.ipynb")]
     return []
@@ -147,9 +145,9 @@ def fuzzy_rename(name: str, expected: list[str]) -> str:
     return name
 
 
-def rename_unexpected_notebooks(notebooks: list[Path]) -> list[tuple[Path, str]]:
+def rename_unexpected_notebooks(notebooks: list[Path], extract_subdir: str) -> list[tuple[Path, str]]:
     """检测改名文件，返回 (原文件, 纠正后文件名) 列表。不在此函数内重命名磁盘文件。"""
-    expected = expected_notebook_names()
+    expected = expected_notebook_names(extract_subdir)
     if not expected:
         return []
     # 按 stem 长度降序：更具体的（如 -c 版本）优先匹配，避免被短前缀截胡
@@ -191,7 +189,11 @@ def _fix_gbk_filenames(root: Path, expected_names: list[str]) -> None:
             p.rename(p.parent / decoded)
 
 
-def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
+def extract_submission(
+    zip_path: Path,
+    target: Path,
+    extract_subdir: str,
+) -> tuple[bool, str, str]:
     """解压单个学生提交到 target。返回 (是否成功, 失败原因)"""
     target.mkdir(parents=True, exist_ok=True)
 
@@ -204,7 +206,7 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
             return False, "zip 文件损坏", []
 
         # 修复 GBK 编码文件名（Windows 中文系统打包常见）
-        _fix_gbk_filenames(tmp_path, expected_notebook_names())
+        _fix_gbk_filenames(tmp_path, expected_notebook_names(extract_subdir))
 
         notebooks, aux = collect_submission_files(tmp_path)
         if not notebooks:
@@ -229,7 +231,7 @@ def extract_submission(zip_path: Path, target: Path) -> tuple[bool, str, str]:
                 )
 
         # 检测并纠正改名的 notebook
-        renames = rename_unexpected_notebooks(notebooks)
+        renames = rename_unexpected_notebooks(notebooks, extract_subdir)
         rename_map = {nb.name: new_name for nb, new_name in renames}
 
         # 把收集到的文件复制到目标目录
@@ -256,15 +258,19 @@ def is_valid_student_id(s: str) -> bool:
     return bool(re.match(r"^\d{6,}$", s))
 
 
-def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str]]]:
+def extract_all(
+    assignment: str,
+    extract_subdir: str,
+    overwrite: bool = False,
+) -> tuple[list[str], list[tuple[str, str]]]:
     """解压所有新提交。返回 (成功学号列表, 跳过原因列表)
 
     逻辑：
       - 默认模式：有成绩就跳过
       - --overwrite：满分跳过；zip 没变 + 有成绩也跳过；zip 变了重解压
     """
-    graded = get_graded_students()
-    full_mark = get_full_mark_students() if overwrite else set()
+    graded = get_graded_students(assignment)
+    full_mark = get_full_mark_students(assignment) if overwrite else set()
     saved_hashes = load_zip_hashes()
     successes: list[str] = []
     skipped: list[tuple[str, str]] = []
@@ -283,7 +289,7 @@ def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str
             skipped.append((student_id, "非学号命名的 zip，跳过"))
             continue
 
-        target = SUBMITTED_DIR / student_id / EXTRACT_SUBDIR
+        target = SUBMITTED_DIR / student_id / extract_subdir
 
         # --overwrite 下满分直接跳过
         if overwrite and student_id in full_mark:
@@ -318,7 +324,7 @@ def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str
 
             shutil.rmtree(target)
 
-        ok, reason, renames = extract_submission(zip_path, target)
+        ok, reason, renames = extract_submission(zip_path, target, extract_subdir)
         if ok:
             successes.append(student_id)
             updated_hashes[zip_key] = zip_hash
@@ -337,10 +343,10 @@ def extract_all(overwrite: bool = False) -> tuple[list[str], list[tuple[str, str
                     pass
 
     # 补齐缺失的 notebook（用 release 版），让 nbgrader 不因缺 notebook 报错
-    release_dir = Path("release") / EXTRACT_SUBDIR
+    release_dir = Path("release") / extract_subdir
     expected_nbs = [f.name for f in release_dir.glob("*.ipynb")] if release_dir.exists() else []
     for sid in successes:
-        target = SUBMITTED_DIR / sid / EXTRACT_SUBDIR
+        target = SUBMITTED_DIR / sid / extract_subdir
         for nb_name in expected_nbs:
             nb_path = target / nb_name
             if not nb_path.is_file():
@@ -372,7 +378,7 @@ def clear_autograded(students: list[str]) -> None:
         subprocess.run(cmd, check=False, capture_output=True)
 
 
-def run_grading(students: list[str]) -> int:
+def run_grading(students: list[str], assignment: str) -> int:
     """逐个调用 Docker 跑 nbgrader autograde（0.9.x 不支持逗号分隔多学生）"""
     print(f"\n=== 开始批改 ({len(students)} 人) ===")
     # 先清 autograded，避免 nbgrader 因目录已存在而跳过
@@ -388,7 +394,7 @@ def run_grading(students: list[str]) -> int:
             "nbgrader-math",
             "nbgrader",
             "autograde",
-            ASSIGNMENT,
+            assignment,
             "--student",
             sid,
         ]
@@ -405,11 +411,11 @@ def run_grading(students: list[str]) -> int:
     return 0
 
 
-def get_full_mark_students() -> set[str]:
+def get_full_mark_students(assignment: str, db_path: str = DB_PATH) -> set[str]:
     """从数据库取本作业满分（最佳版本得分 == 满分 5）的学号"""
-    if not Path(DB_PATH).exists():
+    if not Path(db_path).exists():
         return set()
-    con = sqlite3.connect(DB_PATH)
+    con = sqlite3.connect(db_path)
     cur = con.cursor()
     try:
         # 每个 notebook 满分 5 分；学生有 Python/C 两个版本
@@ -427,7 +433,7 @@ def get_full_mark_students() -> set[str]:
             GROUP BY st.id, sn.id
             HAVING ABS(SUM(g.auto_score) - SUM(gc.max_score)) < 1e-9;
             """,
-            (ASSIGNMENT,),
+            (assignment,),
         )
         return {row[0] for row in cur.fetchall()}
     except Exception:
@@ -442,25 +448,38 @@ def main():
     parser = argparse.ArgumentParser(description="批改提交作业")
     parser.add_argument("--grade-only", action="store_true", help="仅批改，不解压")
     parser.add_argument("--overwrite", action="store_true", help="全部重新批改")
+    parser.add_argument(
+        "--assignment",
+        default="第7章-定积分",
+        help="作业名（对应数据库 assignment.name，默认：第7章-定积分）",
+    )
+    parser.add_argument(
+        "--extract-dir",
+        default=None,
+        help="解压子目录名（默认与 --assignment 相同）",
+    )
     args = parser.parse_args()
+
+    assignment = args.assignment
+    extract_subdir = args.extract_dir if args.extract_dir else assignment
 
     skipped_all: list[tuple[str, str]] = []
 
     # ── 解压 ───────────────────────────────────────────────────────────────
     if not args.grade_only:
         print("=== 解压提交文件 ===")
-        successes, skipped = extract_all(overwrite=args.overwrite)
+        successes, skipped = extract_all(assignment, extract_subdir, overwrite=args.overwrite)
         skipped_all.extend(skipped)
     else:
         # --grade-only：从 submitted 目录收集已有解压记录的学号
         overwrite = args.overwrite
-        graded = get_graded_students()
+        graded = get_graded_students(assignment)
         successes = []
         for d in sorted(SUBMITTED_DIR.iterdir()):
             if not d.is_dir():
                 continue
             sid = d.name
-            if not (d / EXTRACT_SUBDIR).is_dir():
+            if not (d / extract_subdir).is_dir():
                 continue
             if not overwrite and sid in graded:
                 skipped_all.append((sid, "已有成绩"))
@@ -469,7 +488,7 @@ def main():
 
     # ── 排除满分（即使 --overwrite 也不重判） ────────────────────────────
     if args.overwrite and successes:
-        full_mark = get_full_mark_students()
+        full_mark = get_full_mark_students(assignment)
         excluded = [sid for sid in successes if sid in full_mark]
         if excluded:
             successes = [sid for sid in successes if sid not in full_mark]
@@ -483,7 +502,7 @@ def main():
         print(f"=== 待批改学号 ({len(successes)} 人) ===")
         for sid in successes:
             print(f"  - {sid}")
-        rc = run_grading(successes)
+        rc = run_grading(successes, assignment)
         if rc != 0:
             print(f"\n批改进程返回非零退出码: {rc}", file=sys.stderr)
 
