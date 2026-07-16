@@ -8,10 +8,12 @@
 import os
 import sqlite3
 from datetime import datetime
+from pathlib import Path
 
 import streamlit as st
 
 DB_PATH = "gradebook.db"
+BONUS_PATH = Path("tmp/平时成绩加分.xlsx")
 
 
 def fmt_ts(ts: float) -> str:
@@ -54,6 +56,26 @@ def fmt_score(v):
     return f"{v:.0f}" if v == int(v) else f"{v:.1f}"
 
 
+@st.cache_data
+def load_bonus() -> dict[str, float]:
+    """从 Excel 读平时成绩加分，返回 {学号: 加分}，只包含有加分的学生。"""
+    if not BONUS_PATH.exists():
+        return {}
+    try:
+        import pandas as pd
+
+        df = pd.read_excel(BONUS_PATH)
+        df = df.dropna(subset=["加分"])
+        return {str(int(row.学号)): float(row.加分) for _, row in df.iterrows()}
+    except Exception:
+        return {}
+
+
+def get_bonus(student_id: str, bonus: dict[str, float]) -> float | None:
+    """获取某学生的加分，没有则返回 None。"""
+    return bonus.get(student_id)
+
+
 st.set_page_config(page_title="数学分析编程习题成绩查询", layout="centered")
 st.title("数学分析编程习题 — 成绩查询")
 
@@ -64,10 +86,18 @@ st.markdown(
 )
 st.divider()
 
+bonus = load_bonus()
+
 student_id = st.text_input("请输入学号：", placeholder="例如 2025310030313")
 
 if student_id:
-    rows = query_grades(student_id.strip())
+    sid = student_id.strip()
+    rows = query_grades(sid)
+
+    # ── 平时成绩加分 ───────────────────────────────────────────────────
+    b = get_bonus(sid, bonus)
+    if b is not None:
+        st.success(f"✨ 平时成绩加分：+{fmt_score(b)} 分")
 
     if not rows:
         st.warning("未提交或未批改")
