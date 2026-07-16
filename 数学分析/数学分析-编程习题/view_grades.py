@@ -117,12 +117,15 @@ if student_id:
             score_str = fmt_score(best[1])
             max_str = fmt_score(best[2])
             pct = best[1] / best[2] * 100 if best[2] > 0 else 0
+            final = 10 + best[1]
 
             with st.container():
                 col1, col2, col3 = st.columns([3, 2, 2])
                 col1.metric(assignment, f"{score_str} / {max_str}")
                 col2.caption(f"得分率：{pct:.0f}%")
                 col3.caption(f"最佳版本：{best[0]}")
+
+                st.metric("📝 大作业最终得分", f"{fmt_score(final)} 分")
 
                 if len(versions) > 1:
                     with st.expander("查看所有版本明细"):
