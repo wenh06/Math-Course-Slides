@@ -57,8 +57,11 @@ def fmt_score(v):
 
 
 @st.cache_data
-def load_bonus() -> dict[str, float]:
-    """从 Excel 读平时成绩加分，返回 {学号: 加分}，只包含有加分的学生。"""
+def load_bonus(_mtime: float) -> dict[str, float]:
+    """从 Excel 读平时成绩加分，返回 {学号: 加分}，只包含有加分的学生。
+
+    _mtime 为文件修改时间，文件更新则自动失效缓存。
+    """
     if not BONUS_PATH.exists():
         return {}
     try:
@@ -86,7 +89,8 @@ st.markdown(
 )
 st.divider()
 
-bonus = load_bonus()
+bonus_mtime = os.path.getmtime(BONUS_PATH) if BONUS_PATH.exists() else 0
+bonus = load_bonus(bonus_mtime)
 
 student_id = st.text_input("请输入学号：", placeholder="例如 2025310030313")
 
