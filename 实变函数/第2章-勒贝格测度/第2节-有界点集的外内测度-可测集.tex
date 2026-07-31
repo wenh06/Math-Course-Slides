@@ -1,3 +1,4 @@
+\everymath{\displaystyle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -8,12 +9,10 @@
 %-----------------------------------
 
 \title[第二章\\
-勒贝格测度]{\texorpdfstring{\LARGE \bfseries 第二章\quad 勒贝格测度}{第二章 勒贝格测度}} % The short title appears at the bottom of every slide, the full title is only on the title page
+勒贝格测度]{\texorpdfstring{\LARGE \bfseries 第二章\quad 勒贝格测度}{第二章 勒贝格测度}}
 \author[\S 2.2\\
-外内测度-可测集] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+外内测度-可测集]
 {\Large \bfseries \S 2.2 有界点集的外内测度-可测集}
-% \author{Singular Value Decomposition} % Your name
-% \date{\today} % Date can be changed to a custom date
 \date{}
 
 %------------------------------------------------
@@ -24,37 +23,562 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section{引言}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{从 Riemann 积分到 Lebesgue 测度}
 
+{
+\larger[1]
+Riemann 积分 $\int_a^b f(x)\,\mathrm{d}x = \lim\limits_{\|T\| \to 0} \sum\limits_{i=1}^n f(\xi_i) \Delta x_i$ 的核心思想是对\textbf{定义域}进行分割. 这一做法将简单的工作留给了积分区间的划分 $\Delta x_i$, 而函数值 $f(\xi_i)$ 本身可能相当复杂.
+}
 
+\pause
+
+这种做法带来两个根本性的局限:
+
+\pause
+
+\begin{itemize}
+\item \textbf{可积函数类狭窄}: 由 Lebesgue 判别法, Riemann 可积函数必定几乎处处连续. 换言之, Riemann 积分只能处理``近似连续''的函数.
+\pause
+\item \textbf{极限运算不封闭}: Riemann 可积函数列的一致极限未必 Riemann 可积.
+\end{itemize}
+
+\pause
+
+\begin{eg}[Dirichlet 函数]
+$D(x) = \begin{cases} 1, & x \in \mathbb{Q}, \\ 0, & x \notin \mathbb{Q}. \end{cases}$ 在 $[0,1]$ 上处处不连续, 故不 Riemann 可积. 但从``测度''的角度看, 有理数集是``可以忽略''的, 其 Lebesgue 积分应为 $0$.
+\end{eg}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\begin{frame}{测度应满足的基本公理}
+
+Lebesgue 的思想是反过来: 将函数值 $f(\xi_i)$ 简单化 (按值域分割), 而把复杂的工作留给定义域``长度''的推广. 这要求我们对 $\mathbb{R}$ 中的集合 $E$ 赋予一个``长度'' $m E$.
+
+\pause
+
+\begin{Def}[理想测度的公理]
+设 $\mathscr{M}$ 是 $\mathbb{R}$ 的某些子集构成的集类, $m: \mathscr{M} \to [0, +\infty]$. 一个理想的测度应满足:
+\begin{enumerate}
+\item \textbf{非负性}: $m E \geqslant 0,$ $m \emptyset = 0;$
+\item \textbf{规范性}: $m([0,1]) = 1;$
+\item \textbf{平移不变性}: $E \in \mathscr{M} \Rightarrow E + x \in \mathscr{M},$ 且 $m(E + x) = m E$ ($\forall\, x \in \mathbb{R}$);
+\item \textbf{完全可加性}: 若 $E_1, E_2, \ldots \in \mathscr{M}$ 互不相交, 则 $\bigcup\limits_{n=1}^\infty E_n \in \mathscr{M},$ 且 $m\left(\bigcup\limits_{n=1}^\infty E_n\right) = \sum\limits_{n=1}^\infty m E_n.$
+\end{enumerate}
+\end{Def}
+
+\pause
+
+\begin{question}
+能否在 $\mathbb{R}$ 的\textbf{所有}子集上定义满足以上 4 条的测度?
+\end{question}
+
+\pause
+
+\begin{attnblock}
+答案是否定的 (参见补充材料中关于不可测集的讨论). 因此必须挑选出``好的''子集构成可测集类 $\mathscr{M}$. 本节的任务就是给出 $\mathscr{M}$ 的刻画并研究其初步性质.
+\end{attnblock}
+
+\end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\section{有界集的外测度}
 
+%------------------------------------------------
+
+\begin{frame}{外测度的定义}
+
+\begin{Def}[外测度 (outer measure)]
+设 $E \subset \mathbb{R}$ 为有界集. 称
+\[
+m^* E = \inf\left\{\sum_{n=1}^\infty l(I_n) : E \subset \bigcup_{n=1}^\infty I_n,\ I_n \text{ 为开区间}\right\}
+\]
+为 $E$ 的\alert{外测度 (outer measure)}. 其中 $l((a,b)) = b - a$ 表示区间长度.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 基本思想: 用可列个开区间从外部``覆盖'' $E$, 取下确界作为``长度''的逼近.
+\item 由于 $E$ 有界, 存在有限区间包含它, 故下确界存在且 $0 \leqslant m^* E < +\infty$.
+\end{itemize}
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 若将定义中的开区间改为闭区间或半开半闭区间, 得到的外测度相同.
+\item 外测度是区间长度的推广: 对区间 $I$, 有 $m^* I = l(I)$ (需证明).
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{外测度的计算实例}
+
+\begin{eg}[区间]
+对 $E = [a,b], (a,b), [a,b), (a,b]$, 均有 $m^* E = b - a$ (证明见后).
+\end{eg}
+
+\pause
+
+\begin{eg}[可列集]
+$E = \mathbb{Q} \cap [0,1] = \{r_1, r_2, \ldots\}.$ 对任意 $\varepsilon > 0$, 取 $I_n = (r_n - \varepsilon/2^{n+1}, r_n + \varepsilon/2^{n+1})$, 则 $E \subset \bigcup_n I_n$, 且
+\[
+m^* E \leqslant \sum_{n=1}^\infty l(I_n) = \sum_{n=1}^\infty \frac{\varepsilon}{2^n} = \varepsilon.
+\]
+由 $\varepsilon$ 的任意性, $m^* E = 0$.
+\end{eg}
+
+\pause
+
+\begin{eg}[Cantor 集]
+$P_0 \subset [0,1]$ 为 Cantor 三分集. 由构造, $P_0 \subset F_n$, 而 $F_n$ 由 $2^n$ 个长度为 $3^{-n}$ 的闭区间组成, 故
+\[
+m^* P_0 \leqslant 2^n \cdot \frac{1}{3^n} = \left(\frac{2}{3}\right)^n \to 0 \quad (n \to \infty).
+\]
+从而 $m^* P_0 = 0$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{外测度的基本性质}
+
+%------------------------------------------------
+
+\begin{frame}{外测度的基本性质 (1)}
+
+\begin{prop}[基本性质]
+设 $E, F$ 为有界集. 外测度 $m^*$ 满足:
+\begin{enumerate}
+\item \textbf{非负性}: $m^* E \geqslant 0,$ $m^* \emptyset = 0;$
+\item \textbf{单调性}: 若 $E \subset F$, 则 $m^* E \leqslant m^* F;$
+\item \textbf{平移不变性}: 对任意 $x \in \mathbb{R}$, 有 $m^*(E + x) = m^* E.$
+\end{enumerate}
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+\begin{enumerate}
+\item 由定义, 外测度是非负数的下确界, 显然非负; 空集可被长度任意小的区间覆盖.
+\pause
+\item 覆盖 $F$ 的任一开区间列必覆盖 $E$, 故 $\{$覆盖 $F$ 的长度和$\} \subset \{$覆盖 $E$ 的长度和$\}$. 取下确界即得.
+\pause
+\item 将覆盖 $E$ 的区间列 $\{I_n\}$ 平移 $x$ 得到覆盖 $E+x$ 的区间列 $\{I_n + x\}$, 各区间长度不变, 故下确界相同.
+\end{enumerate}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{外测度的基本性质 (2) — 次可加性}
+
+\begin{prop}[次可加性 (subadditivity)]
+对任意有界集列 $\{E_n\}_{n=1}^\infty$, 有
+\[
+m^*\left(\bigcup_{n=1}^\infty E_n\right) \leqslant \sum_{n=1}^\infty m^* E_n.
+\]
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+若右端为 $+\infty$, 不等式自然成立. 下设 $\sum_n m^* E_n < +\infty$.
+
+\pause
+
+对任意 $\varepsilon > 0$ 及每个 $n \in \mathbb{N}$, 由外测度定义, 存在开区间列 $\{I_{n,k}\}_{k=1}^\infty$ 使得
+\[
+E_n \subset \bigcup_{k=1}^\infty I_{n,k}, \qquad \sum_{k=1}^\infty l(I_{n,k}) < m^* E_n + \frac{\varepsilon}{2^n}.
+\]
+
+\pause
+
+则 $\{I_{n,k}\}_{n,k \geqslant 1}$ 是可列个开区间, 覆盖 $\bigcup_{n=1}^\infty E_n$, 故
+\[
+m^*\left(\bigcup_{n=1}^\infty E_n\right) \leqslant \sum_{n=1}^\infty \sum_{k=1}^\infty l(I_{n,k}) < \sum_{n=1}^\infty \left(m^* E_n + \frac{\varepsilon}{2^n}\right) = \sum_{n=1}^\infty m^* E_n + \varepsilon.
+\]
+由 $\varepsilon$ 的任意性即得.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{外测度的基本性质 (3) — 次可加性}
+
+\begin{attnblock}[等号一般不成立]
+次可加性中的等号\textbf{一般不成立}. 这正是需要引入``可测集''概念的原因: 在可测集类上, 次可加性可以升级为可加性.
+\end{attnblock}
+
+\pause
+
+\begin{eg}[次可加性取等号的例子]
+若 $E_1, E_2, \ldots$ 互不相交且均为区间 (或开集), 则等号成立 (详见后续章节).
+\end{eg}
+
+\pause
+
+\begin{remark}
+次可加性是外测度最重要的性质之一. 它保证了外测度在某种意义下``不太大'', 是测度合理性的基本验证.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{区间的外测度等于其长度}
+
+\begin{thm}
+对任意区间 $I$ (开、闭、半开半闭), 有 $m^* I = l(I).$
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+设 $I = [a,b]$, 则 $l(I) = b - a$.
+
+\pause
+
+\textbf{先证 $m^* I \leqslant b - a$}: 对任意 $\varepsilon > 0$, 取 $I_1 = (a - \varepsilon, b + \varepsilon)$, $I_n = \emptyset (n \geqslant 2)$, 则 $I \subset \bigcup_n I_n$, 故
+\[
+m^* I \leqslant \sum_{n=1}^\infty l(I_n) = l(I_1) = b - a + 2\varepsilon.
+\]
+由 $\varepsilon$ 的任意性, $m^* I \leqslant b - a$.
+
+\pause
+
+\textbf{再证 $m^* I \geqslant b - a$}: 设 $\{I_n\}$ 是覆盖 $[a,b]$ 的任意开区间列. 由\textbf{有限覆盖定理}, 存在有限子覆盖 $I_{n_1}, \ldots, I_{n_k}$ 覆盖 $[a,b]$. 由区间长度的有限可加性,
+\[
+\sum_{n=1}^\infty l(I_n) \geqslant \sum_{j=1}^k l(I_{n_j}) \geqslant b - a.
+\]
+对上式取下确界得 $m^* I \geqslant b - a$.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{区间的外测度等于其长度}
+
+综合两方面, $m^*[a,b] = b - a$. 对开区间、半开半闭区间的情形类似可证.
+
+\pause
+
+\begin{cor}
+外测度是区间长度的真正推广: 对任意区间 $I$, $m^* I = l(I).$
+\end{cor}
+
+\pause
+
+\begin{eg}
+\begin{itemize}
+\item $m^*[0,1] = 1$ (满足规范性).
+\item $m^*(a, b) = b - a = m^*[a,b] = m^*[a,b) = m^*(a,b].$
+\end{itemize}
+\end{eg}
+
+\pause
+
+\begin{remark}
+证明的关键在于``$\geqslant$''方向用到了\textbf{有限覆盖定理}, 这是 $\mathbb{R}$ 中闭区间的重要性质. 高维情形类似, 用闭矩体代替闭区间即可.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{内测度}
+
+%------------------------------------------------
+
+\begin{frame}{内测度的定义}
+
+\begin{Def}[内测度 (inner measure)]
+设 $E \subset [a,b]$ 为有界集. 定义 $E$ 的\alert{内测度 (inner measure)} 为
+\[
+m_* E = (b - a) - m^*([a,b] \setminus E).
+\]
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 几何直观: 用区间 $[a,b]$ 的长度减去``补集的外测度'', 从外部``夹''出 $E$ 的``内部大小''.
+\item 内测度不依赖于包含区间的选取 (见下).
+\end{itemize}
+
+\pause
+
+\begin{prop}[良定性]
+若 $E \subset [a,b] \subset [c,d]$, 则
+\[
+(b-a) - m^*([a,b] \setminus E) = (d-c) - m^*([c,d] \setminus E).
+\]
+即 $m_* E$ 的定义与包含区间 $[a,b]$ 的选取无关.
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+注意到 $[c,d] \setminus E = ([c,d] \setminus [a,b]) \cup ([a,b] \setminus E)$ 为不交并. 由次可加性及区间外测度 = 长度, 有
+\[
+m^*([c,d] \setminus E) \leqslant m^*([c,d] \setminus [a,b]) + m^*([a,b] \setminus E) = (d-c) - (b-a) + m^*([a,b] \setminus E).
+\]
+整理即得. 反向不等式同理.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{内测度的基本事实}
+
+\begin{prop}
+设 $E$ 为有界集, 则 $m_* E \leqslant m^* E.$
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+不妨设 $E \subset [a,b]$. 对任意开区间列 $\{I_n\}$ 覆盖 $E$ 和开区间列 $\{J_k\}$ 覆盖 $[a,b] \setminus E$, 合并起来覆盖 $[a,b]$, 故
+\[
+\sum_n l(I_n) + \sum_k l(J_k) \geqslant b - a.
+\]
+
+\pause
+
+对固定的 $\{I_n\}$, 在上式对 $\{J_k\}$ 取下确界, 得
+\[
+\sum_n l(I_n) + m^*([a,b] \setminus E) \geqslant b - a.
+\]
+
+\pause
+
+再对 $\{I_n\}$ 取下确界, 即得
+\[
+m^* E + m^*([a,b] \setminus E) \geqslant b - a,
+\]
+亦即 $m^* E \geqslant (b-a) - m^*([a,b] \setminus E) = m_* E.$
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{内测度的等价描述}
+
+\begin{prop}[内测度的等价定义]
+设 $E \subset [a,b]$ 为有界集, 则
+\[
+m_* E = \sup\{m F : F \subset E,\ F \text{ 为有界闭集}\}.
+\]
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+对任意有界闭集 $F \subset E$, 有 $[a,b] \setminus E \subset [a,b] \setminus F$, 由单调性
+\[
+m^*([a,b] \setminus E) \leqslant m^*([a,b] \setminus F).
+\]
+而 $[a,b] \setminus F$ 是开集, 利用开集的结构定理可证 $m^*([a,b] \setminus F) = (b-a) - m F$ (开集可测的结论, 详见 §3). 于是
+\[
+m_* E = (b-a) - m^*([a,b] \setminus E) \geqslant (b-a) - m^*([a,b] \setminus F) = m F.
+\]
+故 $m_* E \geqslant \sup\{m F : F \subset E,\ F \text{ 闭集}\}$. 反向不等式同理可证.
+\end{frame}
+
+%------------------------------------------------
+
+\section{可测集的定义}
+
+%------------------------------------------------
+
+\begin{frame}{可测集的定义}
+
+\begin{Def}[Lebesgue 可测集]
+设 $E \subset \mathbb{R}$ 为有界集. 若 $m^* E = m_* E$, 则称 $E$ 为\alert{(Lebesgue) 可测集}. 此时称公共值为 $E$ 的\alert{Lebesgue 测度}, 记为 $m E$.
+\end{Def}
+
+\pause
+
+所有可测集构成的集合称为\alert{可测集类}, 记为 $\mathscr{M}$.
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 对无界集 $E$, 定义 $E$ 可测 $\iff E \cap [-n, n]$ 可测 $\forall n \in \mathbb{N}$.
+\item 本节只讨论有界集的情形.
+\end{itemize}
+\end{remark}
+
+\pause
+
+\begin{question}
+哪些集合是可测的? 可测集类 $\mathscr{M}$ 有多大?
+\end{question}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可测集的初步例子}
+
+\begin{prop}[区间可测]
+任意区间 $I$ (开、闭、半开半闭) 都是可测的, 且 $m I = l(I).$
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+设 $I = [a,b]$. 已证 $m^* I = b - a$. 又 $[a,b] \setminus I = \{a, b\}$ 是两点集, 外测度为 $0$, 故
+\[
+m_* I = (b-a) - m^*([a,b] \setminus I) = (b-a) - 0 = b - a = m^* I.
+\]
+故 $I$ 可测, $m I = b - a$.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可测集的初步例子}
+
+\begin{prop}[零测集可测]
+若 $m^* E = 0$, 则 $E$ 可测, 且 $m E = 0$.
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+不妨设 $E \subset [a,b]$. 由 $m^* E = 0$ 及单调性, $m^*([a,b] \setminus E) \leqslant b - a$, 故
+\[
+m_* E = (b-a) - m^*([a,b] \setminus E) \geqslant (b-a) - (b-a) = 0.
+\]
+另一方面, 由内测度的基本事实 $0 \leqslant m_* E \leqslant m^* E = 0$, 故 $m_* E = 0 = m^* E$, 即 $E$ 可测.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可测集的等价刻画 (1)}
+
+\begin{thm}[用开集 / 闭集逼近]
+设 $E$ 为有界集. 则以下等价:
+\begin{enumerate}
+\item $E$ 可测;
+\item $\forall\, \varepsilon > 0,$ 存在开集 $G \supset E$ 使得 $m^*(G \setminus E) < \varepsilon;$
+\item $\forall\, \varepsilon > 0,$ 存在闭集 $F \subset E$ 使得 $m^*(E \setminus F) < \varepsilon.$
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+$(1) \Rightarrow (2)$: 由 $E$ 可测及外测度定义, 对 $\varepsilon > 0$, 存在开区间列 $\{I_n\}$ 覆盖 $E$ 使得 $\sum_n l(I_n) < m^* E + \varepsilon$. 令 $G = \bigcup_n I_n$, 则 $G$ 是开集, $G \supset E$, 且
+\[
+m^* E \leqslant m^* G \leqslant \sum_n l(I_n) < m^* E + \varepsilon.
+\]
+又 $G = E \cup (G \setminus E)$ 为不交并, 由 $E$ 可测及次可加性取等条件 (有限可加性, 见后), 有 $m G = m^* E + m^*(G \setminus E)$. 故 $m^*(G \setminus E) = m G - m^* E < \varepsilon$.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可测集的等价刻画 (2)}
+
+\startproof[bg=yellow, fg=red]
+$(2) \Rightarrow (1)$: 对 $\varepsilon > 0$, 取开集 $G \supset E$ 使 $m^*(G \setminus E) < \varepsilon$. 由 $E \subset G$, 有 $m^* E \leqslant m^* G$. 又 $G = E \cup (G \setminus E)$, 由次可加性
+\[
+m^* G \leqslant m^* E + m^*(G \setminus E) < m^* E + \varepsilon.
+\]
+于是 $m^* E \leqslant m^* G < m^* E + \varepsilon$.
+
+\pause
+
+另一方面, 由内测度定义及 $G$ 的结构 (开集可测的结论), 有
+\[
+m_* E \geqslant m^* G - m^*(G \setminus E) > m^* G - \varepsilon > m^* E - 2\varepsilon.
+\]
+
+\pause
+故 $m^* E - m_* E < 2\varepsilon$. 由 $\varepsilon$ 的任意性, $m^* E = m_* E$, 即 $E$ 可测.
+
+\pause
+
+$(1) \Leftrightarrow (3)$: 利用补集关系 $m_* E = (b-a) - m^*([a,b] \setminus E)$, 由 $(1) \Leftrightarrow (2)$ 对补集应用即得.
+\end{frame}
+
+%------------------------------------------------
+
+\section{可测集关于有限运算的封闭性}
+
+%------------------------------------------------
+
+\begin{frame}{有限可加性}
+
+\begin{prop}[有限可加性]
+设 $E_1, E_2$ 是可测集且 $E_1 \cap E_2 = \emptyset$, 则 $E_1 \cup E_2$ 可测, 且
+\[
+m(E_1 \cup E_2) = m E_1 + m E_2.
+\]
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+由 $E_1$ 可测及等价刻画, 对 $\varepsilon > 0$, 存在开集 $G_1 \supset E_1$ 使 $m^*(G_1 \setminus E_1) < \varepsilon$. 同理存在开集 $G_2 \supset E_2$ 使 $m^*(G_2 \setminus E_2) < \varepsilon$.
+
+\pause
+
+(详细证明需利用 $E_1 \cap E_2 = \emptyset$ 分离 $G_1, G_2$, 再用外测度次可加性和内测度定义验证 $m^*(E_1 \cup E_2) = m_*(E_1 \cup E_2) = m E_1 + m E_2$.)
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{差运算}
+
+\begin{prop}[差运算]
+设 $E_1, E_2$ 可测且 $E_1 \subset E_2$, 则 $E_2 \setminus E_1$ 可测, 且
+\[
+m(E_2 \setminus E_1) = m E_2 - m E_1.
+\]
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red]
+由 $E_2 = E_1 \cup (E_2 \setminus E_1)$ 为不交并, 利用有限可加性即得.
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{小结}
+
+\begin{itemize}
+\item \textbf{外测度} $m^*$: 对所有有界集定义, 满足非负性、单调性、次可加性、平移不变性.
+\item \textbf{内测度} $m_*$: 对有界集定义, 满足 $m_* E \leqslant m^* E$.
+\item \textbf{可测集}: $m^* E = m_* E$. 区间、零测集可测.
+\item \textbf{可测集关于有限并、差运算封闭}.
+\end{itemize}
+
+\pause
+
+\begin{question}
+\begin{itemize}
+\item 可测集关于\textbf{可列并}是否封闭? (是, 但证明不简单, 见 §3.)
+\item 开集是否可测? Borel 集呢? (是, 见 §3.)
+\item 是否存在\textbf{不可测集}? (是, 见补充材料.)
+\end{itemize}
+\end{question}
 
 \end{frame}
 

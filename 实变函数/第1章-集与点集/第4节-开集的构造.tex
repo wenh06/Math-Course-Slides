@@ -404,6 +404,42 @@ $P_0$ 是测度为零的不可列完全无处稠密集 --- 势与 $\mathbb{R}$ �
 \begin{frame}{Cantor 三分集性质的证明}
 
 \startproof[bg=yellow, fg=red]
+\textbf{(1) 有界完全集.} $P_0 = \bigcap_{n=1}^\infty F_n$ 是闭集之交, 故为闭集; 显然 $P_0 \subset [0,1]$ 有界.
+
+\pause
+
+\textbf{无孤立点}: 任取 $x \in P_0$, 设其三进制展开 $x = \sum_{k=1}^\infty a_k/3^k$ ($a_k \in \{0, 2\}$). 对每个 $n$, 令
+\[
+x^{(n)} = \sum_{k \neq n} \frac{a_k}{3^k} + \frac{2 - a_n}{3^n},
+\]
+即把第 $n$ 位 $a_n$ 换成 $2 - a_n$ ($0 \leftrightarrow 2$). 则 $x^{(n)} \in P_0$, $x^{(n)} \neq x$, 且
+\[
+|x - x^{(n)}| = \frac{2}{3^n} \to 0 \quad (n \to \infty).
+\]
+故 $x$ 是 $P_0$ 的聚点. 从而 $P_0' = P_0$, 即 $P_0$ 是完全集.
+
+\pause
+\vspace{1em}
+
+\textbf{(2) 无处稠密.} 用反证法: 若 $P^o \neq \emptyset$, 则存在开区间 $(a, b) \subset P_0$. 取 $n$ 充分大使 $3^{-n} < b - a$, 则 $(a, b)$ 必与某个 $F_n$ 的构成区间相交, 但 $F_n$ 的每个构成区间长度为 $3^{-n}$, 且相邻构成区间之间是被移除的开区间 $I_n$, 矛盾. 故 $P^o = \emptyset$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Cantor 三分集性质的证明 (续)}
+
+\textbf{(3) 测度为零.} 被移除的开集 $G_0 = \bigcup_{n=1}^\infty I_n$ 的总测度
+\[
+m G_0 = \sum_{n=1}^\infty \frac{2^{n-1}}{3^n} = \frac{1/3}{1 - 2/3} = 1,
+\]
+故 $m P_0 = m([0,1]) - m G_0 = 0$.
+
+\pause
+\vspace{1em}
+
+\textbf{(4) 不可列.} 映射 $\varphi: P_0 \to [0,1],\; \varphi\!\left(\sum_{k=1}^\infty a_k/3^k\right) = \sum_{k=1}^\infty (a_k/2)/2^k$ 是满射, 故 $|P_0| \geqslant |[0,1]| = \mathfrak{c}$, 而 $P_0 \subset [0,1]$, 因此 $|P_0| = \mathfrak{c}$.
+\qed
 
 \end{frame}
 
