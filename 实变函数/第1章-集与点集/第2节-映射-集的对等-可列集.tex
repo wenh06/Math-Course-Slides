@@ -171,6 +171,8 @@ g \circ f: X \to Z, \quad x \mapsto g(f(x)).
 \]
 \end{block}
 
+\noindent\hspace{1em}{\small 集合间的映射也是研究集合结构与性质的重要手段; 现代数学的\alert{范畴论} (category theory) 便由此发展: 对象之间的\alert{态射} (morphisms) 往往比对象本身更本质.}
+
 \end{frame}
 
 %------------------------------------------------
@@ -198,7 +200,7 @@ g \circ f: X \to Z, \quad x \mapsto g(f(x)).
 \pause
 \vspace{0.3em}
 
-特征函数的基本运算性质:
+特征函数的基本运算性质: $A \subset B \Rightarrow \chi_A \leqslant \chi_B$ (点态), 且
 \[
 \chi_{A \cap B} = \chi_A \cdot \chi_B, \quad
 \chi_{A \cup B} = \chi_A + \chi_B - \chi_A \chi_B, \quad
@@ -522,6 +524,25 @@ D = \{ x \in A : x \notin f(x) \} \in \mathscr{P}(A).
 \end{remark}
 
 \end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第一章 §2 习题}
+\begin{itemize}
+\item \textbf{7.} 试作下列各题中集之间的一一对应: (1) $[0, 1)$ 与 $(0, 1)$; (2) $[a, b]$ 与 $(-\infty, +\infty)$; (3) 开区间 $(0, 1)$ 与无理数集; (4) 开上半平面与开单位圆; (5) $\mathbb{N}^2$ 与 $\mathbb{N}$.
+\item \textbf{8.} 设 $A = \{0, 1\}$, 试证一切排列 $(a_1, a_2, \cdots, a_n, \cdots)$ ($a_n \in A$) 所成之集的势为 $\aleph$.
+\item \textbf{11.} 设 $C[0, 1]$ 表示 $[0, 1]$ 上一切连续函数所成之集, 试证它的势为 $\aleph$.
+\item \textbf{12.} 设 $M$ 表示 $(-\infty, +\infty)$ 上一切单调函数所成之集, 试讨论它的势.
+\item \textbf{15.} 设给定映射 $f: X \to Y$, 试证对 $Y$ 中的任意集族 $\{B_\alpha\}_{\alpha \in I}$ 有
+$f^{-1}\bigl(\bigcup_\alpha B_\alpha\bigr) = \bigcup_\alpha f^{-1}(B_\alpha)$, $f^{-1}\bigl(\bigcap_\alpha B_\alpha\bigr) = \bigcap_\alpha f^{-1}(B_\alpha)$ 等 (即正文命题).
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 

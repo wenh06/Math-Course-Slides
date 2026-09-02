@@ -266,6 +266,10 @@
 \end{itemize}
 \end{block}
 
+\begin{remark}
+集合的包含关系 $\subset$ 是一个\alert{偏序关系} (满足自反、反对称、传递), 但一般不是全序关系: 例如 $\{1, 2\}$ 与 $\{1, 3\}$ 互不包含.
+\end{remark}
+
 \end{frame}
 
 %------------------------------------------------
@@ -275,7 +279,7 @@
 \begin{block}{集合的表示}
 \begin{itemize}
 \item \alert{列举法}: $\{1, 2, 3\},$ $\mathbb{N} = \{1, 2, 3, \ldots\}$
-\item \alert{描述法}: $\{x \in X : P(x)\},$ $P$ 是 $x$ 的某种性质或条件. 例如 $\{x \in \mathbb{R} : x^2 < 2\}$.
+\item \alert{描述法}: $\{x \in X : P(x)\},$ $P$ 是 $x$ 的某种性质或条件. 例如 $\{x \in \mathbb{R} : x^2 < 2\}$; 又如 $\{f : f \text{ 是 } \mathbb{R} \text{ 上的连续函数},\ f(1) = 0\}$ (以函数为元素的集合).
 \end{itemize}
 \end{block}
 
@@ -494,6 +498,25 @@ $\supset$：对任意 $\frac{p}{q} \in \mathbb{Q}$ ($q > 0$, 既约) 和任意 $
 \end{columns}
 
 \end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第一章 §1 习题}
+\begin{itemize}
+\item \textbf{3.} 设给出集 $E$ 与任一集族 $\{A_\alpha\}_{\alpha \in I}$, 问关系式
+$E \cup \bigcap_{\alpha \in I} A_\alpha = \bigcap_{\alpha \in I} (E \cup A_\alpha)$
+是否恒成立? (即正文中的推论.)
+\item \textbf{5.} 定义集 $A, B$ 的对称差为 $A \triangle B = (A \setminus B) \cup (B \setminus A)$. 试证对任意集 $A, B, C$:
+(1) $A = B$ 的充分必要条件为 $A \triangle B = \emptyset$;
+(2) $A \cup B = (A \cap B) \cup (A \triangle B)$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 

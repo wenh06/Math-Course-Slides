@@ -130,9 +130,9 @@ E^o = \{ x \in E : \exists\, \delta > 0,\ U(x, \delta) \subset E \}.
 \pause
 
 \begin{attnblock}[无限交/并的反例]
-无限多个开集之交不一定是开集: $\displaystyle\bigcap_{n=1}^{\infty} \!\left(-\tfrac{1}{n}, \tfrac{1}{n}\right) = \{0\}$ 是闭集.
+无限多个开集之交不一定是开集: $\displaystyle\bigcap_{n=1}^{\infty} \!\left(-\tfrac{1}{n}, \tfrac{1}{n}\right) = \{0\}$ (闭集), \ $\displaystyle\bigcap_{n=1}^{\infty} \!\left(1 - \tfrac{1}{n},\, 2\right) = [1, 2)$ (不开不闭).
 
-无限多个闭集之并不一定是闭集: $\displaystyle\bigcup_{n=1}^{\infty} \!\left[\tfrac{1}{n}, 1\right] = (0, 1]$ 不是闭集.
+无限多个闭集之并不一定是闭集: $\displaystyle\bigcup_{n=1}^{\infty} \!\left[\tfrac{1}{n}, 1\right] = (0, 1]$.
 \end{attnblock}
 
 \pause
@@ -330,6 +330,36 @@ U(x, \delta) = \mathring{U}(x, \delta) \cup \{x\} \subset \mathscr{C} E'.
 
 %------------------------------------------------
 
+\begin{frame}{导集的性质 (续)}
+
+\startproof[bg=yellow, fg=red]((1) 与 (2) 的证明)
+\textbf{(1) 单调性}: 任取 $x \in A',$ 则 $\forall\, \delta > 0,$ $\mathring{U}(x, \delta) \cap A \neq \emptyset;$ 由 $A \subset B,$
+\[
+\mathring{U}(x, \delta) \cap A \subset \mathring{U}(x, \delta) \cap B \neq \emptyset,
+\]
+故 $x$ 也是 $B$ 的聚点, 即 $x \in B'.$ 这就证明了 $A' \subset B'.$
+
+\pause
+
+\textbf{(2) ``$\subset$''}: 任取 $x \in (A \cup B)',$ 反设 $x \notin A' \cup B',$ 则 $x \notin A'$ 且 $x \notin B',$ 即存在去心邻域 $\mathring{U}_1(x)$ 使 $\mathring{U}_1(x) \cap A = \emptyset,$ 存在去心邻域 $\mathring{U}_2(x)$ 使 $\mathring{U}_2(x) \cap B = \emptyset.$ 取 $\mathring{U}(x) = \mathring{U}_1(x) \cap \mathring{U}_2(x)$ (仍是 $x$ 的去心邻域), 则
+\[
+\mathring{U}(x) \cap (A \cup B) = \bigl(\mathring{U}(x) \cap A\bigr) \cup \bigl(\mathring{U}(x) \cap B\bigr) = \emptyset \cup \emptyset = \emptyset,
+\]
+与 $x \in (A \cup B)'$ 矛盾. 故必有 $x \in A' \cup B'.$
+
+\pause
+
+\textbf{(2) ``$\supset$''}: 由 (1), $A' \subset (A \cup B)'$ 且 $B' \subset (A \cup B)',$ 立得 $A' \cup B' \subset (A \cup B)'.$
+\qed
+
+\begin{remark}
+注: 有些教材直接将 $E' \subset E$ 作为闭集的定义, 并由此引入开集.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
 \section{完全集与闭包}
 
 %------------------------------------------------
@@ -402,6 +432,60 @@ x_n \notin I_n,
 
 %------------------------------------------------
 
+\begin{frame}{例: 与 $\cos x$ 相关的集合}
+
+\begin{eg}[开集、闭集与完全集]
+\begin{itemize}
+\item $A = \{x \in \mathbb{R} : |\cos x| \geqslant \tfrac{1}{2}\}$: \alert{闭集}, 且是完全集;
+\item $B = \{x \in \mathbb{R} : |\cos x| > \tfrac{1}{2}\}$: \alert{开集};
+\item $C = \{x \in \mathbb{R} : -\tfrac{1}{2} \leqslant \cos x < \tfrac{1}{2}\}$: \alert{既不开也不闭};
+\item $D = \{x \in \mathbb{R} : \cos x = \tfrac{1}{2}\}$: \alert{闭集}, 且每一点都是孤立点.
+\end{itemize}
+\end{eg}
+
+\pause
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\draw[->] (-1.2, 0) -- (11.3, 0) node[right] {$x$};
+\draw[->] (0, -1.3) -- (0, 1.5) node[above] {$y$};
+\draw[thick, domain=-1.05:11.0, smooth] plot (\x, {cos(\x r)});
+\draw[dashed, red!70!black] (-1.2, 0.5) -- (11.2, 0.5);
+\draw[dashed, red!70!black] (-1.2, -0.5) -- (11.2, -0.5);
+\node[red!70!black] at (10.6, 0.72) {$\scriptstyle y = \pm 1/2$};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 与 $\cos x$ 相关的集合 (分析)}
+
+直观上, $A = \{|\cos x| \geqslant \tfrac{1}{2}\}$ 是可列个互不相交的闭区间 (长度 $\tfrac{2\pi}{3}$, 两两间隔 $\tfrac{\pi}{3}$) 之并:
+\[
+A = \bigcup_{k \in \mathbb{Z}} \bigl[2k\pi - \tfrac{\pi}{3},\ 2k\pi + \tfrac{\pi}{3}\bigr] \cup \bigl[(2k+1)\pi - \tfrac{\pi}{3},\ (2k+1)\pi + \tfrac{\pi}{3}\bigr],
+\]
+故 $A$ 是闭集, 且无孤立点.
+
+\pause
+
+\begin{cor}[闭集无孤立点 $\Rightarrow$ 完全集]
+若闭集 $E$ 无孤立点, 则 $E$ 是完全集.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+$E$ 无孤立点, 即 $E \setminus E' = \emptyset,$ 亦即 $E \subset E';$ 又 $E$ 是闭集 $\iff E' \subset E.$ 两式结合得 $E' = E$, 即 $E$ 是完全集.
+\qed
+
+\begin{itemize}
+\item 由此, 上页的 $A$ 是完全集; 而 $D$ 的每一点都是孤立点, 故 $D' = \emptyset \neq D$, $D$ 闭但不是完全集.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{闭包}
 
 \begin{Def}[闭包]
@@ -469,6 +553,23 @@ f \text{ 连续} \iff \forall \text{ 开集 } G \subset \mathbb{R},\quad f^{-1}(
 \end{remark}
 
 \end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第一章 §3 习题}
+\begin{itemize}
+\item \textbf{17.} 设 $f(x)$ 是定义在 $\mathbb{R}^1$ 上只取整数值的函数, 试证它的连续点集为开集, 不连续点集为闭集.
+\item \textbf{18.} 设 $\{E_k\}$ 是有限区间 $[a, b]$ 中的渐缩列: $E_1 \supset E_2 \supset \cdots$, 且每个 $E_k$ 均为非空闭集, 试证交集 $\bigcap_{k=1}^{\infty} E_k$ 非空.
+\item \textbf{19.} 设 $\{E_k\}$ 如上题, $f$ 为 $[a, b]$ 上的连续函数, 证明 $f\bigl(\bigcap_{k=1}^{\infty} E_k\bigr) = \bigcap_{k=1}^{\infty} f(E_k)$.
+\item \textbf{21.} 设 $f(x)$ 是 $\mathbb{R}$ 上的实函数, 映任一开集为开集, 问它是否连续? 又连续映射是否映开集为开集?
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
