@@ -382,11 +382,12 @@ a_k \in \{0, 2\} \right\}.
 \begin{enumerate}
 \item \textbf{有界完全集 (闭集)}: $P_0 \subset [0,1];$
 $P_0 = \bigcap_{n=1}^\infty F_n$ 为闭集; $P_0$ 无孤立点 ($P_0' = P_0$).
-\item \textbf{无处稠密}: $P_0$ 不含任何开区间, $P^o = \emptyset.$
-\item \textbf{测度为零}: 被移除的开集总测度
+\item \textbf{无处稠密 (无内点)}: $P_0$ 不含任何开区间, $\mathring{P}_0 = \emptyset.$
+\item \textbf{测度为零} (预告): 被移除的开集 $G_0$ 的总长度
 \[
 m G_0 = \sum_{n=1}^{\infty} \frac{2^{n-1}}{3^n} = \frac{1/3}{1 - 2/3} = 1, \quad \text{故 } m P_0 = 0.
 \]
+(记号 $m$ 表示``长度''概念的推广; 测度的严格定义在第二章给出, 届时将重新推导此式.)
 \item \textbf{不可列}: $|P_0| = \mathfrak{c}$ (由满射 $\varphi: P_0 \twoheadrightarrow [0,1]$).
 \end{enumerate}
 \end{prop}
@@ -445,6 +446,72 @@ m G_0 = \sum_{n=1}^\infty \frac{2^{n-1}}{3^n} = \frac{1/3}{1 - 2/3} = 1,
 
 %------------------------------------------------
 
+\begin{frame}{再谈不可列性: 区间套法 (另证)}
+
+沿用证明 $[0,1]$ 不可列的思想, 用\alert{闭区间套}可以直接证明 $P_0$ 不可列.
+
+\pause
+
+\startproof[bg=yellow, fg=red](反证)
+假设 $P_0$ 可列, 写成点列 $P_0 = \{x_1, x_2, \ldots, x_n, \ldots\}.$ 归纳构造闭区间套: 取 $E_1$ 为 $F_1 = F_{11} \cup F_{12}$ 中不含 $x_1$ 的那个成员; 一般地, 取 $E_n$ 为 $F_{n1} \cup \cdots \cup F_{n2^n}$ 中含于 $E_{n-1}$ 且不含 $x_n$ 的成员 ($x_n$ 至多属于其中之一, 故这样的成员必存在), 则
+\[
+E_1 \supset E_2 \supset \cdots, \qquad |E_n| = 3^{-n}, \qquad x_n \notin E_n.
+\]
+\pause
+由闭区间套定理, 存在唯一的 $\xi \in \bigcap_{n=1}^\infty E_n.$ 每个 $E_n = F_{n k_n}$ 的两个端点都是被挖去开区间的端点, 因而属于 $P_0,$ 且与 $\xi$ 的距离不超过 $3^{-n} \to 0,$ 故 $\xi$ 是 $P_0$ 的聚点; 又 $P_0$ 是闭集, 故 $\xi \in P_0.$
+\pause
+于是 $\xi = x_m$ 对某个 $m$ 成立, 但 $\xi \in E_m$ 而 $x_m \notin E_m,$ 矛盾. 故 $P_0$ 不可列.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\graymode
+\begin{frame}{补充: 稠密集与疏朗集}
+
+\begin{Def}[稠密集与疏朗集]
+设 $E \subset \mathbb{R}.$
+\begin{itemize}
+\item 若 $\overline{E} = \mathbb{R},$ 称 $E$ 为\alert{稠密集} (dense);
+\item 若 $\overline{E}$ 不含任何非空开区间 (即 $\mathring{\overline{E}} = \emptyset$), 称 $E$ 为\alert{疏朗集}, 又称\alert{无处稠密集} (nowhere dense).
+\end{itemize}
+\end{Def}
+
+\pause
+
+\begin{attnblock}
+``$E$ 无内点''与``$E$ 疏朗''不同: $\mathbb{Q}$ 无内点, 但 $\overline{\mathbb{Q}} = \mathbb{R},$ 故 $\mathbb{Q}$ 不是疏朗集.
+\end{attnblock}
+
+\pause
+
+\begin{eg}
+$P_0$ 是疏朗集: $P_0$ 闭, 且 $\mathscr{C} P_0 = G_0 \cup (-\infty, 0) \cup (1, +\infty)$ 在 $\mathbb{R}$ 中稠密, 故 $\mathring{P}_0 = \emptyset.$
+\end{eg}
+
+\end{frame}
+
+\begin{frame}{补充: Baire 纲}
+
+\begin{Def}[第一纲集与第二纲集]
+若 $E$ 是\textbf{可数个}无处稠密集之并, 则称 $E$ 为\alert{第一纲集} (first category); 不是第一纲集的集合称为\alert{第二纲集}.
+\end{Def}
+
+\pause
+
+\begin{eg}
+\begin{itemize}
+\item $P_0$ 是无处稠密集, 故是第一纲集.
+\item 设 $f(x) = \lim\limits_{k \to \infty} f_k(x)$, 其中 $f_k \in C(\mathbb{R}),$ 则 $f$ 的不连续点集是第一纲集.
+\end{itemize}
+\end{eg}
+
+\end{frame}
+\normalmode
+
+%------------------------------------------------
+
 \section{Cantor 函数与胖 Cantor 集}
 
 %------------------------------------------------
@@ -470,6 +537,7 @@ $\Phi$ 在每个构成区间 $(c, d) \subset G_0$ 上取常值 $\phi(c) = \phi(d
 \begin{itemize}
 \item $\Phi$ 单调递增, 连续; $\Phi(0) = 0,$ $\Phi(1) = 1.$
 \item $\Phi' = 0$ 几乎处处 (在测度为 $1$ 的集 $G_0$ 上导数为 $0$), 但 $\Phi$ 非常数. (\alert{奇异函数})
+\item $\Phi$ 连续, 但\alert{不是绝对连续的} (概念见第四章 §6): Newton--Leibniz 公式适用范围的关键反例.
 \end{itemize}
 \end{prop}
 
@@ -554,6 +622,49 @@ $\mathbb{R}^2$ 中圆环 $G = \{(x,y) : 1 < x^2+y^2 < 4\}$ 是连通开集, 不�
 
 %------------------------------------------------
 
+\begin{frame}{矩体与二进矩体}
+
+\begin{Def}[矩体]
+在 $\mathbb{R}^n$ 中, 设 $a_i, b_i \in \mathbb{R}$ 且 $a_i < b_i$ ($i = 1, \ldots, n$). 称
+\[
+\prod_{i=1}^n (a_i, b_i), \qquad \prod_{i=1}^n [a_i, b_i], \qquad \prod_{i=1}^n [a_i, b_i)
+\]
+分别为\alert{开矩体、闭矩体与半开矩体}.
+\end{Def}
+
+\pause
+
+\begin{thm}[构成区间定理的推广]
+$\mathbb{R}^n$ 中任一非空开集 $G$ 均可表示为\alert{至多可列个互不相交的半开二进矩体}之并:
+\[
+G = \bigsqcup_{J \in \mathcal{H}} J, \qquad J = \prod_{i=1}^n \left[ \frac{m_i}{2^k}, \frac{m_i + 1}{2^k} \right), \quad m_i \in \mathbb{Z}.
+\]
+\end{thm}
+
+\begin{remark}
+$G$ 一般不能写成互不相交\textbf{开}矩体之并, 但用半开二进矩体总可以; 这一分解是第二章 $\mathbb{R}^n$ 上测度理论的出发点.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{矩体与二进矩体 (证明)}
+
+\startproof[bg=yellow, fg=red]
+对 $k = 0, 1, 2, \ldots,$ 令 $\Gamma_k$ 为边长 $2^{-k}$、顶点坐标属于 $2^{-k} \mathbb{Z}$ 的半开二进矩体全体. 逐层\alert{剥离}: 记 $\mathcal{H}_k$ 为 $\Gamma_k$ 中含于 $G$、但不含于 $\bigcup_{j<k} \bigcup_{J \in \mathcal{H}_j} J$ 的矩体全体, 并令 $\mathcal{H} = \bigcup_{k \geqslant 0} \mathcal{H}_k.$
+\pause
+\begin{itemize}
+\item \textbf{互不相交}: 同层 $\Gamma_k$ 中两个矩体要么重合要么不交; 不同层之间由剥离保证不交.
+\item \textbf{覆盖 $G$}: 任取 $x \in G,$ 由 $G$ 开, 存在 $\delta > 0: U(x, \delta) \subset G.$ 当 $k$ 充分大时, $\Gamma_k$ 中含 $x$ 的矩体直径 $\sqrt{n}/2^k < \delta,$ 故含于 $G,$ 即 $x$ 被某一 $\mathcal{H}_k$ 的成员覆盖.
+\item \textbf{至多可列}: 每个非退化矩体必含一个有理点, 不同的矩体含不同的有理点.
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{点到集合的距离}
 
 \begin{Def}[点到集合的距离]
@@ -586,6 +697,37 @@ $d(x, A) \leqslant |x-z| + d(z, A),$ 即 $d(x,A) - d(z,A) \leqslant |x-z|.$
 
 %------------------------------------------------
 
+\begin{frame}{距离的可达性}
+
+\begin{thm}[点到闭集的距离可达]
+设 $\emptyset \neq A \subset \mathbb{R}^n$ 为闭集, 则对任意 $a \in \mathbb{R}^n,$ 存在 $a_0 \in A$ 使得
+\[
+d(a_0, a) = d(a, A).
+\]
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明)
+取充分大的 $\delta > 0$ 使闭球 $\overline{B}(a, \delta) \cap A \neq \emptyset,$ 则 $\overline{B}(a, \delta) \cap A$ 是有界闭集, 且
+$d(a, \overline{B}(a, \delta) \cap A) = d(a, A).$
+函数 $x \mapsto d(a, x)$ 连续, 在有界闭集 $\overline{B}(a, \delta) \cap A$ 上取到最小值, 即存在 $a_0 \in \overline{B}(a, \delta) \cap A$ 使 $d(a, a_0) = d(a, A).$
+\qed
+
+\pause
+
+\begin{cor}[集合间距离的可达性]
+设 $A, B \subset \mathbb{R}^n$ 均为非空闭集, 且其中之一有界, 则存在 $a_0 \in A,$ $b_0 \in B$ 使得 $d(a_0, b_0) = d(A, B).$
+\end{cor}
+
+\begin{remark}
+提示: 不妨设 $A$ 有界, 对连续函数 $x \mapsto d(x, B)$ 在有界闭集 $A$ 上用最值定理, 再对点 $a_0$ 与闭集 $B$ 用上述定理. 详细论证作为\alert{作业习题 23}.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{集合间的距离}
 
 \begin{Def}[集合间的距离]
@@ -610,6 +752,21 @@ $A = \mathbb{N},$ $B = \bigl\{n + 1/n : n \geqslant 2\bigr\}$ 均是闭集, $A \
 \startproof[bg=yellow, fg=red](证明)
 函数 $f(x) = d(x, B)$ 在 $\mathbb{R}^n$ 上连续. 由 $A$ 紧, $f$ 在 $A$ 上取到最小值 $m.$ 对每个 $x \in A,$ 由 $x \notin B$ 及 $B$ 闭知 $f(x) = d(x, B) > 0.$ 故 $m > 0,$ 即 $d(A, B) = m > 0.$
 \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{作业}
+
+\begin{block}{教材第一章 §4 习题}
+\begin{itemize}
+\item \textbf{22.} 设 $F_1, F_2$ 是 $\mathbb{R}^n$ 中的闭集且 $F_1 \cap F_2 = \emptyset,$ 试证存在开集 $G_1, G_2$: $G_1 \cap G_2 = \emptyset,$ $G_i \supset F_i.$ (提示: 考虑函数 $x \mapsto d(x, F_1) - d(x, F_2)$ 的原像.)
+\item \textbf{23.} 设 $F_1, F_2$ 为非空闭集, 其中之一有界, 试证存在 $a_1 \in F_1,$ $a_2 \in F_2$ 使 $d(a_1, a_2) = d(F_1, F_2).$ (即上页推论.)
+\item \textbf{25.} 试证 $\mathbb{R}^n$ 中每个闭集可表为可列个开集之交, 每个开集可表为可列个闭集之并 (即闭集是 $G_\delta$ 集, 开集是 $F_\sigma$ 集).
+\item \textbf{27.} (见教材.)
+\end{itemize}
+\end{block}
 
 \end{frame}
 
