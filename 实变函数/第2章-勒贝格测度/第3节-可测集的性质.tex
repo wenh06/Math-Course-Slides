@@ -1,3 +1,4 @@
+\everymath{\displaystyle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -8,12 +9,10 @@
 %-----------------------------------
 
 \title[第二章\\
-勒贝格测度]{\texorpdfstring{\LARGE \bfseries 第二章\quad 勒贝格测度}{第二章 勒贝格测度}} % The short title appears at the bottom of every slide, the full title is only on the title page
+勒贝格测度]{\texorpdfstring{\LARGE \bfseries 第二章\quad 勒贝格测度}{第二章 勒贝格测度}}
 \author[\S 2.3\\
-可测集的性质] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+可测集的性质]
 {\Large \bfseries \S 2.3 可测集的性质}
-% \author{Singular Value Decomposition} % Your name
-% \date{\today} % Date can be changed to a custom date
 \date{}
 
 %------------------------------------------------
@@ -24,39 +23,795 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section{引言}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{回顾与本节的任务}
 
+上一节我们定义了\alert{可测集}: 有界集 $E$ 可测 $\iff$ $m^* E = m_* E$ (公共值记为 $mE$).
 
+\pause
+
+但目前已确认的可测集还很少 (零测集的子集、区间), 一个自然的问题是:
+
+\begin{question}
+\begin{itemize}
+\item 常见的集合 (如\alert{开集、闭集}) 可测吗?
+\item 从已知可测集出发, 经\alert{集合运算} (并、交、差、补, 乃至\alert{可数}次) 得到的集合还可测吗? 测度是否可加?
+\item ``可测''还有哪些等价的刻画方式?
+\end{itemize}
+\end{question}
+
+\pause
+
+\textbf{本节路线}: 可测性的充要条件 (内外夹逼的定量化) $\longrightarrow$ 运算封闭性 $\longrightarrow$ 可数运算与 Borel 集 $\longrightarrow$ Carath\'{e}odory 条件 $\longrightarrow$ 极限定理 (渐张、渐缩集列) $\longrightarrow$ 等测包与等测核 $\longrightarrow$ 全密点 (选讲).
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section{可测性的一个充要条件}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{内外夹逼的定量化}
 
+\begin{thm}[充要条件]
+有界集 $E \subset \mathbb{R}$ 可测的\alert{充要条件}是: $\forall\, \varepsilon > 0$, 存在开集 $G \supset E$ 与闭集 $F \subset E$, 使得
+\[
+m(G \setminus F) < \varepsilon .
+\]
+\end{thm}
+
+\pause
+
+\begin{remark}
+$G \setminus F = G \cap \mathscr{C}F$ 是\alert{开集}, 且 $F \subset G$, 由 §2.2 的定理,
+\[
+m(G \setminus F) = m G - m F ,
+\]
+故条件即 $mG - mF < \varepsilon$: \alert{开集从外面、闭集从里面把 $E$ 夹住}, 且两侧的误差可以任意小.
+\end{remark}
+
+\pause
+
+\begin{remark}
+这正是 ``$m^* E = m_* E$'' 的定量化表述: $m^* E = \inf_G mG$ 与 $m_* E = \sup_F mF$ 之差可以被压得任意小.
+\end{remark}
 
 \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{充要条件的证明}
+
+\startproof[bg=yellow, fg=red]($\Longrightarrow$)
+设 $E$ 可测, 即 $m^* E = m_* E$. 由外测度定义 $m^* E = \inf_{G \supset E} mG$, $\forall\, \varepsilon > 0$ 可取开集 $G \supset E$ 使
+\[
+mG < m^* E + \frac{\varepsilon}{2} ;
+\]
+类似地, 由内测度定义可取闭集 $F \subset E$ 使 $mF > m_* E - \dfrac{\varepsilon}{2}$.
+于是
+\[
+\varepsilon > mG - mF = m(G \setminus F).
+\]
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]($\Longleftarrow$)
+设有开集 $G \supset E$ 与闭集 $F \subset E$ 使 $m(G \setminus F) = mG - mF < \varepsilon$. 由内、外测度的单调性 (§2.2 性质 (2)):
+\[
+m^* E \leqslant mG, \qquad m_* E \geqslant mF,
+\]
+于是
+\[
+m^* E - m_* E \leqslant mG - mF < \varepsilon .
+\]
+由 $\varepsilon$ 的任意性得 $m^* E = m_* E$, 即 $E$ 可测.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{对运算的封闭性}
+
+%------------------------------------------------
+
+\begin{frame}{可测集关于集合运算封闭}
+
+\begin{thm}[运算的封闭性]
+设基本集 $X = (a, b)$ 为有界开区间.
+\begin{enumerate}
+\item 若 $E \subset X$ 可测, 则 $E$ 在 $X$ 中的补集 $\mathscr{C}E = X \setminus E$ 也可测;
+\item 若 $E_1, E_2$ 可测, 则 $E_1 \cup E_2$、$E_1 \cap E_2$、$E_1 \setminus E_2$ 均可测; 且当 $E_1 \cap E_2 = \emptyset$ 时,
+\[
+m(E_1 \cup E_2) = m E_1 + m E_2 \qquad \text{(\alert{有限可加性})}.
+\]
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\begin{attnblock}[注意]
+可加性\textbf{要求 $E_1, E_2$ 可测}: 对一般的 (未必可测的) $E_1, E_2$, 即使 $E_1 \cap E_2 = \emptyset$, 也可能
+$m^*(E_1 \cup E_2) < m^* E_1 + m^* E_2$ (习题 2.3 第 15 题).
+\end{attnblock}
+
+\pause
+
+\begin{remark}
+这说明可测集类对\alert{有限}次并、交、差、补封闭 (构成一个\alert{环}); 稍后再补上\alert{可数}并封闭性, 便得到 \alert{$\sigma$-环} (术语与推广见 §2.5--2.6).
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{预备: 内、外测度的对偶公式}
+
+\begin{lem}[对偶公式]
+设 $\emptyset \neq E \subset (a, b)$ 有界, 则
+\[
+m_* (\mathscr{C}E) = (b - a) - m^* E,
+\qquad
+m^* (\mathscr{C}E) = (b - a) - m_* E .
+\]
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明, 以前一式为例)
+``$\leqslant$'': 任取闭集 $F \subset \mathscr{C}E$, 则 $(a, b) \setminus F$ 是含 $E$ 的开集, 由 §2.2 开集减闭集定理,
+\[
+mF = (b - a) - m\big((a,b) \setminus F\big) \leqslant (b-a) - m^* E ,
+\]
+对 $F$ 取上确界得 $m_* (\mathscr{C}E) \leqslant (b-a) - m^* E$. ``$\geqslant$'': 任取开集 $G \supset E$, 则 $(a, b) \setminus G$ 是含于 $\mathscr{C}E$ 的闭集, 且
+\[
+(b - a) - mG = m\big((a,b) \setminus G\big) \leqslant m_* (\mathscr{C}E),
+\]
+对 $G$ 取下确界得 $(b-a) - m^* E \leqslant m_* (\mathscr{C}E)$. 合并即得; 后一式同理 (交换 $E$ 与 $\mathscr{C}E$).
+\qed
+
+\pause
+
+\begin{cor}[补集可测, 定理 1 的证明]
+$E$ 可测时, $m^* (\mathscr{C}E) = (b - a) - m_* E = (b - a) - m^* E = m_* (\mathscr{C}E)$, 故 $\mathscr{C}E$ 可测, 且
+\[
+m(\mathscr{C}E) = (b - a) - mE .
+\]
+\qed
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{并的封闭性 (定理 2, 1$^\circ$)}
+
+\startproof[bg=yellow, fg=red](1$^\circ$) 的证明
+设 $E_1, E_2$ 可测. 由充要条件, $\forall\, \varepsilon > 0$, 存在 (闭集、开集)
+\[
+F_1 \subset E_1 \subset G_1, \qquad F_2 \subset E_2 \subset G_2,
+\]
+使得 $m(G_1 \setminus F_1) < \dfrac{\varepsilon}{2}$, $m(G_2 \setminus F_2) < \dfrac{\varepsilon}{2}$.
+
+\pause
+
+令 $G = G_1 \cup G_2$ (开), $F = F_1 \cup F_2$ (闭), 则 $F \subset E_1 \cup E_2 \subset G$, 且
+\begin{align*}
+G \setminus F
+&= (G_1 \cup G_2) \cap \mathscr{C}(F_1 \cup F_2)
+= (G_1 \cup G_2) \cap \mathscr{C}F_1 \cap \mathscr{C}F_2 \\
+&\subset (G_1 \cap \mathscr{C}F_1) \cup (G_2 \cap \mathscr{C}F_2)
+= (G_1 \setminus F_1) \cup (G_2 \setminus F_2).
+\end{align*}
+
+\pause
+
+由 $G \setminus F$ 为开集及开集测度的单调性、半可加性 (§2.2):
+\[
+m(G \setminus F) \leqslant m(G_1 \setminus F_1) + m(G_2 \setminus F_2) < \varepsilon ,
+\]
+再由充要条件知 $E_1 \cup E_2$ 可测.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{交、差与有限可加性 (定理 2, 2$^\circ$--4$^\circ$)}
+
+\startproof[bg=yellow, fg=red](2$^\circ$, 3$^\circ$)
+由 De Morgan 律与补集可测 (1)、并的可测性 (1$^\circ$):
+\[
+E_1 \cap E_2 = \mathscr{C}\big(\mathscr{C}E_1 \cup \mathscr{C}E_2\big), \qquad
+E_1 \setminus E_2 = E_1 \cap \mathscr{C}E_2 ,
+\]
+右端均可测, 故 $E_1 \cap E_2$ 与 $E_1 \setminus E_2$ 可测.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red](4$^\circ$) 设 $E_1 \cap E_2 = \emptyset$, 取 1$^\circ$ 中的 $F_i \subset E_i \subset G_i$ ($i = 1, 2$), 则 $F_1 \cap F_2 = \emptyset$. 由内测度的单调性 ($m(E_1 \cup E_2) = m_* (E_1 \cup E_2) \geqslant m_* (F_1 \cup F_2) \geqslant m(F_1 \cup F_2)$) 与闭集测度的有限可加性 (§2.2):
+\[
+m(E_1 \cup E_2) \geqslant m(F_1 \cup F_2) = mF_1 + mF_2 > mG_1 + mG_2 - \varepsilon .
+\]
+
+\pause
+
+令 $\varepsilon \to 0^+$, 并注意 $m^* E_i \leqslant mG_i$:
+\[
+m(E_1 \cup E_2) \geqslant m^* E_1 + m^* E_2 = m E_1 + m E_2 ;
+\]
+另一方面, 由 $E_1 \cup E_2$ 可测 (1$^\circ$) 及外测度的半可加性,
+\[
+m(E_1 \cup E_2) = m^* (E_1 \cup E_2) \leqslant m^* E_1 + m^* E_2 = m E_1 + m E_2 .
+\]
+故 $m(E_1 \cup E_2) = mE_1 + mE_2$.
+\qed
+
+\begin{remark}
+也可以改用内测度从``内部''作同样的论证; 但内测度对一般集合的相应性质可能失效 (习题 2.2 第 15 题), 走外测度途径更稳妥.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{测度的单调性与可减性}
+
+\begin{thm}[测度的单调性]
+设 $E_1, E_2$ 可测且 $E_1 \subset E_2$, 则 $m E_1 \leqslant m E_2$.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+直接由内、外测度的单调性: $m E_1 = m^* E_1 \leqslant m^* E_2 = m E_2$.
+\qed
+
+\pause
+
+\begin{cor}[可减性]
+设 $E_1 \subset E_2$ 均可测, 且 $m E_1 < +\infty$ (有界情形自动满足), 则
+\[
+m(E_2 \setminus E_1) = m E_2 - m E_1 .
+\]
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+$E_2 = E_1 \cup (E_2 \setminus E_1)$ 为\alert{不交}可测集之并, 由有限可加性即得.
+\qed
+
+\pause
+
+\begin{remark}
+可减性是``裂项''的基本工具, 稍后渐张集列的证明正是反复使用它.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{可数运算与 Borel 集}
+
+%------------------------------------------------
+
+\begin{frame}{可数并、可数交 (从有限到可数)}
+
+\begin{thm}[可数并、可数交]
+设 $\{E_k\}_{k \geqslant 1}$ 为一列\alert{可测}集.
+\begin{enumerate}
+\item $E = \bigcup_{k=1}^\infty E_k$ 可测; 若进一步 $E_k$ 两两互不相交, 则
+\[
+mE = \sum_{k=1}^\infty m E_k \qquad \text{(\alert{完全可加性})};
+\]
+\item $E = \bigcap_{k=1}^\infty E_k$ 可测.
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\begin{remark}[证明思路]
+先把 (1) \alert{归约到两两不交}的情形 (有限并、差的封闭性已具备):
+\[
+E = E_1 \cup (E_2 \setminus E_1) \cup \big(E_3 \setminus (E_1 \cup E_2)\big) \cup \cdots,
+\]
+右端各项可测且\alert{两两不交}.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{第一个收获: 开集、闭集、Borel 集都可测}
+
+\begin{itemize}
+\item 开区间可测 (§2.2 末已验证) $+$ \alert{可数并可测} $\Longrightarrow$ \alert{任何有界开集可测};
+\pause
+\item 开集可测 $+$ \alert{补集可测} $\Longrightarrow$ \alert{任何有界闭集可测};
+\pause
+\item 由 §1.4: $F_\sigma$ 集 (可数个闭集之并)、$G_\delta$ 集 (可数个开集之交) 及一切 Borel 集都可测.
+\end{itemize}
+
+\pause
+
+\begin{attnblock}
+§2.2 遗留的问题 (``开集、闭集是否可测?'') 至此全部解决; 可测集类 $\mathscr{M}$ 至少包含全部 Borel 集 --- 但它还要更大 (Borel 集加减零测集后仍可测, 而这样的集合未必是 Borel 集).
+\end{attnblock}
+
+\pause
+
+\begin{remark}
+本定理把之前的\alert{有限}结论推广到了\alert{可数}: 可测集类对可数次运算封闭, 这正是它威力所在.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{完全可加性的证明 (一): 内测度下界}
+
+以下设 $E_k$ \alert{两两不交}, $E = \bigcup_{k \geqslant 1} E_k$ (可测性已由前一页的归约得到), 往证 $mE = \sum_k m E_k$.
+
+\pause
+
+\startproof[bg=yellow, fg=red](1) 内测度一侧
+任取 $n$, 和式 $\sum_{k=1}^n m E_k = m\big(\bigcup_{k=1}^n E_k\big)$ (有限可加性). 由内测度定义, 可取闭集
+\[
+F \subset \bigcup_{k=1}^n E_k \subset E
+\quad \text{使得} \quad
+mF > m\Big(\bigcup_{k=1}^n E_k\Big) - \varepsilon = \sum_{k=1}^n m E_k - \varepsilon .
+\]
+于是由内测度的单调性及闭集自身的内测度 $m_* F = mF$:
+\[
+m_* E \geqslant m_* F \geqslant mF > \sum_{k=1}^n m E_k - \varepsilon .
+\]
+先令 $\varepsilon \to 0^+$, 再令 $n \to \infty$:
+\[
+m_* E \geqslant \sum_{k=1}^\infty m E_k .
+\qquad \cdots\, \textcircled{1}
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{完全可加性的证明 (二): 外测度上界与夹逼}
+
+\startproof[bg=yellow, fg=red](2) 外测度一侧
+由外测度定义, 对每个 $k$ 可取开集 $G_k \supset E_k$ 使 $m G_k < m E_k + \dfrac{\varepsilon}{2^k}$.
+令 $G = \bigcup_{k \geqslant 1} G_k$, 则 $G$ 为开集且 $G \supset E$, 于是
+\[
+m^* E \leqslant m G \leqslant \sum_{k \geqslant 1} m G_k
+\leqslant \sum_{k \geqslant 1} \Big(m E_k + \frac{\varepsilon}{2^k}\Big)
+= \sum_{k \geqslant 1} m E_k + \varepsilon .
+\]
+由 $\varepsilon$ 任意:
+\[
+m^* E \leqslant \sum_{k=1}^\infty m E_k .
+\qquad \cdots\, \textcircled{2}
+\]
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red](3) 夹逼定案
+结合内、外测度的基本关系 $m_* E \leqslant m^* E$ 与 \textcircled{1}\textcircled{2}:
+\[
+m_* E = m^* E = \sum_{k=1}^\infty m E_k ,
+\]
+即 $E$ 可测且 $mE = \sum_k mE_k$.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red](定理 2) 交的情形
+$\mathscr{C}\big(\bigcap_k E_k\big) = \bigcup_k \mathscr{C}E_k$ 可测 (De Morgan 律), 再由补集可测知 $\bigcap_k E_k$ 可测.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Carath\'{e}odory 条件}
+
+%------------------------------------------------
+
+\begin{frame}{另一个充要条件: Carath\'{e}odory 条件}
+
+我们再给出可测性的一个充要条件 --- 很多教材\alert{以它作为可测集的定义}.
+
+\pause
+
+\begin{thm}[Carath\'{e}odory 条件]
+设有界集 $E \subset (a, b)$. $E$ 可测的充要条件是: 对\alert{任何}有界集 $A$ (称为\alert{试验集}), 有
+\[
+m^* A = m^* (A \cap E) + m^* (A \cap \mathscr{C}E) .
+\]
+\end{thm}
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 直观: 可测集 $E$ 能把\alert{任何}集合 $A$ ``干净地切成两半'' (测度可加);
+\item 该条件\alert{只涉及外测度} $m^*$, 不再需要内测度, 便于向一般情形推广 (§2.4);
+\item 试验集 $A$ 是\alert{任意}的, 不要求与 $E$ 有包含关系 (与习题 2.3 第 10 题的等式相对照).
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Carath\'{e}odory 条件的证明}
+
+\startproof[bg=yellow, fg=red]($\Longleftarrow$)
+取试验集 $A = (a, b)$, 注意 $(a,b) \cap E = E$, $(a,b) \cap \mathscr{C}E = \mathscr{C}E$:
+\[
+b - a = m^* (a, b) = m^* E + m^* (\mathscr{C}E)
+= m^* E + (b - a) - m_* E ,
+\]
+第二步用对偶公式. 于是 $m^* E = m_* E$, 即 $E$ 可测.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]($\Longrightarrow$)
+设 $E$ 可测, $A$ 任取. 一方面, 由 $A = (A \cap E) \cup (A \cap \mathscr{C}E)$ 与外测度的半可加性:
+\[
+m^* A \leqslant m^* (A \cap E) + m^* (A \cap \mathscr{C}E) .
+\]
+
+\pause
+
+另一方面, $\forall\, \varepsilon > 0$, 取开集 $G \supset A$ 使 $mG < m^* A + \varepsilon$. 此时 (开集 $G$ 可测, $E$、$\mathscr{C}E$ 可测, $G \cap E$ 与 $G \cap \mathscr{C}E$ \alert{不交}且均可测):
+\[
+m^* (A \cap E) + m^* (A \cap \mathscr{C}E)
+\leqslant m(G \cap E) + m(G \cap \mathscr{C}E)
+= m G < m^* A + \varepsilon .
+\]
+由 $\varepsilon$ 任意, ``$\geqslant$''也成立.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{测度的极限性质}
+
+%------------------------------------------------
+
+\begin{frame}{渐张与渐缩的可测集列}
+
+\begin{thm}[测度的极限性质]
+\begin{enumerate}
+\item (\alert{渐张}集列) 设 $E_1 \subset E_2 \subset \cdots$ 均为 $(a,b)$ 中的可测集, 则 $E = \bigcup_{k=1}^\infty E_k$ 可测, 且
+\[
+m E = \lim_{k \to \infty} m E_k ;
+\]
+\item (\alert{渐缩}集列) 设 $E_1 \supset E_2 \supset \cdots$ 均为 $(a,b)$ 中的可测集, 则 $E = \bigcap_{k=1}^\infty E_k$ 可测, 且
+\[
+m E = \lim_{k \to \infty} m E_k .
+\]
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\begin{remark}
+两者的\alert{可测性}由可数并、交封闭性直接得到; 有内容的是测度的等式. 思路: 渐张情形\alert{裂项}, 渐缩情形\alert{取补化归为渐张}.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{渐张情形的证明: 裂项}
+
+\startproof[bg=yellow, fg=red](1) 的证明
+把 $E$ 按归属``裂项''为两两不交的可测集之并:
+\[
+E = E_1 \cup (E_2 \setminus E_1) \cup (E_3 \setminus E_2) \cup \cdots \cup (E_{k+1} \setminus E_k) \cup \cdots
+\]
+
+\pause
+
+由完全可加性与可减性 ($m(E_{k+1} \setminus E_k) = mE_{k+1} - mE_k$):
+\[
+mE = mE_1 + \sum_{k=1}^\infty \big(m E_{k+1} - m E_k\big)
+= mE_1 + \lim_{n \to \infty} \sum_{k=1}^n \big(mE_{k+1} - mE_k\big) .
+\]
+
+\pause
+
+裂项求和 (telescoping):
+\[
+mE = mE_1 + \lim_{n \to \infty} \big(m E_{n+1} - m E_1\big)
+= \lim_{n \to \infty} m E_{n+1} .
+\]
+(数列 $\{mE_k\}$ 单调递增且有上界 $mE < +\infty$, 极限存在.)
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{渐缩情形的证明: 取补}
+
+\startproof[bg=yellow, fg=red](2) 的证明
+令 $E = \bigcap_{k \geqslant 1} E_k$, 由 De Morgan 律
+\[
+\mathscr{C}E = \mathscr{C}\Big(\bigcap_{k \geqslant 1} E_k\Big) = \bigcup_{k \geqslant 1} \mathscr{C}E_k
+\]
+是\alert{渐张}可测集列 ($\mathscr{C}E_1 \subset \mathscr{C}E_2 \subset \cdots$) 之并, 由 (1) 与对偶公式:
+\[
+(b-a) - mE = m(\mathscr{C}E) = \lim_{k \to \infty} m(\mathscr{C}E_k)
+= \lim_{k \to \infty} \big[(b - a) - mE_k\big],
+\]
+整理即得 $mE = \lim_{k \to \infty} mE_k$.
+\qed
+
+\pause
+
+\begin{attnblock}[注意: 有限性条件]
+(1) 对 $mE_k$ 无需任何假设; 但 (2) 在一般测度空间中必须假设\alert{某个} $mE_{n_0} < +\infty$, 否则会失效: 例如 $E_k = [k, +\infty)$ (§2.4 的无界情形), $mE_k = +\infty$, 而 $\bigcap_k E_k = \emptyset$, $m\big(\bigcap_k E_k\big) = 0 \neq +\infty$. 本节一切集合含于基本集 $(a,b)$, 自动有界, 不会出问题.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{零测集``无足轻重''}
+
+\begin{prop}
+设 $E_0$ 为零测集, $E$ 为有界可测集, 则 $E \cup E_0$ 可测, 且 $m(E \cup E_0) = mE$.
+\end{prop}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明)
+$E \cup E_0 = E \cup (E_0 \setminus E)$ 为\alert{不交}之并, 两块均可测 (差的封闭性), 故 $E \cup E_0$ 可测, 且由有限可加性
+\[
+m(E \cup E_0) = mE + m(E_0 \setminus E) = mE + 0 = mE ,
+\]
+其中 $E_0 \setminus E \subset E_0$ 是零测集的子集, 故可测且测度为 $0$ (§2.2 完备性).
+\qed
+
+\pause
+
+\begin{attnblock}
+从可测集中减去一个零测集、或并上一个零测集, 不改变可测性与测度: \alert{零测集是无足轻重的}.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{等测包与等测核}
+
+%------------------------------------------------
+
+\begin{frame}{用 $G_\delta$ 集与 $F_\sigma$ 集实现可测集的测度}
+
+我们已经知道: 开集、闭集以及 $F_\sigma, F_{\sigma\delta}, \ldots$, $G_\delta, G_{\delta\sigma}, \ldots$ 等 Borel 集都是可测的. 下面的定理表明: \alert{任何可测集的测度都可以由 $F_\sigma$ 集与 $G_\delta$ 集实现}.
+
+\pause
+
+\begin{thm}[等测包与等测核]
+设有界集 $E \subset \mathbb{R}$ 可测, 则存在 $G_\delta$ 型集 $A$ 与 $F_\sigma$ 型集 $B$, 使得
+\[
+A \supset E \supset B, \qquad mE = mA = mB .
+\]
+\end{thm}
+
+\pause
+
+\begin{remark}
+$A$ 称为 $E$ 的\alert{等测包}, $B$ 称为 $E$ 的\alert{等测核}. 比起充要条件 ``$\forall\, \varepsilon > 0,\ \exists\, G \supset E \supset F,\ m(G \setminus F) < \varepsilon$'', 这里更强、更精细: $A$、$B$ 一经作出便不再依赖 $\varepsilon$.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{等测包与等测核的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$E$ 可测, $mE = m^* E$. 由外测度定义, $\forall\, n \in \mathbb{N}$, 可取开集 $G_n \supset E$ 使 $mG_n < m^* E + \dfrac{1}{n} = mE + \dfrac{1}{n}$. 令 $A = \bigcap_{n=1}^\infty G_n$, 则 $A$ 为 $G_\delta$ 集, 可测, 且 $E \subset A \subset G_n$, 由测度的单调性 $mE \leqslant mA \leqslant mG_n < mE + \dfrac{1}{n}$ ($\forall\, n$), 故
+\[
+mE = mA .
+\]
+
+\pause
+
+另一方面, 由内测度定义, $\forall\, n$ 可取闭集 $F_n \subset E$ 使 $mF_n > m_* E - \dfrac{1}{n} = mE - \dfrac{1}{n}$. 令 $B = \bigcup_{n=1}^\infty F_n$, 则 $B$ 为 $F_\sigma$ 集, 可测, 且 $E \supset B \supset F_n$, 同样有 $mE \geqslant mB \geqslant mF_n > mE - \dfrac{1}{n}$ ($\forall\, n$), 故
+\[
+mE = mB .
+\]
+\qed
+
+\pause
+
+\begin{remark}
+对\alert{一般点集} $E$ (未必可测), 前半段论证仍给出 $G_\delta$ 型等测包 $A \supset E$, $m^* E = mA$; 后半段用到 $mE = m_* E$, 对不可测集失效.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{全密点 (选讲)}
+
+%------------------------------------------------
+
+\begin{frame}{全密点}
+
+\begin{Def}[全密点]
+设 $E \subset \mathbb{R}$ 可测, $x \in \mathbb{R}$, 记 $I(x; \varepsilon) = (x - \varepsilon,\, x + \varepsilon)$. 若
+\[
+\lim_{\varepsilon \to 0^+} \frac{1}{2\varepsilon}\, m\big(E \cap I(x; \varepsilon)\big) = 1,
+\]
+则称 $x$ 为 $E$ 的\alert{全密点}.
+\end{Def}
+
+直观上: 充分靠近 $x$ 时, $E$ 几乎``填满''整个邻域.
+
+\pause
+
+\begin{prop}
+若 $x_0$ 是 $E$ 的全密点, 则
+\[
+d(x_0 + h,\ E) = o(h) \qquad (h \to 0),
+\]
+其中 $d(x, E) = \inf_{y \in E} |x - y|$.
+\end{prop}
+
+\begin{remark}
+分析证明的关键: 对任意取定的 $\varepsilon > 0$, $h$ 充分小时必有 $E \cap I(x_0 + h;\, \varepsilon |h|) \neq \emptyset$.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{全密点命题的证明 (一): 关键断言}
+
+不妨设 $h > 0$ ($h < 0$ 完全对称). 任取定 $\varepsilon > 0$, 注意
+\[
+I(x_0 + h;\, \varepsilon h) \subset I(x_0;\, h + \varepsilon h)
+\qquad (\text{长度: } 2\varepsilon h \leftarrow 2h + 2\varepsilon h).
+\]
+
+\startproof[bg=yellow, fg=red](断言) $h$ 充分小时 $E \cap I(x_0 + h;\, \varepsilon h) \neq \emptyset$.
+\textbf{反证}: 设 $E \cap I(x_0 + h;\, \varepsilon h) = \emptyset$, 则
+$E \cap I(x_0; h + \varepsilon h) \subset I(x_0; h + \varepsilon h) \setminus I(x_0 + h;\, \varepsilon h)$, 故
+\[
+\frac{m\big(E \cap I(x_0; h + \varepsilon h)\big)}{2(h + \varepsilon h)}
+\leqslant \frac{m I(x_0; h + \varepsilon h) - m I(x_0 + h;\, \varepsilon h)}{2(h + \varepsilon h)}
+= \frac{2h}{2(h + \varepsilon h)}
+= \frac{1}{1 + \varepsilon}
+\qquad \textcircled{1}
+\]
+
+\pause
+
+另一方面, 由全密点定义, 存在 $\delta_0 > 0$, 使 $0 < \delta < \delta_0$ 时恒有
+$\dfrac{1}{2\delta}\, m\big(E \cap I(x_0; \delta)\big) > \dfrac{1}{1 + \varepsilon}$.
+取 $h < \dfrac{\delta_0}{1 + \varepsilon}$, 并令 $\delta = h + \varepsilon h < \delta_0$, 则
+\[
+\frac{m\big(E \cap I(x_0; h + \varepsilon h)\big)}{2(h + \varepsilon h)} > \frac{1}{1 + \varepsilon},
+\]
+与 \textcircled{1} 矛盾.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{全密点命题的证明 (二): 收尾}
+
+\startproof[bg=yellow, fg=red](命题的证明)
+由断言, 对任意取定的 $\varepsilon > 0$, $h$ 充分小时可取
+$z \in E \cap I(x_0 + h;\, \varepsilon h)$, 于是
+\[
+d(x_0 + h, E) = \inf_{y \in E} d(x_0 + h, y)
+\leqslant d(x_0 + h, z) \leqslant \varepsilon h .
+\]
+
+\pause
+
+由 $\varepsilon > 0$ 的任意性:
+\[
+d(x_0 + h, E) = o(h) \qquad (h \to 0). \qquad \qed
+\]
+
+\pause
+
+\begin{remark}
+反方向的定理 (\alert{Lebesgue 密度定理}) 断言: 可测集的\alert{几乎所有}点 (除一个零测集外) 都是它的全密点, 将在后续课程中讨论.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{小结与展望}
+
+%------------------------------------------------
+
+\begin{frame}{小结}
+
+\begin{itemize}
+\item \textbf{可测性的三个等价面貌}: $m^* E = m_* E$;\quad $\forall\, \varepsilon > 0$, $\exists\, G \supset E \supset F$ (开、闭), $m(G \setminus F) < \varepsilon$;\quad Carath\'{e}odory 条件 (任意试验集的二分可加性);
+\pause
+\item \textbf{封闭性}: 补、交、并、差 (有限与可数); 测度的有限可加、完全可加、单调、可减;
+\pause
+\item \textbf{收获}: 开集、闭集、$F_\sigma$、$G_\delta$ 及一切 Borel 集可测; 渐张列 $m\big(\bigcup_k E_k\big) = \lim_k mE_k$, 渐缩列 (有界); 等测包与等测核; 零测集``无足轻重'';
+\pause
+\item \textbf{极限性质}把测度从``有限运算''解放到``极限运算'', 为后续逐项积分、极限交换铺路.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{展望: 走向一般测度}
+
+\begin{itemize}
+\item 本节的许多定义与结论都带着\alert{有界}的条件: 内测度靠有界闭集逼近, 补集相对基本集 $(a, b)$ 而言;
+\pause
+\item 逻辑链条: 可测性 (Carath\'{e}odory) $\longleftarrow$ 外测度 $m^* E = \inf_G mG$ $\longleftarrow$ 开集测度 $mG = \sum_k |I_k|$ $\longleftarrow$ $\mathbb{R}$ 的构成区间结构;
+\pause
+\item §2.4 起我们\alert{以 Carath\'{e}odory 条件为定义} (只依赖外测度), 改用 \alert{开矩体覆盖}在 $\mathbb{R}^n$ 上重建 Lebesgue 测度: 允许\alert{无界集}、高维点集, 保持平移不变; 并讨论\alert{不可测集的存在性} (Vitali 构造, 见补充材料).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第二章 §2.3 习题}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{itemize}
+\item \textbf{9.} 设 $E_1, E_2$ 均为有界可测集, 试证
+$m(E_1 \cup E_2) = mE_1 + mE_2 - m(E_1 \cap E_2)$.
+\item \textbf{10.} 设 $E$ 是 $\mathbb{R}$ 中可测集, $A$ 是任意集, 证明
+$m^*(E \cup A) + m^*(E \cap A) = mE + m^* A$. 又问: $E$ 不可测时如何?
+\item \textbf{13.} 设 $G$ 是开集, $E$ 是零测度集, 试证 $\overline{G} = \overline{G \setminus E}$.
+\item \textbf{14.} 设 $E_1 \subset E_2 \subset \cdots$, 试证
+$m^*\big(\bigcup_{n=1}^\infty E_n\big) = \lim\limits_{n \to \infty} m^* E_n$.
+\end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{itemize}
+\item \textbf{15.} 给出互不相交的集列 $\{E_n\}_{n \in \mathbb{N}}$, 满足
+$m^*\big(\bigcup_{n=1}^\infty E_n\big) < \sum_{n=1}^\infty m^*(E_n)$.
+\item \textbf{17.} 举例说明: 存在可测集列 $\{E_n \subset (a,b)\}_{n \in \mathbb{N}}$, 使极限 $\lim\limits_{n \to \infty} mE_n$ 存在, 但 $\lim\limits_{n \to \infty} E_n$ 不存在.
+\item \textbf{18.} 设 $A_1, \ldots, A_n$ 是 $[0,1]$ 中 $n$ 个可测集, 且 $\sum_{k=1}^n mA_k > n - 1$, 试证
+$m\big(\bigcap_{k=1}^n A_k\big) > 0$.
+\item \textbf{20.} 试作一闭集 $F \subset [0,1]$, 使 $F$ 中不含任何开区间, 而 $mF = 1/2$.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{block}
+
+\begin{itemize}
+\item 另请思考: 渐缩集列的极限定理中, ``某个 $mE_k < +\infty$''这一条件不可去, 试举反例.
+\end{itemize}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
