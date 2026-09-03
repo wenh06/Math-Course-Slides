@@ -1,3 +1,4 @@
+\everymath{\displaystyle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -8,12 +9,10 @@
 %-----------------------------------
 
 \title[第二章\\
-勒贝格测度]{\texorpdfstring{\LARGE \bfseries 第二章\quad 勒贝格测度}{第二章 勒贝格测度}} % The short title appears at the bottom of every slide, the full title is only on the title page
+勒贝格测度]{\texorpdfstring{\LARGE \bfseries 第二章\quad 勒贝格测度}{第二章 勒贝格测度}}
 \author[\S 2.4\\
-测度的几点评注] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+测度的几点评注]
 {\Large \bfseries \S 2.4 关于测度的几点评注}
-% \author{Singular Value Decomposition} % Your name
-% \date{\today} % Date can be changed to a custom date
 \date{}
 
 %------------------------------------------------
@@ -24,39 +23,715 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section{引言}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{本节的任务: 走出 $(a,b)$}
 
+前几节的测度理论建立在\alert{两个枷锁}上:
+\begin{itemize}
+\item 一切集合都含于基本集 $(a, b)$ --- \alert{无界集}没有测度;
+\item 开集测度 $mG = \sum_k (\beta_k - \alpha_k)$ 依赖 $\mathbb{R}$ 的\alert{构成区间结构} --- 无法推广到 $\mathbb{R}^n$.
+\end{itemize}
 
+\pause
+
+\textbf{本节内容} (名为``注记'', 实为框架升级):
+\begin{enumerate}
+\item \alert{扩充实数} $\mathbb{R} \cup \{\pm\infty\}$: 让测度可以取值 $+\infty$;
+\item $\mathbb{R}^n$ 上的\alert{勒贝格外测度} (矩体 L-覆盖) 与 \alert{Carath\'{e}odory 条件}定义的可测性;
+\item 外测度与可测集类的性质; \alert{环、$\sigma$-环、$\sigma$-代数} --- 测度的自然舞台;
+\item (选讲) 正测度集的``厚度''、\alert{Vitali 不可测集}、\alert{非 Borel 的可测集}.
+\end{enumerate}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section{扩充实数}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{扩充实数 (广义实数)}
 
+\begin{Def}[扩充实数]
+\alert{扩充实数集} (extended real numbers), 又称\alert{广义实数集}:
+\[
+\overline{\mathbb{R}} := \mathbb{R} \cup \{+\infty,\ -\infty\}.
+\]
+\end{Def}
+
+\pause
+
+对 $x \in \mathbb{R}$, 约定
+\begin{center}
+\begin{tabular}{ll}
+$x + \infty = \infty$, & $x - \infty = -\infty$; \\
+$x \cdot \infty = \infty$ $(x > 0)$, & $x \cdot (-\infty) = -\infty$ $(x > 0)$; \\
+$\infty + \infty = \infty$, & $-\infty - \infty = -\infty$; \\
+$\infty \cdot (\pm\infty) = \pm\infty$, & $-\infty \cdot (\pm\infty) = \mp\infty$.
+\end{tabular}
+\end{center}
+并特别\alert{约定 $0 \cdot \infty = 0$} (为积分论做准备); 尚未定义的只有 $\infty - \infty$.
+
+\pause
+
+\begin{remark}[上、下确界的扩充]
+对 $E \subset \mathbb{R}$: 若 $E$ 无上界 (即 $\forall\, x \in \mathbb{R}$, $\exists\, y \in E$, $y > x$), 则约定 $\sup E = +\infty$; 若 $E$ 无下界, 则约定 $\inf E = -\infty$. 又约定
+\[
+\sup \emptyset = -\infty, \qquad \inf \emptyset = +\infty .
+\]
+\end{remark}
 
 \end{frame}
+
+%------------------------------------------------
+
+\graymode
+\begin{frame}{花絮: 最优化中的扩充实值函数}
+
+\begin{eg}[正常凸函数]
+凸优化中允许目标函数取值 $\pm\infty$ (``罚到无穷''): $f: \mathbb{R}^n \to \overline{\mathbb{R}}$. 称 $f$ 是\alert{正常} (proper) 的, 若
+\[
+\forall\, x \in \operatorname{dom} f, \qquad f(x) \neq -\infty \ \text{且}\ f(x) \neq +\infty
+\]
+(进一步要求闭图像与凸性, 即 $ccp$ 函数: closed, convex, proper).
+
+扩充实数在别的数学分支中同样有用, 这不是测度论的``私人约定''.
+\end{eg}
+
+\end{frame}
+\normalmode
+
+%------------------------------------------------
+
+\section{无界集与 $\mathbb{R}^n$ 上的勒贝格外测度}
+
+%------------------------------------------------
+
+\begin{frame}{一维无界集的测度}
+
+\begin{Def}[无界可测集]
+设 $E \subset \mathbb{R}$ 无界. 若 $E$ 与任何开区间的交 $E \cap I$ 都是 (§2.2 意义的) 可测集, 则称 $E$ \alert{可测}, 并定义其测度为\alert{扩充实数}
+\[
+mE := \lim_{a \to +\infty} m\big(( -a, a) \cap E\big).
+\]
+\end{Def}
+
+\pause
+
+极限的存在性: $\{(-a, a) \cap E\}_a$ 是\alert{渐张可测集列}, 由 §2.3 极限定理, 极限总存在 (可为 $+\infty$).
+
+\pause
+
+\begin{eg}
+\begin{itemize}
+\item $E = \bigcup_{n \geqslant 1} \left(n,\ n + 2^{-n}\right)$: 无界, 但
+$mE = \sum_{n \geqslant 1} 2^{-n} = 1 < +\infty$ --- \alert{无界 $\neq$ 无穷大测度};
+\item $E = (a, +\infty)$: $mE = \lim_{A \to \infty} (A - a) = +\infty$.
+\end{itemize}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\mathbb{R}^n$ 中的矩体与 L-覆盖}
+
+\begin{Def}[矩体]
+\alert{ (开) 矩体}: $I = (a_1, b_1) \times (a_2, b_2) \times \cdots \times (a_n, b_n)$, 其\alert{体积}
+\[
+|I| := \prod_{i=1}^n (b_i - a_i)
+\qquad (n = 1 \text{ 时即区间长度}).
+\]
+\end{Def}
+
+\pause
+
+\begin{Def}[L-覆盖与外测度]
+设 $E \subset \mathbb{R}^n$. 若可数个开矩体 $\{I_k\}_{k \in \mathbb{N}}$ 满足 $E \subset \bigcup_{k} I_k$, 则称 $\{I_k\}$ 为 $E$ 的一个 \alert{Lebesgue 覆盖} (L-覆盖). 称
+\[
+m^* E := \inf \Big\{ \sum_{k \in \mathbb{N}} |I_k| \ :\ \{I_k\}_{k \in \mathbb{N}}\ \text{为}\ E\ \text{的 L-覆盖} \Big\}
+\]
+为 $E$ 的\alert{ (Lebesgue) 外测度} (取值于 $[0, +\infty]$).
+\end{Def}
+
+\pause
+
+\begin{remark}
+一维有界情形, 开集测度恰为构成区间长度之和, 故与 §2.2 的 $m^*E = \inf_{G \supset E} mG$ \alert{一致}: 新框架兼容旧理论.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Lebesgue 可测集: Carath\'{e}odory 条件}
+
+%------------------------------------------------
+
+\begin{frame}{可测性的新定义}
+
+\begin{Def}[Lebesgue 可测]
+称 $E \subset \mathbb{R}^n$ \alert{(Lebesgue) 可测}, 若对\alert{任何}集 $A \subset \mathbb{R}^n$ (试验集), 有
+\[
+m^* A = m^* (A \cap E) + m^* (A \cap \mathscr{C}_{\mathbb{R}^n} E).
+\qquad \text{(\alert{Carath\'{e}odory 条件})}
+\]
+可测集全体记为 $\mathscr{M}$; $E$ 可测时 $m^*E$ 称为 $E$ 的 (Lebesgue) 测度, 记 $mE$.
+\end{Def}
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item 由外测度的次可加性, ``$\leqslant$''方向总成立, 故验证时\alert{只需证 ``$\geqslant$''};
+\item 该定义\alert{只涉及外测度}, 有界、无界、低维、高维一律适用;
+\item 有界一维情形, 它与 §2.3 的定义 ($m^*E = m_*E$) \alert{等价} (§2.3 已证).
+\end{itemize}
+\end{remark}
+
+\begin{eg}
+$E = \bigcup_{n \geqslant 1} \left(n, n + 2^{-n}\right)$ 与 $E = (a, +\infty)$ 都可测 (与前一页的无界集定义相容).
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{外测度的性质}
+
+\begin{thm}[外测度的性质]
+\begin{enumerate}
+\item \textbf{非负性}: $m^* E \geqslant 0$, $m^* \emptyset = 0$;
+\item \textbf{单调性}: 若 $E_1 \subset E_2$, 则 $m^* E_1 \leqslant m^* E_2$;
+\item \textbf{次可加性}: $m^*\Big(\bigcup_{k \geqslant 1} E_k\Big) \leqslant \sum_{k \geqslant 1} m^* E_k$;
+\item \textbf{平移不变性}: $m^*(T_h E) = m^* E$, 其中 $T_h: x \mapsto x + h$ 为平移变换.
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\begin{remark}[(3) 的证明: 唯一非平凡处]
+$\forall\, \varepsilon > 0$, 对每个 $k$ 取 L-覆盖 $\{I_{k,n}\}_{n}$ 使 $\sum_n |I_{k,n}| < m^* E_k + \varepsilon/2^k$. 全体 $\{I_{k,n}\}$ 覆盖 $\bigcup_k E_k$, 故 $m^*\big(\bigcup_k E_k\big) \leqslant \sum_{k,n} |I_{k,n}| < \sum_k m^* E_k + \varepsilon$. ((1)(2) 直接由定义可得.)
+\end{remark}
+
+\begin{remark}[(4) 的证明]
+$I + h$ 仍为矩体且 $|I + h| = |I|$, 故 $m^*(T_h E) \leqslant m^* E$; 用 $T_{-h}$ 得反向不等式.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可测集类 $\mathscr{M}$ 的性质}
+
+\begin{thm}[可测集的性质]
+\begin{enumerate}
+\item $\emptyset \in \mathscr{M}$;
+\item 若 $E \in \mathscr{M}$, 则 $\mathscr{C}E \in \mathscr{M}$;
+\item 若 $E_1, E_2 \in \mathscr{M}$, 则 $E_1 \cup E_2$, $E_1 \cap E_2$, $E_1 \setminus E_2 \in \mathscr{M}$;
+\item 若 $E_k \in \mathscr{M}$ ($k \in \mathbb{N}$), 则 $\bigcup_{k} E_k \in \mathscr{M}$; 若进一步 $E_k$ 两两不相交, 则
+\[
+m^*\Big(\bigcup_{k} E_k\Big) = \sum_{k=1}^{\infty} m^* E_k .
+\]
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\begin{remark}
+即: $\mathscr{M}$ 对\alert{可数}并、交、差、补封闭 (``$\sigma$-代数'', 稍后定义), 测度在其上\alert{可列可加} --- 这正是 §2.3 在有界情形建立的理论在新框架下的重述, 但证明路线改为\alert{直接使用 Carath\'{e}odory 条件}.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质 (1) 与 (2) 的证明}
+
+\startproof[bg=yellow, fg=red](1)
+对任何 $A$: $m^*(A \cap \emptyset) + m^*(A \cap \mathscr{C}\emptyset) = m^*\emptyset + m^*A = m^*A$, 故 $\emptyset$ 可测.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red](2)
+Carath\'{e}odory 条件
+\[
+m^* A = m^* (A \cap E) + m^* (A \cap \mathscr{C}E)
+\]
+中, $E$ 与 $\mathscr{C}E$ 的地位\alert{完全对称}: 它同时也是 ``$\mathscr{C}E$ 可测''的验证式. 故 $E \in \mathscr{M} \iff \mathscr{C}E \in \mathscr{M}$.
+\qed
+
+\pause
+
+\begin{remark}
+这是新定义的第二个好处: \alert{补集可测是免费的} (§2.3 中需要专门的对偶公式引理).
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质 (3) 的证明: 四块分解}
+
+设 $E_1, E_2 \in \mathscr{M}$, $A$ 为任一试验集. 把 $A$ 按 $E_1, E_2$ 分成四块:
+\[
+\text{\textcircled{1}} = A \cap \mathscr{C}E_1 \cap \mathscr{C}E_2, \quad
+\text{\textcircled{2}} = A \cap \mathscr{C}E_1 \cap E_2, \quad
+\text{\textcircled{3}} = A \cap E_1 \cap E_2, \quad
+\text{\textcircled{4}} = A \cap E_1 \cap \mathscr{C}E_2 .
+\]
+
+\pause
+
+$E_1$ 可测, 用于试验集 $A$: $m^* A = m^* (A \cap E_1) + m^* (A \cap \mathscr{C}E_1)$;
+$E_2$ 可测, 分别用于试验集 $A \cap E_1$ 与 $A \cap \mathscr{C}E_1$:
+\[
+m^* (A \cap E_1) = \text{\textcircled{3}} + \text{\textcircled{4}}, \qquad
+m^* (A \cap \mathscr{C}E_1) = \text{\textcircled{1}} + \text{\textcircled{2}} .
+\]
+
+\pause
+
+于是
+\[
+m^* A = \text{\textcircled{1}} + \text{\textcircled{2}} + \text{\textcircled{3}} + \text{\textcircled{4}}
+\geqslant m^*\big(A \cap \mathscr{C}(E_1 \cup E_2)\big) + m^*\big(A \cap (E_1 \cup E_2)\big),
+\]
+其中 \textcircled{1} $= A \cap \mathscr{C}(E_1 \cup E_2)$, \textcircled{2}$\cup$\textcircled{3}$\cup$\textcircled{4} $= A \cap (E_1 \cup E_2)$, 不等号用次可加性. 结合``$\leqslant$''方向 (也由次可加性) 得等号, 即 $E_1 \cup E_2 \in \mathscr{M}$.
+
+$E_1 \cap E_2$ 与 $E_1 \setminus E_2$ 由 De Morgan 律与 (2) 即得.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质 (4) 的证明 (一): 逐块展开}
+
+不妨设 $E_k$ 两两不相交 (否则以 $F_k = E_k \setminus \bigcup_{j < k} E_j$ 代替, 由 (3) 它们可测且不交, 并集不变). 记
+\[
+S_n = \bigcup_{k=1}^n E_k \ (\in \mathscr{M},\ \text{由 (3)}), \qquad S = \bigcup_{k=1}^\infty E_k .
+\]
+
+\startproof[bg=yellow, fg=red](证明)
+任取试验集 $A$. 由 $S_n$ 可测:
+\[
+m^* A = m^* (A \cap S_n) + m^* (A \cap \mathscr{C} S_n).
+\]
+
+\pause
+
+对 $A \cap S_n$ 依次使用 $E_1, \ldots, E_n$ 的可测性逐块分裂 (对 $k$ 归纳):
+\[
+m^* (A \cap S_n) = m^*(A \cap E_1) + m^* (A \cap E_2) + \cdots + m^*(A \cap E_n).
+\]
+
+\pause
+
+又 $\mathscr{C}S \subset \mathscr{C}S_n$, 由单调性:
+\[
+m^* A \;\geqslant\; \sum_{k=1}^n m^* (A \cap E_k) + m^* (A \cap \mathscr{C} S).
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质 (4) 的证明 (二): 取极限定案}
+
+\startproof[bg=yellow, fg=red](证明 (续))
+令 $n \to \infty$:
+\[
+m^* A \;\geqslant\; \sum_{k=1}^\infty m^* (A \cap E_k) + m^* (A \cap \mathscr{C} S)
+\;\geqslant\; m^* (A \cap S) + m^* (A \cap \mathscr{C} S),
+\]
+最后一步由 $A \cap S = \bigcup_k (A \cap E_k)$ 与次可加性.
+
+\pause
+
+结合``$\leqslant$''方向 (次可加性), 等号成立, 即 $S = \bigcup_k E_k \in \mathscr{M}$.
+
+\pause
+
+并且上面的不等号全部取等, 特别地
+\[
+m^* (A \cap S) = \sum_{k=1}^\infty m^* (A \cap E_k).
+\]
+取试验集 $A = S$:
+\[
+m^* S = \sum_{k=1}^\infty m^* E_k . \qquad \text{(两两不交时的可列可加性)}
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{环、$\sigma$-环与 $\sigma$-代数}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 环、$\sigma$-环、$\sigma$-代数}
+
+设 $X$ 为基本集, $\mathscr{R}$ 是 $X$ 的一些子集构成的集类.
+
+\begin{Def}
+\begin{itemize}
+\item 称 $\mathscr{R}$ 为\alert{环}, 若 $\emptyset \in \mathscr{R}$, 且 $A, B \in \mathscr{R} \implies A \cup B,\ A \setminus B \in \mathscr{R}$ (从而对交也封闭);
+\item 称 $\mathscr{R}$ 为\alert{$\sigma$-环}, 若它是环, 且对\alert{可数并}封闭: $A_k \in \mathscr{R}\ (k \in \mathbb{N}) \implies \bigcup_k A_k \in \mathscr{R}$;
+\item 称 $\mathscr{R}$ 为\alert{$\sigma$-代数}, 若它是 $\sigma$-环, 且 $X \in \mathscr{R}$ (等价地: 对 $X$ 中的补封闭).
+\end{itemize}
+\end{Def}
+
+\pause
+
+\begin{remark}
+\begin{itemize}
+\item $\sigma$-代数 $\iff$ $\emptyset \in \mathscr{R}$, 对补封闭, 对可数并封闭;
+\item $\mathscr{M}$ (可测集类) 正是 $\mathbb{R}^n$ 上的一个 $\sigma$-代数, $m$ 是其上的\alert{可列可加非负函数} --- 这就是``($\sigma$-代数上的) 测度''的雏形 (§2.5--2.6 正式化).
+\end{itemize}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{生成的环、$\sigma$-环、$\sigma$-代数}
+
+\begin{Def}[生成结构]
+设 $\mathscr{E}$ 为一个集类. \alert{由 $\mathscr{E}$ 生成的环、$\sigma$-环、$\sigma$-代数}指所有包含 $\mathscr{E}$ 的环、$\sigma$-环、$\sigma$-代数之\alert{交} (即包含 $\mathscr{E}$ 的\alert{最小}者), 分别记作
+\[
+\mathscr{R}(\mathscr{E}), \qquad \mathscr{R}_\sigma(\mathscr{E}), \qquad \sigma(\mathscr{E}).
+\]
+\end{Def}
+
+\pause
+
+\begin{eg}
+$\mathbb{R}$ 的子集类
+\[
+\Big\{ \bigcup_{i=1}^n [\alpha_i, \beta_i)\ :\ \alpha_i, \beta_i \in \mathbb{R},\ n \in \mathbb{N} \Big\} \cup \{\emptyset\}
+\]
+(左闭右开区间的有限并) 构成一个\alert{环}.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{逼近性质: 生成结构的``大小''}
+
+\begin{thm}[逼近性质]
+\begin{enumerate}
+\item $\mathscr{R}(\mathscr{E})$ 中每个元都含于 $\mathscr{E}$ 中\alert{某有限个}元素之并;
+\item $\mathscr{R}_\sigma(\mathscr{E})$ 中每个元都含于 $\mathscr{E}$ 中\alert{某可列个}元素之并.
+\end{enumerate}
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明)
+令 $\mathscr{C} = \{A : A$ 含于某有限个 $\mathscr{E}$ 元之并$\}$, 则 $\mathscr{E} \subset \mathscr{C}$, 且 $\mathscr{C}$ 对有限并与差封闭 (差集只会更小), 是含 $\mathscr{E}$ 的环, 故 $\mathscr{R}(\mathscr{E}) \subset \mathscr{C}$, 即 (1). (2) 同理: ``含于某可列个 $\mathscr{E}$ 元之并''的全体是含 $\mathscr{E}$ 的 $\sigma$-环.
+\qed
+
+\pause
+
+\begin{remark}
+(2) 说明 $\mathscr{R}_\sigma(\mathscr{E})$ 的每个元都``藏''在可列个 $\mathscr{E}$ 元之并中 --- 这是用矩体研究 Borel 集的基本桥梁.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{选讲: 正测度集的结构与非 Borel 可测集}
+
+%------------------------------------------------
+
+\graymode
+
+\begin{frame}{选讲: 厚度引理}
+
+\begin{lem}[厚度引理]
+设 $E \subset \mathbb{R}$ 可测且 $mE > 0$, 则 $\forall\, \alpha \in (0, 1)$, 存在开区间 $I$ 使得
+\[
+m(E \cap I) > \alpha \cdot mI
+\]
+(即 $E$ 在某区间中``任意接近充满'').
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+由可测性, 可取开集 $G \supset E$ 使 $mG < \dfrac{mE}{\alpha}$. 设 $G = \bigcup_k I_k$ (构成区间, 两两不交).
+
+\pause
+
+\textbf{反证}: 若对每个 $k$ 都有 $m(E \cap I_k) \leqslant \alpha \, mI_k$, 则由 $E \subset G$ 及可列可加性:
+\[
+mE = m(E \cap G) = \sum_k m(E \cap I_k) \leqslant \alpha \sum_k mI_k = \alpha\, mG < mE,
+\]
+矛盾. 故必有某个构成区间 $I_k$ 使 $m(E \cap I_k) > \alpha\, mI_k$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{选讲: Steinhaus 定理}
+
+\begin{thm}[Steinhaus]
+设 $E \subset \mathbb{R}$ 可测且 $mE > 0$, 令 $\Delta(E) = \{x - y : x, y \in E\}$ (差集), 则 $\Delta(E)$ 包含一个关于原点\alert{对称}的开区间.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+取 $\alpha = \tfrac34$, 由厚度引理可作开区间 $I$ 使 $m(E \cap I) > \tfrac34 mI$. 记 $A = E \cap I$, 断言
+\[
+J := \left(-\tfrac{mI}{2},\ \tfrac{mI}{2}\right) \subset \Delta(E).
+\]
+
+\pause
+
+任取 $|z| < \tfrac{mI}{2}$: 注意 $A$ 与 $A + z$ 都含于 $I \cup (I + z)$, 且
+\[
+m\big(I \cup (I+z)\big) = mI + |z| < \tfrac32 mI .
+\]
+若 $A \cap (A + z) = \emptyset$, 则由平移不变性与不交可加性
+\[
+m\big(A \cup (A+z)\big) = mA + m(A + z) = 2\,m(E \cap I) > \tfrac32 mI > m\big(I \cup (I+z)\big),
+\]
+与 $A \cup (A+z) \subset I \cup (I+z)$ 矛盾. 故存在 $y,\ w \in A \subset E$ 使 $y = w + z$, 即 $z = y - w \in \Delta(E)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{选讲: Vitali 不可测集}
+
+\begin{thm}[Vitali]
+存在不可测集 $V \subset [0, 1]$.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](构造与证明)
+在 $[0,1]$ 上定义 $x \sim y \iff x - y \in \mathbb{Q}$, 按此等价关系分类, \alert{从每个等价类中选一个代表}组成 $V \subset [0,1]$ (选择公理). 于是
+\[
+x, y \in V,\ x \neq y \implies x - y \notin \mathbb{Q}, \qquad \text{即 } \Delta(V) \cap \mathbb{Q} = \{0\}.
+\]
+
+\pause
+
+列举 $\mathbb{Q} \cap [-1, 1] = \{r_1, r_2, \ldots\}$, 令 $V_k = V + r_k$. 则 $\{V_k\}$ \alert{两两不交} (若 $v_i + r_i = v_j + r_j$, 则 $v_i - v_j = r_j - r_i \in \mathbb{Q}$ 迫使 $v_i = v_j$), 且 $[0,1] \subset \bigcup_k V_k \subset [-1, 2]$.
+
+\pause
+
+\textbf{反证}设 $V$ 可测. 若 $mV = 0$, 则 $1 \leqslant m^*\big(\bigcup_k V_k\big) = \sum_k mV_k = 0$, 矛盾. 若 $mV > 0$, 由 Steinhaus 定理, $\Delta(V) \supset (-\ell, \ell)$ 含某个\alert{非零有理数} $q$, 与 $\Delta(V) \cap \mathbb{Q} = \{0\}$ 矛盾. 故 $V$ 不可测.
+\qed
+
+\begin{attnblock}
+$V$ 的存在性依赖\alert{选择公理}; 同时也证明了 $\mathscr{M} \subsetneqq \mathscr{P}(\mathbb{R}^n)$.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{选讲: 非 Borel 的可测集 (一): 构造}
+
+\textbf{目标}: 证明 $\mathscr{B}(\mathbb{R}) \subsetneqq \mathscr{M}$ --- 存在可测而非 Borel 的集合.
+
+\pause
+
+\textbf{回忆 Cantor 函数} (§1.4): $\Psi: [0,1] \to [0,1]$ 连续、单调递增、满射, 在 $G_0 = (0,1) \setminus P_0$ 的每个构成区间上取常值. 令
+\[
+\widetilde{\Psi}(x) = \frac{x + \Psi(x)}{2},
+\]
+则 $\widetilde{\Psi}$ 严格递增、连续, $\widetilde{\Psi}(0) = 0$, $\widetilde{\Psi}(1) = 1$, 故是\alert{双射}, 有反函数 $\widetilde{\Psi}^{-1}$ (也连续).
+
+\pause
+
+设 $I_{n,k}$ 为构造 $P_0$ 时第 $n$ 步挖去的开区间, 则 $\widetilde{\Psi}(I_{n,k})$ 是长度为 $\dfrac{|I_{n,k}|}{2}$ 的开区间 ($\Psi$ 在 $I_{n,k}$ 上恒定). 于是
+\[
+T := \widetilde{\Psi}(G_0) = \bigcup_{n, k} \widetilde{\Psi}(I_{n,k}) \ \text{为开集}, \qquad
+mT = \frac{1}{2}\, mG_0 = \frac{1}{2};
+\]
+\[
+H := \widetilde{\Psi}(P_0) = [0,1] \setminus T \ \text{可测}, \qquad mH = 1 - \frac{1}{2} = \frac{1}{2}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{选讲: 引理 (原像保持 $\sigma$-代数结构)}
+
+\begin{lem}
+设 $E \subset \mathbb{R}^n$, $f: E \to \mathbb{R}$, $\mathscr{R}'$ 为 $\mathbb{R}^n$ 上的一个 $\sigma$-代数且 $E \in \mathscr{R}'$. 令
+\[
+\mathscr{A} := \{A \subset \mathbb{R}\ :\ f^{-1}(A) \in \mathscr{R}'\},
+\]
+则 $\mathscr{A}$ 是 $\mathbb{R}$ 上的 $\sigma$-代数.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+\textcircled{1} $\mathbb{R} \in \mathscr{A}$: $f^{-1}(\mathbb{R}) = E \in \mathscr{R}'$.
+\textcircled{2} $A_1, A_2 \in \mathscr{A} \implies A_1 \setminus A_2 \in \mathscr{A}$: 由
+$f^{-1}(A_1 \setminus A_2) = f^{-1}(A_1) \setminus f^{-1}(A_2) \in \mathscr{R}'$.
+\textcircled{3} $A_k \in \mathscr{A} \implies \bigcup_k A_k \in \mathscr{A}$: 由
+$f^{-1}\big(\bigcup_k A_k\big) = \bigcup_k f^{-1}(A_k) \in \mathscr{R}'$.
+\qed
+
+\pause
+
+\begin{cor}[连续函数的原像保 Borel 性]
+设 $f: E \to \mathbb{R}$ 连续, 其中 $E \subset \mathbb{R}^n$ 为 Borel 集, 则对任何 Borel 集 $A \subset \mathbb{R}$, $f^{-1}(A)$ 是 ($\mathbb{R}^n$ 的) Borel 集.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+取 $\mathscr{R}' = \mathscr{B}(\mathbb{R}^n)$ (含 $E$, 因 $E$ 是 Borel 集). $f$ 连续, 故开集 $G$ 的原像 $f^{-1}(G) = E \cap U$ ($U$ 为 $\mathbb{R}^n$ 开集) 属于 $\mathscr{R}'$, 即一切开集属于 $\mathscr{A}$; 由引理, $\mathscr{A}$ 是含全体开集的 $\sigma$-代数, 故 $\mathscr{B}(\mathbb{R}) \subset \mathscr{A}$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{选讲: 非 Borel 的可测集 (二): 完成}
+
+任取 $H$ 中的不可测集 $W$ (正测度集必含不可测子集: 平移 Vitali 集使其与 $H$ 相交即可), 令
+\[
+S := \widetilde{\Psi}^{-1}(W) \subset P_0 .
+\]
+
+\pause
+
+$S$ 含于零测集 $P_0$, 由完备性 $S$ \alert{可测}.
+
+\pause
+
+\startproof[bg=yellow, fg=red]($S$ 不是 Borel 集)
+反证: 若 $S$ 是 Borel 集, 则由推论 (用于连续函数 $\widetilde{\Psi}^{-1}$),
+\[
+W = \big(\widetilde{\Psi}^{-1}\big)^{-1}(S) = \widetilde{\Psi}(S)
+\]
+也是 Borel 集, 从而可测 --- 与 $W$ 不可测矛盾.
+\qed
+
+\pause
+
+\begin{thm}[$\mathscr{B} \subsetneqq \mathscr{M}$]
+$S$ 可测但不是 Borel 集: \alert{可测集严格多于 Borel 集}.
+\end{thm}
+
+\end{frame}
+
+\normalmode
+
+%------------------------------------------------
+
+\section{小结与展望}
+
+%------------------------------------------------
+
+\begin{frame}{集类关系总图}
+
+\begin{center}
+\[
+\underbrace{\mathscr{E}}_{\text{半开矩体有限并} \cup \{\emptyset\}}
+\ \subsetneqq\
+\underbrace{\mathscr{R}_\sigma(\mathscr{E})}_{\text{Borel 集类 } \mathscr{B}}
+\ \subsetneqq\
+\underbrace{\mathscr{M}}_{\text{Lebesgue 可测集类}}
+\ \subsetneqq\
+\underbrace{\mathscr{P}(\mathbb{R}^n)}_{\mathbb{R}^n \text{ 全体子集}}
+\]
+\end{center}
+
+\pause
+
+\begin{itemize}
+\item $\mathscr{E} \subsetneqq \mathscr{B}$: Borel 集已超出有限并 (如 $F_\sigma$、$G_\delta$ 集);
+\item $\mathscr{B} \subsetneqq \mathscr{M}$: 选讲中的 $S = \widetilde{\Psi}^{-1}(W)$;
+\item $\mathscr{M} \subsetneqq \mathscr{P}(\mathbb{R}^n)$: Vitali 不可测集 $V$;
+\item 每一层上都有``测度'': $\mathscr{E}$ 上是体积, $\mathscr{B}$ 与 $\mathscr{M}$ 上是 $m$, 全线由外测度 $m^*$ 统一.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{小结}
+
+\begin{itemize}
+\item \textbf{扩充实数} $\overline{\mathbb{R}}$: 约定 $0 \cdot \infty = 0$, 只留 $\infty - \infty$ 未定义; $\sup\emptyset = -\infty$, $\inf\emptyset = +\infty$;
+\pause
+\item \textbf{$\mathbb{R}^n$ 外测度}: 矩体 L-覆盖取下确界 $m^*E = \inf \sum_k |I_k|$; 非负、单调、次可加、平移不变;
+\pause
+\item \textbf{Carath\'{e}odory 条件}定义可测集: 只用外测度, 一维有界情形与 §2.3 定义等价; $\mathscr{M}$ 是 $\sigma$-代数, $m$ 在其上可列可加; 对称性使``补集可测''免费;
+\pause
+\item \textbf{环、$\sigma$-环、$\sigma$-代数}: 生成结构 $\mathscr{R}(\mathscr{E})$、$\mathscr{R}_\sigma(\mathscr{E})$、$\sigma(\mathscr{E})$ 与逼近性质;
+\pause
+\item (选讲) 厚度引理 $\to$ Steinhaus 定理 $\to$ Vitali 不可测集; Cantor 函数变形 $\widetilde{\Psi}$ $\to$ 可测而非 Borel 的 $S$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{展望: 测度的一般理论}
+
+\begin{itemize}
+\item 本节看到: 真正重要的不是``开集测度'', 而是\alert{外测度 + Carath\'{e}odory 条件}这套机器, 它自动给出一个 $\sigma$-代数 $\mathscr{M}$ 及其上的可列可加函数;
+\pause
+\item \textbf{§2.5--2.6}: 在\alert{一般环} $\mathscr{R}(\mathscr{E})$ 上定义 (预)测度 $\mu$, 用同样的机器构造外测度 $\mu^*$ 与可测集类, 证明 \alert{Carath\'{e}odory 扩张定理}: $\mu$ 扩张为 $\sigma(\mathscr{R}(\mathscr{E}))$ 上的测度;
+\pause
+\item 勒贝格测度正是``矩体体积''按此机器扩张的特例; 一般测度空间 $(X, \mathscr{R}, \mu)$ 是第三、四章的舞台.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第二章 §2.4 习题 (任选 5 题)}
+\begin{columns}[T]
+\begin{column}{0.48\textwidth}
+\begin{itemize}
+\item \textbf{24.} 设 $E$ 是一维有界集, $I_1, I_2, \ldots$ 是任意区间列 (可以相交), 其并覆盖 $E$, 试证
+$m^*(E) = \inf\limits_{\cup I_k \supset E} \sum_k mI_k$. 二维情形如何?
+\item \textbf{25.} 设 $Q$ 是 $\mathbb{R}^2$ 中的单位正方形, $\{E_n\} \subset Q$ 可测, $\{mE_n\}$ 有聚点 $1$, 证明存在子列 $\{E_{n_k}\}$ 使 $m\big(\bigcap_k E_{n_k}\big) > 0$.
+\item \textbf{27.} 设 $E \subset \mathbb{R}$ 可测, 证明 $D(E) = \{(x, y) \in \mathbb{R}^2 : x - y \in E\}$ 是 $\mathbb{R}^2$ 中的可测集.
+\item \textbf{29.} 设 $E \subset (0,1)$ 为正测度集, 且存在 $c > 0$ 使对 $(0,1)$ 中的变动区间 $I$ 有 $\lim\limits_{mI \to 0} \frac{m(E \cap I)}{mI} = c$, 证明 $mE = 1$.
+\item \textbf{30.} 设 $\{E_n\}$ 为互不相交的集列, $m^*\big(\bigcup_n E_n\big) < \sum_n m^*(E_n)$, 证明存在最小自然数 $N$ 使 $m^*\big(\bigcup_{n=1}^N E_n\big) < \sum_{n=1}^N m^*(E_n)$, 且此时 $E_N$ 不可测.
+\end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{itemize}
+\item \textbf{33.} (Hausdorff 测度) 对 $E \subset \mathbb{R}^n$, $\alpha > 0$, 令
+$H_\alpha(E) = \lim\limits_{\varepsilon \to 0} \inf\big\{\sum_k d(E_k)^\alpha\big\}$ (下确界对直径 $d(E_k) < \varepsilon$ 的覆盖 $\{E_k\}$ 取). 试证 $H_\alpha$ 是外测度, 且 $H_\alpha(E) < \infty$, $\beta > \alpha \implies H_\beta(E) = 0$.
+\item \textbf{34.} $\mathbb{R}^n$ 中集列 $V_1, V_2, \ldots$: 每个 $V_k$ 含半径 $ar$ 的球且直径 $d(V_k) \leqslant br$. 试证球 $B(z, r)$ 与 $\{\overline{V}_k\}$ 中元素相交的个数 $\leqslant (1+b)^n a^{-n}$.
+\item \textbf{35.} 设 $f: X \to Y$, $\mathscr{A}, \mathscr{B}$ 分别为 $X, Y$ 中的 $\sigma$-代数, 证明 $\{f^{-1}(B) : B \in \mathscr{B}\}$ 与 $\{B : f^{-1}(B) \in \mathscr{A}\}$ 分别为 $Y, X$ 中的 $\sigma$-代数.
+\item \textbf{36.} 设 $\mathscr{A}$ 为由一切满足 $mE = 0$ 或 $m\mathscr{C}E = 0$ 的可测集 $E$ 构成, 证明 $\mathscr{A}$ 是 $\mathbb{R}$ 中的 $\sigma$-代数.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{block}
+
+\begin{itemize}
+\item 另请思考 (习题 37): $\mathscr{R}_\sigma\big(f^{-1}(\mathscr{E})\big) = f^{-1}\big(\mathscr{R}_\sigma(\mathscr{E})\big)$.
+\end{itemize}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
