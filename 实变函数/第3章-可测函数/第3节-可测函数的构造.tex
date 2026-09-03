@@ -1,3 +1,4 @@
+\everymath{\displaystyle}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
@@ -8,12 +9,10 @@
 %-----------------------------------
 
 \title[第三章\\
-可测函数]{\texorpdfstring{\LARGE \bfseries 第三章\quad 可测函数}{第三章 可测函数}} % The short title appears at the bottom of every slide, the full title is only on the title page
+可测函数]{\texorpdfstring{\LARGE \bfseries 第三章\quad 可测函数}{第三章 可测函数}}
 \author[\S 3.3\\
-可测函数的构造] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+可测函数的构造]
 {\Large \bfseries \S 3.3 可测函数的构造}
-% \author{Singular Value Decomposition} % Your name
-% \date{\today} % Date can be changed to a custom date
 \date{}
 
 %------------------------------------------------
@@ -24,39 +23,721 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: ``构造''即逼近}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{引言: 用``简单''逼近``复杂''}
 
+对复杂的函数, 我们希望用``简单''函数来\alert{逼近}, 从而获得原来复杂函数的知识:
 
+\begin{center}
+\begin{tabular}{ccc}
+\textbf{函数类} & \quad & \textbf{逼近工具} \\
+$\mathcal{C}^n$ 函数 & $\longleftrightarrow$ & Taylor 展开 (多项式) \\
+解析函数 & $\longleftrightarrow$ & 幂级数 (Laurent 展开) \\
+\alert{可测函数} & $\longleftrightarrow$ & \alert{简单函数 (\S 3.1) + 连续函数 (本节)} \\
+\end{tabular}
+\end{center}
+
+\pause
+
+\begin{itemize}
+\item \S 3.1 已证: 非负可测函数是\alert{递增简单函数列}的极限 (简单函数逼近定理);
+\item 本节证明 \alert{Luzin 定理}: 可测函数``挖掉任意小测度的集合''后就是\alert{连续函数} ---
+  ``可测 $\approx$ 连续''的精确化;
+\item 附带: 复合函数的可测性 (连续与可测如何搭配), Borel 可测函数.
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section[Luzin 定理]{点态连续与 Luzin 定理}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{点态连续 (相对连续)}
 
+\begin{Def}[点态连续]
+设 $f$ 是可测集 $E$ 上的函数, $x_0 \in E$. 若 $E$ 中任一点列 $x_n \to x_0$ ($x_n \in E$) 都有
+$\lim_n f(x_n) = f(x_0)$, 则称 $f$ 在点 $x_0$ \alert{连续} (即 $f\big|_E$ 在通常意义下于 $x_0$ 连续).
+\end{Def}
+
+\pause
+
+\begin{eg}
+$[0,1]$ 上的 Dirichlet 函数 $D = \chi_{\mathbb{Q}}$ 处处不连续; 但把它\alert{限制在无理点集}
+$[0,1] \setminus \mathbb{Q}$ 上则恒为 $0$, 处处连续.
+\end{eg}
+
+\pause
+
+\begin{attnblock}
+这里的``连续''是\alert{相对于 $E$} 的连续: 只要求 $E$ 中的点列. 于是``$f$ 在 $E$ 上处处连续''
+$\iff f\big|_E \in \mathcal{C}(E)$.
+\end{attnblock}
 
 \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Luzin 定理}
+
+\begin{thm}[Luzin 定理]
+设 $f$ 是可测集 $E$ 上 a.e.\ 有限的可测函数, 则 $\forall\, \varepsilon > 0$, 存在\alert{闭集}
+$F \subset E$, 使得
+\[
+m(E \setminus F) < \varepsilon,
+\qquad
+f\big|_F \ \text{是}\ F\ \text{上的连续函数}.
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item \alert{无需} $mE < \infty$ (对比 Egorov 定理);
+\item \textbf{解读}: 把 $f$ 在一个小测度集上``改掉''后, 剩下的部分是连续函数 --- ``可测 $\approx$ 连续''的精确化;
+\item \textbf{与 Egorov 的分工}: Egorov 管\alert{收敛} (函数列), Luzin 管\alert{连续性} (单个函数).
+\end{itemize}
+
+\pause
+
+\begin{remark}[历史注]
+Luzin 是 Egorov 的学生 --- 师生二人的定理是实变函数论的两大支柱.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明的策略: 三步归约}
+
+\startproof[bg=yellow, fg=red](证明策略)
+\begin{itemize}
+\item[\textcircled{1}] \textbf{简单函数} $f = \sum_k c_k \chi_{E_k}$: 直接用 \S 2.3 的 $\varepsilon$-刻画构造闭集;
+\item[\textcircled{2}] \textbf{有界可测} $|f| \leqslant M$: 由 \S 3.1 简单函数逼近定理, 存在简单函数列
+  $\{\varphi_k\}$ \alert{一致收敛}于 $f$; 对每个 $\varphi_k$ 用 \textcircled{1}, 取\alert{交};
+\item[\textcircled{3}] \textbf{一般可测}: 变换 $g = \dfrac{f}{1 + |f|}$ 化为有界情形.
+\end{itemize}
+每一步在测度上的损耗都控制在 $\varepsilon$ 之内.
+
+\qed
+
+\pause
+
+\begin{attnblock}
+\textcircled{2} 中``一致收敛''是关键: \S 3.1 的逼近定理只给处处收敛, 但 $f$ \alert{有界}时
+$\varphi_n \to f$ 是\alert{一致}的 (\S 3.1 注记).
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (一): 简单函数情形}
+
+\startproof[bg=yellow, fg=red](1$^\circ$)
+设 $f = \sum_{k=1}^{n} c_k \chi_{E_k}$, $E = \bigsqcup_{k=1}^{n} E_k$ ($E_k$ 可测、两两不交).
+由 \S 2.3 可测性的 $\varepsilon$-刻画: 对每个 $E_k$, 存在闭集 $A_k$ 与开集 $G_k$ 使
+\[
+A_k \subset E_k \subset G_k,
+\qquad
+m(G_k \setminus A_k) < \frac{\varepsilon}{n}.
+\]
+
+\pause
+
+令 $A = \bigcup_{k=1}^{n} A_k$: 有限个闭集之并, $A$ \alert{闭}, 且
+\[
+m(E \setminus A) \leqslant \sum_{k=1}^{n} m(E_k \setminus A_k)
+\leqslant \sum_{k=1}^{n} m(G_k \setminus A_k) < \varepsilon .
+\]
+$f$ 在每个 $A_k$ 上恒取常值 $c_k$.
+\qed
+
+\pause
+
+\textbf{连续性}: 任取 $x \in A_k$, 令 $B_k = \bigcup_{j \neq k} A_j$ --- 有限个闭集之并, 闭, 且 $x \notin B_k$,
+故 $\rho(x, B_k) =: \delta > 0$. 于是 $A \cap (x - \delta, x + \delta) \subset A_k$, 即
+\[
+\forall\, y \in A,\ |y - x| < \delta \implies f(y) = c_k = f(x):
+\]
+$f\big|_A$ 在 $x$ 连续, 由 $x$ 任意, $f\big|_A$ 连续.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (二): 有界情形}
+
+\startproof[bg=yellow, fg=red](2$^\circ$)
+设 $|f| \leqslant M$. 由 \S 3.1, 存在简单函数列 $\{\varphi_k\}$ 在 $E$ 上\alert{一致}收敛于 $f$.
+
+\pause
+
+$\forall\, k \in \mathbb{N}$, 由 1$^\circ$ 可取闭集 $F_k \subset E$ 使
+\[
+m(E \setminus F_k) < \frac{\varepsilon}{2^{k+1}},
+\qquad
+\varphi_k\big|_{F_k}\ \text{连续}.
+\]
+
+\pause
+
+令 $F = \bigcap_{k=1}^{\infty} F_k$: 闭集 ($\cap$ 闭集列), 且
+\[
+m(E \setminus F)
+= m\Big(\bigcup_{k=1}^{\infty} (E \setminus F_k)\Big)
+\leqslant \sum_{k=1}^{\infty} \frac{\varepsilon}{2^{k+1}} = \frac{\varepsilon}{2} < \varepsilon .
+\]
+
+\pause
+
+每个 $\varphi_k$ 在 $F \subset F_k$ 上连续, 而 $\varphi_k \rightrightarrows f$ 于 $E$, 由``一致极限保持连续性'':
+$f\big|_F$ 连续.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (三): 一般情形}
+
+\startproof[bg=yellow, fg=red](3$^\circ$)
+设 $f$ a.e.\ 有限可测. 作变换
+\[
+g = \frac{f}{1 + |f|}:
+\qquad
+|g| < 1,\ g\ \text{可测},\ \text{且}\ f = \frac{g}{1 - |g|}\ \text{(逆变换)}.
+\]
+于是\alert{只需对有界可测函数证明}.
+
+\pause
+
+对 $g$ 用 2$^\circ$: 存在闭集 $F \subset E$, $m(E \setminus F) < \varepsilon$, $g\big|_F$ 连续.
+于 $F$ 上 $|g| < 1$, 函数 $t \mapsto \frac{t}{1 - |t|}$ 在 $(-1, 1)$ 上连续, 故
+\[
+f\big|_F = \frac{g}{1 - |g|}\bigg|_F
+\]
+是 $F$ 上的连续函数.
+\qed
+
+\pause
+
+\begin{remark}
+三步的损耗: 3$^\circ$ 无损耗, 2$^\circ$ 损耗 $\varepsilon/2$, 1$^\circ$ 内部各项 $\varepsilon/n$
+--- 总损耗恰好 $< \varepsilon$.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[延拓定理]{延拓为全空间上的连续函数}
+
+%------------------------------------------------
+
+\begin{frame}{推论: 可测函数 $\approx$ 连续函数 (测度意义)}
+
+\begin{cor}[延拓定理]
+设 $f$ 是可测集 $E$ 上 a.e.\ 有限的可测函数, 则 $\forall\, \varepsilon > 0$, 存在定义在
+$\mathbb{R}$ 上的\alert{连续函数} $g$, 使得
+\[
+mE(f \neq g) < \varepsilon .
+\]
+\end{cor}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明思路)
+由 Luzin 定理, 取闭集 $F \subset E$: $m(E \setminus F) < \varepsilon$, $f\big|_F$ 连续.
+\alert{只需把 $f\big|_F$ 连续延拓到全 $\mathbb{R}$}. 不妨设 $|f| \leqslant M$ 于 $F$
+(否则用 $f/(1+|f|)$ 变换, 或见方法二的保界版本).
+\qed
+
+\pause
+
+\textbf{两种延拓方法}:
+\begin{itemize}
+\item \textbf{方法一}: 沿 $\mathbb{R} \setminus F$ 的构成区间\alert{线性插值} (几何上最自然);
+\item \textbf{方法二}: 三分法 + \alert{距离函数} (定量的, 还能保持界 $|g| \leqslant M$).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{方法一: 构成区间上线性插值}
+
+\startproof[bg=yellow, fg=red](方法一)
+令 $G = \mathbb{R} \setminus F$ (开集), 取其结构表示
+$G = \bigcup_k (\alpha_k, \beta_k)$ (\S 1.4 构成区间, 端点 $\alpha_k, \beta_k \in F$). 定义
+\[
+g(x) := \begin{cases}
+f(\alpha_k) + \dfrac{f(\beta_k) - f(\alpha_k)}{\beta_k - \alpha_k}\,(x - \alpha_k),
+  & x \in (\alpha_k, \beta_k)\ \text{(有限区间)}, \\[0.6em]
+f(\alpha_k), & x \in (\alpha_k, +\infty), \\[0.3em]
+f(\beta_k), & x \in (-\infty, \beta_k), \\[0.3em]
+f(x), & x \in F .
+\end{cases}
+\]
+
+\pause
+
+则 $g$ 在 $\mathbb{R}$ 上连续: 于 $G$ 内是线性/常值; 在端点处与 $f$ 的值衔接; 在 $F$ 的点处由
+$f\big|_F$ 连续性保证. 又 $E(f \neq g) \subset E \setminus F$, 故 $mE(f \neq g) < \varepsilon$.
+\qed
+
+\begin{remark}
+连续性在 $F$ 的点处的完整验证要用``$x$ 附近构成区间的端点也接近 $x$'', 细节见教材; 下面方法二给出
+\alert{定量}的干净论证.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{方法二 (一): 三分法与距离函数}
+
+\startproof[bg=yellow, fg=red](方法二)
+设 $|f| \leqslant M$ 于 $F$. 将 $F$ 分为互不相交的三部分:
+\[
+A = \{x \in F:\ f(x) \geqslant \tfrac{M}{3}\},\quad
+B = \{x \in F:\ f(x) \leqslant -\tfrac{M}{3}\},\quad
+C = F \setminus (A \cup B).
+\]
+$f\big|_F$ 连续 $\implies$ $A, B$ 是\alert{闭}集, 且 $A \cap B = \emptyset$.
+
+\pause
+
+令
+\[
+g_1(x) = \frac{M}{3} \cdot
+\frac{d(x, B) - d(x, A)}{d(x, B) + d(x, A)}
+\qquad
+(d(x, A)\ \text{为点到集距离}).
+\]
+
+\pause
+
+\begin{itemize}
+\item 分母恒正: 若 $d(x,A) + d(x,B) = 0$ 则 $x \in \overline{A} \cap \overline{B} = A \cap B = \emptyset$, 矛盾;
+\item $g_1\big|_A = \frac{M}{3}$, \ $g_1\big|_B = -\frac{M}{3}$ (分别有 $d(x,A) = 0$ / $d(x,B) = 0$);
+\item $|g_1(x)| \leqslant \frac{M}{3}$, $\forall\, x \in \mathbb{R}$ (分子绝对值 $\leqslant$ 分母);
+\item $|f(x) - g_1(x)| \leqslant \frac{2M}{3}$, $\forall\, x \in F$, 且 $g_1$ 在 $\mathbb{R}$ 上连续.
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{方法二 (二): 归纳构造与级数}
+
+\startproof[bg=yellow, fg=red](方法二 (续))
+记 $f_2 := f - g_1\big|_F$: 于 $F$ 连续, $|f_2| \leqslant \frac{2M}{3}$. 同法得连续函数 $g_2$:
+\[
+|g_2(x)| \leqslant \frac{1}{3} \cdot \frac{2M}{3}\ \ (x \in \mathbb{R}),
+\qquad
+|f_2(x) - g_2(x)| \leqslant \frac{2M}{3} \cdot \frac{2}{3}\ \ (x \in F).
+\]
+
+\pause
+
+归纳地 ($f_{k+1} := f_k - g_k\big|_F$, $f_1 := f\big|_F$): 连续函数列 $\{g_k\}$ 满足
+\[
+|g_k(x)| \leqslant \frac{M}{3} \Big(\frac{2}{3}\Big)^{k-1}\ (x \in \mathbb{R}),
+\qquad
+|f_k(x) - g_k(x)| \leqslant M \Big(\frac{2}{3}\Big)^{k}\ (x \in F).
+\]
+
+\pause
+
+由 $\sum_k \frac{M}{3} (\frac{2}{3})^{k-1} = M < \infty$, 级数 $g(x) := \sum_{k=1}^{\infty} g_k(x)$
+\alert{一致收敛}, 故 $g \in \mathcal{C}(\mathbb{R})$, 且 $|g| \leqslant M$ 于 $\mathbb{R}$
+(\alert{保界延拓} --- 一维 Tietze 定理).
+
+\pause
+
+于 $F$ 上: $f(x) - \sum_{i=1}^{k} g_i(x) = f_{k+1}(x) \to 0$, 即 $f = g$ 于 $F$,
+从而 $mE(f \neq g) \leqslant m(E \setminus F) < \varepsilon$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注: 结论不可以加强为 $m(E \setminus F) = 0$}
+
+\begin{question}
+Luzin 定理中的 $m(E \setminus F) < \varepsilon$ 能否改成 $m(E \setminus F) = 0$?
+即: ``存在闭集 $F$, $m(E \setminus F) = 0$ 且 $f\big|_F$ 连续''?
+\end{question}
+
+\textbf{反例} (第二章习题 20): 在 $[0,1]$ 作\alert{类 Cantor 集}: 第 $n$ 步从每个留存区间中央挖去长
+$4^{-n}$ 的开区间 (共 $2^{n-1}$ 个), 得闭集 $P$:
+\[
+mP = 1 - \sum_{n=1}^{\infty} 2^{n-1} \cdot 4^{-n} = \frac12 > 0,
+\qquad
+P\ \text{无内点}.
+\]
+考虑 $f = \chi_P$.
+
+\pause
+
+\startproof[bg=yellow, fg=red](反证)
+假设存在闭集 $F \subset [0,1]$: $mZ = m([0,1] \setminus F) = 0$ 且 $f\big|_F$ 连续
+(记 $Z = [0,1] \setminus F$).
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注 (续): 反例的完成}
+
+\startproof[bg=yellow, fg=red](反证 (续))
+\begin{itemize}
+\item $m([0,1] \setminus Z) = 1$ 而 $mP = \frac12 > 0$, 故
+  $([0,1] \setminus Z) \cap P \neq \emptyset$ (否则 $P \subset Z$, $mP = 0$, 矛盾).
+
+  取 $x \in ([0,1] \setminus Z) \cap P$: 则 $x \in F$, $f(x) = 1$.
+
+\pause
+\item $P$ 无内点 $\implies$ $\forall\, \delta > 0$:
+  $(x - \delta, x + \delta) \cap G \neq \emptyset$, 其中 $G := [0,1] \setminus P$;
+  这个交集是非空相对开集, 测度为正, 而 $mZ = 0$, 故还含
+  $G \setminus Z$ 的点 $y$: $y \in F$, $f(y) = 0$.
+
+\pause
+\item 于是 $f\big|_F$ 在 $x$ 处不连续 (有 $y_n \to x$, $f(y_n) = 0 \neq 1 = f(x)$) --- 矛盾.
+\end{itemize}
+\qed
+
+\begin{attnblock}
+``挖掉''的集合一般不能缩小成\alert{零测集}: 连续性只能在``测度意义下的大部分''点上成立.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[复合函数]{复合函数的可测性}
+
+%------------------------------------------------
+
+\begin{frame}{引理: 用开集的原像刻画可测性}
+
+记号: $E(f > \alpha) = f^{-1}\big((\alpha, +\infty)\big)$ --- 可测性本是``对开区间族''的原像条件.
+
+\begin{lem}[开集原像刻画]
+设 $f$ 是 $\mathbb{R}^n$ 上的实值函数, 则
+\[
+f\ \text{可测}
+\iff
+\forall\ \text{开集}\ G \subset \mathbb{R}:\quad f^{-1}(G)\ \text{可测}.
+\]
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+``$\Longleftarrow$'': 取 $G = (\alpha, +\infty)$: $E(f > \alpha) = f^{-1}\big((\alpha, +\infty)\big)$ 可测,
+即 $f$ 可测.
+
+\pause
+
+``$\Longrightarrow$'': $G \subset \mathbb{R}$ 开, 由结构表示 $G = \bigcup_k (\alpha_k, \beta_k)$ (至多可列):
+\[
+f^{-1}(G) = f^{-1}\Big(\bigcup_k (\alpha_k, \beta_k)\Big)
+= \bigcup_k E(\alpha_k < f < \beta_k),
+\]
+而 $E(\alpha_k < f < \beta_k) = E(f > \alpha_k) \cap \mathscr{C}E(f \geqslant \beta_k)$ 可测 (\S 3.1),
+可数并后可测.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理: 连续 $\circ$ 可测 $=$ 可测}
+
+\begin{thm}[连续 $\circ$ 可测]
+设 $\mathbb{R} \xrightarrow{\ g\ \text{可测}\ } \mathbb{R} \xrightarrow{\ f\ \text{连续}\ } \mathbb{R}$,
+则 $h = f \circ g$ 在 $\mathbb{R}$ 上可测.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+$\forall$ 开集 $G \subset \mathbb{R}$: $f$ 连续 $\implies f^{-1}(G)$ 为\alert{开集};
+$h^{-1}(G) = g^{-1}\big(f^{-1}(G)\big)$ 是可测集 ($g$ 可测 $\Rightarrow$ Borel 集的原像可测).
+由引理, $h = f \circ g$ 可测.
+\qed
+
+\pause
+
+\begin{attnblock}
+\textbf{方向不能反}: $\mathbb{R} \xrightarrow{\ g\ \text{连续}\ } \mathbb{R}
+\xrightarrow{\ f\ \text{可测}\ } \mathbb{R}$ 时 $f \circ g$ \alert{未必可测} --- 见下页反例.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反例: 可测 $\circ$ 连续未必可测}
+
+回忆 \S 2.4 的构造: $\varphi$ 为 Cantor 函数,
+$\Psi(x) = \dfrac{x + \varphi(x)}{2}$: $[0,1] \to [0,1]$ \alert{严格增连续双射};
+$H := \Psi(P_0)$, $mH = \frac12$.
+
+\pause
+
+\begin{itemize}
+\item 取\alert{不可测}集 $W \subset H$ ($mH > 0$ 保证存在);
+\item $S := \Psi^{-1}(W) \subset P_0$: $mS = 0$, 故 $S$ \alert{勒贝格可测}
+  (且非 Borel --- \S 2.4 的老朋友).
+\end{itemize}
+
+\pause
+
+令
+\[
+f := \chi_S\ (\text{可测}),
+\qquad
+g := \Psi^{-1}\ (\text{连续}),
+\qquad
+f \circ g = \chi_{\Psi(S)} = \chi_W\ (\text{不可测!})
+\]
+($\Psi(S) = \Psi\big(\Psi^{-1}(W)\big) = W$).
+
+\pause
+
+\begin{attnblock}
+``$g$ 连续 $+$ $f$ 可测 $\implies f \circ g$ 可测''一般不成立; 反例中的 $S$ 正是
+\S 2.4 造出的``勒贝格可测而非 Borel''的集合.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{补救: 对变换 $T$ 加``零测原像''条件}
+
+\begin{thm}[可测 $\circ$ 连续变换]
+设连续变换 $T: \mathbb{R}^n \to \mathbb{R}^n$ 满足
+\[
+\forall\, Z \subset \mathbb{R}^n:\quad mZ = 0 \implies m\big(T^{-1}(Z)\big) = 0,
+\]
+若 $f: \mathbb{R}^n \to \mathbb{R}$ 可测, 则 $f \circ T$ 在 $\mathbb{R}^n$ 上可测.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+$\forall$ 开集 $G \subset \mathbb{R}$: $f^{-1}(G)$ 可测. 取其\alert{等测包} $H \supset f^{-1}(G)$
+($G_\delta$ 集, \S 2.3), $mH = m f^{-1}(G)$; 令 $Z := H \setminus f^{-1}(G)$ (零测),
+则 $H = f^{-1}(G) \sqcup Z$.
+
+\pause
+
+$T$ 连续 $\implies T^{-1}(H) = \bigcap_k T^{-1}(G_k)$ ($H = \bigcap_k G_k$, $G_k$ 开) 是
+$G_\delta$ 集, 可测; 且
+\[
+T^{-1}(H) = T^{-1}\big(f^{-1}(G)\big) \ \sqcup\ T^{-1}(Z),
+\qquad
+m\big(T^{-1}(Z)\big) = 0 .
+\]
+故 $T^{-1}\big(f^{-1}(G)\big) = T^{-1}(H) \setminus T^{-1}(Z)$ 可测. 由引理, $f \circ T$ 可测.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论: 非奇异线性变换保持可测性}
+
+\begin{cor}
+非奇异线性变换 $T: \mathbb{R}^n \to \mathbb{R}^n$ 满足上述零测原像条件, 故 $f$ 可测
+$\implies f \circ T$ 可测.
+\end{cor}
+
+\pause
+
+\begin{eg}
+$\mathbb{R}^2 \xrightarrow{\ T\ } \mathbb{R}^2 \xrightarrow{\ \mathrm{Pr}_1\ } \mathbb{R}$,
+其中 $T(x, y) = (x + y,\ x - y)$ ($\det T \neq 0$). 则对 $\mathbb{R}$ 中可测集 $E$:
+\[
+\{(x, y) \in \mathbb{R}^2:\ x - y \in E\} = T^{-1}(\mathbb{R} \times E)
+\]
+是 $\mathbb{R}^2$ 中可测集. (第一章习题 27 的情形.)
+\end{eg}
+
+\pause
+
+\begin{remark}
+条件``$mZ = 0 \implies m(T^{-1}Z) = 0$''不可去 --- 上页反例中的 $\Psi^{-1}$ 就\alert{不满足}它:
+$mS = 0$ 而 $\Psi(S) = W$ 不可测.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Borel 可测]{Borel 可测函数}
+
+%------------------------------------------------
+
+\begin{frame}{Borel 可测函数}
+
+$\mathbb{R}$ 上的 Borel $\sigma$-代数记 $\mathscr{B}$ ($\mathscr{B} \subset \mathscr{M}$
+勒贝格可测集类).
+
+\begin{Def}[Borel 可测函数]
+称 $f$ 为 \alert{Borel 可测函数}, 若 $f^{-1}(\mathscr{B}) \subset \mathscr{B}$.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item $f$ Borel 可测 $\iff$ $\forall\, B \in \mathscr{B}$: $f^{-1}(B) \in \mathscr{B}$;
+\item $f$ 勒贝格可测 $\implies$ $f^{-1}(\mathscr{B}) \subset \mathscr{M}$
+  (Borel 集的原像可测, \S 3.1);
+\item 连续函数 $\implies$ Borel 可测 (开集原像是开集) $\implies$ 勒贝格可测.
+\end{itemize}
+
+\pause
+
+\begin{attnblock}
+\textbf{反向不成立}: \S 2.4 的 $S \subset P_0$ 勒贝格可测而非 Borel,
+故 $\chi_S$ 勒贝格可测但\alert{非 Borel 可测}. 更一般地, 对勒贝格可测函数
+$f^{-1}(\mathscr{M}) \not\subset \mathscr{M}$: 甚至\alert{连续}函数也会这样 ---
+$g = \Psi^{-1}$, $A = S \in \mathscr{M}$, 而 $g^{-1}(A) = \Psi(S) = W$ 不可测.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{统一语言: 可测映射与复合}
+
+\begin{Def}[$(\mathcal{G}_1, \mathcal{G}_2)$-可测]
+设 $X, Y$ 上分别有 $\sigma$-代数 $\mathcal{G}_1, \mathcal{G}_2$. 称 $f: X \to Y$ 是
+$(\mathcal{G}_1, \mathcal{G}_2)$-\alert{可测}的, 若 $f^{-1}(\mathcal{G}_2) \subset \mathcal{G}_1$.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 连续函数 $=$ $(\mathscr{B}, \mathscr{B})$-可测; \ Borel 可测函数 $=$ $(\mathscr{B}, \mathscr{B})$-可测;
+\item 勒贝格可测函数 $=$ $(\mathscr{M}, \mathscr{B})$-可测
+  (定义域带 $\mathscr{M}$, 值域带 $\mathscr{B}$: 把 Borel 集拉回勒贝格集).
+\end{itemize}
+
+\pause
+
+\begin{prop}[链式法则]
+$f: (X, \mathcal{G}_1) \to (Y, \mathcal{G}_2)$ 与 $g: (Y, \mathcal{G}_2) \to (Z, \mathcal{G}_3)$
+皆可测, 则 $g \circ f: (X, \mathcal{G}_1) \to (Z, \mathcal{G}_3)$ 可测.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+$(g \circ f)^{-1}(\mathcal{G}_3) = f^{-1}\big(g^{-1}(\mathcal{G}_3)\big)
+\subset f^{-1}(\mathcal{G}_2) \subset \mathcal{G}_1$.
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{衔接则匹配}: Borel 可测 $\circ$ 勒贝格可测 $=$ 勒贝格可测 ---
+  内层的值域 $\sigma$-代数 $\mathscr{B}$ $=$ 外层的定义域 $\sigma$-代数 $\mathscr{B}$, 链式法则适用;
+\item \textbf{不衔接则无保证}: 勒贝格可测 $\circ$ 勒贝格可测 未必勒贝格可测 ---
+  外层勒贝格可测要求定义域 $\sigma$-代数为 $\mathscr{M} \neq \mathscr{B}$ (内层的值域),
+  链式法则不适用; 反例即前页 $\Psi$ 的构造 ($\Psi^{-1}$ 连续, 故也勒贝格可测,
+  而 $\chi_S \circ \Psi^{-1} = \chi_W$ 不可测).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结与展望}
+
+%------------------------------------------------
+
+\begin{frame}{小结}
+
+\begin{itemize}
+\item \textbf{Luzin 定理}: 可测函数挖掉任意小测度集后\alert{连续} ---
+  ``可测 $\approx$ 连续''; \alert{无需} $mE < \infty$;
+\pause
+\item \textbf{证明引擎}: $\S 2.3$ 的 $\varepsilon$-刻画 (简单函数) $\to$ \S 3.1 一致逼近 (有界)
+  $\to$ 变换 $f/(1+|f|)$ (一般); 损耗 $\sum \varepsilon/2^k < \varepsilon$;
+\pause
+\item \textbf{延拓定理}: $f$ 可测 $\Rightarrow$ $\exists\, g \in \mathcal{C}(\mathbb{R})$,
+  $mE(f \neq g) < \varepsilon$; 方法一 (线性插值), 方法二 (距离函数级数, 保界 $|g| \leqslant M$, 一维 Tietze);
+\pause
+\item \textbf{两个反例}: $m(E \setminus F) = 0$ 做不到 (类 Cantor 集 $mP = 1/2$);
+  ``可测 $\circ$ 连续''未必可测 ($\Psi$ 构造);
+\pause
+\item \textbf{复合规则}: 连续 $\circ$ 可测 $=$ 可测; 可测 $\circ$ 连续变换 $=$ 可测
+  (需``零测原像''条件, 线性变换满足); 可测 $\circ$ 连续未必可测.
+  统一语言: $(\mathcal{G}_1, \mathcal{G}_2)$-可测, 链式法则解释一切衔接与不衔接.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{展望}
+
+\begin{itemize}
+\item \textbf{\S 4 勒贝格积分}: 积分的定义正建立在\alert{简单函数逼近}之上 ---
+  第三章的全部工具 (可测性、依测度收敛、Riesz 抽子列、Luzin) 从下一章开始火力全开;
+\pause
+\item \textbf{Luzin 定理的深层形式} (泛函分析中): 可测函数``挖掉小测度集后等于紧支集连续函数'',
+  由此可得 $\mathcal{C}(K)$ 在 $\mathcal{L}^p$ 中的稠密性;
+\pause
+\item \textbf{概率论语言}: 可测函数 = 随机变量; Luzin 定理 = ``随机变量在概率 $1$ 意义下接近连续函数''.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第三章 \S 3.3 习题}
+\begin{itemize}
+\item \textbf{22.} 设 $f, f_n$ ($n \in \mathbb{N}$) 是 $E = [a,b]$ 上的实函数, $r$ 为自然数. 试证
+$\bigcap_{r=1}^{\infty} \varliminf_{n} E\big(|f_n - f| \leqslant \frac1r\big)$
+是 $E$ 中使 $\{f_n\}$ 收敛于 $f$ (当 $n \to \infty$) 的点集.
+\item \textbf{25.} 设 $mE > 0$, $\{f_n\}$ 是 $E$ 上 a.e.\ 有限的可测函数列且 a.e.\ 收敛. 证明存在常数 $c$
+与正测度集 $E_0 \subset E$, 使在 $E_0$ 上对一切 $n$ 有 $|f_n| \leqslant c$.
+\item \textbf{30.} 试作 $E = [0,1]$ 上的可测函数 $f$, 使对 $E$ 上任何连续函数 $g$ 有
+$mE(f \neq g) \neq 0$. 此结果与 Luzin 定理有无矛盾?
+\end{itemize}
+\end{block}
+
+\begin{block}{续}
+\begin{itemize}
+\item \textbf{29.} 令 $\alpha_n$ 为 $1 + \frac12 + \cdots + \frac1n$ 的小数部分,
+$I_n = [\alpha_n, \alpha_{n+1})$ (若 $\alpha_n \leqslant \alpha_{n+1}$) 或
+$[\alpha_n, 1) \cup [0, \alpha_{n+1})$ (若 $\alpha_n > \alpha_{n+1}$), $f_n = \chi_{I_n}$ 于 $[0,1)$.
+试证 $\{f_n\}$ 依测度收敛于 $0$ 而不 a.e.\ 收敛于 $0$; 试选子列 $\{f_{n_k}\}$ 处处收敛于 $0$.
+\item \textbf{32.} 试证对 $[0,1]$ 上带连续参数的可测函数族 $\{f_t\}_{t \in [0,1]}$, Egorov 定理不成立:
+存在 $f_t \to 0$ a.e.\ ($t \to 0$), 但对某个 $\varepsilon > 0$,
+$m^*\,I(f_t > \varepsilon) \not\to 0$ ($t \to 0$).
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
