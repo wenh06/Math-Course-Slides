@@ -24,71 +24,1071 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 微分积分基本定理}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{引言: 把 Newton--Leibniz 公式推广到勒贝格积分}
 
-
-
-\end{frame}
-
-%------------------------------------------------
-
-\section{xxx}
-
-%------------------------------------------------
-
-\begin{frame}{总结}
-% Lebesgue 积分与微分的关系可用如下交换图表总结:
-
-\begin{adjustbox}{width=1.0\textwidth}
-\input{tikz-figures/Lebesgue-int-and-diff}
-\end{adjustbox}
-
-\only<1>{
-\vspace{-2em}
-
-{\smaller[1]
-\begin{align*}
-L_{[a, b]} & = [a, b] \text{ 区间上的 Lebesgue 可积函数}, \\
-L_0 & = \{ f \in L_{[a, b]} ~:~ f \sim 0\}, \\
-C([a, b]) & = [a, b] \text{ 区间上的连续函数}, \\
-BV([a, b]) & = [a, b] \text{ 区间上有界变差函数}, \\
-AC_0([a, b]) & = [a, b] \text{ 区间上绝对连续且在 $a$ 处取 $0$ 的函数}, \\
-\ker \left( {\textstyle\int}_{[a,x]}~\circ~\operatorname{pr}~\circ~\widetilde{\mathrm{d}} \right) & = [a, b] \text{ 区间上奇异函数与常数函数所张成的空间}, \\
-\ker \left( {\textstyle\int}_{[a,x]}~\circ~\operatorname{pr}~\circ~\widetilde{\mathrm{d}}~\circ~\iota \right) & = [a, b] \text{ 区间上连续奇异函数与常数函数所张成的空间}.
-\end{align*}
-}
-}
-
-\only<2->{
-{\smaller[1]
-箭头旁边的圈内数字对应如下定理:
+类似数学分析中关于黎曼积分的 Newton--Leibniz 公式, 我们也希望将其推广至勒贝格积分理论中:
 \begin{itemize}
-\item[$\Circled{1}$] Jordan 分解定理: 定义在 $[a, b]$ 上的函数是有界变差的, 当且仅当它可以表示为两个单调函数之差.
-\item[$\Circled{2}$] 绝对连续函数必然是有界变差函数. 反之, 有界变差函数不一定是绝对连续函数, 例如 Cantor 函数.
-\item[$\Circled{3}$ $\Circled{5}$] Lebesgue 积分与微分基本定理: $f \in AC([a, b]) \iff \exists ~ g \in L_{[a, b]},$ 使得 $f(x) = f(a) + \int_a^x g(t) ~ \mathrm{d}t,$ 且此时有 $f'(x) = g(x)$ 几乎处处成立.
-\item[$\Circled{4}$] 定义在 $[a, b]$ 上的单调 (增) 函数几乎处处可导, 且其导函数是勒贝格可积的, 满足不等式 $\int_a^b f'(x) ~ \mathrm{d} x \leqslant f(b) - f(a).$
+\item \textcircled{1} \alert{变上限积分} $\displaystyle F(x) = \int_a^x f(t) ~ \mathrm{d} t$
+  的\alert{可微性}, 以及 $F(x)$ 与 $f(x)$ 的联系;
+\item \textcircled{2} Newton--Leibniz 公式
+  $\displaystyle \int_a^b F'(x) ~ \mathrm{d} x = F(b) - F(a)$ 的\alert{成立条件}.
 \end{itemize}
-}
-}
+
+\pause
+
+首先, 注意到
+\[
+F(x) = \int_a^x f(t) ~ \mathrm{d} t = \int_a^x f_+(t) ~ \mathrm{d} t - \int_a^x f_-(t) ~ \mathrm{d} t
+\]
+是\alert{单调(增)函数之差}, 所以, 先对单调(单增)函数进行研究:
+\[
+L_{[a, b]} \;\xrightarrow{\ \int_a^x\ }\; C[a, b]\ ?
+\qquad\qquad
+\text{单调(连续)函数}\ \xrightarrow{\ d\ }\ L_{[a, b]}
+\]
 
 \end{frame}
+
+%------------------------------------------------
+
+\section[跳跃函数]{跳跃函数}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 跳跃函数}
+
+\begin{Def}
+设 $f$ 是 $[a, b]$ 上的 (有限) 增函数, 则其不连续点必为至多可列集
+$\{ \xi_k \}_{k \in I}$. 称
+\[
+S(x) := f(a + 0) - f(a)
++ \sum_{a < \xi_k < x} \big( f(\xi_k + 0) - f(\xi_k - 0) \big)
++ f(x) - f(x - 0), \quad a < x \leqslant b,
+\]
+且约定 $S(a) = 0$, 为 $f$ 的\alert{跳跃函数}; 并称每一项
+$f(\xi_k + 0) - f(\xi_k - 0)$ 为相应间断点的\alert{跳跃度}.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 可约定 $f(a - 0) = f(a)$ (端点单侧极限), 以简化 $S(x)$ 的形式;
+\item 当 $f$ 连续, $S(x) \equiv 0$; \quad 当 $f$ 的间断点数量有限, 则 $S$ 为非负简单函数;
+\item $S(x)$ 随 $x$ 增大不断累加跳跃度与右端增量: $S$ 是\alert{非负增函数}
+  (进一步见下面定理).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理: 增函数 $=$ 连续增函数 $+$ 跳跃函数}
+
+\begin{thm}
+$[a, b]$ 上 (有限) 增函数 $f$ 可分解为一个连续增函数 $\varphi$ 与 $f$ 的跳跃函数 $S$ 之和.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+只要证 $\varphi(x) := f(x) - S(x)$ 为连续增函数即可.
+
+\pause
+
+$1^{\circ}$ ($\varphi$ 是增函数) $\forall\, x_1 < x_2 \in [a, b]$:
+$S(x_2) - S(x_1)$ 只累加落在 $(x_1, x_2)$ 内的跳跃与右端增量, 故
+\[
+\varphi(x_2) - \varphi(x_1)
+= f(x_2) - f(x_1) - \big( S(x_2) - S(x_1) \big)
+\geqslant f(x_2) - f(x_1) - \big( f(x_2) - f(x_1) \big) = 0 .
+\]
+
+$2^{\circ}$ ($\varphi$ 连续: 左、右连续) 设 $x > x_0$, 那么
+\[
+S(x) - S(x_0)
+= \sum_{x_0 < \xi_k < x} \big( f(\xi_k + 0) - f(\xi_k - 0) \big)
++ \big( f(x_0 + 0) - f(x_0) \big)
++ \big( f(x) - f(x - 0) \big)
+\]
+每一项都 $\geqslant 0$. 令 $x \to x_0^+$, 则有
+$S(x_0^+) - S(x_0) \geqslant f(x_0 + 0) - f(x_0)$, 于是
+\[
+0 \leqslant \varphi(x_0^+) - \varphi(x_0)
+= \big( f(x_0 + 0) - f(x_0) \big) - \big( S(x_0^+) - S(x_0) \big)
+\leqslant 0 ,
+\]
+即 $\varphi$ 在 $x_0$ 处右连续. 类似可证 $\varphi$ 在 $x_0$ 处左连续.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[列导数]{列导数}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 列导数}
+
+(接下来我们介绍 Vitali 覆盖引理, 并以此证明单调函数几乎处处可导. 先引入一些概念.)
+
+\begin{Def}[列导数]
+设 $f$ 为定义在区间 $[a, b]$ 上的有限函数, $x_0 \in [a, b]$. 若存在数列
+$h_n \to 0$, $h_n \neq 0$, 使得极限
+\[
+\lim_{n \to \infty} \frac{f(x_0 + h_n) - f(x_0)}{h_n} = \lambda
+\]
+存在 (包括 $\pm \infty$), 则称 $\lambda$ 为 $f(x)$ 在 $x_0$ 处的一个\alert{列导数},
+记为 $\lambda = D f(x_0)$.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 若 $x_0$ 处的列导数都相等, 则称 $f$ 在 $x_0$ 处\alert{广义可导};
+  若值有限, 则是通常意义下的可导;
+\item \textbf{例}: 设 $f(x) = \sin \frac1x$ ($x \neq 0$), $f(0) = 0$,
+  那么 $\{ \lambda:\ \lambda\ \text{为}\ f\ \text{在}\ 0\ \text{处列导数} \} = [-\infty, +\infty]$;
+\item \textbf{注}: 列导数总是存在的, 例如
+  $D^+ f(x_0) := \varlimsup\limits_{h \to 0^+} \dfrac{f(x_0+h) - f(x_0)}{h}$,
+  以及 $D_+$ (右下), $D^-$ (左上), $D_-$ (左下).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{观察: 从单调函数的像区间到 Vitali 覆盖}
+
+\begin{itemize}
+\item \textbf{观察}: 设 $f$ 严格增, 若 $f$ 在 $x_0$ 处有列导数 $\lambda \in [0, +\infty]$,
+  那么 $[x_0, x_0 + h_n]$ 的像 $[f(x_0), f(x_0 + h_n)]$ 的区间长度
+  $\approx \lambda h_n \to 0$ (当 $n \to \infty$).
+\item 令 $A = \{ x \in [a, b]:\ f\ \text{在}\ x\ \text{处有列导数} \}$, 那么 $f(A)$
+  被闭区间族 $[f(x), f(x + h_{x, n})]$ ($x \in A$, $n \in \mathbb{N}$) 覆盖,
+  且区间长度可以任意小.
+\end{itemize}
+
+\pause
+
+(把这类覆盖抽象一下, 可得 Vitali 覆盖.)
+
+\begin{Def}[Vitali 覆盖]
+设 $E \subset \mathbb{R}$, $\mathscr{V} = \{ d_a \}_{a \in E}$ 为一族有正长度的闭区间.
+若 $\forall\, x \in E$, $\exists$ 区间列 $\{ d_n \}_{n \in \mathbb{N}}$, $d_n \in \mathscr{V}$,
+使得 $x \in d_n$ ($\forall\, n$), 且 $\lim\limits_{n \to \infty} m d_n = 0$,
+则称 $\mathscr{V}$ \alert{按 Vitali 意义覆盖} $E$.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Vitali]{Vitali 覆盖引理}
+
+%------------------------------------------------
+
+\begin{frame}{Vitali 覆盖引理及其推论}
+
+\begin{thm}[Vitali 覆盖引理]
+设 $E \subset \mathbb{R}$ 有界, $\mathscr{V}$ 按 Vitali 意义覆盖 $E$,
+那么可从 $\mathscr{V}$ 中选出至多可列个闭区间 $\{ d_k \}$, 使得
+\[
+m \Big( E \setminus \bigcup_k d_k \Big) = 0,
+\qquad
+d_k \cap d_{k'} = \varnothing \quad (k \neq k') .
+\]
+\end{thm}
+
+\pause
+
+\begin{cor}[另一种形式]
+$\forall\, \varepsilon > 0$, 可从 $\mathscr{V}$ 中选出\alert{有限}个互不相交的
+$d_1, \dots, d_N$, 使得
+$m^* \big( E \setminus \bigcup_{k=1}^{N} d_k \big) < \varepsilon$.
+\end{cor}
+
+\pause
+
+\begin{eg}
+$E = [a, b]$, 令 $\mathbb{Q} \cap E = \{ r_1, r_2, \dots, r_n, \dots \}$,
+那么区间族 $I_{n, m} = \big[ r_n - \tfrac1m,\ r_n + \tfrac1m \big]$ 是 $E$ 的 Vitali 覆盖.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Vitali 覆盖引理证明概要 (一): 归纳选取}
+
+\startproof[bg=yellow, fg=red](证明概要)
+设 $E \subset (a, b)$, 令 $k_0 = \sup_{d \in \mathscr{V}} m d < \infty$,
+由上确界定义, 可取 $d_1 \in \mathscr{V}$, 使得 $m d_1 > k_0 / 2$.
+
+\textbf{(1.1)} 若 $\forall\, d \in \mathscr{V}$, 有 $d_1 \cap d \neq \varnothing$:
+由 Vitali 覆盖定义, $\forall\, x \in E$, $\exists\, d_{x, n} \ni x$,
+$m d_{x, n} \to 0$; 若 $x \notin d_1$ 内部, 则 $\rho(x, d_1) > 0$,
+当 $m d_{x, n} < \rho(x, d_1)/3$ 时完全不可能有 $d_1 \cap d_{x, n} \neq \varnothing$,
+矛盾. 故 $E \subset d_1$, $d_1$ 即满足要求的闭区间.
+
+\textbf{(1.2)} 若 $\exists\, d \in \mathscr{V}$, s.t.\ $d \cap d_1 = \varnothing$:
+令 $G_1 = (a, b) \setminus \bar{d}_1$ (开集),
+$k_1 := \sup_{d \subset G_1} m d > 0$, 进而可再取 $d_2 \in \mathscr{V}$,
+$d_2 \subset G_1$, 使得 $m d_2 > k_1 / 2$, 此时 $d_1 \cap d_2 = \varnothing$.
+
+\pause
+
+进一步可以归纳地选取 $d_1, \dots, d_n$ 互不相交:
+若 $m \big( E \setminus \bigcup_{k=1}^{n} d_k \big) = 0$, 已得到满足引理条件的有限闭区间列;
+否则, 令
+\[
+F_n = \bigcup_{k=1}^{n} d_k,
+\qquad
+G_n = \mathscr{C} F_n,
+\qquad
+k_n = \sup_{d \subset G_n} m d ,
+\]
+则可从 $\mathscr{V}$ 中选取 $d_{n+1}$, 使得 $d_{n+1} \subset G_n$,
+且 $m d_{n+1} > k_n / 2$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Vitali 覆盖引理证明概要 (二): $5$ 倍扩张收尾}
+
+\startproof[bg=yellow, fg=red](证明概要 (续))
+事实上, 以区间 $d_n$ 的中心为中心扩大 $d_n$ 至闭区间 $D_n$,
+使得 $m D_n = 5\, m d_n$.
+
+\textbf{断言}: $\forall\, i$, $E \setminus \bigcup_{n=1}^{\infty} d_n
+\subset \bigcup_{n=i}^{\infty} D_n$ (渐缩集合).
+
+$\forall\, x \in E \setminus \bigcup_{n=1}^{\infty} d_n$, 那么 $\forall\, i$,
+$x \in G_i = (a, b) \setminus \bigcup_{k=1}^{i} d_k$ (开集, 有非空内部), 且
+$\mathscr{V}$ 为 $E$ 的 Vitali 覆盖, 故 $\exists\, d \in \mathscr{V}$, 使得
+$d \subset G_i$, 且 $x \in d$. 令
+\[
+N = \min \big\{ n \in \mathbb{N}:\ d \cap F_n \neq \varnothing \big\} ,
+\]
+其存在: 否则 $d \subset G_n\ (\forall\, n)$, 从而
+$m d \leqslant k_n < 2\, m d_{n+1} \to 0$, 矛盾. 由 $N$ 的最小性, $d \cap d_N \neq \varnothing$,
+且 $m d < 2\, m d_N$, 故 $d \subset D_N$, 从而
+$x \in \bigcup_{k=i}^{\infty} D_k$, 断言成立.
+
+\pause
+
+于是
+\[
+m \Big( E \setminus \bigcup_n d_n \Big)
+\leqslant m \Big( \bigcup_{k=i}^{\infty} D_k \Big)
+\leqslant \sum_{k=i}^{\infty} m D_k
+= 5 \sum_{k=i}^{\infty} m d_k
+\longrightarrow 0 \quad (i \to \infty) ,
+\]
+即 $m \big( E \setminus \bigcup_n d_n \big) = 0$, 且所得 $\{ d_n \}$ 互不相交.
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: Vitali 覆盖引理表明: 除去``长度很小''的集合外,
+  可从 Vitali 覆盖中选出\alert{互不相交}的有限覆盖.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[勒贝格定理]{单调函数几乎处处可导}
+
+%------------------------------------------------
+
+\begin{frame}{勒贝格定理与技术引理}
+
+(下面, 我们可以讨论单调函数的可微性了. 先叙述最重要的结果.)
+
+\begin{thm}[勒贝格]
+设 $F$ 为 $[a, b]$ 上的单调函数, 那么 $F$ 在 $(a, b)$ 上\alert{几乎处处有有限的导数}
+(或者说几乎处处可导).
+\end{thm}
+
+(在证明这个结论之前, 我们需要一些技术上的引理.)
+
+\pause
+
+\begin{lem}
+设 $F$ 为 $[a, b]$ 上严格增函数, $\alpha \in \mathbb{R}_+$.
+\textbf{(1)} 令
+$E_{\leqslant \alpha} = \{ x \in [a, b]:\ \exists\ \text{列导数}\ D F(x) \leqslant \alpha \}$,
+那么
+$m^* F\big( E_{\leqslant \alpha} \big) \leqslant \alpha \cdot m^* E_{\leqslant \alpha}$;
+\textbf{(2)} 令
+$E_{\geqslant \alpha} = \{ x \in [a, b]:\ \exists\ \text{列导数}\ D F(x) \geqslant \alpha \}$,
+那么
+$m^* F\big( E_{\geqslant \alpha} \big) \geqslant \alpha \cdot m^* E_{\geqslant \alpha}$.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{技术引理的证明: 造 Vitali 覆盖}
+
+\startproof[bg=yellow, fg=red](引理 (1) 的证明)
+由于 $m^* E_{\leqslant \alpha} = \inf_{E_{\leqslant \alpha} \subset G} m G$,
+所以 $\forall\, \varepsilon > 0$, 可取到开集 $G$, 使得
+$m^* E_{\leqslant \alpha} + \varepsilon > m G$, $E_{\leqslant \alpha} \subset G$.
+取 $\alpha_0 > \alpha$ (特别地 $\alpha_0 > 0$), $x_0 \in E_{\leqslant \alpha}$.
+那么, 由列导数定义, 存在数列 $h_n \to 0$, $h_n \neq 0$, 使得
+$\lim\limits_{n} \big( F(x_0 + h_n) - F(x_0) \big) / h_n
+= D F(x_0) \leqslant \alpha < \alpha_0$.
+令 $d_n(x_0)$ 为以 $x_0, x_0 + h_n$ 为端点的闭区间, $\Delta_n(x_0)$ 为以
+$F(x_0), F(x_0 + h_n)$ 为端点的闭区间. 那么:
+
+\pause
+
+$1^{\circ}$ $F\big( d_n(x_0) \big) \subset \Delta_n(x_0)$
+($\leftarrow F$ 严格增);\quad
+$2^{\circ}$ $m \big( d_n(x_0) \big) = |h_n| \to 0\ (n \to \infty)$,
+故 $\exists\, N_1(x_0)$, $n > N_1(x_0)$ 时 $d_n(x_0) \subset G$
+($x_0$ 是开集 $G$ 的内点);\quad
+$3^{\circ}$ $\exists\, N_2(x_0) \in \mathbb{N}$, $n > N_2(x_0)$ 时 (由极限性质)
+$\big| \big( F(x_0 + h_n) - F(x_0) \big) / h_n \big| < \alpha_0$,
+即 $m \big( \Delta_n(x_0) \big) = |F(x_0 + h_n) - F(x_0)| < \alpha_0 |h_n|$.
+
+\pause
+
+取 $N(x_0) = \max \{ N_1(x_0), N_2(x_0) \}$, 那么
+$\{ \Delta_n(x):\ x \in E,\ n > N(x) \}$ 是长度为正的闭区间族, 且构成了 $F(E)$
+的一个 Vitali 覆盖, 从而可以从中取出至多可列个互不相交的闭区间
+$\{ \Delta_{n_i}(x_i) \}_{i \in I}$, 使得
+$m \Big( F(E) \setminus \bigcup_{i \in I} \Delta_{n_i}(x_i) \Big) = 0$.
+于是
+\[
+m^* F(E)
+\leqslant \sum_{i \in I} m \big( \Delta_{n_i}(x_i) \big)
+< \alpha_0 \sum_{i \in I} m \big( d_{n_i}(x_i) \big)
+= \alpha_0 \, m \Big( \bigcup_{i \in I} d_{n_i}(x_i) \Big)
+\leqslant \alpha_0 \big( m^* E_{\leqslant \alpha} + \varepsilon \big) .
+\]
+由于 $\alpha_0$, $\varepsilon$ 任意, 所以有
+$m^* F\big( E_{\leqslant \alpha} \big) \leqslant \alpha \cdot m^* E_{\leqslant \alpha}$.
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{(2)}: 对 $F$ 的逆映射应用 (1) 的结论即可.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{勒贝格定理的证明 (一): 导数不存在的点}
+
+\startproof[bg=yellow, fg=red](勒贝格定理的证明)
+不妨设 $F$ 严格增 (否则可考虑 $F(x) + x$).
+
+$1^{\circ}$ 令 $E = \{ x \in [a, b]:\ F'(x)\ \text{不存在} \}$.
+那么 $\forall\, x_0 \in E$, $F$ 在 $x_0$ 处有相异的列导数, 进而可取有理数
+$p, q \in \mathbb{Q}_+$, 使得
+\[
+0 < D_- F(x_0) < p < q < D^+ F(x_0) .
+\]
+令 $E_{p, q} = \{ x \in E:\ F\ \text{在}\ x\ \text{处}\ D_- F(x) < p < q < D^+ F(x) \}$,
+那么有 $E = \bigcup_{p, q \in \mathbb{Q}_+} E_{p, q}$ (可列并).
+
+\pause
+
+\textbf{断言}: $m E_{p, q} = 0$.
+这是因为
+\[
+D_- F(x) < p
+\;\Longrightarrow\;
+m^* \big( F(E_{p, q}) \big) \leqslant p \cdot m^* E_{p, q} \cdots \textcircled{1}
+\]
+\[
+D^+ F(x) > q
+\;\Longrightarrow\;
+m^* \big( F(E_{p, q}) \big) \geqslant q \cdot m^* E_{p, q} \cdots \textcircled{2}
+\]
+由于 $p < q$, 所以 \textcircled{1}\textcircled{2} 同时成立当且仅当
+$m^* \big( F(E_{p, q}) \big) = m^* E_{p, q} = 0$.
+由此即知 $0 \leqslant m E \leqslant \sum_{p, q} m E_{p, q} = 0$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{勒贝格定理的证明 (二): 导数为无穷的点}
+
+\startproof[bg=yellow, fg=red](勒贝格定理的证明 (续))
+$2^{\circ}$ 令 $E_0 = E \cup \{ x:\ F'(x) = \infty \}$.
+$\forall\, x_0$ 使 $F'(x_0) = \infty$, 其所有列导数 $D F(x_0) = \infty$,
+从而 $\forall\, n \in \mathbb{N}$: $E_0 \subset E_{\geqslant n}$ 给出
+\[
+m^* \big( F(E_0) \big) \geqslant n \cdot m^* E_0 \cdots \textcircled{3}
+\]
+另一方面, 显然有 ($F$ 严格增, $F(E_0) \subset [F(a), F(b)]$)
+\[
+m^* \big( F(E_0) \big) \leqslant F(b) - F(a) \cdots \textcircled{4}
+\]
+要使 \textcircled{3}\textcircled{4} 同时成立 (对一切 $n$), 只有 $m^* E_0 = 0$.
+
+\pause
+
+结合 $1^{\circ}, 2^{\circ}$: $F'$ 在 $[a, b]$ 上几乎处处存在且有限,
+即 $F$ 几乎处处可导.
+\qed
+
+\pause
+
+\begin{itemize}
+\item 技术引理把\alert{像集的测度}与\alert{列导数的大小}挂钩
+  ($m^* F(E) \sim \alpha \cdot m^* E$), 是全部推理的支点.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[导函数可积]{导函数的可积性}
+
+%------------------------------------------------
+
+\begin{frame}{注记: 变上限积分几乎处处可导}
+
+\begin{itemize}
+\item 我们之前把变上限积分拆写为了两个单增函数之差:
+  $F(x) = \int_a^x f(x) ~ \mathrm{d} x = \int_a^x f_+(x) ~ \mathrm{d} x - \int_a^x f_-(x) ~ \mathrm{d} x$.
+\item 那么勒贝格定理告诉我们: \alert{变上限积分几乎处处可导}
+  (但其导函数可能不可积 --- 对一般的单调函数而言).
+\end{itemize}
+
+\pause
+
+(接下来我们证明: 单调函数的导函数是可积的.)
+
+\begin{thm}
+设 $f$ 是 $[a, b]$ 上增函数, 则 $f'(x)$ 可积, 且有
+\[
+\int_{[a, b]} f' ~ \mathrm{d} m \leqslant f(b) - f(a) .
+\]
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理的证明: 延拓到 $[a, b+1]$}
+
+\startproof[bg=yellow, fg=red](证明: 延拓)
+考虑定义在 $[a, b + 1]$ 上的函数 (因为需要求右极限):
+\[
+\widetilde{f}(x) :=
+\begin{cases}
+f(x), & a \leqslant x \leqslant b, \\
+f(b), & b < x \leqslant b + 1 .
+\end{cases}
+\]
+那么 $\widetilde{f}\,'$ 与 $f'$ 的可积性相同, 且可积时积分值相同 (在 $[a, b]$ 上).
+由 $f$ 单增知 $\widetilde{f}$ 单增, 从而几乎处处可导; 特别地, 几乎处处有
+\[
+0 \leqslant \widetilde{f}\,'(x)
+= \lim_{n \to \infty} g_n(x),
+\qquad
+g_n(x) := n \big( \widetilde{f}(x + \tfrac1n) - \widetilde{f}(x) \big) \geqslant 0
+\]
+($\{ g_n \}$ 是非负可测函数列: 单调函数可测, 极限可测).
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理证明 (续): Fatou 引理收尾}
+
+\startproof[bg=yellow, fg=red](定理的证明 (续))
+由对非负可测函数列 $\{ g_n \}$ 应用 Fatou 引理:
+\[
+\int_{[a, b]} \widetilde{f}\,' ~ \mathrm{d} m
+= \int_{[a, b]} \lim_{n \to \infty} g_n ~ \mathrm{d} m
+\leqslant \varliminf_{n \to \infty} \int_{[a, b]} g_n ~ \mathrm{d} m .
+\]
+由于 $\widetilde{f}$ 单调, 故几乎处处连续 (甚至几乎处处可导), $g_n$ 勒贝格可积
+($=$ Riemann 可积), 那么
+\[
+\int_{[a, b]} \widetilde{f}\,' ~ \mathrm{d} m
+\leqslant \varliminf_{n \to \infty} (R) \int_a^b g_n(x) ~ \mathrm{d} x
+= \varliminf_{n \to \infty} (R) \int_a^b
+\big( \widetilde{f}(x + \tfrac1n) - \widetilde{f}(x) \big) ~ \mathrm{d} x
+\]
+\[
+= \varliminf_{n \to \infty} n \Big( \int_b^{b + \frac1n} - \int_a^{a + \frac1n} \Big)
+\widetilde{f}(x) ~ \mathrm{d} x
+= \varliminf_{n \to \infty} \Big( f(b) - n \int_a^{a + \frac1n} \widetilde{f}(x) ~ \mathrm{d} x \Big)
+\leqslant f(b) - f(a)
+\]
+(末步: $\widetilde{f} \geqslant f(a)$ 于 $[a, a + \frac1n]$, 故
+$n \int_a^{a+1/n} \widetilde{f} ~ \mathrm{d} x \geqslant f(a)$).
+代回 $[a, b]$ 上 $\widetilde{f}\,' = f'$, 即得结论.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注: ``$\leqslant$'' 可以取到 ``$<$'' --- Cantor 函数}
+
+\begin{itemize}
+\item 上述定理中 ``$<$'' 可以取到, 例如 \alert{Cantor 函数}
+\[
+\Phi:\ [0, 1] \to [0, 1],
+\qquad
+x \longmapsto \sup_{P_0 \ni y \leqslant x} \varphi(y),
+\qquad
+\varphi:\ P_0 \to [0, 1],\ \sum_k \frac{a_k}{3^k} \mapsto \sum_k \frac{a_k}{2^k} ,
+\]
+其中 $a_k \in \{ 0, 2 \}$ ($P_0$ 为 Cantor 集, 三进制展开).
+\item 那么: $1^{\circ}$ $\Phi$ 连续, 单增; \qquad
+$2^{\circ}$ $\Phi'$ 在 $G_0 = [0, 1] \setminus P_0$ 上恒为 $0$, 即 $\Phi' \sim 0$.
+\end{itemize}
+
+\pause
+
+\[
+\Longrightarrow\quad
+\int_{[0, 1]} \Phi' ~ \mathrm{d} m = 0
+\;<\;
+\Phi(1) - \Phi(0) = 1 - 0 = 1 .
+\]
+
+\pause
+
+(接下来, 我们要探讨 $\int_{[a, b]} f' ~ \mathrm{d} m = f(b) - f(a)$ 的条件,
+即什么样的函数有牛--莱公式成立. 我们先引入一些概念.)
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[全变差]{有界变差函数}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 全变差与有界变差函数}
+
+\begin{Def}
+设 $f$ 是 $[a, b]$ 上有限函数,
+$\mathscr{P}:\ a = x_0 < x_1 < x_2 < \cdots < x_{n(\mathscr{P})} = b$
+为 $[a, b]$ 的一个划分. 称
+\[
+\bigvee_a^b (f) := \sup_{\mathscr{P}} \sum_{k=1}^{n(\mathscr{P})}
+\big| f(x_k) - f(x_{k-1}) \big|
+\]
+为 $f$ 在 $[a, b]$ 上的\alert{全变差} (记 $D(f, \mathscr{P})$ 为划分 $\mathscr{P}$ 上的变差和).
+若 $\bigvee_a^b (f) < \infty$, 则称 $f$ 为\alert{有界变差函数}, 其全体记为 $BV([a, b])$.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 类似变上限积分, 我们可以考虑\alert{变上限的全变差}
+  ($f$ 为有界变差函数):
+\[
+\pi(x) := \bigvee_a^x (f), \quad a < x \leqslant b, \qquad \text{约定 } \pi(a) = 0 .
+\]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{变上限全变差的有限可加性}
+
+\begin{lem}
+$\pi(x)$ 满足有限可加性, 即对 $a < c < b$, 有
+\[
+\bigvee_a^b (f) = \bigvee_a^c (f) + \bigvee_c^b (f) .
+\]
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+($\leqslant$) 任取划分
+$\mathscr{P}_1:\ a = x_0 < x_1 < \cdots < x_{n(P_1)} = c$ 与
+$\mathscr{P}_2:\ c = y_0 < y_1 < \cdots < y_{n(P_2)} = b$,
+那么 $\mathscr{P}_1 \cup \mathscr{P}_2$:
+$a = x_0 < \cdots < x_{n(P_1)} = y_0 < \cdots < y_{n(P_2)} = b$
+构成了 $[a, b]$ 的划分, 从而有
+$D(f, \mathscr{P}_1) + D(f, \mathscr{P}_2) = D(f, \mathscr{P}_1 \cup \mathscr{P}_2)
+\leqslant \bigvee_a^b (f)$; 对 $\mathscr{P}_1, \mathscr{P}_2$ 分别取上确界即得.
+
+\pause
+
+($\geqslant$) 另一方面, $\forall\, \varepsilon > 0$, $\exists\, [a, b]$ 的划分
+$\widehat{\mathscr{P}}:\ a = z_0 < z_1 < \cdots < z_k < z_{k+1} < \cdots < z_{n(\widehat{\mathscr{P}})} = b$,
+s.t.\ $D(f, \widehat{\mathscr{P}}) + \varepsilon > \bigvee_a^b (f)$.
+若 $\widehat{\mathscr{P}}$ 不含有 $c$, 那么设 $c \in (z_k, z_{k+1})$, 并令 $z_{k + \frac12} := c$,
+将 $\widehat{\mathscr{P}}$ 分割为 $[a, c]$ 的划分 $\widehat{\mathscr{P}}_1$ 与
+$[c, b]$ 的划分 $\widehat{\mathscr{P}}_2$. 由于 $|z_{k+1} - z_k| \leqslant |z_{k+1} - c| + |c - z_k|$, 所以
+\[
+D(f, \widehat{\mathscr{P}}_1) + D(f, \widehat{\mathscr{P}}_2)
+\geqslant D(f, \widehat{\mathscr{P}})
+> \bigvee_a^b (f) - \varepsilon ,
+\]
+即 $\bigvee_a^c (f) + \bigvee_c^b (f) \geqslant \bigvee_a^b (f) - \varepsilon$; 由 $\varepsilon$ 任意得结论.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Jordan 分解]{Jordan 分解定理}
+
+%------------------------------------------------
+
+\begin{frame}{Jordan 分解定理: 充分性}
+
+(有界变差函数与单调函数有密切的关系, 我们有如下的定理.)
+
+\begin{thm}[Jordan 分解]
+$[a, b]$ 上的函数 $f$ 是有界变差函数的\alert{充要条件}是 $f$ 可以表示为两个单调函数的差.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明: 充分性)
+($\Longleftarrow$) 单调函数显然是有界变差的 (设 $g$ 为 $[a, b]$ 上单调函数, 则
+$D(g, \mathscr{P}) = |g(b) - g(a)| < \infty$, $\forall$ 划分 $\mathscr{P}$ 成立).
+
+其次, 有界变差函数关于线性运算封闭: 例如设 $g_1, g_2$ 为 $[a, b]$ 上有界变差函数,
+令 $g = \alpha g_1 + \beta g_2$. 任取 $[a, b]$ 的划分 $\mathscr{P}$, 有
+\[
+D(g, \mathscr{P})
+\leqslant \sum_{k=1}^{n(\mathscr{P})} |\alpha| \cdot
+|g_1(x_k) - g_1(x_{k-1})|
++ \sum_{k=1}^{n(\mathscr{P})} |\beta| \cdot
+|g_2(x_k) - g_2(x_{k-1})|
+= |\alpha| \cdot D(g_1, \mathscr{P}) + |\beta| \cdot D(g_2, \mathscr{P}) .
+\]
+对 $\mathscr{P}$ 取 $\sup$ 有
+$\bigvee_a^b (g) \leqslant |\alpha| \cdot \bigvee_a^b (g_1) + |\beta| \cdot \bigvee_a^b (g_2) < \infty$,
+故 $g$ 也是有界变差函数.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Jordan 分解定理: 必要性}
+
+\startproof[bg=yellow, fg=red](证明: 必要性)
+($\Longrightarrow$) 有
+$f(x) = \pi(x) - \big( \pi(x) - f(x) \big)$, 记 $v(x) := \pi(x) - f(x)$.
+我们来证明 $\pi(x)$, $v(x)$ 都是单调 (增) 函数. 对于 $x_1 < x_2 \in [a, b]$, 由于
+\[
+\bigvee_a^{x_1} (f) + \bigvee_{x_1}^{x_2} (f) = \bigvee_a^{x_2} (f)
+\;\Longrightarrow\; \pi(x_2) \geqslant \pi(x_1) ;
+\]
+而对于 $v = \pi - f$, 有
+\[
+v(x_2) - v(x_1)
+= \bigvee_{x_1}^{x_2} (f) - \big( f(x_2) - f(x_1) \big) \geqslant 0 .
+\]
+于是 $f = \pi - v$ 就表示为了两个单增函数之差.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论与进一步的分解}
+
+\begin{cor}
+$[a, b]$ 上有界变差函数几乎处处可导, 且导函数可积.
+\end{cor}
+
+\begin{question}
+$\int_a^x f ~ \mathrm{d} m = \int_a^x f_+ ~ \mathrm{d} m - \int_a^x f_- ~ \mathrm{d} m$
+是有界变差函数, 反过来呢?
+\end{question}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 对于区间 $[a, b]$ 上有界变差函数 $f$ 的分解 $f = \pi - v$
+  (单增, 单增), 对单增函数 $\pi$ 与 $v$, 又有分解 (跳跃 $+$ 连续单增):
+\[
+\pi = S_\pi + \varphi_\pi,
+\qquad
+v = S_v + \varphi_v ,
+\]
+那么
+\[
+f = \big( S_\pi - S_v \big) - \big( \varphi_\pi - \varphi_v \big) :
+\quad
+\text{跳跃函数之差} + \text{连续有界变差函数之差} .
+\]
+这是有界变差函数的一种较简单的分解.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[绝对连续]{绝对连续函数}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 绝对连续}
+
+(我们再来回忆一下绝对连续函数的概念.)
+
+\begin{Def}[绝对连续]
+称区间 $[a, b]$ 上函数 $f$ 是\alert{绝对连续}的, 若 $\forall\, \varepsilon > 0$,
+$\exists\, \delta > 0$, 使得任意有限多互不相交的开区间
+$\{ (a_i, b_i) \}_{i=1}^n$, 只要
+\[
+\sum_{i=1}^{n} (b_i - a_i) < \delta ,
+\qquad
+\text{就必有}\quad
+\sum_{i=1}^{n} \big| f(b_i) - f(a_i) \big| < \varepsilon .
+\]
+其全体记为 $AC([a, b])$.
+\end{Def}
+
+\pause
+
+\begin{prop}
+$[a, b]$ 上定义的函数 $f$ 若是绝对连续的, 则其是有界变差的, 反之不成立
+(即 绝对连续 $\Longrightarrow$ 有界变差, 反之不然).
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$AC \Longrightarrow BV$ 的证明与反例}
+
+\startproof[bg=yellow, fg=red](性质的证明)
+令划分 $\mathscr{P}:\ a = x_0 < x_1 < \cdots < x_n = b$ 为 $[a, b]$ 的划分,
+使得 $\lambda(\mathscr{P}) < \delta$.
+那么 $\forall$ 区间 $[x_{i-1}, x_i]$ 及其划分(细分)
+$\mathscr{P}_i:\ x_{i-1} = y_1^{(i)} < \cdots < y_{n(i)}^{(i)} = x_i$, 有
+$D(f, \mathscr{P}_i) < \varepsilon$ (细分各段总长 $< \delta$).
+所以 $\bigvee_{x_{i-1}}^{x_i} (f) \leqslant \varepsilon$, 进而有
+\[
+\bigvee_a^b (f)
+= \bigvee_{x_0}^{x_1} (f) + \bigvee_{x_1}^{x_2} (f) + \cdots + \bigvee_{x_{n-1}}^{x_n} (f)
+< n \varepsilon .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{有界变差 $\neq\!\!\Rightarrow$ 绝对连续}的例子:
+  取 $[0, 1]$ 上的 Cantor 函数即可;
+\item \textbf{注}: 以上结论的条件中, 有限区间改为无限区间时, 上述结论不再成立.
+  例如 $f(x) = \cos x$, $x \in (-\infty, +\infty)$, $f$ 显然绝对连续, 但非有界变差;
+\graymode
+\item $\longrightarrow$ \alert{绝对连续是某种局部性性质, 有界变差是整体性质}
+  (local--global correspondence principle: 所有局部成立 $\Rightarrow$ 整体成立,
+  反之不然).
+\normalmode
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[NL 公式]{建立 Newton--Leibniz 公式}
+
+%------------------------------------------------
+
+\begin{frame}{定理: 绝对连续函数的原函数表示}
+
+下面, 可以建立牛莱公式了, 即
+\[
+L_{[a, b]} \;\xrightarrow{\ \int_a^x\ }\; AC([a, b]) .
+\]
+
+\begin{thm}
+$f \in AC([a, b])$
+$\Longleftrightarrow$
+$\exists\, g \in L_{[a, b]}$, s.t.\
+$f(x) = f(a) + \int_{[a, x]} g ~ \mathrm{d} m$ .
+\end{thm}
+
+\pause
+
+(为了证明这一结论, 我们需要两个引理.)
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理 1: $F \in AC$, $F' \sim 0$ $\Longrightarrow$ $F$ 为常数}
+
+\begin{lem}
+设 $F \in AC([a, b])$, $F' \sim 0$, 那么 $F$ 为常数.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明: Vitali 覆盖)
+令 $E = \{ x \in [a, b]:\ F'(x) = 0 \}$, 那么 $\forall\, \varepsilon > 0$ 以及
+$\forall\, x \in E$, $\exists\, \delta_1 = \delta_1(x, \varepsilon) > 0$, 使得
+$\forall\, 0 < h < \delta_1$, 有
+$\Big| \dfrac{F(x+h) - F(x)}{h} \Big| < \varepsilon$.
+又由于 $F \in AC([a, b])$, $F$ 因此 $\exists\, \delta_2 > 0$, 使得对有限多互不相交的开区间
+$\{ (a_i, b_i) \}_{i=1}^n$, 只要 $\sum_i (b_i - a_i) < \delta_2$,
+即有 $\sum_i |F(b_i) - F(a_i)| < \varepsilon$.
+
+\pause
+
+取 $\delta(x, \varepsilon) = \min \{ \delta_2, \delta_1(x, \varepsilon) \}$, 那么
+$\{ [x, x + h]:\ x \in E,\ 0 < h < \delta(x, \varepsilon) \}$ 构成 $E$ 的 Vitali 覆盖.
+由 Vitali 覆盖引理, 可从中选出有限个闭区间
+$\{ [x_i, x_i + h_i] \}_{i=1}^{k}$ (记 $d_i$), 使得
+$m^* \big( E \setminus \bigcup_{i=1}^{k} d_i \big) < \delta_2$.
+由于 $mE = b - a$ 及 $E \subset \big( E \setminus \bigcup_i d_i \big) \cup \big( \bigcup_i d_i \big)$,
+所以
+\[
+\sum_{i=1}^{k} m d_i
+\geqslant mE - m^* \Big( E \setminus \bigcup_{i=1}^{k} d_i \Big)
+= b - a - \delta_2 .
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理 1 的证明 (续): 分段估计}
+
+\startproof[bg=yellow, fg=red](引理 1 的证明 (续))
+不妨设 $x_1 < x_2 < \cdots < x_k$, 那么
+\[
+|F(b) - F(a)|
+\leqslant \underbrace{\big( \text{各间隙段上增量绝对值之和} \big)}_{=\ *_{\mathscr{P}}}
++ \underbrace{\sum_{i=1}^{k} \big| F(x_i + h_i) - F(x_i) \big|}_{=\ \Delta_F} ,
+\]
+其中间隙段 $(a, x_1),\ (x_1 + h_1, x_2),\ \dots,\ (x_k + h_k, b)$ 互不相交,
+总长 $< \delta_2$, 由绝对连续性, $*_{\mathscr{P}} < \varepsilon$; 而
+\[
+\Delta_F = \sum_{i=1}^{k} \big| F(x_i + h_i) - F(x_i) \big|
+\leqslant \sum_{i=1}^{k} \varepsilon \cdot h_i
+\leqslant \varepsilon \cdot (b - a) .
+\]
+所以 $|F(b) - F(a)| \leqslant \varepsilon + \varepsilon \cdot (b - a)$.
+由 $\varepsilon > 0$ 任意知 $|F(b) - F(a)| = 0$, 即 $F(b) = F(a)$.
+将 $b$ 换为 $x \in [a, b]$, 用同样方法可得 $F(x) = F(a)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理 2: 变上限积分的导函数}
+
+\begin{lem}
+设 $g \in L_{[a, b]}$, 令 $F(x) = C + \int_{[a, x]} g ~ \mathrm{d} m$,
+那么 $F \in AC([a, b])$, 且 $F' \sim g$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$ $F$ 的绝对连续性可由勒贝格积分的绝对连续性推出:
+\[
+\sum_{i=1}^{k} \big| F(b_i) - F(a_i) \big|
+= \sum_{i=1}^{k} \Big| \int_{[a_i, b_i]} g ~ \mathrm{d} m \Big|
+\leqslant \int_{\bigcup_i [a_i, b_i]} |g| ~ \mathrm{d} m .
+\]
+($F \in AC([a, b]) \Rightarrow F \in BV([a, b]) \Rightarrow F'$ 几乎处处有定义.) \quad
+$2^{\circ}$ 令 $f_h(x) = \frac1h \int_{[x, x+h]} g ~ \mathrm{d} m$,
+其有
+\[
+\lim_{h \to 0} \int_{[a, b]} |g - f_h| ~ \mathrm{d} m = 0 \cdots (\ast)
+\]
+那么可取 $h_n \to 0$ 使 $|g - f_{h_n}| \to 0$ a.e., 由 Fatou 引理,
+\[
+\int_a^b |g - f'| ~ \mathrm{d} m
+\leqslant \varliminf_{n \to \infty} \int_a^b |g - f_{h_n}| ~ \mathrm{d} m = 0 ,
+\]
+即有 $g \sim f'$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$(\ast)$ 的证明: 平均函数的 $L^1$ 收敛}
+
+\startproof[bg=yellow, fg=red]($(\ast)$ 的证明)
+不妨设 $h > 0$, 那么
+\[
+f_h(x) - g(x)
+= \frac1h \int_{[x, x+h]} g ~ \mathrm{d} m - g(x)
+\overset{\text{平移变量替换}}{=}
+\frac1h \int_{[0, h]} \big( g(x + t) - g(x) \big) ~ \mathrm{d} t ,
+\]
+所以 (被积对象非负, 用 Fubini/Tonelli 交换次序)
+\[
+\int_a^b |g - f_h| ~ \mathrm{d} m
+\leqslant \int_{-\infty}^{+\infty}
+\Big( \frac1h \int_0^h |g(x + t) - g(x)| ~ \mathrm{d} t \Big) \mathrm{d} x
+= \int_0^h \frac{\tau(t)}{h} ~ \mathrm{d} t ,
+\]
+其中 $\tau(t) := \int_{-\infty}^{+\infty} |g(x + t) - g(x)| ~ \mathrm{d} x
+\to 0$ (当 $t \to 0$, \alert{第四章习题 21}), 从而
+$\varlimsup_{h \to 0^+} \int_a^b |g - f_h| ~ \mathrm{d} m
+\leqslant \varlimsup_{h \to 0^+} \dfrac1h \int_0^h \tau(t) ~ \mathrm{d} t = 0$.
+$h < 0$ 情形同理.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[函数类链]{函数类的链与分解}
+
+%------------------------------------------------
+
+\begin{frame}{函数类链: $AC \subsetneq BV$, 奇异函数与三分解}
+
+\begin{itemize}
+\item \textbf{注}: 我们证明了
+\[
+\{ g\ \text{的原函数}:\ g \in L_{[a, b]} \} = AC([a, b])
+\;\subsetneq\;
+BV([a, b]) = \{ f_1 - f_2:\ f_1, f_2\ \text{单调(增)} \}
+\]
+(左边是 $\int: L_{[a, b]} \to \{[a, b]\ \text{上有限的函数}\}$ 的原函数像;
+``$\subsetneq$'' 由 Cantor 函数给出, 右边等号由 Jordan 分解给出),
+以上都是几乎处处可导的 (由单调函数几乎处处可导得);
+\item \textbf{引理 (别问)}: $BV([a, b]) \setminus AC([a, b])$ 中有\alert{奇异函数}:
+即 $r \in BV([a, b])$, $r' \sim 0$, 但 $r \neq \mathrm{const}$ (Cantor 函数即一例).
+\end{itemize}
+
+\pause
+
+于是, $\forall\, F \in BV([a, b])$, 有分解 (跳跃 $+$ 绝对连续 $+$ 奇异):
+\[
+f = \underbrace{s}_{\text{跳跃}} + \underbrace{\varphi}_{\text{绝对连续}} + \underbrace{r}_{\text{奇异}} ,
+\qquad
+\varphi(x) = \int_{[a, x]} (f - s)' ~ \mathrm{d} m,
+\quad
+r(x) = (f - s) - \varphi(x) .
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[交换图]{大交换图}
+
+%------------------------------------------------
+
+\begin{frame}{大交换图: $\int$ 与 $\widetilde{d}$}
+
+令 $L_0 = \{ f \in L_{[a, b]}:\ f \sim 0 \}$ ($= \ker \int$).
+
+\begin{center}
+\begin{tikzpicture}[scale = 0.92, every node/.style={font=\small}]
+\node (L0) at (0, 2.6) {$L_0$};
+\node (L) at (2.7, 2.6) {$L_{[a, b]}$};
+\node (Fin) at (7.6, 2.6) {$\{[a, b]\ \text{上有限的函数}\}$};
+\node (Quo) at (2.7, 0) {$L_{[a, b]}/L_0$};
+\node (AC) at (5.8, 0) {$AC([a, b])$};
+\node (L2) at (8.8, 0) {$L_{[a, b]}$};
+\node (Quo2) at (11.4, 0) {$L_{[a, b]}/L_0$};
+\draw[->] (L0) -- (L);
+\draw[->] (L) -- node[above] {$\int$} (Fin);
+\draw[->] (L) -- node[left] {$pr$} (Quo);
+\draw[->] (Quo) -- node[above] {$\int_{[a, x]}\ \cong$} (AC);
+\draw[->] (AC) -- node[above] {$\widetilde{d}$} (L2);
+\draw[->] (L2) -- node[above] {$pr$} (Quo2);
+\draw[->, dashed] (L) to [out = -35, in = 145] node[below] {$\int$} (AC);
+\end{tikzpicture}
+\end{center}
+
+\pause
+
+\begin{itemize}
+\item $pr \circ \widetilde{d} \circ \int_{[a, x]} = id:\ L_{[a, b]}/L_0 \longrightarrow L_{[a, b]}/L_0$;
+\item $\ker (pr \circ \widetilde{d}) \hookrightarrow BV([a, b])$;\quad
+$\ker (pr \circ \widetilde{d}) \cap AC([a, b]) = \{ 0 \}$;\quad
+$\ker (pr \circ \widetilde{d}) \setminus \{ 0 \}$: \alert{奇异函数}.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结}
+
+%------------------------------------------------
+
+\begin{frame}{小结: 本节结论链}
+
+\begin{itemize}
+\item \textbf{化归}: $F = \int_a^x f$ 是两个单增函数之差
+  $\Rightarrow$ 先研究单调函数 (跳跃分解: 增函数 $=$ 连续增 $+$ 跳跃);
+\item \textbf{列导数与 Vitali 覆盖引理}: 列导数 (广义可导);
+  Vitali 覆盖 $\to$ 互不相交选取 (至多可列 / 有限形式);
+\item \textbf{勒贝格定理}: 单调函数 a.e.\ 有有限导数
+  (技术引理 $m^* F(E) \leqslant \alpha \, m^* E$ $+$ $E_{p, q}$ 有理数分割);
+  且 $\int_{[a,b]} f' ~ \mathrm{d} m \leqslant f(b) - f(a)$
+  (延拓 $+$ Fatou $+$ Riemann 计算), ``$<$'' 可取到 (Cantor 函数);
+\item \textbf{BV 与 Jordan 分解}: 全变差 $\bigvee_a^b (f)$, 变上限全变差的可加性,
+  $f \in BV \iff$ 两单增函数之差 ($\pi - v$), 进一步分解出跳跃与连续部分;
+\item \textbf{绝对连续与 N--L 公式}: $AC \subsetneq BV$ (Cantor 函数);
+  $f \in AC \iff f(x) = f(a) + \int_{[a,x]} g ~ \mathrm{d} m$
+  (引理 1: $F' \sim 0 \Rightarrow$ 常数; 引理 2: 变上限积分 $\in AC$ 且导 $\sim g$,
+  用到\alert{习题 21});
+\item \textbf{函数类链与大交换图}: $AC \subsetneq BV$, 奇异函数, $f = s + \varphi + r$,
+  $pr \circ \widetilde{d} \circ \int = id$ (模零测集意义下微分与积分互逆).
+\end{itemize}
+
+\pause
+
+\begin{itemize}
+\item 展望: 下一节 \S 4.7 勒贝格--斯蒂尔切斯积分 (手稿未覆盖);
+  之后进入第五章 $L^p$ 空间.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第四章习题}
+\begin{itemize}
+\item \textbf{34.} 设 $\{ f_n \}$ 为 $[a, b]$ 上有界变差函数列, $f_n$ 收敛于一有限函数
+$f$ (当 $n \to \infty$), 且有 $\bigvee_a^b (f_n) \leqslant K$ ($K$ 为常数, $n \in \mathbb{N}$),
+证明 $f$ 也是有界变差函数.
+\item \textbf{35.} 若函数 $f$ 在 $[a, b]$ 上绝对连续, 且几乎处处存在非负导数,
+证明 $f$ 为增函数.
+\end{itemize}
+\end{block}
+
+\begin{block}{续}
+\begin{itemize}
+\item \textbf{37.} (题面见教材第四章习题 37)
+\item \textbf{38.} 证明 Vitali 引理对有有限测度的无界集成立.
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
