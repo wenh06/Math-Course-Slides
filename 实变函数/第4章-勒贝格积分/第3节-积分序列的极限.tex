@@ -24,111 +24,808 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 换序定理的谱系}
 
 %------------------------------------------------
 
-\begin{frame}{内容提要}
+\begin{frame}{引言: 积分与极限交换次序}
 
-{\larger[1]
-本节介绍关于积分序列极限的一些结论. 这些结论, 包括在 \S 4.1 中已提前介绍的 Levi 定理, 在 Lebesgue 积分理论中占中心地位.
-}
+本节研究 $\displaystyle \lim_n \int_E f_n ~ \mathrm{d} m \overset{?}{=} \int_E \lim_n f_n ~ \mathrm{d} m$ ---
+勒贝格积分理论的\alert{核心地位}所在:
+
+\begin{center}
+\begin{tabular}{ccc}
+\textbf{定理} & \textbf{条件} & \textbf{状态} \\[0.2em]
+Levi 定理 & 渐升非负, 点态收敛 & \S 4.1 已提前引入并使用 \\
+逐项积分 & 非负级数 & 本节 (Levi 的级数形式) \\
+Fatou 引理 & 非负列, 无单调性 & 本节 (弱形式, 与 Levi 等价) \\
+\alert{Lebesgue 控制收敛} & $|f_n| \leqslant g \in L_E$ & 本节 (最重要) \\
+Lebesgue--Vitali & 依测度收敛 $+$ 等度绝对连续 & 本节 (深化) \\
+\end{tabular}
+\end{center}
+
+\pause
+
+\begin{itemize}
+\item 对比 Riemann 积分: 交换次序通常要求\alert{一致收敛} ---
+  勒贝格积分只要求``被控制''这类点态条件, 优势尽显;
+\item 两大引擎不变: \S 4.1 Levi 定理 $+$ \S 4.2 (绝对连续性、线性性、唯一性).
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{逐项积分}
+\section[逐项积分]{逐项积分定理}
 
 %------------------------------------------------
 
-\begin{frame}{逐项积分定理}
+\begin{frame}{逐项积分定理 (非负级数)}
 
-\begin{thm}[逐项积分定理]
-设 $\{ u_n \}$ 是可测集 $E$ 上的非负可测函数列, $\displaystyle f = \sum_{n=1}^{\infty} u_n,$ 那么
+\begin{thm}[逐项积分]
+设 $\{u_n\}$ 是可测集 $E$ 上\alert{非负}可测函数列, $f = \sum_{n=1}^{\infty} u_n$, 那么
 \[
-\int_E f ~ \mathrm{d} m = \sum_{n=1}^{\infty} \int_E u_n ~ \mathrm{d} m.
+\int_E f ~ \mathrm{d} m = \sum_{n=1}^{\infty} \int_E u_n ~ \mathrm{d} m .
 \]
 \end{thm}
 
-\pause
-\vspace{1em}
-
-\startproof~
-令 $\displaystyle f_k = \sum_{n=1}^{k} u_n,$ 那么有 $E$ 上渐升非负可测函数列
+\startproof[bg=yellow, fg=red](证明)
+令 $f_k(x) = \sum_{n=1}^{k} u_n(x)$, 则 $\{f_k\}_{k \in \mathbb{N}}$ 构成 $E$ 上\alert{渐升}非负可测函数列, 且
 \[
-0 \leqslant f_1 \leqslant f_2 \leqslant \cdots \leqslant f_k \leqslant \cdots
+\lim_{k \to \infty} f_k(x) = \lim_{k} \sum_{n=1}^{k} u_n(x) = \sum_{n=1}^{\infty} u_n(x) = f(x) .
 \]
-并且有
+于是由 Levi 定理与积分的有限线性:
 \[
-\lim_{k\to\infty} f_k(x) = \lim_{k\to\infty} \sum_{n=1}^{k} u_n(x) = \sum_{n=1}^{\infty} u_n(x) = f(x).
+\int_E f ~ \mathrm{d} m
+= \int_E \lim_k f_k ~ \mathrm{d} m
+= \lim_k \int_E f_k ~ \mathrm{d} m
+= \lim_k \sum_{n=1}^{k} \int_E u_n ~ \mathrm{d} m
+= \sum_{n=1}^{\infty} \int_E u_n ~ \mathrm{d} m .
 \]
-
-\end{frame}
-
-
-\begin{frame}
-
-那么
-\begin{align*}
-\int_E f ~ \mathrm{d} m & = \int_E \sum_{n=1}^{\infty} u_n ~ \mathrm{d} m = \int_E \lim_{k\to\infty} f_k ~ \mathrm{d} m \xlongequal[\alert{\text{定理}}]{\alert{\text{Levi}}} \lim_{k\to\infty} \int_E f_k ~ \mathrm{d} m \\
-& = \lim_{k\to\infty} \int_E \sum_{n=1}^{k} u_n ~ \mathrm{d} m \xlongequal[\alert{\text{线性性}}]{\alert{\text{被积函数}}} \lim_{k\to\infty} \sum_{n=1}^{k} \int_E u_n ~ \mathrm{d} m \\
-& = \sum_{n=1}^{\infty} \int_E u_n ~ \mathrm{d} m
-\end{align*}
 \qed
 
-\begin{cor}[积分关于积分集合的可加性]
-设 $\{ E_k \}$ 是一列互不相交的可测集, $\displaystyle E = \bigcup_{k=1}^{\infty} E_k,$ $f \in L_E,$ 那么
-\[
-\int_E f ~ \mathrm{d} m = \sum_{k=1}^{\infty} \int_{E_k} f ~ \mathrm{d} m
-\]
-\end{cor}
+\pause
+
+\begin{itemize}
+\item 级数可逐项积分, 无需一致收敛 --- ``和的可积性''与``换序''同时免费获得.
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{Fatou 引理}
+\begin{frame}{逐项积分的推论与注记}
+
+\begin{cor}
+设 $\{E_n\}$ 是一列互不相交的可测集, $E = \bigcup_n E_n$, $f \in L_E$, 那么
+\[
+\int_E f ~ \mathrm{d} m = \sum_{n=1}^{\infty} \int_{E_n} f ~ \mathrm{d} m .
+\]
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+$f = f \cdot \sum_n \chi_{E_n} = \sum_n f \chi_{E_n}$ (不交并), 由逐项积分定理
+$\int_E f ~ \mathrm{d} m = \sum_n \int_E f \chi_{E_n} ~ \mathrm{d} m = \sum_n \int_{E_n} f ~ \mathrm{d} m$. \qed
+
+\pause
+
+\begin{itemize}
+\item \S 4.2 曾用``有限可加 $+$ 绝对连续''证明过它; 现在只是逐项积分的\alert{推论};
+\item 特征函数是桥梁: 积分问题 $\leftrightarrow$ 测度问题. 取 $f = 1$, 上式即\alert{测度的 $\sigma$-可加性}
+  ($\int_{E_n} 1 ~ \mathrm{d} m = m E_n$); 类似的还有本章习题 5;
+\graymode
+\item \textbf{非负性不可少} (反例): $E = (0,1)$, $u_n(x) = n x^{n-1} - (n+1) x^n$.
+  部分和 $= 1 - (k+1)x^k \to 1$, 故 $f \equiv 1$, $\int_E f ~ \mathrm{d} m = 1$;
+  但 $\int_E u_n ~ \mathrm{d} m = \big[ x^n - x^{n+1} \big]_0^1 = 0$
+  (Riemann 积分, $=$ Lebesgue 积分, \S 4.4), 故 $\sum_n \int_E u_n ~ \mathrm{d} m = 0 \neq 1$.
+\normalmode
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Fatou 引理]{Fatou 引理}
 
 %------------------------------------------------
 
 \begin{frame}{Fatou 引理}
 
+\begin{thm}[Fatou 引理]
+若 $\{f_n\}$ 是可测集 $E$ 上\alert{非负}可测函数列, 那么
+\[
+\int_E \varliminf_{n \to \infty} f_n ~ \mathrm{d} m
+\leqslant
+\varliminf_{n \to \infty} \int_E f_n ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $u_n(x) = \inf_{k \geqslant n} \{ f_k(x) \}$, 则 $\{u_n\}$ 构成\alert{渐升}的非负可测函数列
+(\S 3.1: $\inf$ 保可测), 且 $u_n \leqslant f_k\ (\forall k \geqslant n)$ 以及
+\[
+\lim_{n \to \infty} u_n(x) = \lim_{n} \inf_{k \geqslant n} \{ f_k(x) \} = \varliminf_{n \to \infty} f_n(x) .
+\]
+对 $\{u_n\}$ 应用 Levi 定理: $\displaystyle \int_E \varliminf_n f_n ~ \mathrm{d} m
+= \lim_n \int_E u_n ~ \mathrm{d} m$; 而由 $u_n \leqslant f_k\ (k \geqslant n)$,
+$\int_E u_n ~ \mathrm{d} m \leqslant \inf_{k \geqslant n} \int_E f_k ~ \mathrm{d} m$, 令 $n \to \infty$:
+\[
+\int_E \varliminf_{n \to \infty} f_n ~ \mathrm{d} m
+= \lim_n \int_E u_n ~ \mathrm{d} m
+\leqslant \lim_n \inf_{k \geqslant n} \int_E f_k ~ \mathrm{d} m
+= \varliminf_{n \to \infty} \int_E f_n ~ \mathrm{d} m .
+\]
+\qed
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{控制收敛定理}
+\begin{frame}{Fatou 引理的两个注记}
 
-%------------------------------------------------
+\begin{itemize}
+\item \textbf{注 (1)}: ``$<$''可以取到. $E = [0,1]$,
+\[
+f_n(x) =
+\begin{cases}
+n, & x \in (0, \tfrac{1}{n}), \\
+0, & x \in E \setminus (0, \tfrac{1}{n}) ,
+\end{cases}
+\qquad
+\varliminf_n f_n(x) = 0 ,\ \forall x \in E,
+\]
+则 $\int_E \varliminf_n f_n ~ \mathrm{d} m = 0 < 1 = \lim_n \int_E f_n ~ \mathrm{d} m$
+($\int_E f_n ~ \mathrm{d} m = n \cdot \tfrac1n = 1$).
 
-\begin{frame}{xxx}
+\pause
 
+\item \textbf{注 (2)}: 证明用了 Levi, 实际上二者\alert{等价} ---
+Fatou $\Rightarrow$ Levi: 设 $0 \leqslant f_1 \leqslant f_2 \leqslant \cdots$,
+$f = \lim_n f_n = \varliminf_n f_n$. 由 Fatou 引理
+\[
+\int_E f ~ \mathrm{d} m
+= \int_E \varliminf_n f_n ~ \mathrm{d} m
+\leqslant \varliminf_n \int_E f_n ~ \mathrm{d} m
+= \lim_n \int_E f_n ~ \mathrm{d} m ;
+\qquad \text{……\textcircled{1}}
+\]
+另一方面显然 $f \geqslant f_n \geqslant 0$, 由保序性 $\int_E f ~ \mathrm{d} m \geqslant \int_E f_n ~ \mathrm{d} m$,
+对 $n$ 取极限: $\int_E f ~ \mathrm{d} m \geqslant \lim_n \int_E f_n ~ \mathrm{d} m$. ……\textcircled{2}
+\end{itemize}
+
+\pause
+
+\begin{attnblock}
+由 \textcircled{1} \textcircled{2} 得 $\int_E f ~ \mathrm{d} m = \lim_n \int_E f_n ~ \mathrm{d} m$,
+即 Levi 定理 --- 两大基本定理互为等价.
+\end{attnblock}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{Lebesgue-Vitali 定理}
+\section[控制收敛]{Lebesgue 控制收敛定理}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{Lebesgue 控制收敛定理}
 
+\begin{thm}[控制收敛]
+设可测集 $E$ 上的可积函数列 $\{f_n\}_{n \in \mathbb{N}}$ 满足
+\begin{enumerate}
+\item $f_n(x)$ 的极限存在: $f(x) = \lim_{n \to \infty} f_n(x)$, a.e.\ 于 $E$;
+\item $\exists\, g \in L_E$, 使得 $|f_n(x)| \leqslant g(x)$, a.e.\ 于 $E$;
+\end{enumerate}
+那么 $f \in L_E$, 且有
+\[
+\int_E f ~ \mathrm{d} m = \lim_{n \to \infty} \int_E f_n ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item 条件 (1)(2) 可减弱为 a.e.\ 成立 (零测集上修正定义, 积分不变);
+\item 勒贝格控制收敛定理是\alert{最重要的}积分与极限交换次序的结果 ---
+  $|f| \leqslant g$ 这一条件比``渐升非负''更\alert{广泛}也更自然 (页边预告: 还蕴含一致收敛情形).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{控制收敛定理的证明: 两次 Fatou}
+
+\startproof[bg=yellow, fg=red](证明)
+先证 $f \in L_E$: 由 (1)(2), $|f| = \lim_n |f_n| \leqslant g$ a.e., 由 \S 4.1 控制可积性
+$|f| \in L_E \Rightarrow f \in L_E$.
+
+\pause
+
+\textbf{1\textdegree.} 由 $|f_n| \leqslant g$ 知 $g + f_n \geqslant 0$ 是非负可测函数列. 由 Fatou 引理,
+\[
+\varliminf_n \int_E (g + f_n) ~ \mathrm{d} m
+\geqslant \int_E \varliminf_n (g + f_n) ~ \mathrm{d} m
+= \int_E (g + \varliminf_n f_n) ~ \mathrm{d} m
+= \int_E g ~ \mathrm{d} m + \int_E f ~ \mathrm{d} m ,
+\]
+左端 $= \int_E g ~ \mathrm{d} m + \varliminf_n \int_E f_n ~ \mathrm{d} m$, 故
+\[
+\varliminf_{n \to \infty} \int_E f_n ~ \mathrm{d} m \geqslant \int_E f ~ \mathrm{d} m .
+\qquad \text{……\textcircled{1}}
+\]
+
+\pause
+
+\textbf{2\textdegree.} 同样 $g - f_n \geqslant 0$ 也是非负可测函数列. 由 Fatou 引理,
+\[
+\varliminf_n \int_E (g - f_n) ~ \mathrm{d} m
+\geqslant \int_E \varliminf_n (g - f_n) ~ \mathrm{d} m
+= \int_E (g - \varlimsup_n f_n) ~ \mathrm{d} m
+= \int_E g ~ \mathrm{d} m - \int_E f ~ \mathrm{d} m ,
+\]
+左端 $= \int_E g ~ \mathrm{d} m - \varlimsup_n \int_E f_n ~ \mathrm{d} m$, 故
+\[
+\varlimsup_{n \to \infty} \int_E f_n ~ \mathrm{d} m \leqslant \int_E f ~ \mathrm{d} m .
+\qquad \text{……\textcircled{2}}
+\]
+
+\pause
+
+由 \textcircled{1} \textcircled{2} 以及 $\varliminf \leqslant \varlimsup$:
+\[
+\int_E f ~ \mathrm{d} m
+= \varliminf_n \int_E f_n ~ \mathrm{d} m
+= \varlimsup_n \int_E f_n ~ \mathrm{d} m
+= \lim_{n \to \infty} \int_E f_n ~ \mathrm{d} m .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论: 有界收敛定理}
+
+\begin{cor}[有界收敛]
+设 $mE < \infty$, $E$ 上可测函数列 $\{f_n\}$ 满足 $|f_n(x)| \leqslant M$
+($\forall n \in \mathbb{N}, x \in E$), 且 $f(x) = \lim_n f_n(x)$, 那么 $f \in L_E$, 且有
+\[
+\int_E f ~ \mathrm{d} m = \lim_{n \to \infty} \int_E f_n ~ \mathrm{d} m .
+\]
+\end{cor}
+
+(取控制函数 $g \equiv M$: 由 $mE < \infty$ 知 $g \in L_E$.)
+
+\pause
+
+\begin{remark}[推广到连续参数]
+设 $\{f_\alpha\}_{\alpha \in I}$ 是可测函数族 ($I$ 具有连续统的势), 满足
+$|f_\alpha(x)| \leqslant g(x) \in L_E$, 设 $\alpha_0$ 是 $I$ 的一个聚点且
+$\lim_{\alpha \to \alpha_0} f_\alpha(x) = f(x)$, 那么 $f \in L_E$ 且
+$\int_E f ~ \mathrm{d} m = \lim_{\alpha \to \alpha_0} \int_E f_\alpha ~ \mathrm{d} m$.
+\emph{(Sketch: $\forall\, \alpha_n \to \alpha_0$, 对 $\{f_{\alpha_n}\}_{n \in \mathbb{N}}$
+应用控制收敛定理.)}
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注: ``控制''不可去 --- 尖峰反例}
+
+\begin{eg}
+$E = [-1, 1]$,
+\[
+f_n(x) =
+\begin{cases}
+n - n^2 |x|, & 0 < |x| < \tfrac1n, \\
+0, & \tfrac1n \leqslant |x| \leqslant 1 \ \text{或}\ x = 0 ,
+\end{cases}
+\qquad
+\int_E f_n ~ \mathrm{d} m = \frac12 \cdot \frac{2}{n} \cdot n = 1 .
+\]
+\begin{center}
+\begin{tikzpicture}[scale=0.62]
+\draw[->] (-1.3,0) -- (1.5,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,2.6) node[above] {$y$};
+\draw[dashed, domain=0.24:1.25, smooth] plot (\x, {0.25/\x});
+\draw[dashed, domain=-1.25:-0.24, smooth] plot (\x, {-0.25/\x});
+\draw[thick, themecolor] (-1,0) -- (0,1) -- (1,0);
+\draw[thick, themecolor] (-0.5,0) -- (0,2) -- (0.5,0);
+\node[right] at (0.72,0.62) {$|y| = \tfrac{1}{4|x|}$};
+\node[below] at (1.05,0) {\small $1$};
+\node[above right] at (0.03,1.95) {\small $f_2$};
+\node[above right] at (0.55,0.85) {\small $f_1$};
+\end{tikzpicture}
+\end{center}
+\end{eg}
+
+\pause
+
+\begin{itemize}
+\item 处处 $f_n(x) \to 0$ ($|x| > 0$ 时 $n > 1/|x|$ 后恒为 $0$; $x = 0$ 恒为 $0$),
+  但 $\lim_n \int_E f_n ~ \mathrm{d} m = 1 \neq 0 = \int_E \lim_n f_n ~ \mathrm{d} m$;
+\item 无控制的原因: $f_n(x) = -|x| \big( n - \tfrac{1}{2|x|} \big)^2 + \tfrac{1}{4|x|}$,
+  故 $0 < |x| \leqslant \tfrac14$ 时 $\sup_n f_n(x) \geqslant \tfrac{1}{4|x|} - |x| \geqslant \tfrac{1}{8|x|}$,
+  而 $\int_{-1/4}^{1/4} \tfrac{1}{8|x|} ~ \mathrm{d} x = \infty$ --- 任何控制函数不可积.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[应用]{控制收敛定理的应用}
+
+%------------------------------------------------
+
+\begin{frame}{应用一: 极限计算}
+
+\begin{eg}
+$E = (0, +\infty)$, 计算
+\[
+\lim_{n \to \infty} \int_E \Big( 1 + \frac{x}{n} \Big)^n e^{-2x} ~ \mathrm{d} m .
+\]
+\end{eg}
+
+\startproof[bg=yellow, fg=red](解)
+令 $f_n(x) = \big( 1 + \tfrac{x}{n} \big)^n e^{-2x}$. 由 $\big( 1 + \tfrac{x}{n} \big)^n \leqslant e^x$,
+\[
+|f_n(x)| \leqslant e^x \cdot e^{-2x} = e^{-x} =: g(x) \in L_E ,
+\]
+且 $f_n(x) \to e^x \cdot e^{-2x} = e^{-x}$ 点态. 由控制收敛定理,
+\[
+\lim_{n} \int_E \Big( 1 + \frac{x}{n} \Big)^n e^{-2x} ~ \mathrm{d} m
+= \int_E \lim_n \Big( 1 + \frac{x}{n} \Big)^n e^{-2x} ~ \mathrm{d} m
+= \int_E e^{-x} ~ \mathrm{d} x = \big[ -e^{-x} \big]_0^{+\infty} = 1 .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 套路: 找\alert{可积控制} $g$ + 算\alert{点态极限} ---
+  极限与积分换序的``两步走'', 是控制收敛定理的标准用法.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{应用二: Lebesgue 积分和}
+
+Riemann 积分: \alert{定义域}分割 $a = x_0 < x_1 < \cdots < x_{n(P)} = b$, 标志点 $\xi_k$,
+$\lambda(P) = \max_k \Delta x_k \to 0$,
+$\int_a^b f ~ \mathrm{d}x = \lim_{\lambda(P) \to 0} \sum_{k=1}^{n(P)} f(\xi_k) \Delta x_k$.
+
+\pause
+
+\begin{thm}[积分和]
+设 $f$ 是有界可测集 $E$ 上\alert{非负}可积函数. 任给\alert{值域}的划分
+\[
+P_n:\ 0 = y_0^{(n)} < y_1^{(n)} < \cdots < y_{b_n}^{(n)} < \infty,
+\quad y_{b_n}^{(n)} \to \infty,\quad
+\lambda_n := \max_i (y_i^{(n)} - y_{i-1}^{(n)}) \to 0 ,
+\]
+取水平集 $E_i^{(n)} = E\big( y_{i-1}^{(n)} \leqslant f < y_i^{(n)} \big)$ 与标志点
+$\xi_i^{(n)} \in E_i^{(n)}$, 令 $\varphi_n = \sum_{i=1}^{b_n} f(\xi_i^{(n)}) \chi_{E_i^{(n)}}$, 则
+\[
+\int_E f ~ \mathrm{d} m = \lim_{n \to \infty} \sum_{i=1}^{b_n} f\big( \xi_i^{(n)} \big)\, m E_i^{(n)} .
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item 区别在\alert{划分值域} --- 这正是第二章引入 Lebesgue 测度的动机的再现;
+\item 证: $x \in E_i^{(n)}$ 时 $|\varphi_n(x) - f(x)| < \lambda_n$, 故 $\varphi_n \to f$ 点态;
+  可设 $\lambda_n < 1$, 则 $\varphi_n < f + 1 \in L_E$, 由控制收敛定理即得.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{应用三: 积分号下求导}
+
+\begin{thm}[积分号下求导]
+设 $f(x, t)$ 定义在 $E \times (\alpha, \beta)$ 上, $\forall\, t \in (\alpha, \beta)$,
+$f(x, t) \in L_E$ (关于 $x$); $\forall\, x \in E$, $f(x, t)$ 关于 $t$ 处处可微.
+若存在 $F(x) \in L_E$, 使得
+\[
+\Big| \frac{\partial}{\partial t} f(x, t) \Big| \leqslant F(x),
+\qquad \forall\, (x, t) \in E \times (\alpha, \beta) ,
+\]
+那么有
+\[
+\frac{d}{dt} \int_E f(x, t) ~ \mathrm{d}x
+= \int_E \frac{\partial}{\partial t} f(x, t) ~ \mathrm{d}x .
+\]
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+由积分的线性,
+\[
+\frac{d}{dt} \int_E f(x, t) ~ \mathrm{d}x
+= \lim_{h \to 0} \int_E \frac{f(x, t+h) - f(x, t)}{h} ~ \mathrm{d}x
+\overset{\text{中值定理}}{=}
+\lim_{h \to 0} \int_E \frac{\partial}{\partial t} f\big( x, t + \theta(h) h \big) ~ \mathrm{d}x
+\quad (0 \leqslant \theta(h) \leqslant 1) .
+\]
+
+\pause
+
+令 $g_h(x) = \frac{\partial}{\partial t} f(x, t + \theta(h) h)$: 它可测 (差商的极限), 且
+$|g_h(x)| \leqslant F(x)$, $g_h(x) \to \frac{\partial}{\partial t} f(x, t)$ ($h \to 0$).
+由连续参数型控制收敛定理:
+\[
+\frac{d}{dt} \int_E f(x, t) ~ \mathrm{d}x
+= \lim_{h \to 0} \int_E g_h(x) ~ \mathrm{d}x
+= \int_E \lim_{h \to 0} g_h(x) ~ \mathrm{d}x
+= \int_E \frac{\partial}{\partial t} f(x, t) ~ \mathrm{d}x .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[绝对收敛]{级数的逐项积分: 一般可积函数列}
+
+%------------------------------------------------
+
+\begin{frame}{级数的逐项积分 (一般情形)}
+
+\begin{thm}[逐项积分]
+设 $\{f_n\}$ 为 $E$ 上可积函数列, 若
+$\displaystyle \sum_{n=1}^{\infty} \int_E |f_n| ~ \mathrm{d} m < \infty$
+(\alert{绝对收敛}条件), 则 $\sum_{n=1}^{\infty} f_n(x)$ 在 $E$ 上几乎处处收敛. 记
+$f(x) = \sum_{n=1}^{\infty} f_n(x)$, 那么 $f \in L_E$, 且有
+\[
+\int_E f ~ \mathrm{d} m = \sum_{n=1}^{\infty} \int_E f_n ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\pause
+
+\begin{remark}
+之前的逐项积分定理是对\alert{非负可测}函数列的; 这里是对\alert{一般可积}函数列的,
+但要附加绝对收敛条件.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一般逐项积分的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $F(x) = \sum_{n=1}^{\infty} |f_n(x)|$ (非负可测). 由非负函数列的逐项积分定理,
+\[
+\int_E F ~ \mathrm{d} m = \sum_{n=1}^{\infty} \int_E |f_n| ~ \mathrm{d} m < \infty,
+\]
+即 $F \in L_E$, 故 $F(x)$ 在 $E$ 上几乎处处有限
+$\Longrightarrow \sum_n f_n(x)$ 几乎处处\alert{绝对收敛}, 记 $f(x) = \sum_n f_n(x)$ (a.e.),
+且 $|f(x)| \leqslant F(x)$ a.e., 故 $f \in L_E$.
+
+\pause
+
+令 $g_k(x) = \sum_{n=1}^{k} f_n(x)$ 为部分和函数列, 则 $g_k \to f$ a.e., 且
+\[
+|g_k(x)| = \Big| \sum_{n=1}^{k} f_n(x) \Big|
+\leqslant \sum_{n=1}^{\infty} |f_n(x)| = F(x) .
+\]
+由\alert{控制收敛定理},
+\[
+\int_E f ~ \mathrm{d} m
+= \int_E \lim_k g_k ~ \mathrm{d} m
+= \lim_k \int_E g_k ~ \mathrm{d} m
+= \lim_k \sum_{n=1}^{k} \int_E f_n ~ \mathrm{d} m
+= \sum_{n=1}^{\infty} \int_E f_n ~ \mathrm{d} m .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[等度积分]{等度绝对连续积分}
+
+%------------------------------------------------
+
+\begin{frame}{本节最后: 更深刻的收敛定理}
+
+本节最后, 我们建立关于积分列\alert{更深刻}的收敛定理 (去掉``控制函数''). 为此, 把 \S 4.2
+单个可积函数的绝对连续性``一致化''到整个函数族:
+
+\begin{Def}[等度绝对连续积分]
+设 ($mE < \infty$) $E$ 可测, $\{f_\alpha\}_{\alpha \in I}$ 为 $E$ 上可积函数族.
+若 $\forall\, \varepsilon > 0$, $\exists\, \delta > 0$, 使得 $\forall\, A \subset E$,
+当 $mA < \delta$ 时不等式
+\[
+\int_A |f_\alpha| ~ \mathrm{d} m < \varepsilon
+\]
+关于 $\alpha$ \alert{一致成立} (即 $\delta$ 的选取只与 $\varepsilon$ 有关, 与 $\alpha$ 无关),
+则称函数族 $\{f_\alpha\}_{\alpha \in I}$ 有\alert{等度的绝对连续积分}.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 单个函数: \S 4.2 绝对连续性 ($\delta$ 可依赖该函数); 族: $\delta$ 必须统一 ---
+  ``等度''= uniformly;
+\item 单调列 $\subset$ 控制列 $\subset$ 等度绝对连续列 --- 逐步放宽对``列''的要求.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理: 依测度收敛 $+$ 等度绝对连续 $\Rightarrow$ 可积}
+
+\begin{lem}
+设 $mE < \infty$, $\{f_n\}$ 是 $E$ 上可积函数列, 且\alert{依测度}收敛于 $f$, 那么当
+$\{f_n\}$ 在 $E$ 上有等度的绝对连续积分时, $f \in L_E$.
+\end{lem}
+
+\begin{remark}
+依测度收敛\alert{弱于}几乎处处收敛, 故加上了``一致性''条件 (等度绝对连续积分),
+但也\alert{去掉了控制函数}这一条件; 结论也减弱为 $f \in L_E$ --- 没有积分与极限交换次序的结论.
+\end{remark}
+
+\startproof[bg=yellow, fg=red](证明)
+由等度绝对连续性, $\forall\, \varepsilon > 0$, $\exists\, \delta(\varepsilon) > 0$,
+$\forall\, A \subset E$, $mA < \delta(\varepsilon)$ 时 $\int_A |f_n| ~ \mathrm{d} m < \varepsilon$
+对\alert{所有} $n$ 成立.
+
+\pause
+
+由 Riesz 定理 (\S 3.2), 依测度收敛列存在子列 $\{f_{n_k}\}$ a.e.\ 收敛于 $f$.
+$\{f_{n_k}\}$ 仍依测度收敛, 故为依测度基本列:
+$\lim_{i, j \to \infty} mE\big( |f_{n_i} - f_{n_j}| \geqslant \varepsilon \big) = 0$.
+于是存在 $N(\varepsilon)$, 使得 $i, j > N(\varepsilon)$ 时,
+$A = E\big( |f_{n_i} - f_{n_j}| \geqslant \varepsilon \big)$ 满足 $mA < \delta(\varepsilon)$. 按
+$E(|f_{n_i} - f_{n_j}| < \varepsilon)$ 与 $A$ 分割:
+\[
+\int_E |f_{n_i} - f_{n_j}| ~ \mathrm{d} m
+\leqslant \int_E \varepsilon ~ \mathrm{d} m
++ \int_A |f_{n_i}| ~ \mathrm{d} m
++ \int_A |f_{n_j}| ~ \mathrm{d} m
+\leqslant \varepsilon \cdot mE + \varepsilon + \varepsilon
+= (mE + 2)\, \varepsilon .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理证明 (续): Fatou 收尾}
+
+\startproof[bg=yellow, fg=red](证明续)
+故 $\big\{ \int_E |f_{n_k}| ~ \mathrm{d} m \big\}_{k \in \mathbb{N}}$ 是 $\mathbb{R}$ 中的
+\alert{基本列} (Cauchy 列), 极限存在有限. 对 $\{|f_{n_k}|\}$ 应用 Fatou 引理:
+\[
+\int_E |f| ~ \mathrm{d} m
+= \int_E \varliminf_k |f_{n_k}| ~ \mathrm{d} m
+\leqslant \varliminf_k \int_E |f_{n_k}| ~ \mathrm{d} m
+< \infty
+\ \Longrightarrow\ |f| \in L_E \Longrightarrow f \in L_E .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Vitali]{Lebesgue--Vitali 定理}
+
+%------------------------------------------------
+
+\begin{frame}{Lebesgue--Vitali 定理}
+
+\begin{thm}[Lebesgue--Vitali]
+设 $mE < \infty$, $E$ 上可积函数列 $\{f_n\}$ \alert{依测度}收敛于 $f$, 那么
+\[
+\lim_{n \to \infty} \int_E |f_n - f| ~ \mathrm{d} m = 0
+\quad \Longleftrightarrow \quad
+\{f_n\}\ \text{在}\ E\ \text{上有等度的绝对连续积分} .
+\]
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明 ``$\Leftarrow$'')
+由引理, $f \in L_E$. 由依测度收敛, $\forall\, \varepsilon > 0$, $\exists\, N(\varepsilon)$,
+$\forall\, n > N(\varepsilon)$:
+$A = E(|f_n - f| \geqslant \varepsilon)$ 满足 $mA < \delta(\varepsilon)$ (等度性). 于是
+\[
+\int_E |f_n - f| ~ \mathrm{d} m
+= \int_{E(|f_n - f| < \varepsilon)} |f_n - f| ~ \mathrm{d} m
++ \int_A |f_n - f| ~ \mathrm{d} m
+\leqslant \varepsilon \cdot mE + \varepsilon + \varepsilon
+= (mE + 2)\, \varepsilon ,
+\]
+(末项 $\int_A |f| ~ \mathrm{d} m \leqslant \varepsilon$ 用 $f \in L_E$ 的绝对连续性).
+故 $\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Lebesgue--Vitali 定理证明 (续)}
+
+\startproof[bg=yellow, fg=red](证明 ``$\Rightarrow$'' 续)
+设 $\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$. 先看 $f$: 取定一个 $n$,
+$\int_E |f| ~ \mathrm{d} m \leqslant \int_E |f_n - f| ~ \mathrm{d} m + \int_E |f_n| ~ \mathrm{d} m < \infty$,
+即 $f \in L_E$, 从而 $|f|$ 的积分绝对连续: $\forall\, \varepsilon > 0$, $\exists\, \delta_0(\varepsilon)$,
+$mA < \delta_0(\varepsilon) \Rightarrow \int_A |f| ~ \mathrm{d} m < \varepsilon$.
+
+\pause
+
+考察 $\int_A |f_n| ~ \mathrm{d} m \leqslant \int_A |f_n - f| ~ \mathrm{d} m + \int_A |f| ~ \mathrm{d} m$:
+\begin{itemize}
+\item 当 $n > N(\varepsilon)$ 时
+  ($\int_E |f_n - f| ~ \mathrm{d} m < \varepsilon$):
+  $\int_A |f_n| ~ \mathrm{d} m \leqslant \int_E |f_n - f| ~ \mathrm{d} m + \varepsilon \leqslant 2\varepsilon$;
+\pause
+\item 对 $n = 1, 2, \cdots, N(\varepsilon)$ (有限个), 由 $|f_n - f| \in L_E$ 的绝对连续性, 分别存在
+  $\delta_1(\varepsilon), \cdots, \delta_{N(\varepsilon)}(\varepsilon)$, 使
+  $mA < \delta_n(\varepsilon) \Rightarrow \int_A |f_n - f| ~ \mathrm{d} m < \varepsilon$
+  $\Rightarrow \int_A |f_n| ~ \mathrm{d} m \leqslant 2\varepsilon$.
+\end{itemize}
+
+\pause
+
+取
+\[
+\delta(\varepsilon) = \min \big\{ \delta_0(\varepsilon), \delta_1(\varepsilon), \cdots,
+\delta_{N(\varepsilon)}(\varepsilon) \big\} ,
+\]
+则 $\forall\, A \subset E$, $mA < \delta(\varepsilon)$ 时, $\int_A |f_n| ~ \mathrm{d} m \leqslant 2\varepsilon$
+对\alert{一切} $n$ 成立, 即 $\{f_n\}_{n \in \mathbb{N}}$ 具有等度的绝对连续积分. \qed
+
+\pause
+
+\begin{attnblock}
+注: ``$\Rightarrow$''部分不要求 $mE < \infty$; 但 ``$\Leftarrow$''部分以及之前的引理需要 $mE < \infty$,
+否则有反例 (下一页).
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反例: $mE = \infty$ 时结论失效}
+
+\graymode
+
+\begin{eg}
+$E = (0, \infty)$, $f_n = \dfrac{1}{n} \chi_{(0, n)}$, $f = 0$.
+\end{eg}
+
+\begin{enumerate}
+\item \textbf{依测度收敛}: $\forall\, \varepsilon > 0$, 取 $N = \lfloor \tfrac1\varepsilon \rfloor + 1$,
+  则 $n > N$ 时 $f_n(x) \leqslant \tfrac1n < \varepsilon$ 处处成立, 即
+  $E(|f_n - f| \geqslant \varepsilon) = \emptyset$,
+  $\lim_n mE(|f_n - f| \geqslant \varepsilon) = 0$;
+\item \textbf{等度绝对连续}: $|f_n| \leqslant 1$ 且 $\forall\, \varepsilon > 0$ 取 $\delta = \varepsilon$:
+  $mA < \delta$ 时 $\int_A |f_n| ~ \mathrm{d} m \leqslant \int_A ~ \mathrm{d} m = mA < \varepsilon$;
+\item \textbf{但}: $\int_E f ~ \mathrm{d} m = 0$,
+  而 $\int_E f_n ~ \mathrm{d} m = \tfrac1n \cdot n = 1 \not\to 0$ ---
+  ``$\Leftarrow$''在 $mE = \infty$ 时失效.
+\end{enumerate}
+
+\pause
+
+\begin{itemize}
+\item 引理的反例: 取 $f_n = \sum_{k=0}^{n} \frac{1}{k+1} \chi_{[k, k+1)}$
+  (等度绝对连续 $+$ 依测度收敛, 但极限函数 $f = \sum_{k \geqslant 0} \frac{\chi_{[k,k+1)}}{k+1} \notin L_E$).
+\item 批注: 课本上相应例题不清晰, 这里采用上述构造.
+\end{itemize}
+
+\normalmode
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论: 依测度收敛型控制收敛定理}
+
+\begin{cor}[依测度型控制收敛]
+设可测集 $E$ 上可测函数列 $\{f_n\}_{n \in \mathbb{N}}$ 满足
+\begin{enumerate}
+\item $\{f_n\}_{n \in \mathbb{N}}$ \alert{依测度}收敛于可测函数 $f$;
+\item $\exists\, g \in L_E$, 使得 $|f_n(x)| \leqslant g(x)$, a.e.\ $x \in E$;
+\end{enumerate}
+那么 $f \in L_E$, 且有 $\displaystyle \int_E f ~ \mathrm{d} m = \lim_{n \to \infty} \int_E f_n ~ \mathrm{d} m$.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明 1\textdegree: $mE < \infty$)
+由 $|f_n| \leqslant g$ 及 $g$ 的积分绝对连续性: $\exists\, \delta(\varepsilon)$,
+$mA < \delta$ 时 $\int_A |f_n| ~ \mathrm{d} m \leqslant \int_A g ~ \mathrm{d} m < \varepsilon$
+($\forall n$) --- $\{f_n\}$ 有等度绝对连续积分. 由 Lebesgue--Vitali 定理:
+\[
+\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0 .
+\qquad \text{……(*)}
+\]
+由 $(*)$: $\int_E |f| ~ \mathrm{d} m \leqslant \int_E |f_n - f| ~ \mathrm{d} m + \int_E |f_n| ~ \mathrm{d} m$
+取 $n$ 充分大即有限, 故 $f \in L_E$; 且
+$|\int_E f ~ \mathrm{d} m - \int_E f_n ~ \mathrm{d} m| \leqslant \int_E |f_n - f| ~ \mathrm{d} m \to 0$,
+即 $\int_E f ~ \mathrm{d} m = \lim_n \int_E f_n ~ \mathrm{d} m$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{依测度型控制收敛: 无穷测度的情形}
+
+\startproof[bg=yellow, fg=red](证明 2\textdegree 续: $mE = \infty$)
+由 $g \in L_E$, $\forall\, \varepsilon > 0$, $\exists\, X \in \mathbb{R}_+$, 使得
+$\alpha > X$ 时 $\int_{E \setminus (-\alpha, \alpha)} g ~ \mathrm{d} m < \varepsilon$.
+于是 (截断, $\alpha$ 只与 $\varepsilon$ 有关、与 $n$ 无关):
+\[
+\int_E |f_n - f| ~ \mathrm{d} m
+= \Big( \int_{E \setminus (-\alpha, \alpha)} + \int_{(-\alpha, \alpha) \cap E} \Big) |f_n - f| ~ \mathrm{d} m
+\leqslant \int_{E \setminus (-\alpha, \alpha)} 2 g ~ \mathrm{d} m
++ \int_{(-\alpha, \alpha) \cap E} |f_n - f| ~ \mathrm{d} m ,
+\]
+(其中 $|f_n|, |f| < g$ a.e.) 第一项 $\leqslant 2\varepsilon$; 第二项由 1\textdegree
+(在有限测度集 $(-\alpha, \alpha) \cap E$ 上) 当 $n \to \infty$ 时 $\to 0$. 故
+\[
+\varlimsup_n \int_E |f_n - f| ~ \mathrm{d} m \leqslant 2\varepsilon
+\ \xrightarrow{\varepsilon \to 0}\
+\lim_{n \to \infty} \int_E |f_n - f| ~ \mathrm{d} m = 0 ,
+\]
+再由前一页的论证 ($\int_E |f| \leqslant \int_E |f_n - f| + \int_E |f_n|$,
+$|\int_E f - \int_E f_n| \leqslant \int_E |f_n - f|$) 得
+$f \in L_E$ 且 $\int_E f ~ \mathrm{d} m = \lim_n \int_E f_n ~ \mathrm{d} m$. \qed
+
+\pause
+
+\begin{attnblock}
+注: 实际上, (点态) 控制收敛定理的证明给出的是\alert{更强}的结论
+$\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$ ---
+即 $\{f_n\}$ 在 $E$ 上\alert{依 $L^1$ 意义}收敛于 $f$ (第五章的主角).
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结与展望}
+
+%------------------------------------------------
+
+\begin{frame}{小结与展望}
+
+\begin{itemize}
+\item \textbf{换序谱系}: 逐项积分 (非负级数) $\to$ Fatou ($\varliminf$ 弱形式, 与 Levi 等价)
+  $\to$ \alert{控制收敛} ($|f_n| \leqslant g \in L_E$, 最重要) $\to$ 有界收敛 ($mE < \infty$);
+  条件逐步放宽: 渐升 $\Rightarrow$ 控制 $\Rightarrow$ 等度绝对连续 $+$ 依测度;
+\pause
+\item \textbf{三个应用}: 极限计算 (找控制 $+$ 算点态极限); Lebesgue 积分和 (划分\alert{值域},
+  呼应测度动机); 积分号下求导 (中值定理 $+$ 连续参数型);
+\pause
+\item \textbf{级数版}: $\sum_n \int_E |f_n| ~ \mathrm{d} m < \infty \Rightarrow$
+  逐项积分 (绝对收敛换非负性);
+\pause
+\item \textbf{深化}: 等度绝对连续积分 (一致化 \S 4.2); Lebesgue--Vitali:
+  依测度收敛下 $L^1$ 收敛 $\iff$ 等度绝对连续 ($mE < \infty$);
+  依测度型控制收敛 ($mE = \infty$ 用截断);
+\pause
+\item \textbf{注}: (点态) 控制收敛实际证明了 $L^1$ 收敛 ---
+  $\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$, 为第五章 $L^p$ 空间埋下伏笔;
+\pause
+\item \textbf{展望}: \S 4.4 Riemann 积分与 Lebesgue 积分的比较 ---
+  $L$ 积分是 $R$ 积分的推广 (Lebesgue 判别法), 布置作业: 第四章 21, 23, 25, 26.
+\end{itemize}
 
 \end{frame}
 
