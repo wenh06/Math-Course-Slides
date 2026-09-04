@@ -10,7 +10,7 @@
 \title[第四章\\
 勒贝格积分]{\texorpdfstring{\LARGE \bfseries 第四章\quad 勒贝格积分}{第四章 勒贝格积分}} % The short title appears at the bottom of every slide, the full title is only on the title page
 \author[\S 4.5\\
-乘积测度与傅比尼定理] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+乘积测度与傅比尼] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
 {\Large \bfseries \S 4.5 乘积测度与傅比尼定理}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date can be changed to a custom date
@@ -24,37 +24,381 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 从测度到重积分}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{引言: 重积分与累次积分}
 
+本节目标: 建立\alert{重积分}与\alert{累次积分}的关系. 先看``测度的关系'' ---
+两个空间各带自己的环, 拼在一起后该带什么?
 
+\begin{center}
+$X,\ Y \;\xrightarrow{\ \text{直积}\ }\; X \times Y$
+\qquad\qquad
+$\mathscr{R},\ \mathscr{S} \;\xrightarrow{\;?\;}\;
+A_i \times B_j \;\rightsquigarrow\; \bigcup_{i,j} A_i \times B_j$
+\end{center}
+
+\pause
+
+\begin{attnblock}[选学说明]
+本节为\alert{选学内容}, 按手稿以概要方式呈现: 定义与定理完整,
+详细证明从略 (手稿仅 3 页; 函数截口可测性留作习题, 乘积测度构造引理的证明略去).
+\end{attnblock}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section[乘积环]{可测矩形生成的环}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{可测矩形生成的环}
 
+\begin{thm}
+设 $\mathscr{R},\ \mathscr{S}$ 分别为集合 $X,\ Y$ 的子集所成的环, 令
+\[
+\mathscr{T} = \Big\{ \bigcup_{i,j} A_i \times B_j:\ \text{有限并且互不相交},\
+A_i \in \mathscr{R},\ B_j \in \mathscr{S} \Big\} ,
+\]
+那么 $\mathscr{T}$ 为一个环.
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item \textbf{Hint}: 验证 $\mathscr{T}$ 关于集合的\alert{差}与 (有限) \alert{并}的运算封闭;
+\item \textbf{注}: $\mathscr{T}$ 包含了 $\{ A \times B:\ A \in \mathscr{R},\ B \in \mathscr{S} \}$
+  生成的环, 用 $\mathscr{R} \times \mathscr{S}$ 表示 ---
+  即``可测矩形''$A \times B$ 的有限不交并是下一步张成 $\sigma$ 环的原材料.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[可测空间]{可测空间与笛卡儿积}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 可测空间·测度空间·笛卡儿积}
+
+\begin{Def}
+\textbf{(1)} 设 $X$ 为基本集, $\mathscr{R}$ 为 $X$ 上的一个 $\sigma$ 环, 且
+$\bigcup_{A \in \mathscr{R}} A = X$ (全体可测集覆盖 $X$), 则称 $(X, \mathscr{R})$ 为一个
+\alert{可测空间}, $\mathscr{R}$ 中元素称为可测集;
+
+\pause
+
+\textbf{(2)} 对可测空间 $(X, \mathscr{R})$, 设 $\mu$ 为 $\sigma$ 环
+$\mathscr{R}$ 上的一个测度, 则称 $(X, \mathscr{R}, \mu)$ 为一个\alert{测度空间};
+
+\pause
+
+\textbf{(3)} 设 $(X, \mathscr{R})$, $(Y, \mathscr{S})$ 为两个可测空间,
+$\mathscr{R} \times \mathscr{S}$ 为 $\{ A \times B:\ A \in \mathscr{R},\ B \in \mathscr{S} \}$
+生成的 $\sigma$ 环, 则称 $(X \times Y,\ \mathscr{R} \times \mathscr{S})$ 为这两个可测空间的
+\alert{笛卡儿积}, 它也是一个可测空间.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item (3) 的验证: 只需证 $\bigcup_{T \in \mathscr{R} \times \mathscr{S}} T = X \times Y$.
+  $\forall\, z = (x, y) \in X \times Y$: 由可测性 $\exists\, A \in \mathscr{R},\ B \in \mathscr{S}$,
+  $x \in A$, $y \in B$, 从而 $z \in A \times B \in \mathscr{R} \times \mathscr{S}$;
+  反过来的包含关系显然.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[截口]{截口}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 集合与函数的截口}
+
+\begin{Def}
+设 $(X, \mathscr{R})$, $(Y, \mathscr{S})$ 为可测空间, $E \subset X \times Y$ 为子集.
+设 $x \in X$, $y \in Y$, 分别称
+\[
+E_x := \{ y \in Y:\ (x, y) \in E \},
+\qquad
+E^y := \{ x \in X:\ (x, y) \in E \}
+\]
+为 $E$ 的 \alert{$x$ 截口} (section) 与 \alert{$y$ 截口}.
+\end{Def}
+
+\pause
+
+\begin{Def}
+设 $f(x, y)$ 为定义在 $E \subset X \times Y$ 上的函数,
+\[
+f_x(y) := f(x, y) \quad (\text{$f$ 的 $x$ 截口}),
+\qquad
+f^y(x) := f(x, y) \quad (\text{$f$ 的 $y$ 截口}) .
+\]
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 直观: 截口就是\alert{固定一个变量}后得到的``低一维''对象;
+  重积分与累次积分的换序问题, 正是``整体对象''与``逐层截口''之间的关系.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[截口可测]{定理: 截口皆可测}
+
+%------------------------------------------------
+
+\begin{frame}{定理: 截口皆可测}
+
+\begin{thm}
+\textbf{(1)} 乘积空间的可测集的每个截口都可测; \quad
+\textbf{(2)} 乘积空间上可测函数的每个截口都可测.
+\end{thm}
+
+\begin{itemize}
+\item \textbf{注}: 这里的``集合可测'', 指的是\alert{属于本空间定向的 $\sigma$ 环}:
+  $E_x \in \mathscr{S}$ (属于 $Y$), $E^y \in \mathscr{R}$ (属于 $X$).
+\end{itemize}
+
+\pause
+
+\startproof[bg=yellow, fg=red]((1) 的证明: 思路)
+考虑类
+$\mathcal{E} = \big\{ E \subset X \times Y:\ E_x \in \mathscr{S},\ E^y \in \mathscr{R},\ \forall\, x \in X,\ y \in Y \big\}$.
+所有可测矩形 $\Delta := A \times B$ ($A \in \mathscr{R}$, $B \in \mathscr{S}$) 都属于 $\mathcal{E}$:
+\[
+\Delta_x =
+\begin{cases}
+B, & x \in A, \\
+\varnothing, & x \notin A ;
+\end{cases}
+\qquad
+\Delta^y =
+\begin{cases}
+A, & y \in B, \\
+\varnothing, & y \notin B .
+\end{cases}
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 剩下只须说明 $\mathcal{E}$ 是 $\sigma$ 环 (下页), 便有
+  $\mathscr{R} \times \mathscr{S} \subset \mathcal{E}$;
+\item \textbf{(2) 的证明留给同学们} (习题).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(1) 的证明 (续): $\mathcal{E}$ 是 $\sigma$ 环}
+
+\startproof[bg=yellow, fg=red]((1) 的证明 (续))
+$1^{\circ}$ (对差封闭) $\forall\, E_1, E_2 \in \mathcal{E}$, 有
+\[
+(E_1 \setminus E_2)_x
+= \{ y \in Y:\ (x, y) \in E_1 \setminus E_2 \}
+= (E_1)_x \setminus (E_2)_x
+\in \mathscr{S} ,
+\]
+类似有 $(E_1 \setminus E_2)^y = (E_1)^y \setminus (E_2)^y \in \mathscr{R}$;
+
+\pause
+
+$2^{\circ}$ (对可数并封闭) 设 $E_1, \dots, E_n, \dots \in \mathcal{E}$, 那么
+\[
+\Big( \bigcup_n E_n \Big)_x
+= \{ y \in Y:\ (x, y) \in \bigcup_n E_n \}
+= \bigcup_n \{ y \in Y:\ (x, y) \in E_n \}
+= \bigcup_n (E_n)_x
+\in \mathscr{S} ,
+\]
+类似有 $\big( \bigcup_n E_n \big)^y = \bigcup_n (E_n)^y \in \mathscr{R}$.
+
+\pause
+
+故 $\mathcal{E}$ 是 $\sigma$ 环, 且包含全部可测矩形; 由
+$\mathscr{R} \times \mathscr{S}$ 是包含可测矩形的\alert{最小} $\sigma$ 环,
+$\mathscr{R} \times \mathscr{S} \subset \mathcal{E}$,
+即每个可测集 $E$ 都满足 $E_x \in \mathscr{S}$ (可测), $E^y \in \mathscr{R}$ (可测). \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[乘积测度]{乘积测度的构造}
+
+%------------------------------------------------
+
+\begin{frame}{过渡: 从可测结构到测度}
+
+\begin{attnblock}[问题]
+由乘积空间的每个分支空间上的可测集 (或者说 $\sigma$ 环), 我们导出了乘积空间上的
+可测结构. 那么, 当每个分支空间上还相应地带有一个\alert{测度}时:
+\begin{itemize}
+\item 由这些测度, 能否得到乘积空间上的测度?
+\item 如果能, 它们是否有比较好的运算性质? --- \alert{希望有等号, 而不是不等号}.
+\end{itemize}
+\end{attnblock}
+
+\pause
+
+\begin{Def}[$\sigma$ 有限]
+测度 $\mu$ 称为 \alert{$\sigma$ 有限的}, 指的是: $\forall$ 可测集 $A$, 存在可测集列
+$\{A_n\}$, 使 $\mu(A_n) < \infty$ 且 $A \subset \bigcup_n A_n$.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理: 截口测度的积分相等}
+
+\begin{lem}
+设 $(X, \mathscr{R}, \mu)$, $(Y, \mathscr{S}, \nu)$ 为 \alert{$\sigma$ 有限}的测度空间,
+$E \in \mathscr{R} \times \mathscr{S}$ 为 $X \times Y$ 的可测子集. 令
+\[
+f(x) = \nu(E_x),\ x \in X;
+\qquad
+g(y) = \mu(E^y),\ y \in Y .
+\]
+那么 $f, g$ 分别是关于 $\mu, \nu$ 的可测函数, 且有
+\[
+\int_X f ~ \mathrm{d}\mu = \int_Y g ~ \mathrm{d}\nu ,
+\]
+或等价地
+$\displaystyle \int_X \Big( \int_Y \chi_E(x, y) ~ \mathrm{d}\nu \Big) \mathrm{d}\mu
+= \int_Y \Big( \int_X \chi_E(x, y) ~ \mathrm{d}\mu \Big) \mathrm{d}\nu$.
+\end{lem}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 我们略去该引理的证明 (手稿从略; 证明需 $\sigma$ 有限性, 可用
+  $\S 4.3$ 的 Levi $+$ Fubini 的雏形逐层推进).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{乘积测度 $\lambda = \mu \times \nu$}
+
+\begin{itemize}
+\item 由此引理, 若令
+\[
+\lambda E := \int_X f ~ \mathrm{d}\mu = \int_Y g ~ \mathrm{d}\nu ,
+\]
+那么集函数 $\lambda$ 也是一个 $\sigma$ 有限的\alert{测度}, 称之为 $\mu$ 与 $\nu$ 的
+\alert{乘积测度}, 记作 $\lambda = \mu \times \nu$;
+\item 这样, $(X \times Y,\ \mathscr{R} \times \mathscr{S},\ \mu \times \nu)$
+  被称作是这两个测度空间的 (笛卡尔) \alert{乘积测度空间};
+\graymode
+\item 例: $(\mathbb{R}, \mathscr{L}, m)$ 是 $\sigma$ 有限的, 其乘积
+  $(\mathbb{R}^2, \mathscr{L} \times \mathscr{L}, m \times m)$ 给出平面上的勒贝格测度
+  --- 二维 Lebesgue 积分的出发点.
+\normalmode
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Fubini]{Fubini 定理}
+
+%------------------------------------------------
+
+\begin{frame}{Fubini 定理}
+
+现取定义在 $X \times Y$ 上的函数 $h$, 希望知道
+\[
+\int_{X \times Y} h ~ \mathrm{d}\lambda,
+\qquad
+\int_X \Big( \int_Y h_x ~ \mathrm{d}\nu \Big) \mathrm{d}\mu,
+\qquad
+\int_Y \Big( \int_X h^y ~ \mathrm{d}\mu \Big) \mathrm{d}\nu
+\]
+三者的关系.
+
+\pause
+
+\begin{thm}[Fubini 定理]
+设 $h \in L_{X \times Y}$, 则 \textbf{①} $h$ 的每个截口是可积的, 并且有 \textbf{②}
+\[
+\int_{X \times Y} h ~ \mathrm{d}\lambda
+= \int_X \Big( \int_Y h_x ~ \mathrm{d}\nu \Big) \mathrm{d}\mu
+= \int_Y \Big( \int_X h^y ~ \mathrm{d}\mu \Big) \mathrm{d}\nu ,
+\]
+其中里层积分分别\alert{几乎处处}对 $x$ 与对 $y$ 有意义.
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: Fubini 定理的证明与之前建立积分理论的路线类似, 依照
+\[
+\text{简单函数}\ \varphi
+\;\xrightarrow{\ 0 \leqslant \varphi_n,\ \varphi_n \to h\ }\;
+\text{非负可积函数}
+\;\xrightarrow{\ h = h_+ - h_-\ }\;
+\text{可积函数}
+\]
+的顺序进行证明.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结}
+
+%------------------------------------------------
+
+\begin{frame}{小结: 本节的链条}
+
+\begin{itemize}
+\item \textbf{可测结构}: 可测矩形有限不交并组成环 $\mathscr{T}$
+  (记 $\mathscr{R} \times \mathscr{S}$) $\to$ 张成 $\sigma$ 环
+  $\to$ 笛卡儿积可测空间 $(X \times Y, \mathscr{R} \times \mathscr{S})$;
+\item \textbf{截口}: 集与函数的 $x$ / $y$ 截口; 可测集、可测函数的截口皆可测
+  (最小 $\sigma$ 环论证; 函数情形留作习题);
+\item \textbf{乘积测度}: $\sigma$ 有限时, $\lambda E = \int_X \nu(E_x) ~ \mathrm{d}\mu
+= \int_Y \mu(E^y) ~ \mathrm{d}\nu$ 定义出乘积测度 $\lambda = \mu \times \nu$;
+\item \textbf{Fubini}: $h \in L_{X \times Y}$
+$\Longrightarrow$ 重积分 $=$ 两个累次积分 (a.e.\ 意义下里层良好定义);
+\graymode
+\item 非负可测函数的换序\alert{无条件}成立 (即证明路线的中间层, 常称 Tonelli 定理):
+  先积哪一个变量都可以, 值可交换也可为 $+\infty$;
+\normalmode
+\item \textbf{选学注记}: 本节为概要, 详细证明见教材 \S 4.5 (手稿从略);
+  本节无作业框 (下一批作业在 \S 4.6 末).
+\end{itemize}
+
+\pause
+
+\begin{itemize}
+\item 展望: 下一节 \S 4.6 微分与积分 --- Vitali 覆盖、单调函数的 a.e.\ 可导性、
+  Newton--Leibniz 公式在勒贝格框架下的形态.
+\end{itemize}
 
 \end{frame}
 
