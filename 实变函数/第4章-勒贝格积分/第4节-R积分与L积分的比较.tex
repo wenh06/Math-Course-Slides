@@ -24,39 +24,964 @@ R积分与L积分] % Your institution as it will appear on the bottom of every s
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 为什么要比较}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{引言: Riemann 积分与它的困境}
 
+\begin{itemize}
+\item \textbf{Riemann 积分} (数学分析): 对定义域作分割 $P:\ a = x_0 < x_1 < \cdots < x_n = b$,
+  取标志点 $\xi_i \in E_i = [x_{i-1}, x_i]$, 对\alert{积分和}
+  $I(f, P) = \sum_{i=1}^{n} f(\xi_i)\, |E_i|$ 取极限 ($\lambda(P) = \max_i |E_i| \to 0$) 来定义;
+\item 对某些典型函数证明了其可积性 (极限的存在性), 但仅凭定义\alert{计算积分值}相当困难
+  --- 最终靠 Newton--Leibniz 公式, 在不少情形给出积分的 closed form
+  (原函数在两个区间端点之差的差值);
+\item \textbf{Lebesgue 积分} (第四章): 对\alert{值域}分割构造积分和, 再取极限
+  (\S 4.1 引言中的类比).
+\end{itemize}
 
+\pause
+
+\begin{itemize}
+\item 本节目标: 联系新旧两种积分理论 ---
+  \begin{enumerate}
+  \item L 积分是 R 积分的\alert{推广}: 在正常 R 积分范围内, $R_E \subset L_E$, 且在 $R_E$ 上积分值一致;
+  \item 通过比较发现: L 积分理论在大部分时候是更优的一套理论, 能站在更高的角度,
+    解释、证明 R 理论\alert{难以处理}的结论, 特别是\alert{极限与积分换序}.
+  \end{enumerate}
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section[两准则]{黎曼可积的两个准则}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{回忆: 函数黎曼可积的两个准则}
 
+\begin{attnblock}[黎曼可积准则]
+$f$ 在 $E = [a, b]$ 上黎曼可积 (记作 $f \in R_E$)
+$\Longleftrightarrow$ $f$ 在 $E$ 上\alert{有界}, 且下面两条之一成立:
+\textcircled{1} (达布) 上、下积分相等; \quad
+\textcircled{2} (勒贝格) 几乎处处连续.
+\end{attnblock}
+
+\pause
+
+\begin{itemize}
+\item 记号: $|E_i| = \Delta x_i$ (子区间长度), $\lambda(P) = \max_i |E_i|$ (划分细度),
+  $I(f, P) = \sum_{i=1}^{n} f(\xi_i)\, |E_i|$ (带标志点的积分和);
+\item 数学分析中把它们作为定理给出; 本节依次重证:
+  \alert{1$^\circ$} 可积 $\Rightarrow$ 有界, \quad
+  \alert{2$^\circ$} 达布准则, \quad
+  \alert{3$^\circ$} 勒贝格准则;
+\item 其中 3$^\circ$ 将真正动用勒贝格积分的工具 (有界收敛定理、积分唯一性) ---
+  ``新理论解释旧理论''的第一个实例.
+\end{itemize}
 
 \end{frame}
+
+%------------------------------------------------
+
+\section[有界性]{1$^\circ$: 可积蕴含有界}
+
+%------------------------------------------------
+
+\begin{frame}{1$^\circ$: 黎曼可积 $\Longrightarrow$ 有界}
+
+\begin{prop}
+$f \in R_E \ \Longrightarrow\ f$ 在 $E$ 上有界.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明: 反证法)
+假设 $f$ 在 $E$ 上无界, 那么对 $E$ 的\alert{任意}划分 $P$, 至少有一个子区间
+$E_k = [x_{k-1}, x_k]$, $f$ 在其上无界. 取 $X = 1/|E_k| > 0$,
+由无界性 $\exists\, \xi_k \in E_k$, 使得 $|f(\xi_k)| > X$;
+再取 $X' = 2|f(\xi_k)|$, 又 $\exists\, \xi_k' \in E_k$, 使得 $|f(\xi_k')| > X'$. 于是
+\[
+|f(\xi_k') - f(\xi_k)|
+\geqslant |f(\xi_k')| - |f(\xi_k)|
+> 2|f(\xi_k)| - |f(\xi_k)|
+> \frac{1}{|E_k|} .
+\]
+将 $\xi_k$ 与 $\xi_k'$ 分别作为标志点, \alert{其余标志点一致}, 得同一划分 $P$ 的两个积分和:
+\[
+\Big| \sum_{i=1}^{n} f(\xi_i')\, |E_i| - \sum_{i=1}^{n} f(\xi_i)\, |E_i| \Big|
+= |f(\xi_k') - f(\xi_k)| \cdot |E_k| > 1 .
+\]
+这表明 $\displaystyle \lim_{\lambda(P) \to 0} \sum_{i=1}^{n} f(\xi_i)\, |E_i|$ 的极限不存在. \qed
+
+\pause
+
+\begin{itemize}
+\item 要害: 可积要求积分和关于\alert{一切}标志点的选取一致地收敛.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[达布准则]{2$^\circ$: 达布准则}
+
+%------------------------------------------------
+
+\begin{frame}{2$^\circ$: 达布准则}
+
+\begin{thm}[达布准则]
+设 $f$ 有界, 则 $f \in R_E \ \Longleftrightarrow\ $ 达布上、下积分相等.
+\end{thm}
+
+\begin{itemize}
+\item 达布大 (上) 和: $S(f, P) = \sum_{i=1}^{n(P)} M_i\, |E_i|$,
+  $M_i = \sup\limits_{x \in E_i} f(x)$; \quad
+  达布小 (下) 和: $s(f, P) = \sum_{i=1}^{n(P)} m_i\, |E_i|$,
+  $m_i = \inf\limits_{x \in E_i} f(x)$;
+\item 上积分与下积分:
+$\displaystyle \overline{\int}_a^b f(x) ~ \mathrm{d} x := \inf_P S(f, P)$,
+$\displaystyle \underline{\int}_a^b f(x) ~ \mathrm{d} x := \sup_P s(f, P)$.
+\end{itemize}
+
+\pause
+
+对一般有界 $f$, \alert{达布定理}保证两个极限都存在:
+\[
+\underbrace{\lim_{\lambda(P) \to 0} s(f, P)}_{\text{自动存在}}
+= \sup_P s(f, P)
+= \underline{\int}_a^b f ~ \mathrm{d} x
+\;\leqslant\;
+\overline{\int}_a^b f ~ \mathrm{d} x
+= \inf_P S(f, P)
+= \underbrace{\lim_{\lambda(P) \to 0} S(f, P)}_{\text{自动存在}} ,
+\]
+而 $f \in R_E \Longleftrightarrow$ 中间的 ``$\leqslant$'' 取 ``$=$''.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{达布准则的证明 (``$\Rightarrow$'')}
+
+设 $f \in R_E$, 记 $I = \displaystyle \int_a^b f(x) ~ \mathrm{d} x
+= \lim_{\lambda(P) \to 0} \sum_{i=1}^{n} f(\xi_i)\, |E_i|$.
+
+\pause
+
+则 $\forall\, \varepsilon > 0$, $\exists\, \delta > 0$, 使得对一切带标志点的划分 $P$,
+只要 $\lambda(P) < \delta$, 就有
+\[
+\Big| \sum_{i=1}^{n} f(\xi_i)\, |E_i| - I \Big| = |I(f, P) - I| < \frac{\varepsilon}{2} .
+\]
+
+由 $M_i = \sup\limits_{x \in E_i} f(x)$, $\exists\, \xi_i \in E_i$ 使得
+$|f(\xi_i) - M_i| < \varepsilon / 2|E|$;
+由 $m_i = \inf\limits_{x \in E_i} f(x)$, $\exists\, \xi_i' \in E_i$ 使得
+$|f(\xi_i') - m_i| < \varepsilon / 2|E|$
+(\alert{注意: 这里使用的是带标志点的划分}). 于是
+\[
+|I(f, P) - S(f, P)|
+= \sum_{i=1}^{n(P)} |f(\xi_i) - M_i| \cdot |E_i|
+< \frac{\varepsilon}{2|E|} \sum_{i=1}^{n(P)} |E_i| = \frac{\varepsilon}{2},
+\qquad
+|I(f, P) - s(f, P)| < \frac{\varepsilon}{2} .
+\]
+
+\pause
+
+即 $I(f, P) - \dfrac{\varepsilon}{2} < s(f, P) \leqslant S(f, P) < I(f, P) + \dfrac{\varepsilon}{2}$
+(凡 $\lambda(P) < \delta$). 令 $\lambda(P) \to 0$, 用达布定理:
+\[
+I - \frac{\varepsilon}{2}
+\;\leqslant\;
+\underline{\int}_a^b f ~ \mathrm{d} x
+\;\leqslant\;
+\overline{\int}_a^b f ~ \mathrm{d} x
+\;\leqslant\;
+I + \frac{\varepsilon}{2} .
+\]
+由 $\varepsilon$ 任意, 上、下积分相等.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{达布准则的证明 (``$\Leftarrow$'')}
+
+设上、下积分相等, 记公共值为 $I$.
+
+对任意带标志点的划分 $P$, 恒有
+\[
+s(f, P) \;\leqslant\; I(f, P) \;\leqslant\; S(f, P) .
+\]
+
+\pause
+
+由达布定理,
+$\displaystyle \lim_{\lambda(P) \to 0} s(f, P) = \lim_{\lambda(P) \to 0} S(f, P) = I$,
+由夹逼得 $\displaystyle \lim_{\lambda(P) \to 0} I(f, P)$ 极限存在且为 $I$, 即 $f \in R_E$.
+\qed
+
+\pause
+
+\begin{itemize}
+\item 达布准则的价值: 把``积分和的极限存在'' (难以直接验证)
+  转化为``上、下积分相等'' (上、下确界总是存在).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[勒贝格准则]{3$^\circ$: 勒贝格准则}
+
+%------------------------------------------------
+
+\begin{frame}{3$^\circ$: 勒贝格准则与振幅函数}
+
+\begin{thm}[勒贝格准则]
+设 $f$ 有界, 则 $f \in R_E \ \Longleftrightarrow\ f$ 在 $E$ 上\alert{几乎处处连续}.
+\end{thm}
+
+引入 (回忆) $f$ 在一点 $x \in E$ 处的\alert{振幅}:
+\[
+\omega_f(x) := \lim_{\delta \to 0^+} \omega\big( f,\, U_E(x, \delta) \big),
+\qquad
+\omega\big( f,\, U_E(x, \delta) \big)
+= \sup_{x_1, x_2 \in U_E(x, \delta)} |f(x_1) - f(x_2)| ,
+\]
+其中 $U_E(x, \delta) = E \cap U(x, \delta)$ 为相对邻域.
+
+\pause
+
+\begin{itemize}
+\item $\omega(f, U_E(x, \delta))$ 随 $\delta \downarrow 0$ 单调不增、有下界, 故极限存在;
+  $\omega_f$ 是 $E$ 上的\alert{有界可测}函数: $0 \leqslant \omega_f \leqslant \omega(f, E) \leqslant 2M$
+  (可测性见下页);
+\item $f$ 在 $x$ 处连续 $\Longleftrightarrow \omega_f(x) = 0$;
+  \alert{不连续点集} $= E(\omega_f > 0)$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Claim: $E(\omega_f < \alpha)$ 是开集}
+
+\begin{lem}[Claim]
+$\forall\, \alpha > 0$, $E(\omega_f < \alpha)$ 是 (相对 $E$) 开集.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$\forall\, x \in E(\omega_f < \alpha)$: 由
+$\alpha > \omega_f(x) = \lim\limits_{\delta \to 0^+} \omega(f, U_E(x, \delta))$,
+$\exists\, \delta > 0$ (这里的 $\delta$ 与 $x$ 有关), 使得
+$\omega(f, U_E(x, \delta)) < \alpha$.
+
+任取 $x' \in U_E(x, \delta)$, 令 $\delta' = (\delta - |x - x'|)/3 > 0$,
+则 $U_E(x', \delta') \subset U_E(x, \delta)$, 从而
+\[
+\omega_f(x') \;\leqslant\; \omega\big( f,\, U_E(x', \delta') \big)
+\;\leqslant\; \omega\big( f,\, U_E(x, \delta) \big) \;<\; \alpha ,
+\]
+即 $x' \in E(\omega_f < \alpha)$. 由 $x'$ 任取自 $U_E(x, \delta)$,
+故 $U_E(x, \delta) \subset E(\omega_f < \alpha)$, $x$ 是\alert{内点}.
+
+以上即证明了 $E(\omega_f < \alpha)$ 的所有点都是内点, 从而 $E(\omega_f < \alpha)$ 为开集.
+\qed
+
+\pause
+
+\begin{itemize}
+\item 由此, $E(\omega_f < \alpha)$ 可测 ($\forall \alpha$), 即 $\omega_f$ 是可测函数.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{命题: 振幅的积分 $=$ 上积分 $-$ 下积分}
+
+\begin{prop}
+$\displaystyle \int_E \omega_f ~ \mathrm{d} m
+= \overline{\int}_a^b f(x) ~ \mathrm{d} x - \underline{\int}_a^b f(x) ~ \mathrm{d} x$.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+取一列划分 $\{P_k\}_{k \in \mathbb{N}}$, $\lambda(P_k) \to 0$, 令 (非负简单函数)
+\[
+\omega_{P_k}(x) =
+\begin{cases}
+M_i^{(k)} - m_i^{(k)} , & x \in \big( x_{i-1}^{(k)},\, x_i^{(k)} \big), \\
+0 , & x \in \big\{ x_0^{(k)},\, x_1^{(k)},\, \dots,\, x_{n_k}^{(k)} \big\} ;
+\end{cases}
+\]
+记 $A = \bigcup_{k \geqslant 1} A(P_k)$ (全部分点, 可数), $mA = 0$;
+且 $\forall\, x \in E \setminus A$, $\lim\limits_{k} \omega_{P_k}(x) = \omega_f(x)$
+(小区间长度 $\leqslant \lambda(P_k) \to 0$).
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{命题证明 (续): 有界收敛定理}
+
+\startproof[bg=yellow, fg=red](证明 (续))
+设 $|f| \leqslant M$, 则 $0 \leqslant \omega_{P_k}(x) \leqslant \omega(f, E) \leqslant 2M$,
+$mE = b - a < \infty$; 由\alert{有界收敛定理} (末步极限由达布定理保证存在):
+\[
+\begin{aligned}
+\int_E \omega_f ~ \mathrm{d} m
+&= \int_E \lim_{k \to \infty} \omega_{P_k} ~ \mathrm{d} m
+= \lim_{k \to \infty} \int_E \omega_{P_k} ~ \mathrm{d} m \\
+&= \lim_{k \to \infty} \Big( \sum_{i=1}^{n_k} M_i^{(k)} |E_i^{(k)}| - \sum_{i=1}^{n_k} m_i^{(k)} |E_i^{(k)}| \Big)
+= \lim_{k \to \infty} S(f, P_k) - \lim_{k \to \infty} s(f, P_k) \\
+&= \overline{\int}_a^b f(x) ~ \mathrm{d} x - \underline{\int}_a^b f(x) ~ \mathrm{d} x .
+\end{aligned}
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 这正是勒贝格积分的用武之地: 达布定理 $+$ 有界收敛定理
+  把``上、下积分之差''化成一个\alert{可测函数的积分}.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{勒贝格准则的证明}
+
+由达布准则, $f \in R_E \Longleftrightarrow \overline{\int}_a^b f ~ \mathrm{d} x = \underline{\int}_a^b f ~ \mathrm{d} x$,
+由上面的命题, 这等价于
+\[
+\int_E \omega_f ~ \mathrm{d} m = 0 .
+\]
+
+\pause
+
+由勒贝格积分\alert{唯一性定理} (\S 4.2: $\int_E |h| ~ \mathrm{d} m = 0 \Longleftrightarrow h \sim 0$,
+这里 $\omega_f \geqslant 0$):
+\[
+\int_E \omega_f ~ \mathrm{d} m = 0
+\;\Longleftrightarrow\;
+\omega_f \sim 0
+\;\Longleftrightarrow\;
+mE(\omega_f > 0) = 0 .
+\]
+
+\pause
+
+而 $f$ 的不连续点集 $= E(\omega_f > 0)$, 故以上这一串等价关系即
+\[
+f \in R_E
+\;\Longleftrightarrow\;
+f \text{ 在 } E \text{ 上几乎处处连续} .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 证明真正用到了勒贝格积分 (有界收敛定理 $+$ 唯一性定理) ---
+  站在更高的角度看旧理论.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[R$\subset$L]{从 R 积分到 L 积分}
+
+%------------------------------------------------
+
+\begin{frame}{定理: 黎曼可积 $\Longrightarrow$ 勒贝格可积, 且积分相等}
+
+\begin{thm}
+设 $E = [a, b]$, 若 $f \in R_E$, 则 $f \in L_E$, 且积分值相等.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+由勒贝格准则, $f \in R_E \Rightarrow f$ 有界且 a.e.\ 连续
+$\Rightarrow f$ 可测 (零测集外连续) $\Rightarrow f \in L_E$ (\S 4.1: $mE < \infty$ 且有界).
+
+对任意划分 $P$ (子区间 $E_i = [x_{i-1}, x_i]$):
+$m_i |E_i| = \int_{E_i} m_i ~ \mathrm{d} m \leqslant \int_{E_i} f ~ \mathrm{d} m \leqslant \int_{E_i} M_i ~ \mathrm{d} m = M_i |E_i|$,
+求和得 $s(f, P) \leqslant \int_E f ~ \mathrm{d} m \leqslant S(f, P)$; 取 $\sup_P$, $\inf_P$:
+\[
+\underline{\int}_a^b f(x) ~ \mathrm{d} x = \sup_P s(f, P)
+\;\leqslant\; \int_E f ~ \mathrm{d} m
+\;\leqslant\; \inf_P S(f, P) = \overline{\int}_a^b f(x) ~ \mathrm{d} x .
+\]
+由达布准则 ($f \in R_E$: 上 $=$ 下积分), 上式 ``$\leqslant$'' 全取 ``$=$'', 即
+\[
+\int_E f ~ \mathrm{d} m
+= \underline{\int}_a^b f(x) ~ \mathrm{d} x
+= \overline{\int}_a^b f(x) ~ \mathrm{d} x
+= (R) \int_a^b f(x) ~ \mathrm{d} x .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注: $L_{[a,b]}$ 是 $R_{[a,b]}$ 的``完备化''}
+
+\begin{itemize}
+\item 结合计较完备的事实: $E$ 上可测函数空间关于\alert{依测度收敛}是完备的 (\S 3.2), 我们可以说
+  \[
+  L_{[a,b]} \big/ \sim
+  \;\supset\;
+  R_{[a,b]} \big/ \sim :
+  \quad
+  L_{[a,b]} \text{ 是 } R_{[a,b]} \text{ 的 ``完备化''} ;
+  \]
+\graymode
+\item 具体地: $f_n \in R_{[a,b]}$ a.e.\ (或依测度) 收敛于 $f$ 且有可积控制, 则 $f$ 未必黎曼可积,
+  但必有 $f \in L_{[a,b]}$. 例如 $[0,1]$ 上的 Dirichlet 函数
+  $\chi_{\mathbb{Q} \cap [0,1]}$: 取 $\{q_k\} = \mathbb{Q} \cap [0, 1]$ 的枚举,
+  阶梯函数 $f_n = \chi_{\{q_1, \dots, q_n\}} \in R_{[0,1]}$ 渐升地
+  $f_n \uparrow \chi_{\mathbb{Q}} \sim 0 \in L_{[0,1]}$,
+  而 $\chi_{\mathbb{Q} \cap [0,1]} \notin R_{[0,1]}$ (处处不连续);
+\normalmode
+\item 下一页的黎曼函数是更精致的例子: $f \in R_{[0,1]}$, 但其``性质''只有用测度语言才看得清.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[黎曼函数]{例: 黎曼函数}
+
+%------------------------------------------------
+
+\begin{frame}{例: 黎曼函数 (定义与不连续点)}
+
+\begin{eg}
+$E = [0, 1]$ 上的黎曼函数
+\[
+f(x) =
+\begin{cases}
+1/q , & x = p/q \text{ 为既约分数 } (q \geqslant 1), \\
+0 , & x \in [0,1] \setminus \mathbb{Q} \ \cup\ \{0\} .
+\end{cases}
+\]
+\end{eg}
+
+\startproof[bg=yellow, fg=red]($1^\circ$ $f$ 在每个既约分数点不连续)
+设 $x = p/q \in (0,1) \cap \mathbb{Q}$ 为既约分数. $\forall\, \delta > 0$,
+$U(x, \delta) \cap \big( [0,1] \setminus \mathbb{Q} \big) \neq \varnothing$
+(无理点稠密), 邻域内振幅至少跨过 $1/q$ 与 $0$:
+\[
+\omega_f(x) \;\geqslant\; |1/q - 0| = 1/q \;>\; 0 .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 不连续点集 $(0,1) \cap \mathbb{Q}$ \alert{稠密}于 $[0,1]$ ---
+  经典意义下``性质很差''的函数.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 黎曼函数 (连续点与积分值)}
+
+\startproof[bg=yellow, fg=red]($2^\circ$ $f$ 在每个无理点连续)
+事实上, $\forall\, \varepsilon > 0$, 取 $q_0 \in \mathbb{N}$ 使得 $1/q_0 < \varepsilon$;
+而
+\[
+A = \big\{ x = p/q \in (0,1) \cap \mathbb{Q}:\ \text{既约},\ q < q_0 \big\}
+\]
+为\alert{有限集}. 于是 $\forall\, x \in (0,1) \setminus \mathbb{Q}$, $x \notin A$,
+取 $\delta = \rho(x, A)/2 > 0$, 即有 $U(x, \delta) \cap A = \varnothing$.
+这意味着 $\forall\, x' \in U(x, \delta)$: 或者 $x'$ 为无理数, $f(x') = 0$;
+或者 $x' = p/q$ 既约且 $q \geqslant q_0$, $f(x') = 1/q \leqslant 1/q_0 < \varepsilon$. 所以
+\[
+\omega_f(x) \leqslant \omega\big( f,\, U(x, \delta) \big)
+:= \sup_{x_1, x_2 \in U(x, \delta)} |f(x_1) - f(x_2)| < \varepsilon .
+\]
+由 $\varepsilon > 0$ 任意, $\omega_f(x) = 0$, 即 $f$ 在 $x$ 处连续. \qed
+
+\pause
+
+由 $1^\circ, 2^\circ$, $f$ 恰在 $(0,1) \cap \mathbb{Q}$ 上不连续, $mE(\text{不连续点}) = 0$,
+故 $f$ 在 $E$ 上几乎处处连续, $f \in R_E$, 从而 $f \in L_E$, 且
+\[
+(R) \int_0^1 f(x) ~ \mathrm{d} x
+= \int_E f ~ \mathrm{d} m
+= \Big( \int_{E \setminus \mathbb{Q}} + \int_{E \cap \mathbb{Q}} \Big) f ~ \mathrm{d} m
+= \int_{E \setminus \mathbb{Q}} 0 ~ \mathrm{d} m + \int_{E \cap \mathbb{Q}} f ~ \mathrm{d} m
+= 0 .
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[渐张集列]{渐张集列上的积分}
+
+%------------------------------------------------
+
+\begin{frame}{定理: 渐张集列上的积分 (可积性)}
+
+\begin{thm}
+设 $\{E_n\}$ 是渐张可测集列: $E_1 \subset E_2 \subset \cdots \subset E_n \subset \cdots$,
+$E = \bigcup_{n=1}^{\infty} E_n$. 设 $f \in L_{E_n}$, $n \in \mathbb{N}$.
+那么, 若极限 $\displaystyle \lim_{n \to \infty} \int_{E_n} |f| ~ \mathrm{d} m$ 存在且有限,
+则 $f \in L_E$, 且 $\displaystyle \int_E f ~ \mathrm{d} m = \lim_{n \to \infty} \int_{E_n} f ~ \mathrm{d} m$.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明: 第一步, $f \in L_E$)
+考虑 $\big\{ |f| \cdot \chi_{E_n} \big\}_{n \in \mathbb{N}}$, 它是一个\alert{非负渐升}可测函数列,
+并且 $\forall\, x \in E$,
+$\displaystyle \lim_{n \to \infty} |f(x)| \cdot \chi_{E_n}(x) = |f(x)|$.
+由 \alert{Levi 定理}:
+\[
+\int_E |f| ~ \mathrm{d} m
+= \int_E \Big( \lim_{n \to \infty} |f| \cdot \chi_{E_n} \Big) \mathrm{d} m
+= \lim_{n \to \infty} \int_E |f| \cdot \chi_{E_n} ~ \mathrm{d} m
+= \lim_{n \to \infty} \int_{E_n} |f| ~ \mathrm{d} m
+< \infty
+\ \Longrightarrow\ f \in L_E .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item Levi 管 $|f|$ (定\alert{可积性}), 控制收敛管 $f$ (求\alert{积分值}) ---
+  见下页.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理证明 (续): 极限与积分换序}
+
+\startproof[bg=yellow, fg=red](第二步: 求积分值)
+又由于 $\forall\, x \in E$,
+$\displaystyle \lim_{n \to \infty} f(x)\, \chi_{E_n}(x) = f(x)$,
+且 $|f \cdot \chi_{E_n}| \leqslant |f| \in L_E$ ($\forall\, n \in \mathbb{N}$),
+由勒贝格\alert{控制收敛定理}:
+\[
+\int_E f ~ \mathrm{d} m
+= \int_E \Big( \lim_{n \to \infty} f \cdot \chi_{E_n} \Big) \mathrm{d} m
+= \lim_{n \to \infty} \int_E f \cdot \chi_{E_n} ~ \mathrm{d} m
+= \lim_{n \to \infty} \int_{E_n} f ~ \mathrm{d} m .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 这是 \S 4.3 换序引擎的直接应用, 也是计算\alert{无界区域}上勒贝格积分的标准通道
+  (见接下来注 (2));
+\item 注意条件是 $\lim_n \int_{E_n} |f| ~ \mathrm{d} m < \infty$: 勒贝格积分天生只认
+  \alert{绝对收敛}.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[广义积分]{注: 与广义积分的比较}
+
+%------------------------------------------------
+
+\begin{frame}{注 (1): L 积分是绝对收敛的广义积分}
+
+以上定理表明: 在广义积分对应的情形下, \alert{勒贝格积分指的是绝对收敛的积分},
+而广义积分\alert{不要求}绝对收敛:
+\[
+\int_a^{+\infty} f(x) ~ \mathrm{d} x := \lim_{b \to +\infty} \int_a^b f(x) ~ \mathrm{d} x,
+\qquad
+\int_a^b f(x) ~ \mathrm{d} x := \lim_{\varepsilon \to 0^+} \int_a^{b - \varepsilon} f(x) ~ \mathrm{d} x .
+\]
+
+\pause
+
+\begin{eg}
+$\displaystyle \int_0^{+\infty} \frac{\sin x}{x} ~ \mathrm{d} x = \frac{\pi}{2}$ (条件收敛), 但
+\[
+\int_0^{+\infty} \Big| \frac{\sin x}{x} \Big| ~ \mathrm{d} x
+\;\geqslant\; \sum_{k=0}^{\infty} \int_{k\pi + \pi/4}^{k\pi + 3\pi/4} \frac{|\sin x|}{x}\, \mathrm{d} x
+\;\geqslant\; \sum_{k=0}^{\infty} \frac{\sqrt{2}/2 \cdot \pi/2}{(k+1)\pi}
+= +\infty
+\]
+(该区间上 $|\sin x| \geqslant \sqrt{2}/2$, $x \leqslant (k+1)\pi$; 调和级数发散).
+\end{eg}
+
+故 $f(x) = \dfrac{\sin x}{x} \notin L_{[0, +\infty)}$
+(由于 $|f| \notin L_{[0, +\infty)}$).
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注 (2): 无界区域上 L 积分的计算}
+
+由渐张集列定理: $\displaystyle \int_E f ~ \mathrm{d} m = \lim_{n \to \infty} \int_{E_n} f ~ \mathrm{d} m$
+可计算某些 $E$ \alert{无界}时的勒贝格积分值.
+
+\begin{itemize}
+\item 例如 $E = [0, +\infty)$, 取 $E_n = [0, n]$, 只要 $f \in R_{E_n}$, 则
+  $\displaystyle \int_E f ~ \mathrm{d} m = \lim_{n \to \infty} (R) \int_0^n f(x) ~ \mathrm{d} x$;
+\item \alert{需注意的是}, 该极限与 $\{E_n\}$ 的选取无关, 只要 $E_n$ 渐张 $\to E$;
+\graymode
+\item 例: $\displaystyle \int_0^{+\infty} e^{-x^2} ~ \mathrm{d} x
+= \lim_{n \to \infty} (R) \int_0^n e^{-x^2} ~ \mathrm{d} x = \frac{\sqrt{\pi}}{2}$
+  (概率积分, 每个 $\int_0^n$ 都是正常 Riemann 积分).
+\normalmode
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注 (3): 反常积分不具备可数可加性}
+
+勒贝格积分对积分区域有\alert{可数可加性}: 若 $E = \bigsqcup_{n=1}^{\infty} E_n$
+为互不相交的可测集之并, 则 $\int_E f ~ \mathrm{d} m = \sum_{n=1}^{\infty} \int_{E_n} f ~ \mathrm{d} m$.
+但\alert{反常积分可能不具备}这种性质:
+
+\pause
+
+\begin{eg}
+$E_n = [n-1, n)$, $E = [0, +\infty)$,
+$f = \sum_{n=1}^{\infty} \dfrac{(-1)^{n-1}}{n}\, \chi_{E_n}$. 那么
+\[
+(R) \int_0^{+\infty} f ~ \mathrm{d} x = \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} = \ln 2
+\]
+($\ln(1+x)$ 在 $x = 1$ 处的 Taylor 级数). 但该级数仅\alert{条件收敛}:
+由 Riemann 重排定理, $\forall\, -\infty \leqslant \alpha \leqslant \beta \leqslant +\infty$,
+存在重排 $\tau_{\alpha, \beta}$, 令 $S_k^{\alpha, \beta} = \sum_{n=1}^{k} a_{\tau_{\alpha,\beta}(n)}$, 有
+$\varliminf\limits_{k \to \infty} S_k^{\alpha,\beta} = \alpha$,
+$\varlimsup\limits_{k \to \infty} S_k^{\alpha,\beta} = \beta$.
+
+特别地取 $\alpha = \beta \neq \ln 2$, 以及 $E_n' = E_{\tau_{\alpha,\beta}(n)}$, 那么
+$E = \bigsqcup_{n=1}^{\infty} E_n'$ 也是互不相交的可测集之并, 且
+\[
+\sum_{n=1}^{\infty} \int_{E_n'} f ~ \mathrm{d} x
+= \lim_{k \to \infty} S_k^{\alpha, \beta} = \alpha \;\neq\; \ln 2 = \int_E f ~ \mathrm{d} x .
+\]
+\end{eg}
+
+黎曼积分的两个推广: $\longrightarrow$ 广义积分 (对积分区域无可数可加性);
+$\longrightarrow$ 勒贝格积分 (绝对可积).
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Fourier]{Fourier 级数的逐项积分}
+
+%------------------------------------------------
+
+\begin{frame}{定理: Fourier 级数的逐项积分}
+
+\begin{thm}[逐项积分]
+设 $f \in L_{[-\pi, \pi]}$,
+$f(x) \sim \dfrac{a_0}{2} + \sum_{n=1}^{\infty} \big( a_n \cos nx + b_n \sin nx \big)$,
+则 $\forall\, \alpha, \beta \in [-\pi, \pi]$, 有
+\[
+\int_{\alpha}^{\beta} f(x) ~ \mathrm{d} x
+= \int_{\alpha}^{\beta} \frac{a_0}{2}\, \mathrm{d} x
++ \sum_{n=1}^{\infty} \int_{\alpha}^{\beta}
+\big( a_n \cos nx + b_n \sin nx \big) \mathrm{d} x .
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item 无需 Fourier 级数\alert{收敛}于 $f$, 甚至无需级数点点收敛 --- 逐项积分\alert{恒}成立;
+\item 这是勒贝格积分优于 Riemann 积分的标志性结果: R 积分框架下需要对级数的一致收敛性
+  作额外假定.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (一): Fourier 部分和逼近}
+
+\startproof[bg=yellow, fg=red](证明)
+设 $\varphi = \chi_{(\alpha, \beta)}$ 为定义在 $[-\pi, \pi]$ 上的函数,并将其延拓至
+$(-\infty, +\infty)$ 上, 使其有周期 $2\pi$. 那么 $\varphi$ 有 Fourier 展式
+\[
+\varphi(x) \sim \frac{A_0}{2} + \sum_{n=1}^{\infty}
+\big( A_n \cos nx + B_n \sin nx \big),
+\]
+其中
+\[
+A_n = \frac{1}{\pi} \int_{\alpha}^{\beta} \cos nx ~ \mathrm{d} x
+= \frac{\sin n\beta - \sin n\alpha}{n\pi},
+\qquad
+B_n = \frac{1}{\pi} \int_{\alpha}^{\beta} \sin nx ~ \mathrm{d} x
+= \frac{\cos n\alpha - \cos n\beta}{n\pi} .
+\]
+$\varphi$ 分段光滑, 除 $x = \alpha, \beta$ 外处处等于其 Fourier 级数的和
+(在 $\alpha, \beta$ 处级数收敛于左右平均值), 故令
+$\varphi_n = \dfrac{A_0}{2} + \sum_{k=1}^{n} (A_k \cos kx + B_k \sin kx)$, 有
+$\lim\limits_{n \to \infty} \varphi_n(x) = \varphi(x)$ 对 a.e.\ $x \in \mathbb{R}$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (二): 逐项比较}
+
+\startproof[bg=yellow, fg=red](证明 (续))
+现在, $\int_{\alpha}^{\beta} f(x) ~ \mathrm{d} x = \int_{-\pi}^{\pi} f(x)\, \varphi(x) ~ \mathrm{d} x$;
+另一方面, 由 $a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f \cos nx ~ \mathrm{d} x$ 等,
+\[
+\int_{\alpha}^{\beta} a_n \cos nx ~ \mathrm{d} x
+= a_n \cdot \frac{\sin n\beta - \sin n\alpha}{n}
+= A_n \int_{-\pi}^{\pi} f(x) \cos nx ~ \mathrm{d} x ,
+\]
+同理 $\int_{\alpha}^{\beta} b_n \sin nx ~ \mathrm{d} x
+= B_n \int_{-\pi}^{\pi} f(x) \sin nx ~ \mathrm{d} x$. 从而对每个 $n$,
+\[
+\int_{\alpha}^{\beta} \frac{a_0}{2}\, \mathrm{d} x
++ \sum_{k=1}^{n} \int_{\alpha}^{\beta}
+\big( a_k \cos kx + b_k \sin kx \big) \mathrm{d} x
+= \int_{-\pi}^{\pi} \varphi_n(x) \cdot f(x) ~ \mathrm{d} x .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (三): 问题与策略}
+
+于是, 定理转化为了对
+\[
+\int_{\alpha}^{\beta} f(x) ~ \mathrm{d} x
+= \lim_{n \to \infty} \int_{-\pi}^{\pi} f(x) \cdot \varphi_n(x) ~ \mathrm{d} x
+\]
+的证明.
+
+\pause
+
+\begin{itemize}
+\item 已有 $\varphi_n(x) \to \varphi(x)$ a.e., 自然想用\alert{控制收敛定理};
+\item \textbf{※} 若有 $g \in L_{[-\pi, \pi]}$, 使得
+  $|f(x)\, \varphi_n(x)| \leqslant g(x)$ 对 a.e.\ $x \in [-\pi, \pi]$ 成立,
+  那么上式即可用控制收敛定理得到;
+\item 因此只需: $\varphi_n$ \alert{一致有界}, 即 $\exists\, C \in \mathbb{R}_+$, 使得
+  $|\varphi_n(x)| \leqslant C$ ($\forall\, n \in \mathbb{N}$, $x \in [-\pi, \pi]$);
+  那么 $g = C|f|$ 就是想要的控制函数.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (四): Dirichlet 核表示}
+
+\startproof[bg=yellow, fg=red](Claim $\varphi_n$ 一致有界: 核表示)
+实际上, 由 Dirichlet 核 ($\varphi = \chi_{(\alpha,\beta)}$)
+\[
+\varphi_n(x) = \frac{1}{\pi} \int_{-\pi}^{\pi} \varphi(x + u)\,
+\frac{\sin \dfrac{2n+1}{2}\, u}{2 \sin \dfrac{u}{2}} ~ \mathrm{d} u
+= \frac{1}{\pi} \int_{\alpha - x}^{\beta - x} D_n(u) ~ \mathrm{d} u
+= \frac{2}{\pi} \int_{\frac{\alpha - x}{2}}^{\frac{\beta - x}{2}} D_n(2v) ~ \mathrm{d} v ,
+\]
+其中 $D_n(u) = \dfrac{\sin \tfrac{2n+1}{2} u}{2 \sin \tfrac{u}{2}}$ (Dirichlet 核).
+
+由于 $D_n(-u) = D_n(u)$ (偶), 且 $D_n(2v)$ 关于 $v$ 以 $\pi$ 为周期,
+只需考虑 $0 \leqslant \alpha - x < \beta - x \leqslant \pi$ 的情形.
+\qed
+
+\pause
+
+\begin{center}
+\begin{tikzpicture}[scale = 0.94]
+\draw[->] (-0.3, 0) -- (8.6, 0) node[right] {$v$};
+\draw (0, 0.1) -- (0, -0.1) node[below] {$0$};
+\draw (2.4, 0.08) -- (2.4, -0.08) node[below] {$\frac{\pi}{2n+1}$};
+\draw (4.4, 0.08) -- (4.4, -0.08) node[below] {$\frac{2\pi}{2n+1}$};
+\draw (6.4, 0.08) -- (6.4, -0.08) node[below] {$\frac{3\pi}{2n+1}$};
+\draw (8.0, 0.08) -- (8.0, -0.08) node[below] {$\frac{\pi}{2}$};
+\node at (1.2, 0.4) {$I_0$};
+\node at (3.4, 0.4) {$I_1$};
+\node at (5.4, 0.4) {$I_2$};
+\node at (7.3, 0.4) {$\cdots$};
+\node[themecolor] at (1.2, -0.65) {$+$};
+\node[themecolor] at (3.4, -0.65) {$-$};
+\node[themecolor] at (5.4, -0.65) {$+$};
+\node[themecolor] at (7.3, -0.65) {$-$};
+\end{tikzpicture}
+\end{center}
+
+$I_k = \Big[ \dfrac{k\pi}{2n+1},\ \dfrac{(k+1)\pi}{2n+1} \Big]$:
+其上 $\sin (2n+1)v$ 完成一个拱形, 符号 $(-1)^k$ 交替, 而 $|\sin v|$ 逐段抬高.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (五): 交错区间估计}
+
+\startproof[bg=yellow, fg=red](Claim $\varphi_n$ 一致有界 (续))
+在相邻区间 $I_k$, $I_{k+1}$ 上有
+$T_k := \int_{I_k} D_n(2v) ~ \mathrm{d} v$ 满足
+\[
+|T_{k+1}| < |T_k|,
+\qquad
+T_k \text{ 与 } T_{k+1} \text{ 符号相反} .
+\]
+把 $\big[ \tfrac{\alpha - x}{2}, \tfrac{\beta - x}{2} \big]$ 上的积分写成
+``左端块 $+$ 若干完整 $I_k$ $+$ 右端块'': 端块不超过相邻完整段, 而完整段两两相消后
+绝对值不超过首个完整段. 因此, 无论首个完整段符号如何,
+\[
+|\varphi_n(x)|
+\;\leqslant\; 2 \cdot \frac{2}{\pi} \cdot \max_k \int_{I_k} |D_n(2v)| ~ \mathrm{d} v .
+\]
+\qed
+
+\pause
+
+由 $|\sin v|$ 递增, $\max_k$ 在 $I_0$ 取到. 记 $L = \dfrac{\pi}{2n+1}$:
+\[
+\int_{I_0} |D_n(2v)| ~ \mathrm{d} v
+= \int_0^{L} \frac{\sin (2n+1)v}{\sin v} ~ \mathrm{d} v
+\;\leqslant\; \int_0^{L} \frac{(2n+1)v}{\sin v} ~ \mathrm{d} v
+\;\leqslant\; (2n+1) \cdot L \cdot \frac{L}{\sin L}
+\]
+(用 $\sin t \leqslant t$ 及 $\dfrac{v}{\sin v}$ 在 $(0, \pi)$ 单调增). 于是
+\[
+|\varphi_n(x)| \;\leqslant\; \frac{4}{\pi} \cdot (2n+1)\, L \cdot \frac{L}{\sin L}
+= \frac{4}{\pi} \cdot \pi \cdot \frac{L}{\sin L}
+\;\leqslant\; \frac{4}{\pi} \cdot \pi \cdot \frac{\pi/3}{\sin(\pi/3)}
+= \frac{8\pi}{3\sqrt{3}}
+\;<\; 2\pi ,
+\]
+与 $n$, $x$ 都无关: $|\varphi_n(x)| \leqslant C := 2\pi$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 (六): 控制收敛收尾}
+
+现在 $f \cdot \varphi_n \to f \cdot \varphi$ a.e.\ 于 $[-\pi, \pi]$, 且
+\[
+|f(x)\, \varphi_n(x)| \;\leqslant\; C\, |f(x)| \;\in\; L_{[-\pi, \pi]} ,
+\]
+由\alert{控制收敛定理}:
+\[
+\lim_{n \to \infty} \int_{-\pi}^{\pi} f(x)\, \varphi_n(x) ~ \mathrm{d} x
+= \int_{-\pi}^{\pi} f(x)\, \varphi(x) ~ \mathrm{d} x
+= \int_{\alpha}^{\beta} f(x) ~ \mathrm{d} x .
+\]
+代回证明 (二) 末的恒等式:
+\[
+\int_{\alpha}^{\beta} f(x) ~ \mathrm{d} x
+= \lim_{n \to \infty} \Big[ \int_{\alpha}^{\beta} \frac{a_0}{2}\, \mathrm{d} x
++ \sum_{k=1}^{n} \int_{\alpha}^{\beta}
+\big( a_k \cos kx + b_k \sin kx \big) \mathrm{d} x \Big]
+\]
+\[
+= \int_{\alpha}^{\beta} \frac{a_0}{2}\, \mathrm{d} x
++ \sum_{k=1}^{\infty} \int_{\alpha}^{\beta}
+\big( a_k \cos kx + b_k \sin kx \big) \mathrm{d} x .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 回顾: 难点全部集中在 $|\varphi_n|$ 的\alert{一致有界性} ---
+  用 Dirichlet 核的交错结构硬估计出来; 换序本身则由控制收敛定理一步完成.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结}
+
+%------------------------------------------------
+
+\begin{frame}{小结: 本节结论链}
+
+\begin{itemize}
+\item \textbf{三个准则的重证}: 1$^\circ$ 可积 $\Rightarrow$ 有界 (反证);
+  2$^\circ$ 达布准则 (上、下积分);
+  3$^\circ$ 勒贝格准则 (振幅 $\omega_f$ $+$ 有界收敛 $+$ 唯一性) ---
+  用 L 工具解释 R 理论;
+\item \textbf{推广定理}: $R_E \subset L_E$ 且积分值相等;
+  $L_{[a,b]}$ 是 $R_{[a,b]}$ 的``完备化'';
+\item \textbf{例}: 黎曼函数 (恰在有理点不连续, a.e.\ 连续, R、L 积分均为 $0$);
+  渐张集列 ($E_n \uparrow E$: Levi 定可积 $+$ 控制收敛求值);
+\item \textbf{广义积分三注}: L 积分 $=$ 绝对收敛型 ($\sin x / x$ 反例);
+  无界区域的计算通道 (与 $\{E_n\}$ 选取无关);
+  反常积分无可数可加性 (条件收敛级数的重排, $\ln 2$ 可变任值);
+\item \textbf{Fourier 逐项积分}: $\varphi = \chi_{(\alpha,\beta)}$ 的 Fourier 部分和
+  $\varphi_n \to \varphi$ a.e.\ 且 $|\varphi_n| \leqslant 2\pi$ 一致有界 (Dirichlet 核交错估计),
+  控制收玫定理完成换序.
+\end{itemize}
+
+\pause
+
+\begin{itemize}
+\item 展望: 下一节 \S 4.5 乘积测度与 Fubini 定理 --- 高维情形的积分换序;
+\item 作业: 教材第四章习题 \textbf{21, 23, 25, 26}.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第四章习题}
+\begin{itemize}
+\item \textbf{21.} 设 $f$ 在 $(-\infty, +\infty)$ 上可积, 证明
+$\displaystyle \lim_{h \to 0} \int_{-\infty}^{+\infty} |f(x+h) - f(x)| ~ \mathrm{d} m = 0$.
+\item \textbf{23.} 设 $f$ 是 $\mathbb{R}$ 上的可积函数, 试证
+$\hat{f}(t) = \int_{\mathbb{R}} e^{-itx} f(x) ~ \mathrm{d} x$
+是 $\mathbb{R}$ 上的连续函数, 且
+$\hat{f}(t) = \dfrac{\mathrm{d}}{\mathrm{d} t} \int_{\mathbb{R}} \dfrac{e^{-itx} - 1}{-ix}\, f(x) ~ \mathrm{d} x$.
+\end{itemize}
+\end{block}
+
+\begin{block}{续}
+\begin{itemize}
+\item \textbf{25.} 设 $f$ 是 $\mathbb{R}$ 上的可测函数, 令
+$\mu(\alpha) = m\mathbb{R}(|f| > \alpha)$, 试证
+$\displaystyle \int_{\mathbb{R}} |f|^p ~ \mathrm{d} m
+= p \int_0^{+\infty} \alpha^{p-1} \mu(\alpha) ~ \mathrm{d} \alpha$
+($1 \leqslant p < \infty$).
+\item \textbf{26.} 设 $mE < \infty$, 证明函数 $f$ 在 $E$ 上可积的充分必要条件是级数
+$\displaystyle \sum_{n=1}^{\infty} mE(|f| \geqslant n)$ 收敛.
+当 $mE = \infty$ 时, 结论是否成立?
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
