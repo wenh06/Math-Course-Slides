@@ -24,39 +24,626 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 三步构建积分}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{引言: 三步构建勒贝格积分}
 
+基于前两章的\alert{测度论} ($mE$) 与\alert{可测函数}理论, 本节按如下顺序构建积分:
 
+\begin{center}
+\begin{tabular}{ccc}
+\textbf{对象} & \quad & \textbf{定义手段} \\[0.2em]
+(非负) 简单函数 $\varphi$ & $\longrightarrow$ & 直接定义: $\int_E \varphi ~ \mathrm{d} m = \sum_k c_k\, m E_k$ \\
+非负可测函数 $f$ & $\longrightarrow$ & 上确界: $\displaystyle \int_E f ~ \mathrm{d} m = \sup_{0 \leqslant \varphi \leqslant f} \int_E \varphi ~ \mathrm{d} m$ \\
+一般可测函数 $f$ & $\longrightarrow$ & 分解: $f = f_+ - f_-$
+\end{tabular}
+\end{center}
+
+\pause
+
+\begin{itemize}
+\item 全程只依赖 $m$: 积分是``集合函数 $m$ 的加权求和''的自然延伸;
+\item 先建立\alert{单个函数}的积分性质 (线性、可加), 再走向\alert{函数列与积分}的交换 (§4.2);
+\item 类比: Riemann 积分用\alert{阶梯函数} (区间上的常值) 逼近 ---
+  Lebesgue 积分用\alert{简单函数} (可测集上的常值) 逼近, 定义域从区间换成可测集.
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section[简单函数]{简单函数的积分}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{简单函数的积分: 定义}
 
+\begin{Def}[简单函数的积分]
+设 $E$ 为\alert{有界}可测集, $\varphi(x) = \sum_{k=1}^{n} c_k \chi_{E_k}(x)$ 是 $E$ 上的简单函数,
+其中 $c_1, \dots, c_n$ 互异, $E_k := E(\varphi = c_k)$ 为互不相交的可测集 (``标准表示'').
+定义 $\varphi$ 在 $E$ 上的\alert{积分}为
+\[
+\int_E \varphi ~ \mathrm{d} m := \sum_{k=1}^{n} c_k\, m E_k .
+\]
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item \textcircled{1} 约定 $0 \cdot \infty = 0$ --- 为把积分推广到\alert{无界}可测集做准备 (见 \textcircled{4});
+\item \textcircled{2} 特别地, 取 $\varphi \equiv 1$: $\int_E 1 ~ \mathrm{d} m = mE$ ---
+  \alert{测度是积分的特例};
+\item 积分值有限 ($E$ 有界, $c_k$ 有限).
+\end{itemize}
 
 \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注记: 三条关键性质}
+
+\begin{itemize}
+\item \textcircled{3} \textbf{正负部分解}: 记
+$\varphi_+ = \sum_{c_k > 0} c_k \chi_{E_k}$, \
+$\varphi_- = - \sum_{c_k < 0} c_k \chi_{E_k}$ ($\varphi = \varphi_+ - \varphi_-$),
+则
+\[
+\int_E \varphi ~ \mathrm{d} m = \int_E \varphi_+ ~ \mathrm{d} m - \int_E \varphi_- ~ \mathrm{d} m .
+\]
+
+\pause
+
+\item \textcircled{4} \textbf{限制}: 若 $\varphi$ 定义在 $A \supset E$ 上, 则
+\[
+\int_E \varphi ~ \mathrm{d} m
+= \int_E \varphi \big|_E ~ \mathrm{d} m
+= \sum_{k=1}^{n} c_k\, m(E_k \cap E) .
+\]
+\end{itemize}
+
+\pause
+
+\begin{attnblock}
+据 \textcircled{4}, 对\alert{任意}可测集 $E$ (可无界) 上的\alert{非负}简单函数, 可直接定义
+$\int_E \varphi ~ \mathrm{d} m := \sum_k c_k\, m(E_k \cap E)$ (值可取 $+\infty$).
+\end{attnblock}
+
+\pause
+
+\begin{attnblock}[良定性]
+表示不必唯一 (可要求 $c_k$ 不互异), 但只要 $E_k$ 互不相交,
+和式 $\sum c_k m E_k$ 的值不变 ($m$ 的有限可加性) --- 积分与表示法无关.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: Dirichlet 函数可积}
+
+\begin{eg}
+$E = [0,1]$, Dirichlet 函数
+$D(x) = \chi_{\mathbb{Q} \cap [0,1]}(x)
+= \begin{cases} 1, & x \in \mathbb{Q} \cap [0,1], \\ 0, & x \in [0,1] \setminus \mathbb{Q}, \end{cases}$
+是简单函数, 且
+\[
+\int_E D ~ \mathrm{d} m
+= 1 \cdot m(\mathbb{Q} \cap [0,1]) + 0 \cdot m([0,1] \setminus \mathbb{Q})
+= 0 .
+\]
+\end{eg}
+
+\pause
+
+\begin{itemize}
+\item 有理点集``重''还是无理点集``重''? $m$ 给出裁决: 有理点集\alert{零测};
+\graymode
+\item 对比: $D$ 在 $[0,1]$ 上 \alert{Riemann 不可积} (在任一子区间上振幅恒为 $1$) ---
+  L 积分能处理更``病态''的函数 (§4.4 详论).
+\normalmode
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[基本引理]{简单函数积分的基本引理}
+
+%------------------------------------------------
+
+\begin{frame}{基本引理}
+
+\begin{lem}[线性性与集合可加性]
+设 $\varphi, \varphi_1, \varphi_2$ 是有界可测集 $E$ 上的简单函数, $a_1, a_2 \in \mathbb{R}$.
+\begin{enumerate}
+\item (线性性)
+$\displaystyle \int_E (a_1 \varphi_1 + a_2 \varphi_2) ~ \mathrm{d} m
+= a_1 \int_E \varphi_1 ~ \mathrm{d} m + a_2 \int_E \varphi_2 ~ \mathrm{d} m$;
+\item (集合可加性) 若 $E = E_1 \cup E_2$, $E_1 \cap E_2 = \emptyset$, $E_1, E_2$ 可测, 则
+$\displaystyle \int_E \varphi ~ \mathrm{d} m
+= \int_{E_1} \varphi ~ \mathrm{d} m + \int_{E_2} \varphi ~ \mathrm{d} m$.
+\end{enumerate}
+\end{lem}
+
+\pause
+
+\begin{attnblock}
+这两条是后文\alert{一切}线性性与可加性的根源 (非负可测、一般可测函数层层传递),
+也是``定义合理''的试金石.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理证明 (一): 线性性}
+
+\startproof[bg=yellow, fg=red](证明 (1))
+设标准表示
+$\varphi_1 = \sum_{k_1} c^{(1)}_{k_1} \chi_{E^{(1)}_{k_1}}$,
+$\varphi_2 = \sum_{k_2} c^{(2)}_{k_2} \chi_{E^{(2)}_{k_2}}$.
+则 $a_1 \varphi_1 + a_2 \varphi_2$ 在 $E$ 上取有限个互异值, 记为 $c_1, \dots, c_m$, 且
+\[
+E(a_1 \varphi_1 + a_2 \varphi_2 = c_k)
+= \bigcup_{\substack{k_1, k_2 \\ a_1 c^{(1)}_{k_1} + a_2 c^{(2)}_{k_2} = c_k}}
+\big( E^{(1)}_{k_1} \cap E^{(2)}_{k_2} \big)
+\quad \text{可测}.
+\]
+
+\pause
+
+令 $E_{k_1 k_2} := E^{(1)}_{k_1} \cap E^{(2)}_{k_2}$ (互不相交),
+$c_{k_1 k_2} := a_1 c^{(1)}_{k_1} + a_2 c^{(2)}_{k_2}$, 则 (由注 \textcircled{5}, 无需 $c_{k_1 k_2}$ 互异)
+\[
+\varphi := a_1 \varphi_1 + a_2 \varphi_2 = \sum_{k_1, k_2} c_{k_1 k_2} \chi_{E_{k_1 k_2}},
+\qquad
+\int_E \varphi ~ \mathrm{d} m = \sum_{k_1, k_2} c_{k_1 k_2}\, m E_{k_1 k_2} .
+\]
+
+\pause
+
+按 $c^{(1)}, c^{(2)}$ 分组求和并注意 $m$ 的可加性:
+\[
+\int_E \varphi ~ \mathrm{d} m
+= \sum_{k_1} a_1 c^{(1)}_{k_1}\, m E^{(1)}_{k_1}
++ \sum_{k_2} a_2 c^{(2)}_{k_2}\, m E^{(2)}_{k_2}
+= a_1 \int_E \varphi_1 ~ \mathrm{d} m + a_2 \int_E \varphi_2 ~ \mathrm{d} m .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理证明 (二): 集合可加性}
+
+\startproof[bg=yellow, fg=red](证明 (2) 续)
+设 $E = E_1 \cup E_2$, $E_1 \cap E_2 = \emptyset$, $\varphi = \sum_k c_k \chi_{A_k}$,
+$A_k = E(\varphi = c_k)$. 则
+\[
+A_k = (A_k \cap E_1) \cup (A_k \cap E_2)
+\]
+为可测集的不交并, 故 $m A_k = m(A_k \cap E_1) + m(A_k \cap E_2)$. 于是
+\[
+\int_E \varphi ~ \mathrm{d} m
+= \sum_k c_k m A_k
+= \sum_k c_k m(A_k \cap E_1) + \sum_k c_k m(A_k \cap E_2) .
+\]
+
+\pause
+
+而由注 \textcircled{4} (把 $\varphi$ 限制在 $E_i$ 上):
+\[
+\int_{E_i} \varphi ~ \mathrm{d} m = \sum_k c_k\, m(A_k \cap E_i), \quad i = 1, 2,
+\]
+代入即得 $\int_E \varphi ~ \mathrm{d} m = \int_{E_1} \varphi ~ \mathrm{d} m + \int_{E_2} \varphi ~ \mathrm{d} m$. \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[非负可测]{非负可测函数的积分}
+
+%------------------------------------------------
+
+\begin{frame}{非负可测函数的积分: 定义}
+
+\begin{Def}[非负可测函数的积分]
+设 $f$ 是可测集 $E$ 上的\alert{非负}可测函数. 定义 $f$ 在 $E$ 上的积分为
+\[
+\int_E f ~ \mathrm{d} m
+:= \sup \Big\{ \int_E \varphi ~ \mathrm{d} m \ :\ 0 \leqslant \varphi \leqslant f,\
+\varphi\ \text{为 $E$ 上的非负简单函数} \Big\}
+\]
+(其中 $\int_E \varphi ~ \mathrm{d} m$ 按注 \textcircled{4} 理解). 若右端为有限值,
+则称 $f$ 在 $E$ 上\alert{可积}.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item $E$ 不必有界; 积分值可取 $+\infty$ (例如 $\int_E 1 ~ \mathrm{d} m = mE$ 可为 $\infty$);
+\item ``从下方用简单函数填充'': $\sup$ 是关键 --- 勒贝格 monotone 思想的第一次登场.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{基本性质: 保序性}
+
+\begin{prop}
+设 $f, g$ 是 $E$ 上非负可测函数:
+\begin{enumerate}
+\item (保序性) $f \leqslant g \ \Longrightarrow\ \int_E f ~ \mathrm{d} m \leqslant \int_E g ~ \mathrm{d} m$;
+\item $\displaystyle \int_A f ~ \mathrm{d} m = \int_E f \chi_A ~ \mathrm{d} m$ \ ($A \subset E$ 可测);
+\item $f \sim 0$ (即 $mE(f \neq 0) = 0$) $\ \Longrightarrow\ \int_E f ~ \mathrm{d} m = 0$.
+\end{enumerate}
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明 (1))
+若 $\varphi$ 是 $E$ 上非负简单函数, $0 \leqslant \varphi \leqslant f$, 则 $0 \leqslant \varphi \leqslant g$.
+故``填充集''满足
+\[
+\{ \varphi : 0 \leqslant \varphi \leqslant f \}
+\subset \{ \varphi : 0 \leqslant \varphi \leqslant g \},
+\]
+取上确界即得 $\int_E f ~ \mathrm{d} m \leqslant \int_E g ~ \mathrm{d} m$. \qed
+
+\pause
+
+\begin{attnblock}
+(2)(3) 请同学们自行验证.
+(提示 (3): $0 \leqslant \varphi \leqslant f$ 时, 对 $c_k > 0$ 有
+$E(\varphi = c_k) \subset E(f > 0)$ 零测, 故 $\int_E \varphi ~ \mathrm{d} m = 0$.)
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{两个直接推论}
+
+\begin{cor}
+\begin{enumerate}
+\item 若 $0 \leqslant f \leqslant g$ 且 $g$ 可积 ($\int_E g ~ \mathrm{d} m < \infty$), 则 $f$ 可积;
+\item 若 $f$ 有界且 $mE < \infty$, 则 $f$ 可积.
+\end{enumerate}
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+(1) 由保序性, $\int_E f ~ \mathrm{d} m \leqslant \int_E g ~ \mathrm{d} m < \infty$.
+
+\pause
+
+(2) 设 $0 \leqslant f \leqslant M$. 由 $f \leqslant M \chi_E$ 及保序性与注 \textcircled{2}:
+\[
+\int_E f ~ \mathrm{d} m \leqslant \int_E M \chi_E ~ \mathrm{d} m = M \cdot mE < \infty .
+\]
+\qed
+
+\pause
+
+\begin{attnblock}
+``有界函数 + 有限测度集 $=$ 可积'' ---
+有界收敛的函数不会积出发散, 这是最基本的可积性判据 (一般化为后文控制收敛定理).
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Levi 定理]{Levi 基本定理及其推论}
+
+%------------------------------------------------
+
+\begin{frame}{Levi 基本定理}
+
+\begin{thm}[Levi 定理]
+设 $\{f_k\}$ 是 $E$ 上\alert{渐升}的非负可测函数列:
+\[
+0 \leqslant f_1 \leqslant f_2 \leqslant \cdots \leqslant f_k \leqslant \cdots,
+\qquad
+\lim_{k \to \infty} f_k(x) = f(x),\ \forall\, x \in E,
+\]
+则
+\[
+\lim_{k \to \infty} \int_E f_k ~ \mathrm{d} m = \int_E f ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item 注: 这本是 §4.2 的结论, 此处\alert{提前引入}, 用来简化后面 (线性性等) 的证明;
+\item 意义: \alert{极限与积分交换次序}的条件非常简单 --- 点态递增收敛即可;
+\graymode
+\item 对比 Riemann 积分: 通常需要\alert{一致收敛}才能保证极限函数可积且可交换.
+\normalmode
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Levi 定理证明 (一): ``$\leqslant$''方向}
+
+\startproof[bg=yellow, fg=red](证明)
+$f_k \uparrow f$ 点态收敛, $f$ 是非负\alert{可测}函数 (§3.1: 可测函数对极限运算封闭).
+
+\pause
+
+由保序性: $f_k \leqslant f_{k+1} \Longrightarrow \int_E f_k ~ \mathrm{d} m \leqslant \int_E f_{k+1} ~ \mathrm{d} m$;
+又 $f_k \leqslant f \Longrightarrow \int_E f_k ~ \mathrm{d} m \leqslant \int_E f ~ \mathrm{d} m$.
+
+\pause
+
+故数列 $\big\{ \int_E f_k ~ \mathrm{d} m \big\}$ 在 $[0, +\infty]$ 中单调递增, 极限存在 (可能 $+\infty$), 且
+\[
+\lim_{k \to \infty} \int_E f_k ~ \mathrm{d} m \leqslant \int_E f ~ \mathrm{d} m .
+\qquad \text{……\textcircled{1}}
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Levi 定理证明 (二): ``$\geqslant$''方向}
+
+\startproof[bg=yellow, fg=red](证明续)
+$\forall\, 0 < c < 1$ 及非负简单函数 $h$: $0 \leqslant h \leqslant f$,
+记 $h = \sum_{i=1}^{p} c_i \chi_{A_i}$, 令
+\[
+E_k = E(f_k \geqslant c h).
+\]
+则 $\{E_k\}$ \alert{渐升}可测列且 $\bigcup_k E_k = E$
+(在 $h > 0$ 处 $f > ch$, 渐升的 $f_k$ 终会追上; 在 $h = 0$ 处恒成立).
+于是由 §2.3 测度的下连续性, $m(A_i \cap E_k) \uparrow m(A_i \cap E)$, 从而
+\[
+\lim_{k \to \infty} \int_{E_k} h ~ \mathrm{d} m
+= \lim_{k} \sum_{i=1}^{p} c_i\, m(A_i \cap E_k)
+= \sum_{i=1}^{p} c_i\, m(A_i \cap E)
+= \int_E h ~ \mathrm{d} m .
+\]
+
+\pause
+
+另一方面, 在 $E_k$ 上 $f_k \geqslant ch$, 故
+\[
+\int_E f_k ~ \mathrm{d} m
+\geqslant \int_{E_k} f_k ~ \mathrm{d} m
+\geqslant \int_{E_k} c h ~ \mathrm{d} m
+= c \int_{E_k} h ~ \mathrm{d} m .
+\]
+令 $k \to \infty$ 再令 $c \to 1^-$:
+$\displaystyle \lim_k \int_E f_k ~ \mathrm{d} m \geqslant \int_E h ~ \mathrm{d} m$;
+由 $h$ 任取 (取 sup):
+\[
+\lim_{k \to \infty} \int_E f_k ~ \mathrm{d} m \geqslant \int_E f ~ \mathrm{d} m .
+\qquad \text{……\textcircled{2}}
+\]
+综合 \textcircled{1} \textcircled{2} 即得等号. \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论: 非负可测函数积分的线性性}
+
+\begin{thm}
+设 $f, g$ 是 $E$ 上非负可测函数, $a_1, a_2 \in [0, +\infty)$, 则
+\[
+\int_E (a_1 f + a_2 g) ~ \mathrm{d} m
+= a_1 \int_E f ~ \mathrm{d} m + a_2 \int_E g ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+由 §3.1 简单函数逼近定理, 取渐升非负简单函数列 $\varphi_k \uparrow f$, $\psi_k \uparrow g$.
+则 $a_1 \varphi_k + a_2 \psi_k$ 渐升且 $\to a_1 f + a_2 g$, 由 Levi 定理与基本引理 (线性性):
+\[
+\int_E (a_1 f + a_2 g) ~ \mathrm{d} m
+= \lim_k \int_E (a_1 \varphi_k + a_2 \psi_k) ~ \mathrm{d} m
+= \lim_k \Big( a_1 \int_E \varphi_k ~ \mathrm{d} m + a_2 \int_E \psi_k ~ \mathrm{d} m \Big)
+= a_1 \int_E f ~ \mathrm{d} m + a_2 \int_E g ~ \mathrm{d} m .
+\]
+\qed
+
+\pause
+
+\begin{remark}
+可分别对 $f, g$ 取渐升简单函数列逼近并结合引理; 此定理可直接推广到\alert{一般可测函数}
+以及 $a_1, a_2 \in \mathbb{R}$ 的情形 (稍后由 $L_E$ 理论给出).
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[一般可测]{一般可测函数的积分}
+
+%------------------------------------------------
+
+\begin{frame}{一般可测函数的积分: 定义}
+
+一般可测函数有分解 $f = f_+ - f_-$ ($f_+ = \max(f, 0)$, $f_- = \max(-f, 0)$), 据此给出定义:
+
+\begin{Def}[一般可测函数的积分]
+设 $f$ 是可测集 $E$ 上的可测函数. 当 $\int_E f_+ ~ \mathrm{d} m$ 与 $\int_E f_- ~ \mathrm{d} m$
+\alert{不同时为 $+\infty$} 时, 定义
+\[
+\int_E f ~ \mathrm{d} m := \int_E f_+ ~ \mathrm{d} m - \int_E f_- ~ \mathrm{d} m .
+\]
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item 两积分皆有限: $\int_E f ~ \mathrm{d} m$ 有限, 称 $f$ 在 $E$ 上\alert{可积}, 记 $f \in L_E$;
+\item $\int_E f_+ < \infty$, $\int_E f_- = +\infty$: 记 $\int_E f ~ \mathrm{d} m = -\infty$;
+\item $\int_E f_- < \infty$, $\int_E f_+ = +\infty$: 记 $\int_E f ~ \mathrm{d} m = +\infty$;
+\item $\alert{+}\infty - (+\infty)$ 无定义 --- 这正是要求``不同时为 $+\infty$''的原因.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可积性判别: $f \in L_E \iff |f| \in L_E$}
+
+\begin{thm}
+设 $f$ 是 $E$ 上可测函数, 则 $f \in L_E \iff |f| \in L_E$; 且在可积情形
+\[
+\int_E f ~ \mathrm{d} m = \int_E f_+ ~ \mathrm{d} m - \int_E f_- ~ \mathrm{d} m,
+\qquad
+\int_E |f| ~ \mathrm{d} m = \int_E f_+ ~ \mathrm{d} m + \int_E f_- ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+``$\Rightarrow$'': $f \in L_E$, 则 $\int_E f_+ ~ \mathrm{d} m$ 与 $\int_E f_- ~ \mathrm{d} m$ 都是有限值.
+$f_+ + f_- = |f|$ 非负可测, 由线性性定理
+\[
+\int_E |f| ~ \mathrm{d} m = \int_E (f_+ + f_-) ~ \mathrm{d} m
+= \int_E f_+ ~ \mathrm{d} m + \int_E f_- ~ \mathrm{d} m < \infty,
+\]
+即 $|f| \in L_E$.
+
+\pause
+
+``$\Leftarrow$'': $|f| \in L_E$. 由 $0 \leqslant f_+, f_- \leqslant |f|$ 及保序性,
+$\int_E f_\pm ~ \mathrm{d} m \leqslant \int_E |f| ~ \mathrm{d} m < \infty$,
+故 $f \in L_E$; 第二式即线性性定理, 第一式为定义. \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{控制可积定理}
+
+\begin{thm}[控制可积]
+设 $f$ 是 $E$ 上可测函数. 若存在 $g \in L_E$ 使得 $|f(x)| \leqslant g(x)$ a.e.\ 于 $E$, 则 $f$ 在 $E$ 上可积, 且
+\[
+\int_E |f| ~ \mathrm{d} m \leqslant \int_E g ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+记 $E_0 = E(|f| \leqslant g)$, 则 $m(E \setminus E_0) = 0$. 在 $E_0$ 上 $|f| \leqslant g$, 由保序性
+\[
+\int_{E_0} |f| ~ \mathrm{d} m \leqslant \int_{E_0} g ~ \mathrm{d} m \leqslant \int_E g ~ \mathrm{d} m < \infty .
+\]
+
+\pause
+
+零测集上积分恒为 $0$ (前页性质 (3)), 故
+$\int_E |f| ~ \mathrm{d} m = \int_{E_0} |f| ~ \mathrm{d} m < \infty$, 即 $|f| \in L_E$,
+从而 $f \in L_E$. \qed
+
+\pause
+
+\begin{cor}
+当 $mE < \infty$ 时, 若 $|f(x)| \leqslant M$ a.e.\ 于 $E$, 则 $f \in L_E$, 且
+$|\int_E f ~ \mathrm{d} m| \leqslant M \cdot mE$.
+\end{cor}
+(取 $g \equiv M$: $\int_E g ~ \mathrm{d} m = M \cdot mE < \infty$; 再由
+$|\int_E f ~ \mathrm{d} m| \leqslant \int_E |f| ~ \mathrm{d} m$.)
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可积函数几乎处处有限}
+
+\begin{thm}
+在 $E$ 上可积的函数 $f$ 几乎处处有限.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+反证: 设 $E(f = +\infty)$ 与 $E(f = -\infty)$ 中至少一个有正测度,
+不妨 $E_1 = E(f = +\infty)$ 满足 $m E_1 > 0$.
+
+\pause
+
+则对任意 $n \in \mathbb{N}$, 在 $E$ 上处处有 $f_+(x) \geqslant n \chi_{E_1}(x)$
+($E_1$ 上 $f_+ = +\infty$; $E_1$ 外右端为 $0$). 由保序性与注 \textcircled{2},
+\[
+\int_E f_+ ~ \mathrm{d} m \geqslant \int_E n \chi_{E_1} ~ \mathrm{d} m = n \cdot m E_1,
+\qquad \forall\, n \in \mathbb{N},
+\]
+其中 $n \chi_{E_1}$ 正是定义中``填充''$f_+$ 的那个非负简单函数.
+令 $n \to \infty$ 得 $\int_E f_+ ~ \mathrm{d} m = +\infty$, 与 $f$ 可积矛盾. \qed
+
+\pause
+
+\begin{attnblock}
+于是在 $L_E$ 中, a.e.\ 相等的函数``视为同一个'' --- 后文 $L^p$ 空间同样如此.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结与展望}
+
+%------------------------------------------------
+
+\begin{frame}{小结与展望}
+
+\begin{itemize}
+\item \textbf{三步构造}: 简单函数 ($\sum_k c_k m E_k$) $\to$ 非负可测 ($\sup$ 填充)
+  $\to$ 一般可测 ($f = f_+ - f_-$); 可积 $=$ 积分值有限, 全体记 $L_E$;
+\pause
+\item \textbf{简单函数层}: 线性性 + 集合可加性 (基本引理) --- 一切后续性质的根源;
+  测度即积分 ($\int_E 1 ~ \mathrm{d} m = mE$); Dirichlet 函数积分为 $0$;
+\pause
+\item \textbf{非负层}: 保序性; $f \sim 0 \Rightarrow$ 积分为 $0$; \alert{Levi 定理}
+  ($f_k \uparrow f \Rightarrow \int f_k \to \int f$, 交换极限无需一致收敛); 线性性;
+\pause
+\item \textbf{一般层}: $f \in L_E \iff |f| \in L_E$ (绝对可积性); 控制可积
+  ($|f| \leqslant g \in L_E$ a.e.); 可积 $\Rightarrow$ a.e.\ 有限;
+\pause
+\item \textbf{展望}: §4.2 建立积分的完整性质 (线性、可加性、\alert{绝对连续性});
+  §4.3 极限定理的一般形式 (Levi 级数形式、Fatou、Lebesgue 控制收敛) ---
+  勒贝格积分相对 Riemann 积分的最大优势所在.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第四章 \S 4.1 习题}
+\begin{itemize}
+\item \textbf{2.} 设 $f$ 于 $E$ 上可积, 令 $E_n = E(|f| \geqslant n)$, 证明
+$\lim_n m E_n = 0$.
+\item \textbf{3.} 设函数 $f$ 在 Cantor 三分集 $P_0$ 上定义为零, 而在 $P_0$ 的补集中长为
+$\tfrac{1}{3^n}$ 的构成区间上定义为 $n$ ($n \in \mathbb{N}$). 试证 $f \in L$, 并求积分值.
+\end{itemize}
+\end{block}
+
+\begin{block}{续}
+\begin{itemize}
+\item \textbf{5.} 设由 $[0,1]$ 中取 $n$ 个可测子集 $E_1, E_2, \dots, E_n$. 假定 $[0,1]$ 中任一点
+至少属于这 $n$ 个集合中的 $p$ 个, 试证这 $n$ 个子集中必有一集, 它的测度不小于 $\tfrac{p}{n}$.
+\item \textbf{6.} 设 $mE > 0$, 又设 $E$ 上可积函数 $f, g$ 满足 $f < g$, 试证
+$\int_E f ~ \mathrm{d} m < \int_E g ~ \mathrm{d} m$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
