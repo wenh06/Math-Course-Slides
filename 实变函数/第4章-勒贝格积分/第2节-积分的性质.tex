@@ -24,39 +24,589 @@
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 积分作为泛函}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{引言: 把积分当作``泛函''来研究}
 
+$\S 4.1$ 已立积分的定义; 本节把 $\int_E (\cdot) ~ \mathrm{d} m$ 当作可积函数空间 $L_E$ 上的``泛函'',
+系统整理其性质:
 
+\begin{center}
+\begin{tabular}{ccc}
+\textbf{研究对象} & \textbf{已有} & \textbf{本节目标} \\[0.2em]
+被积\alert{集合} $A$ & 有限可加 (简单函数层) & 可数可加 + \alert{绝对连续性} \\
+被积\alert{函数} $af + bg$ & 非负层线性 (渐升逼近) & $L_E$ 上线性 (完整证明) \\
+积分恒零的函数 & $f \sim 0 \Rightarrow \int_E f ~ \mathrm{d} m = 0$ & \alert{唯一性}: $\int_E |f| ~ \mathrm{d} m = 0 \iff f \sim 0$ \\
+逼近 & 简单函数逼近 (\S 3.1) & \alert{连续函数}的 $L^1$ 逼近 \\
+\end{tabular}
+\end{center}
+
+\pause
+
+\begin{itemize}
+\item 与测度论平行: 积分对集合的可数可加性 $\leftrightarrow$ $m$ 的可数可加性 (\S 2.2--2.3);
+\item 两大引擎: \S 4.1 的 \alert{Levi 定理} (极限交换) 与 \alert{简单函数积分引理} (线性、可加).
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section[绝对连续]{积分的绝对连续性}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{积分的绝对连续性}
 
+\begin{thm}[绝对连续性]
+设 $f$ 在\alert{有界}可测集 $E$ 上可积, 则 $\forall\, \varepsilon > 0$, $\exists\, \delta > 0$,
+使得对 $E$ 的任何可测子集 $A \subset E$, 只要 $mA < \delta$, 就有
+\[
+\Big| \int_A f ~ \mathrm{d} m \Big| < \varepsilon .
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item 口语版: ``集合测度小 $\Rightarrow$ 积分值小'' --- 测度控制的连续性;
+\graymode
+\item 名称由来: 与函数的\alert{绝对连续}概念平行 ---
+$\forall \varepsilon > 0\ \exists \delta > 0$, 只要互不重叠区间组 $\sum_k |x'_k - x_k| < \delta$,
+就有 $\sum_k |f(x'_k) - f(x_k)| < \varepsilon$ (把``区间长度''换成``集合测度'', \S 4.6 再会);
+\normalmode
+\item 它是下一页\alert{可数可加性}的证明引擎.
+\end{itemize}
 
 \end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{绝对连续性证明 (一): 归到非负 + 截断}
+
+\startproof[bg=yellow, fg=red](证明)
+由 $f \in L_E \iff |f| \in L_E$ 及 $\big|\int_A f ~ \mathrm{d} m\big| \leqslant \int_A |f| ~ \mathrm{d} m$,
+不妨设 $f \geqslant 0$.
+
+\pause
+
+$\forall\, \varepsilon > 0$, 由积分的 $\sup$ 定义, 可取非负简单函数 $\varphi_0$:
+$0 \leqslant \varphi_0 \leqslant f$, 使得 ($\int_E f ~ \mathrm{d} m$ 为有限值)
+\[
+\int_E f ~ \mathrm{d} m \geqslant \int_E \varphi_0 ~ \mathrm{d} m > \int_E f ~ \mathrm{d} m - \frac{\varepsilon}{2} .
+\]
+
+\pause
+
+不妨设 $\varphi_0 \not\equiv 0$, 令
+\[
+\delta = \frac{\varepsilon}{2 \cdot \max_{x \in E} \varphi_0(x)} ,
+\]
+则 $\forall\, A \subset E$ 可测, 当 $mA < \delta$ 时,
+\[
+\int_A \varphi_0 ~ \mathrm{d} m \leqslant \Big( \max_{x \in E} \varphi_0(x) \Big) \cdot mA < \frac{\varepsilon}{2} .
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{绝对连续性证明 (二): 合拢}
+
+\startproof[bg=yellow, fg=red](证明续)
+同时, 由 $0 \leqslant \varphi_0 \leqslant f$ 及保序性,
+$\int_{E \setminus A} f ~ \mathrm{d} m \geqslant \int_{E \setminus A} \varphi_0 ~ \mathrm{d} m$.
+于是由积分对被积集合的\alert{有限可加性}:
+\[
+\int_A f ~ \mathrm{d} m
+= \int_E f ~ \mathrm{d} m - \int_{E \setminus A} f ~ \mathrm{d} m
+< \int_E \varphi_0 ~ \mathrm{d} m + \frac{\varepsilon}{2} - \int_{E \setminus A} \varphi_0 ~ \mathrm{d} m
+= \int_A \varphi_0 ~ \mathrm{d} m + \frac{\varepsilon}{2}
+< \varepsilon .
+\]
+\qed
+
+\pause
+
+\begin{attnblock}
+证明套路值得记住: ``\alert{简单函数截断} ($\varphi_0$ 逼近 $f$) $+$ \alert{有界量乘小测度}''
+--- 这是处理可积函数的万能起手式, 后文反复出现.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[可数可加]{积分的可数可加性}
+
+%------------------------------------------------
+
+\begin{frame}{关于被积集合的可数可加性}
+
+之前已证积分关于被积集合的\alert{有限}可加性, 现加强为可数可加 (与测度的可数可加性类比):
+
+\begin{thm}[可数可加性]
+设 $f$ 是有界可测集 $E$ 上的可积函数, $E = \bigcup_{k=1}^{\infty} E_k$, $E_k$ 可测且互不相交, 那么
+\[
+\int_E f ~ \mathrm{d} m = \sum_{k=1}^{\infty} \int_{E_k} f ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $R_n = E \setminus \bigcup_{k=1}^{n} E_k = \bigcup_{k > n} E_k$, 则 $\{R_n\}$ 渐缩且
+$\lim_n m R_n = 0$ ($mE < \infty$). 由有限可加性,
+\[
+\int_E f ~ \mathrm{d} m - \sum_{k=1}^{n} \int_{E_k} f ~ \mathrm{d} m
+= \int_{R_n} f ~ \mathrm{d} m .
+\]
+由\alert{绝对连续性}, $m R_n \to 0$ 时 $\int_{R_n} f ~ \mathrm{d} m \to 0$. 令 $n \to \infty$ 即得
+$\int_E f ~ \mathrm{d} m = \sum_{k=1}^{\infty} \int_{E_k} f ~ \mathrm{d} m$. \qed
+
+\pause
+
+\begin{remark}
+由 $\int_{E_k} f ~ \mathrm{d} m = \int_E f \chi_{E_k} ~ \mathrm{d} m$, 此定理可改写为``函数级数逐项积分''
+的雏形 (\S 4.3 详论); $E$ 有界的条件也较容易去掉.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[线性性]{积分的线性性}
+
+%------------------------------------------------
+
+\begin{frame}{线性性定理}
+
+\begin{thm}[线性性]
+设 $f, g \in L_E$, 则对任意 $a, b \in \mathbb{R}$, 有 $af + bg \in L_E$, 且
+\[
+\int_E (af + bg) ~ \mathrm{d} m = a \int_E f ~ \mathrm{d} m + b \int_E g ~ \mathrm{d} m .
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item 上一节已\alert{叙述}并使用过它 (那里只对非负可测给了证明); 这里对 $L_E$ 给出\alert{完整证明};
+\item 分两步: \textbf{数乘} (1\textdegree) 与 \textbf{相加} (2\textdegree);
+  相加又分``非负''与``一般''两段.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 1\textdegree: 数乘}
+
+\startproof[bg=yellow, fg=red](证明 1\textdegree: $\int_E (cf) ~ \mathrm{d} m = c \int_E f ~ \mathrm{d} m$)
+设 $c > 0$. 取渐升非负简单函数列 $0 \leqslant \varphi_1 \leqslant \varphi_2 \leqslant \cdots$,
+$\lim_n \varphi_n = f_+$ (\S 3.1 逼近定理). 由 $(c f)_+ = c f_+$ 及 Levi 定理与简单函数积分引理:
+\[
+\int_E (cf)_+ ~ \mathrm{d} m
+= \lim_{n} \int_E (c \varphi_n) ~ \mathrm{d} m
+= c \cdot \lim_n \int_E \varphi_n ~ \mathrm{d} m
+= c \int_E f_+ ~ \mathrm{d} m ;
+\]
+类似地 $\int_E (cf)_- ~ \mathrm{d} m = c \int_E f_- ~ \mathrm{d} m$. 从而
+\[
+\int_E (cf) ~ \mathrm{d} m = \int_E (cf)_+ ~ \mathrm{d} m - \int_E (cf)_- ~ \mathrm{d} m
+= c \int_E f ~ \mathrm{d} m
+\]
+(两个有限值之差, 故 $cf \in L_E$).
+
+\pause
+
+$c < 0$ 时只需对 $c = -1$ 证明: 由 $(−f)_+ = f_-$, $(−f)_- = f_+$,
+\[
+\int_E (-f) ~ \mathrm{d} m = \int_E f_- ~ \mathrm{d} m - \int_E f_+ ~ \mathrm{d} m = - \int_E f ~ \mathrm{d} m .
+\]
+$c = 0$ 平凡. \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 2\textdegree (i): $f, g \geqslant 0$ 的情形}
+
+\startproof[bg=yellow, fg=red](证明 2\textdegree: 先设 $f \geqslant 0$, $g \geqslant 0$ 可积)
+取渐升非负简单函数列 $0 \leqslant \varphi_n \uparrow f$, $0 \leqslant \psi_n \uparrow g$.
+则 $\varphi_n + \psi_n \uparrow f + g$, 由 Levi 定理与简单函数积分的线性:
+\[
+\int_E (f + g) ~ \mathrm{d} m
+= \lim_n \int_E (\varphi_n + \psi_n) ~ \mathrm{d} m
+= \lim_n \Big( \int_E \varphi_n ~ \mathrm{d} m + \int_E \psi_n ~ \mathrm{d} m \Big)
+= \int_E f ~ \mathrm{d} m + \int_E g ~ \mathrm{d} m .
+\]
+
+\pause
+
+特别地 $f + g \in L_E$ (右端有限), 且和的积分等于积分的和. \qed
+
+\pause
+
+\begin{attnblock}
+非负情形的本质: \alert{Levi 定理把``极限''搬进积分}, 剩下的交给简单函数层的线性 ---
+渐升逼近 $+$ 引理, 又一次.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明 2\textdegree (ii): 一般情形}
+
+\startproof[bg=yellow, fg=red](证明 2\textdegree 续: 一般 $f, g \in L_E$)
+由 $(f+g)_+ \leqslant f_+ + g_+$, 令 $h = f_+ + g_+ - (f+g)_+ \geqslant 0$ (非负可测).
+对非负可积函数用已证的线性:
+\[
+\int_E (f_+ + g_+) ~ \mathrm{d} m = \int_E (f+g)_+ ~ \mathrm{d} m + \int_E h ~ \mathrm{d} m .
+\qquad \text{……\textcircled{1}}
+\]
+
+\pause
+
+另一方面, 直接验证恒等式
+\[
+f_- + g_- = f_+ - f + g_+ - g = h + (f+g)_+ - (f+g) = h + (f+g)_- ,
+\]
+故
+\[
+\int_E (f_- + g_-) ~ \mathrm{d} m = \int_E h ~ \mathrm{d} m + \int_E (f+g)_- ~ \mathrm{d} m .
+\qquad \text{……\textcircled{2}}
+\]
+
+\pause
+
+\textcircled{1} $-$ \textcircled{2}:
+\[
+\int_E (f_+ - f_-) ~ \mathrm{d} m + \int_E (g_+ - g_-) ~ \mathrm{d} m
+= \int_E (f+g)_+ ~ \mathrm{d} m - \int_E (f+g)_- ~ \mathrm{d} m ,
+\]
+即 $\int_E f ~ \mathrm{d} m + \int_E g ~ \mathrm{d} m = \int_E (f+g) ~ \mathrm{d} m$ (各项皆有限,
+故 $f + g \in L_E$). 结合 1\textdegree 即得线性性定理. \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{线性性的两个推论}
+
+\begin{cor}
+\begin{enumerate}
+\item 设 $f, g \in L_E$ 且 $f \leqslant g$, 那么 $\int_E f ~ \mathrm{d} m \leqslant \int_E g ~ \mathrm{d} m$;
+\item 设 $f \in L_E$, $A \leqslant f \leqslant B$ ($A, B$ 为常数), 那么
+$A \cdot mE \leqslant \int_E f ~ \mathrm{d} m \leqslant B \cdot mE$.
+\end{enumerate}
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+(1) $g - f \geqslant 0$ 可积, 由线性性
+$\int_E g ~ \mathrm{d} m - \int_E f ~ \mathrm{d} m = \int_E (g - f) ~ \mathrm{d} m \geqslant 0$. \qed
+
+\pause
+
+(2) 常函数 $A \chi_E, B \chi_E \in L_E$ 且 $A \chi_E \leqslant f \leqslant B \chi_E$, 由 (1) 与
+$\int_E \chi_E ~ \mathrm{d} m = mE$:
+\[
+A \cdot mE = \int_E A \chi_E ~ \mathrm{d} m \leqslant \int_E f ~ \mathrm{d} m \leqslant \int_E B \chi_E ~ \mathrm{d} m = B \cdot mE .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item (1) 把 \S 4.1 非负层的保序性推广到\alert{一般可积}函数;
+\item (2) 是积分的``上下界估计'': 被夹在两常量之间的函数, 积分也被夹住.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[唯一性]{唯一性定理}
+
+%------------------------------------------------
+
+\begin{frame}{唯一性定理}
+
+\begin{thm}[唯一性]
+设 $f \in L_E$, 那么 $\int_E |f| ~ \mathrm{d} m = 0$ 的\alert{充要条件}是 $f \sim 0$
+(即 $mE(f \neq 0) = 0$).
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明 ``$\Leftarrow$'')
+设 $f \sim 0$. 由积分的有限可加性,
+\[
+\int_E |f| ~ \mathrm{d} m = \int_{E(f = 0)} |f| ~ \mathrm{d} m + \int_{E(f \neq 0)} |f| ~ \mathrm{d} m .
+\]
+第一项显然为 $0$; 对第二项, 任取非负简单函数 $\varphi$: $0 \leqslant \varphi \leqslant |f|$, 其标准表示
+$\varphi = \sum_k c_k \chi_{A_k}$ 满足 $A_k \subset E(f \neq 0)$ 为\alert{零测集}, 故
+\[
+\int_{E(f \neq 0)} \varphi ~ \mathrm{d} m = \sum_k c_k m A_k = 0 ,
+\]
+取 $\sup$ 得 $\int_{E(f \neq 0)} |f| ~ \mathrm{d} m = 0$. 从而 $\int_E |f| ~ \mathrm{d} m = 0$. \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{唯一性定理证明 (续) 与层次集技巧}
+
+\startproof[bg=yellow, fg=red](证明 ``$\Rightarrow$'' 续)
+设 $\int_E |f| ~ \mathrm{d} m = 0$. $\forall\, n \in \mathbb{N}$,
+\[
+0 = \int_E |f| ~ \mathrm{d} m
+\geqslant \int_{E(|f| \geqslant \frac{1}{n})} |f| ~ \mathrm{d} m
+\geqslant \int_{E(|f| \geqslant \frac{1}{n})} \frac{1}{n} ~ \mathrm{d} m
+= \frac{1}{n} \cdot m E\big(|f| \geqslant \tfrac{1}{n}\big)
+\]
+$\Longrightarrow mE(|f| \geqslant \frac1n) = 0$. 而
+\[
+E(|f| \neq 0) = \bigcup_{n=1}^{\infty} E\big(|f| \geqslant \tfrac{1}{n}\big)
+\ \Longrightarrow\
+m E(|f| \neq 0) \leqslant \sum_{n=1}^{\infty} m E\big(|f| \geqslant \tfrac{1}{n}\big) = 0 ,
+\]
+即 $f(x) = 0$ a.e.\ 于 $E$, 亦即 $f \sim 0$. \qed
+
+\pause
+
+\begin{attnblock}
+$E(|f| \neq 0) = \bigcup_n E(|f| \geqslant \tfrac1n)$ 这种\alert{层次集分解}是本章的标准手法,
+后面 (Fatou、控制收敛的反例等) 会经常用到.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{应用: 分变量连续的二元函数可测}
+
+\graymode
+
+\begin{eg}
+设 $f: E = \mathbb{R}^2 \to \mathbb{R}$, 固定任一变量时 $f$ 是关于另一变量的\alert{连续}函数
+(``分变量连续''), 则 $f$ 可测.
+\end{eg}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $f_n(x, y) = f\big( \tfrac{\lfloor nx \rfloor}{n}, y \big)$ ($x$ 方向阶梯化), 则
+$\forall\, (x,y) \in E$, 由 $f$ 关于 $x$ 连续, $f_n(x, y) \to f(x, y)$ ($n \to \infty$). 而
+\[
+E(f_n > \alpha)
+= \bigcup_{k \in \mathbb{Z}} \Big[ \tfrac{k}{n}, \tfrac{k+1}{n} \Big) \times
+\big\{ y \in \mathbb{R}:\ f(\tfrac{k}{n}, y) > \alpha \big\}
+\]
+右边第一族是 Borel 区间, 第二个集合由 $f(\tfrac{k}{n}, \cdot)$ 连续而是开集 --- 故 $E(f_n > \alpha)$
+可测, $f_n$ 可测; 再由 $f = \lim_n f_n$ 与 \S 3.1 (极限封闭) 知 $f$ 可测. \qed
+
+\normalmode
+
+\begin{itemize}
+\item 只需``分变量''连续, 不要求二元整体连续 ---
+  可测性是个很``宽容''的结论 (\S 3.1 的例子只覆盖了一维情形).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[L¹ 逼近]{可积函数的 L¹ 逼近}
+
+%------------------------------------------------
+
+\begin{frame}{连续函数在 $L^1$ 意义下的逼近}
+
+在进入下一节``积分序列的极限''之前, 最后介绍一个结论: \alert{可积函数可用连续函数平均逼近}
+($L^1$ 逼近).
+
+\begin{thm}
+设 $E = [a, b]$, $f \in L_E$, 那么 $\forall\, \varepsilon > 0$, $\exists\, g \in C[a, b]$, 使得
+\[
+\int_E |f - g| ~ \mathrm{d} m < \varepsilon .
+\]
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item 语言: $\|f - g\|_1 := \int_E |f - g| ~ \mathrm{d} m \to 0$ ---
+  $C[a, b]$ 在 $(L_E, \|\cdot\|_1)$ 中\alert{稠密} (第五章的伏笔);
+\item Luzin 定理的``积分版'': ``可测 $\approx$ 连续''从测度语言翻译为积分语言;
+\item 证明需要两个引理: 先逼近\alert{可积函数}为简单函数, 再逼近\alert{特征函数}为连续函数.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理 1: 可积函数被简单函数 $L^1$ 逼近}
+
+\begin{lem}[引理 1]
+设 $f \in L_E$, 那么 $\forall\, \varepsilon > 0$, $\exists$ $E$ 上简单函数 $\varphi$, 使得
+$\int_E |f - \varphi| ~ \mathrm{d} m < \varepsilon$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$f \in L_E \Longrightarrow \int_E f_+ ~ \mathrm{d} m, \int_E f_- ~ \mathrm{d} m < \infty$.
+由积分定义 (或 Levi 定理), 可取非负简单函数 $0 \leqslant \varphi_1 \leqslant f_+$, 使得
+\[
+\int_E f_+ ~ \mathrm{d} m < \int_E \varphi_1 ~ \mathrm{d} m + \frac{\varepsilon}{2}
+\qquad \text{……\textcircled{1}}
+\]
+类似可取 $0 \leqslant \varphi_2 \leqslant f_-$, 使得
+$\int_E f_- ~ \mathrm{d} m < \int_E \varphi_2 ~ \mathrm{d} m + \frac{\varepsilon}{2}$ ……\textcircled{2}.
+
+\pause
+
+令 $\varphi = \varphi_1 - \varphi_2$ (简单函数). 由 $0 \leqslant \varphi_1 \leqslant f_+$,
+$0 \leqslant \varphi_2 \leqslant f_-$ 知 $|f_+ - \varphi_1| = f_+ - \varphi_1$,
+$|f_- - \varphi_2| = f_- - \varphi_2$, 于是
+\[
+\int_E |f - \varphi| ~ \mathrm{d} m
+= \int_E |(f_+ - \varphi_1) - (f_- - \varphi_2)| ~ \mathrm{d} m
+\leqslant \int_E (f_+ - \varphi_1) ~ \mathrm{d} m + \int_E (f_- - \varphi_2) ~ \mathrm{d} m
+\overset{\textcircled{1}\textcircled{2}}{<} \varepsilon .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理 2: 特征函数被连续函数 $L^1$ 逼近}
+
+\begin{lem}[引理 2]
+设 $E \subset [a, b]$ 可测, 则 $\forall\, \varepsilon > 0$, $\exists\, g \in C[a, b]$, 使得
+$\int_{[a,b]} |\chi_E - g| ~ \mathrm{d} m < \varepsilon$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+由 \S 3.3 Luzin 定理的\alert{延拓推论} (方法二保界): $\exists\, \tilde{g} \in C(\mathbb{R})$, 使得
+\[
+m\, I(\chi_E \neq \tilde{g}) < \frac{\varepsilon}{2}, \qquad I = [a, b],
+\qquad \text{且可要求 } |\tilde{g}| \leqslant 1 .
+\]
+令 $g = \tilde{g}\big|_I \in C[a, b]$, 则 $|g| \leqslant 1$, 且 $|\chi_E - g| \leqslant 2$:
+\[
+\int_I |\chi_E - g| ~ \mathrm{d} m
+= \int_{I(\chi_E = g)} |\chi_E - g| ~ \mathrm{d} m
++ \int_{I(\chi_E \neq g)} |\chi_E - g| ~ \mathrm{d} m
+\leqslant 0 + 2 \cdot m I(\chi_E \neq g) < \varepsilon .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item ``特征函数 $\leftrightarrow$ 连续函数''是可测集与开闭集关系 (\S 2.3 $\varepsilon$-刻画)
+  在积分语言下的重演.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定理的证明: 组装}
+
+\startproof[bg=yellow, fg=red](定理证明)
+$\forall\, \varepsilon > 0$, 由引理 1 取简单函数 $\varphi = \sum_{k=1}^{m} c_k \chi_{E_k}$, 使得
+\[
+\int_E |f - \varphi| ~ \mathrm{d} m < \frac{\varepsilon}{2} .
+\]
+同时, 对每一个 $\chi_{E_k}$, 由引理 2 取 $g_k \in C[a, b]$, 使得
+\[
+\int_E |\chi_{E_k} - g_k| ~ \mathrm{d} m < \frac{\varepsilon}{2M},
+\qquad M = 1 + |c_1| + \cdots + |c_m| .
+\]
+
+\pause
+
+令 $g = \sum_{k=1}^{m} c_k g_k \in C[a, b]$, 则
+\[
+\int_E |f - g| ~ \mathrm{d} m
+\leqslant \int_E |f - \varphi| ~ \mathrm{d} m + \int_E |\varphi - g| ~ \mathrm{d} m
+< \frac{\varepsilon}{2} + \sum_{k=1}^{m} |c_k| \int_E |\chi_{E_k} - g_k| ~ \mathrm{d} m
+< \frac{\varepsilon}{2} + \sum_{k=1}^{m} |c_k| \cdot \frac{\varepsilon}{2M}
+< \varepsilon .
+\]
+\qed
+
+\pause
+
+\begin{attnblock}
+两步逼近链: $f \xleftarrow{L^1,\ \varepsilon/2} \varphi$ (简单)
+$\xleftarrow{L^1,\ \varepsilon/2} g$ (连续) ---
+与 \S 3.1--3.3 反复使用的``简单函数桥梁''完全同构.
+\end{attnblock}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结与展望}
+
+%------------------------------------------------
+
+\begin{frame}{小结与展望}
+
+\begin{itemize}
+\item \textbf{绝对连续性}: $f \in L_E$, $mA < \delta \Rightarrow |\int_A f ~ \mathrm{d} m| < \varepsilon$;
+  证明套路 = 简单函数截断 + 有界量乘小测度;
+\pause
+\item \textbf{可数可加性}: $\int_E f ~ \mathrm{d} m = \sum_k \int_{E_k} f ~ \mathrm{d} m$ ---
+  有限可加 + 绝对连续性 ($mR_n \to 0$); 与测度论平行;
+\pause
+\item \textbf{线性性}: $af + bg \in L_E$ 且积分线性 --- 数乘 (Levi) + 相加 (非负段 + $h$ 恒等式段);
+  推论: $L_E$ 内保序, $A \cdot mE \leqslant \int_E f ~ \mathrm{d} m \leqslant B \cdot mE$;
+\pause
+\item \textbf{唯一性}: $\int_E |f| ~ \mathrm{d} m = 0 \iff f \sim 0$ ---
+  层次集分解 $E(|f| \neq 0) = \bigcup_n E(|f| \geqslant \tfrac1n)$;
+  应用: 分变量连续的二元函数可测;
+\pause
+\item \textbf{$L^1$ 逼近}: $E = [a,b]$, $f \in L_E \Rightarrow \exists\, g \in C[a,b]$,
+  $\|f - g\|_1 < \varepsilon$ --- $C[a,b]$ 在 $L^1$ 中稠密;
+\pause
+\item \textbf{展望}: §4.3 积分序列的极限 --- 逐项积分 (Levi 级数形式)、Fatou 引理、
+  Lebesgue 控制收敛定理; 勒贝格积分优势的全面展示.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\ifIncludeExercise
+\begin{frame}{作业}
+
+\begin{block}{教材第四章 \S 4.2 习题}
+\begin{itemize}
+\item \textbf{7.} 设 $f$ 为 $E$ 上可积函数, 如果对任何有界可测函数 $\varphi$, 都有
+$\int_E f \varphi ~ \mathrm{d} m = 0$, 证明 $f \sim 0$.
+\item \textbf{8.} Levi 定理中去掉函数列的非负性假定, 结论是否成立?
+\end{itemize}
+\end{block}
+
+\begin{block}{续}
+\begin{itemize}
+\item \textbf{14.} 设 $f$ 是区间 $[0, 1]$ 上的可积函数, 若对任何 $c \in (0, 1)$ 恒有
+$\int_0^c f(x) ~ \mathrm{d} m = 0$, 证明 $f \sim 0$.
+\item \textbf{19.} 设对每个 $n \in \mathbb{N}$, $f_n$ 在 $E$ 上可积, 序列 $\{f_n\}$ 几乎处处收敛于
+$f$ ($n \to \infty$), 且一致地有 $\int_E |f_n| ~ \mathrm{d} m \leqslant K$ ($K$ 为常数),
+证明 $f$ 可积.
+\end{itemize}
+\end{block}
+
+\end{frame}
+\fi
 
 %------------------------------------------------
 
