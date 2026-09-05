@@ -30,42 +30,859 @@ Lp空间可分性] % Your institution as it will appear on the bottom of every s
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 完备性之后}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{引言: 从 $\mathbb{Q} \subset \mathbb{R}$ 说起}
 
+\begin{itemize}
+\item 上一节证明了 $L^p$ 空间的\alert{完备性}; $L^p$ 空间还有一个比较重要的性质
+  --- \alert{可分性}: 存在\alert{可列}的稠密子空间;
+\item 类比: $\mathbb{Q}$ 是 $\mathbb{R}$ 中的\alert{可列稠密子集}
+  --- 有理数足够``稠'', 又足够``少'' (可列), 于是 $\mathbb{R}$ 的结构可以通过
+  $\mathbb{Q}$ 来把握;
+\item 有了可分性, $L^p$ 空间的结构就比较简单.
+\end{itemize}
 
+\pause
+
+\begin{center}
+\fbox{我们这一节最重要的结论就是: $L^p$ 是可分空间 ($1 \leqslant p < \infty$).}
+\end{center}
+
+\pause
+
+\begin{itemize}
+\item 路线: 主线 --- \alert{三步逼近引理} (有界可测 $\to$ 简单 $\to$ 有理系数);
+  支线 --- Weierstra\ss{} 逼近 (多项式, 超纲补充); 收尾 --- \alert{弱收敛}及收敛关系总结.
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{$L^{\infty}$ 空间的不可分性}
+\section[稠密与可分]{稠密与可分}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{定义: 稠密与可分}
 
+\begin{Def}[稠密]
+设 $A$ 是 $L^p$ 空间的一个子集. 若 $\forall f \in L^p$, 恒有 $A$ 中的点列
+$\{ g_n \}_{n \in \mathbb{N}}$, 使得 $g_n \xrightarrow{\ \text{强}\ } f$,
+则称 $A$ 在 $L^p$ 中\alert{稠密}.
+\end{Def}
+
+\pause
+
+\begin{Def}[可分]
+若存在\alert{可列}子集 $A$, 使得 $A$ 在 $L^p$ 中稠密, 则称 $L^p$ 是\alert{可分的}.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 以上定义中的 $L^p$ 空间可以替换为一般的度量空间,
+  得到一般的\alert{可分度量空间}的定义;
+\item \textbf{类比}: $\mathbb{Q}$ 可列且在 $\mathbb{R}$ 中稠密
+  $\Longrightarrow$ $\mathbb{R}$ (按绝对值距离) 可分.
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{$L^p$ 空间的可分性}
+\section[可分定理]{$L^p$ 可分性定理}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{定理: $L^p$ 可分 ($1 \leqslant p < \infty$)}
 
+\begin{thm}[$L^p$ 的可分性]
+设 $1 \leqslant p < \infty$, 则 $L^p$ 是可分空间.
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item \textbf{证明的思路}: 需要一些引理, 用一些\alert{特殊的函数}来逼近一般的函数;
+\item \textbf{回忆}: 在学习单个可积函数性质时 (\S 4.2 附录), 我们证明过
+  可积函数可用连续函数\alert{平均 ($L^1$) 逼近} --- 这里是更细致一些的结论.
+\end{itemize}
+
+\pause
+
+\begin{remark}
+定理断言中要求 $p < \infty$: $L^\infty$ 不可分
+(如 $\big\{ \chi_{[n, n+1)} \big\}_{n \in \mathbb{N}}$ 两两距离为 $1$).
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{引理: 三步逼近}
+
+\begin{lem}[三步逼近]
+设 $f \in L^p(E)$, ($1 \leqslant p < \infty$), 那么 $\forall \varepsilon > 0$:
+\begin{enumerate}
+\item 存在\alert{有界可测}函数 $g$, 使得 $\lVert f - g \rVert_p < \varepsilon$;
+\item 设 $g$ 为\alert{有界可测集 $E$ 上的有界可测}函数, 那么存在\alert{简单函数}
+  $\varphi$, 使得 $\lVert g - \varphi \rVert_p < \varepsilon$;
+\item 设 $\varphi$ 为有界可测集 $E$ 上的简单函数, 则存在形如
+\[
+s(x) = \sum_{k=1}^{m} r_k \, \chi_{e_k}(x)
+\qquad \text{(全体记为 } S\text{)}
+\]
+的简单函数, 其中 $r_k \in \mathbb{Q}$, $e_k$ 为互不相交的、端点为有理数的开区间,
+使得 $\lVert \varphi - s \rVert_p < \varepsilon$.
+\end{enumerate}
+\end{lem}
+
+\pause
+
+\begin{itemize}
+\item 三个函数类层层收窄: 一般 $\to$ 有界 $\to$ 阶梯 $\to$ \alert{有理数据}.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[三步逼近]{三步逼近引理的证明}
+
+%------------------------------------------------
+
+\begin{frame}{(1) 的证明: 渐缩集列}
+
+\startproof[bg=yellow, fg=red]((1) 的证明)
+由 $|f|^p \in L_E$ 及积分的\alert{绝对连续性}, $\forall \varepsilon > 0$,
+$\exists \delta > 0$, 使得 $\forall$ 可测集 $e \subset E$, 只要 $me < \delta$,
+就有 $\int_e |f|^p ~ \mathrm{d} m < \varepsilon^p$.
+
+\pause
+考虑 $E$ 中的渐缩集列
+\[
+A_k = E\big( |f| > k \big),
+\qquad
+A_1 \supset A_2 \supset \cdots \supset A_k \supset \cdots
+\]
+\begin{itemize}
+\item 由于 $|f|^p \in L_E$: $\forall k \in \mathbb{N}$, $mA_k < \infty$
+  (特别地 $mA_1 < \infty$);
+\item 又由于 $f$ 在 $E$ 上 a.e.\ 有限, 所以
+\[
+m \Big( \bigcap_{k=1}^{\infty} A_k \Big)
+= m \big( E\big( |f| = \infty \big) \big) = 0 ;
+\]
+\item 从而 $\lim_k mA_k = 0$ (测度的上连续性): 对 $\delta > 0$,
+  $\exists k_0 \in \mathbb{N}$, 使得 $\forall k > k_0$, 有 $mA_k < \delta$.
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(1) 的证明: 截断与估计}
+
+\startproof[bg=yellow, fg=red]((1) 的证明, 续)
+令
+\[
+g(x) =
+\begin{cases}
+f(x), & \text{若 } x \in E \setminus A_{k_0}, \\
+0, & \text{若 } x \in A_{k_0}.
+\end{cases}
+\]
+\pause
+那么 $g$ 是有界可测函数 ($|g| \leqslant k_0$), 且有
+\[
+\lVert f - g \rVert_p
+= \Big( \int_E |f - g|^p ~ \mathrm{d} m \Big)^{\!1/p}
+= \Big( \int_{A_{k_0}} |f|^p ~ \mathrm{d} m \Big)^{\!1/p}
+< \big( \varepsilon^p \big)^{1/p}
+= \varepsilon .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{注意}: (1) 不要求 $mE < \infty$
+  --- 绝对连续性对一般可测集上的可积函数成立;
+\item 与 \S 4.3 有界收敛定理的``截大值''手法相同: 在 $E(|f| > k_0)$ 上截断.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(2) 的证明: 正负部与简单函数逼近}
+
+\startproof[bg=yellow, fg=red]((2) 的证明)
+设 $E$ 有界可测, $g$ 有界可测, 设一个上界为 $M$ ($|g| \leqslant M$).
+写 $g = g_+ - g_-$, 那么 $g_+, g_-$ 非负、有界、可测, 且可积.
+
+\pause
+由非负可测函数积分的定义
+($\int_E h ~ \mathrm{d} m = \sup \big\{ \int_E \varphi ~ \mathrm{d} m : 0 \leqslant \varphi \leqslant h, \varphi \text{ 简单} \big\}$),
+$\forall \varepsilon > 0$, 存在 $E$ 上非负简单函数
+\[
+0 \leqslant \varphi_1 \leqslant g_+,
+\qquad
+0 \leqslant \varphi_2 \leqslant g_-,
+\]
+使得
+\[
+\int_E |g_+ - \varphi_1| ~ \mathrm{d} m < \frac{\varepsilon^p}{2 \cdot (2M)^{p-1}},
+\qquad
+\int_E |g_- - \varphi_2| ~ \mathrm{d} m < \frac{\varepsilon^p}{2 \cdot (2M)^{p-1}} .
+\]
+\pause
+令 $\varphi = \varphi_1 - \varphi_2$, 即有 $\varphi$ 为有界简单函数
+($|\varphi_1|, |\varphi_2| \leqslant M$, 从而 $|\varphi| \leqslant M$).
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(2) 的证明: $(2M)^{p-1}$ 技巧}
+
+\startproof[bg=yellow, fg=red]((2) 的证明, 续)
+首先
+\[
+\int_E |g - \varphi| ~ \mathrm{d} m
+\leqslant \int_E \big( |g_+ - \varphi_1| + |g_- - \varphi_2| \big) ~ \mathrm{d} m
+< \frac{\varepsilon^p}{(2M)^{p-1}} .
+\]
+由于 $|g| \leqslant M$, $|\varphi| \leqslant M$, 所以 $|g - \varphi| \leqslant 2M$, 从而
+\[
+\int_E |g - \varphi|^p ~ \mathrm{d} m
+\leqslant (2M)^{p-1} \int_E |g - \varphi| ~ \mathrm{d} m
+< (2M)^{p-1} \cdot \frac{\varepsilon^p}{(2M)^{p-1}}
+= \varepsilon^p ,
+\]
+故 $\lVert g - \varphi \rVert_p < \varepsilon$.
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{技巧的核心}: $|h| \leqslant 2M$ 时 $|h|^p \leqslant (2M)^{p-1} |h|$
+  --- ``降一次幂'', 而 $\varphi_i$ 的逼近精度恰好带一个 $(2M)^{p-1}$ 分母, 两者相消;
+\item 这也是选取 $\varepsilon^p / \big( 2(2M)^{p-1} \big)$ 这一``奇怪''精度的原因.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(3) 的证明: 闭集逼近与互不相交开集}
+
+\startproof[bg=yellow, fg=red]((3) 的证明)
+设 $\varphi(x) = \sum_{i=1}^{n} c_i \chi_{E_i}(x)$,
+$E_i \subset E$ 为互不相交可测集, 且 $E = \bigcup_i E_i$;
+记 $M = \max_i |c_i|$.
+
+\pause
+\begin{itemize}
+\item \textcircled{1} \textbf{闭集逼近} (可测集的正则性): $\forall \varepsilon > 0$,
+  $\forall E_i$, 存在闭集 $F_i \subset E_i$, 使得
+\[
+m \big( E_i \setminus F_i \big) < \frac{\varepsilon^p}{2 n \, (2M)^p}
+\qquad (i = 1, \dots, n);
+\]
+\item \textcircled{2} \textbf{互不相交开邻域}: $F_i$ 为互不相交闭集,
+  所以存在互不相交开集 $\widetilde{G}_i \supset F_i$.
+  ($n=2$ 情形: 令 $\rho = \rho(F_1, F_2) > 0$,
+  取 $\widetilde{G}_1 = \bigcup_{y \in F_1} U(y, \rho/3)$,
+  $\widetilde{G}_2 = \bigcup_{x \in F_2} U(x, \rho/3)$ 即可.)
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(3) 的证明: 有限化与端点有理化}
+
+\startproof[bg=yellow, fg=red]((3) 的证明, 续)
+\begin{itemize}
+\item \textcircled{3} \textbf{有限化}: 又由于 $F_i$ 是有界闭集,
+  $\widetilde{G}_i$ 的构成区间对 $F_i$ 构成开覆盖, 从而可选出有限覆盖,
+  将其并集记为 $G_i$. 那么
+  \[
+  F_i \subset G_i \subset \widetilde{G}_i
+  \quad \text{为开集, 且 } G_i \text{ 只有有限多个 (互不相交的) 构成区间};
+  \]
+\item \textcircled{4} \textbf{端点有理化}: 可以假设 $G_i$ 的构成区间的端点都是
+  有理数, 否则只需将每个构成区间的端点向外微调到充分近的有理数
+  (外扩幅度不超过 $\min_{i \neq j} \rho(F_i, F_j) / 4$ 量级),
+  互不相交性不变.
+\end{itemize}
+
+\pause
+\begin{itemize}
+\item \textcircled{5} \textbf{有理系数}: $\forall c_i$, 取 $r_i \in \mathbb{Q}$, 使得
+  \[
+  |r_i - c_i| < \frac{\varepsilon}{(2 \, mE)^{1/p}}
+  \qquad \text{且} \qquad |r_i| \leqslant |c_i|
+  \quad \Longrightarrow \quad
+  |\varphi - s| \leqslant 2M ;
+  \]
+  并令
+  \[
+  s(x) = \sum_{i=1}^{n} r_i \, \chi_{G_i}(x) .
+  \]
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{(3) 的证明: 误差估计}
+
+\startproof[bg=yellow, fg=red]((3) 的证明, 续)
+由 $G_i$ 互不相交: 在 $F_i$ 上 $\varphi = c_i$ 且 $s = r_i$ (无混叠), 于是
+\[
+\int_E |\varphi - s|^p ~ \mathrm{d} m
+= \int_{\bigcup_i E_i} |\varphi - s|^p ~ \mathrm{d} m
+= \Big( \int_{\bigcup_i F_i} + \int_{\bigcup_i (E_i \setminus F_i)} \Big)
+| \varphi - s |^p ~ \mathrm{d} m
+\]
+\pause
+\[
+\leqslant \Big( \frac{\varepsilon}{(2 \, mE)^{1/p}} \Big)^{\!p}
+m \Big( \bigcup_{i=1}^{n} F_i \Big)
++ (2M)^p \; m \Big( \bigcup_{i=1}^{n} (E_i \setminus F_i) \Big)
+\leqslant \frac{\varepsilon^p}{2 \, mE} \cdot mE
++ (2M)^p \sum_{i=1}^{n} \frac{\varepsilon^p}{2n (2M)^p}
+\]
+\[
+= \frac{\varepsilon^p}{2} + \frac{\varepsilon^p}{2}
+= \varepsilon^p
+\qquad \Longrightarrow \qquad
+\lVert \varphi - s \rVert_p < \varepsilon .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 两项误差各占一半: $\bigcup F_i$ 上靠\alert{系数有理化},
+  $\bigcup (E_i \setminus F_i)$ 上靠\alert{测度控制}与 $|\varphi - s| \leqslant 2M$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[可分性证明]{可分性定理的证明}
+
+%------------------------------------------------
+
+\begin{frame}{定理的证明: $\varepsilon/3$ 拼接与 $S$ 可列}
+
+\startproof[bg=yellow, fg=red]($L^p$ 可分性定理的证明)
+设 $1 \leqslant p < \infty$, 任取 $f \in L^p$, $\varepsilon > 0$. 由引理:
+\[
+\exists\ \text{有界可测 } g: \lVert f - g \rVert_p < \varepsilon/3;
+\quad
+\exists\ \text{简单函数 } \varphi: \lVert g - \varphi \rVert_p < \varepsilon/3;
+\quad
+\exists\ s \in S: \lVert \varphi - s \rVert_p < \varepsilon/3 .
+\]
+于是
+\[
+\lVert f - s \rVert_p
+\leqslant \lVert f - g \rVert_p + \lVert g - \varphi \rVert_p
++ \lVert \varphi - s \rVert_p
+< \varepsilon .
+\]
+\pause
+而
+\[
+S = \Big\{ s = \sum_{i=1}^{m} r_i \chi_{[\alpha_i, \beta_i]}
+:\ r_i,\ \alpha_i,\ \beta_i \in \mathbb{Q},\ m \in \mathbb{N} \Big\}
+\]
+是可列集 ($\mathbb{Q}^3$ 可数, 有限长序列之并可数).
+故 $S$ 是 $L^p$ 中的可列稠密集, $L^p$ 可分.
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 构成区间的端点开闭不影响 (有理端点处至多差一个单点集, 零测).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[正算子]{另一条路: 多项式逼近}
+
+%------------------------------------------------
+
+\begin{frame}{多项式逼近: 正算子与 Bernstein 算子}
+
+(接下来我们用\alert{另一种方法}证明 $L^p$ 空间的可分性,
+即 Weierstra\ss{} 逼近定理, 用多项式进行逼近. 先引入一些概念.)
+
+\pause
+
+\begin{Def}[正算子与多项式算子]
+称线性算子 $L: C([a,b]) \longrightarrow C([a,b])$ 为\alert{正算子},
+若 $\forall$ 非负 $f \in C([a,b])$, 总有 $L(f)$ 为非负连续函数;
+称 $L$ 为\alert{多项式算子}, 若 $\forall f \in C([a,b])$, $L(f)$ 为多项式.
+
+\vspace{0.3em}
+\textbf{注}: 正算子保持不等号: \
+$L(f - g) \geqslant 0 \Longrightarrow L(f) \geqslant L(g)$.
+\end{Def}
+
+\pause
+
+\begin{eg}[Bernstein 算子]
+$C([0,1])$ 上的线性算子
+\[
+f \longmapsto B_n(f; x) := \sum_{k=0}^{n} f \Big( \frac{k}{n} \Big)
+\binom{n}{k} x^k (1 - x)^{n-k}
+\]
+为\alert{正的多项式算子}; $B_n(f; x)$ 被称为 $f$ 的 \alert{Bernstein 多项式}.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Korovkin]{Korovkin 定理}
+
+%------------------------------------------------
+
+\begin{frame}{Korovkin 定理}
+
+\begin{attnblock}[超纲补充]
+以下 Korovkin 定理及其证明为超出大纲的补充内容, 供感兴趣的同学选读;
+其作用是把 Bernstein 定理归结为对三个单项式的验证.
+\end{attnblock}
+
+\graymode
+
+\pause
+
+\begin{thm}[Korovkin]
+设 $\{ L_n \}_{n \in \mathbb{N}}$ 为 $C([a,b])$ 上的一列正线性算子,
+且对 $i = 0, 1, 2$ 满足 $L_n(\alpha_i; x)$ \alert{一致收敛}于 $\alpha_i$,
+其中 $\alpha_i(x)$ 为单项式 $x^i$.
+那么 $\forall f \in C([a,b])$, $L_n(f; x)$ 一致收敛于 $f$.
+\end{thm}
+
+\pause
+
+\begin{itemize}
+\item \textbf{证明的路线}: 一致连续性给出逐点控制不等式
+  $\to$ 正算子\alert{保序}地``传递''到算子值
+  $\to$ 三个单项式的假设控制每一项 $\to$ 取 $z = x$ 收尾;
+\item 关键辅助函数: $\varphi(t) = (t - x)^2$ --- 由 $1, t, t^2$ 线性表出.
+\end{itemize}
+
+\normalmode
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Korovkin 的证明 (一): 逐点控制}
+
+\graymode
+
+\startproof[bg=yellow, fg=red](Korovkin 定理的证明)
+由于 $f \in C([a,b])$ 为连续函数, $[a,b]$ 为紧集, 所以 $f$ 一致连续:
+$\forall \varepsilon > 0$, $\exists \delta > 0$, 使得 $\forall x, t \in [a,b]$,
+只要 $|x - t| < \delta$, 就有 $|f(x) - f(t)| < \varepsilon / 2$.
+
+\pause
+令 $M = \max_{t \in [a,b]} |f(t)|$ (连续函数在闭区间上能取到最值),
+$\varphi(t) = (t - x)^2$. 那么 $\forall x, t \in [a,b]$, 下列不等式恒成立:
+\[
+|f(t) - f(x)| < \varepsilon + \frac{2M}{\delta^2} \, \varphi(t) :
+\]
+\begin{itemize}
+\item 若 $|t - x| < \delta$: $|f(t) - f(x)| < \varepsilon/2
+  < \varepsilon + \frac{2M}{\delta^2} \varphi(t)$;
+\item 若 $|t - x| \geqslant \delta$: $\varphi(t) = (t-x)^2 \geqslant \delta^2$
+  $\Longrightarrow \frac{2M}{\delta^2} \varphi(t) \geqslant 2M
+  \geqslant |f(t) - f(x)|$.
+\end{itemize}
+\qed
+
+\normalmode
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Korovkin 的证明 (二): 作用正算子}
+
+\graymode
+
+\startproof[bg=yellow, fg=red](Korovkin 定理的证明, 续)
+将 $t$ 视为变元, $x$ 视为常值, 将 $L_n$ 作用于上式两边 (去绝对值后按两边夹).
+由于 $L_n$ 为正的线性算子, 保持不等号不变, 有
+\[
+- \varepsilon \, L_n(1; z) - \frac{2M}{\delta^2} L_n(\varphi; z)
+\leqslant L_n(f; z) - f(x) \, L_n(1; z)
+\leqslant \varepsilon \, L_n(1; z) + \frac{2M}{\delta^2} L_n(\varphi; z),
+\]
+\pause
+其中由线性性,
+\[
+L_n(\varphi; z) = L_n(t^2 - 2xt + x^2; z)
+= L_n(t^2; z) - 2x \, L_n(t; z) + x^2 \, L_n(1; z)
+\xrightarrow{\ \text{一致}\ } z^2 - 2xz + x^2 \cdot 1 = (z - x)^2 .
+\]
+\pause
+移项 (补上 $f(x) = f(x) \cdot 1$) 可得
+\[
+\big| L_n(f; z) - f(x) \big|
+\leqslant \varepsilon \, L_n(1; z)
++ \frac{2M}{\delta^2} L_n(\varphi; z)
++ |f(x)| \, \big| L_n(1; z) - 1 \big| .
+\tag{$*$}
+\]
+\qed
+
+\normalmode
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Korovkin 的证明 (三): 一致收尾}
+
+\graymode
+
+\startproof[bg=yellow, fg=red](Korovkin 定理的证明, 续)
+由 $L_n(1; z) \rightrightarrows 1$ 与 $L_n(\varphi; z) \rightrightarrows (z-x)^2$
+(关于 $x, z \in [a,b]$ 一致), 存在与 $x, z$ 无关的 $N \in \mathbb{N}$,
+使得 $\forall n > N$:
+\[
+\big| L_n(1; z) - 1 \big| < \varepsilon
+\ \Big( \text{从而 } L_n(1; z) < 1 + \varepsilon \Big),
+\qquad
+\big| L_n(\varphi; z) - (z - x)^2 \big| < \varepsilon ,
+\ \forall z \in [a,b] \ \text{成立}.
+\]
+\pause
+特别地, 当 $z = x$ 时 (此时 $(z-x)^2 = 0$, 故 $L_n(\varphi; x) < \varepsilon$),
+\[
+(*) \leqslant \varepsilon (1 + \varepsilon) + \frac{2M}{\delta^2} \cdot \varepsilon
++ M \cdot \varepsilon
+\leqslant \Big( 2 + \frac{2M}{\delta^2} + M \Big) \varepsilon
+\qquad (0 < \varepsilon < 1),
+\]
+右端与 $x$ 无关. 这说明了 $L_n(f; \cdot)$ 在 $[a,b]$ 一致收敛于 $f$.
+\qed
+
+\pause
+
+\begin{itemize}
+\item 常规的``$\varepsilon$-板''论证: 对每个 $\varepsilon$, $n > N$ 后误差被
+  \alert{常数倍} $\varepsilon$ 控制, 令 $\varepsilon \to 0$ 即得一致收敛于 $0$.
+\end{itemize}
+
+\normalmode
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[逼近定理]{Bernstein 与 Weierstra\ss{}}
+
+%------------------------------------------------
+
+\begin{frame}{推论: Bernstein 定理}
+
+\begin{cor}[Bernstein 定理]
+$\forall f \in C([0,1])$, Bernstein 多项式
+\[
+B_n(f; x) = \sum_{k=0}^{n} f \Big( \frac{k}{n} \Big) \binom{n}{k}
+x^k (1 - x)^{n-k}, \qquad n \in \mathbb{N},
+\]
+在 $[0,1]$ 上一致收敛于 $f$.
+\end{cor}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明)
+$B_n$ 是正线性算子, 只需对单项式 $f = 1, x, x^2$ 进行验证 (Korovkin 定理):
+\[
+B_n(1; x) = 1 = f(x);
+\qquad
+B_n(t; x) = x = f(x);
+\qquad
+B_n(t^2; x) = x^2 + \frac{x (1 - x)}{n} \longrightarrow x^2 = f(x),
+\]
+其中 $\dfrac{x(1-x)}{n} \leqslant \dfrac{1}{4n} \to 0$ 对 $x \in [0,1]$ 一致.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论: Weierstra\ss{} 逼近定理}
+
+\begin{cor}[Weierstra\ss{} 逼近定理]
+设 $f \in C([a,b])$, 那么 $\forall \varepsilon > 0$, 存在多项式 $P(x)$,
+使得 $\forall x \in [a,b]$, 有 $|f(x) - P(x)| < \varepsilon$.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+先经变量替换 $t = \dfrac{x - a}{b - a}$ 化到 $[0,1]$:
+$g(t) := f\big( a + (b - a) t \big) \in C([0,1])$.
+
+考虑 Bernstein 多项式 $B_n(g; t)$, 其一致收敛于 $g$:
+即 $\forall \varepsilon > 0$, 存在与 $t$ 无关的 $N \in \mathbb{N}$,
+使得 $\forall n > N$,
+\[
+\big| B_n(g; t) - g(t) \big| < \varepsilon
+\qquad \text{对 } t \in [0,1] \text{ 恒成立}.
+\]
+取多项式 $P(x) := B_n \Big( g;\ \dfrac{x - a}{b - a} \Big)$ 即可.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{由此又得 $L^p$ 可分}
+
+\begin{itemize}
+\item \textbf{注}: 由 Weierstra\ss{} 逼近定理, 可以推出 $L^p$ 空间的可分性.
+\end{itemize}
+
+\[
+L^p \supset \{ \text{有界可测函数} \}
+\overset{\text{Luzin}}{\supset} \{ \text{连续函数} \}
+\supset \{ \text{多项式} \}
+\supset \{ \text{有理系数多项式} \}
+\]
+\vspace{-0.5em}
+\begin{itemize}
+\item 有界可测函数稠密: 三步逼近引理的 (1) (2);
+\item 连续函数稠密: Luzin 定理 ($mE < \infty$ 时按 $L^p$ 逼近);
+\item 多项式稠密: Weierstra\ss{} 逼近定理;
+\item 有理系数多项式稠密: 系数有理化 ($\mathbb{Q}$ 在 $\mathbb{R}$ 中稠密),
+  且它只有\alert{可列}多个 --- 即得可分.
+\end{itemize}
+
+\pause
+
+\begin{remark}
+此路线适用于 $E$ 为(含于)有限区间的情形; 三步逼近的路线则更一般.
+两条路线殊途同归: $1 \leqslant p < \infty$ 时 $L^p$ 可分.
+\end{remark}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[弱收敛]{弱收敛}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 弱收敛}
+
+(在 $L^p$ 空间中, 除了依\alert{范数}的强收敛概念之外, 还有\alert{弱收敛}的概念:
+强收敛只依赖于自己 (范数), 弱收敛还依赖于与其它函数的配对.)
+
+\pause
+
+\begin{Def}[弱收敛]
+设 $1 \leqslant p < \infty$, $q$ 为 $p$ 的\alert{相伴数}
+($\frac{1}{p} + \frac{1}{q} = 1$), $f, f_n \in L^p$, $n \in \mathbb{N}$.
+若 $\forall g \in L^q$, 有
+\[
+\lim_{n \to \infty} \int_E f_n g ~ \mathrm{d} m = \int_E f g ~ \mathrm{d} m ,
+\]
+则称 $\{ f_n \}$ 在 $L^p$ 中\alert{弱收敛}于 $f$,
+记为 $f_n \xrightarrow{\ \text{弱}\ } f$.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{双线性配对与对偶问题}
+
+\begin{itemize}
+\item \textcircled{1} 可以定义\alert{双线性映射}
+  \[
+  L^p \times L^q \longrightarrow \mathbb{R},
+  \qquad
+  (f, g) \longmapsto \int_E f \cdot g ~ \mathrm{d} m .
+  \]
+  固定 $g$, 令 $\varphi_g(f) := \int_E f g ~ \mathrm{d} m$,
+  则 $\varphi_g$ 是 $L^p$ 上的线性泛函:
+  $\sim$ $L^q \subset (L^p)^*$, $g \mapsto \varphi_g$.
+\end{itemize}
+
+\pause
+
+\begin{question}[两个问题]
+\begin{itemize}
+\item (a) $\lVert g \rVert_q \geqslant \lVert \varphi_g \rVert
+  := \sup_{\lVert f \rVert_p = 1} \Big| \int_E f g ~ \mathrm{d} m \Big|$
+  --- Hölder 给出"$\leqslant$"方向; \alert{等号}成立吗?
+\item (b) $L^q = (L^p)^*$ 吗? --- 一般\alert{不}相等
+  ($L^q$ 只是弱收敛``看得见''的部分).
+\end{itemize}
+\end{question}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[收敛关系]{收敛之间的关系}
+
+%------------------------------------------------
+
+\begin{frame}{强 $\Longrightarrow$ 弱}
+
+\begin{prop}
+若 $f_n \xrightarrow{\ \text{强}\ } f$ (即 $\lVert f_n - f \rVert_p \to 0$),
+则 $f_n \xrightarrow{\ \text{弱}\ } f$.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+由 Hölder 不等式, 对任意 $g \in L^q$, 有
+\[
+\Big| \int_E f_n g ~ \mathrm{d} m - \int_E f g ~ \mathrm{d} m \Big|
+\leqslant \int_E |(f_n - f) g| ~ \mathrm{d} m
+\leqslant \lVert f_n - f \rVert_p \cdot \lVert g \rVert_q
+\longrightarrow 0 ,
+\]
+即 $\int_E f_n g ~ \mathrm{d} m \to \int_E f g ~ \mathrm{d} m$.
+\qed
+
+\pause
+
+\begin{itemize}
+\item \textbf{反之不成立} --- 见下一页的 $\sin nx$ 例子
+  (引用第 4 章习题 24, Riemann--Lebesgue 引理).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{反例: $\sin nx$ 弱收敛而不强收敛}
+
+\textbf{例}: 由第 4 章习题 24 (\alert{Riemann--Lebesgue 引理}):
+$f \in L^1(a,b)$ 时,
+\[
+\lim_{t \to +\infty} \int_{[a,b]} f(x)\, e^{itx} ~ \mathrm{d} x
+= \lim_{t \to +\infty} \Big( \int_{[a,b]} f(x) \cos tx ~ \mathrm{d} x
++ i \int_{[a,b]} f(x) \sin tx ~ \mathrm{d} x \Big) = 0 .
+\]
+\pause
+取 $t = n$, $n \in \mathbb{N}$, 可得到
+$\lim\limits_{n \to \infty} \int_{[a,b]} f(x) \sin nx ~ \mathrm{d} x = 0$.
+于是对 $g \in L^2(0, \pi) \subset L^1(0, \pi)$ ($mE = \pi < \infty$):
+\[
+\int_0^{\pi} g \sin nx ~ \mathrm{d} x \longrightarrow 0
+\qquad \Longrightarrow \qquad
+\{ \sin nx \} \xrightarrow[\ L^2(0, \pi)\ ]{\ \text{弱}\ } 0 .
+\]
+\pause
+但 $\{ \sin nx \}$ \alert{不是 $L^2(0,\pi)$ 中的基本列}: $n \neq m$ 时 (正交性)
+\[
+\int_0^{\pi} \big( \sin nx - \sin mx \big)^2 ~ \mathrm{d} x
+= \int_0^{\pi} \sin^2 nx ~ \mathrm{d} x
++ \int_0^{\pi} \sin^2 mx ~ \mathrm{d} x
+= \frac{\pi}{2} + \frac{\pi}{2} = \pi,
+\]
+且指标 $\lVert \sin nx \rVert_2 = \sqrt{\pi / 2} \not\to 0$
+--- 弱收敛 $\neq$ 强收敛.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{一致收敛与弱收敛: $mE = \infty$ 的反例}
+
+\begin{itemize}
+\item \textcircled{2} $mE < \infty$ 时: \alert{一致收敛}
+  $\Longrightarrow$ \alert{强收敛} (有界收敛定理)
+  $\Longrightarrow$ 弱收敛;
+\item 但 $mE = \infty$ 时, 一致收敛 $\not\Longrightarrow$ 弱收敛. 反例如下.
+\end{itemize}
+
+\pause
+
+\begin{eg}
+取
+\[
+f_n = \frac{1}{n}\, \chi_{(1,\ e^n)}
+\qquad \Longrightarrow \qquad
+f_n \in L^p(\mathbb{R}) .
+\]
+那么 $\forall \varepsilon > 0$, 取 $N = [1/\varepsilon] + 1$,
+则 $\forall n > N$, 以及 $\forall x \in \mathbb{R}$, 有
+$|f_n(x) - 0| \leqslant 1/n < \varepsilon$,
+故 $f_n$ \alert{一致收敛}到 $f = 0$.
+
+\pause
+但取 $g = \chi_{(1, +\infty)}(x) / x$, 那么 $g \in L^q(\mathbb{R})$, 而
+\[
+\int_{\mathbb{R}} f_n g ~ \mathrm{d} m
+= \frac{1}{n} \int_1^{e^n} \frac{\mathrm{d} x}{x} = 1 \neq 0 ,
+\]
+故 $f_n$ \alert{不弱收敛}于 $0$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结}
+
+%------------------------------------------------
+
+\begin{frame}{小结: 本节结论链}
+
+\begin{itemize}
+\item \textbf{可分性}: $1 \leqslant p < \infty$ 时 $L^p$ 可分 ---
+  三步逼近 (截断 $\to$ 简单 $\to$ 有理阶梯) $+\ \varepsilon/3$ 拼接,
+  稠密可列集 $S = \big\{ \sum_i r_i \chi_{[\alpha_i, \beta_i]} \big\}$;
+  误差估计的功夫都在分母里: $(2M)^{p-1}$, $2n(2M)^p$, $(2mE)^{1/p}$;
+\item \textbf{另一条路 (超纲)}: 正算子 + Korovkin ($1, x, x^2$ 试验函数,
+  $(t-x)^2$ 技巧) $\Rightarrow$ Bernstein 定理 $\Rightarrow$
+  Weierstra\ss{} 逼近 $\Rightarrow$ $L^p$ 可分 (区间情形);
+\item \textbf{弱收敛}: $f_n \xrightarrow{\ \text{弱}\ } f
+  \iff \forall g \in L^q,\ \int_E f_n g ~ \mathrm{d} m \to \int_E f g ~ \mathrm{d} m$;
+  双线性配对给出 $L^q \subset (L^p)^*$;
+\end{itemize}
+
+\pause
+
+\[
+\text{一致收敛}
+\ \xrightarrow{\ mE < \infty\ }\
+\text{强收敛}
+\ \xrightarrow{\ \text{Hölder}\ }\
+\text{弱收敛},
+\qquad \text{逆向均不成立:}
+\]
+\begin{itemize}
+\item $\sin nx$: 弱 $\not\Rightarrow$ 强
+  (非基本列, $\int_0^{\pi} (\sin nx - \sin mx)^2 ~ \mathrm{d} x = \pi$);
+\item $f_n = \frac{1}{n} \chi_{(1, e^n)}$: $mE = \infty$ 时一致 $\not\Rightarrow$ 弱.
+\end{itemize}
 
 \end{frame}
 
