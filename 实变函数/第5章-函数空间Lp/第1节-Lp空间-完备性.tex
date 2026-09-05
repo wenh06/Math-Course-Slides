@@ -10,8 +10,8 @@
 \title[第五章\\
 函数空间Lp]{\texorpdfstring{\LARGE \bfseries 第五章\quad 函数空间 $L^p$}{第五章 函数空间Lp}} % The short title appears at the bottom of every slide, the full title is only on the title page
 \author[\S 5.1\\
-Lp空间-完备性] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
-{\Large \bfseries \S 5.1 $L^p$ 空间-完备性}
+Lp空间·完备性] % Your institution as it will appear on the bottom of every slide, maybe shorthand to save space
+{\Large \bfseries \S 5.1 $L^p$ 空间·完备性}
 % \author{Singular Value Decomposition} % Your name
 % \date{\today} % Date can be changed to a custom date
 \date{}
@@ -24,41 +24,614 @@ Lp空间-完备性] % Your institution as it will appear on the bottom of every 
 
 \begin{frame}
 
-\titlepage % Print the title page as the first slide
+\titlepage
 
 \end{frame}
 
 %------------------------------------------------
 
-% \begin{frame}
-% \frametitle{内容提要} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% \end{frame}
-
-%-----------------------------------
-%	PRESENTATION SLIDES
-%-----------------------------------
+\section[引言]{引言: 从积分到空间}
 
 %------------------------------------------------
 
-\section{xxx}
+\begin{frame}{引言: 把做好的工具拼成空间}
 
-%------------------------------------------------
+课程的链条: \ 集合论 $\longrightarrow$ 可列集, 函数 $\longrightarrow$ 勒贝格积分
+$\longrightarrow$ \alert{$L^p$ 空间}.
 
-\begin{frame}{xxx}
-
-
+\begin{itemize}
+\item 前四章已经把工具都构造好了; 现在把它们\alert{拿起}, 看看构成的集合有什么结构
+  --- 完备性、可分性及其相互关系;
+\item 本章主题: $L^p$ 作为\alert{赋范线性空间}的分析性质
+  (强收敛、基本列、Riesz--Fischer 完备性).
+\end{itemize}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section{xxx}
+\section[Lp 空间]{$L^p$ 空间的定义与线性性}
 
 %------------------------------------------------
 
-\begin{frame}{xxx}
+\begin{frame}{定义: $L^p$ 空间与线性性}
 
+\begin{Def}[$L^p$ 空间]
+设 $E \subset \mathbb{R}$ 为可测集, $p \geqslant 1$. 若 $|f|^p \in L_E$,
+则称 $f$ 是 \alert{$p$ 幂可积}的. 一切 $p$ 幂可积函数构成一个类, 称为 $L^p$ 空间:
+\[
+L^p(E) := \big\{ f:\ |f|^p \in L_E \big\} .
+\]
+\end{Def}
+
+\pause
+
+\begin{thm}
+$L^p$ 是一个线性空间.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+取 $f_1, f_2 \in L^p$, $\alpha, \beta \in \mathbb{R}$, 那么由于
+(和的范数估计: 先放大到最大值, 再用 $t^p$ 的凸性)
+\[
+\big| \alpha f_1(x) + \beta f_2(x) \big|^p
+\leqslant \Big( 2 \cdot \frac{|\alpha f_1(x)| + |\beta f_2(x)|}{2} \Big)^{\!p}
+\leqslant 2^p \cdot \frac{|\alpha f_1(x)|^p + |\beta f_2(x)|^p}{2}
+\quad (t \geqslant 0\ \text{时}\ t^p\ \text{是凸函数}),
+\]
+知若 $f_1, f_2 \in L^p$ 即 $\int_E |f_1|^p ~ \mathrm{d} m,\ \int_E |f_2|^p ~ \mathrm{d} m < \infty$, 则
+\[
+\int_E \big| \alpha f_1 + \beta f_2 \big|^p ~ \mathrm{d} m
+\leqslant 2^{p-1} \Big( |\alpha|^p \int_E |f_1|^p ~ \mathrm{d} m
++ |\beta|^p \int_E |f_2|^p ~ \mathrm{d} m \Big) < \infty ,
+\]
+即 $\alpha f_1 + \beta f_2 \in L^p$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质: 与测度的有限性有关}
+
+\begin{prop}
+若 $mE < \infty$, 则 $L^p(E) \subset L^1(E)$; \quad
+当 $mE = \infty$ 时无相互包含关系.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+记 $A = E(|f| \geqslant 1)$, 那么
+\[
+\int_E |f| ~ \mathrm{d} m
+= \Big( \int_A + \int_{E \setminus A} \Big) |f| ~ \mathrm{d} m
+\leqslant \int_E |f|^p ~ \mathrm{d} m + m(E \setminus A) < \infty .
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 当 $mE = \infty$ 时: 取 $f(x) = (1+x)^{-1}$, 则 $f \in L^p(\mathbb{R})$
+  但 $f \notin L^1(\mathbb{R})$;
+\item 取 $g(x) = x^{-1/p}$ ($x \in (0,1)$), $g = 0$ ($x \in [1, +\infty)$),
+  则 $g \in L^1((0, +\infty))$ 但 $g \notin L^p((0, +\infty))$.
+\end{itemize}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 在 $L^p$ 空间中, 约定记号
+  $\lVert f \rVert_p = \big( \int_E |f|^p ~ \mathrm{d} m \big)^{1/p}$,
+  称为 $f \in L^p$ 的\alert{范数} --- $L^p$ 是\alert{赋范线性空间} (normed vector space).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Hölder]{共轭指数与 Hölder 不等式}
+
+%------------------------------------------------
+
+\begin{frame}{共轭指数与 Hölder 不等式}
+
+(为了进一步讨论 $L^p$ 空间的性质, 我们需要引入两个著名的不等式 ---
+Hölder 不等式与 Minkowski 不等式, 它们是 Riesz 一开始研究 $L^p$ 空间的主要工具.)
+
+\begin{Def}[相伴数]
+设 $p, q \geqslant 1$ 满足 $\dfrac1p + \dfrac1q = 1$, 并约定 $p = 1$ 时 $q = \infty$,
+称 $p, q$ 互为\alert{相伴数} (共轭指标).
+\end{Def}
+
+\pause
+
+\begin{thm}[Hölder 不等式]
+设 $p, q > 1$ 互为相伴数, 那么 $\forall\, f \in L^p$, $g \in L^q$, 有 $f \cdot g \in L^1$ 且
+\[
+\lVert f \cdot g \rVert_1 \leqslant \lVert f \rVert_p \cdot \lVert g \rVert_q ,
+\qquad\text{即}\qquad
+\int_E |fg| ~ \mathrm{d} m \leqslant
+\Big( \int_E |f|^p ~ \mathrm{d} m \Big)^{\frac1p}
+\Big( \int_E |g|^q ~ \mathrm{d} m \Big)^{\frac1q} .
+\]
+\end{thm}
+
+\pause
+
+\startproof[bg=yellow, fg=red](证明: 平凡情形)
+$1^{\circ}$ 若 $\int_E |f|^p ~ \mathrm{d} m = 0$ 或 $\int_E |g|^q ~ \mathrm{d} m = 0$,
+那么 $f \sim 0$ 或 $g \sim 0$, 从而有 $fg \sim 0$, 即有 $\int_E |fg| ~ \mathrm{d} m = 0$,
+上述不等式成立.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Hölder 不等式的证明: $e^t$ 的凸性}
+
+\startproof[bg=yellow, fg=red](证明 (续))
+$2^{\circ}$ 设 $\int_E |f|^p ~ \mathrm{d} m$ 与 $\int_E |g|^q ~ \mathrm{d} m$ 均不等于 $0$.
+
+考虑函数 $\phi(t) = e^t$, $t \in \mathbb{R}$, 由于 $\phi''(t) > 0$ 知 $\phi$ 为凸函数,
+所以 (由 $1/p + 1/q = 1$)
+\[
+\phi \Big( \frac1p A + \frac1q B \Big) \leqslant \frac1p \phi(A) + \frac1q \phi(B) .
+\]
+令 $A = \ln \dfrac{|f(x)|^p}{\lVert f \rVert_p^p}$,
+$B = \ln \dfrac{|g(x)|^q}{\lVert g \rVert_q^q}$, 有
+\[
+\phi \Big( \frac1p A + \frac1q B \Big)
+= \exp \Big( \frac1p \ln \frac{|f(x)|^p}{\lVert f \rVert_p^p}
++ \frac1q \ln \frac{|g(x)|^q}{\lVert g \rVert_q^q} \Big)
+= \frac{|f \cdot g(x)|}{\lVert f \rVert_p \cdot \lVert g \rVert_q}
+\;\leqslant\;
+\frac1p \cdot \frac{|f(x)|^p}{\lVert f \rVert_p^p}
++ \frac1q \cdot \frac{|g(x)|^q}{\lVert g \rVert_q^q} .
+\]
+
+\pause
+
+于是
+\[
+\frac{\lVert f \cdot g \rVert_1}{\lVert f \rVert_p \cdot \lVert g \rVert_q}
+= \int_E \frac{|f \cdot g|}{\lVert f \rVert_p \cdot \lVert g \rVert_q} ~ \mathrm{d} m
+\leqslant \frac1p \int_E \frac{|f|^p}{\lVert f \rVert_p^p} ~ \mathrm{d} m
++ \frac1q \int_E \frac{|g|^q}{\lVert g \rVert_q^q} ~ \mathrm{d} m
+= \frac1p + \frac1q = 1 ,
+\]
+$\Longrightarrow\ \lVert f \cdot g \rVert_1 \leqslant \lVert f \rVert_p \cdot \lVert g \rVert_q$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注: $p = 1$, $q = \infty$ 与 $L^\infty$ 空间}
+
+\begin{itemize}
+\item 对于 $p = 1$, $q = \infty$ 的情况, Hölder 不等式也成立:
+  $\lVert f \cdot g \rVert_1 \leqslant \lVert f \rVert_1 \cdot \lVert g \rVert_\infty$.
+\end{itemize}
+
+\pause
+
+\begin{Def}[$L^\infty$ 空间]
+$g \in L^\infty := \big\{ g:\ \exists\, M \in \mathbb{R}_+,\ \text{使得}\ |g(x)| \leqslant M
+\ \text{a.e.}\ x \in E \big\}$, $L^\infty$ 空间称为\alert{本性有界函数空间};
+相应的 $M$ 被称为 $g \in L^\infty$ 的一个\alert{本性上界}.
+\[
+\lVert g \rVert_\infty := \inf_{m e = 0}\ \sup_{x \in E \setminus e} |g(x)|
+\qquad
+\text{被称为}\ g\ \text{的}\ \textbf{本性上确界} (essential\ supremum) .
+\]
+\end{Def}
+
+\pause
+
+\begin{prop}
+$\lVert f \rVert_\infty = \lim\limits_{p \to \infty} \lVert f \rVert_p$ .
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{命题的证明: $\lVert f \rVert_\infty = \lim_p \lVert f \rVert_p$}
+
+\startproof[bg=yellow, fg=red](证明)
+设 $f \in L^\infty$, $M$ 为 $f$ 的一个本性上界, 那么
+$\int_E |f|^p ~ \mathrm{d} m \leqslant M^p \cdot mE < \infty$, 故 $f \in L^p$,
+$\forall\, 1 \leqslant p < \infty$.
+\[
+\varliminf_{p \to \infty} \lVert f \rVert_p
+= \varliminf_{p \to \infty} \Big( \int_E |f|^p ~ \mathrm{d} m \Big)^{\frac1p}
+\leqslant \varliminf_{p \to \infty} M \cdot (mE)^{\frac1p} = M ;
+\]
+对 $M$ 取下确界即有
+\[
+\varliminf_{p \to \infty} \lVert f \rVert_p \leqslant \lVert f \rVert_\infty \cdots \textcircled{1}
+\]
+
+\pause
+
+另一方面, 任取 $M' < \lVert f \rVert_\infty$, 那么 $mE(f > M') > 0$
+(否则 $M'$ 也是 $f$ 的一个本性上界, 与 $\lVert f \rVert_\infty$ 是本性上界的下确界矛盾).
+那么
+\[
+\lVert f \rVert_p
+= \Big( \int_E |f|^p ~ \mathrm{d} m \Big)^{\frac1p}
+\geqslant \Big( \int_{E(f > M')} |f|^p ~ \mathrm{d} m \Big)^{\frac1p}
+\geqslant M' \cdot \big( mE(f > M') \big)^{\frac1p} ;
+\]
+从而有
+$\varliminf_{p \to \infty} \lVert f \rVert_p \geqslant M' \cdot \varliminf_{p \to \infty}
+\big( mE(f > M') \big)^{1/p} = M'$, 再令 $M' \to \lVert f \rVert_\infty$, 即有
+\[
+\varliminf_{p \to \infty} \lVert f \rVert_p \geqslant \lVert f \rVert_\infty \cdots \textcircled{2}
+\]
+\textcircled{1} $+$ \textcircled{2} $\Longrightarrow$
+$\lVert f \rVert_\infty = \lim\limits_{p \to \infty} \lVert f \rVert_p$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Minkowski]{Minkowski 不等式}
+
+%------------------------------------------------
+
+\begin{frame}{Minkowski 不等式}
+
+(由 Hölder 不等式可证明关于之前引入的 $L^p$ 空间范数的三角不等式, 即下面的.)
+
+\begin{thm}[Minkowski 不等式]
+设 $f, g \in L^p$, $1 \leqslant p \leqslant \infty$, 那么
+$\lVert f + g \rVert_p \leqslant \lVert f \rVert_p + \lVert g \rVert_p$ .
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明: $p = 1$ 与 $p = \infty$)
+$1^{\circ}$ $p = 1$: 直接由
+$\int_E |f+g| ~ \mathrm{d} m \leqslant \int_E |f| ~ \mathrm{d} m + \int_E |g| ~ \mathrm{d} m$ 得.
+
+\pause
+
+$2^{\circ}$ $p = \infty$: 由 $mE(|f| > \lVert f \rVert_\infty) = 0$ 及
+$mE(|g| > \lVert g \rVert_\infty) = 0$, 以及
+\[
+mE \big( |f+g| > \lVert f \rVert_\infty + \lVert g \rVert_\infty \big)
+\leqslant mE \big( |f| > \lVert f \rVert_\infty \big)
++ mE \big( |g| > \lVert g \rVert_\infty \big) = 0
+\]
+知 $\lVert f \rVert_\infty + \lVert g \rVert_\infty$ 是 $f+g$ 的一个本性上界, 从而有
+$\lVert f+g \rVert_\infty \leqslant \lVert f \rVert_\infty + \lVert g \rVert_\infty$.
+\qed
+
+\pause
+
+\begin{itemize}
+\item $1 < p < \infty$ 的情形见下页 (借助 Hölder).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Minkowski 的证明 (续): $1 < p < \infty$}
+
+\startproof[bg=yellow, fg=red](证明 (续))
+$3^{\circ}$ $1 < p < \infty$: 不妨设 $\lVert f+g \rVert_p > 0$.
+令 $q$ 为 $p$ 的相伴数 $\frac1p + \frac1q = 1$. 有
+(注意 $|f+g|^{p/q} \in L^q$: $\int_E |f+g|^{\frac{p}{q} \cdot q} ~ \mathrm{d} m = \int_E |f+g|^p ~ \mathrm{d} m < \infty$)
+\[
+\int_E |f+g|^p ~ \mathrm{d} m
+\leqslant \int_E |f+g|^{p-1} |f| ~ \mathrm{d} m
++ \int_E |f+g|^{p-1} |g| ~ \mathrm{d} m
+= \int_E |f+g|^{\frac{p}{q}} |f| ~ \mathrm{d} m
++ \int_E |f+g|^{\frac{p}{q}} |g| ~ \mathrm{d} m
+\]
+\[
+\leqslant \big\Vert |f+g|^{\frac{p}{q}} \big\Vert_q \cdot \lVert f \rVert_p
++ \big\Vert |f+g|^{\frac{p}{q}} \big\Vert_q \cdot \lVert g \rVert_p
+= \lVert f+g \rVert_p^{\frac{p}{q}} \cdot \big( \lVert f \rVert_p + \lVert g \rVert_p \big)
+\]
+(其中 $\big( \int_E |f+g|^{\frac{p}{q} \cdot q} ~ \mathrm{d} m \big)^{\frac1q}
+= \lVert f+g \rVert_p^{\frac{p}{q}}$).
+
+\pause
+
+即 $\lVert f+g \rVert_p^p \leqslant \lVert f+g \rVert_p^{\frac{p}{q}} \cdot
+(\lVert f \rVert_p + \lVert g \rVert_p)$, 两边除以 $\lVert f+g \rVert_p^{p/q}$:
+\[
+\lVert f+g \rVert_p^{p - \frac{p}{q}} = \lVert f+g \rVert_p
+\leqslant \lVert f \rVert_p + \lVert g \rVert_p .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[强收敛]{范数公理与强收敛}
+
+%------------------------------------------------
+
+\begin{frame}{注: 范数公理与空间层次}
+
+\begin{itemize}
+\item \textbf{注}: $L^p$ 空间定义的范数 $\lVert \cdot \rVert_p$ 满足一般的范数公理:
+  \begin{enumerate}
+  \item $\lVert f \rVert_p \geqslant 0$ 且 $\lVert f \rVert_p = 0 \Longleftrightarrow f \sim 0$;
+  \item $\lVert \alpha f \rVert_p = |\alpha| \cdot \lVert f \rVert_p$, $\alpha \in \mathbb{R}$;
+  \item $\lVert f + g \rVert_p \leqslant \lVert f \rVert_p + \lVert g \rVert_p$ (Minkowski).
+  \end{enumerate}
+\item 特别地, 当 $p = 2$ 时, $\int_E f g ~ \mathrm{d} m$ 给出\alert{内积},
+  它诱导 2-范数 (满足平行四边形法则:
+  $\lVert f+g \rVert^2 + \lVert f-g \rVert^2 = 2\lVert f \rVert^2 + 2\lVert g \rVert^2$);
+\item 空间层次: \ 内积空间 $\subset$ 赋范空间 $\subset$ 度量空间 $\subset$ 拓扑空间.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 强收敛 (依范数收敛)}
+
+\begin{Def}[强收敛]
+设 $f, f_n \in L^p$, $n \in \mathbb{N}$. 若
+$\lim\limits_{n \to \infty} \lVert f - f_n \rVert_p = 0$,
+则称 $\{ f_n \}$ \alert{强收敛}, 或\alert{依范数收敛}于 $f$,
+称 $f$ 为 $\{ f_n \}$ 的强极限, 记为 $f_n \xrightarrow{\ \text{强}\ } f$.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 强收敛与点态收敛\alert{没有蕴含关系}.
+\end{itemize}
+
+\textbf{$1^{\circ}$} $E = [0, 1]$, 考虑 $L^2$ 中函数列
+\[
+f_n(x) =
+\begin{cases}
+n, & x \in (0, \tfrac1n), \\
+0, & x \in [\tfrac1n, 1] \cup \{ 0 \} ,
+\end{cases}
+\qquad n \in \mathbb{N}.
+\]
+那么 $f_n \to 0$ (点态), 但 $f_n$ 不强收敛于 $0$:
+$\int_E |f_n - 0|^2 ~ \mathrm{d} m = n \to \infty$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$2^{\circ}$: 打字机列 --- 强收敛但处处不收敛}
+
+\textbf{$2^{\circ}$} $E = [0, 1]$, 在 $L^1$ 中考察函数列 (打字机列)
+\[
+f_n(x) = \chi_{\left[ \frac{i}{2^{k}},\ \frac{i+1}{2^{k}} \right]}(x),
+\qquad
+n = 2^k + i,\quad 0 \leqslant i < 2^k,\quad k \in \mathbb{N}
+\]
+(这是之前讲``依测度收敛但处处不收敛''的例子).
+
+\begin{center}
+\begin{tikzpicture}[scale = 3.6]
+\draw[->] (-0.12, 0) -- (1.12, 0) node[right] {$x$};
+\draw[themecolor, very thick] (0, 0.9) -- (1.0, 0.9);
+\node[above, font=\scriptsize] at (0.5, 0.93) {$n=1$};
+\draw[themecolor, very thick] (0, 0.55) -- (0.48, 0.55);
+\draw[themecolor, very thick] (0.52, 0.55) -- (1.0, 0.55);
+\node[above, font=\scriptsize] at (0.24, 0.58) {$n=2$};
+\node[above, font=\scriptsize] at (0.76, 0.58) {$n=3$};
+\draw[themecolor, very thick] (0, 0.2) -- (0.23, 0.2);
+\draw[themecolor, very thick] (0.26, 0.2) -- (0.48, 0.2);
+\draw[themecolor, very thick] (0.52, 0.2) -- (0.73, 0.2);
+\draw[themecolor, very thick] (0.76, 0.2) -- (0.98, 0.2);
+\node[above, font=\scriptsize] at (0.115, 0.23) {$4$};
+\node[above, font=\scriptsize] at (0.37, 0.23) {$5$};
+\node[above, font=\scriptsize] at (0.625, 0.23) {$6$};
+\node[above, font=\scriptsize] at (0.87, 0.23) {$7$};
+\draw (0.5, 0.02) -- (0.5, -0.02) node[below] {$\frac12$};
+\draw (0.25, 0.02) -- (0.25, -0.02) node[below] {$\frac14$};
+\draw (0.75, 0.02) -- (0.75, -0.02) node[below] {$\frac34$};
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+\item 对于 $n = 2^k + i$, $\int_E f_n ~ \mathrm{d} m = \frac{1}{2^k} \to 0$
+  (当 $n \to \infty$), 即 $\{ f_n \}$ \alert{强收敛于} $0$
+  (也依测度收敛于 $0$), 但\alert{处处不收敛}于 $0$;
+\graymode
+\item 若 $f_n(x) = 2^k \chi_{[1/2^{k+1},\, 1/2^k]}(x)$, 那么 $\{ f_n \}$
+  也不强收敛于 $0$ ($\int_E |f_n| ~ \mathrm{d} m \equiv 1$).
+\normalmode
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 基本列 (Cauchy 列)}
+
+\begin{Def}[基本列]
+设 $\{ f_n \}$ 是 $L^p$ 中的函数列, 若
+$\lim\limits_{m, n \to \infty} \lVert f_m - f_n \rVert_p = 0$,
+则称 $\{ f_n \}$ 是 $L^p$ 中的\alert{基本列} (Cauchy 列).
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item \textbf{注}: 由 Minkowski 不等式
+  $\lVert f_m - f_n \rVert_p \leqslant \lVert f_m - f \rVert_p + \lVert f_n - f \rVert_p$
+  知: 若 $f_n \xrightarrow{\ \text{强}\ } f$, 则 $\{ f_n \}$ 为基本列.
+  反过来也是成立的 (注意与依测度基本列相关结论比较) ---
+  这样, $L^p$ 就成为一个\alert{完备}的赋范线性空间 (度量空间).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[完备性]{Riesz--Fischer 定理}
+
+%------------------------------------------------
+
+\begin{frame}{Riesz--Fischer 定理}
+
+\begin{thm}[Riesz--Fischer]
+设 $\{ f_n \}$ 是 $L^p$ 空间中基本列, 则 $\exists\, f \in L^p$,
+使得 $f_n \xrightarrow{\ \text{强}\ } f$ .
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明: 快速子列)
+由于 $\{ f_n \}$ 为基本列, $\lim\limits_{m, n \to \infty} \lVert f_m - f_n \rVert_p = 0$,
+那么可从中选取子列 $\{ f_{n_k} \}_{k \in \mathbb{N}}$, 使得
+\[
+\lVert f_{n_k} - f_{n_{k+1}} \rVert_p < \frac{1}{2^k}, \qquad k \in \mathbb{N} .
+\]
+任取 $E$ 的有限测度子集 $e$, 由 Hölder 不等式有
+\[
+\int_e |f_{n_k} - f_{n_{k+1}}| ~ \mathrm{d} m
+\leqslant \Big( \int_e |f_{n_k} - f_{n_{k+1}}|^p ~ \mathrm{d} m \Big)^{\frac1p}
+\Big( \int_e 1^q ~ \mathrm{d} m \Big)^{\frac1q}
+\leqslant \frac{1}{2^k} \left( m e \right)^{\frac1q}
+\]
+(其中 $1/p + 1/q = 1$).
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Riesz--Fischer 的证明 (续): 级数与 a.e.\ 收敛}
+
+\startproof[bg=yellow, fg=red](证明 (续))
+令 $f = \sum\limits_{k=0}^{\infty} \big( f_{n_{k+1}} - f_{n_k} \big)$,
+其中约定 $f_{n_0} = 0$ (级数的部分和即 $f_{n_{k+1}}$). 那么
+\[
+\sum_{k=0}^{\infty} \int_e |f_{n_{k+1}} - f_{n_k}| ~ \mathrm{d} m
+\leqslant \lVert f_{n_1} \rVert_1 + \sum_{k=1}^{\infty} \frac{1}{2^k} (m e)^{\frac1q}
+\leqslant \lVert f_{n_1} \rVert_1 + (m e)^{\frac1q} < \infty ,
+\]
+从而由[非负函数项级数]逐项积分定理知
+$\sum\limits_{k=0}^{\infty} |f_{n_{k+1}} - f_{n_k}|$ 可积, 从而几乎处处有限:
+\[
+\int_e \sum_{k=0}^{\infty} |f_{n_{k+1}} - f_{n_k}| ~ \mathrm{d} m
+= \sum_{k=0}^{\infty} \int_e |f_{n_{k+1}} - f_{n_k}| ~ \mathrm{d} m ;
+\]
+而 $|f| = \Big| \sum\limits_{k=0}^{\infty} (f_{n_{k+1}} - f_{n_k}) \Big|
+\leqslant \sum\limits_{k=0}^{\infty} |f_{n_{k+1}} - f_{n_k}|$ 也几乎处处收敛,
+$f$ 的部分和即 $f_{n_{k+1}}$, 所以 $\{ f_n \}_{n \in \mathbb{N}}$
+\alert{几乎处处收敛于} $f$ (在 $e$ 上几乎处处; 取 $e_j = E \cap [-j, j]$
+并相应零测集之并, 可搬到 $E$ 上).
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Riesz--Fischer 的证明 (续): 断言 $f \in L^p$}
+
+\startproof[bg=yellow, fg=red](证明 (续))
+\textbf{断言}: $f \in L^p$ 且 $f_n \xrightarrow{\ \text{强}\ } f$.
+
+这是因为 $\{ f_n \}$ 为 $L^p$ 中基本列, $\forall\, \varepsilon > 0$, $\exists\, N$,
+使得 $\forall\, n_k, n > N$ 有 $\lVert f_{n_k} - f_n \rVert_p < \varepsilon$.
+令 $k \to \infty$, 由 Fatou 引理, 则有
+\[
+\varepsilon
+\geqslant \varliminf_{k \to \infty} \Big( \int_E |f_{n_k} - f_n|^p ~ \mathrm{d} m \Big)^{\frac1p}
+\geqslant \Big( \int_E \varliminf_{k \to \infty} |f_{n_k} - f_n|^p ~ \mathrm{d} m \Big)^{\frac1p}
+= \Big( \int_E |f - f_n|^p ~ \mathrm{d} m \Big)^{\frac1p} ,
+\]
+$\Longrightarrow\ f - f_n \in L^p\ \Longrightarrow\ f = f_n + (f - f_n) \in L^p$;
+且 $n > N$ 时 $\lVert f - f_n \rVert_p \leqslant \varepsilon$, 即强收敛.
+\qed
+
+\pause
+
+\begin{itemize}
+\item 当 $p = 1$ 时: 直接由
+  $\int_e |f_{n_k} - f_{n_{k+1}}| ~ \mathrm{d} m
+  \leqslant \lVert f_{n_k} - f_{n_{k+1}} \rVert_1 < \frac{1}{2^k}$ 可知
+  (Hölder 步骤退化).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$p = \infty$ 的情形}
+
+\startproof[bg=yellow, fg=red]($p = \infty$ 的情形)
+$\forall\, m, n \in \mathbb{N}$, $f_m - f_n \in L^\infty$, 令
+$Z_{m, n} = E \big( |f_m - f_n| > \lVert f_m - f_n \rVert_\infty \big)$, 则
+$m Z_{m, n} = 0$; 令 $Z = \bigcup_{m, n \in \mathbb{N}} Z_{m, n}$, 则 $mZ = 0$.
+那么在 $E \setminus Z$ 上, 恒有
+$\forall\, m, n \in \mathbb{N}$, $|f_m(x) - f_n(x)| \leqslant \lVert f_m - f_n \rVert_\infty$,
+$\Longrightarrow\ \{ f_n(x) \}_{n \in \mathbb{N}}$ 是 $\mathbb{R}$ 中基本列, $\forall\, x \in E \setminus Z$.
+
+\pause
+
+定义
+\[
+f(x) =
+\begin{cases}
+\lim\limits_{n \to \infty} f_n(x), & x \in E \setminus Z, \\
+0, & x \in Z .
+\end{cases}
+\]
+由 $\{ f_n \}$ 为 $L^\infty$ 中基本列, $\forall\, \varepsilon > 0$, $\exists\, N \in \mathbb{N}$,
+使得 $\forall\, m, n > N$ 有 $\lVert f_m - f_n \rVert_\infty < \varepsilon$.
+那么 $\forall\, x \in E \setminus Z$,
+$|f_m(x) - f_n(x)| \leqslant \lVert f_m - f_n \rVert_\infty < \varepsilon$, 从而有
+\[
+\varepsilon \geqslant \lim_{m \to \infty} |f_m(x) - f_n(x)|
+= |f(x) - f_n(x)|
+\quad \Longrightarrow \quad
+\lVert f - f_n \rVert_\infty \leqslant \varepsilon
+\]
+\[
+\Longrightarrow\quad
+f - f_n \in L^\infty
+\quad \Longrightarrow \quad
+f = f_n + (f - f_n) \in L^\infty .
+\]
+即 $f_n \xrightarrow{\ \text{强}\ } f$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[小结]{小结}
+
+%------------------------------------------------
+
+\begin{frame}{小结: 本节结论链}
+
+\begin{itemize}
+\item \textbf{$L^p$ 空间}: $L^p(E) = \{ f:\ |f|^p \in L_E \}$ 是线性空间
+  (凸性技巧 $2^{p-1}$); $mE < \infty$ 时 $L^p \subset L^1$,
+  $mE = \infty$ 时互不包含 ($(1+x)^{-1}$ 与 $x^{-1/p}\chi_{(0,1)}$);
+  $\lVert f \rVert_p$ 使其成为赋范线性空间;
+\item \textbf{两大不等式}: Hölder ($e^t$ 凸性; $p=1,q=\infty$ 时 $L^\infty$ 本性有界,
+  $\lVert g \rVert_\infty$ 本性上确界 $= \lim_{p \to \infty} \lVert g \rVert_p$) 与
+  Minkowski ($p=1$ / $p=\infty$ / Hölder);
+\item \textbf{强收敛}: 依范数收敛; 与点态收敛互不蕴含
+  ($n\chi_{(0, 1/n)}$ 与打字机列); 基本列;
+\item \textbf{Riesz--Fischer}: $L^p$ 完备 ---
+  基本列 $\Rightarrow$ 快速子列 $\Rightarrow$ Hölder 控制的级数 a.e.\ 收敛
+  $\Rightarrow$ Fatou 得极限属于 $L^p$ 且强收敛 ($p = 1$ 退化, $p = \infty$ 用零测集 $Z$).
+\end{itemize}
+
+\pause
+
+\begin{itemize}
+\item 展望: 下一节 \S 5.2 $L^p$ 空间的可分性, 以及强收敛与弱收敛的关系.
+\end{itemize}
 
 \end{frame}
 
