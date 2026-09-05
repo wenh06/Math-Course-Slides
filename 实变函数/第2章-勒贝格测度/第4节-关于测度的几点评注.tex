@@ -37,8 +37,8 @@
 
 前几节的测度理论建立在\alert{两个枷锁}上:
 \begin{itemize}
-\item 一切集合都含于基本集 $(a, b)$ --- \alert{无界集}没有测度;
-\item 开集测度 $mG = \sum_k (\beta_k - \alpha_k)$ 依赖 $\mathbb{R}$ 的\alert{构成区间结构} --- 无法推广到 $\mathbb{R}^n$.
+\item 一切集合都含于基本集 $(a, b)$, \alert{无界集}没有测度;
+\item 开集测度 $mG = \sum_k (\beta_k - \alpha_k)$ 依赖 $\mathbb{R}$ 的\alert{构成区间结构}, 无法推广到 $\mathbb{R}^n$.
 \end{itemize}
 
 \pause
@@ -47,7 +47,7 @@
 \begin{enumerate}
 \item \alert{扩充实数} $\mathbb{R} \cup \{\pm\infty\}$: 让测度可以取值 $+\infty$;
 \item $\mathbb{R}^n$ 上的\alert{勒贝格外测度} (矩体 L-覆盖) 与 \alert{Carath\'{e}odory 条件}定义的可测性;
-\item 外测度与可测集类的性质; \alert{环、$\sigma$-环、$\sigma$-代数}与\alert{Carath\'{e}odory 扩张定理} --- 测度的自然舞台;
+\item 外测度与可测集类的性质; \alert{环、$\sigma$-环、$\sigma$-代数}与\alert{Carath\'{e}odory 扩张定理}: 测度的自然舞台;
 \item (选讲) 正测度集的``厚度''、\alert{Vitali 不可测集}、\alert{非 Borel 的可测集}.
 \end{enumerate}
 
@@ -134,7 +134,7 @@ mE := \lim_{a \to +\infty} m\big(( -a, a) \cap E\big).
 \begin{eg}
 \begin{itemize}
 \item $E = \bigcup_{n \geqslant 1} \left(n,\ n + 2^{-n}\right)$: 无界, 但
-$mE = \sum_{n \geqslant 1} 2^{-n} = 1 < +\infty$ --- \alert{无界 $\neq$ 无穷大测度};
+$mE = \sum_{n \geqslant 1} 2^{-n} = 1 < +\infty$: \alert{无界 $\neq$ 无穷大测度};
 \item $E = (a, +\infty)$: $mE = \lim_{A \to \infty} (A - a) = +\infty$.
 \end{itemize}
 \end{eg}
@@ -248,7 +248,7 @@ m^*\Big(\bigcup_{k} E_k\Big) = \sum_{k=1}^{\infty} m^* E_k .
 \pause
 
 \begin{remark}
-即: $\mathscr{M}$ 对\alert{可数}并、交、差、补封闭 (``$\sigma$-代数'', 稍后定义), 测度在其上\alert{可列可加} --- 这正是 §2.3 在有界情形建立的理论在新框架下的重述, 但证明路线改为\alert{直接使用 Carath\'{e}odory 条件}.
+即: $\mathscr{M}$ 对\alert{可数}并、交、差、补封闭 (``$\sigma$-代数'', 稍后定义), 测度在其上\alert{可列可加}, 这正是 §2.3 在有界情形建立的理论在新框架下的重述, 但证明路线改为\alert{直接使用 Carath\'{e}odory 条件}.
 \end{remark}
 
 \end{frame}
@@ -398,7 +398,7 @@ m^* S = \sum_{k=1}^\infty m^* E_k . \qquad \text{(两两不交时的可列可加
 \begin{remark}
 \begin{itemize}
 \item $\sigma$-代数 $\iff$ $\emptyset \in \mathscr{R}$, 对补封闭, 对可数并封闭;
-\item $\mathscr{M}$ (可测集类) 正是 $\mathbb{R}^n$ 上的一个 $\sigma$-代数, $m$ 是其上的\alert{可列可加非负函数} --- 这就是``($\sigma$-代数上的) 测度''的雏形 (本节末正式化).
+\item $\mathscr{M}$ (可测集类) 正是 $\mathbb{R}^n$ 上的一个 $\sigma$-代数, $m$ 是其上的\alert{可列可加非负函数}, 这就是``($\sigma$-代数上的) 测度''的雏形 (本节末正式化).
 \end{itemize}
 \end{remark}
 
@@ -447,7 +447,7 @@ $\mathbb{R}$ 的子集类
 \pause
 
 \begin{remark}
-(2) 说明 $\mathscr{R}_\sigma(\mathscr{E})$ 的每个元都``藏''在可列个 $\mathscr{E}$ 元之并中 --- 这是用矩体研究 Borel 集的基本桥梁.
+(2) 说明 $\mathscr{R}_\sigma(\mathscr{E})$ 的每个元都``藏''在可列个 $\mathscr{E}$ 元之并中, 这是用矩体研究 Borel 集的基本桥梁.
 \end{remark}
 
 \end{frame}
@@ -460,7 +460,7 @@ $\mathbb{R}$ 的子集类
 
 \begin{frame}{从``体积''到一般测度}
 
-回看本节的机器: \alert{外测度} (覆盖取下确界) $+$ \alert{Carath\'{e}odory 条件} $\Longrightarrow$ 可测集类 $\mathscr{M}$ 与其上的可列可加函数. 整套流程没有用到``矩体体积''的特殊性质 --- \alert{换上任何环上的测度都照常运转}.
+回看本节的机器: \alert{外测度} (覆盖取下确界) $+$ \alert{Carath\'{e}odory 条件} $\Longrightarrow$ 可测集类 $\mathscr{M}$ 与其上的可列可加函数. 整套流程没有用到``矩体体积''的特殊性质: \alert{换上任何环上的测度都照常运转}.
 
 \pause
 
@@ -515,7 +515,7 @@ $\mathbb{R}$ 的子集类
 \item \textbf{单调性}: $E_1 \subset E_2$, $E_i \in \mathscr{S} \implies \lambda E_1 \leqslant \lambda E_2$;
 \item \textbf{半可加性}: $E_k \in \mathscr{S}$ 且 $\bigcup_k E_k \in \mathscr{S} \implies \lambda\big(\bigcup_k E_k\big) \leqslant \sum_k \lambda E_k$.
 \end{enumerate}
-若 $\mathscr{S} = \mathscr{P}(X)$, 称 $\lambda$ 为 $X$ 上的外测度. \alert{外测度没有可列可加性} --- 这正是它与测度的差别.
+若 $\mathscr{S} = \mathscr{P}(X)$, 称 $\lambda$ 为 $X$ 上的外测度. \alert{外测度没有可列可加性}, 这正是它与测度的差别.
 \end{Def}
 
 \pause
@@ -587,7 +587,7 @@ $\mu$ 被扩张为 $\mathscr{R}_\sigma(\mathscr{R})$ (进而 $\mathscr{M}$) 上�
 \pause
 \item \textbf{$\mu^*\big|_{\mathscr{R}} = \mu$}: 见前一页 (半可加性 $+$ 自身覆盖);
 \pause
-\item \textbf{$\mathscr{R}_\sigma(\mathscr{R}) \subset \mathscr{M}$} (实质性的一步): 由 $\mu^*$ 的定义, $\forall\, \varepsilon > 0$ 可取 $\mathscr{R}$ 中覆盖列 $\{A_n\}$ 使 $\sum_n \mu A_n \leqslant \mu^* A + \varepsilon$ (\alert{任意精度的覆盖逼近}), 用它验证 Carath\'{e}odory 条件 --- 与 L-覆盖版的论证相同, 细节见教材.
+\item \textbf{$\mathscr{R}_\sigma(\mathscr{R}) \subset \mathscr{M}$} (实质性的一步): 由 $\mu^*$ 的定义, $\forall\, \varepsilon > 0$ 可取 $\mathscr{R}$ 中覆盖列 $\{A_n\}$ 使 $\sum_n \mu A_n \leqslant \mu^* A + \varepsilon$ (\alert{任意精度的覆盖逼近}), 用它验证 Carath\'{e}odory 条件 (与 L-覆盖版的论证相同, 细节见教材).
 \end{itemize}
 
 \end{frame}
@@ -601,7 +601,7 @@ $\mu$ 被扩张为 $\mathscr{R}_\sigma(\mathscr{R})$ (进而 $\mathscr{M}$) 上�
 \[
 \mathscr{R} \ \subset\ \mathscr{B}(\mathbb{R}^n) = \sigma(\mathscr{R}) \ \subset\ \mathscr{M} \ \subset\ \mathscr{P}(\mathbb{R}^n),
 \]
-且 $\mu^*\big|_{\mathscr{B}(\mathbb{R}^n)}$ 就是通常的勒贝格测度 $m$; $\mu^*$-可测集类 (自动完备: 零测集的子集可测) 恰是 \alert{Lebesgue 可测集类} --- §2.2--2.4 的理论正是这台机器的产出.
+且 $\mu^*\big|_{\mathscr{B}(\mathbb{R}^n)}$ 就是通常的勒贝格测度 $m$; $\mu^*$-可测集类 (自动完备: 零测集的子集可测) 恰是 \alert{Lebesgue 可测集类}, §2.2--2.4 的理论正是这台机器的产出.
 \end{thm}
 
 \pause
@@ -706,7 +706,7 @@ $V$ 的存在性依赖\alert{选择公理}; 同时也证明了 $\mathscr{M} \sub
 
 \begin{frame}{选讲: 非 Borel 的可测集 (一): 构造}
 
-\textbf{目标}: 证明 $\mathscr{B}(\mathbb{R}) \subsetneqq \mathscr{M}$ --- 存在可测而非 Borel 的集合.
+\textbf{目标}: 证明 $\mathscr{B}(\mathbb{R}) \subsetneqq \mathscr{M}$, 即存在可测而非 Borel 的集合.
 
 \pause
 
@@ -781,7 +781,7 @@ $S$ 含于零测集 $P_0$, 由完备性 $S$ \alert{可测}.
 \[
 W = \big(\widetilde{\Psi}^{-1}\big)^{-1}(S) = \widetilde{\Psi}(S)
 \]
-也是 Borel 集, 从而可测 --- 与 $W$ 不可测矛盾.
+也是 Borel 集, 从而可测, 与 $W$ 不可测矛盾.
 \qed
 
 \pause

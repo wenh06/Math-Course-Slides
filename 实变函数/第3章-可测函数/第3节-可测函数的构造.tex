@@ -50,7 +50,7 @@ $\mathcal{C}^n$ 函数 & $\longleftrightarrow$ & Taylor 展开 (多项式) \\
 
 \begin{itemize}
 \item \S 3.1 已证: 非负可测函数是\alert{递增简单函数列}的极限 (简单函数逼近定理);
-\item 本节证明 \alert{Luzin 定理}: 可测函数``挖掉任意小测度的集合''后就是\alert{连续函数} ---
+\item 本节证明 \alert{Luzin 定理}: 可测函数``挖掉任意小测度的集合''后就是\alert{连续函数}:
   ``可测 $\approx$ 连续''的精确化;
 \item 附带: 复合函数的可测性 (连续与可测如何搭配), Borel 可测函数.
 \end{itemize}
@@ -104,14 +104,14 @@ f\big|_F \ \text{是}\ F\ \text{上的连续函数}.
 
 \begin{itemize}
 \item \alert{无需} $mE < \infty$ (对比 Egorov 定理);
-\item \textbf{解读}: 把 $f$ 在一个小测度集上``改掉''后, 剩下的部分是连续函数 --- ``可测 $\approx$ 连续''的精确化;
+\item \textbf{解读}: 把 $f$ 在一个小测度集上``改掉''后, 剩下的部分是连续函数: ``可测 $\approx$ 连续''的精确化;
 \item \textbf{与 Egorov 的分工}: Egorov 管\alert{收敛} (函数列), Luzin 管\alert{连续性} (单个函数).
 \end{itemize}
 
 \pause
 
 \begin{remark}[历史注]
-Luzin 是 Egorov 的学生 --- 师生二人的定理是实变函数论的两大支柱.
+Luzin 是 Egorov 的学生, 师生二人的定理是实变函数论的两大支柱.
 \end{remark}
 
 \end{frame}
@@ -165,7 +165,7 @@ $f$ 在每个 $A_k$ 上恒取常值 $c_k$.
 
 \pause
 
-\textbf{连续性}: 任取 $x \in A_k$, 令 $B_k = \bigcup_{j \neq k} A_j$ --- 有限个闭集之并, 闭, 且 $x \notin B_k$,
+\textbf{连续性}: 任取 $x \in A_k$, 令 $B_k = \bigcup_{j \neq k} A_j$ (有限个闭集之并, 闭, 且 $x \notin B_k$),
 故 $\rho(x, B_k) =: \delta > 0$. 于是 $A \cap (x - \delta, x + \delta) \subset A_k$, 即
 \[
 \forall\, y \in A,\ |y - x| < \delta \implies f(y) = c_k = f(x):
@@ -234,8 +234,7 @@ f\big|_F = \frac{g}{1 - |g|}\bigg|_F
 \pause
 
 \begin{remark}
-三步的损耗: 3$^\circ$ 无损耗, 2$^\circ$ 损耗 $\varepsilon/2$, 1$^\circ$ 内部各项 $\varepsilon/n$
---- 总损耗恰好 $< \varepsilon$.
+三步的损耗: 3$^\circ$ 无损耗, 2$^\circ$ 损耗 $\varepsilon/2$, 1$^\circ$ 内部各项 $\varepsilon/n$, 总损耗恰好 $< \varepsilon$.
 \end{remark}
 
 \end{frame}
@@ -364,7 +363,7 @@ g_1(x) = \frac{M}{3} \cdot
 
 由 $\sum_k \frac{M}{3} (\frac{2}{3})^{k-1} = M < \infty$, 级数 $g(x) := \sum_{k=1}^{\infty} g_k(x)$
 \alert{一致收敛}, 故 $g \in \mathcal{C}(\mathbb{R})$, 且 $|g| \leqslant M$ 于 $\mathbb{R}$
-(\alert{保界延拓} --- 一维 Tietze 定理).
+(\alert{保界延拓}, 一维 Tietze 定理).
 
 \pause
 
@@ -419,7 +418,7 @@ P\ \text{无内点}.
   $G \setminus Z$ 的点 $y$: $y \in F$, $f(y) = 0$.
 
 \pause
-\item 于是 $f\big|_F$ 在 $x$ 处不连续 (有 $y_n \to x$, $f(y_n) = 0 \neq 1 = f(x)$) --- 矛盾.
+\item 于是 $f\big|_F$ 在 $x$ 处不连续 (有 $y_n \to x$, $f(y_n) = 0 \neq 1 = f(x)$), 矛盾.
 \end{itemize}
 \qed
 
@@ -437,7 +436,7 @@ P\ \text{无内点}.
 
 \begin{frame}{引理: 用开集的原像刻画可测性}
 
-记号: $E(f > \alpha) = f^{-1}\big((\alpha, +\infty)\big)$ --- 可测性本是``对开区间族''的原像条件.
+记号: $E(f > \alpha) = f^{-1}\big((\alpha, +\infty)\big)$, 可测性本是``对开区间族''的原像条件.
 
 \begin{lem}[开集原像刻画]
 设 $f$ 是 $\mathbb{R}^n$ 上的实值函数, 则
@@ -484,7 +483,7 @@ $h^{-1}(G) = g^{-1}\big(f^{-1}(G)\big)$ 是可测集 ($g$ 可测 $\Rightarrow$ B
 
 \begin{attnblock}
 \textbf{方向不能反}: $\mathbb{R} \xrightarrow{\ g\ \text{连续}\ } \mathbb{R}
-\xrightarrow{\ f\ \text{可测}\ } \mathbb{R}$ 时 $f \circ g$ \alert{未必可测} --- 见下页反例.
+\xrightarrow{\ f\ \text{可测}\ } \mathbb{R}$ 时 $f \circ g$ \alert{未必可测}, 见下页反例.
 \end{attnblock}
 
 \end{frame}
@@ -502,7 +501,7 @@ $H := \Psi(P_0)$, $mH = \frac12$.
 \begin{itemize}
 \item 取\alert{不可测}集 $W \subset H$ ($mH > 0$ 保证存在);
 \item $S := \Psi^{-1}(W) \subset P_0$: $mS = 0$, 故 $S$ \alert{勒贝格可测}
-  (且非 Borel --- \S 2.4 的老朋友).
+  (且非 Borel, \S 2.4 的老朋友).
 \end{itemize}
 
 \pause
@@ -580,7 +579,7 @@ $\mathbb{R}^2 \xrightarrow{\ T\ } \mathbb{R}^2 \xrightarrow{\ \mathrm{Pr}_1\ } \
 \pause
 
 \begin{remark}
-条件``$mZ = 0 \implies m(T^{-1}Z) = 0$''不可去 --- 上页反例中的 $\Psi^{-1}$ 就\alert{不满足}它:
+条件``$mZ = 0 \implies m(T^{-1}Z) = 0$''不可去, 上页反例中的 $\Psi^{-1}$ 就\alert{不满足}它:
 $mS = 0$ 而 $\Psi(S) = W$ 不可测.
 \end{remark}
 
@@ -615,7 +614,7 @@ $\mathbb{R}$ 上的 Borel $\sigma$-代数记 $\mathscr{B}$ ($\mathscr{B} \subset
 \begin{attnblock}
 \textbf{反向不成立}: \S 2.4 的 $S \subset P_0$ 勒贝格可测而非 Borel,
 故 $\chi_S$ 勒贝格可测但\alert{非 Borel 可测}. 更一般地, 对勒贝格可测函数
-$f^{-1}(\mathscr{M}) \not\subset \mathscr{M}$: 甚至\alert{连续}函数也会这样 ---
+$f^{-1}(\mathscr{M}) \not\subset \mathscr{M}$: 甚至\alert{连续}函数也会这样:
 $g = \Psi^{-1}$, $A = S \in \mathscr{M}$, 而 $g^{-1}(A) = \Psi(S) = W$ 不可测.
 \end{attnblock}
 
@@ -653,9 +652,9 @@ $(g \circ f)^{-1}(\mathcal{G}_3) = f^{-1}\big(g^{-1}(\mathcal{G}_3)\big)
 \pause
 
 \begin{itemize}
-\item \textbf{衔接则匹配}: Borel 可测 $\circ$ 勒贝格可测 $=$ 勒贝格可测 ---
+\item \textbf{衔接则匹配}: Borel 可测 $\circ$ 勒贝格可测 $=$ 勒贝格可测:
   内层的值域 $\sigma$-代数 $\mathscr{B}$ $=$ 外层的定义域 $\sigma$-代数 $\mathscr{B}$, 链式法则适用;
-\item \textbf{不衔接则无保证}: 勒贝格可测 $\circ$ 勒贝格可测 未必勒贝格可测 ---
+\item \textbf{不衔接则无保证}: 勒贝格可测 $\circ$ 勒贝格可测 未必勒贝格可测:
   外层勒贝格可测要求定义域 $\sigma$-代数为 $\mathscr{M} \neq \mathscr{B}$ (内层的值域),
   链式法则不适用; 反例即前页 $\Psi$ 的构造 ($\Psi^{-1}$ 连续, 故也勒贝格可测,
   而 $\chi_S \circ \Psi^{-1} = \chi_W$ 不可测).
@@ -672,7 +671,7 @@ $(g \circ f)^{-1}(\mathcal{G}_3) = f^{-1}\big(g^{-1}(\mathcal{G}_3)\big)
 \begin{frame}{小结}
 
 \begin{itemize}
-\item \textbf{Luzin 定理}: 可测函数挖掉任意小测度集后\alert{连续} ---
+\item \textbf{Luzin 定理}: 可测函数挖掉任意小测度集后\alert{连续}:
   ``可测 $\approx$ 连续''; \alert{无需} $mE < \infty$;
 \pause
 \item \textbf{证明引擎}: $\S 2.3$ 的 $\varepsilon$-刻画 (简单函数) $\to$ \S 3.1 一致逼近 (有界)
@@ -696,7 +695,7 @@ $(g \circ f)^{-1}(\mathcal{G}_3) = f^{-1}\big(g^{-1}(\mathcal{G}_3)\big)
 \begin{frame}{展望}
 
 \begin{itemize}
-\item \textbf{\S 4 勒贝格积分}: 积分的定义正建立在\alert{简单函数逼近}之上 ---
+\item \textbf{\S 4 勒贝格积分}: 积分的定义正建立在\alert{简单函数逼近}之上:
   第三章的全部工具 (可测性、依测度收敛、Riesz 抽子列、Luzin) 从下一章开始火力全开;
 \pause
 \item \textbf{Luzin 定理的深层形式} (泛函分析中): 可测函数``挖掉小测度集后等于紧支集连续函数'',

@@ -36,7 +36,7 @@
 
 \begin{frame}{引言: 积分与极限交换次序}
 
-本节研究 $\displaystyle \lim_n \int_E f_n ~ \mathrm{d} m \overset{?}{=} \int_E \lim_n f_n ~ \mathrm{d} m$ ---
+本节研究 $\displaystyle \lim_n \int_E f_n ~ \mathrm{d} m \overset{?}{=} \int_E \lim_n f_n ~ \mathrm{d} m$,
 勒贝格积分理论的\alert{核心地位}所在:
 
 \begin{center}
@@ -53,7 +53,7 @@ Lebesgue--Vitali & 依测度收敛 $+$ 等度绝对连续 & 本节 (深化) \\
 \pause
 
 \begin{itemize}
-\item 对比 Riemann 积分: 交换次序通常要求\alert{一致收敛} ---
+\item 对比 Riemann 积分: 交换次序通常要求\alert{一致收敛};
   勒贝格积分只要求``被控制''这类点态条件, 优势尽显;
 \item 两大引擎不变: \S 4.1 Levi 定理 $+$ \S 4.2 (绝对连续性、线性性、唯一性).
 \end{itemize}
@@ -93,7 +93,7 @@ Lebesgue--Vitali & 依测度收敛 $+$ 等度绝对连续 & 本节 (深化) \\
 \pause
 
 \begin{itemize}
-\item 级数可逐项积分, 无需一致收敛 --- ``和的可积性''与``换序''同时免费获得.
+\item 级数可逐项积分, 无需一致收敛: ``和的可积性''与``换序''同时免费获得.
 \end{itemize}
 
 \end{frame}
@@ -185,7 +185,7 @@ n, & x \in (0, \tfrac{1}{n}), \\
 
 \pause
 
-\item \textbf{注 (2)}: 证明用了 Levi, 实际上二者\alert{等价} ---
+\item \textbf{注 (2)}: 证明用了 Levi, 实际上二者\alert{等价}:
 Fatou $\Rightarrow$ Levi: 设 $0 \leqslant f_1 \leqslant f_2 \leqslant \cdots$,
 $f = \lim_n f_n = \varliminf_n f_n$. 由 Fatou 引理
 \[
@@ -203,7 +203,7 @@ $f = \lim_n f_n = \varliminf_n f_n$. 由 Fatou 引理
 
 \begin{attnblock}
 由 \textcircled{1} \textcircled{2} 得 $\int_E f ~ \mathrm{d} m = \lim_n \int_E f_n ~ \mathrm{d} m$,
-即 Levi 定理 --- 两大基本定理互为等价.
+即 Levi 定理, 两大基本定理互为等价.
 \end{attnblock}
 
 \end{frame}
@@ -232,7 +232,7 @@ $f = \lim_n f_n = \varliminf_n f_n$. 由 Fatou 引理
 
 \begin{itemize}
 \item 条件 (1)(2) 可减弱为 a.e.\ 成立 (零测集上修正定义, 积分不变);
-\item 勒贝格控制收敛定理是\alert{最重要的}积分与极限交换次序的结果 ---
+\item 勒贝格控制收敛定理是\alert{最重要的}积分与极限交换次序的结果:
   $|f| \leqslant g$ 这一条件比``渐升非负''更\alert{广泛}也更自然 (页边预告: 还蕴含一致收敛情形).
 \end{itemize}
 
@@ -318,7 +318,7 @@ $\int_E f ~ \mathrm{d} m = \lim_{\alpha \to \alpha_0} \int_E f_\alpha ~ \mathrm{
 
 %------------------------------------------------
 
-\begin{frame}{注: ``控制''不可去 --- 尖峰反例}
+\begin{frame}{注: ``控制''不可去（尖峰反例）}
 
 \begin{eg}
 $E = [-1, 1]$,
@@ -354,7 +354,7 @@ n - n^2 |x|, & 0 < |x| < \tfrac1n, \\
   但 $\lim_n \int_E f_n ~ \mathrm{d} m = 1 \neq 0 = \int_E \lim_n f_n ~ \mathrm{d} m$;
 \item 无控制的原因: $f_n(x) = -|x| \big( n - \tfrac{1}{2|x|} \big)^2 + \tfrac{1}{4|x|}$,
   故 $0 < |x| \leqslant \tfrac14$ 时 $\sup_n f_n(x) \geqslant \tfrac{1}{4|x|} - |x| \geqslant \tfrac{1}{8|x|}$,
-  而 $\int_{-1/4}^{1/4} \tfrac{1}{8|x|} ~ \mathrm{d} x = \infty$ --- 任何控制函数不可积.
+  而 $\int_{-1/4}^{1/4} \tfrac{1}{8|x|} ~ \mathrm{d} x = \infty$, 任何控制函数不可积.
 \end{itemize}
 
 \end{frame}
@@ -390,7 +390,7 @@ $E = (0, +\infty)$, 计算
 \pause
 
 \begin{itemize}
-\item 套路: 找\alert{可积控制} $g$ + 算\alert{点态极限} ---
+\item 套路: 找\alert{可积控制} $g$ + 算\alert{点态极限},
   极限与积分换序的``两步走'', 是控制收敛定理的标准用法.
 \end{itemize}
 
@@ -423,7 +423,7 @@ $\xi_i^{(n)} \in E_i^{(n)}$, 令 $\varphi_n = \sum_{i=1}^{b_n} f(\xi_i^{(n)}) \c
 \pause
 
 \begin{itemize}
-\item 区别在\alert{划分值域} --- 这正是第二章引入 Lebesgue 测度的动机的再现;
+\item 区别在\alert{划分值域}: 这正是第二章引入 Lebesgue 测度的动机的再现;
 \item 证: $x \in E_i^{(n)}$ 时 $|\varphi_n(x) - f(x)| < \lambda_n$, 故 $\varphi_n \to f$ 点态;
   可设 $\lambda_n < 1$, 则 $\varphi_n < f + 1 \in L_E$, 由控制收敛定理即得.
 \end{itemize}
@@ -558,9 +558,9 @@ $\Longrightarrow \sum_n f_n(x)$ 几乎处处\alert{绝对收敛}, 记 $f(x) = \s
 \pause
 
 \begin{itemize}
-\item 单个函数: \S 4.2 绝对连续性 ($\delta$ 可依赖该函数); 族: $\delta$ 必须统一 ---
+\item 单个函数: \S 4.2 绝对连续性 ($\delta$ 可依赖该函数); 族: $\delta$ 必须统一;
   ``等度''= uniformly;
-\item 单调列 $\subset$ 控制列 $\subset$ 等度绝对连续列 --- 逐步放宽对``列''的要求.
+\item 单调列 $\subset$ 控制列 $\subset$ 等度绝对连续列: 逐步放宽对``列''的要求.
 \end{itemize}
 
 \end{frame}
@@ -576,7 +576,7 @@ $\{f_n\}$ 在 $E$ 上有等度的绝对连续积分时, $f \in L_E$.
 
 \begin{remark}
 依测度收敛\alert{弱于}几乎处处收敛, 故加上了``一致性''条件 (等度绝对连续积分),
-但也\alert{去掉了控制函数}这一条件; 结论也减弱为 $f \in L_E$ --- 没有积分与极限交换次序的结论.
+但也\alert{去掉了控制函数}这一条件; 结论也减弱为 $f \in L_E$, 没有积分与极限交换次序的结论.
 \end{remark}
 
 \startproof[bg=yellow, fg=red](证明)
@@ -718,7 +718,7 @@ $E = (0, \infty)$, $f_n = \dfrac{1}{n} \chi_{(0, n)}$, $f = 0$.
 \item \textbf{等度绝对连续}: $|f_n| \leqslant 1$ 且 $\forall\, \varepsilon > 0$ 取 $\delta = \varepsilon$:
   $mA < \delta$ 时 $\int_A |f_n| ~ \mathrm{d} m \leqslant \int_A ~ \mathrm{d} m = mA < \varepsilon$;
 \item \textbf{但}: $\int_E f ~ \mathrm{d} m = 0$,
-  而 $\int_E f_n ~ \mathrm{d} m = \tfrac1n \cdot n = 1 \not\to 0$ ---
+  而 $\int_E f_n ~ \mathrm{d} m = \tfrac1n \cdot n = 1 \not\to 0$,
   ``$\Leftarrow$''在 $mE = \infty$ 时失效.
 \end{enumerate}
 
@@ -750,7 +750,7 @@ $E = (0, \infty)$, $f_n = \dfrac{1}{n} \chi_{(0, n)}$, $f = 0$.
 \startproof[bg=yellow, fg=red](证明 1\textdegree: $mE < \infty$)
 由 $|f_n| \leqslant g$ 及 $g$ 的积分绝对连续性: $\exists\, \delta(\varepsilon)$,
 $mA < \delta$ 时 $\int_A |f_n| ~ \mathrm{d} m \leqslant \int_A g ~ \mathrm{d} m < \varepsilon$
-($\forall n$) --- $\{f_n\}$ 有等度绝对连续积分. 由 Lebesgue--Vitali 定理:
+($\forall n$), $\{f_n\}$ 有等度绝对连续积分. 由 Lebesgue--Vitali 定理:
 \[
 \lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0 .
 \qquad \text{……(*)}
@@ -791,7 +791,7 @@ $f \in L_E$ 且 $\int_E f ~ \mathrm{d} m = \lim_n \int_E f_n ~ \mathrm{d} m$. \q
 
 \begin{attnblock}
 注: 实际上, (点态) 控制收敛定理的证明给出的是\alert{更强}的结论
-$\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$ ---
+$\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$,
 即 $\{f_n\}$ 在 $E$ 上\alert{依 $L^1$ 意义}收敛于 $f$ (第五章的主角).
 \end{attnblock}
 
@@ -820,10 +820,10 @@ $\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$ ---
   依测度收敛下 $L^1$ 收敛 $\iff$ 等度绝对连续 ($mE < \infty$);
   依测度型控制收敛 ($mE = \infty$ 用截断);
 \pause
-\item \textbf{注}: (点态) 控制收敛实际证明了 $L^1$ 收敛 ---
+\item \textbf{注}: (点态) 控制收敛实际证明了 $L^1$ 收敛:
   $\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$, 为第五章 $L^p$ 空间埋下伏笔;
 \pause
-\item \textbf{展望}: \S 4.4 Riemann 积分与 Lebesgue 积分的比较 ---
+\item \textbf{展望}: \S 4.4 Riemann 积分与 Lebesgue 积分的比较:
   $L$ 积分是 $R$ 积分的推广 (Lebesgue 判别法), 布置作业: 第四章 21, 23, 25, 26.
 \end{itemize}
 

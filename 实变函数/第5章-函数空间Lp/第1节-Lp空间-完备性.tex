@@ -40,8 +40,7 @@ Lp空间·完备性] % Your institution as it will appear on the bottom of every
 $\longrightarrow$ \alert{$L^p$ 空间}.
 
 \begin{itemize}
-\item 前四章已经把工具都构造好了; 现在把它们\alert{拿起}, 看看构成的集合有什么结构
-  --- 完备性、可分性及其相互关系;
+\item 前四章已经把工具都构造好了; 现在把它们\alert{拿起}, 看看构成的集合有什么结构: 完备性、可分性及其相互关系;
 \item 本章主题: $L^p$ 作为\alert{赋范线性空间}的分析性质
   (强收敛、基本列、Riesz--Fischer 完备性).
 \end{itemize}
@@ -122,7 +121,7 @@ $L^p$ 是一个线性空间.
 \begin{itemize}
 \item \textbf{注}: 在 $L^p$ 空间中, 约定记号
   $\lVert f \rVert_p = \big( \int_E |f|^p ~ \mathrm{d} m \big)^{1/p}$,
-  称为 $f \in L^p$ 的\alert{范数} --- $L^p$ 是\alert{赋范线性空间} (normed vector space).
+  称为 $f \in L^p$ 的\alert{范数}, $L^p$ 是\alert{赋范线性空间} (normed vector space).
 \end{itemize}
 
 \end{frame}
@@ -135,7 +134,7 @@ $L^p$ 是一个线性空间.
 
 \begin{frame}{共轭指数与 Hölder 不等式}
 
-(为了进一步讨论 $L^p$ 空间的性质, 我们需要引入两个著名的不等式 ---
+(为了进一步讨论 $L^p$ 空间的性质, 我们需要引入两个著名的不等式:
 Hölder 不等式与 Minkowski 不等式, 它们是 Riesz 一开始研究 $L^p$ 空间的主要工具.)
 
 \begin{Def}[相伴数]
@@ -407,7 +406,7 @@ $\int_E |f_n - 0|^2 ~ \mathrm{d} m = n \to \infty$.
 
 %------------------------------------------------
 
-\begin{frame}{$2^{\circ}$: 打字机列 --- 强收敛但处处不收敛}
+\begin{frame}{$2^{\circ}$: 打字机列（强收敛但处处不收敛）}
 
 \textbf{$2^{\circ}$} $E = [0, 1]$, 在 $L^1$ 中考察函数列 (打字机列)
 \[
@@ -468,7 +467,7 @@ $\lim\limits_{m, n \to \infty} \lVert f_m - f_n \rVert_p = 0$,
 \item \textbf{注}: 由 Minkowski 不等式
   $\lVert f_m - f_n \rVert_p \leqslant \lVert f_m - f \rVert_p + \lVert f_n - f \rVert_p$
   知: 若 $f_n \xrightarrow{\ \text{强}\ } f$, 则 $\{ f_n \}$ 为基本列.
-  反过来也是成立的 (注意与依测度基本列相关结论比较) ---
+  反过来也是成立的 (注意与依测度基本列相关结论比较).
   这样, $L^p$ 就成为一个\alert{完备}的赋范线性空间 (度量空间).
 \end{itemize}
 
@@ -622,7 +621,7 @@ f = f_n + (f - f_n) \in L^\infty .
   Minkowski ($p=1$ / $p=\infty$ / Hölder);
 \item \textbf{强收敛}: 依范数收敛; 与点态收敛互不蕴含
   ($n\chi_{(0, 1/n)}$ 与打字机列); 基本列;
-\item \textbf{Riesz--Fischer}: $L^p$ 完备 ---
+\item \textbf{Riesz--Fischer}: $L^p$ 完备:
   基本列 $\Rightarrow$ 快速子列 $\Rightarrow$ Hölder 控制的级数 a.e.\ 收敛
   $\Rightarrow$ Fatou 得极限属于 $L^p$ 且强收敛 ($p = 1$ 退化, $p = \infty$ 用零测集 $Z$).
 \end{itemize}

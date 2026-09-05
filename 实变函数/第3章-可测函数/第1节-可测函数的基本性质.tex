@@ -54,7 +54,7 @@ E_k = \{x:\ y_{k-1} \leqslant f(x) < y_k\},
 
 \pause
 
-\textbf{本章任务}: 挑出``好的''函数 --- \alert{可测函数}; 研究其运算、极限 (\S 3.1) 与各种收敛性 (\S 3.2), 并刻画其构造 (\S 3.3, Luzin 定理).
+\textbf{本章任务}: 挑出``好的''函数: \alert{可测函数}; 研究其运算、极限 (\S 3.1) 与各种收敛性 (\S 3.2), 并刻画其构造 (\S 3.3, Luzin 定理).
 
 \end{frame}
 
@@ -82,7 +82,7 @@ E(f > \alpha) := \{x \in E:\ f(x) > \alpha\} = f^{-1}\big((\alpha, +\infty]\big)
 E(f \geqslant \alpha) = \bigcap_{k=1}^\infty E\big(f > \alpha - \tfrac{1}{k}\big), \quad
 E(f < \alpha),\ E(f \leqslant \alpha),\ E(f = +\infty) = \bigcap_{n=1}^\infty E(f > n),
 \]
-以及 $E(\alpha < f < \beta) = E(f > \alpha) \cap E(f < \beta)$ 等 ($-\infty$ 情形同理) --- 可测集类对\alert{可数交、并、差、补}封闭 (§2.3).
+以及 $E(\alpha < f < \beta) = E(f > \alpha) \cap E(f < \beta)$ 等 ($-\infty$ 情形同理), 可测集类对\alert{可数交、并、差、补}封闭 (§2.3).
 \end{remark}
 
 \begin{remark}
@@ -110,13 +110,13 @@ $E = [0, 1]$, $D(x) = \chi_{\mathbb{Q} \cap [0,1]}(x)$. 逐段验证 $E(D > \alp
 \pause
 
 \begin{attnblock}
-$D$ 在\alert{每一点都不连续}, Riemann 意义下不可积; 但它是可测函数 --- 可测性对函数的要求\alert{非常宽松}, 这正是勒贝格理论威力之源.
+$D$ 在\alert{每一点都不连续}, Riemann 意义下不可积; 但它是可测函数: 可测性对函数的要求\alert{非常宽松}, 这正是勒贝格理论威力之源.
 \end{attnblock}
 
 \pause
 
 \begin{remark}
-直观: ``$f$ 可测'' $\iff$ 定义域 $E$ 被诸水平集 $E(f>\alpha)$ \alert{不搞得乱七八糟} (每个都测得到) --- 值域的分割片 $E_k = E(y_{k-1} \leqslant f < y_k)$ 都可测, 积分公式才有意义.
+直观: ``$f$ 可测'' $\iff$ 定义域 $E$ 被诸水平集 $E(f>\alpha)$ \alert{不搞得乱七八糟} (每个都测得到), 值域的分割片 $E_k = E(y_{k-1} \leqslant f < y_k)$ 都可测, 积分公式才有意义.
 \end{remark}
 
 \end{frame}
@@ -190,7 +190,7 @@ E(f > \gamma) = \bigcup_{k=1}^{\infty} E(f > \alpha_k).
 \pause
 
 \begin{remark}
-取 $D = \mathbb{Q}$: 可列 $+$ 稠密, 只需验证\alert{可列多个}水平集 --- 定义里的``$\forall\, \alpha \in \mathbb{R}$''常常可以减负.
+取 $D = \mathbb{Q}$: 可列 $+$ 稠密, 只需验证\alert{可列多个}水平集: 定义里的``$\forall\, \alpha \in \mathbb{R}$''常常可以减负.
 \end{remark}
 
 \end{frame}
@@ -254,7 +254,7 @@ Dirichlet 函数 $D = 0$ a.e.\ 于 $[0,1]$: 例外集 $\mathbb{Q} \cap [0,1]$ �
 
 \begin{remark}
 \begin{itemize}
-\item 例外集可以``很大'': Cantor 集 $P_0$ 零测但具有连续统的势 --- a.e.\ 只看\alert{测度}, 不看点数;
+\item 例外集可以``很大'': Cantor 集 $P_0$ 零测但具有连续统的势: a.e.\ 只看\alert{测度}, 不看点数;
 \item a.e.\ 成立的命题可以换一个零测例外集仍 a.e.\ 成立 (零测集之并零测, §2.2 习题 1), 故``a.e.''是良定义的语言; $f \sim g$ 是等价关系 (自反、对称、传递).
 \end{itemize}
 \end{remark}
@@ -274,7 +274,7 @@ Dirichlet 函数 $D = 0$ a.e.\ 于 $[0,1]$: 例外集 $\mathbb{Q} \cap [0,1]$ �
 \end{thm}
 
 \startproof[bg=yellow, fg=red](证明)
-\textbf{和}: 关键的``有理数分裂''技巧 --- $f(x) + g(x) > \alpha \iff \exists\, r \in \mathbb{Q}:\ f(x) > r$ 且 $g(x) > \alpha - r$, 故
+\textbf{和}: 关键的``有理数分裂''技巧: $f(x) + g(x) > \alpha \iff \exists\, r \in \mathbb{Q}:\ f(x) > r$ 且 $g(x) > \alpha - r$, 故
 \[
 E(f + g > \alpha) = \bigcup_{r \in \mathbb{Q}} \big(E(f > r) \cap E(g > \alpha - r)\big)
 \]
@@ -289,7 +289,7 @@ E(f + g > \alpha) = \bigcup_{r \in \mathbb{Q}} \big(E(f > r) \cap E(g > \alpha -
 \pause
 
 \begin{remark}
-``有理数分裂''是处理``两个函数纠缠''的标准手法 --- 把一个不等式拆成\alert{可列个}可用定义的情形.
+``有理数分裂''是处理``两个函数纠缠''的标准手法: 把一个不等式拆成\alert{可列个}可用定义的情形.
 \end{remark}
 
 \end{frame}
@@ -348,7 +348,7 @@ $f = \varliminf_k f_k = \varlimsup_k f_k$; a.e.\ 收敛时在例外零测集上�
 \pause
 
 \begin{remark}
-可测性是\alert{a.e.\ 等价类}的属性: 要证某个函数可测, 允许先\alert{修改它在零测集上的值}再验证 --- 后续证明的常用自由度.
+可测性是\alert{a.e.\ 等价类}的属性: 要证某个函数可测, 允许先\alert{修改它在零测集上的值}再验证 (后续证明的常用自由度).
 \end{remark}
 
 \end{frame}
@@ -383,7 +383,7 @@ $f$ 可测 $\implies$ $f_+$、$f_-$、$|f|$ 都可测.
 \pause
 
 \begin{remark}
-恒有分解 $f = f_+ - f_-$ (且至少其一有限时分解唯一): 它把\alert{带符号}的 $f$ 拆成两个\alert{非负}可测函数 --- 积分论的基本手续.
+恒有分解 $f = f_+ - f_-$ (且至少其一有限时分解唯一): 它把\alert{带符号}的 $f$ 拆成两个\alert{非负}可测函数 (积分论的基本手续).
 \end{remark}
 
 \end{frame}
@@ -485,13 +485,13 @@ n, & \text{若 } f(x) \geqslant n.
 \[
 f = \lim_{n \to \infty} \big(\varphi_n(x) - \psi_n(x)\big)
 \]
-(两个简单函数之差的极限; $f$ \alert{有界}时收敛还是一致的 --- 将在 \S 4 中用到);
+(两个简单函数之差的极限; $f$ \alert{有界}时收敛还是一致的, 将在 \S 4 中用到);
 \pause
 \item \textbf{特征函数级数}: 设 $f$ 非负可测, $\varphi_n \uparrow f$, 令 $\varphi_0 = 0$、$\tau_n = \varphi_n - \varphi_{n-1}$ (非负简单函数), 则
 \[
 f = \sum_{n=1}^{\infty} \tau_n = \sum_{n=1}^{\infty} \sum_{k} c_{n,k}\, \chi_{E(\tau_n = c_{n,k})}
 \]
---- \alert{非负可测函数 = 可测集特征函数的非负级数};
+即 \alert{非负可测函数 = 可测集特征函数的非负级数};
 \pause
 \item \textbf{截断}: 再取 $\psi_n(x) = \varphi_n(x) \cdot \chi_{E \cap [-n, n]}(x)$, 则 $0 \leqslant \psi_1 \leqslant \psi_2 \leqslant \cdots$, $\lim_n \psi_n(x) = f(x)$, 且每个 $\psi_n$ \alert{具有紧支集} (对 $E \subset \mathbb{R}$).
 \end{enumerate}
@@ -513,7 +513,7 @@ f = \sum_{n=1}^{\infty} \tau_n = \sum_{n=1}^{\infty} \sum_{k} c_{n,k}\, \chi_{E(
 \pause
 \item \textbf{运算与极限}: 四则可测 (有理数分裂); $\sup/\inf/\varlimsup/\varliminf$ 可测; 逐点 (或 a.e.) 极限可测; 正负部与 $|f|$ 可测;
 \pause
-\item \textbf{a.e.\ 语言}: 命题在零测集外成立即可 --- 可测函数类对 a.e.\ 相等封闭 ($f \sim g$, $g$ 可测 $\Rightarrow f$ 可测);
+\item \textbf{a.e.\ 语言}: 命题在零测集外成立即可: 可测函数类对 a.e.\ 相等封闭 ($f \sim g$, $g$ 可测 $\Rightarrow f$ 可测);
 \pause
 \item \textbf{简单函数逼近}: 非负可测 $f$ $\Longleftarrow$ 递增简单函数列 (二进分割台阶); 变体: 差的极限、特征函数级数、紧支集截断.
 \end{itemize}
@@ -527,7 +527,7 @@ f = \sum_{n=1}^{\infty} \tau_n = \sum_{n=1}^{\infty} \sum_{k} c_{n,k}\, \chi_{E(
 \begin{itemize}
 \item \textbf{\S 3.2 可测函数列的收敛性}: 逐点收敛之外, 还有\alert{几乎处处收敛、近一致收敛 (Egorov)、依测度收敛 (Riesz)} 等层次及其互相刻画;
 \pause
-\item \textbf{\S 3.3 可测函数的构造}: Luzin 定理 --- 可测函数``去掉小测度集后连续'', 即 \alert{可测 $\approx$ 连续};
+\item \textbf{\S 3.3 可测函数的构造}: Luzin 定理: 可测函数``去掉小测度集后连续'', 即 \alert{可测 $\approx$ 连续};
 \pause
 \item \textbf{\S 4 勒贝格积分}: $\displaystyle\int f = \lim \int \varphi_n$ (简单函数逼近定理正是定义积分的跳板), Dirichlet 函数将变为可积且积分为 $0$.
 \end{itemize}

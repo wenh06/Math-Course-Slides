@@ -35,7 +35,7 @@
 
 \begin{frame}{引言: 收敛有多少种意义?}
 
-\textbf{回顾}: \S 3.1 中可测函数列最自然的收敛是\alert{逐点收敛} (零测集外成立即为 a.e.\ 收敛); 数学分析里还有\alert{一致收敛} --- 它保证极限函数连续、极限运算可交换等.
+\textbf{回顾}: \S 3.1 中可测函数列最自然的收敛是\alert{逐点收敛} (零测集外成立即为 a.e.\ 收敛); 数学分析里还有\alert{一致收敛}, 它保证极限函数连续、极限运算可交换等.
 
 \pause
 
@@ -84,7 +84,7 @@ a.e.\ 收敛比一致收敛弱得多, 二者相差多远? 能否找到一个\ale
 \pause
 
 \begin{attnblock}
-本节的关键用法 --- 把``不收敛''翻译成坏集合列的上极限: 固定 $\varepsilon > 0$, 若 $x$ 属于无穷多个 $E(|f_k - f| \geqslant \varepsilon)$, 则 $f_k(x) \not\to f(x)$, 即
+本节的关键用法: 把``不收敛''翻译成坏集合列的上极限: 固定 $\varepsilon > 0$, 若 $x$ 属于无穷多个 $E(|f_k - f| \geqslant \varepsilon)$, 则 $f_k(x) \not\to f(x)$, 即
 \[
 \bigcap_{n=1}^{\infty}\ \bigcup_{k \geqslant n} E(|f_k - f| \geqslant \varepsilon)
 \ \subset\
@@ -120,8 +120,8 @@ E_k(\varepsilon) := E(|f_k - f| \geqslant \varepsilon),
 
 \begin{itemize}
 \item $E_k(\varepsilon)$ 可测: $f_k - f$ 可测 (\S 3.1 四则运算), 再取 $|\cdot|$ 与水平集;
-\item $\bigcup_{k \geqslant n} E_k(\varepsilon)$ = ``第 $n$ 项之后\alert{至少坏一次}''的点集; 让 $n \to \infty$, 得``\alert{无穷多次坏}''的点集 --- 集列上极限语言;
-\item 结论: 对每个固定的 $\varepsilon$, ``无穷多次坏''的点集为零测集 --- a.e.\ 收敛的\alert{定量化}.
+\item $\bigcup_{k \geqslant n} E_k(\varepsilon)$ = ``第 $n$ 项之后\alert{至少坏一次}''的点集; 让 $n \to \infty$, 得``\alert{无穷多次坏}''的点集 (集列上极限语言);
+\item 结论: 对每个固定的 $\varepsilon$, ``无穷多次坏''的点集为零测集: a.e.\ 收敛的\alert{定量化}.
 \end{itemize}
 
 \end{frame}
@@ -269,7 +269,7 @@ $\forall\, \varepsilon > 0$: 取 $r$ 使 $2^{-r} < \varepsilon$, 令 $k(\varepsi
 
 \pause
 
-关键: $n_r$ 的选取只依赖 $r, \delta$, \alert{与 $x$ 无关} --- 故 $k(\varepsilon)$ 对一切 $x \in E_\delta$ 通用, 即 $\{f_k\}$ 在 $E_\delta$ 上\alert{一致}收敛于 $f$. (2) 得证.
+关键: $n_r$ 的选取只依赖 $r, \delta$, \alert{与 $x$ 无关}, 故 $k(\varepsilon)$ 对一切 $x \in E_\delta$ 通用, 即 $\{f_k\}$ 在 $E_\delta$ 上\alert{一致}收敛于 $f$. (2) 得证.
 \qed
 
 \end{frame}
@@ -357,7 +357,7 @@ $E = [0,1]$, $f_k(x) = x^k$, 则 $f_k \to f$ \alert{处处}收敛, 其中 $f(x) 
 \pause
 
 \begin{attnblock}
-差别的原因: 各 $f_k$ 连续而极限 $f$ 在 $x = 1$ 处\alert{不连续} --- 一致收敛保持连续性; 近一致收敛允许在\alert{一小块测度}上``失控''. (但见下页: 它仍能``几乎''保持连续性.)
+差别的原因: 各 $f_k$ 连续而极限 $f$ 在 $x = 1$ 处\alert{不连续}: 一致收敛保持连续性; 近一致收敛允许在\alert{一小块测度}上``失控''. (但见下页: 它仍能``几乎''保持连续性.)
 \end{attnblock}
 
 \end{frame}
@@ -389,7 +389,7 @@ $f_K$ 在 $x_0$ 连续: 存在 $\eta > 0$, 使 $y \in E$, $|y - x_0| < \eta$ 时
 
 \pause
 
-\textbf{意义}: $m(E \setminus E_\delta) < \delta$ 可任意小 --- ``连续函数列的 a.e.\ 极限, 挖掉小测度集后连续''. 这正是 \alert{Luzin 定理} (\S 3.3) 的雏形.
+\textbf{意义}: $m(E \setminus E_\delta) < \delta$ 可任意小: ``连续函数列的 a.e.\ 极限, 挖掉小测度集后连续''. 这正是 \alert{Luzin 定理} (\S 3.3) 的雏形.
 
 \end{frame}
 \normalmode
@@ -438,7 +438,7 @@ f_4 = \chi_{[0,\frac14]},\ \ldots
 \end{tikzpicture}
 \end{center}
 
-\textbf{(红}: 每层含 $x_0$ 的小区间$)$ --- 函数值``游走''于 $0$ 与 $1$ 之间: 这就是\alert{打字机函数列}.
+\textbf{(红}: 每层含 $x_0$ 的小区间$)$, 函数值``游走''于 $0$ 与 $1$ 之间: 这就是\alert{打字机函数列}.
 
 \end{frame}
 
@@ -467,7 +467,7 @@ m\big(E(f_n > \varepsilon)\big) \leqslant \frac{2}{2^k} \longrightarrow 0
 \pause
 
 \begin{question}
-逐点意义下完全``失控''的函数列, 在``坏点集的\alert{测度}''意义下却规规矩矩 --- 这催生一个新的收敛概念.
+逐点意义下完全``失控''的函数列, 在``坏点集的\alert{测度}''意义下却规规矩矩, 这催生一个新的收敛概念.
 \end{question}
 
 \end{frame}
@@ -488,9 +488,9 @@ m\big(E(f_n > \varepsilon)\big) \leqslant \frac{2}{2^k} \longrightarrow 0
 \pause
 
 \begin{itemize}
-\item \textbf{直观}: 不要求每个点收敛, 只要求\alert{坏点集} $\{|f_k - f| \geqslant \varepsilon\}$ 的\alert{测度} $\to 0$ --- 概率论中``依概率收敛''的测度论版本;
+\item \textbf{直观}: 不要求每个点收敛, 只要求\alert{坏点集} $\{|f_k - f| \geqslant \varepsilon\}$ 的\alert{测度} $\to 0$ (概率论中``依概率收敛''的测度论版本);
 \item ``$\geqslant \varepsilon$''与``$> \varepsilon$''无区别: $E(|g| \geqslant \varepsilon) \subset E(|g| > \varepsilon/2)$;
-\item 打字机列 $f_k \xrightarrow{m} 0$ 而处处不收敛 --- 依测度收敛\alert{严格更弱};
+\item 打字机列 $f_k \xrightarrow{m} 0$ 而处处不收敛: 依测度收敛\alert{严格更弱};
 \item 定义\alert{无需} $mE < \infty$.
 \end{itemize}
 
@@ -521,7 +521,7 @@ m\big(E_k(\varepsilon)\big) \leqslant m\Big(\bigcup_{l \geqslant k} E_l(\varepsi
 \item $mE = +\infty$ 时 a.e.\ $\not\Longrightarrow$ 依测度: $\mathbb{R}$ 上 $f_k = \chi_{[k, k+1)}$ 处处 $\to 0$, 但
 $mE(|f_k| \geqslant \frac12) = 1 \not\to 0$.
 \end{itemize}
-依测度收敛能否至少``部分地''恢复 a.e.\ 收敛? --- \alert{Riesz 定理}.
+依测度收敛能否至少``部分地''恢复 a.e.\ 收敛? \alert{Riesz 定理}.
 \end{attnblock}
 
 \end{frame}
@@ -541,8 +541,8 @@ $mE(|f_k| \geqslant \frac12) = 1 \not\to 0$.
 \pause
 
 \begin{itemize}
-\item 依测度收敛虽不保证逐点收敛, 但\alert{子列意义下}完全恢复 a.e.\ 收敛 --- 类比: 有界数列必有收敛子列 (``紧性'');
-\item ``$\Longrightarrow$'': 依测度收敛列必有 a.e.\ 收敛子列 --- 第四章积分极限定理证明中的关键工具;
+\item 依测度收敛虽不保证逐点收敛, 但\alert{子列意义下}完全恢复 a.e.\ 收敛 (类比: 有界数列必有收敛子列 ``紧性'');
+\item ``$\Longrightarrow$'': 依测度收敛列必有 a.e.\ 收敛子列 (第四章积分极限定理证明中的关键工具);
 \item ``$\Longleftarrow$'': 说明依测度收敛恰好是``任何子列都有 a.e.\ 收敛的进一步子列''这一性质的完全刻画.
 \end{itemize}
 
@@ -625,7 +625,7 @@ m\Big(\bigcup_{j \geqslant i} E(|f_{k_{n_j}} - f| \geqslant \varepsilon_0)\Big)
 
 \pause
 
-但若 $\{f_{k_{n_j}}\}$ 有进一步的子列 a.e.\ 收敛于 $f$, 对该子列用\alert{引理}, 其尾部并的测度应 $\to 0$ --- 矛盾. 故 $\{f_{k_n}\}$ 没有任何 a.e.\ 收敛于 $f$ 的进一步子列, 与假设矛盾.
+但若 $\{f_{k_{n_j}}\}$ 有进一步的子列 a.e.\ 收敛于 $f$, 对该子列用\alert{引理}, 其尾部并的测度应 $\to 0$, 矛盾. 故 $\{f_{k_n}\}$ 没有任何 a.e.\ 收敛于 $f$ 的进一步子列, 与假设矛盾.
 \qed
 
 \end{frame}
@@ -663,7 +663,7 @@ $mE(|f - g| > 0) = 0$, 即 $f \sim g$.
 
 \pause
 
-\textbf{解读}: 依测度收敛一般没有逐点极限, 但其``极限''在 \alert{a.e.\ 等价类}意义下唯一 (\S 3.1 的 $f \sim g$ 语言) --- 可以放心谈论``依测度极限''.
+\textbf{解读}: 依测度收敛一般没有逐点极限, 但其``极限''在 \alert{a.e.\ 等价类}意义下唯一 (\S 3.1 的 $f \sim g$ 语言), 可以放心谈论``依测度极限''.
 
 \end{frame}
 
@@ -688,7 +688,7 @@ $mE(|f - g| > 0) = 0$, 即 $f \sim g$.
 
 \begin{itemize}
 \item 与度量空间的 Cauchy 列完全类比: 依测度收敛 $\Longrightarrow$ 依测度基本列 (三角不等式);
-\item \alert{逆命题} (完备性) 是本节的主题 --- 类比 $\mathbb{Q}$ 中 $\sqrt2$: 没有完备性的空间里, 基本列可能没有极限;
+\item \alert{逆命题} (完备性) 是本节的主题 (类比 $\mathbb{Q}$ 中 $\sqrt2$: 没有完备性的空间里, 基本列可能没有极限;
 \item 甚至可定义 Fr\'echet 度量 $d(f, g) = \displaystyle\inf_{\varepsilon > 0} \big(\varepsilon + mE(|f - g| > \varepsilon)\big)$, 依测度收敛即 $d(f_k, f) \to 0$ (选学).
 \end{itemize}
 
@@ -758,7 +758,7 @@ E(|f_i - f| \geqslant \varepsilon)
 
 \pause
 
-\textbf{手稿注记}: $f$ 也可写成级数 $f = f_{k_1} + \sum_{n \geqslant 1} (f_{k_{n+1}} - f_{k_n})$ --- 部分和是可测函数, 由此亦可看出 $f$ 可测.
+\textbf{手稿注记}: $f$ 也可写成级数 $f = f_{k_1} + \sum_{n \geqslant 1} (f_{k_{n+1}} - f_{k_n})$: 部分和是可测函数, 由此亦可看出 $f$ 可测.
 
 \end{frame}
 
@@ -822,7 +822,7 @@ $\max(f_k, g_k) \xrightarrow{m} \max(f, g)$; $\min$ 同理 (改变末项符号).
 \pause
 
 \begin{remark}
-这与 \S 3.1 中``$\max/\min$ 可测''的证明用的是\alert{同一恒等式} --- 同一手法, 两个场合. 结合 (1)(2)(3): 依测度极限对\alert{线性组合、绝对值、格运算}全部封闭.
+这与 \S 3.1 中``$\max/\min$ 可测''的证明用的是\alert{同一恒等式}, 同一手法, 两个场合. 结合 (1)(2)(3): 依测度极限对\alert{线性组合、绝对值、格运算}全部封闭.
 \end{remark}
 
 \end{frame}
@@ -853,7 +853,7 @@ $\max(f_k, g_k) \xrightarrow{m} \max(f, g)$; $\min$ 同理 (改变末项符号).
 
 \begin{itemize}
 \item 一致 $\Longrightarrow$ 近一致 (取 $E_\delta = E$); 反向不行: $f_k(x) = x^k$ 于 $[0,1]$;
-\item 依测度 $\not\Longrightarrow$ a.e.: 打字机函数列 --- 新概念\alert{严格更弱};
+\item 依测度 $\not\Longrightarrow$ a.e.: 打字机函数列: 新概念\alert{严格更弱};
 \item $mE = +\infty$ 时链条断裂: $\chi_{[k, k+1)}$ 于 $\mathbb{R}$ 处处 $\to 0$, 但既不近一致收敛, 也不依测度收敛;
 \item 唯一性: 依测度极限在 $f \sim g$ 意义下唯一; 完备性: 依测度基本列必有依测度极限.
 \end{itemize}
@@ -867,9 +867,9 @@ $\max(f_k, g_k) \xrightarrow{m} \max(f, g)$; $\min$ 同理 (改变末项符号).
 \begin{itemize}
 \item \textbf{集列语言}: $\varlimsup A_n$ = ``属于无穷多次'', $\varliminf A_n$ = ``最终恒属于''; 函数列不收敛点集用坏集合列的上极限控制;
 \pause
-\item \textbf{引理} (a.e.\ 收敛的测度刻画): $m(\bigcup_{k \geqslant n} E_k(\varepsilon)) \to 0$ --- 证明靠\alert{渐缩集列}的连续性 ($mE_1 < \infty$!), 它是 Egorov 与 Riesz ($\Longleftarrow$) 的共同引擎;
+\item \textbf{引理} (a.e.\ 收敛的测度刻画): $m(\bigcup_{k \geqslant n} E_k(\varepsilon)) \to 0$: 证明靠\alert{渐缩集列}的连续性 ($mE_1 < \infty$!), 它是 Egorov 与 Riesz ($\Longleftarrow$) 的共同引擎;
 \pause
-\item \textbf{Egorov 定理}: $mE < \infty$ 时 a.e.\ 收敛 $\iff$ 近一致收敛; 但近一致 $\neq$ 一致 ($x^k$); \alert{各 $f_k$ 连续时 $f\big|_{E_\delta}$ 连续} ($\varepsilon/3$) --- Luzin 定理雏形;
+\item \textbf{Egorov 定理}: $mE < \infty$ 时 a.e.\ 收敛 $\iff$ 近一致收敛; 但近一致 $\neq$ 一致 ($x^k$); \alert{各 $f_k$ 连续时 $f\big|_{E_\delta}$ 连续} ($\varepsilon/3$, Luzin 定理雏形);
 \pause
 \item \textbf{依测度收敛}: 打字机例; a.e.\ $\Longrightarrow$ 依测度 ($mE < \infty$); Riesz 子列定理; 极限 a.e.\ 唯一; 依测度基本列必有极限 (\alert{完备性}); 对线性组合、$|\cdot|$、$\max/\min$ 封闭.
 \end{itemize}
@@ -881,7 +881,7 @@ $\max(f_k, g_k) \xrightarrow{m} \max(f, g)$; $\min$ 同理 (改变末项符号).
 \begin{frame}{展望}
 
 \begin{itemize}
-\item \textbf{\S 3.3 可测函数的构造}: Luzin 定理 --- 可测函数``挖掉小测度集后连续'', 即\alert{可测 $\approx$ 连续}; 证明核心正是 Egorov 定理 + 本节选讲的``连续性继承'';
+\item \textbf{\S 3.3 可测函数的构造}: Luzin 定理: 可测函数``挖掉小测度集后连续'', 即\alert{可测 $\approx$ 连续}; 证明核心正是 Egorov 定理 + 本节选讲的``连续性继承'';
 \pause
 \item \textbf{\S 4 勒贝格积分}: 极限与积分换序的定理 (Lebesgue 控制收敛定理等) 中, ``依测度收敛 + Riesz 抽子列''是标准起手式; 依测度收敛的完备性保证了各种收敛概念的衔接;
 \pause

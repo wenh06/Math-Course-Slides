@@ -37,10 +37,8 @@ Lp空间可分性] % Your institution as it will appear on the bottom of every s
 \begin{frame}{引言: 从 $\mathbb{Q} \subset \mathbb{R}$ 说起}
 
 \begin{itemize}
-\item 上一节证明了 $L^p$ 空间的\alert{完备性}; $L^p$ 空间还有一个比较重要的性质
-  --- \alert{可分性}: 存在\alert{可列}的稠密子空间;
-\item 类比: $\mathbb{Q}$ 是 $\mathbb{R}$ 中的\alert{可列稠密子集}
-  --- 有理数足够``稠'', 又足够``少'' (可列), 于是 $\mathbb{R}$ 的结构可以通过
+\item 上一节证明了 $L^p$ 空间的\alert{完备性}; $L^p$ 空间还有一个比较重要的性质:\alert{可分性}, 存在\alert{可列}的稠密子空间;
+\item 类比: $\mathbb{Q}$ 是 $\mathbb{R}$ 中的\alert{可列稠密子集}, 有理数足够``稠'', 又足够``少'' (可列), 于是 $\mathbb{R}$ 的结构可以通过
   $\mathbb{Q}$ 来把握;
 \item 有了可分性, $L^p$ 空间的结构就比较简单.
 \end{itemize}
@@ -54,8 +52,8 @@ Lp空间可分性] % Your institution as it will appear on the bottom of every s
 \pause
 
 \begin{itemize}
-\item 路线: 主线 --- \alert{三步逼近引理} (有界可测 $\to$ 简单 $\to$ 有理系数);
-  支线 --- Weierstra\ss{} 逼近 (多项式, 超纲补充); 收尾 --- \alert{弱收敛}及收敛关系总结.
+\item 路线: 主线为\alert{三步逼近引理} (有界可测 $\to$ 简单 $\to$ 有理系数);
+  支线为 Weierstra\ss{} 逼近 (多项式, 超纲补充); 收尾为\alert{弱收敛}及收敛关系总结.
 \end{itemize}
 
 \end{frame}
@@ -108,7 +106,7 @@ $\{ g_n \}_{n \in \mathbb{N}}$, 使得 $g_n \xrightarrow{\ \text{强}\ } f$,
 \begin{itemize}
 \item \textbf{证明的思路}: 需要一些引理, 用一些\alert{特殊的函数}来逼近一般的函数;
 \item \textbf{回忆}: 在学习单个可积函数性质时 (\S 4.2 附录), 我们证明过
-  可积函数可用连续函数\alert{平均 ($L^1$) 逼近} --- 这里是更细致一些的结论.
+  可积函数可用连续函数\alert{平均 ($L^1$) 逼近}, 这里是更细致一些的结论.
 \end{itemize}
 
 \pause
@@ -210,8 +208,7 @@ f(x), & \text{若 } x \in E \setminus A_{k_0}, \\
 \pause
 
 \begin{itemize}
-\item \textbf{注意}: (1) 不要求 $mE < \infty$
-  --- 绝对连续性对一般可测集上的可积函数成立;
+\item \textbf{注意}: (1) 不要求 $mE < \infty$, 绝对连续性对一般可测集上的可积函数成立;
 \item 与 \S 4.3 有界收敛定理的``截大值''手法相同: 在 $E(|f| > k_0)$ 上截断.
 \end{itemize}
 
@@ -271,8 +268,7 @@ $\forall \varepsilon > 0$, 存在 $E$ 上非负简单函数
 \pause
 
 \begin{itemize}
-\item \textbf{技巧的核心}: $|h| \leqslant 2M$ 时 $|h|^p \leqslant (2M)^{p-1} |h|$
-  --- ``降一次幂'', 而 $\varphi_i$ 的逼近精度恰好带一个 $(2M)^{p-1}$ 分母, 两者相消;
+\item \textbf{技巧的核心}: $|h| \leqslant 2M$ 时 $|h|^p \leqslant (2M)^{p-1} |h|$, ``降一次幂'', 而 $\varphi_i$ 的逼近精度恰好带一个 $(2M)^{p-1}$ 分母, 两者相消;
 \item 这也是选取 $\varepsilon^p / \big( 2(2M)^{p-1} \big)$ 这一``奇怪''精度的原因.
 \end{itemize}
 
@@ -487,7 +483,7 @@ f \longmapsto B_n(f; x) := \sum_{k=0}^{n} f \Big( \frac{k}{n} \Big)
 \item \textbf{证明的路线}: 一致连续性给出逐点控制不等式
   $\to$ 正算子\alert{保序}地``传递''到算子值
   $\to$ 三个单项式的假设控制每一项 $\to$ 取 $z = x$ 收尾;
-\item 关键辅助函数: $\varphi(t) = (t - x)^2$ --- 由 $1, t, t^2$ 线性表出.
+\item 关键辅助函数: $\varphi(t) = (t - x)^2$, 由 $1, t, t^2$ 线性表出.
 \end{itemize}
 
 \normalmode
@@ -677,7 +673,7 @@ L^p \supset \{ \text{有界可测函数} \}
 \item 连续函数稠密: Luzin 定理 ($mE < \infty$ 时按 $L^p$ 逼近);
 \item 多项式稠密: Weierstra\ss{} 逼近定理;
 \item 有理系数多项式稠密: 系数有理化 ($\mathbb{Q}$ 在 $\mathbb{R}$ 中稠密),
-  且它只有\alert{可列}多个 --- 即得可分.
+  且它只有\alert{可列}多个, 即得可分.
 \end{itemize}
 
 \pause
@@ -736,9 +732,8 @@ L^p \supset \{ \text{有界可测函数} \}
 \begin{question}[两个问题]
 \begin{itemize}
 \item (a) $\lVert g \rVert_q \geqslant \lVert \varphi_g \rVert
-  := \sup_{\lVert f \rVert_p = 1} \Big| \int_E f g ~ \mathrm{d} m \Big|$
-  --- Hölder 给出"$\leqslant$"方向; \alert{等号}成立吗?
-\item (b) $L^q = (L^p)^*$ 吗? --- 一般\alert{不}相等
+  := \sup_{\lVert f \rVert_p = 1} \Big| \int_E f g ~ \mathrm{d} m \Big|$, Hölder 给出"$\leqslant$"方向; \alert{等号}成立吗?
+\item (b) $L^q = (L^p)^*$ 吗? 一般\alert{不}相等
   ($L^q$ 只是弱收敛``看得见''的部分).
 \end{itemize}
 \end{question}
@@ -772,7 +767,7 @@ L^p \supset \{ \text{有界可测函数} \}
 \pause
 
 \begin{itemize}
-\item \textbf{反之不成立} --- 见下一页的 $\sin nx$ 例子
+\item \textbf{反之不成立}, 见下一页的 $\sin nx$ 例子
   (引用第 4 章习题 24, Riemann--Lebesgue 引理).
 \end{itemize}
 
@@ -806,8 +801,7 @@ $\lim\limits_{n \to \infty} \int_{[a,b]} f(x) \sin nx ~ \mathrm{d} x = 0$.
 + \int_0^{\pi} \sin^2 mx ~ \mathrm{d} x
 = \frac{\pi}{2} + \frac{\pi}{2} = \pi,
 \]
-且指标 $\lVert \sin nx \rVert_2 = \sqrt{\pi / 2} \not\to 0$
---- 弱收敛 $\neq$ 强收敛.
+且指标 $\lVert \sin nx \rVert_2 = \sqrt{\pi / 2} \not\to 0$, 弱收敛 $\neq$ 强收敛.
 
 \end{frame}
 
@@ -856,7 +850,7 @@ $|f_n(x) - 0| \leqslant 1/n < \varepsilon$,
 \begin{frame}{小结: 本节结论链}
 
 \begin{itemize}
-\item \textbf{可分性}: $1 \leqslant p < \infty$ 时 $L^p$ 可分 ---
+\item \textbf{可分性}: $1 \leqslant p < \infty$ 时 $L^p$ 可分:
   三步逼近 (截断 $\to$ 简单 $\to$ 有理阶梯) $+\ \varepsilon/3$ 拼接,
   稠密可列集 $S = \big\{ \sum_i r_i \chi_{[\alpha_i, \beta_i]} \big\}$;
   误差估计的功夫都在分母里: $(2M)^{p-1}$, $2n(2M)^p$, $(2mE)^{1/p}$;

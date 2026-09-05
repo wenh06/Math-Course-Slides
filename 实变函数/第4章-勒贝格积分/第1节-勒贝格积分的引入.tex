@@ -52,7 +52,7 @@
 \begin{itemize}
 \item 全程只依赖 $m$: 积分是``集合函数 $m$ 的加权求和''的自然延伸;
 \item 先建立\alert{单个函数}的积分性质 (线性、可加), 再走向\alert{函数列与积分}的交换 (§4.2);
-\item 类比: Riemann 积分用\alert{阶梯函数} (区间上的常值) 逼近 ---
+\item 类比: Riemann 积分用\alert{阶梯函数} (区间上的常值) 逼近;
   Lebesgue 积分用\alert{简单函数} (可测集上的常值) 逼近, 定义域从区间换成可测集.
 \end{itemize}
 
@@ -78,8 +78,8 @@
 \pause
 
 \begin{itemize}
-\item \textcircled{1} 约定 $0 \cdot \infty = 0$ --- 为把积分推广到\alert{无界}可测集做准备 (见 \textcircled{4});
-\item \textcircled{2} 特别地, 取 $\varphi \equiv 1$: $\int_E 1 ~ \mathrm{d} m = mE$ ---
+\item \textcircled{1} 约定 $0 \cdot \infty = 0$, 为把积分推广到\alert{无界}可测集做准备 (见 \textcircled{4});
+\item \textcircled{2} 特别地, 取 $\varphi \equiv 1$: $\int_E 1 ~ \mathrm{d} m = mE$:
   \alert{测度是积分的特例};
 \item 积分值有限 ($E$ 有界, $c_k$ 有限).
 \end{itemize}
@@ -120,7 +120,7 @@ $\int_E \varphi ~ \mathrm{d} m := \sum_k c_k\, m(E_k \cap E)$ (值可取 $+\inft
 
 \begin{attnblock}[良定性]
 表示不必唯一 (可要求 $c_k$ 不互异), 但只要 $E_k$ 互不相交,
-和式 $\sum c_k m E_k$ 的值不变 ($m$ 的有限可加性) --- 积分与表示法无关.
+和式 $\sum c_k m E_k$ 的值不变 ($m$ 的有限可加性), 积分与表示法无关.
 \end{attnblock}
 
 \end{frame}
@@ -146,7 +146,7 @@ $D(x) = \chi_{\mathbb{Q} \cap [0,1]}(x)
 \begin{itemize}
 \item 有理点集``重''还是无理点集``重''? $m$ 给出裁决: 有理点集\alert{零测};
 \graymode
-\item 对比: $D$ 在 $[0,1]$ 上 \alert{Riemann 不可积} (在任一子区间上振幅恒为 $1$) ---
+\item 对比: $D$ 在 $[0,1]$ 上 \alert{Riemann 不可积} (在任一子区间上振幅恒为 $1$);
   L 积分能处理更``病态''的函数 (§4.4 详论).
 \normalmode
 \end{itemize}
@@ -271,7 +271,7 @@ A_k = (A_k \cap E_1) \cup (A_k \cap E_2)
 
 \begin{itemize}
 \item $E$ 不必有界; 积分值可取 $+\infty$ (例如 $\int_E 1 ~ \mathrm{d} m = mE$ 可为 $\infty$);
-\item ``从下方用简单函数填充'': $\sup$ 是关键 --- 勒贝格 monotone 思想的第一次登场.
+\item ``从下方用简单函数填充'': $\sup$ 是关键: 勒贝格 monotone 思想的第一次登场.
 \end{itemize}
 
 \end{frame}
@@ -333,7 +333,7 @@ $E(\varphi = c_k) \subset E(f > 0)$ 零测, 故 $\int_E \varphi ~ \mathrm{d} m =
 \pause
 
 \begin{attnblock}
-``有界函数 + 有限测度集 $=$ 可积'' ---
+``有界函数 + 有限测度集 $=$ 可积'':
 有界收敛的函数不会积出发散, 这是最基本的可积性判据 (一般化为后文控制收敛定理).
 \end{attnblock}
 
@@ -364,7 +364,7 @@ $E(\varphi = c_k) \subset E(f > 0)$ 零测, 故 $\int_E \varphi ~ \mathrm{d} m =
 
 \begin{itemize}
 \item 注: 这本是 §4.2 的结论, 此处\alert{提前引入}, 用来简化后面 (线性性等) 的证明;
-\item 意义: \alert{极限与积分交换次序}的条件非常简单 --- 点态递增收敛即可;
+\item 意义: \alert{极限与积分交换次序}的条件非常简单: 点态递增收敛即可;
 \graymode
 \item 对比 Riemann 积分: 通常需要\alert{一致收敛}才能保证极限函数可积且可交换.
 \normalmode
@@ -491,7 +491,7 @@ $\displaystyle \lim_k \int_E f_k ~ \mathrm{d} m \geqslant \int_E h ~ \mathrm{d} 
 \item 两积分皆有限: $\int_E f ~ \mathrm{d} m$ 有限, 称 $f$ 在 $E$ 上\alert{可积}, 记 $f \in L_E$;
 \item $\int_E f_+ < \infty$, $\int_E f_- = +\infty$: 记 $\int_E f ~ \mathrm{d} m = -\infty$;
 \item $\int_E f_- < \infty$, $\int_E f_+ = +\infty$: 记 $\int_E f ~ \mathrm{d} m = +\infty$;
-\item $\alert{+}\infty - (+\infty)$ 无定义 --- 这正是要求``不同时为 $+\infty$''的原因.
+\item $\alert{+}\infty - (+\infty)$ 无定义, 这正是要求``不同时为 $+\infty$''的原因.
 \end{itemize}
 
 \end{frame}
@@ -586,7 +586,7 @@ $|\int_E f ~ \mathrm{d} m| \leqslant \int_E |f| ~ \mathrm{d} m$.)
 \pause
 
 \begin{attnblock}
-于是在 $L_E$ 中, a.e.\ 相等的函数``视为同一个'' --- 后文 $L^p$ 空间同样如此.
+于是在 $L_E$ 中, a.e.\ 相等的函数``视为同一个'', 后文 $L^p$ 空间同样如此.
 \end{attnblock}
 
 \end{frame}
@@ -603,7 +603,7 @@ $|\int_E f ~ \mathrm{d} m| \leqslant \int_E |f| ~ \mathrm{d} m$.)
 \item \textbf{三步构造}: 简单函数 ($\sum_k c_k m E_k$) $\to$ 非负可测 ($\sup$ 填充)
   $\to$ 一般可测 ($f = f_+ - f_-$); 可积 $=$ 积分值有限, 全体记 $L_E$;
 \pause
-\item \textbf{简单函数层}: 线性性 + 集合可加性 (基本引理) --- 一切后续性质的根源;
+\item \textbf{简单函数层}: 线性性 + 集合可加性 (基本引理, 一切后续性质的根源);
   测度即积分 ($\int_E 1 ~ \mathrm{d} m = mE$); Dirichlet 函数积分为 $0$;
 \pause
 \item \textbf{非负层}: 保序性; $f \sim 0 \Rightarrow$ 积分为 $0$; \alert{Levi 定理}
@@ -613,7 +613,7 @@ $|\int_E f ~ \mathrm{d} m| \leqslant \int_E |f| ~ \mathrm{d} m$.)
   ($|f| \leqslant g \in L_E$ a.e.); 可积 $\Rightarrow$ a.e.\ 有限;
 \pause
 \item \textbf{展望}: §4.2 建立积分的完整性质 (线性、可加性、\alert{绝对连续性});
-  §4.3 极限定理的一般形式 (Levi 级数形式、Fatou、Lebesgue 控制收敛) ---
+  §4.3 极限定理的一般形式 (Levi 级数形式、Fatou、Lebesgue 控制收敛),
   勒贝格积分相对 Riemann 积分的最大优势所在.
 \end{itemize}
 

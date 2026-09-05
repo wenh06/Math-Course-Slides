@@ -40,8 +40,8 @@ R积分与L积分] % Your institution as it will appear on the bottom of every s
 \item \textbf{Riemann 积分} (数学分析): 对定义域作分割 $P:\ a = x_0 < x_1 < \cdots < x_n = b$,
   取标志点 $\xi_i \in E_i = [x_{i-1}, x_i]$, 对\alert{积分和}
   $I(f, P) = \sum_{i=1}^{n} f(\xi_i)\, |E_i|$ 取极限 ($\lambda(P) = \max_i |E_i| \to 0$) 来定义;
-\item 对某些典型函数证明了其可积性 (极限的存在性), 但仅凭定义\alert{计算积分值}相当困难
-  --- 最终靠 Newton--Leibniz 公式, 在不少情形给出积分的 closed form
+\item 对某些典型函数证明了其可积性 (极限的存在性), 但仅凭定义\alert{计算积分值}相当困难:
+  最终靠 Newton--Leibniz 公式, 在不少情形给出积分的 closed form
   (原函数在两个区间端点之差的差值);
 \item \textbf{Lebesgue 积分} (第四章): 对\alert{值域}分割构造积分和, 再取极限
   (\S 4.1 引言中的类比).
@@ -50,7 +50,7 @@ R积分与L积分] % Your institution as it will appear on the bottom of every s
 \pause
 
 \begin{itemize}
-\item 本节目标: 联系新旧两种积分理论 ---
+\item 本节目标: 联系新旧两种积分理论:
   \begin{enumerate}
   \item L 积分是 R 积分的\alert{推广}: 在正常 R 积分范围内, $R_E \subset L_E$, 且在 $R_E$ 上积分值一致;
   \item 通过比较发现: L 积分理论在大部分时候是更优的一套理论, 能站在更高的角度,
@@ -84,7 +84,7 @@ $\Longleftrightarrow$ $f$ 在 $E$ 上\alert{有界}, 且下面两条之一成立
   \alert{1$^\circ$} 可积 $\Rightarrow$ 有界, \quad
   \alert{2$^\circ$} 达布准则, \quad
   \alert{3$^\circ$} 勒贝格准则;
-\item 其中 3$^\circ$ 将真正动用勒贝格积分的工具 (有界收敛定理、积分唯一性) ---
+\item 其中 3$^\circ$ 将真正动用勒贝格积分的工具 (有界收敛定理、积分唯一性),
   ``新理论解释旧理论''的第一个实例.
 \end{itemize}
 
@@ -394,7 +394,7 @@ f \text{ 在 } E \text{ 上几乎处处连续} .
 \pause
 
 \begin{itemize}
-\item 证明真正用到了勒贝格积分 (有界收敛定理 $+$ 唯一性定理) ---
+\item 证明真正用到了勒贝格积分 (有界收敛定理 $+$ 唯一性定理),
   站在更高的角度看旧理论.
 \end{itemize}
 
@@ -492,7 +492,7 @@ $U(x, \delta) \cap \big( [0,1] \setminus \mathbb{Q} \big) \neq \varnothing$
 \pause
 
 \begin{itemize}
-\item 不连续点集 $(0,1) \cap \mathbb{Q}$ \alert{稠密}于 $[0,1]$ ---
+\item 不连续点集 $(0,1) \cap \mathbb{Q}$ \alert{稠密}于 $[0,1]$,
   经典意义下``性质很差''的函数.
 \end{itemize}
 
@@ -565,7 +565,7 @@ $\displaystyle \lim_{n \to \infty} |f(x)| \cdot \chi_{E_n}(x) = |f(x)|$.
 \pause
 
 \begin{itemize}
-\item Levi 管 $|f|$ (定\alert{可积性}), 控制收敛管 $f$ (求\alert{积分值}) ---
+\item Levi 管 $|f|$ (定\alert{可积性}), 控制收敛管 $f$ (求\alert{积分值}),
   见下页.
 \end{itemize}
 
@@ -711,7 +711,7 @@ $f(x) \sim \dfrac{a_0}{2} + \sum_{n=1}^{\infty} \big( a_n \cos nx + b_n \sin nx 
 \pause
 
 \begin{itemize}
-\item 无需 Fourier 级数\alert{收敛}于 $f$, 甚至无需级数点点收敛 --- 逐项积分\alert{恒}成立;
+\item 无需 Fourier 级数\alert{收敛}于 $f$, 甚至无需级数点点收敛: 逐项积分\alert{恒}成立;
 \item 这是勒贝格积分优于 Riemann 积分的标志性结果: R 积分框架下需要对级数的一致收敛性
   作额外假定.
 \end{itemize}
@@ -911,7 +911,7 @@ T_k \text{ 与 } T_{k+1} \text{ 符号相反} .
 \pause
 
 \begin{itemize}
-\item 回顾: 难点全部集中在 $|\varphi_n|$ 的\alert{一致有界性} ---
+\item 回顾: 难点全部集中在 $|\varphi_n|$ 的\alert{一致有界性}:
   用 Dirichlet 核的交错结构硬估计出来; 换序本身则由控制收敛定理一步完成.
 \end{itemize}
 
@@ -928,7 +928,7 @@ T_k \text{ 与 } T_{k+1} \text{ 符号相反} .
 \begin{itemize}
 \item \textbf{三个准则的重证}: 1$^\circ$ 可积 $\Rightarrow$ 有界 (反证);
   2$^\circ$ 达布准则 (上、下积分);
-  3$^\circ$ 勒贝格准则 (振幅 $\omega_f$ $+$ 有界收敛 $+$ 唯一性) ---
+  3$^\circ$ 勒贝格准则 (振幅 $\omega_f$ $+$ 有界收敛 $+$ 唯一性):
   用 L 工具解释 R 理论;
 \item \textbf{推广定理}: $R_E \subset L_E$ 且积分值相等;
   $L_{[a,b]}$ 是 $R_{[a,b]}$ 的``完备化'';
@@ -945,7 +945,7 @@ T_k \text{ 与 } T_{k+1} \text{ 符号相反} .
 \pause
 
 \begin{itemize}
-\item 展望: 下一节 \S 4.5 乘积测度与 Fubini 定理 --- 高维情形的积分换序;
+\item 展望: 下一节 \S 4.5 乘积测度与 Fubini 定理: 高维情形的积分换序;
 \item 作业: 教材第四章习题 \textbf{21, 23, 25, 26}.
 \end{itemize}
 
