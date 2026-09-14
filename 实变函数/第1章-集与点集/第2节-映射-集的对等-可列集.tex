@@ -270,7 +270,7 @@ $\mathbb{R}$ 与开区间 $(-1, 1)$ 通过双射 $f: \mathbb{R} \to (-1, 1), x \
 \begin{itemize}
 \item $\mathbb{Z}$: 按 $0, 1, -1, 2, -2, 3, -3, \ldots$ 排列, 建立与 $\mathbb{N}$ 的双射
 \item $\mathbb{N} \times \mathbb{N}$: \alert{对角线法}, $(m, n) \mapsto \dfrac{(m+n-2)(m+n-1)}{2} + m$
-\item $\mathbb{Q}$: 因 $\mathbb{Q} \subset \mathbb{Z} \times \mathbb{N}^+$ (以分子/分母编码), 再利用 $\mathbb{N} \times \mathbb{N} \sim \mathbb{N}$
+\item $\mathbb{Q}$: $\mathbb{Q}$ 是 $\mathbb{Z} \times \mathbb{N}^+$ 在 $(p,q) \mapsto p/q$ 下的像 (分子/分母编码), 而 $\mathbb{Z} \times \mathbb{N}^+ \sim \mathbb{N} \times \mathbb{N} \sim \mathbb{N}$
 \end{itemize}
 \end{eg}
 
@@ -401,7 +401,8 @@ A = \bigcup_{C \in \mathscr{F}} C.
 \[
 g(\widetilde{B}) = g(Y \setminus f(A)) \subset \widetilde{A} = X \setminus A.
 \]
-任取 $x \in \widetilde{A}$, 则 $A \cup \{x\} \notin \mathscr{F},$ 否则 $x \in \bigcup_{C \in \mathscr{F}} C = A$，矛盾.
+任取 $x \in \widetilde{A}$, 则 $A \cup \{x\} \notin \mathscr{F},$ 否则 $x \in \bigcup_{C \in \mathscr{F}} C = A$，矛盾. 于是存在 $y \in Y \setminus f(A \cup \{x\})$ 使 $g(y) \in A \cup \{x\}$; 由 $y \in Y \setminus f(A)$ 且 $A$ 是分离集得 $g(y) \notin A$, 故 $g(y) = x \in g\big(Y \setminus f(A \cup \{x\})\big) \subset g\big(Y \setminus f(A)\big) = g(\widetilde{B})$. 因此 $\widetilde{A} \subset g(\widetilde{B})$, 结合上式得 $g(\widetilde{B}) = \widetilde{A}$. 综上 $f(A) = B$, $g(\widetilde{B}) = \widetilde{A}$, 分解成立.
+\qed
 
 \end{frame}
 
@@ -439,7 +440,7 @@ A = A_1 \cup \widetilde{A}_1, \quad B = B_1 \cup \widetilde{B}_1, \quad A_1 \cap
 \vspace{0.4em}
 
 \begin{remark}
-Cantor-Bernstein 定理保证了势的\alert{反对称性}: $|A| \leqslant |B|$ 且 $|B| \leqslant |A|$ $\Rightarrow$ $|A| = |B|$, 即势构成集合的\alert{全序}.
+Cantor-Bernstein 定理保证了势的\alert{反对称性}: $|A| \leqslant |B|$ 且 $|B| \leqslant |A|$ $\Rightarrow$ $|A| = |B|$ (故 $\leqslant$ 是势上的\alert{偏序}; \alert{全序}还需选择公理保证任意两势可比).
 \end{remark}
 
 \end{frame}
