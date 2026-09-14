@@ -285,6 +285,57 @@ $\mathbb{R}$ 与开区间 $(-1, 1)$ 通过双射 $f: \mathbb{R} \to (-1, 1), x \
 
 %------------------------------------------------
 
+\begin{frame}{对角线法图示}
+
+\begin{columns}
+\begin{column}[T]{0.47\textwidth}
+\vspace{0.5em}
+
+记 $s = m + n$, 则编号沿斜线 $m + n = s$ \alert{分层}推进:
+\begin{itemize}
+\item $\dfrac{(s-2)(s-1)}{2} = 1 + 2 + \cdots + (s-2)$: 排在你之前\alert{所有斜线上}的点数 (三角形数);
+\item $+m$: 在本斜线上从上端数排\alert{第几个}.
+\end{itemize}
+
+\medskip
+第 $s$ 层恰好占一段\alert{连续号码}
+$\big[ \tfrac{(s-2)(s-1)}{2} + 1,\ \tfrac{(s-1)s}{2} \big]$, 逐层首尾相接铺满 $\mathbb{N}$, 故为双射.
+
+\medskip
+即枚举 $a_{11};\ a_{12}, a_{21};\ a_{13}, a_{22}, a_{31};\ \ldots$
+\end{column}
+\begin{column}[T]{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.74, >=Latex]
+  \draw[->] (-0.3,0) -- (5.9,0) node[below] {$m$};
+  \draw[->] (0,-0.3) -- (0,5.9) node[left] {$n$};
+  % 格点与编号
+  \foreach \m/\n/\v in {1/1/1, 1/2/2, 2/1/3, 1/3/4, 2/2/5, 3/1/6,
+                        1/4/7, 2/3/8, 3/2/9, 4/1/10,
+                        1/5/11, 2/4/12, 3/3/13, 4/2/14, 5/1/15}{
+    \fill[blue!65] (\m,\n) circle (1.7pt);
+    \node[font=\scriptsize, above right=-1pt] at (\m,\n) {$\v$};
+  }
+  % 高亮一条反对角线
+  \draw[red!70, very thick, opacity=0.45] (0.55,3.45) -- (3.45,0.55);
+  \node[red!80!black, font=\scriptsize] at (4.7,3.5) {$m+n=4$};
+  % 层内步进 (实线)
+  \foreach \a/\b/\c/\d in {1/2/2/1, 1/3/2/2, 2/2/3/1,
+                            1/4/2/3, 2/3/3/2, 3/2/4/1}{
+    \draw[blue!70!black, thick, ->] (\a,\b) -- (\c,\d);
+  }
+  % 跳回下一层起点 (虚线)
+  \foreach \a/\b/\c/\d in {1/1/1/2, 2/1/1/3, 3/1/1/4, 4/1/1/5}{
+    \draw[gray, thick, dashed, ->] (\a,\b) to[bend left=16] (\c,\d);
+  }
+\end{tikzpicture}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
 \section[无限集]{无限集的性质}
 
 %------------------------------------------------
