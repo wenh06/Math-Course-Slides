@@ -38,12 +38,10 @@ _STATUSES = ["已完成 ✅", "正在进行 ✏️", "待更新 ⚠️", "未完
 _STATUS_COMPLETE = "已完成 ✅"
 
 
-def get_file_status_in_main_tex(tex_file: Path) -> Optional[str]:
-    """Return the status marker on the \\input line for *tex_file* in main.tex.
+def _find_input_line_rest(tex_file: Path) -> Optional[str]:
+    """Return the text following ``\\input{...}`` on the matching main.tex line, or None.
 
-    Searches for ``\\input{rel/path}`` or ``\\input{rel/path.tex}`` and returns
-    the first matching status string from ``_STATUSES`` found on that line.
-    Returns ``None`` when the \\input line is absent or carries no status marker.
+    Matches ``\\input{rel/path}`` or ``\\input{rel/path.tex}``.
     """
     try:
         rel_path = tex_file.relative_to(PROJECT_DIR)
@@ -53,19 +51,39 @@ def get_file_status_in_main_tex(tex_file: Path) -> Optional[str]:
     stem_path = rel_path.with_suffix("").as_posix()
     main_text = MAIN_TEX_FILE.read_text(encoding="utf-8")
 
-    # Match \input{stem} or \input{stem.tex}; capture everything that follows
     pattern = re.compile(r"\\input\{" + re.escape(stem_path) + r"(?:\.tex)?\}(.*)", re.UNICODE)
 
     for line in main_text.splitlines():
         m = pattern.search(line)
         if m:
-            rest = m.group(1)
-            for status in _STATUSES:
-                if status in rest:
-                    return status
-            return None  # line found but no status marker
-
+            return m.group(1)
     return None  # \input line not in main.tex
+
+
+def get_file_status_in_main_tex(tex_file: Path) -> Optional[str]:
+    """Return the status marker on the \\input line for *tex_file* in main.tex.
+
+    Returns the first matching status string from ``_STATUSES`` found on that line.
+    Returns ``None`` when the \\input line is absent or carries no status marker.
+    """
+    rest = _find_input_line_rest(tex_file)
+    if rest is None:
+        return None
+    for status in _STATUSES:
+        if status in rest:
+            return status
+    return None  # line found but no status marker
+
+
+def is_deprecated_in_main_tex(tex_file: Path) -> bool:
+    """Return True when the \\input line for *tex_file* carries the 废弃 ⛔ marker.
+
+    Trailing text after the marker is allowed, e.g. ``% 废弃 ⛔ (内容并入 §2.4)``.
+    """
+    rest = _find_input_line_rest(tex_file)
+    if rest is None:
+        return False
+    return "废弃" in rest and "⛔" in rest
 
 
 def execute_cmd(cmd: Union[str, List[str]], raise_error: bool = True, cwd: Optional[Path] = None) -> int:
@@ -208,9 +226,24 @@ def compile_target(target_str: str, args):
     if tex_file.exists():
         files_to_compile = [tex_file]
     elif target.is_dir():
-        files_to_compile = sorted(target.rglob("*.tex"))
-        if not files_to_compile:
+        candidates = sorted(target.rglob("*.tex"))
+        if not candidates:
             print(f"[WARN] No .tex files found under directory: {target}")
+            sys.exit(1)
+
+        # In directory mode, skip files whose \input line in main.tex carries the 废弃 ⛔ marker
+        files_to_compile, skipped = [], []
+        for f in candidates:
+            (skipped if is_deprecated_in_main_tex(f) else files_to_compile).append(f)
+        if skipped:
+            print("[INFO] Skipping files marked 废弃 ⛔ in main.tex:")
+            for f in skipped:
+                try:
+                    print(f"  [SKIP] {f.relative_to(PROJECT_DIR)}")
+                except ValueError:
+                    print(f"  [SKIP] {f}")
+        if not files_to_compile:
+            print(f"[WARN] All .tex files under {target} are marked 废弃 ⛔ in main.tex. Nothing to compile.")
             sys.exit(1)
     else:
         print(f"[WARN] Neither file '{tex_file}' nor directory '{target}' exists. Exiting.")
@@ -314,8 +347,9 @@ if __name__ == "__main__":
             "Compile a specific section or directory. "
             "Examples: '数学分析/第7章-定积分/第6节-定积分的数值计算' or '数学分析/第7章-定积分'. "
             "If a matching .tex file exists it is compiled directly; otherwise all .tex files "
-            "under the directory are compiled. Output PDFs are saved under build/ preserving "
-            "the original directory structure. When set, tex_entry_file is ignored."
+            "under the directory are compiled, skipping files whose \\input line in main.tex "
+            "is marked 废弃 ⛔ (trailing text allowed). Output PDFs are saved under build/ "
+            "preserving the original directory structure. When set, tex_entry_file is ignored."
         ),
     )
 
