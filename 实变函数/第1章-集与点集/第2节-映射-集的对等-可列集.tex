@@ -432,7 +432,7 @@ X = A \cup \widetilde{A}, \quad Y = B \cup \widetilde{B},
 \pause
 \vspace{0.5em}
 
-{\color{red}\ding{43}} 称 $C \subset X$ 为\alert{分离集}, 若 $g(Y \setminus f(C)) \cap C = \emptyset$. （$\emptyset \in \mathscr{F}$ 平凡成立，故 $\mathscr{F} \neq \emptyset$.）设 $\mathscr{F}$ 为所有分离集构成的集族, 令
+{\color{red}\ding{43}} 称 $C \subset X$ 为\alert{分离集}, 若 $g(Y \setminus f(C)) \cap C = \emptyset$. 设 $\mathscr{F}$ 为所有分离集构成的集族 ($\emptyset \in \mathscr{F}$ 平凡成立，故 $\mathscr{F} \neq \emptyset$), 令
 \[
 A = \bigcup_{C \in \mathscr{F}} C.
 \]
@@ -542,15 +542,16 @@ I_1 \supset I_2 \supset I_3 \supset \cdots, \quad x_n \notin I_n, \quad |I_n| = 
 \end{thm}
 
 \pause
-\vspace{0.3em}
 
 \startproof[bg=yellow, fg=red]
-\vspace{0.3em}
+
+{\color{red}\ding{43}} \textbf{空集情形}: 若 $A = \emptyset$, 则 $\mathscr{P}(A) = \{\emptyset\}$ 是由空集这个唯一元素构成的单元素集, 显然无法与空集 $A$ 构成双射, 结论直接成立. 以下设 $A \neq \emptyset$.
+
+\pause
 
 {\color{red}\ding{43}} $|A| \leqslant |\mathscr{P}(A)|$: 单射 $x \mapsto \{x\}$ 存在.
 
 \pause
-\vspace{0.3em}
 
 {\color{red}\ding{43}} 假设存在\alert{满射} $f: A \to \mathscr{P}(A)$, 令
 \[
@@ -569,7 +570,6 @@ D = \{ x \in A : x \notin f(x) \} \in \mathscr{P}(A).
 \qed
 
 \pause
-\vspace{0.3em}
 
 \begin{remark}
 由此得到势的无穷严格递增链: $\aleph_0 < |\mathscr{P}(\mathbb{N})| < |\mathscr{P}(\mathscr{P}(\mathbb{N}))| < \cdots,$ 其中 $|\mathscr{P}(\mathbb{N})| = \mathfrak{c}$.
