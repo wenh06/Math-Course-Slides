@@ -673,7 +673,11 @@ m_* (a,b) \geqslant m\left(\left[a + \tfrac{\varepsilon}{2},\ b - \tfrac{\vareps
 
 \pause
 
-结合 $m_* (a,b) \leqslant m^* (a,b) = b - a$, 得 $(a,b)$ 可测且 $m(a,b) = b - a$. 其余区间由 $m^* \{a\} = m_* \{a\} = 0$ (单点集) 与有限可加性类似可得.
+结合 $m_* (a,b) \leqslant m^* (a,b) = b - a$, 得 $(a,b)$ 可测且 $m(a,b) = b - a$.
+
+\pause
+
+其余区间\alert{直接估计}可得, 以 $[a,b]$ 为例: 任取开集 $G \supset [a,b]$, 其构成区间覆盖紧区间 $[a,b]$, 由有限覆盖定理与长度覆盖引理 $m G \geqslant b - a$, 故 $b - a \leqslant m^* [a,b]$; 又由单调性 $m^* [a,b] \leqslant m^* (a - \varepsilon,\ b + \varepsilon) = b - a + 2\varepsilon$; 内测度 $m_* [a,b] \geqslant m\big( \big[a + \tfrac{\varepsilon}{2},\ b - \tfrac{\varepsilon}{2}\big] \big) = b - a - \varepsilon$. 令 $\varepsilon \to 0^+$, 得 $[a,b]$ 可测且 $m [a,b] = b - a$; 半开区间同理 (将覆盖目标换成 $[a,\ b - \varepsilon]$).
 \qed
 
 \end{frame}
