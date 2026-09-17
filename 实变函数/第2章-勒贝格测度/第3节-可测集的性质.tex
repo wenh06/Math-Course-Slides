@@ -159,24 +159,43 @@ $m^*(E_1 \cup E_2) < m^* E_1 + m^* E_2$ (习题 2.3 第 15 题).
 \begin{frame}{预备: 内、外测度的对偶公式}
 
 \begin{lem}[对偶公式]
-设 $\emptyset \neq E \subset (a, b)$ 有界, 则
+设 $E \subset (a, b)$, 则
 \[
-m_* (\mathscr{C}E) = (b - a) - m^* E,
+m^* (\mathscr{C}E) = (b - a) - m_* E,
 \qquad
-m^* (\mathscr{C}E) = (b - a) - m_* E .
+m_* (\mathscr{C}E) = (b - a) - m^* E .
 \]
 \end{lem}
 
-\startproof[bg=yellow, fg=red](证明, 以前一式为例)
-``$\leqslant$'': 任取闭集 $F \subset \mathscr{C}E$, 则 $(a, b) \setminus F$ 是含 $E$ 的开集, 由 §2.2 开集减闭集定理,
+\startproof[bg=yellow, fg=red](证明: 只需证 $m^*\mathscr{C}E + m_*E = b - a$)
+第一式由 $\mathscr{C}E$ 代 $E$ (注意 $\mathscr{C}(\mathscr{C}E) = E$) 即得; $\mathscr{C}E = \emptyset$ 时显然.
+
+\pause
+
+\textbf{1$^\circ$} 任取 $\varepsilon > 0$. 由 $m_* E = \sup_{F \subset E} mF$, 可取闭集 $F \subset E$ 使得 $mF > m_* E - \varepsilon$. 令 $G = (a, b) \setminus F$, 则 $G$ 为开集, 且 $G \supset \mathscr{C}E$, 从而 $mG \geqslant m^* \mathscr{C}E$; 同时由开集、闭集测度的定义, $mF = b - a - mG$. 于是
 \[
-mF = (b - a) - m\big((a,b) \setminus F\big) \leqslant (b-a) - m^* E ,
+m_* E + m^* \mathscr{C}E < mF + \varepsilon + mG = (b - a) + \varepsilon .
 \]
-对 $F$ 取上确界得 $m_* (\mathscr{C}E) \leqslant (b-a) - m^* E$. ``$\geqslant$'': 任取开集 $G \supset E$, 则 $(a, b) \setminus G$ 是含于 $\mathscr{C}E$ 的闭集, 且
+由 $\varepsilon$ 任意, $m_* E + m^* \mathscr{C}E \leqslant b - a$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{对偶公式的证明 (续) 与补集可测}
+
+\startproof[bg=yellow, fg=red](2$^\circ$)
+另一方面, 由 $m^* \mathscr{C}E = \inf_{G \supset \mathscr{C}E} mG$, 可取开集 $G \supset \mathscr{C}E$ (不妨 $G \subset (a,b)$, 否则以 $G \cap (a,b)$ 代之) 使得 $mG < m^* \mathscr{C}E + \dfrac{\varepsilon}{2}$. 令 $F = \big[ a + \tfrac{\varepsilon}{4},\ b - \tfrac{\varepsilon}{4} \big] \setminus G$, 则 $F$ 为闭集, 且 $F \subset (a,b) \setminus G \subset (a,b) \setminus \mathscr{C}E = E$. 注意 $(a,b) \setminus F = \big(a, a + \tfrac{\varepsilon}{4}\big) \cup \big(b - \tfrac{\varepsilon}{4},\ b\big) \cup G$, 于是
+\begin{align*}
+m_* E \;\geqslant\; mF
+&= (b - a) - m\big( (a, a + \tfrac{\varepsilon}{4}) \cup (b - \tfrac{\varepsilon}{4},\ b) \cup G \big)\\
+&\geqslant (b - a) - \frac{\varepsilon}{2} - mG
+\;>\; (b - a) - m^* \mathscr{C}E - \varepsilon ,
+\end{align*}
+由 $\varepsilon$ 任意, $m^* \mathscr{C}E + m_* E \geqslant b - a$. 结合 1$^\circ$:
 \[
-(b - a) - mG = m\big((a,b) \setminus G\big) \leqslant m_* (\mathscr{C}E),
+m^* \mathscr{C}E + m_* E = b - a .
 \]
-对 $G$ 取下确界得 $(b-a) - m^* E \leqslant m_* (\mathscr{C}E)$. 合并即得; 后一式同理 (交换 $E$ 与 $\mathscr{C}E$).
 \qed
 
 \pause
