@@ -34,8 +34,9 @@ def _get_main_tex_preamble():
 MAIN_TEX_PREAMBLE = _get_main_tex_preamble()
 
 # Status markers that may follow \input{...} lines in main.tex (as comments or inline text)
-_STATUSES = ["已完成 ✅", "正在进行 ✏️", "待更新 ⚠️", "未完成 ❌"]
+_STATUSES = ["已完成 ✅", "正在进行 ✏️", "待检查 ❓", "待更新 ⚠️", "未完成 ❌"]
 _STATUS_COMPLETE = "已完成 ✅"
+_PREVIEW_SUFFIX = "-Preview"
 
 
 def _find_input_line_rest(tex_file: Path) -> Optional[str]:
@@ -84,6 +85,32 @@ def is_deprecated_in_main_tex(tex_file: Path) -> bool:
     if rest is None:
         return False
     return "废弃" in rest and "⛔" in rest
+
+
+def get_output_pdf_path(tex_file: Path) -> Path:
+    """Return the build/ output PDF path for *tex_file*.
+
+    Sections marked 已完成 ✅ in main.tex (or absent from it) keep the mirrored
+    path ``build/<课程>/<...>/<name>.pdf``. Any other section carrying a status
+    marker is routed to a separate preview tree so that it never mixes with the
+    completed output: ``build/<课程>-Preview/<...>/<name>-Preview.pdf``.
+    """
+    try:
+        rel_path = tex_file.relative_to(PROJECT_DIR)
+    except ValueError:
+        rel_path = Path(tex_file.stem)
+
+    out_pdf_path = BUILD_DIR / rel_path.with_suffix(".pdf")
+
+    status = get_file_status_in_main_tex(tex_file)
+    if status is not None and status != _STATUS_COMPLETE:
+        parts = list(rel_path.with_suffix("").parts)
+        parts[-1] += _PREVIEW_SUFFIX  # mark the file name
+        if len(parts) > 1:
+            parts[0] += _PREVIEW_SUFFIX  # course-level folder kept apart from completed files
+        out_pdf_path = BUILD_DIR.joinpath(*parts).with_suffix(".pdf")
+
+    return out_pdf_path
 
 
 def execute_cmd(cmd: Union[str, List[str]], raise_error: bool = True, cwd: Optional[Path] = None) -> int:
@@ -163,21 +190,22 @@ def compile_section(tex_file: Path, args) -> int:
     """Compile a single section tex file by prepending MAIN_TEX_PREAMBLE.
 
     The resulting PDF is saved under build/ preserving the directory structure
-    relative to PROJECT_DIR, e.g. build/数学分析/第7章-定积分/第5节-....pdf
+    relative to PROJECT_DIR, e.g. build/数学分析/第7章-定积分/第5节-....pdf.
+    Sections not marked 已完成 ✅ in main.tex are routed to the -Preview tree
+    instead (see get_output_pdf_path).
     """
     try:
         rel_path = tex_file.relative_to(PROJECT_DIR)
     except ValueError:
         rel_path = Path(tex_file.stem)
 
-    out_pdf_path = BUILD_DIR / rel_path.with_suffix(".pdf")
-    out_pdf_path.parent.mkdir(parents=True, exist_ok=True)
+    out_pdf_path = get_output_pdf_path(tex_file)
 
-    # Check status in main.tex; rename to *-Incomplete.pdf when not yet complete
+    # Sections not yet marked 已完成 ✅ are routed to the -Preview tree
     status = get_file_status_in_main_tex(tex_file)
     if status is not None and status != _STATUS_COMPLETE:
-        print(f"[INFO] Status of {rel_path}: {status!r} → output will be marked as Incomplete")
-        out_pdf_path = out_pdf_path.parent / (out_pdf_path.stem + "-Incomplete.pdf")
+        print(f"[INFO] Status of {rel_path}: {status!r} → output goes to the -Preview tree")
+    out_pdf_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Combine preamble with \input pointing at the section file
     rel_input = tex_file.relative_to(PROJECT_DIR).as_posix()
@@ -349,7 +377,9 @@ if __name__ == "__main__":
             "If a matching .tex file exists it is compiled directly; otherwise all .tex files "
             "under the directory are compiled, skipping files whose \\input line in main.tex "
             "is marked 废弃 ⛔ (trailing text allowed). Output PDFs are saved under build/ "
-            "preserving the original directory structure. When set, tex_entry_file is ignored."
+            "preserving the original directory structure; sections not marked 已完成 ✅ go to "
+            "build/<课程>-Preview/... with a -Preview suffix on the file name. "
+            "When set, tex_entry_file is ignored."
         ),
     )
 
