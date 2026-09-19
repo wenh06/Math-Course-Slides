@@ -8,7 +8,8 @@
 %	TITLE PAGE
 %-----------------------------------
 
-\title[子模,\\ 商模与模同态]{\texorpdfstring{\LARGE \bfseries 第4部分\quad 子模, 商模与模同态}{第4部分 子模, 商模与模同态}}
+\title[第四部分\\
+子模, 商模与模同态]{\texorpdfstring{\LARGE \bfseries 第四部分\quad 子模, 商模与模同态}{第四部分 子模, 商模与模同态}}
 \author[抽象代数 2]{\Large \bfseries 抽象代数 2}
 \date{}
 
@@ -26,11 +27,275 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[子模与商模]{子模与商模}
+
+%------------------------------------------------
+
+\begin{frame}{子模}
+
+\begin{Def}[子模]
+$M$ 为一个 $R$ 模, $H \subset M$ 为 $M$ 的一个子群, 且 $H$ 也是一个 $R$-模,
+称 $H$ 为 $R$ 的一个子模.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{商模}
+
+$M$ 为一个 $R$-模, $H$ 为 $M$ 的一个子模,
+令 $M/H = \big\{ \bar{\alpha} = \alpha + H \;\big|\; \alpha \in M \big\}$ 为商群.
+
+\begin{Def}[商模]
+定义 $\forall\ a \in R$, $\bar{\alpha} \in M/H$, 令
+$a \cdot \bar{\alpha} = \overline{a \cdot \alpha} \in M/H$,
+验证可知 $M/H$ 为一个 $R$-模, 称为 $M$ 对于子模 $H$ 的\alert{商模}.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[模同态]{$R$-模同态与 $\operatorname{Hom}$}
+
+%------------------------------------------------
+
+\begin{frame}{$R$-模同态}
+
+\begin{Def}[$R$-模同态]
+如果 $M, M'$ 为两个 $R$-模, 群同态 $\varphi: M \to M'$
+称为 $M$ 到 $M'$ 的一个 $R$-模同态, 若
+\[
+\forall\ a \in R,\ \alpha \in M, \qquad
+\varphi(a \cdot \alpha) = a \cdot \varphi(\alpha).
+\]
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\operatorname{Hom}_R(M, M')$ 与 $\operatorname{End}_R(M)$}
+
 \begin{itemize}
-\item 本部分对应手稿第 16--18 页;
-\item 内容尚未整理成 slides.
+\item 令 $\operatorname{Hom}_R(M, M') = \big\{ \varphi \;\big|\; M \xrightarrow{\ \varphi\ } M',\
+\varphi \text{ 为一个 } R\text{-模同态} \big\}$;
+\item 在 $\sigma, \tau \in \operatorname{Hom}_R(M, M')$, 定义 $\sigma + \tau$ by
+  $\forall\ \alpha \in M$, $(\sigma + \tau)(\alpha) = \sigma(\alpha) + \tau(\alpha)$,
+  易验证知 $\operatorname{Hom}_R(M, M')$ 为一个 Abel 群.
 \end{itemize}
+
+\pause
+
+\begin{itemize}
+\item 特别地, 令 $M' = M$, $\operatorname{Hom}_R(M, M') = \operatorname{End}_R(M)$,
+  定义 $(\sigma \cdot \tau)(\alpha) = \sigma(\tau(\alpha))$,
+  则 $\operatorname{End}_R(M)$ 为一个幺环,
+  $\operatorname{End}_R(M) \subset \operatorname{End}(M)$ 为一子环.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{核与自然投影}
+
+\begin{itemize}
+\item $M \xrightarrow{\ \sigma\ } M'$ 为 $R$-模同态, 令
+  $\ker \sigma = \big\{ \alpha \in M \;\big|\; \sigma(\alpha) = 0 \big\}$,
+  那么 $\ker \sigma$ 为 $M$ 的一个子模;
+\item 反过来, 若 $H \subset M$ 为一个子 $R$-模, $M/H$ 为商 $R$-模,
+  令 $M \xrightarrow{\ \pi\ } M/H$ by $\pi(\alpha) = \bar{\alpha}$,
+  知 $\pi$ 为 $R$-模同态, $\ker \sigma = H$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{子模与核}
+
+\begin{prop}[子模与核]
+$H$ 为 $M$ 的一个子模 $\iff$ $H$ 为 $M$ 上某个 $R$-模同态的 kernel.
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{子模的运算}
+
+\begin{itemize}
+\item 子模的运算: $N, H$ 为 $M$ 的两个子模,
+\item $N \cap H$ 为 $R$-模, $N + H$ 也为 $R$-模.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[基本定理]{模的同态基本定理}
+
+%------------------------------------------------
+
+\begin{frame}{同态基本定理 (i)}
+
+\begin{lem}[模的同态基本定理]
+令 $R$ 为一个幺环, $M, M'$ 为 $R$-模,
+\begin{itemize}
+\item[(i)] $M \xrightarrow{\ \sigma\ } M'$ 为满的模同态,
+  则 $\ker \sigma \subset M$ 为一个子模, 且
+  $M/\ker\sigma \cong M'$.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{同态基本定理 (ii)}
+
+\begin{lem}[模的同态基本定理 (续)]
+\begin{itemize}
+\item[(ii)] $\sigma$ 建立了 $M'$ 中所有的子模与 $M$ 中所有包含 $\ker \sigma$
+  的子模之间的 $1$-$1$ 对应,
+  即 $\forall\ \ker \sigma \subset H$ 为 $M$ 的子模
+  $\to \sigma(H)$ 为 $M'$ 的子模;
+  \[
+  \forall\ H' \subset M' \text{ 为子模}, \quad
+  H' \to \sigma^{-1}(H') \subset M \text{ 的子模};
+  \]
+  而且有 $\forall$ 子模 $H$, $\ker \sigma \subset H \subset M$, 有
+  $M/H \cong M'/\sigma(H)$.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{同态基本定理 (iii)}
+
+\begin{lem}[模的同态基本定理 (续)]
+\begin{itemize}
+\item[(iii)] 若 $N, H$ 为 $M$ 的两个子模, 那么 $N + H$ 与 $N \cap H$
+  也是 $M$ 的子模, 且
+  \[
+  (N + H)/N \cong H/N \cap H .
+  \]
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[模同构]{模同构}
+
+%------------------------------------------------
+
+\begin{frame}{模同构}
+
+\begin{Def}[模同构]
+两个 $R$-模, $M$ 与 $M'$, 若 $\sigma: M \to M'$ 为 $1$-$1$ 对应, 且
+\[
+\begin{cases}
+\sigma(\alpha + \beta) = \sigma(\alpha) + \sigma(\beta), \\
+\sigma(a \cdot \alpha) = a \cdot \sigma(\alpha),
+\end{cases}
+\]
+称 $\sigma$ 为 $M \to M'$ 的一个\alert{模同构}.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[模的例子]{模的例子}
+
+%------------------------------------------------
+
+\begin{frame}{自同态环的作用}
+
+\begin{eg}[自同态环]
+若 $M$ 为一个 Abel 群, 寻找 $R$, 使得 $M$ 为 $R$-模.
+令 $R = \operatorname{End}(M)$, $\forall\ \sigma \in R$, $\alpha \in M$,
+定义 $\sigma \cdot \alpha = \sigma(\alpha)$, 知 $M$ 为一个 $R$-模.
+同理, $\forall\ R \subset \operatorname{End}(M)$ 为子环,
+$M$ 为一个 $R$-模.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\operatorname{End}_R(M)$ 上的模结构}
+
+\begin{eg}[{$\operatorname{End}_R(M)$} 上的模结构]
+$R$ 为一个幺环, $M$ 为 $R$-模, 令 $R' = \operatorname{End}_R(M)$,
+知 $M$ 也是 $R'$-模.
+因为 $R' = \operatorname{End}_R(M) \subset \operatorname{End}(M)$,
+$R \xrightarrow{\ \varphi_M\ } \operatorname{End}(M)$,
+有 $\varphi_M(R) \subset \operatorname{End}_{R'}(M)$.
+\end{eg}
+
+\startproof[bg=yellow, fg=red](证明)
+$\forall\ a \in R$, $\alpha \in M$, 规定 $\varphi_M(a)(\alpha) = a \cdot \alpha$.
+$\sigma \in R'$,
+\[
+\varphi_M(a)(\sigma \cdot \alpha)
+= \varphi_M(a)\big(\sigma(\alpha)\big)
+= a \cdot \sigma(\alpha)
+= \sigma(a \cdot \alpha)
+\]
+\[
+= \sigma\big(\varphi_M(a)(\alpha)\big)
+= (\sigma \cdot \varphi_M(a))(\alpha)
+\quad \Longrightarrow \quad \varphi_M(a) \in \operatorname{End}_{R'}(M).
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{对偶模}
+
+\begin{eg}[对偶模]
+$M$ 为一个 $R$-模, 令 $M^* = \operatorname{Hom}_R(M, R)$
+\[
+\Longrightarrow\ M^* \text{ 为一个 } R\text{-右模},
+\text{ 称为 } R\text{-模 } M \text{ 的对偶模}.
+\]
+$M^*$ 对 $R$ 的数乘为:
+$\forall\ \sigma \in M^*$, $a \in R$, $\sigma \cdot a \in M^*$
+by $\sigma \cdot a(\alpha) = \sigma(\alpha) \cdot a$
+$\Longrightarrow M^*$ 为 $R$-右模.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$R$ 作为 $R$-模}
+
+\begin{eg}[$R$ 作为 $R$-模]
+$R$ 为幺环, 令 $M = R^+$ (加法群)
+\[
+\Longrightarrow\ R \text{ 为一个 } R\text{-模}, \text{ 同时为一个 } R\text{-右模}.
+\]
+若 $H \subset R$ 为一个左理想 $\iff$ $H$ 为 $R$ 的子模;
+\[
+H \subset R \text{ 为一个右理想} \iff H \text{ 为 } R \text{ 的子右模}.
+\]
+若 $N$ 为 $R$ 的一个理想 $\Longrightarrow$ $N$ 为一个 $R$-模,
+也为一个 $R$-右模.
+若 $H \subset R$ 为左理想, $R/H$ 为 $R$ 的商模;
+$N$ 为 $R$ 的理想, 则 $R/N$ 为 $R$-模, 同时也是 $R$-右模,
+同时是一个幺环.
+\end{eg}
+
 \end{frame}
 
 %------------------------------------------------
