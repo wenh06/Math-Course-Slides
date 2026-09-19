@@ -1,0 +1,290 @@
+\everymath{\displaystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[第三部分\\
+模的定义与性质]{\texorpdfstring{\LARGE \bfseries 第三部分\quad 模的定义与性质}{第三部分 模的定义与性质}}
+\author[抽象代数 2]{\Large \bfseries 抽象代数 2}
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[定义]{定义: 左 R-模}
+
+%------------------------------------------------
+
+\begin{frame}{定义: 左 $R$-模}
+
+\begin{Def}[左 $R$-模]
+$R$ 为一个幺环, $M$ 为一个 Abel 群, 称 $M$ 为 $R$ 的一个左-模, 如果存在
+$f: R \times M \to M$, 满足:
+\begin{itemize}
+\item[(i)] $(a_1 + a_2)\,\alpha = a_1 \alpha + a_2 \alpha$,
+  \qquad $a(\alpha_1 + \alpha_2) = a \alpha_1 + a \alpha_2$;
+\item[(ii)] $(a \cdot b) \cdot \alpha = a (b \alpha)$;
+\item[(iii)] $1 \cdot \alpha = \alpha$.
+\end{itemize}
+\end{Def}
+
+\begin{itemize}
+\item 注: $f\big( (a, \alpha) \big) = a \cdot \alpha$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[例子]{例子}
+
+%------------------------------------------------
+
+\begin{frame}{Abel 群、$\mathbb{Z}$-模与线性空间}
+
+\begin{eg}[Abel 群与 $\mathbb{Z}$-模]
+$M$ 为一个 Abel 群, $R = \mathbb{Z}$
+$\Longrightarrow$ $M$ 为一个 $\mathbb{Z}$-模; 反之亦然,
+即 Abel 群 $\iff$ $\mathbb{Z}$-模.
+\end{eg}
+
+\pause
+
+\begin{eg}[线性空间]
+令 $R = F$ 为一个域, 一个 Abel 群 $V$ 为一个 $F$-模, 即 $V$ 为 $F$ 上的
+一个线性空间 (有限维 or 无限维).
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{通过线性变换的 $F[X]$-模}
+
+\begin{eg}[{$F[X]$}-模]
+$R = F$ 为一个域, $V$ 为 $F$-模, $\sigma$ 为 $V \to V$ 的任一线性变换,
+$F[X]$ 为一元多项式环, 此时 $V$ 也是 $F[X]$-模.
+如果 $\forall\ \alpha \in V$, $f(X) \in F[X]$, 定义
+\[
+f(X) \cdot \alpha = f(\sigma) \cdot \alpha .
+\]
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{理想作为模}
+
+\begin{eg}[理想作为模]
+子环 $N \subset R$ 为左理想 $\iff$ $N$ 为一个左 $R$-模;
+\[
+\text{右理想} \iff N \text{ 为一个 } R\text{-右模}.
+\]
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Poincar\'e 定理}
+
+\begin{thm}[Poincar\'e 定理]
+任何一个幺环都同构于某一个 Abel 群的自同态环.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+令该 Abel 群 $M = (R, +)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{循环群与 $\mathbb{Z}_n^+$}
+
+\begin{eg}[循环群与 $\mathbb{Z}_n^+$]
+\begin{itemize}
+\item[(1)] $M = \langle g \rangle$ 为一个无限循环群
+  $\Longrightarrow$ $\operatorname{End}(M) = \mathbb{Z}$;
+  $M = \langle g \rangle$ 为 $n$ 阶循环群
+  $\Longrightarrow$ $\operatorname{End}(M) = \mathbb{Z}/\langle n \rangle$.
+\item[(ii)] 令 $\mathbb{Z}_n^+ = \mathbb{Z}/\langle n \rangle$ (的加法群),
+  \[
+  \operatorname{Hom} \big( \mathbb{Z}^+, \mathbb{Z}_n^+ \big) = \mathbb{Z}_n^+ ;
+  \qquad
+  \operatorname{Hom} \big( \mathbb{Z}_n^+, \mathbb{Z}^+ \big) = 0 .
+  \]
+\end{itemize}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{有理数加法群的自同态环}
+
+\begin{eg}[有理数加法群]
+令 $\mathbb{Q}^+$ 为有理数加法群, 则
+$\operatorname{End}(\mathbb{Q}^+) \cong \mathbb{Q}$;
+$\operatorname{Hom}(\mathbb{Q}^+, \mathbb{Z}^+) = 0$.
+\end{eg}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+$\forall$ 给定的 $\sigma \in \operatorname{End}(\mathbb{Q}^+)$,
+$\sigma(1) = x \in \mathbb{Q}$, 记为 $\sigma_x = \sigma$.
+$\forall\ n \geqslant 1$, $\sigma_x \big( \tfrac{1}{n} \big) = \tfrac{x}{n}$,
+因此, $\forall\ \tfrac{a}{b} \in \mathbb{Q}$, 有
+$\sigma_x \big( \tfrac{a}{b} \big) = \tfrac{a}{b} x$
+\[
+\Longrightarrow\ \operatorname{End}(\mathbb{Q}^+) = \big\{ \sigma_x \;\big|\; x \in \mathbb{Q} \big\}
+\]
+定义 $x \mapsto \sigma_x$ 为环同构 $\mathbb{Q} \to \operatorname{End}(\mathbb{Q}^+)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[模与同态]{模与环同态}
+
+%------------------------------------------------
+
+\begin{frame}{模与环同态}
+
+$R$ 为一个幺环, $M$ 为 Abel 群, $\operatorname{End}(M)$ 为 $M$
+的全自同态环.
+
+\begin{prop}[模与环同态]
+\begin{itemize}
+\item $M$ 为 $R$-模 $\iff$ $\exists\ R \xrightarrow{\ \psi\ } \operatorname{End}(M)$
+  为幺环同态;
+\item $M$ 为 $R$-右模 $\iff$ $\exists\ R \xrightarrow{\ \psi\ } \operatorname{End}(M)$
+  为幺环反同态.
+\end{itemize}
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{模与环同态的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$M$ 为 $R$-模, 据定义, $\forall\ a \in R$, $\alpha \in M$, $a\alpha \in M$.
+定义 $R \xrightarrow{\ \varphi\ } \operatorname{End}(M)$, by
+$\forall\ a \in R$, $\varphi(a)(\alpha) = a \cdot \alpha$
+\[
+\Longrightarrow\ \varphi(a) \in \operatorname{End}(M),
+\]
+那么 $\varphi$ 为 $R \to \operatorname{End}(M)$ 的幺环同态
+(都要由定义去验证).
+\pause
+反过来, $R \xrightarrow{\ \varphi\ } \operatorname{End}(M)$ 为幺环同态,
+$\forall\ a \in R$, $\varphi(a) \in \operatorname{End}(M)$,
+定义数乘 by, $\forall\ a \in R$, $\alpha \in M$,
+$a \cdot \alpha = \varphi(a)(\alpha)$,
+知 $M$ 为一个 $R$-模 (易验证).
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{零化子}
+
+若 $M$ 为 $R$ 模, $R \xrightarrow{\ \varphi_M\ } \operatorname{End}(M)$,
+$\ker(\varphi_M)$ 为 $R$ 的一个理想.
+\[
+\ker(\varphi_M) = \big\{ a \in R \;\big|\; \varphi_M(a) = 0,\
+\text{即 } \forall\ \alpha \in M,\ a \cdot \alpha = 0 \big\},
+\]
+称 $\ker(\varphi_M)$ 为 $M$ 作为 $R$-模的\alert{零化子}, 记为
+$\operatorname{Ann}_R(M) = \ker(\varphi_M)$, 即
+\[
+\operatorname{Ann}_R(M)
+= \big\{ a \in R \;\big|\; \forall\ \alpha \in M,\ a \cdot \alpha = 0 \big\} .
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[结构传递]{模结构的传递与推论}
+
+%------------------------------------------------
+
+\begin{frame}{模结构的传递}
+
+\begin{lem}[模结构的传递]
+令 $R \xrightarrow{\ \sigma\ } R'$ 为幺环同态, 若 $M$ 为 $R'$-模,
+那么 $M$ 必是 $R$-模;
+反过来, 若 $R \xrightarrow{\ \sigma\ } R'$ 为满的环同态,
+若 $M$ 为 $R$-模, 且 $\ker \sigma \subset \operatorname{Ann}_R(M)$,
+则 $M$ 为 $R'$-模.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{模结构传递的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. $M$ 为 $R'$-模, 知
+$R' \xrightarrow{\ \varphi\ } \operatorname{End}(M)$
+$\Longrightarrow$ $\varphi \circ \sigma: R \to \operatorname{End}(M)$
+为幺环同态, 那么即知 $M$ 为 $R$-模.
+\pause
+$2^{\circ}$. 性质: 若 $R \xrightarrow{\ \sigma\ } R'$ 为满的环同态,
+则对于任一环同态 $R \xrightarrow{\ \tau\ } R''$,
+且满足 $\ker \sigma \subset \ker \tau$, 则存在唯一的环同态
+$R' \xrightarrow{\ \delta\ } R''$, 满足 $\tau = \delta \circ \sigma$
+(习题).
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\node (R2) at (2.6, 1.8) {$R''$};
+\node (R0) at (0, 0) {$R$};
+\node (R1) at (5.2, 0) {$R'$};
+\draw[->] (R0) -- node[above left] {$\tau$} (R2);
+\draw[->] (R1) -- node[above right] {$\delta$} (R2);
+\draw[->] (R0) -- node[below] {$\sigma$ (满)} (R1);
+\node at (2.6, -1.0) {(满足 $\ker \sigma \subset \ker \tau$)};
+\end{tikzpicture}
+\end{center}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论}
+
+\begin{cor}
+若 $M$ 为一个 $R$-模, $N$ 为 $R$ 的任一理想,
+且 $N \subset \operatorname{Ann}_R(M)$,
+那么 $M$ 为一个 $R/N$-模.
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}

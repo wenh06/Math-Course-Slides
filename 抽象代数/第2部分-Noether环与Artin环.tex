@@ -1,0 +1,286 @@
+\everymath{\displaystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[第二部分\\
+Noether 环与 Artin 环]{\texorpdfstring{\LARGE \bfseries 第二部分\quad Noether 环与 Artin 环}{第二部分 Noether 环与 Artin 环}}
+\author[抽象代数 2]{\Large \bfseries 抽象代数 2}
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[定义]{定义: Noether 环与 Artin 环}
+
+%------------------------------------------------
+
+\begin{frame}{定义: Noether 环与 Artin 环}
+
+\begin{Def}[Noether 环与 Artin 环]
+$R$ 为交换幺环, $\{ N_i \}_{i \geqslant 1}$ 为 $R$ 的理想链.
+\begin{itemize}
+\item 如果 $R$ 的任一理想\alert{升链}止于有限处, 则 $R$ 称为一个 \alert{Noether 环};
+\item 如果 $R$ 的任一理想\alert{降链}止于有限处, 则 $R$ 称为一个 \alert{Artin 环};
+\item 二者等价 当且仅当 Noether 环中素理想都为极大理想.
+\end{itemize}
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[刻画]{Noether 环的等价刻画}
+
+%------------------------------------------------
+
+\begin{frame}{Noether 环的等价刻画}
+
+\begin{lem}[Noether 环的刻画]
+$R$ 为交换幺环, 则下述命题等价:
+\begin{enumerate}
+\item[(i)] $R$ 为 Noether 环;
+\item[(ii)] $R$ 中任意若干理想的非空集合有极大元素;
+\item[(iii)] $R$ 中任一理想是有限生成的.
+\end{enumerate}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{等价刻画的证明: (i)$\Rightarrow$(ii) 与 (ii)$\Rightarrow$(iii)}
+
+\startproof[bg=yellow, fg=red]((i)$\Rightarrow$(ii))
+令 $S = \{ N \mid N \text{ 为 } R \text{ 的若干理想} \}$,
+$S$ 中任一理想升链为一个全序子集, 止于有限处,
+因此有上界, 由 Zorn 引理, $S$ 有极大元素.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((ii)$\Rightarrow$(iii))
+令 $N$ 为 $R$ 的一个理想,
+\[
+S = \big\{ N = \langle \alpha_1, \dots, \alpha_n \rangle \;\big|\; n \geqslant 1,\ \alpha_i \in N \big\}
+\]
+由 (ii) 知 $S$ 中有极大元素 $H_0 = \langle \alpha_1, \dots, \alpha_n \rangle$.
+若 $N \neq H_0$, 则 $\exists\ \beta \in N$, 使得 $\beta \notin H_0$.
+$H_0 \subsetneq H_0 + \langle \beta \rangle = \langle \alpha_1, \dots, \alpha_n, \beta \rangle \in S$,
+与 $H_0$ 极大性矛盾.
+\[
+\therefore\ N = H_0 = \langle \alpha_1, \dots, \alpha_n \rangle .
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{等价刻画的证明: (iii)$\Rightarrow$(i)}
+
+\startproof[bg=yellow, fg=red]((iii)$\Rightarrow$(i))
+$\{ N_i \}_{i=1}^{\infty}$ 为 $R$ 的一个理想升链, 令
+$N = \bigcup_{i=1}^{\infty} N_i$ 且 $N = \langle \alpha_1, \dots, \alpha_n \rangle$.
+对任一 $\alpha_i \in N = \bigcup_i N_i$, $\exists\ k_i$, 使得 $\alpha_i \in N_{k_i}$.
+令 $n_0 = \max\limits_{1 \leqslant i \leqslant n} \{ k_i \}$,
+则 $\{ N_i \}_{i=1}^{\infty}$ 止于 $N_{n_0}$ 处.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[极小原理]{极小元素原理与例子}
+
+%------------------------------------------------
+
+\begin{frame}{极小元素原理}
+
+\begin{lem}[极小元素原理]
+$R$ 为 Artin 环 $\iff$ $R$ 中任意由若干理想构成的非空集合在
+``$\supset$'' 关系下有极小元素.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例 1--4}
+
+\begin{itemize}
+\item \textbf{例 1}. 任一有限交换幺环为 Noether 环, 也是 Artin 环;
+\item \textbf{例 2}. 令 $R = \mathbb{Z}$, $R$ 为 Noether 环, 但非 Artin 环;
+\item \textbf{例 3}. $F$ 为域, $R = F[X_1, \dots, X_n]$,
+  $R$ 为 Noether 环, 但非 Artin 环;
+\item \textbf{例 4}. $F$ 为域, $R = F[X_1, \dots, X_n, \dots]$,
+  $R$ 不是 Noether 环, 也非 Artin 环.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[遗传性]{Noether 环的遗传性}
+
+%------------------------------------------------
+
+\begin{frame}{Noether 环的遗传性}
+
+\begin{lem}[Noether 环的遗传]
+\begin{enumerate}
+\item[(i)] Noether 环的 $n$ 元多项式环也是 Noether 环;
+\item[(ii)] Noether 环的同态像也是 Noether 环, 特别地, Noether 环的商环
+  也是 Noether 环;
+\item[(iii)] Noether 环上任意有限生成环也是 Noether 环.
+\end{enumerate}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{遗传性的证明 (i) (ii)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+Hilbert 基定理.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$R \xrightarrow{\ \sigma\ } R'$ 为满的环同态, 由环的同态定理,
+$R'$ 中的理想的原像为 $R$ 中包含 $\ker \sigma$ 的理想,
+因此利用理想升链条件知若 $R$ 为 Noether 环, 则 $R'$ 也是.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{遗传性的证明 (iii): 有限生成环}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+$R \subset S$, 均为交换幺环 (单位元素相同). 任意
+$\{ \alpha_1, \alpha_2, \dots, \alpha_n \} \subset S$,
+$\alpha_i$ 在 $R$ 中生成的子环 $R[\alpha_1, \dots, \alpha_n]$
+为 $S$ 中包含 $\{ \alpha_1, \dots, \alpha_n \} \cup R$ 的最小子环,
+称 $R[\alpha_1, \dots, \alpha_n]$ 为 $R$ 的一个有限生成环
+\[
+R \subset R[\alpha_1, \dots, \alpha_n] \subset S .
+\]
+由于 $R[\alpha_1, \dots, \alpha_n] \cong R[X_1, \dots, X_n] / N$,
+$N$ 为 $\alpha_1, \dots, \alpha_n$ 在 $R$ 上代数关系理想,
+因此 $R$ 为 Noether 环 $\Longrightarrow R[\alpha_1, \dots, \alpha_n]$ 为 Noether 环.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Artin 环]{Artin 环的性质}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 环的性质}
+
+\begin{lem}[Artin 环的性质]
+\begin{enumerate}
+\item[(i)] 任何一个 Artin 整环为一个域;
+\item[(ii)] Artin 环的同态像也是 Artin 环, 特别地, Artin 环的商环
+  也是 Artin 环;
+\item[(iii)] Artin 环中的素理想为极大理想;
+\item[(iv)] Artin 环中仅有有限个极大理想.
+\end{enumerate}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 性质的证明 (i) (ii)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$R$ 为 Artin 整环, $\forall\ a \in R$, $a \neq 0$,
+\[
+\langle a \rangle \supset \langle a^2 \rangle \supset \dots \supset \langle a^n \rangle \supset \dots
+\quad \text{为 } R \text{ 中一个理想降链},
+\]
+因此 $\exists\ n \geqslant 1$, 使得 $\langle a^n \rangle = \langle a^{n+1} \rangle$,
+那么 $a^n R = a^{n+1} R$, 即有 $a R = R$,
+所以 $\exists\ x \in R$, 使得 $ax = 1$.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$R$ 为 Artin 环, $N$ 为素理想, $R/N$ 为 Artin 整环,
+那么 $R/N$ 为一个域, 即知 $N$ 为极大理想.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 性质的证明 (iv)}
+
+\startproof[bg=yellow, fg=red]((iv) 的证明)
+$R$ 为 Artin 环, $S = \{ \text{有限多个 } R \text{ 中的极大理想的交} \}$.
+$S$ 非空, 因为任意交换幺环都至少有一个极大理想.
+$S$ 在包含关系下有极小元素, 令其为 $A \in S$,
+\[
+A = N_1 \cap N_2 \cap \dots \cap N_{n_0} .
+\]
+$\{ N_1, \dots, N_{n_0} \}$ 即为 $R$ 的全部的极大理想.
+因为 $\forall\ N$ 为极大理想, $N \cap A \in S$, 由于 $A$ 极小, $N \cap A = A$,
+即 $A \subset N$.
+那么
+\[
+N_1 N_2 \cdots N_n \subset N_1 \cap N_2 \cap \dots \cap N_n \subset N ,
+\]
+因 $N$ 为极大理想, 知 $\exists\ N_i \subset N$, 由于 $N_i$ 也是极大理想,
+所以 $N_i = N$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[根与特征]{Artin 环的根与特征}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 环的根与特征}
+
+\begin{lem}[Artin 环的根]
+如果 $R$ 为 Artin 环, $r(R) = J(R)$, 且为幂零理想.
+\end{lem}
+
+\pause
+
+\begin{thm}[Artin 环的特征]
+一个交换幺环 $R$ 为 Artin 环
+$\iff$ $R$ 为 Noether 环且 $R$ 的素理想为极大理想.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}

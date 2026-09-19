@@ -1,0 +1,557 @@
+\everymath{\displaystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%           main body
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------
+%	TITLE PAGE
+%-----------------------------------
+
+\title[第一部分\\
+一般的环]{\texorpdfstring{\LARGE \bfseries 第一部分\quad 一般的环}{第一部分 一般的环}}
+\author[抽象代数 2]{\Large \bfseries 抽象代数 2}
+\date{}
+
+%------------------------------------------------
+
+\begin{document}
+
+%------------------------------------------------
+
+\begin{frame}
+
+\titlepage % Print the title page as the first slide
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[多项式环]{多项式环: 性质的遗传与两个应用}
+
+%------------------------------------------------
+
+\begin{frame}{结论}
+
+\begin{itemize}
+\item[(i)] $R$ 为交换幺环 $\Longrightarrow$ $R[X]$ 也是交换幺环
+  $\Longrightarrow$ $R[X_1, \dots, X_n]$ 为交换幺环;
+\item[(ii)] $R$ 为整环 $\Longrightarrow$ $R[X]$ 为整环
+  $\Longrightarrow$ $R[X_1, \dots, X_n]$ 为整环;
+\item[(iii)] $R$ 为 UFD $\Longrightarrow$ $R[X]$ 为 UFD
+  $\Longrightarrow$ $R[X_1, \dots, X_n]$ 为 UFD;
+\item[(iv)] $R$ 为 Noether 环 $\Longrightarrow$ $R[X]$ 为 Noether 环
+  $\Longrightarrow$ $R[X_1, \dots, X_n]$ 为 Noether 环.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{生成子环}
+
+\begin{prop}[生成子环]
+$R \subset S$ 为交换幺环扩张,
+$\forall\ \{\alpha_1, \dots, \alpha_n\} \subset S$, 则 $\alpha_1, \dots, \alpha_n$
+在 $R$ 中生成的子环同构于
+\[
+R[X_1, \dots, X_n] \big/ N,
+\]
+$N$ 为 $\{\alpha_1, \dots, \alpha_n\}$ 在 $R$ 上的代数关系理想.
+\end{prop}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{系数理想的扩张}
+
+\begin{thm}[系数理想的扩张]
+$R$ 为一个交换幺环, $N \lhd R$ 为一个理想, $\bar{R} = R/N$;
+$R[X_1, \dots, X_n]$, $\bar{R}[Y_1, \dots, Y_n]$ 为 $n$ 元多项式环.
+令 $N[X_1, \dots, X_n]$ 为 $R[X_1, \dots, X_n]$ 中系数在 $N$ 中多项式全体
+$\Longrightarrow$ $N[X_1, \dots, X_n]$ 为 $R[X_1, \dots, X_n]$ 的理想, 而且
+\[
+R[X_1, \dots, X_n] \big/ N[X_1, \dots, X_n]
+\;\cong\;
+\bar{R}[Y_1, \dots, Y_n].
+\]
+特别地, 若 $N$ 为素理想, 则 $N[X_1, \dots, X_n]$ 也是
+$R[X_1, \dots, X_n]$ 的素理想.
+\end{thm}
+
+\begin{itemize}
+\item $\bar{R}[Y_1, \dots, Y_n]$ 为整环, 而
+  $R[X_1, \dots, X_n] \big/ N[X_1, \dots, X_n] \cong \bar{R}[Y_1, \dots, Y_n]$
+  为整环, 当且仅当 $N[X_1, \dots, X_n]$ 为素理想.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{系数理想扩张的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. $\pi: R \to R/N$ 为自然同态, 则
+$\pi: R \to \bar{R} \subset \bar{R}[Y_1, \dots, Y_n]$ 为同态.
+开拓到 $\tilde{\pi}: R[X_1, \dots, X_n] \to \bar{R}[Y_1, \dots, Y_n]$,
+\[
+\tilde{\pi}(X_i) = Y_i ;
+\]
+易知 $\tilde{\pi}$ 为满的环同态, $\ker(\tilde{\pi}) = N[X_1, \dots, X_n]$.
+那么, $N[X_1, \dots, X_n]$ 为理想, 而且有
+\[
+R[X_1, \dots, X_n] \big/ N[X_1, \dots, X_n]
+\cong \bar{R}[Y_1, \dots, Y_n].
+\]
+
+\pause
+
+$2^{\circ}$. 如果 $N$ 为素理想, 那么 $\bar{R} = R/N$ 为整环, 即有
+$\bar{R}[Y_1, \dots, Y_n]$ 为整环, 而
+$R[X_1, \dots, X_n] \big/ N[X_1, \dots, X_n] \cong \bar{R}[Y_1, \dots, Y_n]$
+为整环, 当且仅当 $N[X_1, \dots, X_n]$ 为素理想.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[分式环]{分式环: 局部化的构造}
+
+%------------------------------------------------
+
+\begin{frame}{分式环}
+
+\begin{itemize}
+\item $R$ 为交换幺环, $S \subset R$. 如果 $\forall\ a, b \in S$, 有 $a \cdot b \in S$,
+  称 $S$ 为 $R$ 的一个\alert{乘法子集};
+\item 如果 $0 \notin S$, 则称 $S$ 为\alert{非平凡的}乘法子集;
+\item 当 $S \subset R$ 给定, 定义
+  $I_m = \{ \alpha \in R \mid \exists\ a \in S,\ \text{使得 } a \alpha = 0 \}$,
+  则 $I_m$ 为 $R$ 的一个理想, 称为由 $S$ 决定的 $R$ 中的理想;
+\item (i) $0 \in S \Longrightarrow I_m = R$;
+\item (ii) $0 \notin S$, $R$ 为整环 $\Longrightarrow I_m = \langle 0 \rangle$;
+\item (iii) $0 \notin S \Longrightarrow I_m \cap S = \varnothing$;
+\item (iv) $\pi: R \to R/I_m$ 把 $S$ 中元素变为非零因子.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分式环的构造}
+
+固定 $S \subset R$ ($0 \notin S$).
+
+\begin{itemize}
+\item 令 $T = \{ (a, s) \mid a \in R,\ s \in S \}$;
+\item 定义 $(a, s) \sim (b, s') \iff a s' - b s \in I_m$;
+\item 那么 ``$\sim$'' 为 $T$ 中等价关系, 令 $\dfrac{a}{s} = \overline{(a, s)}$;
+\item 考虑商集
+  $T / {\sim} = \Big\{ \dfrac{a}{s} = \overline{(a, s)} \;\Big|\; a \in R,\ s \in S \Big\}$
+  为一个交换幺环;
+\item $T / {\sim}$ 称为 $R$ 对于乘法子集 $S$ 的\alert{分式环}, 记为
+  \[
+  S^{-1} R = T / {\sim}
+  \qquad (0 \notin S).
+  \]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分式环的基本性质}
+
+\begin{lem}[分式环]
+交换幺环 $R$, $S$ 为非平凡的乘法子集, 则有:
+\begin{enumerate}
+\item[(i)] $S^{-1} R$ 为交换幺环,
+  $\dfrac{a}{s} = 0 \iff a \in I_m$;
+  $\forall\ s \in S$, $\dfrac{s}{s} = 1$;
+\item[(ii)] $\sigma: R \to S^{-1} R$ 为环同态 (固定一个 $s_0 \in S$):
+  \[
+  \sigma(a) = \frac{a s_0}{s_0},
+  \qquad \forall\ a \in R ;
+  \]
+  $\ker(\sigma) = I_m$, 而且 $\forall\ x \in S^{-1} R$, $x$ 可表为
+  $x = \sigma(a) \, \sigma(s)^{-1}$,
+  $a \in R$, $s \in S$.
+\end{enumerate}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[局部化]{乘法子集的例子与局部化}
+
+%------------------------------------------------
+
+\begin{frame}{乘法子集的例子}
+
+\begin{itemize}
+\item 乘法子集的例子:
+\item[①.] 当 $R$ 为整环, 取 $S = R^{*}$
+  $\Longrightarrow S^{-1} R$ 为一个域;
+\item[②.] 若 $R$ 为交换幺环, $P \lhd R$ 为一个素理想, 令 $S = R \setminus P$,
+  $S$ 为一个乘法子集;
+\item $R$ 对于 $S$ 的分式环记为 $R_P = S^{-1} R$ (局部化).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{结论: 任一个 $R_P$ 都是局部环}
+
+\begin{thm}[结论]
+任一个 $R_P$ 都是局部环.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+$R_P = \Big\{ \dfrac{a}{s} \;\Big|\; a \in R,\ s \in R,\ s \notin P \Big\}$.
+令
+\[
+N = \Big\{ \frac{a}{s} \;\Big|\; a \in P,\ s \in R,\ s \notin P \Big\} ,
+\]
+易知 $N$ 为 $R_P$ 的唯一的极大理想 $\Longrightarrow$ $R_P$ 为局部环.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: $\mathbb{Z}_p$}
+
+\begin{eg}[$\mathbb{Z}_p$]
+令 $R \subset \mathbb{Q}$, 定义为
+$R := \Big\{ \dfrac{a}{b} \;\Big|\; a \in \mathbb{Z},\ b \in \mathbb{Z},\
+b \neq 0,\ (b, p) = 1 \Big\}$, $p$ 为给定素数,
+$\Longrightarrow R$ 为局部环, 惯记 $R$ 为 $\mathbb{Z}_p$.
+\end{eg}
+
+\begin{lem}[$\mathbb{Z}_p$]
+$\mathbb{Z}_p$ 为 PID, 局部环, 而且素元素 (在相伴意义下) 唯一.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[素与极大]{素理想与极大理想}
+
+%------------------------------------------------
+
+\begin{frame}{素理想与极大理想 (总设 $R$ 为交换幺环)}
+
+\begin{itemize}
+\item 性质:
+\item[(i)] 直和 $\langle \alpha_i \rangle = \langle$ 直和 $\alpha_i \rangle$;
+\item[(ii)] $P \lhd R$ 为一个理想, $P$ 为素理想
+  $\iff$ $\forall R$ 中的理想 $A, B$, 若有 $AB \subset P$,
+  则 $A \subset P$ 或 $B \subset P$;
+\item[(iii)] $R$ 为整环 $\iff \langle 0 \rangle$ 为素理想;
+\item[] \hspace{3em} $P \lhd R$ 为理想, $R/P$ 为整环 $\iff P$ 为素理想;
+\item[(iv)] $R$ 为一个域 $\iff \langle 0 \rangle$ 为极大理想;
+\item[] \hspace{3em} $N$ 为一个理想, $R/N$ 为一域 $\iff N$ 为极大理想.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{理想的根}
+
+\begin{itemize}
+\item 理想的根: $N \lhd R$ 为一个理想, 令
+  $\sqrt{N} = \{ \alpha \in R \mid \exists\ n \geqslant 1,$
+  使得 $\alpha^n \in N \}$;
+\item $\sqrt{N}$ 为 $R$ 的一个理想, 且有 $N \subset \sqrt{N} \subset R$,
+  称 $\sqrt{N}$ 为 $N$ 的根.
+\end{itemize}
+
+\pause
+
+\begin{lem}[根的运算]
+$R$ 为交换幺环, 则:
+\begin{enumerate}
+\item[(i)] $P$ 为 $R$ 的素理想 $\Longrightarrow P = \sqrt{P}$;
+\item[(ii)] 若 $\exists\ k \geqslant 1$, 使得 $N^k \subset H
+  \Longrightarrow \sqrt{N} \subset \sqrt{H}$;
+\item[(iii)] $\sqrt{N \cdot H} = \sqrt{NH} = \sqrt{N} \cap \sqrt{H}$;
+\item[] \hspace{3em} 特别地, $\forall\ N$, 及 $k \geqslant 1$ 有 $\sqrt{N^k} = \sqrt{N}$;
+\item[(iv)] $\sqrt{\sqrt{N}} = \sqrt{N}$;
+\item[(v)] $\sqrt{N + H} = \sqrt{\sqrt{N} + \sqrt{H}}$.
+\end{enumerate}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[准素理想]{准素理想}
+
+%------------------------------------------------
+
+\begin{frame}{准素理想}
+
+\begin{itemize}
+\item 准素理想: $N$ 为 $R$ 的一个理想,
+\item 若 $\forall\ a \cdot b \in N$, $a \notin N \Rightarrow b \in \sqrt{N}$,
+\item 称 $N$ 为 $R$ 的一个\alert{准素理想}.
+\end{itemize}
+
+\pause
+
+\begin{lem}[准素理想]
+$R$ 为交换幺环, 有:
+\begin{enumerate}
+\item[(i)] $N$ 为一个准素理想 $\Longrightarrow \sqrt{N}$ 为一个素理想;
+\item[(ii)] $\sqrt{N}$ 为一个极大理想 $\Longrightarrow N$ 为一个准素理想;
+\item[(iii)] $N$ 为一个极大理想 $\Longrightarrow \forall\ k \geqslant 1$,
+  $N^k$ 都为准素理想.
+\end{enumerate}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{准素理想引理的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+(i) $a \cdot b \in \sqrt{N}$, 若 $a \notin \sqrt{N}$, 则 $a \notin N$,
+$\because N$ 为准素理想, 有 $b \in \sqrt{N}$, 所以 $\sqrt{N}$ 为素理想.
+
+\pause
+
+(ii) $\sqrt{N}$ 为极大理想, $ab \in N$, 不妨假设 $a \notin N$, $b \notin N$,
+那么 $\sqrt{N} \subset \sqrt{N} + \langle b \rangle \subset R$,
+则有 $\sqrt{N} + \langle b \rangle = R$,
+即 $\exists\ x \in \sqrt{N}$, $y \in R$, 使得 $x + by = 1$,
+且 $\exists\ n \geqslant 1$, 使得 $x^n \in N$, 那么 $\exists\ y' \in R$,
+使得 $x^n + by' = 1$
+\[
+\big( (x + by)^n = 1 \big)
+\]
+那么 $a x^n + a b y' = a$, 那么 $a \in N$, 与 $a \notin N$ 矛盾.
+
+\pause
+
+(iii) 因为 $\forall\ n \geqslant 1$, 有 $\sqrt{N^n} = \sqrt{N}$ 为极大理想,
+由 (ii) 知 $N^n$ 为准素理想.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: $\mathbb{Z}$ 中全部准素理想}
+
+\begin{eg}[$\mathbb{Z}$ 中的准素理想]
+决定 $R = \mathbb{Z}$ 中全部准素理想. 令 $N = \langle a \rangle$ ($a \neq 0$)
+为理想. 如果 $N$ 为准素理想, 则 $\sqrt{N} = \sqrt{\langle a \rangle}$
+为素理想. 令 $a = p_1^{n_1} \cdot p_2^{n_2} \cdot \dots \cdot p_s^{n_s}$,
+\[
+\sqrt{\langle a \rangle}
+= \sqrt{\langle p_1^{n_1} \rangle \cdots \langle p_s^{n_s} \rangle}
+= \sqrt{\langle p_1^{n_1} \rangle \cap \dots \cap \langle p_s^{n_s} \rangle}
+\]
+\[
+= \sqrt{\langle p_1^{n_1} \rangle} \cap \dots \cap \sqrt{\langle p_s^{n_s} \rangle}
+= \sqrt{\langle p_1 \rangle} \cap \dots \cap \sqrt{\langle p_s \rangle}
+\]
+\[
+= \langle p_1 \rangle \cap \dots \cap \langle p_s \rangle
+= \langle p_1, \dots, p_s \rangle
+\quad \text{为素理想}
+\]
+\pause
+$\iff s = 1$, 即 $a = p^n$. 那么可知
+$\big\{ \langle 0 \rangle,\ \langle p^n \rangle \;\big|\; p \text{ 为素数},\
+n \geqslant 1 \big\}$ 为 $\mathbb{Z}$ 中全部的准素理想.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[诣零根]{诣零根与 Jacobson 根}
+
+%------------------------------------------------
+
+\begin{frame}{诣零根}
+
+\begin{itemize}
+\item 诣零根: $R$ 为交换幺环, 令
+  $r(R) = \{ \alpha \in R \mid \exists\ n \geqslant 1,$
+  使得 $\alpha^n = 0 \}$;
+\item $\alpha \in r(R)$, 称为 $R$ 中一个幂零元素;
+\item $r(R)$ 为 $R$ 的一个理想, 称为 $R$ 的诣零根;
+\item $r(R) = \sqrt{\langle 0 \rangle}$;
+\item 如果 $N$ 为 $R$ 的一个理想, $R \xrightarrow{\ \pi\ } R/N$,
+  \[
+  r(R/N) = \pi \big( \sqrt{N} \big) ;
+  \]
+\item 特别地, 令 $N = r(R)$,
+  \[
+  r \big( R / r(R) \big)
+  = \pi \big( \sqrt{r(R)} \big)
+  = \pi \big( \sqrt{\sqrt{\langle 0 \rangle}} \big)
+  = \pi \big( \sqrt{\langle 0 \rangle} \big)
+  = \pi \big( r(R) \big)
+  = \langle \bar{0} \rangle ,
+  \]
+  即商环 $R / r(R)$ 中幂零元素仅有 $\bar{0}$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{素理想的存在性}
+
+\begin{lem}[素理想的存在性]
+如果 $R$ 为交换幺环, $r(R)$ 为其诣零根, 令 $\alpha \in R$,
+$\alpha \notin r(R)$, $A = \{ \alpha^n \mid n \geqslant 0 \}$,
+那么 $A$ 为 $R$ 的一个非平凡乘法子集, 且与 $r(R)$ 不交;
+(在与 $A$ 不交) 的 $R$ 的所有理想构成的集合有极大元素,
+这个极大元素为 $R$ 的一个素理想. 特别地, 令 $\alpha = 1$,
+该极大元素即 $P$ 为 $R$ 的一个极大理想.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{素理想存在性的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+对 $\alpha \in R$, $\alpha \notin r(R)$, $A = \{ \alpha^n \mid n \geqslant 0 \}$.
+令
+\[
+S = \big\{ N \;\big|\; N \cap A = \varnothing,\ N \text{ 为 } R \text{ 中理想} \big\} ,
+\]
+$S$ 在包含关系下构成一个非空偏序集.
+在 $S$ 中任取一个理想升链 $N_1 \subset N_2 \subset \dots \subset N_m \subset \dots$
+为 $S$ 中一个全序子集, 易证明 $\bigcup_i N_i$ 在 $S$ 中有上界
+$\bigcup_i N_i \in S$.
+\pause
+由 Zorn 引理, $S$ 中有极大元素存在, 令其为 $H$,
+$H$ 即为 $R$ 的一个素理想.
+因为 $\forall\ b, c \in R$, 若 $bc \in H$, 且 $b \notin H$, $c \notin H$,
+那么 $H \subsetneq H + \langle c \rangle$, $H \subsetneq H + \langle b \rangle$,
+那么 $H + \langle c \rangle \notin S$, $H + \langle b \rangle \notin S$.
+由 $S$ 的定义, $\exists\ n, m \geqslant 0$, 使得
+$\alpha^n \in H + \langle c \rangle$, $\alpha^m \in H + \langle b \rangle$,
+那么
+\[
+\alpha^{n+m} \in H^2 + \langle c \rangle H + \langle b \rangle H + \langle bc \rangle ,
+\]
+\[
+H^2 + \langle c \rangle H + \langle b \rangle H + \langle bc \rangle \subset H
+\qquad \therefore\ \alpha^{n+m} \in H ,
+\]
+这与 $H \in S$ 矛盾.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{素理想存在性的推论}
+
+\begin{cor}
+$R$ 为交换幺环, 那么:
+\begin{enumerate}
+\item[(i)] 对任意 $R$ 中的真理想 $N$, 存在 $R$ 中极大理想 $H$,
+  使得 $N \subset H$;
+\item[] \hspace{3em} 特别地, 若 $a \notin U(R)$,
+  则 $\exists\ R$ 中极大理想 $H$, 使得 $a \in H$;
+\item[(ii)] $\displaystyle r(R) = \bigcap_{P \text{ 为 } R \text{ 的素理想}} P$;
+\item[(iii)] 令
+  $\displaystyle J(R) = \bigcap_{N \text{ 为 } R \text{ 的极大理想}} N$,
+  称为 $R$ 的 Jacobson 根,
+  \[
+  \text{则 } J(R) = \big\{ \alpha \in R \;\big|\; \forall\ \beta \in R,\
+  \text{有 } 1 - \alpha \beta \in U(R) \big\};
+  \]
+\item[(iv)] $R$ 为局部环 $\iff$ $R$ 中存在唯一的极大理想.
+\end{enumerate}
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+若 $N$ 为 $R$ 的真理想, 则 $R/N$ 为交换幺环.
+由素理想的存在性引理, $R/N$ 中有极大理想 $\bar{H}$, 则
+$R \xrightarrow{\ \pi\ } R/N$,
+$\pi^{-1}(\bar{H}) = H$ 为 $R$ 的极大理想, 且有 $N \subset H$.
+\pause
+如果 $a \notin U(R)$, 那么 $\langle a \rangle \neq R$,
+由上面的结论知 $\exists\ R$ 中极大理想 $H$, 使得 $\langle a \rangle \subset H$.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$1^{\circ}$. $\bigcap_{P \text{ 为素理想}} P \subset r(R)$:
+令 $a \in \bigcap_P P$, 假若 $a \notin r(R)$, 由素理想的存在性引理,
+$\exists$ 素理想 $H$, 使得 $a \notin H$, 与 $a$ 定义矛盾.
+\pause
+$2^{\circ}$. $r(R) \subset \bigcap_{P \text{ 为素理想}} P$:
+令 $a \in r(R)$, $\exists\ n \geqslant 1$, 使得 $a^n = 0 \in P$ (任意),
+那么 $a^{n-1} \cdot a \in P$, $\because P$ 是素理想,
+$\therefore a \in P$.
+故 $r(R) = \bigcap_{P \text{ 为素理想}} P$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+令 $A = \{ \alpha \in R \mid \forall\ \beta \in R,\ 1 - \alpha \beta \in U(R) \}$.
+
+$1^{\circ}$. $A \subset J(R)$: 任取 $\alpha \in A$, 假设 $\exists$
+极大理想 $N$, 使得 $\alpha \notin N$.
+则 $N \subsetneq N + \langle \alpha \rangle \subset R$,
+$\therefore\ N + \langle \alpha \rangle = R$.
+那么 $\exists\ x \in N$, $\beta_0 \in R$,
+使得 $x + \alpha \beta_0 = 1$, 即 $x = 1 - \alpha \beta_0$.
+据 $\alpha$ 的定义知 $x \in U(R)$, 那么 $N = R$, 矛盾.
+$\therefore\ \alpha \in J(R)$.
+
+\pause
+
+$2^{\circ}$. $J(R) \subset A$: 任取 $\alpha \in J(R)$, 假设 $\alpha \notin A$,
+即 $\exists\ \beta_0 \in R$, 使得 $1 - \alpha \beta_0$ 不可逆.
+由 (i) 知 $\exists$ 极大理想 $H$, 使得 $1 - \alpha \beta_0 \in H$.
+由 $\alpha \in H$ 知 $1 \in H$, 矛盾. $\therefore\ \alpha \in A$.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((iv) 的证明)
+$1^{\circ}$. $N = R \setminus U(R)$ 为 $R$ 的理想, 那么 $R$ 为局部环,
+那么 $N = R \setminus U(R)$ 即为 $R$ 的唯一的极大理想.
+$2^{\circ}$. 如果 $R$ 中仅有唯一的极大理想 $N$, 那么 $N = R \setminus U(R)$.
+因为 $N \subset R \setminus U(R)$; 反过来, $\forall\ \alpha \in R \setminus U(R)$,
+由 (i) 知 $\exists\ R$ 的一个极大理想 $H$, 使得 $\alpha \in H$,
+那么 $H = N$, 即 $\alpha \in N$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
