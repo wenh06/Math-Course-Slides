@@ -8,7 +8,8 @@
 %	TITLE PAGE
 %-----------------------------------
 
-\title[Noether 模与 Artin 模]{\texorpdfstring{\LARGE \bfseries 第7部分\quad Noether 模与 Artin 模}{第7部分 Noether 模与 Artin 模}}
+\title[第七部分\\
+Noether 模与 Artin 模]{\texorpdfstring{\LARGE \bfseries 第七部分\quad Noether 模与 Artin 模}{第七部分 Noether 模与 Artin 模}}
 \author[抽象代数 2]{\Large \bfseries 抽象代数 2}
 \date{}
 
@@ -26,11 +27,82 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[定义]{定义: Noether 模与 Artin 模}
+
+%------------------------------------------------
+
+\begin{frame}{$R$-Noether 模与 $R$-Artin 模}
+
+\begin{Def}[$R$-Noether 模与 $R$-Artin 模]
+若 $R$ 为一个幺环, $M$ 为 $R$-模, 任一子模链
+\[
+H_1 \subset H_2 \subset \dots \subset H_n \subset \dots
+\]
+止于有限处, 则称 $M$ 为 $R$-Noether 模.
+同理, 若 $M$ 的任一子模降链止于有限处, 则称 $M$ 为 $R$-Artin 模.
+\end{Def}
+
+\pause
+
+\begin{Def}[左 Noether 环与左 Artin 环]
+$R$ 为一个幺环, 若 $R$ 为一个 $R$-Noether 模, 则称 $R$ 为一个左 Noether 环;
+若 $R$ 为一个 $R$-Artin 模, 则称 $R$ 为一个左 Artin 环.
+\end{Def}
+
+\pause
+
 \begin{itemize}
-\item 本部分对应手稿第 26 页;
-\item 内容尚未整理成 slides.
+\item 即: $R$ 为左 Noether 环 $\iff$ 任一 $R$ 的左理想升链止于有限处;
+\item $R$ 为左 Artin 环 $\iff$ 任一 $R$ 的左理想降链止于有限处.
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[刻画]{Noether 模与 Artin 模的刻画}
+
+%------------------------------------------------
+
+\begin{frame}{Noether 模的刻画}
+
+\begin{lem}[Noether 模的刻画]
+$R$ 为幺环, $M$ 为 $R$-模, 则下述命题等价:
+\begin{itemize}
+\item[(i)] $M$ 为 $R$-Noether 模;
+\item[(ii)] $M$ 的任意由若干子模构成的非空集合有极大元;
+\item[(iii)] $M$ 的任一子模都是有限生成的 (包括 $M$ 本身).
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 模的刻画}
+
+\begin{lem}[Artin 模的刻画]
+$R$ 为幺环, $M$ 为 $R$-模, 则下述命题等价:
+\begin{itemize}
+\item[(i)] $M$ 为 $R$-Artin 模;
+\item[(ii)] $M$ 的任意由若干子模构成的非空集合有极小元.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注}
+
+\begin{itemize}
+\item 注:
+\item ① $R$ 为交换幺环, 取 $M = R$ 为一个特殊的 $R$ 模时,
+  Noether 模的刻画引理为 Noether 环中的 Noether 定理;
+\item ② $R$-Noether 模为有限生成模;
+\item ③ Noether 模的刻画引理的证明完全类似于 Noether 定理的证明.
+\end{itemize}
+
 \end{frame}
 
 %------------------------------------------------
