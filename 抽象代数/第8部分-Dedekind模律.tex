@@ -8,7 +8,8 @@
 %	TITLE PAGE
 %-----------------------------------
 
-\title[Dedekind 模律]{\texorpdfstring{\LARGE \bfseries 第8部分\quad Dedekind 模律}{第8部分 Dedekind 模律}}
+\title[第八部分\\
+Dedekind 模律]{\texorpdfstring{\LARGE \bfseries 第八部分\quad Dedekind 模律}{第八部分 Dedekind 模律}}
 \author[抽象代数 2]{\Large \bfseries 抽象代数 2}
 \date{}
 
@@ -26,11 +27,496 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[模律]{Dedekind 模律}
+
+%------------------------------------------------
+
+\begin{frame}{Dedekind 模律}
+
+\begin{thm}[Dedekind 模律]
+$M$ 为 $R$-模, $H_1 \subset H_2$, $N$ 为 $M$ 的三个子模, 那么
+\[
+H_1 + (N \cap H_2) = H_2 \cap (N + H_1).
+\]
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Dedekind 模律的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$.
+$\begin{cases} H_1 \subset H_2 \\ N \cap H_2 \subset H_2 \end{cases}
+\Longrightarrow H_1 + (N \cap H_2) \subset H_2$;
+\[
+\begin{cases} H_1 \subset N + H_1 \\ N \cap H_2 \subset N \subset N + H_1 \end{cases}
+\Longrightarrow H_1 + (N \cap H_2) \subset N + H_1 ;
+\]
+$\Longrightarrow H_1 + (N \cap H_2) \subset H_2 \cap (N + H_1)$.
+
+\pause
+
+$2^{\circ}$. 任取 $\alpha \in H_2 \cap (N + H_1)$,
+则 $\alpha \in H_2$, $\alpha \in N + H_1$, 存在 $x \in H_1$, $n \in N$
+使得 $\alpha = x + n$, $n = \alpha - x \in H_2$, 即 $n \in H_2 \cap N$,
+则 $\forall\ \alpha \in H_2 \cap (N + H_1)$, $\alpha \in H_1 + (N \cap H_2)$,
+所以 $H_1 + (N \cap H_2) \supset H_2 \cap (N + H_1)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Dedekind 模律的推论}
+
+\begin{cor}[Dedekind 模律的推论]
+$M$ 为 $R$ 模, $H_1 \subset H_2$, $N$ 为 $M$ 的三个子模,
+若 $N + H_1 = N + H_2$ 且 $N \cap H_1 = N \cap H_2$, 则 $H_1 = H_2$.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+\[
+H_1 = H_1 + (N \cap H_1) = H_1 + (N \cap H_2)
+= H_2 \cap (N + H_1) = H_2 \cap (N + H_2) = H_2.
+\]
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[遗传性]{子模与商模的遗传性}
+
+%------------------------------------------------
+
+\begin{frame}{子模与商模的遗传}
+
+\begin{lem}[子模与商模的遗传]
+$R$ 为幺环, $M$ 为 $R$-模, 则
 \begin{itemize}
-\item 本部分对应手稿第 27--34 页;
-\item 内容尚未整理成 slides.
+\item[(i)] 若 $M$ 为 Noether 模, 则 $\forall\ M$ 的子模 $N$ 及商模 $M/N$,
+  $N$ 及 $M/N$ 都是 Noether 模. 反之, 若子模 $N$ 及商模 $M/N$ 为 Noether 模,
+  则 $M$ 也是 Noether 模. 对 Artin 模有类似结论;
+\item[(ii)] 若 $M = N + H$ 为子模的和, 那么
+  $M$ 为 Noether 模 (Artin 模) $\iff$ $N$ 与 $H$ 为 Noether 模 (Artin 模).
 \end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{子模与商模的遗传的证明 (i)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$N$ 中的子模升链也可看作 $M$ 中的子模升链, 故
+若 $M$ 为 Noether 模, 则该子模升链止于有限处,
+因此 $N$ 为 Noether 模.
+$M/N$ 中子模链对应于 $M$ 中的一条子模链, 这些子模都包含 $N$,
+故其止于有限处, 因此 $M/N$ 也是 Noether 模.
+\pause
+反过来, 若 $\exists\ M$ 的子模 $N \subset M$ 及 $M/N$ 为 Noether 模,
+取 $H_1 \subset H_2 \subset \dots \subset H_n \subset \dots$ 为 $M$
+中的一个子模升链,
+$H_1 \cap N \subset H_2 \cap N \subset \dots \subset H_n \cap N \subset \dots$
+为 $N$ 中一个子模升链,
+由于 $N$ 为 Noether 模, $\exists\ n_1$, 使得
+$H_n \cap N = H_{n_1} \cap N$, $\forall\ n \geqslant n_1$.
+$M \xrightarrow{\ \pi\ } M/N$ 下, 令 $\pi(H_i) = \bar{H}_i$, 则
+$\bar{H}_1 \subset \bar{H}_2 \subset \dots \subset \bar{H}_n \subset \dots$
+为 $M/N$ 中的子模升链, 则 $\exists\ n_2$, 使得 $\forall\ n \geqslant n_2$,
+$\bar{H}_n = \bar{H}_{n_2}$,
+即 $\pi^{-1}(\bar{H}_n) = \pi^{-1}(\bar{H}_{n_2})$,
+即 $H_n + N = N + H_{n_2}$.
+\pause
+令 $n_0 = \max\{n_1, n_2\}$, 则 $\forall\ n \geqslant n_0$, 有
+\[
+\begin{cases}
+N \cap H_n = N \cap H_{n_0}, \\
+N + H_n = N + H_{n_0},
+\end{cases}
+\quad \text{由 Dedekind 模律的推论, 有 } H_n = H_{n_0},
+\]
+即知 $M$ 为 Noether 模.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{子模与商模的遗传的证明 (ii)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+若 $M$ 为 Artin 模, 由 (i) 知 $N$, $H$ 都是 Artin 模.
+反过来, 若 $N$ 与 $H$ 为 Artin 模, 由同态定理,
+有 $N + H/N \cong H/N \cap H$, 即 $M/N \cong H/N \cap H$,
+因为 $H$ 为 Artin 模, $H/N \cap H$ 也为 Artin 模,
+那么 $N$ 与 $M/N$ 都是 Artin 模, 由 (i) 知 $M$ 必然是 Artin 模.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[正合序列]{正合序列}
+
+%------------------------------------------------
+
+\begin{frame}{正合序列 (R 模正合序列)}
+
+\begin{Def}[正合序列]
+若 $\{M_k\}_{k=1}^{K}$ 为 $R$-模,
+\[
+M_1 \xrightarrow{\ \sigma_1\ } M_2 \xrightarrow{\ \sigma_2\ } M_3
+\dotsm \xrightarrow{\ \sigma_{K-1}\ } M_K ,
+\]
+$\{\sigma_i\}_{i=1}^{K-1}$ 为 $R$-模同态, 若
+$\operatorname{Im}(\sigma_i) = \ker(\sigma_{i+1})$,
+则称在 $M_{i+1}$ 处正合.
+若序列在 $M_2, M_3, \dots, M_{K-1}$ 处正合,
+则称 $\{M_k\}_{k=1}^{K}$ 为一个\alert{正合序列}.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{短正合序列}
+
+\begin{Def}[短正合序列]
+若 $N, M, H$ 为 $R$-模,
+$0 \to N \xrightarrow{\ \sigma\ } M \xrightarrow{\ \tau\ } H \to 0$
+为正合序列 (在 $N, M, H$ 处正合), 称此为一个短正合序列, 简记为
+\[
+N \xhookrightarrow{\ \sigma\ } M \xrightarrow{\ \tau\ } H .
+\]
+\end{Def}
+
+\begin{itemize}
+\item Note: $N$ 处正合 $\iff \ker \sigma = 0 \iff \sigma$ 为单同态;
+\item $M$ 处正合 $\iff \operatorname{Im} \sigma = \ker \tau$,
+  即 $\sigma(N) = \ker \tau$;
+\item $H$ 处正合 $\iff \tau(M) = H \iff \tau$ 为满的模同态.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{自然短正合列}
+
+\begin{eg}[自然短正合列]
+若 $M$ 为 $R$-模, $N \subset M$ 为子模, $M/N$ 为商模:
+\[
+N \xhookrightarrow{\ \iota\ } M \xrightarrow{\ \pi\ } M/N ,
+\]
+($\iota$ 为嵌入, $\pi$ 为自然同态), 此为一个短正合序列.
+反过来, $N \xhookrightarrow{\ \sigma\ } M \xrightarrow{\ \tau\ } H$
+为短正合序列, 那么
+\[
+N \cong \sigma(N) \subset M,
+\qquad
+H \cong M/\ker \tau = M/\operatorname{Im} \sigma = M/\sigma(N).
+\]
+\end{eg}
+
+\pause
+
+\begin{cor}[短正合列与 Noether/Artin 模]
+$N \xhookrightarrow{\ \sigma\ } M \xrightarrow{\ \tau\ } H$ 为 $R$-模的
+短正合序列, 则
+$M$ 为 Noether 模 (Artin 模) $\iff$ $N$ 与 $H$ 都为 Noether 模 (Artin 模).
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{问题: 有限生成模的子模}
+
+\begin{question}[有限生成模的子模]
+$M = \langle \alpha_1, \dots, \alpha_n \rangle$ 为有限生成的 $R$-模,
+$H \subset M$ 是有限生成的吗?
+\end{question}
+
+\begin{itemize}
+\item 不是, 反例: 若 $R$ 为交换幺环, 任一非 Noether 环 $R$ 都是反例.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[合成列]{合成列与 Hölder--Jordan 定理}
+
+%------------------------------------------------
+
+\begin{frame}{Noether/Artin 环上的有限生成模}
+
+\begin{lem}[Noether/Artin 环上的有限生成模]
+(i) 若 $R$ 为左 Noether 环, 那么有限生成的 $R$-模 $M$,
+$M$ 的子模也是有限生成的.
+(ii) 若 $R$ 为左 Artin 环, 则任一有限生成的 $R$-模也是 Artin 模.
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$R$ 左 Noether 环, $M = \langle \alpha_1, \dots, \alpha_n \rangle$
+为有限生成的 $R$-模,
+那么 $M = \langle \alpha_1 \rangle + \dots + \langle \alpha_n \rangle$,
+由子模与商模的遗传引理, 只需证 $\langle \alpha_i \rangle$ 为 Noether 模即可.
+$R$ 作为 $R$-模, $R \xrightarrow{\ \sigma\ } \langle \alpha_i \rangle$
+by $\sigma(a) = a\alpha_i$, $\sigma$ 为满的 $R$-模同态,
+则 $M$ 中子模升链对应于 $R$ 中的左理想升链, 即知其止于有限处,
+故命题得证.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{合成模列}
+
+\begin{itemize}
+\item $M$ 的子模链 $M = M_0 \supsetneq M_1 \supsetneq \dots \supsetneq M_n = 0$
+  称为 $M$ 的一个长度为 $n$ 的子模链;
+\item 若每个商模 $\{ M_{i-1}/M_i \}_{i=1}^{n}$ 为单模,
+  则称 $\{ M_i \}_{i=0}^{n}$ 为 $M$ 的一个\alert{合成模列};
+\item $M$ 有合成模列存在 $\iff$ $M$ 既是 Noether 模也是 Artin 模;
+\item 若 $\{ M_i \}_{i=0}^{n}$ 为 $M$ 的一个合成模列,
+  称 $\{ M_{i-1}/M_i \}_{i=1}^{n}$ 为模列的商模组或因子模组.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Hölder--Jordan 定理}
+
+\begin{thm}[Hölder--Jordan 定理]
+若 $M$ 为一个合成模列存在的 $R$-模, 则
+\begin{itemize}
+\item[(i)] 任一 $M$ 的子模链的长度有限, 且小于等于 $M$ 的合成列的长度;
+\item[(ii)] $M$ 的任意两个合成模列的长度相等而且商模组同构 (不计顺序).
+\end{itemize}
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+$M = M_0 \supsetneq M_1 \supsetneq \dots \supsetneq M_n = 0$ 为 $M$
+的一个合成模列, 令 $\ell(M)$ 表示 $M$ 中的所有合成模列长度最小者, 则
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Hölder--Jordan 定理的证明 ①}
+
+① $N$ 为 $M$ 的子模也有合成模列存在, 且 $N \subset M
+\Longrightarrow \ell(N) \leqslant \ell(M)$, $N = M \iff \ell(N) = \ell(M)$;
+因为:
+\[
+N = N \cap M_0 \supseteq N \cap M_1 \supseteq \dots \supseteq N \cap M_n = 0,
+\]
+\[
+N = N_0 \supseteq N_1 \supseteq \dots \supseteq N_n = 0
+\]
+为 $N$ 的子模链, $N_i = N \cap M_i$, 则
+\[
+N_{i-1}/N_i
+= N \cap M_{i-1} \big/ N \cap M_i
+\cong_{\text{(由同态定理)}} \frac{M_i + (N \cap M_{i-1})}{M_i}
+=_{\text{(由 Dedekind 模律)}} \frac{M_{i-1} \cap (N + M_i)}{M_i},
+\]
+\pause
+由 $M_{i-1} \cap (N + M_i) \subset M_{i-1}$,
+那么 $N_{i-1}/N_i \subset M_{i-1}/M_i$, 由于 $M_{i-1}/M_i$ 为单模,
+$N_{i-1}/N_i = 0$ 或 $M_{i-1}/M_i$. 若 $N_{i-1}/N_i = 0$, 则 $N_{i-1} = N_i$.
+不妨设 $N_{i-1}/N_i \neq 0$, 则 $N_{i-1}/N_i = M_{i-1}/M_i$ 为单模,
+故 $N$ 有合成模列, 而且 $\ell(N) \leqslant \ell(M)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Hölder--Jordan 定理的证明 ② 与有限长度模}
+
+若 $\ell(N) = \ell(M)$, 那么 $\forall\ 1 \leqslant i \leqslant n$,
+$N_{i-1}/N_i = M_{i-1}/M_i$,
+特别地, $i = n$ 时, 有 $N_{n-1} = M_{n-1}$, 依次可知 $N_i = M_i$,
+即知 $N = M$.
+② 若 $M = M_0 \supsetneq M_1 \supsetneq \dots \supsetneq M_k = 0$ 为 $M$
+的任一子模链,
+那么 $\ell(M) > \ell(M_1) > \dots > \ell(M_k)$, 故 $k \leqslant \ell(M)$,
+故子模链长度不超过 $\ell(M)$, 即知任意两个合成模列长度相等.
+商模组同构与群论中相关结论证明一致 (P.89--90).
+\qed
+
+\pause
+
+\begin{Def}[有限长度模]
+因此, 有合成模列的 $R$-模 $M$ 称为有限长度模.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[有限长度]{有限长度模}
+
+%------------------------------------------------
+
+\begin{frame}{有限长度的刻画}
+
+\begin{lem}[有限长度的刻画]
+一个 $R$-模 $M$ 有合成模列 $\iff$ $M$ 为 Noether 模又是 Artin 模,
+即 $M$ 为一个有限长度模 $\iff$ $M$ 有升链条件又有降链条件.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+若 $M$ 有合成模列, 那么 $M$ 的任意子模链的长度不超过 $\ell(M)$,
+即知 $M$ 有升链条件也有降链条件.
+反过来, 若 $M$ 为 Noether 模又是为 Artin 模,
+令 $M = M_0$, 令 $M_1$ 为 $M$ 的极大真子模 (由 Noether 模保证存在性),
+令 $M_2$ 为 $M_1$ 的极大真子模, $\dots$
+那么 $M_0 \supsetneq M_1 \supsetneq M_2 \supsetneq \dots$,
+由于 $M$ 为 Artin 模,
+因此 $\{M_i\}_{i=0}^{n}$ 为 $M$ 的一个合成模列.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 有限维线性空间的长度}
+
+\begin{eg}[有限维线性空间的长度]
+$R = F$ 为一个域, $V$ 为 $F$ 上的一个有限维线性空间,
+则 $V$ 为有限长度的 $R$-模, 且 $\ell(V) = \dim V = n$.
+\end{eg}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $\dim V = n$, $\{ \alpha_1, \dots, \alpha_n \}$ 为 $V/F$
+上的一组基, 有合成模列:
+\[
+\begin{aligned}
+V &= V_0 = \langle \alpha_1, \dots, \alpha_n \rangle, \\
+V_1 &= \langle \alpha_1, \dots, \alpha_{n-1} \rangle, \\
+&\ \,\dots \\
+V_{n-1} &= \langle \alpha_1 \rangle, \\
+V_n &= \langle 0 \rangle = 0.
+\end{aligned}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{域上模的长度与链条件}
+
+\begin{prop}[域上模的长度与链条件]
+$F$ 为一个域, $V$ 为 $F$-模, 那么,
+$V$ 为有限长度模 $\iff$ $V$ 有升链条件 $\iff$ $V$ 有降链条件.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. 若 $V$ 有升链条件, 则 $V$ 的基为有限个,
+即 $V$ 为 $F$ 上有限维线性空间, 由上例知 $V$ 为有限长度 $F$-模.
+$2^{\circ}$. 若 $V$ 有降链条件, 则 $\dim V = n$,
+即知 $V$ 为有限长度 $F$-模.
+
+\pause
+
+\begin{cor}[域上 Noether 与 Artin 等价]
+若 $R = F$ 为一个域, 则 $M$ 为 $F$-Noether 模 $\iff$ $M$ 为 $F$-Artin 模.
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[等价]{Artin 环与 Noether 环的等价}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 与 Noether 的等价}
+
+\begin{lem}[Artin 与 Noether 的等价]
+$R$ 为一个交换幺环, 若 $0 = N_1 \dotsm N_n$, 其中 $N_i$ 为 $R$
+的极大理想, 那么 $R$ 为 Artin 环 $\iff$ $R$ 为 Noether 环.
+\end{lem}
+
+\begin{itemize}
+\item (注: $R$ 为 Noether (Artin) 环 $\iff$ $R$ 为 $R$-Noether (Artin) 模).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 与 Noether 的等价的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $N_0 = R$, $N_0 N_1 \dotsm N_{i-1}$ ($i = 1, \dots, n$) 为 $R$ 的理想,
+即为 $R$ 的 $R$-子模,
+\[
+R = N_0 \supsetneq N_0 N_1 \supsetneq \dots \supsetneq N_0 N_1 \dotsm N_n = 0
+\quad \text{为子模降链}.
+\]
+商模 $N_0 \dotsm N_{i-1} / N_0 \dotsm N_i$ 为 $R$-模,
+$\operatorname{Ann}_R(N_0 \dotsm N_{i-1} / N_0 \dotsm N_i) \supset N_i$
+($1 \leqslant i \leqslant n$),
+那么 $N_0 \dotsm N_{i-1} / N_0 \dotsm N_i$ 为 $R/N_i$-模.
+由于 $N_i$ 为极大理想, 那么 $R/N_i$ 为一个域.
+\pause
+若 $R = N_0$ 为 $R$-Noether 模 (即 $R$ 为一个 Noether 环),
+那么 $N_0 N_1 \dotsm N_{i-1}$ 及
+$N_0 N_1 \dotsm N_{i-1} / N_0 \dotsm N_i$ 为 $R$-Noether 模
+($1 \leqslant i \leqslant n$),
+$N_0 N_1 \dotsm N_{i-1} / N_0 \dotsm N_i$ 为 $R/N_i$-Noether 模,
+由上面推论知
+$N_0 \dotsm N_{i-1} / N_0 \dotsm N_i$ 为 $R/N_i$-Artin 模.
+令 $i = n$, 则 $N_0 \dotsm N_{n-1}$ 为 $R/N_n$-Artin 模,
+因此为 $R$-Artin 模.
+令 $i = n - 1$, $N_0 \dotsm N_{n-2} / N_0 \dotsm N_{n-1}$ 为 $R$-Artin 模,
+$N_0 \dotsm N_{n-1} \subset N_0 \dotsm N_{n-2}$,
+$N_0 \dotsm N_{n-2} / N_0 \dotsm N_{n-1}$ 为 $R$-Artin 模,
+即知 $N_0 \dotsm N_{n-2}$ 为 $R$-Artin 模.
+依此即可推出 $R = N_0$ 为 $R$-Artin 模, 即 $R$ 为 Artin 环.
+同理可知若 $R$ 为 Artin 环, 则 $R$ 为 Noether 环.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 环的特征定理的证明 (一)}
+
+\startproof[bg=yellow, fg=red](定理 1 的证明)
+若 $R$ 为 Artin 环, 则 $J(R) = r(R)$, 为幂零理想,
+若 $\{N_1, \dots, N_n\}$ 为 $R$ 的 $n$ 个极大理想, 令 $r^k(R) = 0$,
+那么
+\[
+\bigcap_{i=1}^{n} N_i^k = \Big( \bigcap_{i=1}^{n} N_i \Big)^{\!k}
+\subset \Big( \bigcap_{i=1} M_i \Big)^{\!k} = r^k(R) = 0,
+\]
+由引理 D 知 $R$ 为 Noether 环.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Artin 环的特征定理的证明 (二)}
+
+\startproof[bg=yellow, fg=red](定理 1 的证明, 续)
+反过来, 若 $R$ 为 Noether 环, 且素理想为极大理想, 则:
+\begin{itemize}
+\item ① 任一 Noether 环 $R$, 存在有限个素理想 $P_1 \dots P_n$,
+  使得 $P_1 \dotsm P_n = 0$;
+\item ② Noether 环 $R$ 中任一理想都含有有限多个素理想的积
+  (即 $\exists$ 素理想 $P_1, \dots, P_n$,
+  使得 $P_1 \dotsm P_n \subset N$).
+\end{itemize}
+若又满足 $R$ 的素理想为极大理想, 那么 $\exists$ 极大理想 $N_1, \dots, N_n$,
+使得 $N_1 \dotsm N_n = 0$, 由 Artin 与 Noether 的等价引理,
+$R$ 为 Artin 环.
+
 \end{frame}
 
 %------------------------------------------------
