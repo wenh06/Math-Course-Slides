@@ -8,7 +8,8 @@
 %	TITLE PAGE
 %-----------------------------------
 
-\title[Nakayama 引理]{\texorpdfstring{\LARGE \bfseries 第6部分\quad Nakayama 引理}{第6部分 Nakayama 引理}}
+\title[第六部分\\
+Nakayama 引理]{\texorpdfstring{\LARGE \bfseries 第六部分\quad Nakayama 引理}{第六部分 Nakayama 引理}}
 \author[抽象代数 2]{\Large \bfseries 抽象代数 2}
 \date{}
 
@@ -26,11 +27,185 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[定理]{Nakayama 引理}
+
+%------------------------------------------------
+
+\begin{frame}{Nakayama 引理 (定理 2)}
+
+\begin{thm}[Nakayama 引理]
+$R$ 为幺环, $I \subset J(R)$ 为理想, $M$ 为有限生成的 $R$-模, $I \cdot M$
+为 $I$ 在 $M$ 中生成的子模, $M/I \cdot M$ 为商模, 则:
 \begin{itemize}
-\item 本部分对应手稿第 23--25 页;
-\item 内容尚未整理成 slides.
+\item[(i)] $I \cdot M = M \iff M = 0$;
+\item[(ii)] 任取 $H \subset M$ 为子模, $I \cdot M + H = M \iff H = M$;
+\item[(iii)] $M = \langle \alpha_1, \alpha_2, \dots, \alpha_n \rangle
+  \iff M/I \cdot M = \langle \bar{\alpha}_1, \bar{\alpha}_2, \dots,
+  \bar{\alpha}_n \rangle$ 作为 $R/I$ 模.
 \end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明的准备 (1) (2)}
+
+\startproof[bg=yellow, fg=red](证明)
+(1). 任一幺环 $R$ 中总存在至少一个极大左理想 $I$,
+(思路) 即单模 $M = R/I$ 总是存在的.
+
+\pause
+
+(2). 任一 $R$ 的左理想都包含在 $R$ 的一个极大左理想中:
+令 $N$ 为 $R$ 的一个左理想, 那么 $N$ 为 $R$ 的子模 ($R$ 作为 $R$ 模)
+\[
+\pi: N \to R/N \quad \text{为 } R\text{-自然模同态},
+\]
+$R$ 中包含 $\ker \pi = N$ 的子模与 $R/N$ 全部子模是 $1$-$1$ 对应的.
+若 $R/N$ 有极大 $R$-子模 $\bar{H}$ 存在,
+则 $N \subset \pi^{-1}(\bar{H}) \subset R$, $\pi^{-1}(\bar{H})$ 为极大子模.
+\[
+\begin{cases}
+R = \langle 1 \rangle \text{ 为循环模}, \\
+R/N = \langle \bar{1} \rangle \text{ 为循环模}.
+\end{cases}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{证明的准备 (3) (4)}
+
+(3). 任一 $R$-循环模 $M$, $M \neq 0$ $\Longrightarrow$ $M$ 有极大子模:
+令 $M = \langle \alpha \rangle$, $\alpha \neq 0$,
+令 $S = \{ H \mid H \subset M \text{ 为子模},\ \alpha \notin H \}$,
+可以由 Zorn 引理验证 $S$ 中有极大元素, 为 $M$ 的一个极大子模.
+
+\pause
+
+(4). $a \in R$, 为左不可逆元, 则 $a$ 含于 $R$ 的一个极大左理想中:
+$R$ 为 $R$-模, $a \in R$, $\langle a \rangle$ 为子模, 也是一个左理想,
+其中 $\langle a \rangle = Ra = \{ xa \mid x \in R \}$.
+$a$ 左不可逆 $\Longrightarrow \langle a \rangle \neq R$,
+由 (3) 知 $\langle a \rangle$ 包含于 $R$ 的一个极大左理想中.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[根的元素刻画]{根的元素刻画}
+
+%------------------------------------------------
+
+\begin{frame}{根的元素刻画}
+
+\begin{lem}[根的元素刻画]
+$R$ 为幺环, $J(R) = \bigcap\limits_{I \text{ 为极大左理想}} I$,
+则
+\[
+J(R) = \big\{ x \in R \;\big|\; \forall\ a \in R,\ 1 - ax \text{ 左可逆} \big\} .
+\]
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{根的元素刻画的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+任取 $x \in R$, 若 $\exists\ a \in R$, 使得 $1 - ax$ 左不可逆,
+则存在极大左理想 $N$, 使得 $1 - ax \in N$, 由 $x \in N$ 知 $ax \in N$,
+那么 $1 \in N$, 那么 $N = R$, 矛盾.
+\pause
+反过来, 若对 $x \in R$, $\forall\ a \in R$, $1 - ax$ 左可逆,
+假设存在极大左理想 $N$, 使得 $x \notin N$, 那么 $N + \langle x \rangle = R$,
+那么 $\exists\ a \in R$, 使得 $y \in N$, 使得 $y + ax = 1$.
+$y = 1 - ax$ 左可逆, 即知 $N = R$, 矛盾.
+综上知
+$J(R) = \{ x \in R \mid \forall\ a \in R,\ 1 - ax \text{ 左可逆} \}$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Nakayama 的证明]{Nakayama 引理的证明}
+
+%------------------------------------------------
+
+\begin{frame}{Nakayama 引理的证明 (1): (i)}
+
+\startproof[bg=yellow, fg=red](Nakayama 引理 (定理 2) 的证明)
+(1) $M = \langle \alpha_1, \alpha_2, \dots, \alpha_m \rangle$,
+令 $m$ 为使上式成立的最小正整数, $m \neq 0$.
+任取 $I \subset J(R)$ 为 $R$ 的理想, 假设 $I \cdot M = M$.
+\[
+M = \Big\{ \sum_i a_i \cdot \alpha_i \;\Big|\; a_i \in R \Big\},
+\qquad
+I \cdot M = \Big\{ \sum_i a_i \cdot \alpha_i \;\Big|\; a_i \in I \Big\},
+\]
+那么 $\alpha_m = \sum_i a_i \cdot \alpha_i$, 其中 $a_i \in I$,
+那么 $(1 - a_m)\alpha_m = \sum_{i=1}^{m-1} a_i \cdot \alpha_i$,
+由根的元素刻画引理知 $1 - a_m$ 左可逆,
+\pause
+即知 $\alpha_m = \sum_{i=1}^{m-1} b_i \cdot \alpha_i$, $b_i \in I$,
+那么 $M = \langle \alpha_1, \dots, \alpha_{m-1} \rangle$ 与 $m$
+的极小性矛盾.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Nakayama 引理的证明 (2): (ii)}
+
+\startproof[bg=yellow, fg=red](Nakayama 引理 (定理 2) 的证明, 续)
+(ii) 任取 $M$ 的子模 $H$, $M/H$ 也是有限生成的 $R$-模,
+下证 $I \cdot (M/H) = (I \cdot M + H)/H$:
+$\pi: M \to M/H$ 为自然同态, $\pi|_{I \cdot M}: I \cdot M \to I \cdot (M/H)$
+为满的模同态.
+由同态基本定理,
+$I \cdot M / \ker(\pi|_{I \cdot M}) \cong I \cdot (M/H)$,
+而 $\ker(\pi|_{I \cdot M}) = I \cdot M \cap H$,
+$I \cdot M / (I \cdot M \cap H) \cong (I \cdot M + H)/H$.
+\pause
+由 (1) 知
+\[
+I \cdot (M/H) = M/H \iff IM + H = M \iff M/H = 0
+\iff H = M,
+\]
+即 $I \cdot M + H = M \iff H = M$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Nakayama 引理的证明 (3): (iii)}
+
+\startproof[bg=yellow, fg=red](Nakayama 引理 (定理 2) 的证明, 续)
+(iii) $\{ \alpha_1, \alpha_2, \dots, \alpha_n \}$ 为 $M$ 的一组生成元,
+$M \xrightarrow{\ \pi\ } M/I \cdot M$, $\forall\ \alpha \in M$,
+$\alpha = \sum_i a_i \cdot \alpha_i$, $a_i \in R$,
+那么 $\bar{\alpha} = \pi(\alpha) = \sum_i \overline{a_i \alpha_i}
+= \sum_i a_i \bar{\alpha}_i$
+$\Longrightarrow \{ \bar{\alpha}_1, \dots, \bar{\alpha}_n \}$ 为
+$M/I \cdot M$ 的一组生成元.
+反过来, 若 $\{ \bar{\alpha}_1, \dots, \bar{\alpha}_n \}$ 为
+$M/I \cdot M$ 的一组生成元 (作为 $R/I$-模),
+那么 $\{ \bar{\alpha}_1, \dots, \bar{\alpha}_n \}$ 为 $M/I \cdot M$
+作为 $R$-模的一组生成元.
+\pause
+$M \xrightarrow{\ \pi\ } M/I \cdot M$ 为自然同态, $\ker \pi = I \cdot M$,
+令 $H = \langle \alpha_1, \dots, \alpha_n \rangle \subset M$,
+由于 $\pi^{-1}(M/I \cdot M) = M$, $\pi(H) = M/I \cdot M$,
+那么 $\pi^{-1}(M/I \cdot M) = H + I \cdot M$, 即 $H + I \cdot M = M$,
+由 (ii) 知 $M = H = \langle \alpha_1, \dots, \alpha_n \rangle$.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
