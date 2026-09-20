@@ -8,7 +8,8 @@
 %	TITLE PAGE
 %-----------------------------------
 
-\title[循环模,\\ 单模,\\ 有限生成模]{\texorpdfstring{\LARGE \bfseries 第5部分\quad 循环模, 单模, 有限生成模}{第5部分 循环模, 单模, 有限生成模}}
+\title[第五部分\\
+循环模, 单模, 有限生成模]{\texorpdfstring{\LARGE \bfseries 第五部分\quad 循环模, 单模, 有限生成模}{第五部分 循环模, 单模, 有限生成模}}
 \author[抽象代数 2]{\Large \bfseries 抽象代数 2}
 \date{}
 
@@ -26,11 +27,349 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[生成子模]{生成的子模}
+
+%------------------------------------------------
+
+\begin{frame}{生成的子模}
+
+\begin{Def}[生成的子模]
+$R$ 为幺环, $M$ 为一个 $R$-模, $S \subset M$, 令 $\langle S \rangle$
+为 $M$ 中所有包含 $S$ 的子模的交, 即
+\[
+\langle S \rangle = \bigcap_{\substack{S \subset H \subset M \\ H \text{ 为子模}}} H ,
+\]
+称为 $S$ 在 $M$ 中生成的子模, 且
+\[
+\langle S \rangle = \Big\{ \sum_{i=1}^{\infty} a_i \cdot \alpha_i \;\Big|\; a_i \in R,\ \alpha_i \in S \Big\}.
+\]
+\end{Def}
+
+\pause
+
 \begin{itemize}
-\item 本部分对应手稿第 19--22 页;
-\item 内容尚未整理成 slides.
+\item 特别地, 若 $S = \{ \alpha_1, \alpha_2, \dots, \alpha_n \}$ 为 $n$ 个元素的有限集合,
+  则 $\langle S \rangle = \langle \alpha_1, \dots, \alpha_n \rangle$,
+  称为 $M$ 的一个\alert{有限生成子模};
+\item 又若 $S = \{ \alpha \}$, $\langle S \rangle = \langle \alpha \rangle
+  = R\alpha = \{ a \cdot \alpha \mid a \in R \}$,
+  称为 $M$ 的一个\alert{循环子模}.
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[单模]{单模与 Schur 引理}
+
+%------------------------------------------------
+
+\begin{frame}{单模}
+
+\begin{Def}[单模]
+若 $M$ 为一个 $R$-模, $M \neq 0$, 且仅有平凡的子模, 即 $H \subset M$ 为子模,
+则有 $H = 0$ 或 $M$, 称 $M$ 为 $R$-单模.
+\end{Def}
+
+\pause
+
+\begin{itemize}
+\item $M$ 为 $R$-单模 $\iff$ $M$ 为 $R$-循环模, 且任一 $M$ 的非零元为生成元.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Schur's 引理}
+
+\begin{lem}[Schur's 引理]
+若 $M$ 为 $R$-单模 $\Longrightarrow$ $\operatorname{End}_R(M)$ 为一个域.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$\forall\ \sigma \in \operatorname{End}_R(M)$, $\sigma(M) \subset M$ 为 $M$
+的一个子模, $\because M$ 为单模, 那么若 $\sigma \neq 0$, 则有 $\sigma(M) = M$,
+即 $\sigma$ 为满的.
+同理, $\ker \sigma \subset M$ 为子模, 由于 $\sigma \neq 0$,
+知 $\ker \sigma \neq M$, 所以 $\ker \sigma = 0$, 即 $\sigma$ 是单的.
+由此即知 $\sigma$ 为 $M \to M$ 的模同构.
+\qed
+
+\pause
+
+\begin{itemize}
+\item 注: Schur's 引理的逆命题不真.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[例子]{例子}
+
+%------------------------------------------------
+
+\begin{frame}{理想与子模的积}
+
+\begin{eg}[理想与子模的积]
+$M$ 为 $R$-模, $N \subset R$ 为左理想, $H \subset M$ 为一个子模,
+令
+\[
+N \cdot H = \Big\{ \sum_{i=1}^{\infty} a_i \cdot \alpha_i \;\Big|\; a_i \in N,\ \alpha_i \in H \Big\}
+\;\Longrightarrow\; N \cdot H \subset M \text{ 为子模},
+\]
+又称为 $N$ 与 $H$ 所生成的子模.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{零化子}
+
+\begin{eg}[零化子]
+$M$ 为 $R$-模, $\alpha \in M$, 令
+$\operatorname{Ann}_R(\alpha) = \{ a \mid a \in R, \text{且 } a \cdot \alpha = 0 \}$,
+$\operatorname{Ann}_R(\alpha)$ 为 $R$ 的一个左理想, 又称为 $\alpha$ 的零化子.
+且
+\[
+\operatorname{Ann}_R(M)
+= \bigcap_{\substack{\alpha \in M \\ \alpha \neq 0}} \operatorname{Ann}_R(\alpha).
+\]
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{循环模的刻画}
+
+\begin{prop}[循环模的刻画]
+$R$ 为 $R$-模, $\operatorname{Ann}_R(\alpha)$ 为左理想
+$\Longrightarrow$ $R$ 的商模 $R/\operatorname{Ann}_R(\alpha) \cong \langle \alpha \rangle$
+($R$-模同构).
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $R \xrightarrow{\ \sigma\ } \langle \alpha \rangle$ by
+$\sigma(a) = a \cdot \alpha$, 则 $\sigma$ 为 $R$-模同态,
+因为
+\[
+\sigma(a+b) = (a+b)\alpha = a\cdot\alpha + b\alpha = \sigma(a) + \sigma(b),
+\]
+\[
+\sigma(\lambda a) = (\lambda a)\alpha = \lambda(a\alpha) = \lambda\,\sigma(a),
+\quad \lambda \in R;
+\]
+且 $\sigma$ 为满同态.
+\pause
+$\Longrightarrow$ $\ker \sigma$ 为子模, 且 $R/\ker\sigma \cong \langle \alpha \rangle$,
+$\ker \sigma = \operatorname{Ann}_R(\alpha)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{循环模的例子}
+
+\begin{eg}[循环模的例子]
+$R$ 为 $R$-模, 则 $R = \langle 1 \rangle$ 为 $R$-循环模;
+若 $N \subset R$ 为左理想, $R/N = \langle \bar{1} \rangle$ 为 $R$-循环模.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{商环 $R/N$ 的性质}
+
+\begin{eg}[商环 $R/N$ 的性质]
+$R$ 为幺环, $N \subset R$ 为一个理想, $R/N$ 为商模, 也是幺环,
+\begin{itemize}
+\item[(i)] $R/N$ 为单模 $\Longrightarrow$ $N$ 为 $R$ 的极大理想;
+\item[(ii)] $\operatorname{Ann}_R(R/N) = N$;
+\item[(iii)] $\operatorname{End}_R(R/N)$ 反同构于 $R/N$.
+\end{itemize}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{内含理想与理想化子}
+
+\startproof[bg=yellow, fg=red](思路)
+若 $I \subset R$ 为一个左理想, 令
+\[
+(I:R) = \{ a \in R \mid a \cdot R \subset I \}
+\quad \text{为 } R \text{ 的理想},
+\]
+\[
+B = \{ a \in R \mid I \cdot a \subset I \}
+\quad \text{为 } R \text{ 的子环}.
+\]
+可以证明, $(I:R) \subset I$, 称为 $I$ 的内含的理想, 且为 $I$ 中内含的一个最大的理想;
+$I \subset B \subset R$, $B$ 为子环, 且 $I$ 为 $B$ 中的理想, 称 $B$ 为 $I$
+的理想化子, 并且若 $I \subset R_1 \subset R$, $R_1$ 为子环, $I$ 为 $R_1$
+的理想, 则必有 $R_1 \subset B$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{商模 $R/I$ 的性质}
+
+\begin{eg}[商模 $R/I$ 的性质]
+$R$ 为一个幺环, $I \subset R$ 为左理想, 商模 $R/I$ 有如下性质:
+\begin{itemize}
+\item[(i)] $R/I$ 为 $R$-单模 $\iff$ $I$ 为 $R$ 的极大左理想;
+\item[(ii)] $\operatorname{Ann}_R(R/I) = (I:R)$;
+\item[(iii)] $\operatorname{End}_R(R/I)$ 反同构于 $B/I$.
+\end{itemize}
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{商模 $R/I$ 性质的证明 (i) (ii)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$R \xrightarrow{\ \pi\ } R/I$ 为自然同态 (作为 $R$-模), $\ker \pi = I$,
+由同态定理, $R/I$ 为单模 $\iff$ $I$ 为极大左理想.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$a \in \operatorname{Ann}_R(R/I) \iff \forall\ \bar{\alpha} \in R/I$,
+有 $a \cdot \bar{\alpha} = 0$, 即 $\overline{a \cdot \alpha} = 0$
+$\iff$ $a \cdot \alpha \in I$, $\forall\ \alpha \in R$,
+即 $a \cdot R \subset I$,
+即 $\operatorname{Ann}_R(R/I) = (I:R)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{商模 $R/I$ 性质的证明 (iii)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+$\sigma \in \operatorname{End}_R(R/I)$, $R/I \xrightarrow{\ \sigma\ } R/I$,
+又有 $R/I = \langle \bar{1} \rangle$ 为 $R$-循环模.
+$\forall\ \bar{\alpha} \in R/I$,
+\[
+\sigma(\bar{\alpha}) = \sigma(a \cdot \bar{1}) = a\,\sigma(\bar{1}),
+\]
+即 $\sigma$ 由 $\sigma(\bar{1})$ 所完全决定, 令 $\sigma(\bar{1}) = \bar{b}
+\in R/I$, 记 $\sigma$ 为 $\sigma_b$, 其中 $b \in R$;
+\pause
+反过来, $\forall\ b \in R$, 若能决定 $\sigma_b$,
+那么 $\forall\ a \in I \subset R$, $\sigma_b(\bar{\alpha}) = 0$,
+但是 $\sigma_b(\bar{\alpha}) = a\,\sigma_b(\bar{1}) = a\bar{b}
+= \overline{ab} \Longleftrightarrow ab \in I$,
+即 $I \cdot b \subset I$, 即 $b \in B$.
+所以 $\operatorname{End}_R(R/I) = \{ \sigma_b \mid b \in B/I \}$.
+\pause
+下面只需验证 环 $B/I \xrightarrow{\ \varphi\ } \operatorname{End}_R(R/I)$
+by $\varphi(\bar{b}) = \sigma_b$, $\varphi$ 为 $1$-$1$ 对应,
+且为环的反同态即可.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[幺环的根]{幺环的根}
+
+%------------------------------------------------
+
+\begin{frame}{幺环的根}
+
+\begin{Def}[幺环的根]
+一个幺环的根 $J(R)$ 或 $\operatorname{rad}(R)$,
+\[
+J(R) := \bigcap_{I \text{ 为 } R \text{ 的极大左理想}} I ,
+\]
+$J(R)$ 为 $R$ 的理想.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{单模与极大左理想}
+
+\begin{lem}[单模与极大左理想]
+$R$ 为幺环, 则 $M$ 为 $R$-单模 $\iff$ $\exists\ R$ 的一个极大左理想 $I$,
+使得 $R/I \cong M$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+若 $M \cong R/I$, $I$ 为极大左理想, 则 $R/I$ 为单模, 即 $M$ 也为单模.
+反过来, 若 $M$ 为单模, $M = \langle \alpha \rangle$, $\alpha \in M$,
+$\alpha \neq 0$, 那么 $M \cong R/\operatorname{Ann}_R(\alpha)$,
+$\operatorname{Ann}_R(\alpha)$ 为 $R$ 的极大左理想.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{单模与极大左理想的对应}
+
+\begin{itemize}
+\item $R$ 的单模与极大左理想是 $1$-$1$ 对应的.
+\item ① $I \subset R$ 为极大左理想 $\Longrightarrow$ $R/I$ 为单模;
+\item ② 若 $M$ 为 $R$-单模, $\alpha \in M$, $\alpha \neq 0$,
+  则 $\operatorname{Ann}_R(\alpha)$ 为极大左理想,
+  且 $M \cong R/\operatorname{Ann}_R(\alpha)$.
+\end{itemize}
+
+\pause
+
+\[
+\big\{ R/I \;\big|\; I \subset R \text{ 为极大左理想} \big\}
+\text{ 为全部的 } R\text{-单模}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{根的刻画}
+
+\begin{lem}[根的刻画]
+$R$ 为一个幺环, 则
+\[
+J(R) = \bigcap_{I \text{ 为 } R \text{ 的极大左理想}} (I:R) ,
+\]
+即知 $J(R)$ 为理想.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+由定义即知
+$\bigcap\limits_{I \text{ 为 } R \text{ 的极大左理想}} (I:R) \subset J(R)$,
+因为 $(I:R) \subset I$.
+\pause
+反过来,
+\[
+\bigcap_{I \text{ 为极大左理想}} (I:R)
+= \bigcap_{I \text{ 为极大左理想}} \operatorname{Ann}_R(R/I)
+= \bigcap_{M \text{ 为 } R \text{ 单模}} \operatorname{Ann}_R(M)
+\]
+\[
+= \bigcap_{M \text{ 为 } R \text{ 单模}}\ \bigcap_{\substack{\alpha \in M \\ \alpha \neq 0}}
+\operatorname{Ann}_R(\alpha)
+\ \supset\ J(R)
+\]
+因为每一个 $\operatorname{Ann}_R(\alpha)$ 都是 $R$ 的一个极大左理想.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
