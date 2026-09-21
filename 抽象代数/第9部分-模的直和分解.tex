@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,390 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[直和]{外直和与内直和}
+
+%------------------------------------------------
+
+\begin{frame}{外直和}
+
+\begin{Def}[外直和]
+$M_1, \dots, M_n$ 为 $n$ 个 $R$-模, 令
+\[
+M_1 \times \dots \times M_n = \{ (\alpha_1, \dots, \alpha_n) \mid \alpha_i \in M_i \}
+\]
+为 Abel 群, by
+\[
+(\alpha_1, \dots, \alpha_n) + (\beta_1, \dots, \beta_n) = (\alpha_1 + \beta_1, \dots, \alpha_n + \beta_n).
+\]
+又 $\forall\ a \in R$, $a(\alpha_1, \dots, \alpha_n) = (a \alpha_1, \dots, a \alpha_n)$,
+则 $M_1 \times \dots \times M_n$ 为 $R$-模, 记为 $M_1 \oplus \dots \oplus M_n$,
+称为 $M_1, \dots, M_n$ 的外直和.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{内直和}
+
+\begin{Def}[内直和]
+$M$ 为 $R$-模, $N_1, \dots, N_n$ 为 $M$ 的 $n$ 个子模, 若
+\[
+M = N_1 + \dots + N_n, \qquad
+N_i \cap \Big( \sum_{j = 1, j \neq i}^{n} N_j \Big) = 0,
+\]
+则称 $M$ 为 $N_1, \dots, N_n$ 的内直和, 记为
+$M = N_1 \dotplus \dots \dotplus N_n$.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可直和分解模}
+
+\begin{Def}[可直和分解模]
+若 $M = M_1 \oplus M_2$, 其中 $M_1 \neq 0$, $M_2 \neq 0$,
+则称 $M$ 为可直和分解模, 反之则称 $M$ 为不可直和分解模.
+\end{Def}
+
+\pause
+
+\begin{eg}
+若 $M$ 为 $R$-单模, 则 $M$ 为不可分解的.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[幂等元]{嵌入, 投影与幂等元}
+
+%------------------------------------------------
+
+\begin{frame}{嵌入与投影}
+
+若 $M = \bigoplus M_i$, 定义
+\[
+\delta_i : M_i \to M \quad \text{by } \forall\ \alpha \in M_i,\ \delta_i(\alpha) = \alpha
+\qquad (\text{嵌入}),
+\]
+\[
+P_i : M \to M_i \quad \text{by } \forall\ \alpha \in M,\
+\alpha = \alpha_1 + \alpha_2 + \dots + \alpha_n\ (\text{唯一}),\
+P_i(\alpha) = \alpha_i
+\qquad (\text{投影}).
+\]
+
+\pause
+
+性质:
+\[
+P_j \delta_i =
+\begin{cases}
+0, & \text{若 } i \neq j, \\
+1_{M_i}, & \text{若 } i = j.
+\end{cases}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正交幂等元}
+
+$\forall\ 1 \leq i \leq n$, 令 $e_i = \delta_i P_i \in \mathrm{End}_R(M)$,
+\[
+e_i|_{M_i} = 1_{M_i}, \qquad e_i|_{M_j} = 0 \ (j \neq i),
+\]
+$\{ e_1, e_2, \dots, e_n \} \subset \mathrm{End}_R(M)$, $e_i \neq 1$, $e_i \neq 0$:
 \begin{itemize}
-\item 本部分对应手稿第 35--40 (缺手稿第40页) 页;
-\item 内容尚未整理成 slides.
+\item \quanhao{①} $e_i^2 = e_i$, $1 \leq i \leq n$;
+\item \quanhao{②} $e_i e_j = 0$, 若 $i \neq j$;
+\item \quanhao{③} $\sum_i e_i = 1_M$.
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{非平凡的正交幂等元}
+
+结论: 若 $M$ 可直和分解, $M = \bigoplus M_i$, 则 $\mathrm{End}_R(M)$ 中存在一组非平凡幂等元
+$\{ e_1, \dots, e_n \}$ 满足 $e_i e_j = 0\ (i \neq j)$, $\sum e_i = 1$,
+称为 $\mathrm{End}_R(M)$ 中一组非平凡的正交幂等元.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{不可分解的刻画}
+
+\begin{lem}[不可分解的刻画]
+$M$ 为一个 $R$-模, $M$ 为不可直和分解的 $R$-模 $\iff$
+$\mathrm{End}_R(M)$ 仅有平凡幂等元.
+\end{lem}
+
+% 注 (转写): 手稿证明只写了单向 (存在非平凡幂等元则可分解), 见升级清单.
+
+\startproof[bg=yellow, fg=red](证明)
+若 $\mathrm{End}_R(M)$ 中有 $e \in \mathrm{End}_R(M)$ 满足 $e^2 = e$, $e \neq 1$, $e \neq 0$,
+那么 $(1 - e)^2 = 1 - e$, $1 - e \neq 1$, $1 - e \neq 0$,
+即 $e$, $1 - e$ 都是 $\mathrm{End}_R(M)$ 中的非平凡幂等元.
+令 $M_1 = e(M)$, $M_2 = (1 - e)(M)$,
+易验证知 $M = M_1 \oplus M_2$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[局部环]{局部环与强不可分解}
+
+%------------------------------------------------
+
+\begin{frame}{局部环与强不可分解}
+
+\begin{Def}[(非交换)局部环]
+$R$ 为幺环, $U(R)$ 为单位群, 若 $I = R \setminus U(R)$ 为 $R$ 的一个理想,
+则称 $R$ 为一个(非交换)局部环.
+\end{Def}
+
+\pause
+
+\begin{Def}[强不可分解模]
+$M$ 为 $R$-模, $\mathrm{End}_R(M)$ 为一个局部环,
+则称 $M$ 为一个强不可分解的 $R$-模.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{强不可分解的唯一性}
+
+\begin{lem}[强不可分解的唯一性]
+$R$-模 $M$ 可以分解为有限个强不可分解子模的直和, 那么 $M$ 可以分解为有限多个
+不可分解子模的直和, 且分解唯一.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+若 $M = M_1 \oplus M_2 \oplus \dots \oplus M_n$, 其中 $M_i$ 为强不可分解的子模.
+要证明对 $M$ 的任一分解 $M = N_1 \oplus \dots \oplus N_m$, 其中 $N_i$ 为不可分解模,
+那么 $m = n$, 且 $\forall\ 1 \leq i \leq m$,
+$N_i \cong M_j$ (某个 $j$, $1 \leq j \leq n$).
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{强不可分解的唯一性: 归纳计划与断言}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+$*$ 对 $n$ 作归纳证明, 再加上一个断言:
+\[
+\text{若 } M \xrightarrow{\ f\ } N \xrightarrow{\ g\ } M \text{ 为 } R\text{-模同态},\
+N \text{ 为强不可分解的,}
+\]
+\[
+\text{若 } g \circ f \in \mathrm{End}_R(M) \text{ 为同构, 则 } g \text{ 与 } f \text{ 都为同构.}
+\]
+\qed
+
+\pause
+
+\begin{itemize}
+\item 结论:
+\item \quanhao{①} 有限长度模, 强不可分解 $\Longleftarrow$ 不可分解;
+\item \quanhao{②} 有限长度模 Krull--Schmidt 分解定理.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Fitting]{Fitting 直和分解}
+
+%------------------------------------------------
+
+\begin{frame}{Fitting 直和分解}
+
+模的具体的直和分解 (Fitting 直和分解):
+若 $M$ 为 $R$-模, 任一 $\sigma \in \mathrm{End}_R(M)$, 令 $\sigma^0 = 1_M$, 则
+\[
+M = \sigma^0(M) \supset \sigma(M) \supset \dots \supset \sigma^n(M) \supset \dots
+\]
+\[
+0 = \ker(\sigma^0) \subset \ker(\sigma) \subset \dots \subset \ker(\sigma^n) \subset \dots
+\]
+令
+\[
+\sigma^{\infty}(M) = \bigcap_{n=0}^{\infty} \sigma^n(M), \qquad
+\sigma^{-\infty}(M) = \bigcup_{n=0}^{\infty} \ker(\sigma^n).
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Fitting 直和分解定理}
+
+\begin{lem}[Fitting 直和分解]
+$M$ 为有限长度模, 则 $\forall\ \sigma \in \mathrm{End}_R(M)$,
+\[
+M = \sigma^{\infty}(M) \oplus \sigma^{-\infty}(M),
+\]
+且 $\sigma|_{\sigma^{\infty}(M)}$ 为 $\sigma^{\infty}(M)$ 的同构,
+$\sigma|_{\sigma^{-\infty}(M)}$ 为幂零元素.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Fitting 直和分解的证明 (一)}
+
+\startproof[bg=yellow, fg=red](证明)
+$M$ 为有限长度模, 则
+$\exists\ k \geq 1$, 使得 $\forall\ n \geq k$, $\sigma^n(M) = \sigma^k(M)$;
+$\exists\ t \geq 1$, 使得 $\forall\ n \geq t$, $\ker(\sigma^n) = \ker(\sigma^t)$.
+令 $n = \max\{ k, t \}$, 有 $\sigma^{\infty}(M) = \sigma^n(M)$,
+$\sigma^{-\infty}(M) = \ker(\sigma^n)$.
+仅需证明 $M = \sigma^n(M) \oplus \ker(\sigma^n)$, 即:
+\quanhao{①} $M = \sigma^n(M) + \ker(\sigma^n)$;
+\quanhao{②} $\sigma^n(M) \cap \ker(\sigma^n) = 0$.
+
+\pause
+
+对\quanhao{②}: $\forall\ \alpha \in \sigma^n(M) \cap \ker(\sigma^n)$,
+$\exists\ x \in M$, 使得 $\alpha = \sigma^n(x)$,
+那么 $0 = \sigma^n(\alpha) = \sigma^{2n}(x) = \sigma^n(x) = \alpha$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Fitting 直和分解的证明 (二)}
+
+\startproof[bg=yellow, fg=red](\quanhao{①} 的证明)
+$\forall\ \alpha \in M$, 令 $\alpha_1 = \sigma^n(\alpha)$,
+$\alpha_1 \in \sigma^n(M) = \sigma^{2n}(M)$,
+那么 $\exists\ x \in M$, 使得 $\alpha_1 = \sigma^{2n}(x)$,
+即 $\sigma^n(\alpha) - \sigma^{2n}(x) = 0$,
+即 $\sigma^n(\alpha - \sigma^n(x)) = 0$,
+那么 $\alpha - \sigma^n(x) \in \ker(\sigma^n)$,
+令 $\alpha_2 = \alpha - \sigma^n(x)$, 即有 $\alpha = \alpha_1 + \alpha_2$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Fitting 直和分解的证明 (三)}
+
+\startproof[bg=yellow, fg=red](2° 与 3° 的证明)
+$2^{\circ}$. $\sigma(\sigma^n(M)) = \sigma^{n+1}(M) = \sigma^n(M)$,
+即知 $\sigma$ 在 $\sigma^n(M)$ 为满的.
+又任取 $\alpha, \beta \in \sigma^n(M)$, 若 $\sigma(\alpha) = \sigma(\beta)$,
+那么 $\sigma(\alpha - \beta) = 0$,
+$\alpha - \beta \in \ker \sigma \subset \ker \sigma^n$,
+$\because$ $\ker \sigma^n \cap \sigma^n(M) = 0$, 所以 $\alpha = \beta$,
+即 $\sigma$ 在 $\sigma^n(M)$ 为单的,
+即知 $\sigma|_{\sigma^n(M)} = \sigma|_{\sigma^{\infty}(M)}$ 为同构.
+
+\pause
+
+$3^{\circ}$. $\forall\ \alpha \in \ker(\sigma^n)$, $\sigma^n(\alpha) = 0$,
+即知 $\sigma|_{\ker \sigma^n}$ 为幂零元素,
+即 $\sigma|_{\sigma^{-\infty}(M)}$ 为幂零元素.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[分解定理]{Krull--Schmidt 分解定理}
+
+%------------------------------------------------
+
+\begin{frame}{强不可分解与不可分解}
+
+\begin{cor}[强不可分解与不可分解]
+$M$ 为一个有限长度模, 那么 $M$ 强不可分解 $\iff$ $M$ 不可解.
+\end{cor}
+
+% 注 (转写): 手稿原文「不可解」, 应为「不可分解」, 见升级清单.
+% 注 (转写): 手稿原文 U(End_R(R)), 括号内应为 M, 见升级清单.
+
+\startproof[bg=yellow, fg=red](证明)
+$M$ 为不可分解的, 我们证明 $\mathrm{End}_R(M)$ 为 Local 环,
+仅需证 $\mathrm{End}_R(M) \setminus U(\mathrm{End}_R(R)) = I$ 为 $\mathrm{End}_R(M)$ 的理想.
+因为 $\forall\ \tau \in \mathrm{End}_R(M)$, 有 Fitting 分解
+$M = \tau^n(M) \oplus \ker(\tau^n)$,
+$M$ 不可分解, 那么有 $\tau^n(M) = M$ 或 $\ker(\tau^n) = M$.
+若 $\tau^n(M) = M$, 则 $\tau$ 为可逆元; 若 $\ker(\tau^n) = M$, 则 $\tau$ 为幂零元素.
+所以 $\mathrm{End}_R(M)$ 中元素为同构或者幂零的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{强不可分解与不可分解 (续)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+任取 $\alpha \in I$, $\alpha$ 为幂零元素, 那么 $\forall\ \tau \in \mathrm{End}_R(M)$,
+$\alpha \tau$, $\tau \alpha$ 不是同构, 因此 $\alpha \tau$, $\tau \alpha \in I$.
+任取 $\alpha, \beta \in I$, 若 $\alpha + \beta \notin I$, 那么 $\alpha + \beta$ 可逆,
+令 $\alpha_1 = \alpha \cdot (\alpha + \beta)^{-1}$,
+$\alpha_2 = \beta (\alpha + \beta)^{-1}$, 有 $\alpha_1 + \alpha_2 = 1$.
+由于 $\alpha_1$ 与 $\alpha_2 \in I$, 为幂零元素, 令 $\alpha_2^n = 0$,
+那么 $(1 - \alpha_2)(1 + \alpha_2 + \dots + \alpha_2^{n-1}) = 1 - \alpha_2^n = 1$,
+那么 $1 - \alpha_2 = \alpha_1 \in U(\mathrm{End}_R(M))$, 这与 $\alpha_1 \in I$ 矛盾.
+此即可知 $I$ 为理想.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Krull--Schmidt 定理}
+
+% 注 (转写): 手稿把 Krull 拼作 Knell (两处), slides 按人名标准拼写, 见升级清单.
+
+\begin{thm}[Krull--Schmidt 定理]
+任一有限长度的 $R$-模 $M$ 可以分解为有限个不可分解模的直和, 而且分解是唯一的.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Krull--Schmidt 定理的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$M$ 为有限长度的 $R$-模, 长度为 $\ell(M)$.
+$N \subset M$ 为子模, 也是有限长度的, $\ell(N) \leq \ell(M)$.
+对 $\ell(M)$ 作归纳, $n = 1 \iff M$ 为单模, 命题为真.
+假若 $\ell(M) \leq n - 1$ 时命题为真, 那么当 $\ell(M) = n$ 时:
+
+\pause
+
+若 $M$ 可以分解, 令 $M = M_1 \oplus M_2$,
+那么 $\ell(M_1) < \ell(M)$, $\ell(M_2) < \ell(M)$,
+由归纳假设,
+\[
+M_1 = N_1 \oplus N_2 \oplus \dots \oplus N_s, \qquad
+M_2 = H_1 \oplus H_2 \oplus \dots \oplus H_t,
+\]
+那么 $M = N_1 \oplus \dots \oplus N_s \oplus H_1 \oplus \dots \oplus H_t$,
+且 $N_i$, $H_j$ 为强不可分解的,
+由强不可分解的唯一性引理即知唯一性.
+若 $M$ 不可分解, 则 $M$ 为强不可分解的,
+由强不可分解的唯一性引理知命题为真.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
