@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,168 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[复合域]{复合域}
+
+%------------------------------------------------
+
+\begin{frame}{复合域}
+
+令 $F \subset E \subset K$, 为域扩张, $K$ 中包含 $E$ 与 $L$ 的最小子域,
+称为 $E$ 与 $L$ 在 $K$ 中的复合域, 记为 $E \cdot L$.
+由定义 $E \cdot L = L(E) = E(L)$.
+
+\pause
+
+\begin{block}{性质}
+令 $F \subset E \subset K$ 为域扩张, 则:
 \begin{itemize}
-\item 本部分对应手稿第 76--77 页;
-\item 内容尚未整理成 slides.
+\item \quanhao{①} 若 $E/F$, $L/F$ 为有限扩张, 则 $E \cdot L/F$ 也为有限扩张;
+\item \quanhao{②} 若 $E/F$, $L/F$ 为代数扩张, 则 $E \cdot L/F$ 也是代数扩张;
+\item \quanhao{③} 若 $E/F$, $L/F$ 为正规扩张, 则 $E \cdot L/F$ 也是正规扩张;
+\item \quanhao{④} 若 $E/F$, $L/F$ 为可分扩张, 则 $E \cdot L/F$ 也是可分扩张;
+\item \quanhao{⑤} 若 $E/F$, $L/F$ 为纯不可分扩张, 则 $E \cdot L/F$ 也是纯不可分的;
+\item \quanhao{⑥} 若 $E/F$, $L/F$ 为 Galois 扩张, 则 $E \cdot L/F$ 也是 Galois 扩张.
 \end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数元与整环}
+
+\begin{lem}[代数元与整环]
+\begin{itemize}
+\item[(i)] $F \subset S$, $F$ 为一个域, $S$ 为一个整环,
+  若 $\forall\ \alpha \in S$, $\alpha$ 为 $F$ 上代数元, 则 $S$ 为一个域;
+\item[(ii)] $F \subset E \subset K$ 为域扩张, 若 $E/F$ 为代数扩张
+  (或 $L/F$ 为代数扩张),
+  那么 $E \cdot L/L$ 为代数扩张 (或 $E \cdot L/E$ 为代数扩张),
+  且 $E \cdot L = \{ \sum_{i=1}^{n} \alpha_i \beta_i \mid \alpha_i \in L,\
+  \beta_i \in L,\ n \geq 1 \}$.
+\end{itemize}
+\end{lem}
+
+% 注 (转写): (ii) 求和中手稿写 α_i ∈ L, 应为 ∈ E (下文思路块即为 ∈ E), 见升级清单.
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$\alpha$ 在 $F$ 上是代数元素, 则 $F \subset F(\alpha) = F[\alpha] \subset S$,
+由于 $\alpha \in F(\alpha)$, 那么 $\alpha^{-1} \in F(\alpha) \subset S$,
+故 $S$ 是一个域.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数元与整环的证明 (ii)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+若 $E/F$ 为代数扩张, 那么 $\forall\ \alpha \in E$, $\alpha$ 为 $F$ 上代数元素,
+$F \subset L$, 从而 $\alpha$ 为 $L$ 上代数元素, 而 $E \cdot L = L(E)$,
+故 $L(E)/L$ 为代数扩张, 即 $E \cdot L/L$ 为代数扩张.
+
+\pause
+
+\[
+\text{思路}:
+\begin{cases}
+\text{令 } S = \{ \sum_{i=1}^{n} \alpha_i \beta_i \mid \alpha_i \in E,\
+\beta_i \in L,\ n \geq 1 \}, \\
+F \subset E \subset S \subset K\text{。注意到 } S \subset E \cdot L, \\
+\text{又有 } E \cdot L/L \text{ 为代数扩张, 因此 } \forall\ \alpha \in S,\
+\alpha \text{ 为 } L \text{ 上代数元素} \\
+\text{而 } S \text{ 为整环, 由 (i) 有 } S \text{ 为一个域},\
+E \cdot L \subset S, \text{ 故 } E \cdot L = S.
+\end{cases}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数元与整环的证明 (ii, 续)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明, 续)
+令 $S = \{ \sum_{i=1}^{n} \alpha_i \beta_i \mid \alpha_i \in E,\
+\beta_i \in L,\ n \geq 1 \}$, 易知 $S$ 为一个整环.
+$\forall\ \alpha \in S$, $\alpha \neq 0$,
+令 $\alpha = \sum_{i=1}^{m} \alpha_i \beta_i$, $\alpha_i \in E$, $\beta_i \in L$,
+由于 $E/F$ 为代数扩张, 故 $\alpha \in L(\alpha_1, \dots, \alpha_m)
+= L[\alpha_1, \dots, \alpha_m]$,
+那么 $\exists\ f(x_1, \dots, x_m) \in L[x_1, \dots, x_m]$,
+使得 $\alpha^{-1} = f(\alpha_1, \dots, \alpha_m)$,
+令 $f(x_1, \dots, x_m) = \sum_{i_1, \dots, i_m} c_{i_1, \dots, i_m}
+x_1^{i_1} \dotsm x_m^{i_m}$, $c_{i_1, \dots, i_m} \in L$,
+那么 $\alpha^{-1} = \sum c_{i_1, \dots, i_m} \alpha_1^{i_1} \dotsm \alpha_m^{i_m}
+\in S$, 故 $S$ 为一个域.
+由于 $E, L \subset S$, 故 $E \cdot L \subset S$, 而 $S \subset E \cdot L$ 显然,
+故 $S = E \cdot L$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Galois]{复合域与 Galois 扩张}
+
+%------------------------------------------------
+
+\begin{frame}{复合域的 Galois 性}
+
+\begin{lem}[复合域的 Galois 性]
+$F \subset E \subset K$ 为域扩张, 若 $E/F$ 为有限 Galois 扩张,
+那么 $E \cdot L/L$ 为有限的 Galois 扩张, 且
+$\mathrm{Gal}(E/E \cap L) \cong \mathrm{Gal}(E \cdot L/L)$,
+从而 $[E \cdot L:L] = [E:E \cap L]$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+若 $E/F$ 为有限 Galois 扩张, $E = F(\alpha_1, \dots, \alpha_n)$,
+其中 $\alpha_1, \dots, \alpha_n$ 为可分多项式 $f(x)$ 的全部零点.
+那么 $E \cdot L = L(F(\alpha_1, \dots, \alpha_n)) = L(\alpha_1, \dots, \alpha_n)$,
+即 $E \cdot L$ 为 $L$ 上可分多项式 $f(x)$ 的分裂域,
+故 $E \cdot L/L$ 为有限次 Galois 扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{复合域的 Galois 性的证明 (二)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+令 $\varphi: \mathrm{Gal}(E \cdot L/L) \longrightarrow \mathrm{Gal}(E/E \cap L)$
+定义为, $\forall\ \sigma \in \mathrm{Gal}(E \cdot L/L)$, $\varphi(\sigma) = \sigma|_E$.
+由于 $E/F$ 为正规扩张, $\sigma|_E = \varphi(\sigma) \in \mathrm{Gal}(E/F)$
+为群同态.
+$\ker \varphi = \{ \sigma \mid \sigma \in \mathrm{Gal}(E \cdot L/L),\
+\sigma|_E = 1 \}$, 又有 $\sigma|_L = 1$,
+由代数元与整环引理知 $\sigma = 1$, 即 $\ker \varphi = 1$, 故 $\varphi$
+为单的群同态.
+于是 $\mathrm{Gal}(E \cdot L/L) \cong \varphi(\mathrm{Gal}(E \cdot L/L))
+= H < \mathrm{Gal}(E/F)$.
+令 $F_1 = I_n(H)$, $F \subset F_1 \subset E$, 那么 $H = \mathrm{Gal}(E/F_1)$,
+下证 $F_1 = E \cap L$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{复合域的 Galois 性的证明 (三)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+首先, $\forall\ \alpha \in E \cap L$, $\forall\ \tau \in H$,
+令 $\sigma \in \mathrm{Gal}(E \cdot L/L)$, 使得 $\varphi(\sigma) = \tau$,
+则 $\tau(\alpha) = \sigma(\alpha) = \alpha$, 故 $\alpha \in I_n(H) = F_1$,
+即知 $E \cap L \subset F_1$.
+又 $\forall\ \alpha \in F_1$, 由定义, $\alpha \in E$,
+$\forall\ \sigma \in \mathrm{Gal}(E \cdot L/L)$, $\sigma(\alpha) = \alpha$,
+那么 $\alpha \in I_n(\mathrm{Gal}(E \cdot L/L)) = L$, 故 $\alpha \in E \cap L$,
+即 $F_1 \subset E \cap L$,
+由上知 $F_1 = E \cap L$.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
