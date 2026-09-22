@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,1074 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[特征]{域的特征}
+
+%------------------------------------------------
+
+\begin{frame}{域的特征}
+
+$F$ 为一个域, $1$ 为 $F$ 的单位元, $1 \in F^{+}$, 记 $o(1)$ 为 $1$ 的加法阶,
+定义一个域的特征
+\[
+\chi(F) =
+\begin{cases}
+0, & \text{若 } o(1) = \infty \\
+o(1), & \text{若 } o(1) < \infty
+\end{cases}
+\]
+
+\pause
+
+结论: $o(1) < \infty \Longrightarrow \chi(F) = p$ 为一个素数.
+
+\pause
+
+若 $\chi(F) = 0$, 令 $R = \{ n \cdot 1 \mid n \in \mathbb{Z} \} \subset F$,
+$R$ 的商域 $\cong \mathbb{Q} \subset F$;
+若 $\chi(F) = p$, 令 $R = \{ 0, 1, \dots, p - 1 \} \subset F$,
+$R \cong \mathbb{Z}/\langle p \rangle = F_p$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{素域}
+
 \begin{itemize}
-\item 本部分对应手稿第 41--54 页;
-\item 内容尚未整理成 slides.
+\item 结论:
+\item \quanhao{①} $\mathbb{Q}$ 与 $F_p$ 为最小的域, 称为素域;
+\item \quanhao{②} 任意一个域都为在 $\mathbb{Q}$ 上或 $F_p$ 上扩张而得的.
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[自同构]{域的自同构群}
+
+%------------------------------------------------
+
+\begin{frame}{域的自同构群}
+
+任一域 $F$,
+\[
+\mathrm{Aut}(F) = \{ \sigma \mid \sigma: F \to F \text{ 为域的同构} \},
+\]
+$\mathrm{Aut}(F)$ 为一个群, 称为 $F$ 的自同构群.
+
+\pause
+
+若 $F = \mathbb{Q}, F_p$, 则 $\mathrm{Aut}(F) = 1$;
+反之不成立, 如 $\mathrm{Aut}(\mathbb{R}) = 1$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[生成]{扩域与生成}
+
+%------------------------------------------------
+
+\begin{frame}{扩域与中间域}
+
+若 $F, E$ 为两个域, $F \subset E$, 称 $E$ 为 $F$ 的一个扩域, $F$ 为 $E$ 的基域,
+记为 $E/F$.
+
+\pause
+
+若 $F \subset E \subset L$, 称 $E$ 为中间域, 记为 $E/F \subset L/F$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{生成的域与生成的环}
+
+若 $E/F$ 为扩域, 令 $A \subset E$ 为子集合,
+记 $F(A)$ 为 $E$ 中包含 $F$ 与 $A$ 的最小子域, 称为 $A$ 在 $F$ 上生成的域;
+令 $F[A]$ 为 $E$ 中包含 $F \cup A$ 的最小子环.
+
+\[
+F \subset F[A] \subset F(A) \subset E, \qquad
+\text{且 } F(A) \text{ 为 } F[A] \text{ 的商域.}
+\]
+
+\pause
+
+\[
+F[A] = \{ f(\alpha_1, \dots, \alpha_n) \mid
+f(x_1, \dots, x_n) \in F[x_1, \dots, x_n],\ \{\alpha_1, \dots, \alpha_n\} \subset A,\ n < \infty \}
+\]
+\[
+F(A) = \left\{ \frac{a}{b} \mid\ a \in F[A],\ b \in F[A],\ b \neq 0 \right\}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质与单扩张}
+
+\begin{block}{性质}
+若 $E/F$ 为域扩张, $A \subset E$, $B \subset E$ 为子集合, 那么
+\[
+F(A \cup B) = F(A)(B) = F(B)(A).
+\]
+\end{block}
+
+\pause
+
+若 $E/F$ 为域扩张, $A = \{ \alpha_1, \dots, \alpha_n \} \subset E$,
+则记 $F(A) = F(\alpha_1, \dots, \alpha_n)$, 称为 $\alpha_1, \dots, \alpha_n$
+在 $F$ 上生成的域; 若 $n = 1$, 则记 $F(A) = F(\alpha)$, 称为 $\alpha$ 在 $F$
+上生成的域, 也称为 $F$ 上的一个单扩张.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[代数元]{代数元素与有限扩张}
+
+%------------------------------------------------
+
+\begin{frame}{代数元素与极小多项式}
+
+$E/F$ 为域扩张, $\alpha \in E$, $\alpha$ 在 $F$ 上为代数元素
+$\iff$ $\exists\ f(x) \in F[x]$, $f(\alpha) = 0$,
+称首一的次数最低的 $f(x)$ 为代数元素 $\alpha$ 在 $F$ 上的极小多项式.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注}
+
+\begin{itemize}
+\item 注:
+\item \quanhao{①} 代数元素 $\alpha$ 的极小多项式 $f(x)$ 为 $F[x]$ 中的
+  不可约多项式, 且 $N = \langle f(x) \rangle$ 为 $F[x]$ 中的一个极大理想;
+\item \quanhao{②} $\{\alpha_1, \dots, \alpha_n\}$ 在 $F$ 上代数无关
+  $\Longrightarrow$ $\forall\ \alpha_i$ 为 $F$ 上的超越元素; 反之不成立;
+\item \quanhao{③} 线性相关为代数相关特例 (多项式为一次的多项式).
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数扩张与有限扩张}
+
+\begin{Def}[代数扩张]
+若 $E/F$ 为域扩张, $\forall\ \alpha \in E$ 为 $F$ 上代数元素,
+称为 $F$ 上的一个代数扩张.
+\end{Def}
+
+\pause
+
+\begin{Def}[有限扩张]
+若 $E/F$ 为域扩张, 则 $E$ 为 $F$ 上的一个线性空间;
+若 $E$ 为 $F$ 上的有限维线性空间, 称 $E/F$ 为 $F$ 上一个有限扩张,
+$\dim(E/F) = n$, 称 $E/F$ 为次数为 $n$ 的有限扩张, 记为 $[E:F] = n$,
+即扩张次数为 $n$.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质}
+
+\begin{itemize}
+\item \quanhao{①} 任一有限扩张 $E/F$ 为代数扩张;
+\item \quanhao{②} 若 $F \subset E \subset L$, $E/F$, $L/E$ 都为有限扩张, 那么
+  $L/F$ 也是有限扩张, 且
+  \[ [L:F] = [L:E] \cdot [E:F] \qquad \text{(有限扩张传递性)} \]
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: $F$ 上有限扩张的一般形式}
+
+\begin{eg}[$F$ 上有限扩张的一般形式]
+$F$ 为一个域, $F[x]$ 为一元多项式环,
+令 $p(x) \in F[x]$ 为一个不可约多项式.
+$E = F[x]/\langle p(x) \rangle$ 为一个域, 在同构意义下, $F \subset E$,
+并且 $E/F$ 为有限次扩张, 且 $[E:F] = \deg p(x)$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$F \subset F[x] \xrightarrow{\ \pi\ } F[x]/\langle p(x) \rangle$ 为自然同态,
+$\pi|_F$ 为单一的环同态,
+因为 $\forall\ a, b \in F$, 若 $\pi(a) = \pi(b)$, 那么 $\pi(a - b) = 0$,
+即 $a - b \in \ker \pi = \langle p(x) \rangle$, 知 $p(x) \mid a - b$,
+那么只有 $a - b = 0$, 即 $a = b$.
+令 $\pi(F) = \bar{F} \subset F[x]/\langle p(x) \rangle$,
+有 $F \cong \bar{F} \subset F[x]/\langle p(x) \rangle = E$.
+$\forall\ a \in F$, $\bar{a} = \pi(a)$, $\bar{a} = a + \langle p(x) \rangle$,
+仅证 $E/F$ 为有限扩张, $[E:F] = \deg p(x) = n$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例的证明 (续)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+$F \subset F[x] \xrightarrow{\ \pi\ } F[x]/\langle p(x) \rangle = E$,
+$\{ 1, \bar{x}, \dots, \overline{x^{n-1}} \} \subset E$
+为 $E/F$ 的一组基, 其中 $n = \deg p(x)$, $\bar{x} = \pi(x) = x + \langle p(x) \rangle$:
+\begin{itemize}
+\item \quanhao{①} $\{ 1, \bar{x}, \dots, \overline{x^{n-1}} \}$
+  为 $E/F$ 中线性无关组;
+\item \quanhao{②} $\forall\ E$ 中元素可由
+  $\{ 1, \bar{x}, \dots, \overline{x^{n-1}} \}$ 在 $F$ 上线性表出.
+\end{itemize}
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[单扩张]{单扩张}
+
+%------------------------------------------------
+
+\begin{frame}{不可约多项式的根}
+
+\begin{lem}[不可约多项式的根]
+$F$ 为一个域, $p(x) \in F[x]$ 为 $F$ 上的一个不可约多项式,
+则存在 $F$ 上的一个有限扩张 $E/F$, 使得 $E$ 中至少有 $p(x)$ 的一个零点.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $E = F[x]/\langle p(x) \rangle$,
+$F \subset F[x] \xrightarrow{\ \pi\ } F[x]/\langle p(x) \rangle$,
+则 $F \cong \pi(F) = \bar{F} \subset E$ 且 $E/F$ 为有限次扩张,
+$[E:F] = \deg p(x)$.
+令 $p(x) = a_0 + a_1 x + \dots + a_n x^n \in F[x]$, 由于 $F \cong \bar{F}$,
+可令 $p(x) = \bar{a}_0 + \bar{a}_1 x + \dots + \bar{a}_n x^n \in \bar{F}[x]$.
+令 $\bar{x} = \pi(x) = x + \langle p(x) \rangle \in E$,
+那么 $p(\bar{x}) = \sum_i \bar{a}_i \cdot \bar{x}^i = \sum_i a_i x^i = \pi(p(x)) = 0$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{单扩张的刻画}
+
+\begin{lem}[单扩张的刻画]
+若 $E/F$ 为域扩张, $\alpha \in E$, 则
+\begin{itemize}
+\item[(i)] $F(\alpha)/F$ 为有限扩张 $\iff$ $\alpha$ 为 $F$ 上代数元素,
+  且 $[F(\alpha):F] = n$, $n$ 为 $\alpha$ 的极小多项式的次数,
+  $\{ 1, \alpha, \alpha^2, \dots, \alpha^{n-1} \}$ 为一组基;
+\item[(ii)] 若 $\alpha$ 为 $F$ 上超越元素, 则 $F[\alpha] \cong F[x]$,
+  因此 $F(\alpha) \cong F(x)$.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{单扩张的刻画的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$\alpha \in E$,
+$F[x] \xrightarrow{\ \pi\ } F[\alpha]$ 为环的满同态,
+那么 $F[\alpha] \cong F[x]/N$,
+其中 $N = \{ f(x) \mid f(x) \in F[x],\ f(\alpha) = 0 \}$.
+若 $N \neq 0$, 即 $\alpha$ 为 $F$ 上的代数元素, 令 $g(x)$ 为 $\alpha$
+的极小多项式, 那么 $N = \langle g(x) \rangle$,
+$F[\alpha] \cong F[x]/\langle g(x) \rangle$.
+由于 $F[x]$ 为 PID, $g(x)$ 不可约, 那么 $\langle g(x) \rangle$ 为极大理想,
+因此 $F[x]/\langle g(x) \rangle \cong F[\alpha]$ 为一个域, 即 $F[\alpha] = F(\alpha)$.
+同理可知若 $[F(\alpha):F] < \infty$, 则 $\alpha \in F(\alpha)$ 为 $F$ 上代数元素.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{单扩张的刻画的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+若 $N = 0$, 那么 $F[\alpha] \cong F[x] \Longrightarrow F(\alpha) \cong F(x)$.
+\qed
+
+\pause
+
+注: 若 $\alpha$ 为代数元素, $F$ 上的单扩张 $F(\alpha)$ 称为单代数扩张,
+否则称为单超越扩张.
+
+\pause
+
+\begin{eg}
+$\mathbb{R}/\mathbb{Q}$ 为域扩张, $\alpha \in \mathbb{R}$,
+单扩张 $\mathbb{Q}(\alpha)$ 是否有限取决于 $\alpha$ 是否为 $\mathbb{Q}$
+上代数元. $\mathbb{Q}(e) \cong \mathbb{Q}(x)$, $e$ 为自然对数底.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[闭包]{代数闭包与代数数域}
+
+%------------------------------------------------
+
+\begin{frame}{有限扩张的刻画}
+
+\begin{lem}[有限扩张的刻画]
+域扩张 $E/F$ 为有限扩张 $\iff$ $\exists$ 有限多个 $F$ 上代数元素
+$\alpha_1, \dots, \alpha_n$, 使得 $E = F(\alpha_1, \dots, \alpha_n)$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. 若 $[E:F] = n < \infty$, 取 $\{ \alpha_1, \dots, \alpha_n \}$
+为 $E/F$ 的一组基, 则 $\alpha_i$ 为 $F$ 上的代数元素,
+\[
+E = L_F(\alpha_1, \dots, \alpha_n) \subset F[\alpha_1, \dots, \alpha_n]
+\subset F(\alpha_1, \dots, \alpha_n) \subset E,
+\]
+所以 $E = F(\alpha_1, \dots, \alpha_n)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{有限扩张的刻画的证明 (二)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+$2^{\circ}$. 若 $E = F(\alpha_1, \dots, \alpha_n)$, $\alpha_i$ 为 $F$ 上代数元素,
+那么 $[E:F] = [F(\alpha_1, \dots, \alpha_n):F]$.
+由于 $\alpha_i$ 在 $F$ 上为代数元素, 则 $\alpha_i$ 在
+$F(\alpha_1, \dots, \alpha_{i-1})$ 上为代数元素,
+由单扩张的刻画引理知单代数扩张
+$F(\alpha_1, \dots, \alpha_i)/F(\alpha_1, \dots, \alpha_{i-1})$ 次数有限,
+因此 $[E:F] = [F(\alpha_1, \dots, \alpha_n):F] =
+[F(\alpha_1, \dots, \alpha_n):F(\alpha_1, \dots, \alpha_{n-1})] \dots [F(\alpha_1):F]$
+为有限扩张.
+\qed
+
+\pause
+
+注: $\alpha_i$ 在 $F$ 上为代数元素, 则
+\[
+[E:F] \leq \prod_{i=1}^{n} [F(\alpha_i):F]
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数闭包}
+
+若 $E/F$ 为域扩张, 令
+\[
+\bar{F}_E = \{ \alpha \in E \mid \alpha \text{ 为 } F \text{ 上的代数元素} \},
+\]
+称为 $F$ 在 $E$ 中的代数闭包, 有 $F \subset \bar{F}_E \subset E$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数闭包引理}
+
+\begin{lem}[代数闭包]
+\begin{itemize}
+\item[(i)] $E/F$ 为任一域扩张, $\bar{F}_E$ 为一个域, 且有
+  $F \subset \bar{F}_E \subset E$;
+\item[(ii)] 若 $F \subset E \subset L$, $E/F$, $L/E$ 为代数扩张,
+  那么 $L/F$ 也是代数扩张.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+任取 $\alpha, \beta \in \bar{F}_E$, 那么 $F(\alpha, \beta)/F$ 为有限扩张,
+那么 $\alpha \pm \beta$, $\alpha \cdot \beta$, $\alpha^{-1} \in F(\alpha, \beta)$,
+因此为代数元素, 故 $\bar{F}_E$ 为一个域.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数闭包引理的证明 (ii)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$\forall\ \alpha \in L$, $\alpha$ 为 $E$ 上代数元素,
+令 $g(x) = a_0 + a_1 x + \dots + a_n x^n$ 为 $\alpha$ 在 $E$ 上的极小多项式,
+$a_i \in E$.
+$F \subset F(a_0, a_1, \dots, a_n) \subset E$,
+由 $E/F$ 为代数扩张知 $F(a_0, \dots, a_n)/F$ 为有限扩张,
+且 $\alpha$ 为 $F(a_0, \dots, a_n)$ 上的代数元素,
+因为 $g(x) \in F(a_0, a_1, \dots, a_n)[x]$.
+由单扩张的刻画引理,
+$F(a_0, \dots, a_n, \alpha)/F(a_0, \dots, a_n)$ 为有限扩张.
+从而 $F(a_0, \dots, a_n, \alpha)/F$ 为有限扩张, 因此为代数扩张,
+那么 $\alpha$ 为 $F$ 上代数元素, 故 $L/F$ 为代数扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 代数数域}
+
+\begin{eg}
+$E/F = \mathbb{C}/\mathbb{Q}$, 或 $\mathbb{R}/\mathbb{Q}$.
+\begin{itemize}
+\item $A = \bar{\mathbb{Q}}_c = \{ \alpha \in \mathbb{C} \mid
+  \alpha \text{ 为 } \mathbb{Q} \text{ 上代数元素} \}$;
+\item $A_0 = \bar{\mathbb{Q}}_{\mathbb{R}} = \{ \alpha \in \mathbb{R} \mid
+  \alpha \text{ 为 } \mathbb{Q} \text{ 上代数元素} \}$,\quad
+  $A_0 = A \cap \mathbb{R}$;
+\item 又若 $F/\mathbb{Q}$ 为有限扩张, 则 $F \subset A = \bar{\mathbb{Q}}_c$.
+\end{itemize}
+$\bar{\mathbb{Q}}_c$ 称为代数数域, $F$ 称为 $n$ 次代数数域,
+$\bar{\mathbb{Q}}_{\mathbb{R}}$ 称为实代数数域.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数数与代数函数域}
+
+注: $\mathbb{Q}$ 上的代数元素称为代数数.
+
+\pause
+
+令 $F = \mathbb{Q}(x)$, $\Lambda/\mathbb{Q}(x)$ 为有限次扩张,
+那么 $\forall\ \alpha \in \Lambda$, $\alpha$ 为 $\mathbb{Q}(x)$ 的代数元素,
+称 $\alpha$ 为 $\mathbb{Q}$ 上代数函数, 称 $\Lambda$ 为一代数函数域.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Galois]{$F$-同态与 Galois 群}
+
+%------------------------------------------------
+
+\begin{frame}{$F$-同态与 $F$-嵌入}
+
+$E/F$, $L/F$ 为域扩张, 令 $E \xrightarrow{\ \sigma\ } L$ 为同态,
+且 $\sigma|_F = 1_F$, 称 $\sigma$ 为 $E$ 上的一个 $F$-同态, 或 $F$-嵌入.
+
+\pause
+
+注: 域上任一同态为零同态, 或单一的同态.
+
+\pause
+
+若 $L = E$, 则称 $\sigma$ 为 $E$ 上的一个 $F$-自同构.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 群}
+
+\begin{Def}[Galois 群]
+$\mathrm{Gal}(E/F) = \{ \sigma \mid E \xrightarrow{\ \sigma\ } E,\
+\sigma \text{ 为同构},\ \sigma|_F = 1_F \}$, 称为 $E/F$ 的 Galois 群.
+\end{Def}
+
+\pause
+
+$\mathrm{Gal}(E/F) < \mathrm{Aut}(E)$;
+当 $F$ 为素域, $\mathrm{Gal}(E/F) = \mathrm{Aut}(E/F)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{不动域}
+
+反过来, $H < \mathrm{Aut}(E)$, 定义
+\[
+I_n(H) = \{ \alpha \in E \mid \sigma(\alpha) = \alpha,\ \forall\ \sigma \in H \},
+\]
+$I_n(H)$ 为一个域, 称为子群 $H$ 的不动域.
+
+\pause
+
+\begin{lem}[Galois 算子]
+$E$ 为一个域, $\mathrm{Aut}(E)$ 为其自同构群, 则:
+\begin{itemize}
+\item[(i)] Galois 算子与不动域算子为递减的, 即:
+  $F_1 \subset F_2 \subset E$, 那么 $\mathrm{Gal}(E/F_2) < \mathrm{Gal}(E/F_1)$;
+  $H_1 < H_2 < \mathrm{Aut}(E)$, 那么 $I_n(H_2) \subset I_n(H_1)$;
+\item[(ii)] $\forall\ H < \mathrm{Aut}(E)$,
+  $H < \mathrm{Gal}(E/I_n(H))$;\quad
+  $\forall\ F \subset E$, $F \subset I_n(\mathrm{Gal}(E/F))$.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 算子引理 (iii) 与证明}
+
+\begin{lem}[Galois 算子, 续]
+\begin{itemize}
+\item[(iii)] $\forall\ H < \mathrm{Aut}(E)$,
+  $I_n(H) = I_n(\mathrm{Gal}(E/I_n(H)))$;\quad
+  $\forall\ F \subset E$,
+  $\mathrm{Gal}(E/F) = \mathrm{Gal}(E/I_n(\mathrm{Gal}(E/F)))$.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+(i) 与 (ii) 平凡.
+(iii) $\forall\ H < \mathrm{Aut}(E)$, 由 (ii) 有
+$H < \mathrm{Gal}(E/I_n(H))$, 由 (i) 有
+$I_n(H) \supset I_n(\mathrm{Gal}(E/I_n(H)))$.
+另一方面, 令 $F = I_n(H)$, 由 (ii) 有 $F \subset I_n(\mathrm{Gal}(E/F))$,
+即 $I_n(H) \subset I_n(\mathrm{Gal}(E/I_n(H)))$.
+由上即知 $I_n(H) = I_n(\mathrm{Gal}(E/I_n(H)))$.
+同理可知 $\forall\ F \subset E$,
+$\mathrm{Gal}(E/F) = \mathrm{Gal}(E/I_n(\mathrm{Gal}(E/F)))$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[开拓]{$F$-同态的性质与同构的开拓}
+
+%------------------------------------------------
+
+\begin{frame}{$F$-同态的性质}
+
+\begin{lem}[$F$-同态的性质]
+$E/F$ 为任一域扩张, $\sigma, \tau$ 为 $E$ 上的 $F$-同态, 则:
+\begin{itemize}
+\item[(i)] 若 $E = F(A)$, 则 $\sigma = \tau$ 当且仅当 $\sigma|_A = \tau|_A$;
+\item[(ii)] $E$ 上任一 $F$-同态 $\sigma$ 把 $E$ 中代数元素变为代数元素,
+  且有相同极小多项式;
+\item[(iii)] 若 $E = F(\alpha)$ 为单代数扩张, $\alpha$ 的极小多项式
+  $g(x) \in F[x]$, $g(x)$ 含于 $E$ 中的零点为 $\alpha = \alpha_1, \alpha_2, \dots, \alpha_t$,
+  那么 $|\mathrm{Gal}(F(\alpha)/F)| = t$,
+  且 $\mathrm{Gal}(F(\alpha)/F) = \{ \sigma_1, \dots, \sigma_t \}$,
+  其中 $\sigma_i(\alpha) = \alpha_i$;
+\item[(iv)] 若 $[E:F] < \infty$, 那么 $|\mathrm{Gal}(E/F)| < \infty$.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$F$-同态的性质的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$\forall\ \alpha \in E$, $\exists$ 两个多项式
+$f(x_1, \dots, x_n)$, $g(x_1, \dots, x_n) \in F[x_1, \dots, x_n]$,
+使得 $\alpha = \frac{f(a_1, \dots, a_n)}{g(b_1, \dots, b_n)}$,
+其中 $a_i, b_i \in A$.
+若 $\sigma|_A = \tau|_A$, 那么
+\[
+\sigma(\alpha) = \frac{f(\sigma(a_1), \dots, \sigma(a_n))}{g(\sigma(b_1), \dots, \sigma(b_n))}
+= \frac{f(\tau(a_1), \dots, \tau(a_n))}{g(\tau(b_1), \dots, \tau(b_n))} = \tau(\alpha).
+\]
+即知 $\sigma = \tau$.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+若 $\sigma$ 为 $E$ 的一个 $F$-同态, $\alpha \in E$ 为 $F$ 上代数元素,
+$g(x)$ 为 $\alpha$ 的极小多项式, $g(\alpha) = 0$,
+那么 $\sigma(g(\alpha)) = g(\sigma(\alpha)) = 0$,
+即知 $\sigma(\alpha)$ 为 $F$ 代数元素.
+令 $g'(x)$ 为 $\sigma(\alpha)$ 的极小多项式, 那么 $g'(x) \mid g(x)$,
+$g(x)$ 不可约, 那么 $g'(x) = g(x)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$F$-同态的性质的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+$\forall\ \sigma \in \mathrm{Gal}(F(\alpha)/F)$,
+$\sigma(\alpha) \in F(\alpha)$, $\sigma(\alpha)$ 为 $g(x)$ 的一个根,
+那么 $\sigma(\alpha) = \alpha_i$, 由 (i) 知 $|\mathrm{Gal}(F(\alpha)/F)| \leq t$.
+另一方面, 任取 $\alpha_i$ ($1 \leq i \leq t$),
+令 $\sigma_i$ 为 $\sigma_i|_F = 1_F$, $\sigma_i(\alpha) = \alpha_i$:
+\[
+a_0 + a_1 \alpha + \dots + a_{n-1} \alpha^{n-1}
+\xrightarrow{\ \sigma_i\ } a_0 + a_1 \alpha_i + \dots + a_{n-1} \alpha_i^{n-1}
+\]
+$\Longrightarrow \sigma_i \in \mathrm{Gal}(F(\alpha)/F)$.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((iv) 的证明)
+$[E:F] = n \iff E = F(\alpha_1, \dots, \alpha_t)$,
+$\alpha_i$ 为 $F$ 上代数元素.
+$\forall\ \sigma \in \mathrm{Gal}(E/F)$, $\sigma(\alpha_i)$ 为 $\alpha_i$
+的极小多项式的一个根, $\sigma(\alpha_i)$ 取值可能有限,
+$\sigma$ 在 $\{ \alpha_1, \dots, \alpha_t \}$ 上取值有限,
+因此 $|\mathrm{Gal}(E/F)| < \infty$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{同构的开拓}
+
+\begin{lem}[同构的开拓]
+$F \xrightarrow{\ \sigma\ } F_1$ 为域同构, $E/F$ 及 $E_1/F_1$ 为域扩张,
+$\alpha \in E$ 为 $F$ 上的代数元素, $g(x) \in F[x]$ 为 $\alpha$
+的极小多项式, $\sigma(g(x)) = g_1(x)$ 为对应的 $F_1[x]$ 中的多项式,
+令 $g_1(x)$ 的零点 $\{ \beta_1, \dots, \beta_t \} \subset E_1$,
+则对于任一 $\beta_i$, 唯一存在 $F(\alpha)$ 上的 $F$-同态 $\tau$,
+使得 $\tau|_F = \sigma$, $\tau(\alpha) = \beta_i$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+由 $F$-同态的性质引理, $\tau$ 唯一性显然, 下仅证存在性.
+$F \xrightarrow{\ \sigma\ } F_1$ 为域同构,
+$F[x] \xrightarrow{\ \sigma\ } F_1[x]$ 为环的同构,
+开拓为商环同构:
+$F[x]/\langle g(x) \rangle \xrightarrow{\ \bar{\tau}\ } F_1[x]/\langle g_1(x) \rangle$.
+因为 $F[x] \xrightarrow{\ \sigma\ } F_1[x] \xrightarrow{\ \pi\ } F_1[x]/\langle g_1(x) \rangle$,
+$\pi\sigma: F[x] \to F_1[x]/\langle g_1(x) \rangle$ 是满的同态,
+$\ker \pi\sigma = \langle g(x) \rangle$,
+因此 $F[x]/\langle g(x) \rangle \cong F_1[x]/\langle g_1(x) \rangle$,
+$F(\alpha) \cong F[x]/\langle g(x) \rangle \cong F_1[x]/\langle g_1(x) \rangle \cong F_1(\beta_i)$,
+$\Longrightarrow F(\alpha) \xrightarrow{\ \tau\ } F_1(\beta_i)$ 为同构.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例 1 与例 2}
+
+\begin{eg}
+$\mathbb{C}/\mathbb{R}$, $\mathrm{Gal}(\mathbb{C}/\mathbb{R}) = \mathbb{Z}_2$.
+因为 $\mathbb{C} = \mathbb{R}(i)$, $i$ 在 $\mathbb{R}$ 上极小多项式为
+$f(x) = x^2 + 1$, $f(x) = 0$ 的两根 $\pm i \in \mathbb{C}$,
+那么 $|\mathrm{Gal}(\mathbb{C}/\mathbb{R})| = 2$,
+即 $\mathrm{Gal}(\mathbb{C}/\mathbb{R}) = \{ 1, \sigma \}$,
+$\sigma$ 为取共轭.
+\end{eg}
+
+\pause
+
+\begin{eg}
+$\mathbb{Q}(\sqrt[3]{5})/\mathbb{Q}$,\quad
+$\mathrm{Gal}(\mathbb{Q}(\sqrt[3]{5})/\mathbb{Q}) = 1$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例 3}
+
+\begin{eg}
+$\mathrm{Gal}(\mathbb{Q}(\sqrt[3]{5}, \omega)/\mathbb{Q}) = \mathbb{Z}_2 \times \mathbb{Z}_3$,
+其中 $\omega = e^{\frac{2 \pi i}{3}}$.
+$[\mathbb{Q}(\sqrt[3]{5}, \omega):\mathbb{Q}] = 6$.
+首先, $\mathbb{Q}(\omega)/\mathbb{Q} \to \mathbb{Q}(\omega, \sqrt[3]{5})/\mathbb{Q}(\omega)$,
+$\mathrm{Gal}(\mathbb{Q}(\omega)/\mathbb{Q}) = \{ 1, \delta \}$,
+其中 $\delta(\omega) = \omega^2$.
+开拓: 任一 $\sigma \in \mathrm{Gal}(\mathbb{Q}(\omega)/\mathbb{Q})$,
+开拓至 $\mathbb{Q}(\omega)(\sqrt[3]{5})$ 为 $\tau$, 满足 $\tau|_{\mathbb{Q}(\omega)} = \sigma$.
+由同构的开拓引理, $F = F_1 = \mathbb{Q}(\omega)$,
+$\sqrt[3]{5}$ 的三个零点 $\{ \sqrt[3]{5}, \sqrt[3]{5}\omega, \sqrt[3]{5}\omega^2 \}
+\subset \mathbb{Q}(\omega)(\sqrt[3]{5})$,
+那么 $|\mathrm{Gal}(\mathbb{Q}(\omega, \sqrt[3]{5})/\mathbb{Q})| = 6$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[阶]{Galois 群的阶}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 群的阶}
+
+\begin{thm}[Galois 群的阶]
+\begin{itemize}
+\item[(i)] 若 $E/F$ 为有限扩张, 那么
+  $|\mathrm{Gal}(E/F)| \leq [E:F]$;
+\item[(ii)] 若 $E/F$ 为有限扩张, $F$ 为 $\mathrm{Aut}(E)$ 中某个子群 $H$
+  的不动域, 即 $F = I_n(H)$, 那么 $H = \mathrm{Gal}(E/F)$,
+  且 $|H| = |\mathrm{Gal}(E/F)| = [E:F]$;
+\item[(iii)] $|\mathrm{Gal}(E/F)| = [E:F] \iff F = I_n(\mathrm{Gal}(E/F))$.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{群的特征}
+
+$G$ 为一个群, $E$ 为一个域, $G \xrightarrow{\ \sigma\ } E$ 为 $G$ 上的一个函数,
+$V = \{ \sigma \mid G \to E \}$ 为 $E$ 上的一个线性空间.
+
+\pause
+
+若 $\sigma: G \to E^{*}$ 为一个同态, 则称 $\sigma$ 为 $G$ 的一个特征.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Dedekind 引理}
+
+\begin{lem}[Dedekind 引理]
+若 $\{ \sigma_1, \dots, \sigma_n \}$ 为 $G \to E$ 的 $n$ 个不同的特征,
+则 $V$ 中它们线性无关.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+假设 $\{ \sigma_1, \dots, \sigma_n \}$ 是线性相关的.
+定义 Dedekind 数 $m$ 为:
+\[
+m = \min \big\{ s \mid \exists\ s \text{ 个向量 } \sigma_1, \dots, \sigma_s
+\text{ 及 } E \text{ 中全不为 } 0 \text{ 的 } E \text{ 中的元素 } a_i,
+\text{ 使得 } \sum_{i=1}^{s} a_i \sigma_i = 0 \big\}
+\]
+$\Longrightarrow 2 \leq m \leq n$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Dedekind 引理的证明}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+不妨令 $\sigma_1, \dots, \sigma_m$ 为对应的向量组,
+$\exists\ a_i \in E$, 使得 $\forall\ a_i \neq 0$,
+且 $\sum_{i=1}^{m} a_i \sigma_i = 0$.
+又由 $\{ \sigma_1, \dots, \sigma_n \}$ 互不相同,
+$\exists\ h \in G$, 使得 $\forall\ 2 \leq i \leq n$, $\sigma_i(h) \neq \sigma_1(h)$.
+由 $\sum_{i=1}^{m} a_i \sigma_i = 0$ 知 $\forall\ g \in G$,
+$\sum_{i=1}^{m} a_i \sigma_i(g) = 0$,
+那么 $\sum_{i=1}^{m} a_i \sigma_i(h) \sigma_i(g) = 0$.
+同理有 $\sum_{i=1}^{m} a_i \sigma_i(hg) = 0$,
+即 $\sum_{i=1}^{m} a_i \sigma_i(h) \sigma_i(g) = 0$,
+那么 $\sum_{i=1}^{m} a_i (\sigma_i(h) - \sigma_1(h)) \sigma_i(g) = 0$.
+由 $g$ 为任取的, 知 $\sum_{i=1}^{m} a_i (\sigma_i(h) - \sigma_1(h)) \sigma_i = 0$.
+由于 $\forall\ a_i \neq 0$,\ $\forall\ 2 \leq i \leq n$,
+$\sigma_i(h) \neq \sigma_1(h)$,
+知此式与 $m$ 的极小性矛盾.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 群的阶定理的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+设 $[E:F] = n$, 令 $\{ \alpha_1, \dots, \alpha_n \}$ 为 $E/F$ 的一组基.
+令 $|\mathrm{Gal}(E/F)| = m$, $\mathrm{Gal}(E/F) = \{ \sigma_1, \dots, \sigma_m \}$,
+$\forall\ \sigma_i$ 为 $E^{*} \to E$ 的一个特征.
+假设 $m > n$, 令
+\[
+A =
+\begin{pmatrix}
+\sigma_1(\alpha_1) & \sigma_1(\alpha_2) & \dots & \sigma_1(\alpha_n) \\
+\sigma_2(\alpha_1) & \sigma_2(\alpha_2) & \dots & \sigma_2(\alpha_n) \\
+\vdots            & \vdots            &       & \vdots            \\
+\sigma_m(\alpha_1) & \sigma_m(\alpha_2) & \dots & \sigma_m(\alpha_n)
+\end{pmatrix}
+\]
+由于 $m > n$, $\mathrm{rank}(A) \leq n < m$,
+即存在不全为 $0$ 的 $a_i \in E$,
+使得 $\sum_{i=1}^{m} a_i (\sigma_i(\alpha_1), \dots, \sigma_i(\alpha_n)) = 0$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 群的阶定理的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明, 续)
+即 $\forall\ 1 \leq j \leq n$, 有 $\sum_{i=1}^{m} a_i \sigma_i(\alpha_j) = 0$.
+令 $f = \sum_{i=1}^{m} a_i \sigma_i \in V$,
+由于 $\forall\ \alpha_j$, $f(\alpha_j) = 0$ 且
+$\{ \alpha_1, \dots, \alpha_n \}$ 为 $E/F$ 的基,
+故 $f = 0$, 即 $f = \sum_{i=1}^{m} a_i \sigma_i = 0$,
+即 $\{ \sigma_1, \dots, \sigma_m \}$ 线性相关,
+这与 Dedekind 引理矛盾.
+\qed
+
+\pause
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+令 $H < \mathrm{Aut}(E)$, 且 $F = I_n(H)$, 令 $|H| = m$.
+由 Galois 算子引理 (ii) 有 $H < \mathrm{Gal}(E/I_n(H)) = \mathrm{Gal}(E/F)$,
+那么 $|H| < |\mathrm{Gal}(E/F)| \leq n$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 群的阶定理的证明 (三)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明, 续)
+假设 $m < n$, 由 $\mathrm{rank}(A) \leq m < n$,
+则 $A$ 的 $n$ 个列向量线性相关,
+令它的 Dedekind 数为 $s$, 不妨设 $\sigma_1, \dots, \sigma_s$ 为对应向量组.
+有不全为 $0$ 的 $a_i \in E$,
+使得 $\sum_{i=1}^{s} a_i \big( \sigma_1(\alpha_i), \sigma_2(\alpha_i), \dots, \sigma_m(\alpha_i) \big)^{\mathsf{T}} = 0$,
+即 $\forall\ 1 \leq j \leq m$, 有 $\sum_{i=1}^{s} a_i \sigma_i(\alpha_i) = 0$.
+
+首先证明 $a_i \in F$:
+令 $a_1 = 1$, 仅证 $\forall\ \tau \in H$, 有 $\tau(a_i) = a_i$;
+\[
+\tau\Big( \sum_{i=1}^{s} a_i \sigma_i(\alpha_i) \Big)
+= \sum_{i=1}^{s} \tau(a_i) \tau\sigma_i(\alpha_i)
+\]
+由于 $\tau\sigma_i \in H$, 因此 $\forall\ 1 \leq j \leq m$,
+有 $\sum_{i=1}^{s} \tau(a_i) \tau\sigma_i(\alpha_i) = 0$
+($\{ \sigma_1, \dots, \sigma_m \}$, 即 $\tau\sigma_i = \sigma_{t_i}$).
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 群的阶定理的证明 (四)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明, 续)
+那么 $\sum_{i=1}^{s} (\tau(a_i) - a_i) \sigma_j(\alpha_i) = 0$,
+即 $\sum_{i=1}^{s} (\tau(a_i) - a_i) \sigma_j(\alpha_i) = 0$.
+假若 $\exists\ \tau$, 使得 $\tau(a_i) \neq a_i$,
+这会与 $s$ 为 Dedekind 数矛盾.
+故 $\forall\ 1 \leq i \leq s$, 有 $\tau(a_i) = a_i$, 即 $a_i \in F$.
+由 $\sum_{i=1}^{s} a_i \sigma_j(\alpha_i) = 0$
+有 $\sum_{i=1}^{s} \sigma_j(a_i \alpha_i) = 0
+\Longrightarrow \sigma_j\Big( \sum_{i=1}^{s} a_i \alpha_i \Big) = 0$,
+那么 $\sum_{i=1}^{s} a_i \alpha_i = 0$,
+这与 $\{ \alpha_1, \dots, \alpha_n \}$ 为基矛盾.
+故 $m = n$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 群的阶定理的证明 (五)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+若 $F = I_n(\mathrm{Gal}(E/F))$, 由 (ii) 知
+$|\mathrm{Gal}(E/F)| = [E:F]$.
+反过来, 若 $|\mathrm{Gal}(E/F)| = [E:F]$, 令 $F_1 = I_n(\mathrm{Gal}(E/F))$,
+由 Galois 算子引理 (ii) 知 $F \subset F_1 \subset E$,
+由 (ii) 知 $|\mathrm{Gal}(E/F)| = |\mathrm{Gal}(E/F_1)|$,
+且 $[E:F] = |\mathrm{Gal}(E/F)| = |\mathrm{Gal}(E/F_1)| = [E:F_1]$,
+因此 $F_1 = F$, 即 $F \supseteq \mathrm{Gal}(E/F)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 扩张}
+
+\begin{Def}[Galois 扩张]
+一个代数扩张 $E/F$ 称为 Galois 扩张, 若 $F = I_n(\mathrm{Gal}(E/F))$.
+\end{Def}
+
+特别地, 有限扩张 $E/F$ 为 Galois 扩张
+$\iff |\mathrm{Gal}(E/F)| = [E:F]$.
+
+\pause
+
+\begin{eg}
+$F = \mathbb{Q}(\sqrt{d})$ 为二次域, $d = \pm p_1 \dotsm p_n$
+为无平方因子数, $p_1, \dots, p_n$ 为互不相同的素数.
+$\mathbb{Q}(\sqrt{d})/\mathbb{Q}$ 为二次扩张,
+$\sqrt{d}$ 的极小多项式 $x^2 - d$ 的 2 根 $\pm\sqrt{d} \in \mathbb{Q}(\sqrt{d})$,
+故 $|\mathrm{Gal}(\mathbb{Q}\sqrt{d}/\mathbb{Q})| = 2$,
+即知 $\mathbb{Q}(\sqrt{d})/\mathbb{Q}$ 为 Galois 扩张.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[分圆]{单位根与分圆域}
+
+%------------------------------------------------
+
+\begin{frame}{单位根群}
+
+\begin{eg}
+$n \geq 1$,
+$U_n = \{ e^{\frac{2 \pi i}{n} k} \mid 1 \leq k \leq n \}$
+为 $n$ 次单位根群 ($\mathbb{C}^{*}$ 中唯一的 $n$ 阶有限群),
+令
+\[
+U_n^{*} = \{ e^{\frac{2 \pi i}{n} k} \mid 1 \leq k \leq n \text{ 且 } (k, n) = 1 \}
+\]
+为 $U_n$ 中 $\varphi(n)$ 个 $n$ 次本原单位根
+(每个 $U_n^{*}$ 中元素皆为 $U_n$ 的生成元).
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分圆域}
+
+令 $\xi = e^{\frac{2 \pi i}{n}}$, $\mathbb{Q}(\xi)/\mathbb{Q}$,
+$[\mathbb{Q}(\xi):\mathbb{Q}] = \varphi(n)$,
+$\xi$ 在 $\mathbb{Q}$ 中极小多项式为
+\[
+\Phi_n(x) = \prod_{\substack{1 \leq k \leq n \\ (k, n) = 1}}
+\Big( x - e^{\frac{2 \pi i}{n} k} \Big),
+\]
+$\Phi_n(x) \in \mathbb{Z}[x]$ 且 $\Phi_n(x)$ 是不可约的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分圆域是 Galois 扩张}
+
+$\forall\ \sigma \in \mathrm{Gal}(\mathbb{Q}(\xi)/\mathbb{Q})$,
+$\sigma|_{U_n} = \underline{\hspace{2.5em}}$ 为 $U_n \to U_n$ 的自同构,
+故
+\[
+\mathrm{Gal}(\mathbb{Q}(\xi)/\mathbb{Q}) \cong \mathrm{Aut}(U_n)
+= \big( \mathbb{Z}/\langle n \rangle \big)^{*},
+\]
+那么 $|\mathrm{Gal}(\mathbb{Q}(\xi)/\mathbb{Q})| = \varphi(n)$,
+故 $\mathbb{Q}(\xi)/\mathbb{Q}$ 为 Galois 扩张.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[对称]{对称有理函数}
+
+%------------------------------------------------
+
+\begin{frame}{例: 对称有理函数域}
+
+\begin{eg}
+$F$ 为一个域, $F(x_1, \dots, x_n)$ 为 $F$ 上的 $n$ 元有理函数域,
+令 $S_n$ 为 $n$ 元对称群, $\forall\ \sigma \in S_n$ 可嵌入
+$\mathrm{Gal}(F(x_1, \dots, x_n)/F)$ by:
+$\forall\ \frac{f(x_1, \dots, x_n)}{g(x_1, \dots, x_n)} \in F(x_1, \dots, x_n)$,
+定义
+\[
+\sigma\Big( \frac{f(x_1, \dots, x_n)}{g(x_1, \dots, x_n)} \Big)
+= \frac{f(x_{\sigma(1)}, \dots, x_{\sigma(n)})}{g(x_{\sigma(1)}, \dots, x_{\sigma(n)})}.
+\]
+那么易知 $\sigma \in \mathrm{Gal}(F(x_1, \dots, x_n)/F)$,
+即 $S_n < \mathrm{Gal}(F(x_1, \dots, x_n)/F)$.
+令 $L = I_n(S_n)$, 那么 $F \subset L \subset F(x_1, \dots, x_n)$,
+$L$ 为对称有理函数全体.
+由 Galois 群的阶定理, 有 $F(x_1, \dots, x_n)/L$ 为有限 Galois 扩张,
+且 $[F(x_1, \dots, x_n):L] = |S_n| = n!$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{两个推论}
+
+\begin{cor}
+任一有限群 $G$ 为某一个 Galois 扩张的 Galois 群. (考虑 Cayley 定理)
+\end{cor}
+
+\begin{cor}
+任一有理函数可表示为初等对称多项式的有理函数.
+\end{cor}
+
+\pause
+
+令
+\[
+\begin{cases}
+\sigma_1 = x_1 + x_2 + \dots + x_n \\
+\sigma_2 = x_1 x_2 + \dots + x_{n-1} x_n \\
+\qquad \vdots \\
+\sigma_n = x_1 \dotsm x_n
+\end{cases}
+\qquad
+\sigma_i \text{ 为 } F(x_1, \dots, x_n) \text{ 中的初等对称多项式}
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{推论 2 的证明}
+
+$\forall\ \{ \sigma_1, \dots, \sigma_n \} \subset L$, 那么
+$F \subset F(\sigma_1, \dots, \sigma_n) \subset L \subset F(x_1, \dots, x_n)$.
+令多项式
+\[
+g(t) = (t - x_1) \dotsm (t - x_n)
+= t^n - \sigma_1 t^{n-1} + \dots + (-1)^i \sigma_i t^{n-i} + \dots + (-1)^n \sigma_n
+\]
+$\Longrightarrow g(t) \in F(\sigma_1, \dots, \sigma_n)[t]$,
+即 $\forall\ x_i \in F(x_1, \dots, x_n)$ 为 $F(\sigma_1, \dots, \sigma_n)$
+的代数元素.
+\[
+F(x_1, \dots, x_n) = F(\sigma_1, \dots, \sigma_n)(x_1, \dots, x_n)
+\]
+那么
+\[
+n! = [F(x_1, \dots, x_n):L] \leq [F(x_1, \dots, x_n):F(\sigma_1, \dots, \sigma_n)] \leq n!
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[反例]{非 Galois 扩张的例}
+
+%------------------------------------------------
+
+\begin{frame}{例: 非 Galois 扩张}
+
+\begin{eg}
+$F_p$ 为一个 $p$ 元有限域, $F_p(x)$ 为其有理函数域,
+$F_p(x)/F_p$ 为超越扩张,
+$F_p \subset F_p(x^p) \subset F_p(x)$, 那么 $F_p(x)/F_p(x^p)$ 为 $p$ 次的.
+因为 $F_p(x) = F_p(x^p)(x)$,
+考虑多项式 $g(t) = t^p - x^p \in F_p(x^p)[t]$,
+$x$ 为 $F_p(x^p)$ 的代数元素, 而 $g(t)$ 是不可约多项式.
+又由于 $g(t) = (t - x)^p$, 故 $x$ 为 $g$ 的唯一的零点,
+故 $|\mathrm{Gal}(F_p(x)/F_p(x^p))| = 1$,
+可知 $F_p(x)/F_p(x^p)$ 非 Galois 扩张.
+\end{eg}
+
 \end{frame}
 
 %------------------------------------------------
