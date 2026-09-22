@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,585 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[重根]{重根与导数}
+
+%------------------------------------------------
+
+\begin{frame}{重根与导数}
+
+\begin{lem}[重根与导数]
+$F$ 为一个域, $\chi(F)$ 为域的特征, $f(x) \in F[x]$, 则:
 \begin{itemize}
-\item 本部分对应手稿第 62--70 页;
-\item 内容尚未整理成 slides.
+\item[(i)] 若 $\alpha$ 为 $f(x)$ 的一个 $m$ 重根, 且 $\chi(F) \nmid m$,
+  则 $\alpha$ 为 $f'(x)$ 的 $m-1$ 重根;
+\item[(ii)] 若 $\chi(F) \mid m$, 则 $\alpha$ 为 $f'(x)$ 的至少 $m$ 重根;
+\item[(iii)] $f(x)$ 无重根 $\iff$ $(f(x), f'(x)) = 1$.
 \end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 与 (ii) 的证明)
+在 $f(x)$ 的分裂域 $E$ 中, 有 $f(x) = (x - \alpha)^m g(x)$, 其中 $g(\alpha) \neq 0$.
+\[
+f'(x) = (x - \alpha)^m g'(x) + m(x - \alpha)^{m-1} g(x)
+= (x - \alpha)^{m-1} \big( m g(x) + (x - \alpha) g'(x) \big) = (x - \alpha)^{m-1} h(x)
+\]
+若 $\chi(F) \nmid m$, 那么 $h(\alpha) = m g(\alpha) \neq 0$,
+即知 $\alpha$ 为 $f'(x)$ 的 $m-1$ 重根.
+若 $\chi(F) \mid m$, 则 $f'(x) = (x - \alpha)^m g'(x)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{重根与导数的证明 (iii)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+若 $f(x)$ 无重根, 则由 (i) (ii) 知 $f(x)$ 与 $f'(x)$ 无公共的根.
+若 $(f(x), f'(x)) \neq 1$, 则 $\exists$ 不可约多项式 $p(x)$,
+使得 $p(x) \mid f(x)$, 且 $p(x) \mid f'(x)$,
+故 $p(x)$ 的 0 点为 $f(x)$ 与 $f'(x)$ 的公共根, 矛盾,
+因此 $(f(x), f'(x)) = 1$.
+反过来, 若 $(f(x), f'(x)) = 1$,
+设 $\alpha$ 为 $f(x)$ 的 $m$ 重根 ($m > 1$),
+则由 (i) (ii) 知 $\alpha$ 为 $f'(x)$ 的根,
+令 $p(x)$ 为 $\alpha$ 的极小多项式, 那么 $p(x) \mid f(x)$ 且 $p(x) \mid f'(x)$,
+这与 $(f(x), f'(x)) = 1$ 矛盾, 故 $f(x)$ 无重根.
+\qed
+
+\pause
+
+\begin{cor}
+\begin{itemize}
+\item[(i)] $g(x)$ 为 $F$ 上的一个不可约多项式, 则 $g(x)$ 有重根 $\iff$ $g'(x) = 0$;
+\item[(ii)] 若 $\chi(F) = 0$, 则任一不可约多项式无重根.
+\end{itemize}
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[可分]{可分多项式与完全域}
+
+%------------------------------------------------
+
+\begin{frame}{可分多项式与可分扩张}
+
+\begin{Def}[可分多项式与可分扩张]
+$F$ 为一个域, $f(x) \in F[x]$ 为不可约多项式, 若 $f(x)$ 无重根,
+称 $f(x)$ 为一个可分的不可约多项式;
+对任一 $f(x) \in F[x]$, 若 $f(x)$ 的不可约因子可分, 则称 $f(x)$ 为 $F$
+上的一个可分多项式.
+\end{Def}
+
+\begin{itemize}
+\item[(ii)] 一个代数扩张 $E/F$, 若 $\forall\ \alpha \in E$, $\alpha$
+  的极小多项式为可分多项式, 则称 $E/F$ 为一个可分扩张,
+  $\alpha$ 称为 $F$ 上的可分代数元素;
+\item[(iii)] 若 $F$ 上的任一不可约多项式为可分多项式, 则称 $F$ 为一个完全域.
+\end{itemize}
+
+\pause
+
+注: 若 $\chi(F) = 0$, 则以上定义平凡.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{完全域}
+
+\begin{lem}[完全域]
+若 $\chi(F) = p$, 则 $F$ 为完全域 $\iff$ $F^p = F$.
+其中 $F^p = \{ a^p \mid a \in F \}$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. $F$ 为完全域, 假设 $F^p \not\subset F$,
+则 $\exists\ \alpha \in F$, 使得 $\forall\ b \in F$, $\alpha \neq b^p$,
+令 $g(x) = x^p - \alpha \in F[x]$ 为不可约的, $g'(x) = p x^{p-1} = 0$,
+那么 $g(x)$ 有重根, 与 $F$ 为完全域矛盾.
+
+\pause
+
+$2^{\circ}$. $F^p = F$, 假设 $F$ 不是完全域,
+则 $\exists\ f(x) \in F[x]$, $f(x)$ 为不可约且不可分的多项式,
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{完全域引理的证明 (续)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+下证: 若 $\chi(F) = p$, $f(x)$ 为不可约不可分多项式,
+则 $\exists$ 不可约多项式 $g(x)$, 使 $f(x) = g(x^p)$:
+令 $f(x) = a_0 + a_1 x + \dots + a_n x^n \in F[x]$,
+$f'(x) = a_1 + 2 a_2 x + \dots + n a_n x^{n-1}$, 由于 $f(x)$ 不可分, 则 $f'(x) = 0$,
+故 $p \mid k a_k$, 那么若 $p \nmid a_k$, 则 $p \mid k$; 若 $p \mid k$, 则 $p \nmid a_k$,
+所以 $f(x) = a_0 + a_p x^p + a_{2p} x^{2p} + \dots + a_{sp} x^{sp}$,
+令 $g(x) = a_0 + a_p x + a_{2p} x^2 + \dots + a_{sp} x^s$, 则 $f(x) = g(x^p)$,
+由 $f(x)$ 不可约知 $g(x)$ 不可约.
+由上可知, 对 $F$ 上不可约不可分多项式 $f(x)$, 存在 $F$ 上一个不可约可分多项式
+$g(x)$, 使得 $f(x) = g(x^p)$.
+
+\pause
+
+$f(x)$ 不可约不可分, 则 $\exists\ g(x) \in F[x]$, 使得 $f(x) = g(x^p)$,
+令 $g(x) = a_0 + a_1 x + \dots + a_m x^m$,
+\[
+f(x) = a_0 + a_1 x^p + \dots + a_m x^{mp}, \quad \text{由 } F^p = F, \text{ 令 } a_i = b_i^p,
+\]
+那么 $f(x) = (b_0 + b_1 x + \dots + b_m x^m)^p$, 与 $f(x)$ 不可约矛盾,
+故 $F$ 为完全域.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{有限域为完全域}
+
+\begin{cor}[有限域为完全域]
+任意有限域为完全域.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+由 $|F| < \infty$, 令 $\chi(F) = p$, $|F| = p^n$,
+那么 $F/F_p$ 为一个 $n$ 次 Galois 扩张, $\mathrm{Gal}(F/F_p) = \langle \tau \rangle$,
+其中 $\tau$ 定义为, $\forall\ \alpha \in F$, $\tau(\alpha) = \alpha^p$,
+$\tau$ 为 $F$ 上 Frobenius 自同构, $F^p = F$.
+\qed
+
+\pause
+
+\begin{eg}
+$F_p$ 为 $p$ 元有限域, $F_p(x)$ 不是完全域.
+\end{eg}
+
+\startproof[bg=yellow, fg=red](证明)
+$\chi(F_p(x)) = \chi(F_p) = p$,
+假设 $F_p(x)$ 为完全域, 那么 $F_p(x)^p = F_p(x)$,
+那么 $\exists\ f(x), g(x) \in F_p(x)$, 使得 $x = \frac{f^p(x)}{g^p(x)}$,
+即 $x g^p(x) = f^p(x)$, 比较次数即知这是不可能的,
+故 $F_p(x)$ 非完全域.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[Galois]{Galois 扩张的刻画}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 扩张的刻画}
+
+\begin{thm}[Galois 扩张的刻画]
+$E/F$ 为代数扩张, 则下述命题等价:
+\begin{itemize}
+\item[(i)] $E/F$ 为 Galois 扩张;
+\item[(ii)] $E/F$ 为正规的可分扩张;
+\item[(iii)] $E$ 为 $F$ 上的一个可分多项式集的分裂域.
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 扩张的刻画的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) $\Longrightarrow$ (ii) 的证明)
+若 $E/F$ 为 Galois 扩张, $\forall\ \alpha \in E$, 令 $g(x)$ 为 $\alpha$
+的极小多项式, 则
+$\{ \sigma(\alpha) \mid \sigma \in \mathrm{Gal}(E/F) \}$ 为有限集,
+记为 $\{ \sigma(\alpha) \mid \sigma \in \mathrm{Gal}(E/F) \}
+= \{ \alpha = \alpha_1, \alpha_2, \dots, \alpha_n \}$,
+令 $f(x) = \prod_{i=1}^{n} (x - \alpha_i)$, 由于 $\forall\ \sigma \in \mathrm{Gal}(E/F)$,
+有 $\sigma(f(x)) = \prod_{i=1}^{n} (x - \sigma(\alpha_i)) = f(x)$, 故 $f(x) \in F[x]$.
+由 $f(x)$ 为可分多项式, $g(x) \mid f(x)$, 知 $g(x)$ 为可分多项式,
+$\alpha$ 为可分代数元素, 那么 $E/F$ 为可分扩张.
+因为 $g(x)$ 上所有零点 $\in E$, 那么 $E$ 为 $\{ g_{\alpha}(x) \mid \alpha \in E \}$
+的分裂域, 知 $E/F$ 为正规扩张.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 扩张的刻画的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((ii) $\Longrightarrow$ (iii) 的证明)
+平凡.
+
+\pause
+
+\startproof[bg=yellow, fg=red]((iii) $\Longrightarrow$ (i) 的证明)
+(a). $[E:F] = n$, 对 $n$ 作归纳法.
+$n = 1$ 时平凡,
+若 $[E:F] \leq n - 1$ 时命题成立, 则当 $[E:F] = n$ 时,
+$E$ 为可分多项式集 $S$ 在 $F$ 上分裂域, $S = \{ f_i(x) \}$, $A$ 为 $S$ 的零点集,
+$\exists\ \alpha \in A$, $\alpha \notin F$, $\alpha$ 的极小多项式为 $g(x)$,
+$\deg(g(x)) = m$,
+$\exists\ f_i(x) \in S$, $g(x) \mid f_i(x)$, $g(x)$ 的 $m$ 个不同的零点
+$\{ \beta = \alpha, \dots, \alpha_m \} \subset A$,
+考虑 $L = F(\alpha)$, 知 $[E:L] < n$, $E$ 为 $L$ 上可分多项式集 $S$ 在 $L$ 上分裂域,
+由归纳假设知 $E/L$ 为 Galois 扩张, 即
+$|\mathrm{Gal}(E/L)| = [E:L]$, 令 $H = \mathrm{Gal}(E/L)$, $G = \mathrm{Gal}(E/F)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 扩张的刻画的证明 (三)}
+
+\startproof[bg=yellow, fg=red]((iii) $\Longrightarrow$ (i) 的证明, 续)
+由同构的开拓引理, 对任一 $\alpha_i$, 存在 $F(\alpha) \xrightarrow{\ \tau_i\ } E$,
+满足 $\tau_i(\alpha) = \alpha_i$, $\tau_i|_F = 1_F$,
+再由正规扩张的刻画引理, 不妨令 $\tau_i \in \mathrm{Gal}(E/F)$,
+$m$ 个左陪集 $\{ \tau_i H \mid 1 \leq i \leq m \}$
+是 $m$ 个互异的左陪集, 因为 $\tau_i H = \tau_j H \iff \tau_j^{-1} \tau_i \in H$.
+若 $i \neq j$, 那么 $\tau_j^{-1} \tau_i(\alpha) = \tau_j^{-1}(\alpha_i)
+\neq \tau_j^{-1}(\alpha_j) = \alpha$, 即 $\tau_j^{-1} \tau_i \notin H$.
+故 $|G| = [G:H] \cdot |H| \geq m \cdot [E:L]$,
+即 $|G| \geq [L:F] \cdot [E:L] = [E:F]$, 所以 $|G| = [E:F]$, 即 $E/F$ 为 Galois 扩张.
+
+\pause
+
+(b). $[E:F] = \infty$,
+首先, $F \subset I_n(\mathrm{Gal}(E/F))$,
+反过来, $\forall\ \alpha \in I_n(\mathrm{Gal}(E/F))$, 令 $E = F(A)$,
+$A$ 为可分多项式集 $S$ 的 0 点集,
+(由正规扩张的刻画引理) 则 $\exists\ \{ \alpha_1, \dots, \alpha_n \} \subset A$,
+使得 $\alpha \in F(\alpha_1, \dots, \alpha_n) = L$,
+由 (a) 知 $L/F$ 为 Galois 扩张, 且
+$\mathrm{Gal}(L/F) = \{ \sigma|_L \mid \sigma \in \mathrm{Gal}(E/F) \}$.
+$\forall\ \sigma \in \mathrm{Gal}(E/F)$, 有 $\sigma(\alpha) = \alpha$, $\alpha \in L$,
+因此 $\forall\ \sigma \in \mathrm{Gal}(L/F)$, $\sigma(\alpha) = \alpha$,
+即 $\alpha \in I_n(\mathrm{Gal}(L/F)) = F$,
+即 $\alpha \in F$, 故 $F = I_n(\mathrm{Gal}(E/F))$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[判别]{可分扩张的判别}
+
+%------------------------------------------------
+
+\begin{frame}{可分扩张的判别}
+
+\begin{cor}[可分扩张的判别]
+\begin{itemize}
+\item[(i)] 一个代数扩张 $E/F$ 为可分扩张 $\iff$
+  $E/F \subset L/F$, $L/F$ 为 Galois 扩张;
+\item[(ii)] 令 $E = F(A)$, $E/F$ 为可分扩张 $\iff$
+  $\forall\ \alpha \in A$, $\alpha$ 为 $F$ 的可分代数元素.
+\end{itemize}
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+(i) 令 $L/E$ 为 $E/F$ 的正规闭包,
+即 $L$ 为 $S = \{ g_{\alpha}(x) \mid \alpha \in E,\ g_{\alpha}(x) \text{ 为 }
+\alpha \text{ 的极小多项式} \}$ 的分裂域,
+若 $E/F$ 为可分扩张, 则 $L/F$ 为 Galois 扩张;
+反过来平凡.
+(ii) $E/F$ 为可分的, $\forall\ \alpha \in A$ 为可分的 (平凡).
+反过来, 若 $\forall\ \alpha \in A$, $\alpha$ 为可分代数元素,
+令 $S = \{ g_{\alpha}(x) \mid \alpha \in A,\ g_{\alpha}(x) \text{ 为 } \alpha \text{ 的极小多项式} \}$,
+令 $L/F$ 为 $S$ 的分裂域, 则 $L/F$ 为 Galois 扩张, 且 $E/F \subset L/F$,
+由 (i) 知 $E/F$ 为可分扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[纯不可分]{纯不可分扩张}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分扩张}
+
+纯不可分扩张:
+$E/F$ 为代数扩张, $\alpha \in E$, $\alpha$ 的极小多项式 $g(x)$
+在分裂域中仅有一个根, 则称 $\alpha$ 为 $F$ 上的一个纯不可分元.
+
+\pause
+
+一个代数扩张 $E/F$ 称为纯不可分扩张, 若 $\forall\ \alpha \in E$,
+$\alpha$ 为 $F$ 上纯不可分元.
+
+\pause
+
+\begin{itemize}
+\item 注:
+\item \quanhao{①} $\alpha$ 为 $F$ 上代数元素, $\alpha$ 为可分元与纯不可分元
+  $\Longrightarrow$ $\alpha \in F$;
+\item \quanhao{②} 一个代数扩张 $E/F$ 为可分扩张与纯不可分扩张 $\iff$ $E = F$;
+\item \quanhao{③} $E/F$ 为纯不可分扩张 ($E \neq F$), 则 $\chi(F) = p$, 且 $|F| = \infty$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分元}
+
+\begin{lem}[纯不可分元]
+$F$ 为一个域, $\chi(F) = p$, 则
+\begin{itemize}
+\item[(i)] $F$ 上一个不可约不可分多项式 $f(x)$ 的所有零点的重数相同 $= p^t$;
+\item[(ii)] $F$ 上代数元素 $\alpha$ 为 $F$ 上纯不可分元 $\iff$
+  $\exists\ t \geq 0$, 使得 $(\alpha)^{p^t} \in F$.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+若 $f(x)$ 为 $F$ 上一个不可约不可分多项式,
+则 $\exists\ F$ 上一个不可约可分多项式 $g(x)$, 使得 $f(x) = g(x^{p^t})$.
+若 $g(x)$ 在其分裂域中分解为 $g(x) = \prod_{i=1}^{m} (x - \alpha_i)$,
+$\alpha_i \neq \alpha_j$ ($i \neq j$),
+那么 $f(x) = (x^{p^t} - \alpha_1) \dotsm (x^{p^t} - \alpha_m)$.
+令 $\beta_i$ 为 $x^{p^t} - \alpha_i$ 的一个零点,
+则 $f(x) = \prod_{i=1}^{m} (x - \beta_i)^{p^t}$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分元的证明 (ii)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+若 $\alpha$ 为 $F$ 上纯不可分元 ($\alpha$ 为代数元素),
+则 $\alpha$ 极小多项式 $g(x) = (x - \alpha)^{p^t} = x^{p^t} - \alpha^{p^t}$,
+$\alpha^{p^t} \in F$.
+反过来, 若 $\exists\ n \geq 0$, $\alpha^{p^n} \in F$,
+令 $t \geq 0$ 为满足 $\alpha^{p^t} \in F$ 的最小的数,
+即 $\alpha^{p^{t-1}} \notin F$, $\alpha^{p^t} \in F$,
+令 $g(x) = x^{p^t} - \alpha^{p^t} \in F[x]$ 为不可约多项式,
+$\alpha$ 为 $g(x)$ 的唯一零点, 所以 $\alpha$ 为 $F$ 上纯不可分元.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分扩张的性质}
+
+\begin{lem}[纯不可分扩张的性质]
+$F$ 为一个域, $\chi(F) = p$, 那么:
+\begin{itemize}
+\item[(i)] $E/F$ 为纯不可分扩张 $\Longrightarrow$ $E/F$ 为正规扩张,
+  且 $\mathrm{Gal}(E/F) = 1$;
+\item[(ii)] 若 $[E:F] < \infty$, $E/F$ 为纯不可分扩张,
+  则 $[E:F] = p^n$ ($n \geq 0$);
+\item[(iii)] $E = F(A)$, $E/F$ 为纯不可分扩张 $\iff$
+  $\forall\ \alpha \in A$, $\alpha$ 为 $F$ 上纯不可分元;
+\item[(iv)] 若 $E/F$, $L/E$ 为纯不可分扩张 $\Longrightarrow$ $L/F$ 为纯不可分扩张.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$g(x) \in F[x]$ 为不可约多项式, 若 $g(x)$ 有一个零点 $\alpha \in E$,
+由于 $\alpha$ 为纯不可分元, 易证 $g(x)$ 为 $\alpha$ 极小多项式,
+则 $\alpha$ 为其唯一零点, 故 $E/F$ 为正规扩张.
+又 $\forall\ \sigma \in \mathrm{Gal}(E/F)$, $\forall\ \alpha \in E$, $\sigma(\alpha) = \alpha$,
+所以 $\sigma = 1$, $\mathrm{Gal}(E/F) = 1$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分扩张的性质的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+若 $E/F$ 为纯不可分的, $E = F(\alpha)$, 则 $[E:F] = p^t$,
+$p^t$ 为 $\alpha$ 极小多项式次数.
+一般地, 若 $[E:F] < \infty$ 为纯不可分的, 则 $\exists\ \alpha_1, \dots, \alpha_m$,
+使得 $E = F(\alpha_1, \dots, \alpha_m)$.
+注意到 $[F(\alpha_1, \dots, \alpha_i):F(\alpha_1, \dots, \alpha_{i-1})] = p^{t_i}$,
+故 $[E:F] = p^{t_1 + \dots + t_m} = p^n$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分扩张的性质的证明 (三)}
+
+\startproof[bg=yellow, fg=red]((iii) 与 (iv) 的证明)
+(iii) 若 $E = F(A)$, $E/F$ 为纯不可分扩张, 那么 $\forall\ \alpha \in A$,
+$\alpha$ 为 $F$ 上纯不可分元.
+反过来, 若 $\forall\ \alpha \in A$ 为纯不可分元, 则 $\forall\ \alpha \in E$,
+$\exists\ \{ \alpha_1, \dots, \alpha_m \} \subset A$,
+使得 $\alpha \in F(\alpha_1, \dots, \alpha_m)$, 因此 $\exists\ f, g \in F[x_1, \dots, x_n]$,
+使得 $\alpha = \frac{f(\alpha_1, \dots, \alpha_m)}{g(\alpha_1, \dots, \alpha_m)}$,
+又存在 $p^t$, 使得 $\alpha_i^{p^t} \in F$,
+$\alpha^{p^t} = \frac{f(\alpha_1^{p^t}, \dots, \alpha_m^{p^t})}{g(\alpha_1^{p^t}, \dots, \alpha_m^{p^t})} \in F$,
+故 $\alpha$ 为 $F$ 上纯不可分元, $E/F$ 为纯不可分扩张.
+
+(iv) $\forall\ \alpha \in L$, $\exists\ p^t$, 使得 $\alpha^{p^t} \in E$,
+又 $\exists\ p^k$, 使得 $(\alpha^{p^t})^{p^k} \in F$,
+那么 $\alpha^{p^{t+k}} \in F$, 即 $\alpha$ 为 $F$ 上纯不可分元,
+$L/F$ 为纯不可分扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 纯不可分扩张}
+
+\begin{eg}
+$F_p(x)/F_p(x^p)$ 为 $p$ 次的纯不可分扩张.
+因为 $F_p(x) = F_p(x^p)(x)$, 由于 $x^p \in F_p(x^p)$,
+故 $x$ 为 $F_p(x^p)$ 纯不可分元, 故 $F_p(x)/F_p(x^p)$ 为纯不可分扩张.
+\end{eg}
+
+\begin{eg}
+$F$ 为有限域, $\chi(F) = p$, $F(x)/F(x^p)$ 为 $p$ 次纯不可分扩张.
+$F(x_1, \dots, x_n)/F(x_1^p, \dots, x_n^p)$ 为 $p^n$ 次纯不可分扩张.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[闭包]{可分闭包与纯不可分闭包}
+
+%------------------------------------------------
+
+\begin{frame}{可分闭包与纯不可分闭包}
+
+$E/F$ 为代数扩张, 令 $E_s = \{ \alpha \mid \alpha \text{ 为 } F \text{ 上可分元素} \}$,
+$E_i = \{ \alpha \mid \alpha \text{ 为 } F \text{ 上纯不可分元} \}$.
+
+\begin{itemize}
+\item 性质:
+\item[(i)] $E_s$ 与 $E_i$ 为域, 而且 $E_s \cap E_i = F$.
+  $F \subset E_s$, $F \subset E_i \subset E$, 称 $E_s$ 为 $F$ 在 $E$ 中的可分闭包,
+  $E_i$ 为 $F$ 在 $E$ 中的纯不可分闭包;
+\item[(ii)] $E_s/F$ 为可分扩张, $E/E_s$ 为纯不可分扩张;
+\item[(iii)] 若 $F \subset L \subset E$, $L/F$ 为可分扩张,
+  $E/L$ 为纯不可分扩张 $\iff$ $L = E_s$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{性质的证明}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$E/E_s$ 为纯不可分扩张.
+$\forall\ \alpha \in E$, 若 $\alpha \in E_s$, 则 $\alpha$ 为 $E_s$ 上纯不可分元;
+若 $\alpha \notin E_s$, 则 $\alpha$ 为 $F$ 上的不可分元素,
+令 $f(x)$ 为 $\alpha$ 的极小多项式, 存在 $F$ 上可分不可约的多项式 $g(x)$,
+使得 $f(x) = g(x^{p^t})$, $\alpha^{p^t}$ 为 $g(x)$ 的零点, 即 $\alpha^{p^t} \in E_s$,
+那么 $\alpha$ 为 $E_s$ 上纯不可分元, 故 $E/E_s$ 为纯不可分扩张.
+
+\pause
+
+(iii) 若 $L$ 有上述性质, $F \subset L \subset E_s \subset E$.
+由 $E_s/F$ 为可分扩张 $\Longrightarrow$ $E_s/L$ 为可分扩张,
+由 $E/L$ 为纯不可分扩张 $\Longrightarrow$ $E_s/L$ 为纯不可分扩张,
+故 $E_s = L$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分扩张的中间域刻画}
+
+\begin{lem}[可分扩张的中间域刻画]
+$E/F$ 为代数扩张, $E_s$, $E_i$ 分别为 $F$ 在 $E$ 中的可分闭包与纯不可分闭包, 则:
+\begin{itemize}
+\item[(i)] $E_s/F$ 为可分扩张, $E/E_s$ 为纯不可分扩张;
+\item[(ii)] $E/F$ 为可分扩张 $\iff$ 对任意中间域 $L$, $L/F$, $E/L$ 为可分扩张.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((ii) $\Longleftarrow$ 的证明)
+若 $\exists$ 中间域 $L$, 使得 $L/F$, $E/L$ 为可分扩张,
+由 $L/F$ 为可分扩张知 $F \subset L \subset E_s \subset E$,
+因为 $E/L$ 为可分扩张, 那么 $E/E_s$ 为可分扩张,
+又 $E/E_s$ 必为纯不可分扩张, 故 $E = E_s$,
+即 $E/F$ 为可分扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 有限次数与互素}
+
+\begin{eg}
+$\chi(F) = p$, $E/F$ 为有限扩张, $[E:F] = n$, 若 $(n, p) = 1$, 则 $E/F$ 为可分的.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张的分解}
+
+\begin{lem}[正规扩张的分解]
+若 $E/F$ 为正规扩张 $\Longrightarrow$ $E_s/F$ 与 $E/E_i$ 都是 Galois 扩张,
+并且有群同构, $\mathrm{Gal}(E_s/F) \cong \mathrm{Gal}(E/E_i)$.
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+① $E_s/F$ 为 Galois 扩张, 因为 $\forall\ \alpha \in E_s$, $g(x)$ 为 $\alpha$
+的极小多项式, $\beta$ 为 $g(x)$ 的另一零点, 由 $E/F$ 为正规的, 知 $\beta \in E$,
+$g(x)$ 为其极小多项式, 那么 $\beta \in E_s$, 即 $E_s/F$ 为正规扩张,
+又有 $E_s/F$ 为可分扩张, 故 $E_s/F$ 为正规可分扩张.
+
+\pause
+
+② $\varphi: \mathrm{Gal}(E/F) \to \mathrm{Gal}(E_s/F)$
+by, $\forall\ \sigma \in \mathrm{Gal}(E/F)$, $\varphi(\sigma) = \sigma|_{E_s}$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张的分解的证明 (续)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+$\varphi$ 为满的群同态,
+$\ker \varphi = \{ \sigma \in \mathrm{Gal}(E/F) \mid \sigma|_{E_s} = 1 \} = \mathrm{Gal}(E/E_s) = 1$,
+故 $\varphi$ 为单一的群同态, 所以 $\mathrm{Gal}(E/F) \cong \mathrm{Gal}(E_s/F)$.
+
+③ $E/E_i$ 为 Galois 扩张, 仅证 $E_i = I_n(\mathrm{Gal}(E/F))$;
+$\forall\ \alpha \in E_i$, $\exists\ p^n$, 使得 $\alpha^{p^n} \in F$,
+则 $\forall\ \sigma \in \mathrm{Gal}(E/F)$, $\sigma(\alpha^{p^n}) = \alpha^{p^n}$,
+即 $\sigma(\alpha)^{p^n} = \alpha^{p^n}$, 那么 $\sigma(\alpha) = \alpha$,
+即 $\alpha \in I_n(\mathrm{Gal}(E/F))$, 故 $E_i \subset I_n(\mathrm{Gal}(E/F))$.
+$\forall\ \alpha \in I_n(\mathrm{Gal}(E/F))$, 由于 $\mathrm{Gal}(E/F) \cong \mathrm{Gal}(E_s/F)$,
+且 $E/E_s$ 为纯不可分扩张, $\exists\ p^n$, 使得 $\alpha^{p^n} \in E_s$,
+$\forall\ \sigma \in \mathrm{Gal}(E/F)$, $\sigma(\alpha^{p^n}) = \sigma(\alpha)^{p^n} = \alpha^{p^n}$
+$\Longrightarrow \alpha^{p^n} \in I_n(\mathrm{Gal}(E_s/F)) = F \Longrightarrow \alpha \in E_i$,
+故 $I_n(\mathrm{Gal}(E/F)) \subset E_i$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 可分闭包的计算}
+
+\begin{eg}
+$L$ 为域, $\chi(L) = 2$, 令 $F = L(X, Y)$ 为 $L$ 上 2 元有理函数域,
+$u$ 为 $F$ 上一个代数元素, 满足 $u^2 + u + X = 0$,
+令 $E = F(\sqrt{uY})$, 则 $E/F$ 的可分闭包 $E_s = F(u)$, $E_i = F$.
+\end{eg}
+
 \end{frame}
 
 %------------------------------------------------
