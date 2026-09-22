@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,302 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[基本定理]{Galois 基本定理}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 基本定理}
+
+\begin{thm}[Galois 基本定理]
+若 $E/F$ 为有限的 Galois 扩张, 则:
 \begin{itemize}
-\item 本部分对应手稿第 71--75 页;
-\item 内容尚未整理成 slides.
+\item[(i)] 对任意中间域 $L$, $F \subset L \subset E$, 有 $E/L$ 为 Galois 扩张,
+  且 $[L:F] = [\mathrm{Gal}(E/F) : \mathrm{Gal}(E/L)]$;
+\item[(ii)] $E/F$ 的中间域与 $\mathrm{Gal}(E/F)$ 的子群之间是 1-1 对应的.
+  即 $\forall\ L$, $F \subset L \subset E$, $\exists!\ H < \mathrm{Gal}(E/F)$,
+  使得 $L = I_n(H)$;
+  $\forall\ H < \mathrm{Gal}(E/F)$, $\exists!\ L$, 使得 $H = \mathrm{Gal}(E/L)$;
+\item[(iii)] $H \triangleleft \mathrm{Gal}(E/F) \iff I_n(H)/F$ 为 Galois 扩张.
 \end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 基本定理的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$E/F$ 为 Galois 扩张 $\Longrightarrow$ $E/F$ 为可分正规扩张
+$\Longrightarrow$ $E/L$ 为可分正规扩张 $\Longrightarrow$ $E/L$ 为 Galois 扩张.
+\[
+[L:F] = \frac{[E:F]}{[E:L]} = \frac{|\mathrm{Gal}(E/F)|}{|\mathrm{Gal}(E:L)|}
+= [\mathrm{Gal}(E:F) : \mathrm{Gal}(E:L)].
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 基本定理的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$\forall\ L$, $F \subset L \subset E$, $\exists\ H < G$, 使得 $L = I_n(H)$,
+令 $H = \mathrm{Gal}(E/L)$, 由 (i) 知 $L = I_n(\mathrm{Gal}(E/L)) = I_n(H)$.
+反过来, $\forall\ H < G$, $\exists$ 中间域 $L$, 使得 $H = \mathrm{Gal}(E/L)$,
+令 $L = I_n(H)$, 由 Galois 群的阶定理, $H = \mathrm{Gal}(E/L)$.
+而且 $\forall\ L$, $L = I_n(\mathrm{Gal}(E/L))$, $\forall\ H$,
+$H = \mathrm{Gal}(E/I_n(H))$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 基本定理的证明 (三)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+若 $H \triangleleft G$, 令 $L = I_n(H)$, $L/F$ 为可分扩张, 仅证 $L/F$ 为正规的.
+$\forall\ \alpha \in L$, 令 $g(x)$ 为 $\alpha$ 在 $F$ 中的极小多项式,
+$\beta$ 为 $g(x)$ 的任意另一个根.
+当 $\alpha, \beta$ 给定时, $\exists\ \sigma \in \mathrm{Gal}(E/F)$, 使得 $\sigma(\alpha) = \beta$.
+因此 $\forall\ \tau \in \mathrm{Gal}(E/L)\ (=H)$,
+$\tau(\beta) = \sigma(\sigma^{-1} \tau \sigma(\alpha))$.
+由于 $H \triangleleft G$, 故 $\sigma^{-1} \tau \sigma \in H$,
+由于 $\alpha \in L$, 故 $\sigma^{-1} \tau \sigma(\alpha) = \alpha$,
+所以 $\tau(\beta) = \sigma(\alpha) = \beta$, 那么 $\beta \in I_n(H) = L$,
+那么 $L/F$ 为可分正规扩张, 即 Galois 扩张.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Galois 基本定理的证明 (四)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明, 续)
+反过来, 若 $I_n(H) = L$, $L/F$ 为 Galois 扩张.
+令 $\varphi: G = \mathrm{Gal}(E/F) \longrightarrow H = \mathrm{Gal}(L/F)$
+定义为, $\forall\ \sigma \in G$, $\varphi(\sigma) = \sigma|_L$ 为满的群同态.
+\[
+\ker(\varphi) = \{ \sigma \in G \mid \sigma|_L = 1 \} \supset \mathrm{Gal}(E/L) = H,
+\]
+故 $H \triangleleft G$, 且有商群同构 $G/H \cong \mathrm{Gal}(L/F)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[有限域]{有限域上的扩张}
+
+%------------------------------------------------
+
+\begin{frame}{例: 有限域上的扩张}
+
+\begin{eg}[有限域上的扩张]
+$F$ 为有限域, $\chi(F) = p$, $|F| = p^n$, $E/F$ 为有限扩张.
+\end{eg}
+
+\begin{itemize}
+\item 结论:
+\item \quanhao{(i)} 任意有限扩张 $E/F$ 为 Galois 扩张,
+  而且 $\mathrm{Gal}(E/F) = \langle \tau \rangle$,
+  其中 $\tau(\alpha) = \alpha^{p^n}$ 为 $E/F$ 上 Frobenius 自同构;
+\item \quanhao{(ii)} $F_p$ 为 $p$ 元有限域, $\bar{F}_p$ 为 $F_p$ 的代数闭包.
+  令 $F_p \subset \bar{E} \subset \bar{F}_p$, $|F| = p^n$, $|E| = p^m$, 则
+  $F \subset E \iff n \mid m$. 且 $E/F$ 的中间域的个数为
+  $\frac{p^m}{p^n}$ 的正因子个数.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{结论的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+若 $E/F$ 为 $s$ 次扩张, 则 $|E| = p^{s \cdot n} = p^m$.
+$F_p \subset F \subset E \subset \bar{F}_p$, 由于 $E/F_p$ 为 $m$ 次 Galois 扩张,
+则 $E/F$ 为 $s$ 次 Galois 扩张,
+$\mathrm{Gal}(E/F)$ 为 $\mathrm{Gal}(E/F_p) = \langle \sigma \rangle$ 的一个
+$s$ 阶子群, 其中 $\sigma(\alpha) = \alpha^p$, $\sigma$ 为 $E$ 上 Frobenius 自同构.
+$\langle \sigma \rangle$ 有唯一的 $s$ 阶子群 $\langle \sigma^{n} \rangle$,
+$\mathrm{Gal}(E/F) = \langle \sigma^{n} \rangle$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{结论的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+若 $F \subset E$, 那么 $n \mid m$, 其中 $|F| = p^n$, $|E| = p^m$.
+反过来, 若 $n \mid m$, 那么,
+$F$ 为 $g(x) = x^{p^n} - x$ 的分裂域,
+$E$ 为 $f(x) = x^{p^m} - x$ 的分裂域.
+$\forall\ \alpha \in F$, 有 $\alpha^{p^n} = \alpha$. 若 $\alpha = 0$,
+则 $\alpha^{p^m} = \alpha$ 成立;
+若 $\alpha \neq 0$, 令 $m = s \cdot n$,
+$\alpha^{p^{s \cdot n}} - 1 = \alpha^{p^{n \cdot s}} - 1 = \alpha^{p^n} - 1 = 0$,
+故 $\alpha^{p^m} = \alpha$, 那么 $\alpha \in E$, 所以 $F \subset E$.
+若 $F \subset E$, $|\mathrm{Gal}(E/F)| = \frac{p^m}{p^n} = [E:F]$,
+由 Galois 基本定理, $E/F$ 的中间域与 $\mathrm{Gal}(E/F)$ 的子群 1-1 对应,
+$\forall\ \frac{p^m}{p^n}$ 的正因子, $\mathrm{Gal}(E/F)$ 有唯一的 $d$ 阶子群.
+因此, $E/F$ 的中间域个数为 $\frac{p^m}{p^n}$ 的正因子个数.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[本原元素]{本原元素定理}
+
+%------------------------------------------------
+
+\begin{frame}{本原元素定理}
+
+\begin{thm}[本原元素定理]
+一个有限次扩张 $E/F$ 为单代数扩张 $\iff$ $E/F$ 的中间域个数有限.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. $E/F$ 的中间域个数有限时,
+若 $|F| < \infty$, 则命题平凡, 不妨令 $|F| = \infty$, $[E:F] = n$,
+对 $n$ 作归纳, 若 $n = 1$, 命题成立;
+若 $[E:F] \leq n - 1$ 时成立, 则 $[E:F] = n$ 时,
+令 $E = F(\alpha_1, \alpha_2, \dots, \alpha_m)$, $\alpha_i$ 为 $F$ 上代数元素.
+\[
+F \subset F(\alpha_1, \dots, \alpha_{m-1}) \subset F(\alpha_1, \dots, \alpha_m)
+\]
+那么 $[F(\alpha_1, \dots, \alpha_{m-1}):F] < n$, 由归纳假设,
+中间域个数有限, $F(\alpha_1, \alpha_2, \dots, \alpha_{m-1}) = F(\beta)$,
+$E = F(\alpha_m, \beta)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{本原元素定理的证明 (二)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+$\forall\ a \in F$, $a \neq 0$, 构造 $E/F$ 的中间域
+$L_a = E(\alpha_m + a \cdot \beta)$,
+$F \subset L_a \subset E$, 由条件, $\exists\ a, b \in F^{*}$ ($a \neq b$),
+有 $L_a = L_b$.
+考虑 $\beta = \frac{(\alpha_m + b\beta) - (\alpha_m + a\beta)}{b - a} \in L_b$,
+\[
+\alpha_m = (\alpha_m + b \cdot \beta) - b \cdot \beta \in L_b
+\]
+$\Longrightarrow E = F(\alpha_m, \beta) \subset L_b$, 即
+$E = L_b = F(\alpha_m + b \cdot \beta)$ 为单代数扩张.
+
+\pause
+
+$2^{\circ}$. $E = F(\alpha)$ 为单代数扩张, 令 $L$ 为 $E/F$ 的任一中间域,
+令 $g(x)$ 为 $\alpha$ 在 $F$ 上极小多项式, $h(x)$ 为 $\alpha$ 在 $L$ 上极小多项式,
+那么 $h(x) \mid g(x)$, 令 $h(x) = \sum_{i=0}^{k} a_i x^i$, $a_i \in L$,
+令 $L_0 = F(a_0, \dots, a_k)$, $F \subset L_0 \subset L \subset E$,
+令 $h_0(x)$ 为 $\alpha$ 在 $L_0$ 上极小多项式, 则 $h_0(x) \mid h(x)$,
+则 $[E:L_0] = \deg h_0(x) \leq \deg h(x) = [E:L]$,
+另一方面 $[E:L] \leq [E:L_0]$, 故 $L = L_0$.
+即 $\forall$ 中间域 $L = F(a_0, \dots, a_k)$ 为 $g(x)$ 的不可约因子来决定,
+不可约因子有限 $\Longrightarrow$ 中间域个数有限.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[单扩张]{单代数扩张的判别}
+
+%------------------------------------------------
+
+\begin{frame}{单代数扩张的判别}
+
+\begin{cor}[单代数扩张的判别]
+\begin{itemize}
+\item[(i)] 任意有限可分扩张 $E/F$, 有 $E = F(\alpha)$ 为单代数扩张;
+\item[(ii)] 任意完全域 $F$ 上有限扩张 $E/F$ 为单代数扩张.
+\end{itemize}
+\end{cor}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$E = F(\alpha_1, \dots, \alpha_n)$, $\alpha_i$ 为 $F$ 上可分元,
+考虑 $E/F$ 的正规闭包,
+即 $L$ 为 $S = \{ g_i(x) \mid g_i(x) \text{ 为 } \alpha_i \text{ 极小多项式} \}$
+在 $F$ 上分裂域
+$\Longrightarrow L/F$ 为有限 Galois 扩张,
+$|\mathrm{Gal}(L/F)| = [L:F]$ 为有限群,
+其子群的个数有限 $\Longrightarrow L/F$ 中间域个数有限
+$\Longrightarrow E/F$ 的中间域个数有限 $\Longrightarrow E = F(\alpha)$ 为单代数扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: $\mathbb{C}$ 为代数闭域}
+
+\begin{eg}
+$\mathbb{C}$ 为一个代数闭域 (代数基本定理).
+\begin{itemize}
+\item \quanhao{①} $\mathbb{R}$ 上没有奇数次扩张;
+\item \quanhao{②} $\mathbb{C}$ 上不存在 2 次扩张;
+\item \quanhao{③} $E/\mathbb{C}$ 为有限次扩张 $\Longrightarrow$ $E = \mathbb{C}$.
+\end{itemize}
+\end{eg}
+
+\startproof[bg=yellow, fg=red](① 的证明)
+$E = \mathbb{R}(\alpha)$, $\alpha$ 的极小多项式为 $g(x)$,
+若 $[E:\mathbb{R}]$ 为奇数,
+则 $\deg g(x)$ 为奇数, 故 $g(x)$ 有一个实零点, 与 $g(x)$ 在 $\mathbb{R}$
+上不可约矛盾.
+
+\pause
+
+\startproof[bg=yellow, fg=red](② 的证明)
+$[E:\mathbb{C}] = 2$, 则 $E = \mathbb{C}(\sqrt{\bar{z}})$, 令 $z = r e^{i\theta}$
+$\Longrightarrow \sqrt{z} = \sqrt{r}\ e^{i\frac{\theta}{2}} \in \mathbb{C}$, 故 $E = \mathbb{C}$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例的证明 (③)}
+
+\startproof[bg=yellow, fg=red](③ 的证明)
+令 $[E:\mathbb{C}] < \infty$, 那么 $[E:\mathbb{R}] < \infty$,
+令 $E/\mathbb{R}$ 的正规闭包为 $L$,
+那么 $\mathbb{R} \subset E \subset L$, $[L:\mathbb{R}] < \infty$,
+$L/\mathbb{R}$ 与 $L/\mathbb{C}$ 为有限次 Galois 扩张.
+因此, $|\mathrm{Gal}(L/\mathbb{R})| = [L:\mathbb{R}] = 2[L:\mathbb{C}]$,
+令 $G = \mathrm{Gal}(L/\mathbb{R})$, 则 $2 \mid |G|$,
+令 $H$ 为 $G$ 的西罗 2-子群,
+那么 $\frac{|G|}{|H|}$ 为一个奇数. 令 $F = I_n(H)$, $\mathbb{R} \subset F \subset L$,
+$[F:\mathbb{R}] = \frac{|G|}{|H|}$, 由 \quanhao{①} 知此时 $\mathbb{R}$ 有 $F = \mathbb{R}$,
+即 $H = G$, 即 $|G| = 2^n$.
+若 $n = 1$, 则 $[L:\mathbb{C}] = \frac{[L:\mathbb{R}]}{[\mathbb{C}:\mathbb{R}]}
+= \frac{|G|}{[\mathbb{C}:\mathbb{R}]} = 1$, 即 $L = \mathbb{C}$, 那么 $E \subset \mathbb{C}$.
+若 $n \geq 1$, $\mathbb{R} \subset \mathbb{C} \subset E \subset L$,
+$L/\mathbb{C}$ 也是 Galois 扩张,
+令 $G_1 = \mathrm{Gal}(L/\mathbb{C}) < G$, 那么 $|G_1| = 2^m$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例的证明 (③, 续)}
+
+\startproof[bg=yellow, fg=red](③ 的证明, 续)
+若 $m = 1$, 则与 \quanhao{②} 的结论矛盾.
+若 $m > 1$, 令 $H_1$ 为 $G_1$ 的一个阶为 $2^{m-1}$ 阶子群,
+令 $F_1 = I_n(H_1)$, 则 $\mathbb{C} \subset F_1 \subset L$,
+$[F_1:\mathbb{C}] = \frac{|G_1|}{|H_1|} = 2$, 也与 \quanhao{②} 矛盾.
+由上可知只有 $n = 1$, 即 $L = \mathbb{C}$, $E = \mathbb{C}$.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
