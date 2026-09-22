@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,484 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[分裂域]{多项式集的分裂域}
+
+%------------------------------------------------
+
+\begin{frame}{多项式集与分裂域}
+
+$F$ 为一个域, $F[x]$ 为多项式环, 令 $S \subset F[x]$,
+$S$ 中元素为正次数的多项式, $A$ 为 $S$ 中多项式的零点的集合.
+
+\pause
+
+\begin{Def}[分裂域]
+一个代数扩张 $E/F$ 称为 $F$ 上的多项式集 $S$ 的一个分裂域,
+若 $A \subset E$, 而且 $E = F(A)$.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分裂域的存在性}
+
 \begin{itemize}
-\item 本部分对应手稿第 55--61 页;
-\item 内容尚未整理成 slides.
+\item \quanhao{①} $S = \{ f(x) \}$:\\
+  由不可约多项式的根引理, 至少有 $K/F$, 使得 $K$ 中包含 $f(x)$ 的一个零点
+  $\alpha_1$, 那么 $f(x) = (x - \alpha_1) f_1(x)$.
+  对 $f_1(x)$ 也可进行同样讨论,
+  故 $\exists$ 域扩张 $L/F$, $[L:F] < \infty$, 且 $L$ 中包含 $f(x)$ 的全部零点
+  $A$, 令 $E = F(A)$, 即有 $F \subset F(A) \subset L$, $E$ 为一个分裂域;
+\item \quanhao{②} $S = \{ f_1(x), f_2(x), \dots, f_n(x) \}$:\\
+  令 $f(x) = \prod_{i=1}^{n} f_i(x)$ 即归结到 \quanhao{①};
+\item \quanhao{③} $S = F[x]$.
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[闭包]{代数闭域与代数闭包}
+
+%------------------------------------------------
+
+\begin{frame}{代数闭域与代数闭包}
+
+\begin{Def}[代数闭域]
+一个域 $E$ 为一个代数闭域, 若 $E$ 上任一不可约多项式为一次多项式.
+\end{Def}
+
+\pause
+
+若 $E/F$ 为域扩张, 称 $E$ 为 $F$ 的一个代数闭包, 若:
+\begin{itemize}
+\item[(i)] $E/F$ 为代数扩张;
+\item[(ii)] $E$ 为代数闭域.
+\end{itemize}
+以 $\bar{F}$ 记 $F$ 的代数闭包.
+
+\pause
+
+注: $E$ 为代数闭域 $\iff$ 任意代数扩张 $L/E$, 有 $L = E$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 代数闭域}
+
+\begin{eg}
+$F = \mathbb{C}$ 为一个代数闭域,
+$\bar{F} = \bar{\mathbb{Q}}_c = \{ z \in \mathbb{C} \mid z \text{ 为代数数} \}$
+为代数闭域.
+令 $F = \mathbb{Q}$, 有 $F$ 的代数闭包 $\bar{F} = \bar{\mathbb{Q}}_c$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数闭包的存在性}
+
+\begin{prop}[代数闭包的存在性]
+任一个域 $F$ 的代数闭包 $\bar{F}$ 存在.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $T = \{ E \mid E/F \text{ 为代数扩张} \}$.
+$T$ 非空, 因为至少有 $F \in T$. 在包含关系下, $T$ 为非空的偏序集.
+对任一全序子集 $E_1 \subset E_2 \subset \dots \subset E_n \subset \dots$,
+令 $E = \bigcup_{i=1}^{\infty} E_i$, 则 $E/F$ 为代数扩张, 即 $E \in T$,
+$\{ E_i \}$ 在 $T$ 中有上界.
+由 Zorn 引理, $T$ 中有极大元素, 令其为 $E$. $E$ 即为 $F$ 的一个代数闭包.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分裂域的存在唯一性}
+
+\begin{thm}[分裂域的存在唯一性]
+$F$ 为一个域, $S \subset F[x]$, $S$ 的分裂域存在,
+而且 $S$ 的任意两个分裂域都是 $F$-同构的.
+\end{thm}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $A$ 为 $S \subset F[x]$ 的零点集, $\bar{F}$ 存在, 而 $A \subset \bar{F}$,
+那么 $F \subset F(A) \subset \bar{F}$, 即 $F(A)$ 应是 $S$ 在 $F$ 上的分裂域.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[开拓]{分裂域的开拓}
+
+%------------------------------------------------
+
+\begin{frame}{分裂域的开拓}
+
+\begin{lem}[分裂域的开拓]
+$F \xrightarrow{\ \sigma\ } F_1$ 为域同构, $S \subset F[x]$,
+令 $S' = \{ \sigma(f(x)) \mid f(x) \in S \}$ 为 $F_1$ 上 $S$ 所对应的多项式集.
+令 $E$ 为 $S$ 的一个分裂域, $E'$ 为 $S'$ 在 $F_1$ 上的一个分裂域,
+那么有域同构 $E \xrightarrow{\ \bar{\tau}\ } E'$, 满足 $\bar{\tau}|_F = \sigma$.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分裂域的开拓的证明 (一)}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $A$ 为 $S$ 的零点集, $A'$ 为 $S'$ 的零点集, $E = F(A)$, $E' = F_1(A')$.
+考虑集合
+\[
+T = \{ (L, \varphi) \mid F \subset L \subset E,\
+L \xrightarrow{\ \varphi\ } E' \text{ 为同态},\ \varphi|_F = \sigma \}.
+\]
+任一 $\varphi$ 为单同态, $L \cong \varphi(L) \subset E'$.
+$T$ 非空, 因为 $(F, \sigma) \in T$, 定义一个偏序:
+$(L_1, \varphi_1) \preccurlyeq (L_2, \varphi_2)$,
+若 $L_1 \subset L_2$, 且 $\varphi_2|_{F_1} = \varphi_1$.
+那么 $T$ 为一个非空偏序集合.
+\[
+\text{若 } (L_1, \varphi_1) \preccurlyeq (L_2, \varphi_2) \preccurlyeq \dots
+\preccurlyeq (L_n, \varphi_n) \preccurlyeq \dots
+\]
+令 $L = \bigcup_{i=1}^{\infty} L_i$, 有 $F \subset L \subset E$;
+$\forall\ \alpha \in L$, 存在 $L_i$, 使得 $\alpha \in L_i$,
+令 $\varphi(\alpha) = \varphi_i(\alpha)$.
+易知 $\varphi$ 为 $L \to E'$ 的一个同态, $\varphi|_F = \sigma$, 即 $(L, \varphi) \in T$,
+即 $\{ (L_i, \varphi_i) \}$ 在 $T$ 中有上界, 由 Zorn 引理,
+$T$ 中有极大元素, 令其为 $(T, \bar{\tau})$, 可以证明, $L = E$, $\bar{\tau}(E) = E'$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分裂域的开拓的证明 (二)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+(i) 若 $L \neq E$, 由 $E = F(A)$ 知 $\exists\ \alpha \in A$, 使得 $\alpha \notin L$,
+显见, $F \subset L$, $A \subset L$, 那么 $F(A) \subset L$.
+由同构的开拓引理, $L \cong E'$, $\alpha \notin L$,
+$\alpha$ 对应的 $S'$ 中的零点 $\beta$, $\bar{\tau}$ 开拓为
+$L(\alpha) \xrightarrow{\ \tau'\ } E'$, 满足 $\tau'|_L = \bar{\tau}$,
+则 $(L, \bar{\tau}) \preccurlyeq (L(\alpha), \tau')$,
+但 $(L, \bar{\tau}) \neq (L(\alpha), \tau')$,
+这与 $(L, \bar{\tau})$ 的极大性矛盾. 故必有 $L = E$.
+\[
+\text{(ii) } \bar{\tau}(E) = \bar{\tau}(F(A)) = \sigma(F)(\bar{\tau}(A)) = F_1(A') = E'.
+\]
+综上 有 $E \xrightarrow{\ \bar{\tau}\ } E'$ 为域同构, 且 $\bar{\tau}|_F = \sigma$.
+即: 域同构 $F \xrightarrow{\ \sigma\ } F_1$ 可以开拓到对应的分裂域上.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分裂域的推论}
+
+\begin{cor}[分裂域的推论]
+\begin{itemize}
+\item[(i)] $F$ 上任一多项式集 $S$ 的任意两个分裂域都是 $F$-同构的.
+  特别地, $F$ 上任意两个代数闭包都是 $F$-同构的;
+\item[(ii)] 若 $F \xrightarrow{\ \sigma\ } F'$ 为域同构, 则 $\sigma$ 可以开拓到
+  $\bar{F} \xrightarrow{\ \bar{\tau}\ } \bar{F}'$, $\bar{\tau}|_F = \sigma$;
+\item[(iii)] $E/F$ 为代数扩张, $\bar{F}$ 为 $F$ 的代数闭包, 存在 $F$-同态
+  $\sigma: E \xrightarrow{\ \tau\ } \bar{F}$, 即 $E$ 可以嵌入到 $\bar{F}$.
+\end{itemize}
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+(i) 取分裂域的开拓引理中的 $F_1 = F$, $\sigma = 1$, 有 $S' = S$,
+由分裂域的开拓引理, 即有命题 (i) 成立
+(注: 在同构意义下, $\bar{F}$ 有意义);
+(ii) 在分裂域的开拓引理中, 取 $S = F[x]$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{分裂域的推论的证明 (iii)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+若 $E/F$ 为代数扩张, 那么 $\bar{E}$ 也是 $F$ 的代数闭包,
+因为 $\bar{E}/E$, $E/F$ 是代数的, 则 $\bar{E}/F$ 也是代数的, 故 $\bar{E} = \bar{F}$.
+由 (iii) 知 $F$ 上两个代数闭包 $\bar{E}$ 及 $\bar{F}$ 为 $F$-同构的.
+令 $\bar{E} \xrightarrow{\ \bar{\tau}\ } \bar{F}$, $\bar{\tau}|_F = 1$,
+那么 $\bar{\tau}|_E: E \to \bar{F}$ 为一个 $F$-同态, 或一个 $F$-嵌入.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[正规]{正规扩张}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张}
+
+\begin{Def}[正规扩张]
+一个代数扩张 $E/F$ 称为 $F$ 上的一个正规扩张
+(normal extension), 若 $F$ 上任一不可约多项式 $p(x)$ 在 $E$ 中有一个零点,
+则 $E$ 中包含 $p(x)$ 的全部零点.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张的刻画}
+
+\begin{lem}[正规扩张的刻画]
+$E/F$ 为代数扩张, 则下述命题等价:
+\begin{itemize}
+\item[(i)] $E$ 为 $F$ 上某一个多项式集 $S$ 的分裂域;
+\item[(ii)] $E \xrightarrow{\ \bar{\tau}\ } \bar{F}$ 为 $F$-同态,
+  则 $\bar{\tau}(E) = E$, 即 $\bar{\tau} \in \mathrm{Gal}(E/F)$;
+\item[(iii)] $F \subset L \subset E$, $L$ 为任一中间域,
+  $L \xrightarrow{\ \sigma\ } \bar{F}$ 为 $F$-同态, 则存在
+  $\bar{\tau} \in \mathrm{Gal}(E/F)$, 且 $\bar{\tau}|_L = \sigma$;
+\item[(iv)] $E/F$ 为正规扩张.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张的刻画的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((i) $\Longrightarrow$ (ii) 的证明)
+令 $E$ 为 $F$ 上多项式集 $S$ 的分裂域, $A$ 为 $S$ 的零点集, 即 $E = F(A)$.
+任取一个 $F$-同态 $E \xrightarrow{\ \bar{\tau}\ } \bar{F}$,
+\[
+\bar{\tau}(E) = \bar{\tau}(F(A)) = F(\bar{\tau}(A)) = F(A) = E.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张的刻画的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((ii) $\Longrightarrow$ (iii) 的证明)
+若 $F \subset L \subset E$ 为中间域, $L \xrightarrow{\ \sigma\ } \bar{F}$
+为 $F$-同态, 令 $\sigma(L) = L'$,
+即 $F \subset L \subset E \subset \bar{F}$.
+$L \xrightarrow{\ \cong\ } L'$ 开拓到代数闭包上,
+并注意到 $\bar{F}$ 为 $L$ 及 $L'$ 的代数闭包,
+即 $\exists\ \bar{\tau}: \bar{F} \to \bar{F}$ 为 $F$-同构, 且 $\bar{\tau}|_L = \sigma$.
+由 (ii) $\bar{\tau}|_E = \bar{\tau}$, $\bar{\tau}(E) = E$,
+$\sigma(L) = \bar{\tau}(L) \subset E$ 且 $\bar{\tau}|_L = \sigma$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张的刻画的证明 (三)}
+
+\startproof[bg=yellow, fg=red]((iii) $\Longrightarrow$ (iv) 的证明)
+$p(x)$ 为 $F$ 上不可约多项式, 在 $E$ 中有一个 0 点 $\alpha \in E$,
+若 $\beta$ 为 $p(x)$ 的另一个零点, 由同构的开拓引理,
+$\sigma = 1_F$ 开拓到 $F(\alpha) \cong F(\beta)$,
+满足 $\bar{\tau}|_F = 1_F$, 注意到 $F(\alpha) \subset E$,
+由 (iii) 知 $\bar{\tau}(F(\alpha)) \subset E$,
+而 $\bar{\tau}(F(\alpha)) = F(\beta)$, 那么 $\beta \in E$,
+从而 $E/F$ 为正规扩张.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规扩张的刻画的证明 (四)}
+
+\startproof[bg=yellow, fg=red]((iv) $\Longrightarrow$ (i) 的证明)
+若 $E/F$ 为正规扩张, 令 $S = \{ \text{在 } E \text{ 中有一个零点的 }
+F \text{ 上的多项式 } p(x) \}$,
+令 $S$ 的零点集为 $A$.
+因为 $E/F$ 为正规扩张, 故 $F(A) \subset E$.
+反过来, $\forall\ \alpha \in E$, $\alpha$ 的极小多项式 $p(x) \in S$,
+那么 $\alpha \in A$, 故 $E \subset F(A)$.
+综上知 $E = F(A)$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{有限正规扩张与分裂域}
+
+\begin{cor}[有限正规扩张与分裂域]
+任一有限的正规扩张 $E/F$ $\iff$ $E$ 为 $F$ 上的一个多项式 $p(x)$ 的分裂域.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+$E$ 为有限正规扩张:
+若 $E$ 为 $p(x)$ 的分裂域, 令 $E = F(\alpha_1, \dots, \alpha_n)$,
+$\alpha_1, \dots, \alpha_n$ 为 $p(x)$ 全部零点,
+由定义即知 $E/F$ 为正规扩张, 且 $[E:F] \leq (\deg p(x))!$.
+反过来, 若 $[E:F] \leq n$, 且为正规扩张,
+令 $E = F(\alpha_1, \dots, \alpha_m)$, 其中 $\alpha_1, \dots, \alpha_m$
+为 $F$ 上的代数元素,
+令 $g_i(x)$ 为 $\alpha_i$ 在 $F$ 上的极小多项式,
+令 $f(x) = g_1(x) \dotsm g_m(x)$, 那么 $E$ 为 $f(x)$ 的分裂域.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[闭包2]{正规闭包}
+
+%------------------------------------------------
+
+\begin{frame}{正规闭包}
+
+正规闭包: 若 $E/F$ 为代数扩张, $F \subset E \subset N$, $N/F$ 为正规扩张,
+且 $\forall\ L$, $F \subset E \subset L \subset N$,
+满足 $L/F$ 为正规扩张 $\Longrightarrow L = N$,
+此时 $N$ 称为 $E/F$ 的正规闭包.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规闭包引理}
+
+\begin{lem}[正规闭包]
+\begin{itemize}
+\item[(i)] 任意代数扩张 $E/F$ 的正规闭包 $N/F$ 存在,
+  且在 $F$-同构下是唯一存在的;
+\item[(ii)] 任意有限扩张 $E/F$ 的正规闭包 $N/F$ 为有限扩张.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+若 $E/F$ 为代数扩张, 令
+$S = \{ g_{\alpha}(x) \mid \alpha \in E,\ g_{\alpha}(x) \text{ 为 } \alpha \text{ 的极小多项式} \}$,
+令 $N$ 为 $S$ 的分裂域, 即有 $F \subset E \subset N$, 且 $N/F$ 为正规扩张.
+现任取 $L$, $F \subset E \subset L \subset N$.
+若 $L$ 为正规扩张, 由于 $E \subset L$, 故 $S$ 的零点集 $A \subset L$,
+那么 $N = F(A) \subset L$, 即 $L = N$.
+$\Longrightarrow N/F$ 为 $E/F$ 的正规闭包.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{正规闭包引理的证明 (ii)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+$[E:F] = n$, $E = F(\alpha_1, \dots, \alpha_m)$,
+令 $g_i(x)$ 为 $\alpha_i$ 的极小多项式,
+令 $g(x) = \prod_i g_i(x)$, 令 $N$ 为 $g(x)$ 的分裂域,
+那么 $N/F$ 为 $E/F$ 的正规闭包, 且 $[N:F] \leq (\deg g(x))!$,
+所以 $N/F$ 也是有限扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[有限域]{有限域的构造}
+
+%------------------------------------------------
+
+\begin{frame}{有限域的构造}
+
+\begin{eg}[有限域的构造]
+$F$ 为有限域, 若 $|F| < \infty$, $F$ 又称为 Galois 域.
+若 $F$ 为有限域, 则 $\chi(F) = p$ 为一个素数, 那么 $F_p \subset F$,
+令 $[F:F_p] = n$, 那么 $|F| = p^n$.
+\end{eg}
+
+\begin{itemize}
+\item 结论: 任一有限域 $F \Longrightarrow |F|$ 为某个素数的方幂;
+\item 反过来, 任意给定一个素数 $p$, 及 $n \in \mathbb{N}$,
+  唯一存在一个有限域 $F$, 满足 $|F| = p^n$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{结论的证明}
+
+\startproof[bg=yellow, fg=red](证明)
+$F_p$ 为 $p$ 元有限域, $\bar{F}_p$ 为 $F_p$ 的代数闭包.
+$g(x) = x^{p^n} - x \in F_p[x]$, 令 $F$ 为 $g(x)$ 的分裂域,
+$F_p \subset F \subset \bar{F}_p$.
+由于 $g(x)$ 无重根, 令 $A = \{ \alpha_1, \dots, \alpha_{p^n} \} \subset F$,
+为 $g(x)$ 的根的集合. 易证明 $A$ 为一个域.
+又因为 $\forall\ \alpha \in F_p$, 有 $\alpha^p - \alpha = 0$,
+故 $F_p \subset A \subset \bar{F}_p$,
+那么 $A = F_p(A) = F$, $|F| = |A| = p^n$.
+又有对任意 $|F| = p^n$, $F$ 为 $x^{p^n} - x$ 的分裂域,
+即两个有 $p^n$ 元的有限域同构.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{有限域的 Galois 扩张}
+
+\begin{prop}[有限域的 Galois 扩张]
+任一 $p^n$ 元的有限域 $F$ 为 $F_p$ 上的 $n$ 次 Galois 扩张.
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+$[F:F_p] = n$, 令 $\sigma \in \mathrm{Gal}(F/F_p)$,
+定义为, $\forall\ \alpha \in F$, $\sigma(\alpha) = \alpha^p$,
+易验证知 $\sigma \in \mathrm{Gal}(F/F_p)$, $\sigma|_{F_p} = 1_{F_p}$.
+又因为 $\forall\ \alpha \in F$, $\alpha^{p^n} = \alpha$, 故 $\sigma^n = 1$
+\[
+\Longrightarrow \mathrm{Gal}(F/F_p) = \langle \sigma \rangle
+= \{ \sigma, \sigma^2, \dots, \sigma^n \}.
+\]
+$\sigma$ 称为 $F$ 上的 Frobenius 自同构.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{有限域的正规性与 Galois 性}
+
+\begin{itemize}
+\item 结论: 任一有限域 $F$, $|F| = p^n \Longrightarrow F/F_p$ 为正规扩张,
+  也是 Galois 扩张.
+\end{itemize}
+
+\pause
+
+\begin{eg}
+令 $F$ 为有限域, $|F| = p^n$, $F(x)$ 为单变量的有理函数域,
+$F \subset F(x^p) \subset F(x)$, 那么 $F(x)/F(x^p)$ 为 $p$ 次正规扩张,
+但非 Galois 扩张.
+\end{eg}
+
+\startproof[bg=yellow, fg=red](证明)
+$F(x) = F(x^p)(x)$, $x$ 为 $F(x^p)$ 上的代数元素,
+$g(t) = t^p - x^p \in F(x^p)[t]$ 为 $x$ 的极小多项式.
+由于 $x$ 为 $g(t)$ 的全部零点, 故 $F(x)$ 为 $g(t)$ 在 $F(x^p)$ 上的分裂域,
+即知 $F(x)/F(x^p)$ 为 $p$ 次正规扩张.
+又已证明 $\mathrm{Gal}(F(x)/F(x^p)) = 1$,
+故 $F(x)/F(x^p)$ 不是 Galois 扩张.
+推广到 $F(x_1, \dots, x_n)/F(x_1^p, \dots, x_n^p)$ 为 $p^n$ 次正规扩张,
+但其 Galois 群为平凡的, 因此非 Galois 扩张.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
