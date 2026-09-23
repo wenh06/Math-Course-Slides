@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,201 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[不相交]{线性不相交}
+
+%------------------------------------------------
+
+\begin{frame}{问题与定义}
+
+问题: $F \subset E \subset K$ 为域扩张, $E/F$, $L/F$ 为有限扩张,
+$E \cdot L = \{ \sum_{i=1}^{n} \alpha_i \beta_i \mid \alpha_i \in E,\
+\beta_i \in L \}$, 那么 $[E \cdot L:F] \leq [E:F] \cdot [L:F]$,
+等号何时成立?
+
+\pause
+
+\begin{Def}[线性不相交]
+$F \subset E \subset K$ 为域扩张, 若 $\forall\ \{\alpha_1, \dots, \alpha_n\}
+\subset E$ 为 $F$ 上线性无关组, $\forall\ \{\beta_1, \dots, \beta_m\}
+\subset L$ 为 $F$ 上线性无关组, 有
+$\{ \alpha_i \beta_j \mid 1 \leq i \leq n,\ 1 \leq j \leq m \}$
+为 $F$ 上线性无关, 则称 $E$ 与 $L$ 在 $F$ 上是线性不相交的.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{线性不相交的刻画}
+
+\begin{lem}[线性不相交的刻画]
+若 $F \subset E \subset K$ 为域扩张, $E$ 与 $L$ 在 $F$ 上线性不相交
+$\iff$ $\forall\ E$ 中线性无关组 $\{ \alpha_1, \dots, \alpha_n \}$ (在 $F$ 上)
+在 $L$ 上也是线性无关的.
+$\iff$ $\forall\ L$ 在 $F$ 上线性无关组 $\{ \beta_1, \dots, \beta_m \}$
+在 $E$ 上也是线性无关的.
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注: $E \cap L = F$ 及其反例}
+
+注: $F \subset E \subset K$ 为域扩张, 若 $E$ 与 $L$ 在 $F$ 上线性不相交,
+那么 $E \cap L = F$; 反之不一定成立.
+
+\startproof[bg=yellow, fg=red](证明)
+$\forall\ \alpha \in E \cap L$, 若 $\alpha \notin F$,
+则 $\{1, \alpha\}$ 即是 $E$ 也是 $L$ 在 $F$ 上线性无关组,
+但 $\{1, \alpha\}$ 是 $E$ 在 $L$ 上线性相关组.
+\qed
+
+\pause
+
+逆命题的反例:
+$F = \mathbb{Q}$, $E = \mathbb{Q}(\sqrt[3]{5})$, $L = \mathbb{Q}(\omega\sqrt[3]{5})$,
+$\omega = e^{\frac{2\pi i}{3}}$,
+那么 $F \subset E \subset \mathbb{C}$, 且 $E \cap L = \mathbb{Q}$,
+但 $E, L$ 在 $F$ 上线性相交.
+因为 $[\mathbb{Q}(\omega\sqrt[3]{5}):\mathbb{Q}] = 3$,
+$x^3 - 5$ 为 $\omega\sqrt[3]{5}$ 的极小多项式,
+于是 $\{1, \omega\sqrt[3]{5}, \omega^2\sqrt[3]{5}\}$ 为
+$\mathbb{Q}(\omega\sqrt[3]{5})/\mathbb{Q}$ 的一组基,
+但 $\{1, \omega\sqrt[3]{5}, \omega^2\sqrt[3]{5}\}$ 在 $\mathbb{Q}(\sqrt[3]{5})$
+上线性相关,
+因为 $1 + \frac{1}{\sqrt[3]{5}}\,\omega\sqrt[3]{5}
++ \frac{1}{\sqrt[3]{5}}\,\omega^2\sqrt[3]{5} = 1 + \omega + \omega^2 = 0$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[判据]{线性不相交与次数}
+
+%------------------------------------------------
+
+\begin{frame}{线性不相交与次数}
+
+\begin{cor}[线性不相交与次数]
+若 $F \subset E \subset K$ 为域扩张, $E/F$ 与 $L/F$ 为有限扩张, 则:
 \begin{itemize}
-\item 本部分对应手稿第 78--81 页;
-\item 内容尚未整理成 slides.
+\item[(i)] $E$ 与 $L$ 在 $F$ 上线性不相交 $\iff$
+  $[E \cdot L:F] = [E:F] \cdot [L:F]$;
+\item[(ii)] 若 $E/F$ (或 $L/F$) 为有限 Galois 扩张, 那么
+  $E$ 与 $L$ 在 $F$ 上线性不相交 $\iff$ $E \cap L = F$.
 \end{itemize}
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[可分]{可分扩张与线性不相交}
+
+%------------------------------------------------
+
+\begin{frame}{$F^{1/p}$ 与 $F^{1/p^{\infty}}$}
+
+$F$ 为一个域, $\chi(F) = p$, 令 $\bar{F}$ 为 $F$ 的代数闭包,
+令 $F^{\frac{1}{p}} = \{ \alpha \in \bar{F} \mid \alpha^p \in F \}$ 为一个域,
+$F^{\frac{1}{p^n}} = \{ \alpha \in \bar{F} \mid \alpha^{p^n} \in F \}$,
+定义 $F^{\frac{1}{p^{\infty}}} = \bigcup_{n=1}^{\infty} F^{\frac{1}{p^n}}$.
+
+\pause
+
+\begin{itemize}
+\item 注:
+\item \quanhao{①} $F^{\frac{1}{p^n}}/F$ 为纯不可分扩张;
+\item \quanhao{②} $[F]_i := F^{\frac{1}{p^{\infty}}}$ 为纯不可分闭包;
+\item \quanhao{③} $(F^{\frac{1}{p^n}})^p = F$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分扩张与线性不相交}
+
+\begin{lem}[可分扩张与线性不相交]
+$\chi(F) = p$, $E/F$ 为代数扩张, $F \subset F^{\frac{1}{p}} \cdot E \subset \bar{F}$, 则
+\[
+E/F \text{ 为可分扩张} \iff F^{\frac{1}{p}} \text{ 与 } E \text{ 在 } F \text{ 上线性不相交}.
+\]
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. $E/F$ 为可分扩张:
+首先, \quanhao{①} 任一扩张 $E/F$, 有 $F \cdot E^p = E$;
+因为 $E/F \cdot E^p$ 为可分扩张, 且 $F \subset F \cdot E^p \subset E^p \subset E$,
+又有 $E/E^p$ 为纯不可分扩张, 则 $E/F \cdot E^p$ 为纯不可分的,
+那么 $E = F \cdot E^p$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分扩张与线性不相交的证明 (一)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+\quanhao{②} $\forall\ \{ \alpha_1, \dots, \alpha_n \} \subset E$,
+在 $F^{\frac{1}{p}}$ 上线性无关
+$\iff$ $\{ \alpha_1^p, \alpha_2^p, \dots, \alpha_n^p \}$ 在 $F$ 上线性无关.
+因为, 若 $\{ \alpha_1, \dots, \alpha_n \}$ 在 $F^{\frac{1}{p}}$ 上线性无关,
+令 $\sum_{i=1}^{n} a_i \alpha_i^p = 0$, $a_i \in F$,
+取 $b_i \in F^{\frac{1}{p}}$, 使得 $b_i^p = a_i$,
+那么 $\sum_{i=1}^{n} b_i^p \alpha_i^p = 0
+\Longrightarrow \sum_{i=1}^{n} b_i \alpha_i = 0
+\Longrightarrow b_i = 0$, 即 $a_i = 0$,
+则 $\{ \alpha_1^p, \dots, \alpha_n^p \}$ 在 $F$ 上线性无关.
+若 $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 为 $F$ 上线性无关组,
+要证明 $E$ 与 $F^{\frac{1}{p}}$ 线性不相交, 但由 \quanhao{①} 知仅需证明
+$\{ \alpha_1^p, \dots, \alpha_n^p \}$ 在 $F$ 上线性无关.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分扩张与线性不相交的证明 (二)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+令 $F(\alpha_1, \dots, \alpha_n)$ 为 $\{ \alpha_1, \dots, \alpha_n \}$ 生成的域,
+$F \subset F(\alpha_1, \dots, \alpha_n) \subset E$,
+$F(\alpha_1, \dots, \alpha_n)/F$ 为有限扩张,
+把 $\{ \alpha_1, \dots, \alpha_n \}$ 扩张为 $F(\alpha_1, \dots, \alpha_n)$ 上的
+一组基 $\{ \alpha_1, \dots, \alpha_n, \dots, \alpha_m \}$,
+令 $F_1 = F(\alpha_1, \dots, \alpha_n)$, 由 \quanhao{①} 知 $F \cdot F_1^p = F_1$.
+因此, $\forall\ \alpha \in F_1$,
+$\alpha = \sum_{i=1}^{s} a_i \beta_i^p$, $a_i \in F$, $\beta_i \in F_1$,
+又有 $\beta_i = \sum_{j=1}^{m} b_{ij} \alpha_j$, $b_{ij} \in F$,
+故 $\alpha = \sum_{k=1}^{m} c_k \alpha_k^p$,
+那么 $\{ \alpha_1^p, \dots, \alpha_n^p \}$ 在 $F$ 上线性无关.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分扩张与线性不相交的证明 (三)}
+
+\startproof[bg=yellow, fg=red]($2^{\circ}$ 的证明)
+$E$ 与 $F^{\frac{1}{p}}$ 在 $F$ 上线性不相交,
+$\forall\ \alpha \in E$, $f(x)$ 为 $\alpha$ 在 $F$ 上极小多项式,
+令 $m = \deg f(x)$,
+则 $\alpha$ 为 $F$ 代数元素,
+因为 $\{1, \alpha, \dots, \alpha^n\}$ 在 $F$ 上线性无关, $\forall\ 1 \leq n \leq m-1$,
+若 $\alpha$ 不可分, 则 $f(x)$ 为 $F$ 上不可分不可约多项式,
+则 $\exists\ g(x) \in F[x]$, 使得 $f(x) = g(x^p)$,
+令 $g(x) = b_0 + b_1 x + \dots + b_t x^t$,
+那么 $f(x) = b_0 + b_1 x^p + \dots + b_t x^{pt}$,
+$0 = f(\alpha) = g(\alpha^p) \Longrightarrow g(\alpha^p) = b_0 + b_1 \alpha^p
++ \dots + b_t \alpha^{pt} = 0$,
+令 $a_i \in F^{\frac{1}{p}}$, 使得 $a_i^p = b_i$, 那么
+$a_0 + a_1 \alpha + \dots + a_t \alpha^t = 0$,
+但 $t < m$ 与 $\{1, \alpha, \dots, \alpha^t\}$ 在 $F^{\frac{1}{p}}$
+上线性无关矛盾,
+故 $\alpha$ 为可分代数元素, $E/F$ 为可分扩张.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
