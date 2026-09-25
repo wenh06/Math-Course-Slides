@@ -697,6 +697,35 @@ $d(x, A) \leqslant |x-z| + d(z, A),$ 即 $d(x,A) - d(z,A) \leqslant |x-z|.$
 
 %------------------------------------------------
 
+\begin{frame}{集合间的距离}
+
+\begin{Def}[集合间的距离]
+设 $A, B \subset \mathbb{R}^n$ 均非空. \alert{集合 $A$ 与 $B$ 的距离}:
+\[
+  d(A, B) = \inf_{x \in A, ~ y \in B} |x - y| = \inf_{x \in A} d(x, B).
+\]
+\end{Def}
+
+\pause
+
+\begin{attnblock}[$d(A,B) = 0 \not\Rightarrow A \cap B \neq \emptyset$]
+$A = \mathbb{N},$ $B = \bigl\{n + 1/n : n \geqslant 2\bigr\}$ 均是闭集, $A \cap B = \emptyset,$ 但 $d(A, B) = 0.$
+\end{attnblock}
+
+\pause
+
+\begin{prop}
+若 $A$ 紧 (compact), $B$ 闭, 且 $A \cap B = \emptyset,$ 则 $d(A, B) > 0.$
+\end{prop}
+
+\startproof[bg=yellow, fg=red](证明)
+函数 $f(x) = d(x, B)$ 在 $\mathbb{R}^n$ 上连续. 由 $A$ 紧, $f$ 在 $A$ 上取到最小值 $m.$ 对每个 $x \in A,$ 由 $x \notin B$ 及 $B$ 闭知 $f(x) = d(x, B) > 0.$ 故 $m > 0,$ 即 $d(A, B) = m > 0.$
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}{距离的可达性}
 
 \begin{thm}[点到闭集的距离可达]
@@ -723,35 +752,6 @@ $d(a, \overline{B}(a, \delta) \cap A) = d(a, A).$
 \begin{remark}
 提示: 不妨设 $A$ 有界, 对连续函数 $x \mapsto d(x, B)$ 在有界闭集 $A$ 上用最值定理, 再对点 $a_0$ 与闭集 $B$ 用上述定理. 详细论证作为\alert{作业习题 23}.
 \end{remark}
-
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}{集合间的距离}
-
-\begin{Def}[集合间的距离]
-设 $A, B \subset \mathbb{R}^n$ 均非空. \alert{集合 $A$ 与 $B$ 的距离}:
-\[
-  d(A, B) = \inf_{x \in A, ~ y \in B} |x - y| = \inf_{x \in A} d(x, B).
-\]
-\end{Def}
-
-\pause
-
-\begin{attnblock}[$d(A,B) = 0 \not\Rightarrow A \cap B \neq \emptyset$]
-$A = \mathbb{N},$ $B = \bigl\{n + 1/n : n \geqslant 2\bigr\}$ 均是闭集, $A \cap B = \emptyset,$ 但 $d(A, B) = 0.$
-\end{attnblock}
-
-\pause
-
-\begin{prop}
-若 $A$ 紧 (compact), $B$ 闭, 且 $A \cap B = \emptyset,$ 则 $d(A, B) > 0.$
-\end{prop}
-
-\startproof[bg=yellow, fg=red](证明)
-函数 $f(x) = d(x, B)$ 在 $\mathbb{R}^n$ 上连续. 由 $A$ 紧, $f$ 在 $A$ 上取到最小值 $m.$ 对每个 $x \in A,$ 由 $x \notin B$ 及 $B$ 闭知 $f(x) = d(x, B) > 0.$ 故 $m > 0,$ 即 $d(A, B) = m > 0.$
-\qed
 
 \end{frame}
 
