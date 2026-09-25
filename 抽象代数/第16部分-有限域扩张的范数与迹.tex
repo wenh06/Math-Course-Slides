@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,549 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[定义]{范数与迹的定义}
+
+%------------------------------------------------
+
+\begin{frame}{$\mathrm{End}_F(E)$ 与 $\varphi$}
+
+若 $E/F$ 为有限域扩张, $E/F$ 作为 $F$ 上线性空间, 线性变换全体为
+$\mathrm{End}_F(E)$,
+即 $\mathrm{End}_F(E) = \{ \sigma \mid E \xrightarrow{\ \sigma\ } E \text{ 为线性变换} \}$
+为一个幺环, 且 $\mathrm{End}_F(M) \subseteq M_n(F)$, 其中 $n = [E:F]$.
+
+\pause
+
+令 $\{ \alpha_1, \dots, \alpha_n \}$ 为 $E/F$ 的一组基,
+$\forall\ \sigma \in \mathrm{End}_F(E)$,
+\[
+\sigma(\alpha_1, \dots, \alpha_n) = (\sigma(\alpha_1), \dots, \sigma(\alpha_n))
+= (\alpha_1, \dots, \alpha_n)A,
+\]
+令 $\mathrm{End}_F(E) \xrightarrow{\ \varphi\ } M_n(F)$ by $\varphi(\sigma) = A$,
+
+\pause
+
+\begin{Def}[迹与范数]
+\[
+\begin{cases}
+\mathrm{Tr}(\sigma) = \mathrm{Tr}(A) \\
+N(\sigma) = \det(A)
+\end{cases}
+\]
+\end{Def}
+
+注: $\mathrm{Tr}(\sigma)$, $N(\sigma)$ 与 $E/F$ 的基的选取无关,
+即与同构 $\varphi$ 的选取无关.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$L_\alpha$ 与 $\mathrm{Tr}_{E/F}$, $N_{E/F}$}
+
+\begin{Def}[$L_\alpha$]
+$E/F$ 为 $n$ 次域扩张, $\forall\ \alpha \in E$, 定义 $\alpha$ 所诱导的线性变换
+$L_\alpha$ by
+\[
+L_\alpha(x) = \alpha \cdot x, \quad \forall\ x \in E, \quad L_\alpha \in \mathrm{End}_F(M).
+\]
+\end{Def}
+
+\begin{Def}[$\mathrm{Tr}_{E/F}$ 与 $N_{E/F}$]
+\[
+\mathrm{Tr}_{E/F}: E \to F, \quad \text{by } \forall\ \alpha \in E,\
+\mathrm{Tr}_{E/F}(\alpha) := \mathrm{Tr}(L_\alpha),
+\]
+\[
+N_{E/F}: E \to F, \quad \text{by } \forall\ \alpha \in E,\
+N_{E/F}(\alpha) := N(L_\alpha).
+\]
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注: 特征多项式的系数}
+
+注: ① 取定一组基 $\{ \alpha_1, \dots, \alpha_n \}$, $A$ 为 $A$ 为 $L_\alpha$
+在基下的矩阵, $\chi_A(x)$ 为 $A$ 的特征多项式,
+$\chi_A(x) = |x \cdot I - A| \in F[x]$,
+令 $\chi_A(x) = x^n + a_{n-1}x^{n-1} + \dots + a_0$,
+那么
+\[
+\mathrm{Tr}_{E/F}(\alpha) = -a_{n-1}, \qquad N_{E/F}(\alpha) = (-1)^n a_0.
+\]
+\quanhao{②} $\mathrm{Tr}_{E/F}$ 与 $N_{E/F}$ 与域扩张 $E/F$ 有关.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{迹与范数的性质}
+
+\begin{lem}[迹与范数的性质]
+$[E:F] = n$, 则:
 \begin{itemize}
-\item 本部分对应手稿第 82--92 (缺手稿第85,86页) 页;
-\item 内容尚未整理成 slides.
+\item[(i)] $\forall\ \alpha, \beta \in E$, $a \in F$, 有
+  \[
+  \mathrm{Tr}_{E/F}(\alpha \pm \beta) = \mathrm{Tr}_{E/F}(\alpha)
+  \pm \mathrm{Tr}_{E/F}(\beta); \qquad
+  \mathrm{Tr}_{E/F}(a \cdot \alpha) = a \cdot \mathrm{Tr}_{E/F}(\alpha).
+  \]
+\item[(ii)] $\mathrm{Tr}_{E/F}: E^{+} \to F^{+}$ 为群同态,
+  而且 $\mathrm{Tr}_{E/F}$ 不是零同态即为满同态;
+\item[(iii)] $\forall\ a \in F$, $\mathrm{Tr}_{E/F}(a) = n \cdot a$;
+\item[(iv)] $\forall\ \alpha, \beta \in E$,
+  $N_{E/F}(\alpha \cdot \beta) = N_{E/F}(\alpha) \cdot N_{E/F}(\beta)$,
+  且 $N_{E/F}(\alpha) = 0 \iff \alpha = 0$,
+  $N_{E/F}: E^{*} \to F^{*}$ 为群同态;
+\item[(v)] $\forall\ a \in F$, $N_{E/F}(a) = a^n$;
+\item[(vi)] $\forall\ \alpha \in E$,
+  $f(x) = x^m + b_{m-1}x^{m-1} + \dots + b_1 x + b_0$ 为 $\alpha$
+  极小多项式, 则 $\mathrm{Tr}_{E/F}(\alpha) = -\frac{n}{m} b_{m-1}$,
+  $N_{E/F}(\alpha) = b_0^{\frac{n}{m}}$.
 \end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{迹与范数的性质的证明 (一)}
+
+\startproof[bg=yellow, fg=red](证明)
+令 $\{ \alpha_1, \dots, \alpha_n \}$ 为 $E/F$ 的一组基, $\forall\ \alpha, \beta \in E$,
+\[
+L_\alpha(\alpha_1, \dots, \alpha_n) = (\alpha \cdot \alpha_1, \dots, \alpha \cdot \alpha_n)
+= (\alpha_1, \dots, \alpha_n)A,
+\]
+\[
+L_\beta(\alpha_1, \dots, \alpha_n) = (\beta \cdot \alpha_1, \dots, \beta \cdot \alpha_n)
+= (\alpha_1, \dots, \alpha_n)B
+\]
+\[
+\Longrightarrow L_{\alpha \pm \beta}(\alpha_1, \dots, \alpha_n)
+= (\alpha_1, \dots, \alpha_n)(A \pm B),
+\]
+\[
+L_{\alpha \cdot \beta}(\alpha_1, \dots, \alpha_n) = (\alpha_1, \dots, \alpha_n)(A \cdot B),
+\]
+又 $\forall\ a \in F$, $L_a(\alpha_1, \dots, \alpha_n) = (\alpha_1, \dots, \alpha_n) \cdot a \cdot I$,
+若 $\alpha \neq 0$, 那么 $\{ \alpha \cdot \alpha_1, \dots, \alpha \cdot \alpha_n \}$
+也是 $E/F$ 的一组基.
+由上即知 (i) (iii) (ii) (iv) 成立.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{迹与范数的性质的证明 (二)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+(ii) 若 $\mathrm{Tr}_{E/F}: E \to F$ 不是 0 同态,
+即 $\exists\ \alpha \in E$, 使得 $\mathrm{Tr}_{E/F}(\alpha) = a \in F$,
+$a \neq 0$, $\forall\ b \in F$,
+$\mathrm{Tr}_{E/F}(ba^{-1}\alpha) = ba^{-1} \cdot a = b \in F$,
+故即知 $\mathrm{Tr}_{E/F}$ 为满同态,
+故 $\mathrm{Tr}_{E/F}$ 不是零同态, 即为满同态.
+
+\pause
+
+(vi) Cayley--Hamilton 定理: $\sigma \in \mathrm{End}_F(E)$, $A$ 为 $\sigma$
+在某组基下的矩阵, $\chi_A(x)$ 为特征多项式, $f(x)$ 为极小多项式,
+有 $\chi_A(A) = 0$, $f(x) \mid \chi_A(x)$, 且 $f(x)$ 与 $\chi_A(x)$
+有相同不可约因子.
+$\forall\ \alpha \in E$,
+$f(x) = x^m + b_{m-1}x^{m-1} + \dots + b_1 x + b_0$ 为极小多项式,
+$L_\alpha$ 为 $\alpha$ 诱导的线性变换, $A$ 为某组基下 $L_\alpha$ 的矩阵,
+\[
+\chi_A(x) = x^n + a_{n-1}x^{n-1} + \dots + a_1 x + a_0,
+\]
+则 $\mathrm{Tr}_{E/F}(\alpha) = -a_{n-1}$, $N_{E/F}(\alpha) = (-1)^n a_0$.
+令 $\varphi: E \to \mathrm{End}_F(E)$ by $\varphi(\alpha) = L_\alpha$,
+$\varphi$ 为环同态, 而且 $\forall\ a \in F$, $\alpha \in E$,
+$\varphi(a \cdot \alpha) = a \cdot \varphi(\alpha)$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{$\varphi$ 与极小多项式}
+
+$\varphi$ 不是零同态, 为单一的同态, $\alpha$ 的极小多项式 $f(x)$ 亦是
+矩阵 $A$ 的极小多项式.
+因为 $f(\varphi(\alpha)) = f(L_\alpha) = f(A)$
+\[
+\iff f(\varphi(\alpha)) = \varphi(f(\alpha)) = \varphi(0) = 0
+\iff f(A) = 0.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[基本定律]{Trace 与 Norm 基本定律}
+
+%------------------------------------------------
+
+\begin{frame}{Trace 与 Norm 基本定律}
+
+\begin{thm}[Trace 与 Norm 基本定律]
+$E/F$ 为任意 $n$ 次域扩张, $F \subset E_s \subset E$, $E_s$ 为 $F$ 在 $E$
+中可分闭包, $s = [E_s:F]$ 为 $E/F$ 的可分次数, 则:
+\begin{itemize}
+\item[(i)] $E$ 上的 $F$-同态个数为 $s$;
+\item[(ii)] 若 $\{ \sigma_1, \sigma_2, \dots, \sigma_s \}$ 为 $E$ 上全部
+  $F$-同态 $\Longrightarrow \forall\ \alpha \in E$,
+  \[
+  \mathrm{Tr}_{E/F}(\alpha) = [E:F]_i \sum_{i=1}^{s} \sigma_i(\alpha),
+  \qquad
+  N_{E/F}(\alpha) = \Big( \prod_{j=1}^{s} \sigma_j(\alpha) \Big)^{[E:F]_i};
+  \]
+\item[(iii)] $\forall\ F \subset E \subset L$ 为有限域扩张,
+  \[
+  \begin{cases}
+  \mathrm{Tr}_{L/F} = \mathrm{Tr}_{E/F} \cdot \mathrm{Tr}_{L/E} \\
+  N_{L/F} = N_{E/F} \cdot N_{L/E}
+  \end{cases}
+  \]
+  即 $\forall\ \alpha \in L$,
+  \[
+  \begin{cases}
+  \mathrm{Tr}_{L/F}(\alpha) = \mathrm{Tr}_{E/F}\big(\mathrm{Tr}_{L/E}(\alpha)\big) \\
+  N_{L/F}(\alpha) = N_{E/F}\big(N_{L/E}(\alpha)\big)
+  \end{cases}
+  \]
+\end{itemize}
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{F-同态的个数与开拓}
+
+\begin{lem}[F-同态的个数与开拓]
+\begin{itemize}
+\item[(i)] $E/F$ 为有限扩张, $t = [E_s:F]$ 为其可分次数, 则
+  $E \to \bar{F}$ 的 $F$-同态个数为 $t$;
+\item[(ii)] 若 $E/F$ 为有限可分扩张, 则对任意中间域 $L$, $F \subset L \subset E$,
+  $L \xrightarrow{\ \sigma\ } \bar{F}$ 为 $F$-同态, 则 $\sigma$ 可以开拓到
+  $E \xrightarrow{\ \bar{\tau}\ } \bar{F}$ 的 $F$-同态, 而且开拓个数 $= [E:L]$.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$N/F$ 为 $E_s/F$ 的正规闭包, 那么 $N/F$ 为有限 Galois 扩张,
+$F \subset E_s \subset E \subset N \cdot E \subset \bar{F}$.
+由本原元素定理, $E_s/F$ 为单代数扩张,
+令 $E_s = F(\alpha)$, $\alpha$ 的极小多项式 $f(x)$ 为可分多项式,
+$\deg f(x) = [E_s:F] = t$,
+在 $\bar{F}$ 中 $f(x)$ 恰有 $t$ 个不同的根, 记为 $\alpha_1, \dots, \alpha_t$,
+$E_s \xrightarrow{\ \bar{\tau}\ } \bar{F}$ 为 $F$-同态,
+正好有 $t$ 个 $F$-同态, 仅证任意 $\sigma: E_s \to \bar{F}$ 为 $F$-同态,
+可以而且唯一地可以开拓到 $E \to \bar{F}$ 的一个 $F$-同态.
+若 $\sigma: E_s \to \bar{F}$ 给定, 由于 $N/E_s$ 为正规扩张,
+$E/E_s$ 为纯不可分的, 那么 $N \cdot E/E_s$ 为正规扩张,
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{F-同态的个数与开拓的证明 (续)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+$F \subset E_s \subset N \cdot E \subset \bar{F}$.
+由上引理10, $E_s \to \bar{F}$ 的任一 $F$-同态 $\sigma$ 可以开拓到
+$N \cdot E \to \bar{F}$ 的一个 $F$-同态 $\bar{\tau}$,
+令 $\bar{\tau}|_E$, 则 $\sigma$ 开拓到 $E \to \bar{F}$ 的一个 $F$-同态
+$\bar{\tau}|_E$. 令 $\bar{\tau}_1$ 与 $\bar{\tau}_2$ 为 $\sigma$ 在 $E \to \bar{F}$
+的两个开拓, 即 $\bar{\tau}_1|_{E_s} = \bar{\tau}_2|_{E_s} = \sigma$.
+由 $E/E_s$ 为正规扩张, $E$ 为 $E_s$ 上一个多项式 $g(x)$ 的分裂域,
+$\bar{\tau}_1(E)$ 与 $\bar{\tau}_2(E)$ 为多项式 $\bar{\tau}_1(g(x))$ 与
+$\bar{\tau}_2(g(x))$ 的分裂域,
+由于 $\bar{\tau}_1(g(x)) = \bar{\tau}_2(g(x)) = \sigma(g(x)) = \bar{g}(x)$,
+即 $\bar{\tau}_1(E)$ 与 $\bar{\tau}_2(E)$ 为 $\bar{g}(x)$ 的两个分裂域,
+\[
+\left\{
+\begin{aligned}
+&\bar{\tau}_1(E) \subset \bar{F} \\
+&\bar{\tau}_2(E) \subset \bar{F}
+\end{aligned}
+\right.
+\Longrightarrow \bar{\tau}_1(E) = \bar{\tau}_2(E)
+\Longrightarrow \bar{\tau}_1^{-1} \bar{\tau}_2 \in \mathrm{Gal}(E/E_s),
+\]
+由 $\mathrm{Gal}(E/E_s) = 1$ 知 $\bar{\tau}_1 = \bar{\tau}_2$.
+
+\pause
+
+(ii) $F \subset L \subset E$, $E/F$ 为有限的可分扩张, $E/F \subset N/F$
+为正规闭包, 则 $N/F$ 为有限 Galois 扩张, 任一 $L \xrightarrow{\ \sigma\ } \bar{F}$
+为 $F$-同态, 都可以开拓为 $N \to N$ 的一个自同构 $\bar{\tau}$,
+$\bar{\tau}|_E$ 则为 $\sigma$ 在 $E$ 上的一个开拓,
+给定 $\sigma$, $\sigma$ 开拓到 $N \to N$ 的 $F$-同态的开拓个数 $= [N:L]$.
+$\sigma$ 的任意两个 $N \to N$ 的 $F$-同态的开拓 $\varphi$ 与 $\psi$,
+有 $\varphi^{-1} \psi \in \mathrm{Gal}(N/L)$,
+由 $N/L$ 为 Galois 扩张 知 $|\mathrm{Gal}(N/L)| = [N:L]$,
+所以 $\sigma$ 开拓到 $N$ 的 $F$-同态的个数为 $[N:L]$.
+同理, 若 $\bar{\tau}$ 为 $\sigma$ 在 $E$ 上的一个开拓,
+$\bar{\tau}$ 在 $N$ 上有 $[N:E]$ 个开拓,
+所以 $\sigma$ 在 $E$ 上的 $F$-同态的开拓个数为
+$\frac{[N:L]}{[N:E]} = [E:L]$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分扩张的指数}
+
+\begin{lem}[纯不可分扩张的指数]
+\begin{itemize}
+\item[(i)] 若 $E/F$ 为有限的纯不可分扩张 ($\chi(F) = p$), 则 $\forall\ \alpha \in E$,
+  $\alpha^{[E:F]} \in F$;
+\item[(ii)] 若 $E/F$ 为有限的纯不可分扩张, $L/F$ 为有限 Galois 扩张, 则
+  $E \cdot L/L$ 为有限的纯不可分扩张. $\forall\ \alpha \in E \cdot L$,
+  $\alpha^{[E:F]} \in L$.
+\end{itemize}
+\end{lem}
+
+% 注 (转写): (ii) 的指数手稿写 [E:F], 疑应为 [E·L:L], 见升级清单.
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$\chi(F) = p$, $\alpha \in E$, 则 $\exists\ p^n$, 使得 $\alpha^{p^n} \in F$,
+令 $n$ 为最小非负整数,
+则 $\alpha$ 在 $F$ 上极小多项式为 $g(x) = x^{p^n} - \alpha^{p^n} \in F[x]$.
+那么 $[F(\alpha):F] = p^n$, $[F(\alpha):F] \mid [E:F] \Longrightarrow
+\alpha^{[E:F]} \in F$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{纯不可分扩张的指数的证明 (ii)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+由上节引理19, $E \cdot L/E$ 为有限 Galois 扩张, 且
+$\mathrm{Gal}(E \cdot L/E) \cong \mathrm{Gal}(L/L \cap E)$,
+那么 $[E \cdot L:E] = [L:L \cap E]$, 由于 $E/F$ 为纯不可分的,
+$E \cdot L/L = L(E)/L$,
+$\forall\ E$ 中元素为 $F$ 上纯不可分元,
+$F \subset E \cap L \subset E \subset E \cdot L \subset \bar{F}$,
+$E/F$ 为纯不可分的, 知 $E \cap L/F$ 为纯不可分的,
+而由 $L/F$ 为可分扩张知 $E \cap L/F$ 为可分扩张, 故 $E \cap L = F$.
+由 (i) 知 $\forall\ \alpha \in E \cdot L$, $\alpha^{[E \cdot L:L]} \in L$.
+\[
+[E \cdot L:F] = [E \cdot L:E] \cdot [E:F],
+\quad \text{又 } [E \cdot L:E] = [L:F],
+\]
+\[
+[E \cdot L:F] = [E \cdot L:L] \cdot [L:F], \text{ 知 } [E \cdot L:L] = [E:F],
+\]
+故 $\alpha^{[E:F]} \in L$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分次数与纯不可分次数}
+
+\begin{lem}[可分次数与纯不可分次数]
+$F \subset E \subset L$ 为有限扩张, 则:
+\begin{itemize}
+\item[(i)] $[L:F]_i = [L:E]_i \cdot [E:F]_i$;
+\item[(ii)] $[L:F]_s = [L:E]_s \cdot [E:F]_s$;
+\item[(iii)] $[L:F]_s = [L:E_s] \cdot [E:F]_s$,\quad
+  $[L:F] = [L:E] \cdot [E:F]$.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+令 $A$ 为 $F$ 在 $E$ 中的可分闭包, $B$ 为 $F$ 在 $L$ 中的可分闭包,
+$C$ 为 $E$ 在 $L$ 的可分闭包, 有如下扩张: $F \subset A \subset E \subset E \cdot B
+\subset C \subset L$.
+\begin{itemize}
+\item \quanhao{①} $C = E \cdot B$:
+  $C/E$ 为可分扩张 $\Longrightarrow C/E \cdot B$ 为可分扩张,
+  又有 $L/B$ 为纯不可分扩张 $\Longrightarrow L/E \cdot B$ 为纯不可分扩张
+  $\Longrightarrow C/E \cdot B$ 为纯不可分,
+  所以有 $C = E \cdot B$;
+\item \quanhao{②} $[C:E] = [C:B]$:
+  $B/F$ 为可分扩张, 那么 $B/A$ 为可分扩张, 由本原元素定理,
+  $\exists\ \alpha \in B$, 使得 $B = A(\alpha)$,
+  由于 $E(\alpha) = E(A(\alpha)) = E(B) = E \cdot B = C$,
+  若 $\alpha$ 在 $E$ 上极小多项式与 $\alpha$ 在 $A$ 上极小多项式相同,
+  则 $[C:E] = [B:A]$,
+  因此, $[E:A] = \frac{[C:A]}{[C:E]} = \frac{[C:A]}{[B:A]} = [C:B]$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分次数与纯不可分次数的证明 (续)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+下证 $\alpha$ 在 $E$ 上极小多项式与 $\alpha$ 在 $A$ 上极小多项式相同.
+令 $f(x)$ 为 $\alpha$ 在 $A$ 上极小多项式, $g(x)$ 为 $\alpha$ 在 $E$
+上极小多项式,
+$A \subset E \Longrightarrow g(x) \mid f(x)$.
+由于 $E/A$ 为纯不可分扩张, $g(x) \in E[x]$, 存在 $p^m$, 使得
+$g(x)^{p^m} \in A[x]$,
+那么 $f(x) \mid g(x)^{p^m}$, 那么 $f(x) = g(x)^k$, $k \geq 1$.
+因为 $B/F$ 为可分扩张, 那么 $B/A$ 为可分的,
+故 $\alpha$ 为 $A$ 上可分代数元素, 因此 $\alpha$ 在 $A$ 上极小多项式为
+可分多项式, 故 $k = 1$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Trace 与 Norm 基本定律的证明 (一)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明)
+$\alpha \in E$ 给定, 令 $f(x)$ 为 $\alpha$ 在 $F$ 上的极小多项式, 并令
+\[
+g(x) = \Big( \prod_{j=1}^{s} (x - \sigma_j(\alpha)) \Big)^{[E:F]_i}.
+\]
+由定义, $g(x) \in \bar{F}[x]$, 我们证明 $g(x) \in F[x]$, 且与 $f(x)$
+有相同的根.
+由 $f(\alpha) = 0$, $\forall\ 1 \leq j \leq s$, 有
+$\sigma_j(f(\alpha)) = f(\sigma_j(\alpha)) = 0$,
+即 $g(x)$ 的全部的根为 $f(x)$ 的零点.
+反过来, 若 $\beta$ 为 $f(x)$ 的一个根, $\exists\ \bar{E} \to \bar{F}$ 的
+$F$-同态 $\sigma = \sigma_j$, 使得 $\sigma(\alpha) = \beta$,
+故 $f(x)$ 的根也是 $g(x)$ 的零点.
+令 $[E:F]_i > 1$, $\chi(F) = p \Longrightarrow [E:F]_i = p^m$,
+那么 $g(x) = \prod_{j=1}^{s} \big( x^{p^m} - \sigma_j(\alpha^{p^m}) \big)$,
+由纯不可分扩张的指数引理, $\alpha^{p^m} \in E_s$,
+令 $\alpha^{p^m} = \beta \in E_s$,
+$h(x) = \prod_{j=1}^{s} (x - \sigma_j(\beta))$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Trace 与 Norm 基本定律的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明, 续)
+令 $p(x)$ 为 $\beta$ 在 $F$ 上极小多项式, 由于 $E_s/F$ 为可分扩张,
+那么 $p(x) = (x - \beta_1) \dotsm (x - \beta_m)$, 其中 $\beta_1 = \beta$,
+$\beta_i \neq \beta_j$,
+考虑 $F \subset F(\beta) \subset E_s$, 由 F-同态的个数与开拓引理,
+$\forall\ F$-同态 $F(\beta) \xrightarrow{\ \bar{\tau}\ } \bar{F}$
+可以开拓至 $E \to \bar{F}$, 其中 $\bar{\tau}(\beta) = \beta_j$,
+开拓个数为 $\frac{[E_s:F]}{[F(\beta):F]} = \frac{s}{m}$.
+又 $\{ \sigma_1, \dots, \sigma_s \}$ 为全部的 $E_s \to \bar{F}$ 的 $F$-同态,
+即 $\frac{s}{m}$ 个 $\sigma_j$ 为同一个 $\bar{\tau}_j$ 开拓而来,
+故 $h(x) = p(x)^{\frac{s}{m}}$,
+那么 $h(x) \in F[x]$, $g(x) = h(x^{p^m})$, 故 $g(x) \in F[x]$.
+$f(x) \mid g(x)$, 且 $f(x)$ 不可约, 故 $g(x) = f(x)^k$, $k = \frac{s}{m}$,
+其中 $m = \deg f(x)$, 由迹与范数的性质引理, $g(x)$ 为 $\alpha$
+所诱导出的线性变换 $L_\alpha$ 的特征多项式.
+那么,
+\[
+\mathrm{Tr}_{E/F}(\alpha) = [E:F]_i \sum_{j=1}^{s} \sigma_j(\alpha),
+\qquad
+N_{E/F}(\alpha) = \Big( \prod_{j=1}^{s} \sigma_j(\alpha) \Big)^{[E:F]_i}.
+\]
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Trace 与 Norm 基本定律的证明 (三)}
+
+\startproof[bg=yellow, fg=red]((iii) 的证明, 续)
+(iii) 若 $[L:F]_s = s$, $[L:E] = t$,
+令 $\{ \sigma_1, \dots, \sigma_s \}$ 为 $E \to \bar{F}$ 的全部 $F$-同态,
+$\{ \tau_1, \dots, \tau_t \}$ 为 $L \to \bar{F}$ 的全部 $E$-同态,
+$\sigma_i$ 与 $\tau_j$ 可以开拓为 $\bar{F} \to \bar{F}$ 的同构,
+由可分次数与纯不可分次数引理, $L \to \bar{F}$ 所有的 $F$-同态为
+$\{ \sigma_i \tau_j \mid 1 \leq i \leq s,\ 1 \leq j \leq t \}$,
+因此由 (ii) 有
+\[
+\mathrm{Tr}_{L/F}(\alpha) = [L:F]_i \sum_{i} \sum_{j} \sigma_i \tau_j(\alpha)
+\]
+\[
+= [L:E]_i \cdot [E:F]_i \sum_{i} \sum_{j} \sigma_i \tau_j(\alpha)
+= [E:F]_i \sum_{i} \sigma_i \Big( [L:E]_i \sum_{j} \tau_j(\alpha) \Big)
+\]
+\[
+= [E:F]_i \sum_{i} \sigma_i \big( \mathrm{Tr}_{L/E}(\alpha) \big)
+= \mathrm{Tr}_{E/F}\big( \mathrm{Tr}_{L/E}(\alpha) \big).
+\]
+同理可算得 $N_{L/F}(\alpha) = N_{E/F}(N_{L/E}(\alpha))$.
+\qed
+
+\pause
+
+\begin{cor}[可分扩张的迹判别]
+一个有限扩张 $E/F$ 为可分扩张 $\iff$
+$\mathrm{Tr}_{E/F}: E^{+} \to F^{+}$ 为非零同态 (因此为满同态).
+\end{cor}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[判别式]{基判别式}
+
+%------------------------------------------------
+
+\begin{frame}{基判别式}
+
+有限域扩张的基判别式:
+$[E:F] = n$, 令 $\{ \alpha_1, \dots, \alpha_n \}$ 为 $E/F$ 的一组基,
+令 $A = \big( \mathrm{Tr}_{E/F}(\alpha_i \cdot \alpha_j) \big)$,
+为 $F$ 上 $n$ 阶方阵,
+$|A| = d(\alpha_1, \dots, \alpha_n)$ 为 $\{ \alpha_1, \dots, \alpha_n \}$
+的判别式.
+若 $\{ \beta_1, \dots, \beta_n \}$ 为 $E/F$ 另一组基, 则
+$(\alpha_1, \dots, \alpha_n)P = (\beta_1, \dots, \beta_n)$,
+故 $d(\beta_1, \dots, \beta_n) = |P|^2 d(\alpha_1, \dots, \alpha_n)$.
+反过来, $\forall\ \alpha \in F^{*}$, 有
+$d(\alpha\alpha_1, \alpha_2, \dots, \alpha_n) = \alpha^2 d(\alpha_1, \dots, \alpha_n)$,
+因此 $E/F$ 的基判别式为
+$\{ \alpha^2 d(\alpha_1, \dots, \alpha_n) \mid \alpha \in F^{*} \}$,
+其中 $\{ \alpha_1, \dots, \alpha_n \}$ 为 $E/F$ 的一组基.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{基判别式与迹}
+
+\begin{lem}[基判别式与迹]
+若 $E/F$ 为有限扩张, 则:
+\begin{itemize}
+\item[(i)] $E/F$ 的基判别式为 $0 \iff \mathrm{Tr}_{E/F} = 0$;
+\item[(ii)] $E/F$ 的基判别式为 $0 \iff E/F$ 为不可分扩张.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+若 $\mathrm{Tr}_{E/F} = 0$, 则 $A = \big( \mathrm{Tr}_{E/F}(\alpha_i \alpha_j) \big) = 0$,
+故 $d(\alpha_1, \dots, \alpha_n) = 0$.
+反过来, 若 $\mathrm{Tr}_{E/F} \neq 0$, 假设 $\{ \alpha_1, \dots, \alpha_n \}$
+为 $E/F$ 的一组基, 使得 $d(\alpha_1, \dots, \alpha_n) = 0$,
+那么 $\big( \mathrm{Tr}_{E/F}(\alpha_i \alpha_j) \big) X = 0$ 在 $F$ 上有非 0 解
+$X = (c_1, \dots, c_n)^{\mathsf{T}}$,
+因此 $\sum_{j} \mathrm{Tr}_{E/F}(\alpha_i \alpha_j) c_j = 0$, $\forall\ 1 \leq i \leq n$,
+即 $\mathrm{Tr}_{E/F}\big( \alpha_i \sum_{j} c_j \alpha_j \big) = 0$,
+令 $\beta = \sum_{j} c_j \alpha_j$, $\beta \in E^{*}$,
+又 $\forall\ 1 \leq i \leq n$, 有 $\mathrm{Tr}_{E/F}(\beta \alpha_i) = 0$,
+故 $\forall\ \alpha \in E$, 有 $\mathrm{Tr}_{E/F}(\beta \cdot \alpha) = 0$,
+因此 $\forall\ \alpha \in E$, $\mathrm{Tr}_{E/F}(\alpha) = 0$,
+与 $\mathrm{Tr}_{E/F} \neq 0$ 矛盾.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
