@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,267 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[无关集]{代数无关集}
+
+%------------------------------------------------
+
+\begin{frame}{代数无关}
+
+$F \subset E$ 为域扩张, 令 $\{ \alpha_1, \dots, \alpha_n \} \subset E$,
+称 $\{ \alpha_1, \dots, \alpha_n \}$ 在 $F$ 上代数无关,
+若 $\forall\ f \in F[x_1, \dots, x_n]$,
+\[
+f(\alpha_1, \dots, \alpha_n) = 0 \iff f(x_1, \dots, x_n) = 0.
+\]
+
+\pause
+
+$S \subset E$ 为 $E$ 的一个子集, 若 $S$ 中任意有限子集在 $F$ 上代数无关,
+则称 $S$ 为 $E/F$ 的一个代数无关集.
+规定, $\varnothing$ 为 $E/F$ 的代数无关集.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例: 有理函数域}
+
+\begin{eg}
+$F$ 为一个域, $F(x_1, \dots, x_n)$ 为有理函数域,
+$\{ x_1, \dots, x_n \}$ 为 $F(x_1, \dots, x_n)/F$ 上代数无关集.
+同理, $\forall\ m_i \geq 1$,
+$\{ x_1^{m_1}, x_2^{m_2}, \dots, x_n^{m_n} \}$ 也是 $F(x_1, \dots, x_n)/F$
+代数无关集.
+令 $(y_1, \dots, y_n)^{\mathsf{T}} = A(x_1, \dots, x_n)$, $A \in M_n(F)$,
+那么 $\{ y_1, \dots, y_n \}$ 为 $F(x_1, \dots, x_n)/F$ 上代数无关集
+$\iff |A| \neq 0$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数无关集小性质}
+
+代数无关集小性质: $E/F$ 为域扩张,
 \begin{itemize}
-\item 本部分对应手稿第 93--97 页;
-\item 内容尚未整理成 slides.
+\item \quanhao{①} $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 在 $F$ 上代数无关
+  $\iff F(\alpha_1, \dots, \alpha_n) \cong F(x_1, \dots, x_n)$;
+\item \quanhao{②} $S \subset E$ 为 $F$ 上代数无关集, 令 $A \subset S$,
+  $B = S \setminus A$, 那么 $B$ 为 $F(A)$ 上代数无关集.
 \end{itemize}
+
+\startproof[bg=yellow, fg=red](② 的证明)
+令 $\{ \alpha_1, \dots, \alpha_n \} \subset B$, 若 $\{ \alpha_1, \dots, \alpha_n \}$
+在 $F(A)$ 上代数相关,
+那么 $\exists\ f(x_1, \dots, x_n) \in F(A)[x_1, \dots, x_n]$
+使得 $f(\alpha_1, \dots, \alpha_n) = 0$,
+令 $f(x_1, \dots, x_n) = \sum_{i_1, \dots, i_n} a_{i_1, \dots, i_n}
+x_1^{i_1} \dotsm x_n^{i_n}$, $a_{i_1, \dots, i_n} \in F(A)$,
+那么 $\exists\ g_{i_1, \dots, i_n}(y_1, \dots, y_k) \in F[x_1, \dots, x_k]$,
+使得 $a_{i_1, \dots, i_n} = g_{i_1, \dots, i_n}(\beta_1^{(1)}, \dots,
+\beta_{i_1, \dots, i_n}^{(k)})$, $\beta_{i_1, \dots, i_n}^{(j)} \in A$,
+令 $h(y_1, \dots, y_k, x_1, \dots, x_n) = \sum_{i_1, \dots, i_n}
+g_{i_1, \dots, i_n} x_1^{i_1} \dotsm x_n^{i_n} \neq 0$,
+那么 $\{ \beta_{i_1, \dots, i_n}^{(j)} \} \cup \{ \alpha_1, \dots, \alpha_n \}$
+在 $F$ 上代数相关,
+这与 $S$ 在 $F$ 上代数无关矛盾.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{代数无关集小性质 (续)}
+
+\begin{itemize}
+\item \quanhao{③} $S \subset E$ 为 $F$ 上一个代数无关集, $\alpha \in E$, 那么
+  $S \cup \{ \alpha \}$ 在 $F$ 上代数无关 $\iff$ $\alpha$ 为 $F(S)$ 上的
+  超越元素.
+\end{itemize}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$. $S \cup \{ \alpha \}$ 在 $F$ 上代数无关,
+由 \quanhao{③} 知 $\alpha$ 为 $F(S)$ 上超越元素.
+$2^{\circ}$. 若 $\alpha$ 为 $F(S)$ 上超越元素,
+假设 $S \cup \{ \alpha \}$ 在 $F$ 上代数相关, 则 $\exists\ F$ 上非 0 多项式
+$f(x_1, \dots, x_{n+1}) \in F[x_1, \dots, x_{n+1}]$
+及 $S$ 中 $n$ 个元素 $\{ \alpha_1, \dots, \alpha_n \} \subset S$,
+使得 $f(\alpha_1, \dots, \alpha_n, \alpha) = 0$.
+令 $f(x_1, \dots, x_{n+1}) = \sum_{\alpha} g_{\alpha}(x_1, \dots, x_n)
+x_{n+1}^{\alpha}$,
+令 $g(x_{n+1}) = \sum_{\alpha} g_{\alpha}(\alpha_1, \dots, \alpha_n)
+x_{n+1}^{\alpha} \in F(S)[x_{n+1}]$,
+$g \neq 0$, 则 $g(\alpha) = 0$, 与 $\{ \alpha \}$ 在 $F(S)$ 上代数无关矛盾.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[超越基]{超越基与超越次数}
+
+%------------------------------------------------
+
+\begin{frame}{超越基}
+
+\begin{Def}[超越基]
+$E/F$ 为域扩张, $S \subset E$ 称为 $E/F$ 的一个超越基, 若,
+\begin{itemize}
+\item \quanhao{①} $S$ 为 $E$ 上代数无关集;
+\item \quanhao{②} $E/F(S)$ 为代数扩张.
+\end{itemize}
+\end{Def}
+
+注: $E/F$ 为代数扩张 $\iff \varnothing$ 为 $E/F$ 的超越基.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越基的存在与势}
+
+\begin{lem}[超越基的存在与势]
+\begin{itemize}
+\item[(i)] 任一域扩张 $E/F$ 的超越基存在;
+\item[(ii)] $T \subset E$ 为一个子集, 且 $E/F(T)$ 为代数扩张,
+  那么 $\exists\ E/F$ 的一组超越基 $S$, 使得 $S \subset T$;
+\item[(iii)] $A \subset E$ 为子集, $A$ 在 $F$ 上代数无关, 那么
+  $\exists$ 一组超越基 $S$, 使得 $A \subset S$;
+\item[(iv)] 若 $A \subset E$, $T \subset E$ 为子集, 若 $A$ 在 $F$ 上代数无关,
+  $E/F(T)$ 为代数扩张, 则存在 $E/F$ 的一组超越基 $S$, 使得 $A \subset S \subset T$;
+\item[(v)] $E/F$ 的任意两组超越基有相同的势.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+令 $B = \{ S \mid S \subset E \text{ 为 } F \text{ 上代数无关集} \}$,
+$\varnothing \in B$,
+任取 $B$ 中一个全序子集 $S_1 \subset S_2 \subset \dots \subset S_n \subset \dots$
+令 $S = \bigcup S_i$, 任取 $S$ 中有限子集 $\{ \alpha_1, \dots, \alpha_n \}$,
+$\exists\ S_k$, 使得 $\{ \alpha_1, \dots, \alpha_n \} \subset S_k$,
+故 $\{ \alpha_1, \dots, \alpha_n \}$ 在 $F$ 上代数无关,
+那么 $S \in B$, 由 Zorn 引理, $B$ 中存在一个极大元素 $S$,
+若 $E/F(S)$ 不是代数扩张, 则 $\exists\ \alpha \in E$,
+$\alpha$ 为 $F(S)$ 上超越元素,
+那么 $S \cup \{ \alpha \}$ 在 $F$ 上代数无关, 这与 $S$ 的极大性矛盾.
+由上即知 $S$ 是 $E/F$ 的一组超越基.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越基的存在与势的证明 (ii)}
+
+\startproof[bg=yellow, fg=red]((ii) 的证明)
+令 $B = \{ S \mid S \text{ 为 } F \text{ 上代数无关集 且 } S \subset T \}$,
+同 (i) 知 $B$ 有极大元素 $S$, 下仅证 $F/F(S)$ 为代数扩张.
+$F(T)/F(S) = F(S)(T)/F(S)$, $T$ 中每一元素为 $F(S)$ 上代数元素, 否则
+与 $S$ 的极大性矛盾, 故 $F(T)/F(S)$ 为代数扩张, 而 $E/F(T)$ 也是代数的,
+故 $E/F(S)$ 为代数扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越基的存在与势的证明 (v)}
+
+\startproof[bg=yellow, fg=red]((v) 的证明)
+令 $S, T$ 为 $E/F$ 的两组超越基,
+若 $|S| < \infty$, 令 $S = \{ \alpha_1, \dots, \alpha_n \}$.
+$1^{\circ}$. $\exists\ t \in T$, 使得 $\{ \alpha_2, \dots, \alpha_n, t \}$
+在 $F$ 上代数无关.
+假设不然, $\forall\ t \in T$, $\{ \alpha_2, \dots, \alpha_n, t \}$ 在 $F$
+上代数相关,
+那么 $t$ 为 $F(\alpha_2, \dots, \alpha_n)$ 上代数元素,
+即 $F(\alpha_2, \dots, \alpha_n)(T)/F(\alpha_2, \dots, \alpha_n)$ 为代数扩张.
+令 $F_1 = F(\alpha_2, \dots, \alpha_n)$, 由 $E/F(T)$ 为代数扩张,
+$F \subset F(T) \subset F_1(T) \subset E$ 知 $E/F_1(T)$ 为代数扩张,
+又 $F_1(T)/F_1$ 为代数扩张, 那么 $E/F_1$ 为代数扩张,
+那么 $\alpha_1$ 为 $F_1$ 上代数元素, 与 $S = \{ \alpha_1, \dots, \alpha_n \}$
+为一组超越基矛盾.
+
+\pause
+
+$2^{\circ}$. $\{ \alpha_2, \dots, \alpha_n, t \} \subset E$ 为 $E/F$
+一组超越基.
+若 $t \in T$, $\{ \alpha_2, \dots, \alpha_n, t \}$ 在 $F$ 上代数相关,
+则 $E/F_1(T)$ 为代数扩张, 其中 $F_1 = F(\alpha_2, \dots, \alpha_n)$,
+由于 $E/F(T)$ 为代数扩张, 故 $E/F_1(T)$ 为代数扩张,
+那么 $E/F_1$ 为代数扩张, 与 $\{ \alpha_1, \dots, \alpha_n \}$
+为超越基矛盾.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越基的存在与势的证明 (iv, 续)}
+
+\startproof[bg=yellow, fg=red]((iv) 的证明, 续)
+$2^{\circ}$. $\{ \alpha_2, \dots, \alpha_n, t \}$ 为 $E/F$ 的一个超越基.
+$F(\alpha_2, \dots, \alpha_n, t, \alpha_1)/F(\alpha_2, \dots, \alpha_n, t)$
+为代数扩张,
+由 $E/F(\alpha_1, \dots, \alpha_n)$ 为代数扩张 知
+$E/F(\alpha_2, \dots, \alpha_n, t, \alpha_1)$ 为代数扩张,
+那么 $E/F(\alpha_2, \dots, \alpha_n, t)$ 为代数扩张.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[超越次数]{超越次数}
+
+%------------------------------------------------
+
+\begin{frame}{超越次数}
+
+$E/F$ 为一个域扩张, $S$ 为一组超越基, $|S|$ 称为 $E/F$ 的超越级,
+记为 $\mathrm{tr.d}(E/F) = |S|$.
+
+\pause
+
+\begin{lem}[超越次数的加性]
+\begin{itemize}
+\item[(i)] $F \subset E \subset L$ 为域扩张,
+  则 $\mathrm{tr.d}(L/F) = \mathrm{tr.d}(E/F) + \mathrm{tr.d}(L/E)$;
+\item[(ii)] $F \subset E \subset E \cdot L \subset K$ 为域扩张, 则:
+  \quanhao{①} $\mathrm{tr.d}(E \cdot L/L) \leq \mathrm{tr.d}(E/F)$;
+  \quanhao{②} $\mathrm{tr.d}(E \cdot L/F) \leq \mathrm{tr.d}(L/F)
+  + \mathrm{tr.d}(E/F)$.
+\end{itemize}
+\end{lem}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越次数的加性的证明}
+
+\startproof[bg=yellow, fg=red]((i) 的证明)
+$A \subset E$ 为 $E/F$ 的一个超越基, $B \subset L$ 为 $L/E$ 的一组超越基,
+显然有 $A \cap B = \varnothing$, 下证 $A \cup B$ 为 $L/F$ 的一组超越基.
+由于 $B$ 在 $E$ 上代数无关, 而 $F(A) \subset E$,
+故 $B$ 在 $F(A)$ 上代数无关, 那么 $B \cup A$ 在 $F$ 上代数无关,
+$E(B) = E(F(A \cup B)) = F(A \cup B)(E)$,
+$E$ 中所有元素为 $F(A)$ 上代数元, 从而为 $F(A \cup B)$ 上代数元素,
+故 $E(B)/F(A \cup B)$ 为代数扩张,
+又由于 $L/E(B)$ 为代数扩张, 故 $L/F(A \cup B)$ 为代数扩张.
+综上所述 $A \cup B$ 为 $L/F$ 的一组超越基.
+
+\pause
+
+(ii) $A \subset E$ 为 $E/F$ 的一组超越基,
+那么 $E/F(A)$ 为代数扩张.
+$E \cdot L = L(E) = L(A)(E)$, 则有
+$E \cdot L/L(A) = L(A)(E)/L(A)$,
+由于 $E/F(A)$ 为代数扩张, $\forall\ \alpha \in E$ 为 $L(A)$ 上代数元素,
+故 $E \cdot L/L(A)$ 也是代数扩张, 由超越基的存在与势引理知 $A$ 中包含
+$E \cdot L/L$ 组超越基.
+\qed
+
 \end{frame}
 
 %------------------------------------------------
