@@ -416,8 +416,9 @@ E \cup \!\left(\bigcap_{\alpha \in I} A_\alpha\right) = \bigcap_{\alpha \in I} (
 x \in \mathscr{C}\!\left(\bigcup_{\alpha \in I} A_\alpha\right)
 & \iff x \notin A_\alpha,\ \forall ~ \alpha \in I \\
 & \iff x \in \mathscr{C} A_\alpha,\ \forall ~ \alpha \in I
-\iff x \in \bigcap_{\alpha \in I} \mathscr{C} A_\alpha. \quad\square
+\iff x \in \bigcap_{\alpha \in I} \mathscr{C} A_\alpha.
 \end{align*}
+\qed
 
 \end{frame}
 
@@ -481,7 +482,7 @@ $\displaystyle \varliminf_{n\to\infty} E_n = \mathbb{Z}$, $\displaystyle \varlim
 $\supset$：对任意 $p \in \mathbb{Z}$，有 $p = \frac{pn}{n} \in E_n$ 对所有 $n$ 成立，故 $\mathbb{Z} \subset \bigcap_{n=1}^\infty E_n \subset \varliminf_{n\to\infty} E_n$.
 
 \medskip
-$\subset$：若 $x \in \varliminf_{n\to\infty} E_n$，则从某个 $N$ 起 $x \in E_n$. 设 $x = p/q$（既约, $q > 0$），可证必有 $q = 1$，即 $x \in \mathbb{Z}$.
+$\subset$：若 $x \in \varliminf_{n\to\infty} E_n$，则从某个 $N$ 起 $x \in E_n$. 设 $x = p/q$（既约, $q > 0$）: 对一切 $n \geqslant N$ 有 $q \mid np$, 由 $(p, q) = 1$ 得 $q \mid n$; 取相邻两个 $n$ 得 $q = 1$, 即 $x \in \mathbb{Z}$.
 
 \end{column}
 \begin{column}[T]{0.49\textwidth}
