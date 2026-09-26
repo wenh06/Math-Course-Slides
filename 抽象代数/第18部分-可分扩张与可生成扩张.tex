@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,366 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[定义]{可分扩张与可分生成扩张}
+
+%------------------------------------------------
+
+\begin{frame}{可分扩张与可分生成扩张}
+
+\begin{Def}[可分扩张]
+若 $\chi(F) = p$ ($p \geq 0$), $E/F$ 为域扩张,
+称 $E/F$ 为可分扩张, 若 $E$ 与 $F^{\frac{1}{p}}$ 在 $E$ 上线性不相交.
+\end{Def}
+
+\pause
+
+\begin{Def}[可分超越基与可分生成扩张]
+$E/F$ 为域扩张, $S$ 为一个超越基, 若 $E/F(S)$ 为可分扩张, 则称 $S$ 为
+$E/F$ 的一个可分超越基; 有可分超越基的域扩张 $E/F$ 称为可分生成扩张.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分生成扩张的注记 (一)}
+
+可分生成扩张的注记:
 \begin{itemize}
-\item 本部分对应手稿第 98--104 页;
-\item 内容尚未整理成 slides.
+\item \quanhao{①} 若 $\chi(F) = 0$, 则 $\forall\ E/F$ 为可分扩张,
+  也是可分生成扩张;
+\item \quanhao{②} 若 $E/F$ 为代数扩张, 则 $E/F$ 为可分扩张
+  $\iff$ $E/F$ 为可分生成扩张;
+\item \quanhao{③} 若 $E/F(S)$, $S$ 为 $F$ 上代数无关集, 即 $E/F$
+  为纯超越扩张, 则 $E/F$ 平凡地为可分扩张, 也是可分生成扩张.
 \end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{可分生成扩张的注记 (二)}
+
+\begin{itemize}
+\item \quanhao{④} 可分扩张与可分生成扩张有差别, 当且仅当
+  $\chi(F) = p \neq 0$, $E/F$ 为非代数扩张, 非纯超越扩张.
+  如 $\chi(F) = p \neq 0$,
+  $E = F(x, x^{\frac{1}{p}}, x^{\frac{1}{p^2}}, \dots, x^{\frac{1}{p^n}}, \dots)$,
+  $E/F$ 为可分扩张, 但非可分生成的;
+\item \quanhao{⑤} $E/F$ 为可分生成扩张, 任一个超越基不一定为可分超越基.
+  如: $\chi(F) = p \neq 0$, $E = F(x_1, \dots, x_n)$, $E/F$ 为可分生成扩张,
+  $\{ x_1, \dots, x_n \}$ 为可分超越基, 但 $\{ x_1^p, \dots, x_n^p \}$
+  也是 $E/F$ 的一个超越基, 但不是可分超越基.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[传递]{线性不相交的传递}
+
+%------------------------------------------------
+
+\begin{frame}{线性不相交的传递}
+
+\begin{lem}[线性不相交的传递]
+$F \subset E \subset E \cdot D \subset K$ 为域扩张, 则 $E$ 与 $L$ 在 $F$ 上
+线性不相交, 等价于
+\begin{itemize}
+\item[(i)] $E$ 与 $D$ 在 $F$ 上线性不相交;
+\item[(ii)] $E \cdot D$ 与 $L$ 在 $F$ 上线性不相交.
+\end{itemize}
+\end{lem}
+
+\startproof[bg=yellow, fg=red](证明)
+$1^{\circ}$ $\Longleftarrow$ 平凡.
+$2^{\circ}$. $E$ 与 $L$ 在 $F$ 上线性不相交 $\Longrightarrow$ (i)
+平凡地成立. 下证 (ii) 也成立:
+
+\pause
+
+\quanhao{①} 任一域 $F$ 上线性空间 $V$ 的基存在;
+\quanhao{②} 若 $E$ 与 $D$ 在 $F$ 上线性不相交, 则 $E/F$ 的一组基,
+也是 $E \cdot D/D$ 的一组基;
+\quanhao{③} 若 $E$ 与 $L$ 在 $F$ 上线性不相交, 则 $E \cdot D/F$ 的
+线性无关组也是 $L$ 上的线性无关组;
+\quanhao{④} 由 Zorn 引理可证明.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{线性不相交的传递的证明 (续)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+\quanhao{⑤} 若 $A$ 为 $E/F$ 的一组基, 那么 $\forall\ \alpha \in D[E]$,
+$\alpha$ 可以由 $A$ 中有限个元素在 $D$ 上线性表出. 因为 $\forall\ \alpha \in D[E]$,
+\[
+\alpha = f(e_1, \dots, e_m) = \sum_{i=1}^{n} \beta_i \alpha_i,
+\quad \text{其中 } \beta_i \in D,\ \alpha_i \in E,
+\]
+$\alpha_i$ 可以由 $A$ 中有限个元素在 $F$ 上线性表出,
+可知 $\alpha$ 可由 $A$ 中有限个元素在 $D$ 上线性表出.
+\quanhao{⑥} 由 $E$ 与 $L$ 在 $F$ 上线性不相交,
+$E/F$ 的一组基 $A$ 在 $L$ 上也是线性无关的,
+令 $\{ \alpha_1, \dots, \alpha_n \} \subset D[E]$ 为 $D$ 上一组线性无关的向量,
+则存在 $A$ 中一个有限子集 $A_1$, $A_1$ 在 $D$ 上生成的线性空间记为
+$V_1 \subset D[E]$,
+令 $V$ 为 $A_1$ 在 $L$ 上生成的线性空间, 则 $A_1$ 为 $V$ 的一个有限基,
+并且 $\dim(V_1/D) = \dim(V/L)$,
+$\{ \alpha_1, \dots, \alpha_n \}$ 可扩充为 $V_1/D$ 的一组基, 记为 $B$,
+因为 $B$ 在 $D$ 上张成一个 $n$ 维线性空间,
+$B$ 也为 $V/L$ 的生成元集, 那么 $B$ 中包含 $V/L$ 的一组基, 记为 $C$,
+由 $C \subset B$ 且 $|C| = |B|$ 知 $C = B$.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[基本定理]{超越扩张的基本定理}
+
+%------------------------------------------------
+
+\begin{frame}{超越扩张的基本定理}
+
+\begin{thm}[超越扩张的基本定理]
+对任一域扩张 $E/F$, 下面三个结论等价:
+\begin{itemize}
+\item[(i)] $E/F$ 为可分扩张;
+\item[(ii)] $E$ 与 $F^{\frac{1}{p^{\infty}}}$ 在 $F$ 上线性不相交;
+\item[(iii)] $E/F$ 的任一有限生成的中间域 $F(\alpha_1, \dots, \alpha_n)$,
+  $F(\alpha_1, \dots, \alpha_n)/F$ 为可分生成扩张,
+  $\{ \alpha_1, \dots, \alpha_n \}$ 中含有一组可分超越基.
+\end{itemize}
+\end{thm}
+
+\startproof[bg=yellow, fg=red]((i) $\Longrightarrow$ (iii) 的证明)
+$E/F$ 为可分扩张, 令 $L = F(\alpha_1, \dots, \alpha_n)$ 为有限生成子域,
+对 $n$ 作归纳, $n = 0$ 时平凡.
+当 $0, \dots, n-1$ 时命题成立, 令 $\{ \alpha_1, \dots, \alpha_m \}$ 为
+$L = F(\alpha_1, \dots, \alpha_n)$ 的一组超越基, 其中 $m \leq n$.
+若 $m = n$, 此时 $L/F$ 为纯超越扩张, 命题成立.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越扩张的基本定理的证明 (二)}
+
+\startproof[bg=yellow, fg=red]((i) $\Longrightarrow$ (iii) 的证明, 续)
+若 $m < n$, 由假设 $\{ \alpha_1, \dots, \alpha_m, \alpha_{m+1} \}
+\subset \{ \alpha_1, \dots, \alpha_n \}$ 在 $F$ 上代数相关,
+$\exists\ f(x_1, \dots, x_{m+1}) \in F[x_1, \dots, x_{m+1}]$, $f \neq 0$,
+使得 $f(\alpha_1, \dots, \alpha_{m+1}) = 0$.
+不妨令 $f$ 的次数为满足上述性质的最低的多项式, 那么 $f$ 为不可约多项式,
+\quanhao{①} $f(x_1, \dots, x_{m+1}) \notin F[x_1^p, \dots, x_{m+1}^p]$.
+若不然, 则 $\exists\ g \in F[x_1, \dots, x_{m+1}]$,
+使得 $f(x_1, \dots, x_{m+1}) = g(x_1^p, \dots, x_{m+1}^p)
+= h(x_1, \dots, x_{m+1})^p$, 其中 $h \in F^{\frac{1}{p}}[x_1, \dots, x_{m+1}]$.
+由 $h(\alpha_1, \dots, \alpha_{m+1}) = 0$, 令 $h = \sum_j a_j m_j$,
+$a_j \in F^{\frac{1}{p}}$, $m_j$ 为 $h$ 的单项式, 即 $m_j = \prod x_i^{\lambda_{ji}}$,
+那么 $\{ m_j(\alpha_1, \dots, \alpha_{m+1}) \}$ 为 $L$ 中在 $F^{\frac{1}{p}}$
+上线性相关的.
+由 $m_j(\alpha_1, \dots, \alpha_{m+1}) \in L$,
+那么 $\{ m_j(\alpha_1, \dots, \alpha_{m+1}) \}$ 在 $F$ 上线性相关,
+即 $\exists\ b_j \in F$, 使得 $\sum_j b_j m_j(\alpha_1, \dots, \alpha_{m+1}) = 0$,
+令 $h'(x_1, \dots, x_{m+1}) = \sum_j b_j m_j(x_1, \dots, x_{m+1})$,
+$h'(\alpha_1, \dots, \alpha_{m+1}) = 0$, 由于 $\deg h' \leq \deg h < \deg f$,
+与 $f$ 的选取矛盾.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越扩张的基本定理的证明 (三)}
+
+\startproof[bg=yellow, fg=red]((i) $\Longrightarrow$ (iii) 的证明, 续)
+由 \quanhao{①} 可知, $\exists\ i$, $1 \leq i \leq m+1$, 有
+$f(\alpha_1, \dots, \alpha_{i-1}, t, \alpha_{i+1}, \dots, \alpha_{m+1}) = q(t)$,
+$q(t) \notin F[\alpha_1, \dots, \alpha_{i-1}, \alpha_{i+1}, \dots, \alpha_{m+1}][t]$.
+令 $R = F[\alpha_1, \dots, \alpha_{i-1}, \alpha_{i+1}, \dots, \alpha_{m+1}]$,
+$R$ 的商域为 $M$,
+有 $q(t) \in M[t]$, 但 $q(t) \notin M[t^p]$, 且 $q(\alpha_i) \neq 0$.
+由于 $\{ \alpha_1, \dots, \alpha_{i-1}, \alpha_{i+1}, \dots, \alpha_{m+1} \}$
+也为 $L/F$ 上的一个超越基,
+那么 $F[\alpha_1, \dots, \alpha_{i-1}, t, \alpha_{i+1}, \dots, \alpha_{m+1}]
+\cong F[x_1, \dots, x_{i-1}, t, x_{i+1}, \dots, x_{m+1}]
+\cong F[x_1, \dots, x_{m+1}]$,
+在 $\tilde{\sigma}$ 下, $\tilde{\sigma}(q(t)) = f(x_1, \dots, x_{m+1})$,
+那么 $q(t) \in M[t]$ 也是不可约的,
+$\alpha_i$ 为 $M$ 上的可分代数元素,
+令 $L' = F(\alpha_1, \dots, \alpha_{i-1}, \alpha_{i+1}, \dots, \alpha_{m+1})$,
+由归纳假设, $L'/F$ 为可分生成扩张,
+且 $\{ \alpha_1, \dots, \alpha_{i-1}, \alpha_{i+1}, \dots, \alpha_n \}$
+中含有一个可分超越基 $A$.
+$A$ 也是 $L/F$ 的一个可分超越基,
+因为 $L'/F(A)$ 为可分代数扩张, $L = L'(\alpha_i)$,
+$\alpha_i \in M \subset L'$ 为可分代数元,
+故 $L/L'$ 为可分代数扩张, 那么 $L/F(A)$ 为可分代数扩张.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越扩张的基本定理的证明 (四)}
+
+\startproof[bg=yellow, fg=red]((iii) $\Longrightarrow$ (ii) 的证明)
+\quanhao{①} 若 $F \subset E \subset K$ 为域扩张, $E/F$ 为代数扩张,
+$L/F$ 为纯超越扩张, 那么 $E$ 与 $L$ 在 $F$ 上线性不相交.
+$\forall\ A \subset K$, 使得 $A$ 在 $F$ 上代数无关,
+$F \subset E \subset E(A) = E_1 \subset K$, 那么 $A$ 中含有 $E_1/E$ 的
+一组超越基 $A_1$, 即 $A_1$ 在 $E$ 上代数无关, 且 $E_1/E(A_1)$ 为代数扩张.
+下证 $A_1$ 也是 $E_1/F$ 的一个超越基,
+由于 $A_1$ 在 $F$ 上代数无关平凡地成立, 故仅证 $E_1/F(A_1)$ 为代数扩张.
+\[
+E(A_1)/F(A_1) = \frac{F(A_1)(E)}{F(A_1)}, \quad
+E \text{ 为 } F \text{ 上代数扩张,}
+\]
+$\Longrightarrow E(A_1)/F(A_1)$ 为代数扩张,
+那么 $A_1$ 为 $E_1/F$ 的一个超越基.
+由于 $A_1 \subset A$, $A$ 在 $F$ 上代数无关, 那么 $A_1 = A$,
+即 $A$ 在 $E$ 上是代数无关的.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越扩张的基本定理的证明 (五)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+\quanhao{②} 若 $L = F(S)$, $S$ 为 $F$ 上代数无关集,
+$E \cdot L = E(F(S)) = E(S)$,
+若 $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 在 $F$ 上线性无关组,
+那么 $\{ \alpha_1, \dots, \alpha_n \}$ 也是 $L = F(S)$ 的线性无关组.
+因为令 $\sum_j g_j \alpha_j = 0$, 其中 $g_j \in F(S) = L$,
+那么 $g_j = \sum_i a_{ij} m_i(S_1, \dots, S_m)$, 其中 $S_i \in S$,
+$a_{ij} \in F$,
+那么 $\sum_i \sum_j a_{ij} m_i(S_1, \dots, s_m) = 0$;
+\quanhao{③} $F \subset E \subset K$, 若 $E/F$ 为可分代数扩张,
+$L/F$ 为纯不可分代数扩张, 那么 $E$ 与 $L$ 在 $F$ 上线性不相交.
+$\chi(F) = 0$ 时, 结论平凡.
+不妨令 $\chi(F) = p > 0$, 若 $\{ \alpha_1, \dots, \alpha_n \} \subset E$
+为 $F$ 上线性无关组, 令 $E_1 = F(\alpha_1, \dots, \alpha_n)$,
+$E_1/F$ 为有限代数扩张.
+由本原元素定理, $E_1 = F(\alpha)$, $\alpha \in E$,
+令 $g(x)$ 为 $\alpha$ 在 $F$ 上极小多项式,
+\[
+g(x) = x^n + a_1 x^{n-1} + a_2 x^{n-2} + \dots + a_0 \in F[x],
+\]
+令 $f(x)$ 为 $\alpha$ 在 $L$ 上极小多项式, $f(x) \mid g(x)$,
+$f(x) = x^m + \dots + b_1 x + b_0 \in L[x]$,
+$\exists\ p^k$, 使得 $b_j^{p^k} \in F$, 那么 $f(x)^{p^k} \in F[x]$,
+那么 $g(x) \mid f(x)^{p^k}$,
+即知 $g(x) = f(x)^t$, 但 $\alpha$ 为可分代数元, 故 $t = 1$.
+对 $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 在 $F$ 上线性无关的,
+令 $\sum_j a_j \alpha_j = 0$, $a_j \in L$,
+令 $L_1 = F(\alpha_1, \dots, \alpha_n)$, 有
+$E_1 \cdot L_1 = L_1(E_1) = L_1(F(\alpha)) = L(\alpha)$,
+$\alpha$ 在 $F$ 上极小多项式与 $\alpha$ 在 $L_1$ 上极小多项式相同.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{超越扩张的基本定理的证明 (六)}
+
+\startproof[bg=yellow, fg=red](证明, 续)
+$[E_1 \cdot L_1:L_1] = [E_1:F]$
+$\Longrightarrow [E_1 \cdot L_1:F] = [E_1 \cdot L_1:L_1] \cdot [L_1:F]
+= [E_1:F] \cdot [L_1:F]$,
+故 $E_1$ 与 $L_1$ 在 $F$ 上线性不相交.
+故 $\{ \alpha_1, \dots, \alpha_n \}$ 在 $L_1$ 上线性无关, 那么 $\forall\ i$,
+$a_i = 0$,
+因此 $\{ \alpha_1, \dots, \alpha_n \}$ 在 $L$ 上线性无关.
+
+\pause
+
+(iii) $\Longrightarrow$ (ii): $\chi(F) = 0$ 时, (iii) $\Longrightarrow$ (ii)
+平凡地成立.
+$\chi(F) = p > 0$ 时, 令 $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 为 $F$
+上一个线性无关组, 令 $L = F(\alpha_1, \dots, \alpha_n)$ 为有限生成的域,
+由 (iii) 知, 有一个可分超越基 $\{ \alpha_1, \dots, \alpha_m \}$,
+\[
+F \subset F^{\frac{1}{p^{\infty}}} \cdot (F(\alpha_1, \dots, \alpha_n) \cap L)
+\subset K,
+\]
+由线性不相交的传递引理, 因为 $F^{\frac{1}{p^{\infty}}}/F$ 为代数扩张,
+$F(\alpha_1, \dots, \alpha_n)/F$ 为纯超越扩张,
+知 $F^{\frac{1}{p^{\infty}}}$ 与 $F(\alpha_1, \dots, \alpha_m)$ 在 $F$ 上
+线性不相交,
+故 $F^{\frac{1}{p^{\infty}}} \cdot L = F^{\frac{1}{p^{\infty}}}
+(F(\alpha_1, \dots, \alpha_n)) = F^{\frac{1}{p^{\infty}}}(\alpha_1, \dots, \alpha_n)$,
+由 $F^{\frac{1}{p^{\infty}}}/F$ 为纯不可分扩张, 那么
+$F^{\frac{1}{p^{\infty}}}(\alpha_1, \dots, \alpha_n)/L(\alpha_1, \dots, \alpha_n)$
+为纯不可分代数扩张,
+而 $L/L(\alpha_1, \dots, \alpha_m)$ 为可分代数扩张, 由 \quanhao{③} 知
+$F^{\frac{1}{p^{\infty}}} \cdot L$ 与 $L$ 在 $L(\alpha_1, \dots, \alpha_n)$
+上线性不相交,
+因此 $E$ 与 $F^{\frac{1}{p^{\infty}}}$ 在 $F$ 上线性不相交.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[推论]{MacLane 准则与 Schmidt 规范化}
+
+%------------------------------------------------
+
+\begin{frame}{MacLane 准则}
+
+\begin{cor}[MacLane 准则]
+$\forall\ E/F$ 为域扩张, 若 $E/F$ 为可分生成扩张, 则 $E/F$ 为可分扩张;
+反过来, 若 $E/F$ 为可分扩张, 则 $E$ 中任意有限生成的子域为 $F$ 上的
+可分生成扩张.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+若 $E/F$ 为可分生成扩张, 则 $\exists$ 可分超越基 $S$, 使得 $E/F(S)$ 为
+可分代数扩张. 欲证 $E/F$ 为可分扩张, 仅证 $E$ 与 $F^{\frac{1}{p^{\infty}}}$
+在 $F$ 上线性不相交.
+\qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{K.F.Schmidt 规范化}
+
+\begin{cor}[K.F.Schmidt 规范化]
+若 $F$ 为一个完全域, 则 $F$ 上任意有限生成域 $E = F(\alpha_1, \dots, \alpha_n)$
+为可分生成的, 且 $\{ \alpha_1, \dots, \alpha_n \}$ 中含有一个可分超越基
+$\{ \alpha_1, \dots, \alpha_m \}$,
+使得 $E = F(\alpha_1, \dots, \alpha_m)(\beta)$ 为 $F(\alpha_1, \dots, \alpha_m)$
+上的可分单代数扩张.
+\end{cor}
+
+\startproof[bg=yellow, fg=red](证明)
+$F$ 为一个完全域, $E/F$ 为可分扩张,
+由超越扩张的基本定理, $\{ \alpha_1, \dots, \alpha_n \}$ 中含有一个可分
+超越基 $\{ \alpha_1, \dots, \alpha_m \}$,
+使得 $E/F(\alpha_1, \dots, \alpha_m)$ 为有限次的可分的代数扩张,
+由本原元素定理, $\exists\ \beta \in E$, 使得
+$E = F(\alpha_1, \dots, \alpha_m)(\beta)$ 为单代数扩张.
+\qed
+
+\pause
+
+\begin{eg}
+$|F| = p^n$ 为有限域, 令
+$E = F(x, x^{\frac{1}{p}}, \dots, x^{\frac{1}{p^n}}, \dots)$,
+$E$ 为可分扩张, 但不是可分生成扩张.
+因为 $F$ 为完全域, 故 $E/F$ 为可分扩张.
+又 $\mathrm{tr.d}(E/F) = 1$, $E$ 中没有可分超越基.
+因为若 $f$ 为 $E/F$ 的可分超越基,
+$F \subset F(x) \subset F(x^{\frac{1}{p}}) \subset \dots$,
+则 $\exists\ F(x^{\frac{1}{p^k}})$, 使得 $f \in F(x^{\frac{1}{p^k}})$.
+因此 $F \subset F(f) \subset F(x^{\frac{1}{p^k}}) \subset E$,
+$E/F(f)$ 为可分扩张, $\Longrightarrow E/F(x^{\frac{1}{p^k}})$ 为可分扩张,
+但 $E/F(x^{\frac{1}{p^k}})$ 是纯不可分的.
+\end{eg}
+
 \end{frame}
 
 %------------------------------------------------

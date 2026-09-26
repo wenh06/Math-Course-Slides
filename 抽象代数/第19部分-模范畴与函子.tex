@@ -1,5 +1,10 @@
 \everymath{\displaystyle}
 
+% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
+% 声明为 CJK 类后经中文字体输出
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\newcommand{\quanhao}[1]{{\simhei #1}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,11 +31,243 @@
 
 %------------------------------------------------
 
-\begin{frame}{(未完成)}
+\section[投射模]{投射模}
+
+%------------------------------------------------
+
+\begin{frame}{投射模}
+
+\begin{Def}[投射模]
+一个 $R$-模 $P$ 称为一个投射模, 若 $\forall\ B \xrightarrow{\ \sigma\ } C$
+为满的模同态, 以及 $\forall\ P \xrightarrow{\ \varphi\ } C$ 的 $\varphi$,
+都存在 $\rho: P \to B$, 使得 $\varphi = \sigma \cdot \rho$
+\begin{center}
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+\node (P) at (0,0) {$P$};
+\node (C) at (3,0) {$C$};
+\node (B) at (3,-1.5) {$B$};
+\draw[->] (P) -- (C) node[midway, above] {$\varphi$};
+\draw[->] (B) -- (C) node[midway, right] {$\sigma$};
+\draw[->] (P) -- (B) node[pos=0.6, below left] {$\rho$};
+\node at (4.3,-0.75) {交换};
+\end{tikzpicture}
+\end{center}
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[范畴]{范畴}
+
+%------------------------------------------------
+
+\begin{frame}{范畴的定义}
+
+\begin{Def}[范畴]
+一个范畴 $\mathcal{C}$ 是一些客体以及这些客体之间的关系集构成.
+具体地, 一个范畴 $\mathcal{C} = \{ A, B, C, \dots \}$, 以及任意两个客体
+$A, B$ 都定义了一个关系集 $\mathcal{C}(A, B)$, 称为态射集.
+满足如下性质:
 \begin{itemize}
-\item 本部分对应手稿第 105--108 页;
-\item 内容尚未整理成 slides.
+\item[$1^{\circ}$] 复合律:
+  \[
+  \mathcal{C}(A, B) \times \mathcal{C}(B, C) \longrightarrow \mathcal{C}(A, C),
+  \]
+  即 $\forall\ f \in \mathcal{C}(A, B)$, $g \in \mathcal{C}(B, C)$,
+  则 $g \cdot f \in \mathcal{C}(A, B)$;
+\item[$2^{\circ}$] 上述复合满足结合律, 即:
+  $f \in \mathcal{C}(A, B)$, $g \in \mathcal{C}(B, C)$, $h \in \mathcal{C}(C, D)$, 有
+  $(h \cdot g) \cdot f = h \cdot (g \cdot f)$;
 \end{itemize}
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{范畴的定义 (续)}
+
+\begin{Def}[范畴, 续]
+\begin{itemize}
+\item[$3^{\circ}$] $\mathcal{C}(A_1, B_1) \cap \mathcal{C}(A_2, B_2) = \varnothing$,
+  除非 $A_1 = A_2$, $B_1 = B_2$;
+\item[$4^{\circ}$] $\forall\ A \in \mathcal{C}$, 则 $\mathcal{C}(A, A)$ 有一个
+  所谓的单位 $1_A \in \mathcal{C}(A, A)$, 使得
+  $\forall\ f \in \mathcal{C}(A', A)$, $1_A \cdot f = f$;
+  $\forall\ g \in \mathcal{C}(A, B)$, $g \cdot 1_A = g$.
+\end{itemize}
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例 1 与例 2}
+
+\begin{eg}
+集范畴 $\Sigma$:
+$\Sigma = \{ \text{非空集合} \}$, $\forall\ A, B \in \Sigma$,
+$\Sigma(A, B) = \{ f \mid A \to B \text{ 为映射} \}$.
+$\Sigma$ 为一个范畴, 称为集范畴.
+\end{eg}
+
+\pause
+
+\begin{eg}
+拓扑空间范畴 $\mathcal{T}$:
+$\mathcal{T} = \{ X, Y, \dots \mid X, Y, \dots \text{ 为拓扑空间} \}$,
+$\forall\ X, Y \in \mathcal{T}$,
+$\mathcal{T}(X, Y) = \{ f \mid X \text{ 与 } Y \text{ 为连续映射} \}$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例 3 与例 4}
+
+\begin{eg}
+群范畴 $\mathcal{H}$:
+$\mathcal{H} = \{ A, B, \dots \mid A, B, \dots \text{ 为群} \}$,
+$\forall\ A, B \in \mathcal{H}$,
+$\mathcal{H}(A, B) = \{ \sigma \mid A \to B \text{ 为群同态} \}$.
+\end{eg}
+
+\pause
+
+\begin{eg}
+Abel 群范畴 $\mathcal{U}_b$:
+$\mathcal{U}_b = \{ A, B, C, \dots \mid \text{交换群} \}$,
+$\mathcal{U}_b(A, B) = \{ \sigma \mid A \to B \text{ 为群同态} \}$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{例 5、例 6 与例 7}
+
+\begin{eg}
+环范畴 $\mathcal{R}$:
+$\mathcal{R} = \{ A, B, C, \dots \mid \text{环} \}$,
+$\mathcal{R}(A, B) = \{ \sigma \mid A \to B \text{ 为环同态} \}$.
+\end{eg}
+
+\begin{eg}
+幺环范畴 $\mathcal{R}_1$:
+$\mathcal{R}_1 = \{ A, B, \dots \mid \text{幺环} \}$,
+$\mathcal{R}_1(A, B) = \{ \sigma \mid A \to B \text{ 为环同态且 }
+\sigma(1) = 1 \}$.
+\end{eg}
+
+\pause
+
+\begin{eg}
+若幺环 $R$ 给定, $R$-模范畴 $\mathcal{R}_R$:
+$\mathcal{R}_R = \{ A, B, C, \dots \mid R\text{-模} \}$,
+$\mathcal{R}_R(A, B) = \{ \sigma \mid A \to B \text{ 为 } R\text{-模同态} \}$.
+\end{eg}
+
+\end{frame}
+
+%------------------------------------------------
+
+\section[函子]{同构与函子}
+
+%------------------------------------------------
+
+\begin{frame}{同构与函子}
+
+\begin{Def}[同构]
+$\mathcal{C}$ 为一个范畴, $A, B \in \mathcal{C}$, 称 $A$ 与 $B$ 同构,
+若 $\exists\ f \in \mathcal{C}(A, B)$, $g \in \mathcal{C}(B, A)$,
+满足 $g \cdot f = 1_A$, $f \cdot g = 1_B$.
+\end{Def}
+
+\pause
+
+\begin{Def}[函子]
+$\mathcal{C}, \mathcal{D}$ 为两个范畴,
+$F: \mathcal{C} \to \mathcal{D}$, 以及
+$\mathcal{C}(A, B) \to \mathcal{D}(F(A), F(B))$,
+满足 $\forall\ A \in \mathcal{C}$, $F(A) \in \mathcal{D}$,
+又 $\forall\ f \in \mathcal{C}(A, B)$, 则定义 $F(f)$:
+$F(f) \in \mathcal{D}(F(A), F(B))$, 满足:
+\begin{itemize}
+\item \quanhao{①} $F(f \cdot g) = F(f) \cdot F(g)$;
+\item \quanhao{②} $F(1_A) = 1_{F(A)}$.
+\end{itemize}
+称为 $\mathcal{C} \to \mathcal{D}$ 的一个共变函子.
+\end{Def}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Hom$_R$-函子}
+
+若 $R$ 为给定幺环, $\mathcal{R}_R$ 为 $R$-模范畴, $\mathcal{U}_b$ 为
+Abel 群范畴, $\mathcal{R}_R$ 与 $\mathcal{U}_b$ 为共变函子,
+称为 $\mathrm{Hom}_R$-函子.
+
+\pause
+
+\[
+\mathcal{R}_R = \{ A, B, C, \dots \mid R\text{-模} \}
+\]
+\[
+\mathcal{R}_R(A, B) = \mathrm{Hom}_R(A, B)
+= \{ \sigma \mid A \to B \text{ 为 } R\text{-模同态} \}
+\]
+\quanhao{①} $\forall\ A, B \in \mathcal{R}_R$,
+$\mathrm{Hom}_R(A, B)$ 为 Abel 群, $\mathrm{Hom}_R(A, B) \in \mathcal{U}_b$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Hom$_R$-函子的构造}
+
+\begin{itemize}
+\item \quanhao{②} 若 $P \in \mathcal{R}_R$ 给定, 令 $F = \mathrm{Hom}_R(P,\ )$,
+  $\forall\ A \in \mathcal{R}_R$, $F(A) = \mathrm{Hom}_R(P, A) \in \mathcal{U}_b$,
+  \[
+  \mathcal{R}_R \xrightarrow{\ F\ } \mathcal{U}_b;
+  \]
+\item \quanhao{③} $\forall\ \sigma \in \mathrm{Hom}_R(A, B)$, 定义
+  $F(\sigma): F(A) \to F(B)$ by: $\forall\ \varphi \in \mathrm{Hom}_R(P, A)$,
+  $F(\sigma)(\varphi) = \sigma \cdot \varphi$, 记 $F(\sigma)$ 为 $\sigma_*$;
+\item \quanhao{④} $\mathrm{Hom}_R(P,\ ) = F$ 确定为 $\mathcal{R}_R \to
+\mathcal{U}_b$ 为共变函子.
+  即 $\sigma_* \in \mathcal{U}_b(F(A), F(B))
+  = \mathcal{U}_b(\mathrm{Hom}_R(P, A), \mathrm{Hom}_R(P, B))$.
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Hom$_R(P,\ )$ 的性质}
+
+$\mathrm{Hom}_R(P,\ )$ 的性质:
+$\forall\ \mathcal{R}_R$ 中的正合序列
+$0 \to A \xrightarrow{\ \sigma\ } B \xrightarrow{\ \tau\ } C$
+在 $\mathrm{Hom}_R(P,\ )$ 作用下,
+\[
+0 \to \mathrm{Hom}_R(P, A) \xrightarrow{\ \sigma_*\ }
+\mathrm{Hom}_R(P, B) \xrightarrow{\ \tau_*\ } \mathrm{Hom}_R(P, C)
+\]
+为 $\mathcal{U}_b$ 中的正合序列.
+
+\pause
+
+考虑 $\mathcal{R}_R$ 中短正合列
+$0 \to A \xrightarrow{\ \sigma\ } B \xrightarrow{\ \tau\ } C \to 0$.
+一个函子把短正合列变为短正合序列的称为一个正合函子.
+性质: 当且仅当 $P$ 为投射模, 由 $P$ 所诱导的 $\mathrm{Hom}_R(P,\ )$
+为正合函子.
+
 \end{frame}
 
 %------------------------------------------------
