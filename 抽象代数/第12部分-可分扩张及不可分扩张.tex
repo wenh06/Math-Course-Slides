@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -346,10 +341,10 @@ $\alpha$ 为 $F$ 上纯不可分元.
 
 \begin{itemize}
 \item 注:
-\item \quanhao{①} $\alpha$ 为 $F$ 上代数元素, $\alpha$ 为可分元与纯不可分元
+\item \circled{1} $\alpha$ 为 $F$ 上代数元素, $\alpha$ 为可分元与纯不可分元
   $\Longrightarrow$ $\alpha \in F$;
-\item \quanhao{②} 一个代数扩张 $E/F$ 为可分扩张与纯不可分扩张 $\iff$ $E = F$;
-\item \quanhao{③} $E/F$ 为纯不可分扩张 ($E \neq F$), 则 $\chi(F) = p$, 且 $|F| = \infty$.
+\item \circled{2} 一个代数扩张 $E/F$ 为可分扩张与纯不可分扩张 $\iff$ $E = F$;
+\item \circled{3} $E/F$ 为纯不可分扩张 ($E \neq F$), 则 $\chi(F) = p$, 且 $|F| = \infty$.
 \end{itemize}
 
 \end{frame}
@@ -565,14 +560,14 @@ $\chi(F) = p$, $E/F$ 为有限扩张, $[E:F] = n$, 若 $(n, p) = 1$, 则 $E/F$ �
 \end{lem}
 
 \startproof[bg=yellow, fg=red](证明)
-① $E_s/F$ 为 Galois 扩张, 因为 $\forall\ \alpha \in E_s$, $g(x)$ 为 $\alpha$
+\circled{1} $E_s/F$ 为 Galois 扩张, 因为 $\forall\ \alpha \in E_s$, $g(x)$ 为 $\alpha$
 的极小多项式, $\beta$ 为 $g(x)$ 的另一零点, 由 $E/F$ 为正规的, 知 $\beta \in E$,
 $g(x)$ 为其极小多项式, 那么 $\beta \in E_s$, 即 $E_s/F$ 为正规扩张,
 又有 $E_s/F$ 为可分扩张, 故 $E_s/F$ 为正规可分扩张.
 
 \pause
 
-② $\varphi: \mathrm{Gal}(E/F) \to \mathrm{Gal}(E_s/F)$
+\circled{2} $\varphi: \mathrm{Gal}(E/F) \to \mathrm{Gal}(E_s/F)$
 by, $\forall\ \sigma \in \mathrm{Gal}(E/F)$, $\varphi(\sigma) = \sigma|_{E_s}$.
 
 \end{frame}
@@ -586,7 +581,7 @@ $\varphi$ 为满的群同态,
 $\ker \varphi = \{ \sigma \in \mathrm{Gal}(E/F) \mid \sigma|_{E_s} = 1 \} = \mathrm{Gal}(E/E_s) = 1$,
 故 $\varphi$ 为单一的群同态, 所以 $\mathrm{Gal}(E/F) \cong \mathrm{Gal}(E_s/F)$.
 
-③ $E/E_i$ 为 Galois 扩张, 仅证 $E_i = I_n(\mathrm{Gal}(E/F))$;
+\circled{3} $E/E_i$ 为 Galois 扩张, 仅证 $E_i = I_n(\mathrm{Gal}(E/F))$;
 $\forall\ \alpha \in E_i$, $\exists\ p^n$, 使得 $\alpha^{p^n} \in F$,
 则 $\forall\ \sigma \in \mathrm{Gal}(E/F)$, $\sigma(\alpha^{p^n}) = \alpha^{p^n}$,
 即 $\sigma(\alpha)^{p^n} = \alpha^{p^n}$, 那么 $\sigma(\alpha) = \alpha$,

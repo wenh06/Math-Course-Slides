@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -54,15 +49,15 @@ $S$ 中元素为正次数的多项式, $A$ 为 $S$ 中多项式的零点的集�
 \begin{frame}{分裂域的存在性}
 
 \begin{itemize}
-\item \quanhao{①} $S = \{ f(x) \}$:\\
+\item \circled{1} $S = \{ f(x) \}$:\\
   由不可约多项式的根引理, 至少有 $K/F$, 使得 $K$ 中包含 $f(x)$ 的一个零点
   $\alpha_1$, 那么 $f(x) = (x - \alpha_1) f_1(x)$.
   对 $f_1(x)$ 也可进行同样讨论,
   故 $\exists$ 域扩张 $L/F$, $[L:F] < \infty$, 且 $L$ 中包含 $f(x)$ 的全部零点
   $A$, 令 $E = F(A)$, 即有 $F \subset F(A) \subset L$, $E$ 为一个分裂域;
-\item \quanhao{②} $S = \{ f_1(x), f_2(x), \dots, f_n(x) \}$:\\
-  令 $f(x) = \prod_{i=1}^{n} f_i(x)$ 即归结到 \quanhao{①};
-\item \quanhao{③} $S = F[x]$.
+\item \circled{2} $S = \{ f_1(x), f_2(x), \dots, f_n(x) \}$:\\
+  令 $f(x) = \prod_{i=1}^{n} f_i(x)$ 即归结到 \circled{1};
+\item \circled{3} $S = F[x]$.
 \end{itemize}
 
 \end{frame}

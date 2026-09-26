@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -46,12 +41,12 @@
 \begin{block}{性质}
 令 $F \subset E \subset K$ 为域扩张, 则:
 \begin{itemize}
-\item \quanhao{①} 若 $E/F$, $L/F$ 为有限扩张, 则 $E \cdot L/F$ 也为有限扩张;
-\item \quanhao{②} 若 $E/F$, $L/F$ 为代数扩张, 则 $E \cdot L/F$ 也是代数扩张;
-\item \quanhao{③} 若 $E/F$, $L/F$ 为正规扩张, 则 $E \cdot L/F$ 也是正规扩张;
-\item \quanhao{④} 若 $E/F$, $L/F$ 为可分扩张, 则 $E \cdot L/F$ 也是可分扩张;
-\item \quanhao{⑤} 若 $E/F$, $L/F$ 为纯不可分扩张, 则 $E \cdot L/F$ 也是纯不可分的;
-\item \quanhao{⑥} 若 $E/F$, $L/F$ 为 Galois 扩张, 则 $E \cdot L/F$ 也是 Galois 扩张.
+\item \circled{1} 若 $E/F$, $L/F$ 为有限扩张, 则 $E \cdot L/F$ 也为有限扩张;
+\item \circled{2} 若 $E/F$, $L/F$ 为代数扩张, 则 $E \cdot L/F$ 也是代数扩张;
+\item \circled{3} 若 $E/F$, $L/F$ 为正规扩张, 则 $E \cdot L/F$ 也是正规扩张;
+\item \circled{4} 若 $E/F$, $L/F$ 为可分扩张, 则 $E \cdot L/F$ 也是可分扩张;
+\item \circled{5} 若 $E/F$, $L/F$ 为纯不可分扩张, 则 $E \cdot L/F$ 也是纯不可分的;
+\item \circled{6} 若 $E/F$, $L/F$ 为 Galois 扩张, 则 $E \cdot L/F$ 也是 Galois 扩张.
 \end{itemize}
 \end{block}
 

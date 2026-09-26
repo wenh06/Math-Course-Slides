@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,8 +61,8 @@ $R \cong \mathbb{Z}/\langle p \rangle = F_p$.
 
 \begin{itemize}
 \item 结论:
-\item \quanhao{①} $\mathbb{Q}$ 与 $F_p$ 为最小的域, 称为素域;
-\item \quanhao{②} 任意一个域都为在 $\mathbb{Q}$ 上或 $F_p$ 上扩张而得的.
+\item \circled{1} $\mathbb{Q}$ 与 $F_p$ 为最小的域, 称为素域;
+\item \circled{2} 任意一个域都为在 $\mathbb{Q}$ 上或 $F_p$ 上扩张而得的.
 \end{itemize}
 
 \end{frame}
@@ -175,11 +170,11 @@ $\iff$ $\exists\ f(x) \in F[x]$, $f(\alpha) = 0$,
 
 \begin{itemize}
 \item 注:
-\item \quanhao{①} 代数元素 $\alpha$ 的极小多项式 $f(x)$ 为 $F[x]$ 中的
+\item \circled{1} 代数元素 $\alpha$ 的极小多项式 $f(x)$ 为 $F[x]$ 中的
   不可约多项式, 且 $N = \langle f(x) \rangle$ 为 $F[x]$ 中的一个极大理想;
-\item \quanhao{②} $\{\alpha_1, \dots, \alpha_n\}$ 在 $F$ 上代数无关
+\item \circled{2} $\{\alpha_1, \dots, \alpha_n\}$ 在 $F$ 上代数无关
   $\Longrightarrow$ $\forall\ \alpha_i$ 为 $F$ 上的超越元素; 反之不成立;
-\item \quanhao{③} 线性相关为代数相关特例 (多项式为一次的多项式).
+\item \circled{3} 线性相关为代数相关特例 (多项式为一次的多项式).
 \end{itemize}
 
 \end{frame}
@@ -209,8 +204,8 @@ $\dim(E/F) = n$, 称 $E/F$ 为次数为 $n$ 的有限扩张, 记为 $[E:F] = n$,
 \begin{frame}{性质}
 
 \begin{itemize}
-\item \quanhao{①} 任一有限扩张 $E/F$ 为代数扩张;
-\item \quanhao{②} 若 $F \subset E \subset L$, $E/F$, $L/E$ 都为有限扩张, 那么
+\item \circled{1} 任一有限扩张 $E/F$ 为代数扩张;
+\item \circled{2} 若 $F \subset E \subset L$, $E/F$, $L/E$ 都为有限扩张, 那么
   $L/F$ 也是有限扩张, 且
   \[ [L:F] = [L:E] \cdot [E:F] \qquad \text{(有限扩张传递性)} \]
 \end{itemize}
@@ -257,9 +252,9 @@ $F \subset F[x] \xrightarrow{\ \pi\ } F[x]/\langle p(x) \rangle = E$,
 $\{ 1, \bar{x}, \dots, \overline{x^{n-1}} \} \subset E$
 为 $E/F$ 的一组基, 其中 $n = \deg p(x)$, $\bar{x} = \pi(x) = x + \langle p(x) \rangle$:
 \begin{itemize}
-\item \quanhao{①} $\{ 1, \bar{x}, \dots, \overline{x^{n-1}} \}$
+\item \circled{1} $\{ 1, \bar{x}, \dots, \overline{x^{n-1}} \}$
   为 $E/F$ 中线性无关组;
-\item \quanhao{②} $\forall\ E$ 中元素可由
+\item \circled{2} $\forall\ E$ 中元素可由
   $\{ 1, \bar{x}, \dots, \overline{x^{n-1}} \}$ 在 $F$ 上线性表出.
 \end{itemize}
 \qed

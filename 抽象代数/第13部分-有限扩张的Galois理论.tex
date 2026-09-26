@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,10 +124,10 @@ $F$ 为有限域, $\chi(F) = p$, $|F| = p^n$, $E/F$ 为有限扩张.
 
 \begin{itemize}
 \item 结论:
-\item \quanhao{(i)} 任意有限扩张 $E/F$ 为 Galois 扩张,
+\item (i) 任意有限扩张 $E/F$ 为 Galois 扩张,
   而且 $\mathrm{Gal}(E/F) = \langle \tau \rangle$,
   其中 $\tau(\alpha) = \alpha^{p^n}$ 为 $E/F$ 上 Frobenius 自同构;
-\item \quanhao{(ii)} $F_p$ 为 $p$ 元有限域, $\bar{F}_p$ 为 $F_p$ 的代数闭包.
+\item (ii) $F_p$ 为 $p$ 元有限域, $\bar{F}_p$ 为 $F_p$ 的代数闭包.
   令 $F_p \subset \bar{E} \subset \bar{F}_p$, $|F| = p^n$, $|E| = p^m$, 则
   $F \subset E \iff n \mid m$. 且 $E/F$ 的中间域的个数为
   $\frac{p^m}{p^n}$ 的正因子个数.
@@ -271,13 +266,13 @@ $\Longrightarrow E/F$ 的中间域个数有限 $\Longrightarrow E = F(\alpha)$ �
 \begin{eg}
 $\mathbb{C}$ 为一个代数闭域 (代数基本定理).
 \begin{itemize}
-\item \quanhao{①} $\mathbb{R}$ 上没有奇数次扩张;
-\item \quanhao{②} $\mathbb{C}$ 上不存在 2 次扩张;
-\item \quanhao{③} $E/\mathbb{C}$ 为有限次扩张 $\Longrightarrow$ $E = \mathbb{C}$.
+\item \circled{1} $\mathbb{R}$ 上没有奇数次扩张;
+\item \circled{2} $\mathbb{C}$ 上不存在 2 次扩张;
+\item \circled{3} $E/\mathbb{C}$ 为有限次扩张 $\Longrightarrow$ $E = \mathbb{C}$.
 \end{itemize}
 \end{eg}
 
-\startproof[bg=yellow, fg=red](① 的证明)
+\startproof[bg=yellow, fg=red](\circled{1} 的证明)
 $E = \mathbb{R}(\alpha)$, $\alpha$ 的极小多项式为 $g(x)$,
 若 $[E:\mathbb{R}]$ 为奇数,
 则 $\deg g(x)$ 为奇数, 故 $g(x)$ 有一个实零点, 与 $g(x)$ 在 $\mathbb{R}$
@@ -285,7 +280,7 @@ $E = \mathbb{R}(\alpha)$, $\alpha$ 的极小多项式为 $g(x)$,
 
 \pause
 
-\startproof[bg=yellow, fg=red](② 的证明)
+\startproof[bg=yellow, fg=red](\circled{2} 的证明)
 $[E:\mathbb{C}] = 2$, 则 $E = \mathbb{C}(\sqrt{\bar{z}})$, 令 $z = r e^{i\theta}$
 $\Longrightarrow \sqrt{z} = \sqrt{r}\ e^{i\frac{\theta}{2}} \in \mathbb{C}$, 故 $E = \mathbb{C}$.
 \qed
@@ -294,9 +289,9 @@ $\Longrightarrow \sqrt{z} = \sqrt{r}\ e^{i\frac{\theta}{2}} \in \mathbb{C}$, 故
 
 %------------------------------------------------
 
-\begin{frame}{例的证明 (③)}
+\begin{frame}{例的证明 (\texorpdfstring{\circled{3}}{3})}
 
-\startproof[bg=yellow, fg=red](③ 的证明)
+\startproof[bg=yellow, fg=red](\circled{3} 的证明)
 令 $[E:\mathbb{C}] < \infty$, 那么 $[E:\mathbb{R}] < \infty$,
 令 $E/\mathbb{R}$ 的正规闭包为 $L$,
 那么 $\mathbb{R} \subset E \subset L$, $[L:\mathbb{R}] < \infty$,
@@ -305,7 +300,7 @@ $L/\mathbb{R}$ 与 $L/\mathbb{C}$ 为有限次 Galois 扩张.
 令 $G = \mathrm{Gal}(L/\mathbb{R})$, 则 $2 \mid |G|$,
 令 $H$ 为 $G$ 的西罗 2-子群,
 那么 $\frac{|G|}{|H|}$ 为一个奇数. 令 $F = I_n(H)$, $\mathbb{R} \subset F \subset L$,
-$[F:\mathbb{R}] = \frac{|G|}{|H|}$, 由 \quanhao{①} 知此时 $\mathbb{R}$ 有 $F = \mathbb{R}$,
+$[F:\mathbb{R}] = \frac{|G|}{|H|}$, 由 \circled{1} 知此时 $\mathbb{R}$ 有 $F = \mathbb{R}$,
 即 $H = G$, 即 $|G| = 2^n$.
 若 $n = 1$, 则 $[L:\mathbb{C}] = \frac{[L:\mathbb{R}]}{[\mathbb{C}:\mathbb{R}]}
 = \frac{|G|}{[\mathbb{C}:\mathbb{R}]} = 1$, 即 $L = \mathbb{C}$, 那么 $E \subset \mathbb{C}$.
@@ -317,13 +312,13 @@ $L/\mathbb{C}$ 也是 Galois 扩张,
 
 %------------------------------------------------
 
-\begin{frame}{例的证明 (③, 续)}
+\begin{frame}{例的证明 (\texorpdfstring{\circled{3}}{3}, 续)}
 
-\startproof[bg=yellow, fg=red](③ 的证明, 续)
-若 $m = 1$, 则与 \quanhao{②} 的结论矛盾.
+\startproof[bg=yellow, fg=red](\circled{3} 的证明, 续)
+若 $m = 1$, 则与 \circled{2} 的结论矛盾.
 若 $m > 1$, 令 $H_1$ 为 $G_1$ 的一个阶为 $2^{m-1}$ 阶子群,
 令 $F_1 = I_n(H_1)$, 则 $\mathbb{C} \subset F_1 \subset L$,
-$[F_1:\mathbb{C}] = \frac{|G_1|}{|H_1|} = 2$, 也与 \quanhao{②} 矛盾.
+$[F_1:\mathbb{C}] = \frac{|G_1|}{|H_1|} = 2$, 也与 \circled{2} 矛盾.
 由上可知只有 $n = 1$, 即 $L = \mathbb{C}$, $E = \mathbb{C}$.
 \qed
 

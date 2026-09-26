@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,9 +124,9 @@ e_i|_{M_i} = 1_{M_i}, \qquad e_i|_{M_j} = 0 \ (j \neq i),
 \]
 $\{ e_1, e_2, \dots, e_n \} \subset \mathrm{End}_R(M)$, $e_i \neq 1$, $e_i \neq 0$:
 \begin{itemize}
-\item \quanhao{①} $e_i^2 = e_i$, $1 \leq i \leq n$;
-\item \quanhao{②} $e_i e_j = 0$, 若 $i \neq j$;
-\item \quanhao{③} $\sum_i e_i = 1_M$.
+\item \circled{1} $e_i^2 = e_i$, $1 \leq i \leq n$;
+\item \circled{2} $e_i e_j = 0$, 若 $i \neq j$;
+\item \circled{3} $\sum_i e_i = 1_M$.
 \end{itemize}
 
 \end{frame}
@@ -226,8 +221,8 @@ N \text{ 为强不可分解的,}
 
 \begin{itemize}
 \item 结论:
-\item \quanhao{①} 有限长度模, 强不可分解 $\Longleftarrow$ 不可分解;
-\item \quanhao{②} 有限长度模 Krull--Schmidt 分解定理.
+\item \circled{1} 有限长度模, 强不可分解 $\Longleftarrow$ 不可分解;
+\item \circled{2} 有限长度模 Krull--Schmidt 分解定理.
 \end{itemize}
 
 \end{frame}
@@ -282,12 +277,12 @@ $\exists\ t \geq 1$, 使得 $\forall\ n \geq t$, $\ker(\sigma^n) = \ker(\sigma^t
 令 $n = \max\{ k, t \}$, 有 $\sigma^{\infty}(M) = \sigma^n(M)$,
 $\sigma^{-\infty}(M) = \ker(\sigma^n)$.
 仅需证明 $M = \sigma^n(M) \oplus \ker(\sigma^n)$, 即:
-\quanhao{①} $M = \sigma^n(M) + \ker(\sigma^n)$;
-\quanhao{②} $\sigma^n(M) \cap \ker(\sigma^n) = 0$.
+\circled{1} $M = \sigma^n(M) + \ker(\sigma^n)$;
+\circled{2} $\sigma^n(M) \cap \ker(\sigma^n) = 0$.
 
 \pause
 
-对\quanhao{②}: $\forall\ \alpha \in \sigma^n(M) \cap \ker(\sigma^n)$,
+对\circled{2}: $\forall\ \alpha \in \sigma^n(M) \cap \ker(\sigma^n)$,
 $\exists\ x \in M$, 使得 $\alpha = \sigma^n(x)$,
 那么 $0 = \sigma^n(\alpha) = \sigma^{2n}(x) = \sigma^n(x) = \alpha$.
 \qed
@@ -298,7 +293,7 @@ $\exists\ x \in M$, 使得 $\alpha = \sigma^n(x)$,
 
 \begin{frame}{Fitting 直和分解的证明 (二)}
 
-\startproof[bg=yellow, fg=red](\quanhao{①} 的证明)
+\startproof[bg=yellow, fg=red](\circled{1} 的证明)
 $\forall\ \alpha \in M$, 令 $\alpha_1 = \sigma^n(\alpha)$,
 $\alpha_1 \in \sigma^n(M) = \sigma^{2n}(M)$,
 那么 $\exists\ x \in M$, 使得 $\alpha_1 = \sigma^{2n}(x)$,

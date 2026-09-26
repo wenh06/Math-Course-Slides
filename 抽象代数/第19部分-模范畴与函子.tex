@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -195,8 +190,8 @@ $\mathcal{C}(A, B) \to \mathcal{D}(F(A), F(B))$,
 又 $\forall\ f \in \mathcal{C}(A, B)$, 则定义 $F(f)$:
 $F(f) \in \mathcal{D}(F(A), F(B))$, 满足:
 \begin{itemize}
-\item \quanhao{①} $F(f \cdot g) = F(f) \cdot F(g)$;
-\item \quanhao{②} $F(1_A) = 1_{F(A)}$.
+\item \circled{1} $F(f \cdot g) = F(f) \cdot F(g)$;
+\item \circled{2} $F(1_A) = 1_{F(A)}$.
 \end{itemize}
 称为 $\mathcal{C} \to \mathcal{D}$ 的一个共变函子.
 \end{Def}
@@ -220,7 +215,7 @@ Abel 群范畴, $\mathcal{R}_R$ 与 $\mathcal{U}_b$ 为共变函子,
 \mathcal{R}_R(A, B) = \mathrm{Hom}_R(A, B)
 = \{ \sigma \mid A \to B \text{ 为 } R\text{-模同态} \}
 \]
-\quanhao{①} $\forall\ A, B \in \mathcal{R}_R$,
+\circled{1} $\forall\ A, B \in \mathcal{R}_R$,
 $\mathrm{Hom}_R(A, B)$ 为 Abel 群, $\mathrm{Hom}_R(A, B) \in \mathcal{U}_b$.
 
 \end{frame}
@@ -230,15 +225,15 @@ $\mathrm{Hom}_R(A, B)$ 为 Abel 群, $\mathrm{Hom}_R(A, B) \in \mathcal{U}_b$.
 \begin{frame}{Hom$_R$-函子的构造}
 
 \begin{itemize}
-\item \quanhao{②} 若 $P \in \mathcal{R}_R$ 给定, 令 $F = \mathrm{Hom}_R(P,\ )$,
+\item \circled{2} 若 $P \in \mathcal{R}_R$ 给定, 令 $F = \mathrm{Hom}_R(P,\ )$,
   $\forall\ A \in \mathcal{R}_R$, $F(A) = \mathrm{Hom}_R(P, A) \in \mathcal{U}_b$,
   \[
   \mathcal{R}_R \xrightarrow{\ F\ } \mathcal{U}_b;
   \]
-\item \quanhao{③} $\forall\ \sigma \in \mathrm{Hom}_R(A, B)$, 定义
+\item \circled{3} $\forall\ \sigma \in \mathrm{Hom}_R(A, B)$, 定义
   $F(\sigma): F(A) \to F(B)$ by: $\forall\ \varphi \in \mathrm{Hom}_R(P, A)$,
   $F(\sigma)(\varphi) = \sigma \cdot \varphi$, 记 $F(\sigma)$ 为 $\sigma_*$;
-\item \quanhao{④} $\mathrm{Hom}_R(P,\ ) = F$ 确定为 $\mathcal{R}_R \to
+\item \circled{4} $\mathrm{Hom}_R(P,\ ) = F$ 确定为 $\mathcal{R}_R \to
 \mathcal{U}_b$ 为共变函子.
   即 $\sigma_* \in \mathcal{U}_b(F(A), F(B))
   = \mathcal{U}_b(\mathrm{Hom}_R(P, A), \mathrm{Hom}_R(P, B))$.

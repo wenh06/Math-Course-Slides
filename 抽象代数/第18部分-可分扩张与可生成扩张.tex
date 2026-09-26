@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,11 +52,11 @@ $E/F$ 的一个可分超越基; 有可分超越基的域扩张 $E/F$ 称为可�
 
 可分生成扩张的注记:
 \begin{itemize}
-\item \quanhao{①} 若 $\chi(F) = 0$, 则 $\forall\ E/F$ 为可分扩张,
+\item \circled{1} 若 $\chi(F) = 0$, 则 $\forall\ E/F$ 为可分扩张,
   也是可分生成扩张;
-\item \quanhao{②} 若 $E/F$ 为代数扩张, 则 $E/F$ 为可分扩张
+\item \circled{2} 若 $E/F$ 为代数扩张, 则 $E/F$ 为可分扩张
   $\iff$ $E/F$ 为可分生成扩张;
-\item \quanhao{③} 若 $E/F(S)$, $S$ 为 $F$ 上代数无关集, 即 $E/F$
+\item \circled{3} 若 $E/F(S)$, $S$ 为 $F$ 上代数无关集, 即 $E/F$
   为纯超越扩张, 则 $E/F$ 平凡地为可分扩张, 也是可分生成扩张.
 \end{itemize}
 
@@ -72,12 +67,12 @@ $E/F$ 的一个可分超越基; 有可分超越基的域扩张 $E/F$ 称为可�
 \begin{frame}{可分生成扩张的注记 (二)}
 
 \begin{itemize}
-\item \quanhao{④} 可分扩张与可分生成扩张有差别, 当且仅当
+\item \circled{4} 可分扩张与可分生成扩张有差别, 当且仅当
   $\chi(F) = p \neq 0$, $E/F$ 为非代数扩张, 非纯超越扩张.
   如 $\chi(F) = p \neq 0$,
   $E = F(x, x^{\frac{1}{p}}, x^{\frac{1}{p^2}}, \dots, x^{\frac{1}{p^n}}, \dots)$,
   $E/F$ 为可分扩张, 但非可分生成的;
-\item \quanhao{⑤} $E/F$ 为可分生成扩张, 任一个超越基不一定为可分超越基.
+\item \circled{5} $E/F$ 为可分生成扩张, 任一个超越基不一定为可分超越基.
   如: $\chi(F) = p \neq 0$, $E = F(x_1, \dots, x_n)$, $E/F$ 为可分生成扩张,
   $\{ x_1, \dots, x_n \}$ 为可分超越基, 但 $\{ x_1^p, \dots, x_n^p \}$
   也是 $E/F$ 的一个超越基, 但不是可分超越基.
@@ -109,12 +104,12 @@ $2^{\circ}$. $E$ 与 $L$ 在 $F$ 上线性不相交 $\Longrightarrow$ (i)
 
 \pause
 
-\quanhao{①} 任一域 $F$ 上线性空间 $V$ 的基存在;
-\quanhao{②} 若 $E$ 与 $D$ 在 $F$ 上线性不相交, 则 $E/F$ 的一组基,
+\circled{1} 任一域 $F$ 上线性空间 $V$ 的基存在;
+\circled{2} 若 $E$ 与 $D$ 在 $F$ 上线性不相交, 则 $E/F$ 的一组基,
 也是 $E \cdot D/D$ 的一组基;
-\quanhao{③} 若 $E$ 与 $L$ 在 $F$ 上线性不相交, 则 $E \cdot D/F$ 的
+\circled{3} 若 $E$ 与 $L$ 在 $F$ 上线性不相交, 则 $E \cdot D/F$ 的
 线性无关组也是 $L$ 上的线性无关组;
-\quanhao{④} 由 Zorn 引理可证明.
+\circled{4} 由 Zorn 引理可证明.
 
 \end{frame}
 
@@ -123,7 +118,7 @@ $2^{\circ}$. $E$ 与 $L$ 在 $F$ 上线性不相交 $\Longrightarrow$ (i)
 \begin{frame}{线性不相交的传递的证明 (续)}
 
 \startproof[bg=yellow, fg=red](证明, 续)
-\quanhao{⑤} 若 $A$ 为 $E/F$ 的一组基, 那么 $\forall\ \alpha \in D[E]$,
+\circled{5} 若 $A$ 为 $E/F$ 的一组基, 那么 $\forall\ \alpha \in D[E]$,
 $\alpha$ 可以由 $A$ 中有限个元素在 $D$ 上线性表出. 因为 $\forall\ \alpha \in D[E]$,
 \[
 \alpha = f(e_1, \dots, e_m) = \sum_{i=1}^{n} \beta_i \alpha_i,
@@ -131,7 +126,7 @@ $\alpha$ 可以由 $A$ 中有限个元素在 $D$ 上线性表出. 因为 $\foral
 \]
 $\alpha_i$ 可以由 $A$ 中有限个元素在 $F$ 上线性表出,
 可知 $\alpha$ 可由 $A$ 中有限个元素在 $D$ 上线性表出.
-\quanhao{⑥} 由 $E$ 与 $L$ 在 $F$ 上线性不相交,
+\circled{6} 由 $E$ 与 $L$ 在 $F$ 上线性不相交,
 $E/F$ 的一组基 $A$ 在 $L$ 上也是线性无关的,
 令 $\{ \alpha_1, \dots, \alpha_n \} \subset D[E]$ 为 $D$ 上一组线性无关的向量,
 则存在 $A$ 中一个有限子集 $A_1$, $A_1$ 在 $D$ 上生成的线性空间记为
@@ -184,7 +179,7 @@ $L = F(\alpha_1, \dots, \alpha_n)$ 的一组超越基, 其中 $m \leq n$.
 $\exists\ f(x_1, \dots, x_{m+1}) \in F[x_1, \dots, x_{m+1}]$, $f \neq 0$,
 使得 $f(\alpha_1, \dots, \alpha_{m+1}) = 0$.
 不妨令 $f$ 的次数为满足上述性质的最低的多项式, 那么 $f$ 为不可约多项式,
-\quanhao{①} $f(x_1, \dots, x_{m+1}) \notin F[x_1^p, \dots, x_{m+1}^p]$.
+\circled{1} $f(x_1, \dots, x_{m+1}) \notin F[x_1^p, \dots, x_{m+1}^p]$.
 若不然, 则 $\exists\ g \in F[x_1, \dots, x_{m+1}]$,
 使得 $f(x_1, \dots, x_{m+1}) = g(x_1^p, \dots, x_{m+1}^p)
 = h(x_1, \dots, x_{m+1})^p$, 其中 $h \in F^{\frac{1}{p}}[x_1, \dots, x_{m+1}]$.
@@ -206,7 +201,7 @@ $h'(\alpha_1, \dots, \alpha_{m+1}) = 0$, 由于 $\deg h' \leq \deg h < \deg f$,
 \begin{frame}{超越扩张的基本定理的证明 (三)}
 
 \startproof[bg=yellow, fg=red]((i) $\Longrightarrow$ (iii) 的证明, 续)
-由 \quanhao{①} 可知, $\exists\ i$, $1 \leq i \leq m+1$, 有
+由 \circled{1} 可知, $\exists\ i$, $1 \leq i \leq m+1$, 有
 $f(\alpha_1, \dots, \alpha_{i-1}, t, \alpha_{i+1}, \dots, \alpha_{m+1}) = q(t)$,
 $q(t) \notin F[\alpha_1, \dots, \alpha_{i-1}, \alpha_{i+1}, \dots, \alpha_{m+1}][t]$.
 令 $R = F[\alpha_1, \dots, \alpha_{i-1}, \alpha_{i+1}, \dots, \alpha_{m+1}]$,
@@ -236,7 +231,7 @@ $\alpha_i \in M \subset L'$ 为可分代数元,
 \begin{frame}{超越扩张的基本定理的证明 (四)}
 
 \startproof[bg=yellow, fg=red]((iii) $\Longrightarrow$ (ii) 的证明)
-\quanhao{①} 若 $F \subset E \subset K$ 为域扩张, $E/F$ 为代数扩张,
+\circled{1} 若 $F \subset E \subset K$ 为域扩张, $E/F$ 为代数扩张,
 $L/F$ 为纯超越扩张, 那么 $E$ 与 $L$ 在 $F$ 上线性不相交.
 $\forall\ A \subset K$, 使得 $A$ 在 $F$ 上代数无关,
 $F \subset E \subset E(A) = E_1 \subset K$, 那么 $A$ 中含有 $E_1/E$ 的
@@ -259,7 +254,7 @@ $\Longrightarrow E(A_1)/F(A_1)$ 为代数扩张,
 \begin{frame}{超越扩张的基本定理的证明 (五)}
 
 \startproof[bg=yellow, fg=red](证明, 续)
-\quanhao{②} 若 $L = F(S)$, $S$ 为 $F$ 上代数无关集,
+\circled{2} 若 $L = F(S)$, $S$ 为 $F$ 上代数无关集,
 $E \cdot L = E(F(S)) = E(S)$,
 若 $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 在 $F$ 上线性无关组,
 那么 $\{ \alpha_1, \dots, \alpha_n \}$ 也是 $L = F(S)$ 的线性无关组.
@@ -267,7 +262,7 @@ $E \cdot L = E(F(S)) = E(S)$,
 那么 $g_j = \sum_i a_{ij} m_i(S_1, \dots, S_m)$, 其中 $S_i \in S$,
 $a_{ij} \in F$,
 那么 $\sum_i \sum_j a_{ij} m_i(S_1, \dots, s_m) = 0$;
-\quanhao{③} $F \subset E \subset K$, 若 $E/F$ 为可分代数扩张,
+\circled{3} $F \subset E \subset K$, 若 $E/F$ 为可分代数扩张,
 $L/F$ 为纯不可分代数扩张, 那么 $E$ 与 $L$ 在 $F$ 上线性不相交.
 $\chi(F) = 0$ 时, 结论平凡.
 不妨令 $\chi(F) = p > 0$, 若 $\{ \alpha_1, \dots, \alpha_n \} \subset E$
@@ -324,7 +319,7 @@ $F(\alpha_1, \dots, \alpha_n)/F$ 为纯超越扩张,
 由 $F^{\frac{1}{p^{\infty}}}/F$ 为纯不可分扩张, 那么
 $F^{\frac{1}{p^{\infty}}}(\alpha_1, \dots, \alpha_n)/L(\alpha_1, \dots, \alpha_n)$
 为纯不可分代数扩张,
-而 $L/L(\alpha_1, \dots, \alpha_m)$ 为可分代数扩张, 由 \quanhao{③} 知
+而 $L/L(\alpha_1, \dots, \alpha_m)$ 为可分代数扩张, 由 \circled{3} 知
 $F^{\frac{1}{p^{\infty}}} \cdot L$ 与 $L$ 在 $L(\alpha_1, \dots, \alpha_n)$
 上线性不相交,
 因此 $E$ 与 $F^{\frac{1}{p^{\infty}}}$ 在 $F$ 上线性不相交.

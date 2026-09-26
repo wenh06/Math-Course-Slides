@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,7 +92,7 @@ N_{E/F}(\alpha) := N(L_\alpha).
 
 \begin{frame}{注: 特征多项式的系数}
 
-注: ① 取定一组基 $\{ \alpha_1, \dots, \alpha_n \}$, $A$ 为 $A$ 为 $L_\alpha$
+注: \circled{1} 取定一组基 $\{ \alpha_1, \dots, \alpha_n \}$, $A$ 为 $A$ 为 $L_\alpha$
 在基下的矩阵, $\chi_A(x)$ 为 $A$ 的特征多项式,
 $\chi_A(x) = |x \cdot I - A| \in F[x]$,
 令 $\chi_A(x) = x^n + a_{n-1}x^{n-1} + \dots + a_0$,
@@ -105,7 +100,7 @@ $\chi_A(x) = |x \cdot I - A| \in F[x]$,
 \[
 \mathrm{Tr}_{E/F}(\alpha) = -a_{n-1}, \qquad N_{E/F}(\alpha) = (-1)^n a_0.
 \]
-\quanhao{②} $\mathrm{Tr}_{E/F}$ 与 $N_{E/F}$ 与域扩张 $E/F$ 有关.
+\circled{2} $\mathrm{Tr}_{E/F}$ 与 $N_{E/F}$ 与域扩张 $E/F$ 有关.
 
 \end{frame}
 
@@ -398,12 +393,12 @@ $F \subset E \subset L$ 为有限扩张, 则:
 $C$ 为 $E$ 在 $L$ 的可分闭包, 有如下扩张: $F \subset A \subset E \subset E \cdot B
 \subset C \subset L$.
 \begin{itemize}
-\item \quanhao{①} $C = E \cdot B$:
+\item \circled{1} $C = E \cdot B$:
   $C/E$ 为可分扩张 $\Longrightarrow C/E \cdot B$ 为可分扩张,
   又有 $L/B$ 为纯不可分扩张 $\Longrightarrow L/E \cdot B$ 为纯不可分扩张
   $\Longrightarrow C/E \cdot B$ 为纯不可分,
   所以有 $C = E \cdot B$;
-\item \quanhao{②} $[C:E] = [C:B]$:
+\item \circled{2} $[C:E] = [C:B]$:
   $B/F$ 为可分扩张, 那么 $B/A$ 为可分扩张, 由本原元素定理,
   $\exists\ \alpha \in B$, 使得 $B = A(\alpha)$,
   由于 $E(\alpha) = E(A(\alpha)) = E(B) = E \cdot B = C$,

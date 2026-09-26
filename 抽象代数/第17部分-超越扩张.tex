@@ -1,10 +1,5 @@
 \everymath{\displaystyle}
 
-% 圈号 ①②③ 默认不在 xeCJK 的 CJK 字符类中, 会落入西文字体而丢字;
-% 声明为 CJK 类后经中文字体输出
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
-\newcommand{\quanhao}[1]{{\simhei #1}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %           main body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,13 +70,13 @@ $\iff |A| \neq 0$.
 
 代数无关集小性质: $E/F$ 为域扩张,
 \begin{itemize}
-\item \quanhao{①} $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 在 $F$ 上代数无关
+\item \circled{1} $\{ \alpha_1, \dots, \alpha_n \} \subset E$ 在 $F$ 上代数无关
   $\iff F(\alpha_1, \dots, \alpha_n) \cong F(x_1, \dots, x_n)$;
-\item \quanhao{②} $S \subset E$ 为 $F$ 上代数无关集, 令 $A \subset S$,
+\item \circled{2} $S \subset E$ 为 $F$ 上代数无关集, 令 $A \subset S$,
   $B = S \setminus A$, 那么 $B$ 为 $F(A)$ 上代数无关集.
 \end{itemize}
 
-\startproof[bg=yellow, fg=red](② 的证明)
+\startproof[bg=yellow, fg=red](\circled{2} 的证明)
 令 $\{ \alpha_1, \dots, \alpha_n \} \subset B$, 若 $\{ \alpha_1, \dots, \alpha_n \}$
 在 $F(A)$ 上代数相关,
 那么 $\exists\ f(x_1, \dots, x_n) \in F(A)[x_1, \dots, x_n]$
@@ -105,14 +100,14 @@ g_{i_1, \dots, i_n} x_1^{i_1} \dotsm x_n^{i_n} \neq 0$,
 \begin{frame}{代数无关集小性质 (续)}
 
 \begin{itemize}
-\item \quanhao{③} $S \subset E$ 为 $F$ 上一个代数无关集, $\alpha \in E$, 那么
+\item \circled{3} $S \subset E$ 为 $F$ 上一个代数无关集, $\alpha \in E$, 那么
   $S \cup \{ \alpha \}$ 在 $F$ 上代数无关 $\iff$ $\alpha$ 为 $F(S)$ 上的
   超越元素.
 \end{itemize}
 
 \startproof[bg=yellow, fg=red](证明)
 $1^{\circ}$. $S \cup \{ \alpha \}$ 在 $F$ 上代数无关,
-由 \quanhao{③} 知 $\alpha$ 为 $F(S)$ 上超越元素.
+由 \circled{3} 知 $\alpha$ 为 $F(S)$ 上超越元素.
 $2^{\circ}$. 若 $\alpha$ 为 $F(S)$ 上超越元素,
 假设 $S \cup \{ \alpha \}$ 在 $F$ 上代数相关, 则 $\exists\ F$ 上非 0 多项式
 $f(x_1, \dots, x_{n+1}) \in F[x_1, \dots, x_{n+1}]$
@@ -138,8 +133,8 @@ $g \neq 0$, 则 $g(\alpha) = 0$, 与 $\{ \alpha \}$ 在 $F(S)$ 上代数无关�
 \begin{Def}[超越基]
 $E/F$ 为域扩张, $S \subset E$ 称为 $E/F$ 的一个超越基, 若,
 \begin{itemize}
-\item \quanhao{①} $S$ 为 $E$ 上代数无关集;
-\item \quanhao{②} $E/F(S)$ 为代数扩张.
+\item \circled{1} $S$ 为 $E$ 上代数无关集;
+\item \circled{2} $E/F(S)$ 为代数扩张.
 \end{itemize}
 \end{Def}
 
@@ -258,8 +253,8 @@ $E/F$ 为一个域扩张, $S$ 为一组超越基, $|S|$ 称为 $E/F$ 的超越�
 \item[(i)] $F \subset E \subset L$ 为域扩张,
   则 $\mathrm{tr.d}(L/F) = \mathrm{tr.d}(E/F) + \mathrm{tr.d}(L/E)$;
 \item[(ii)] $F \subset E \subset E \cdot L \subset K$ 为域扩张, 则:
-  \quanhao{①} $\mathrm{tr.d}(E \cdot L/L) \leq \mathrm{tr.d}(E/F)$;
-  \quanhao{②} $\mathrm{tr.d}(E \cdot L/F) \leq \mathrm{tr.d}(L/F)
+  \circled{1} $\mathrm{tr.d}(E \cdot L/L) \leq \mathrm{tr.d}(E/F)$;
+  \circled{2} $\mathrm{tr.d}(E \cdot L/F) \leq \mathrm{tr.d}(L/F)
   + \mathrm{tr.d}(E/F)$.
 \end{itemize}
 \end{lem}
