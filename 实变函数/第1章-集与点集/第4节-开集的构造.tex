@@ -216,10 +216,8 @@ $\mathbb{R}$ 中由开集生成的 $\sigma$-代数 $\Gamma(\text{开集})$ 称�
 
 \begin{eg}
 \begin{itemize}
-\item $\mathbb{Q}$ 是 $F_\sigma$ 集 (可列个单点集之并), 但不是 $G_\delta$ 集.
+\item $\mathbb{Q}$ 是 $F_\sigma$ 集 (可列个单点集之并), 但不是 $G_\delta$ 集 (完整证明需要利用 \alert{Baire 纲定理}: 完备度量空间不是可列个无处稠密集之并).
 \item $\mathbb{R} \setminus \mathbb{Q}$ (无理数集) 是 $G_\delta$ 集, 但不是 $F_\sigma$ 集.
-  \newline
-  (前两条的「不是」半边需 \alert{Baire 纲定理}: 完备度量空间不是可列个无处稠密集之并; 证明从略.)
 \item 设 $f(x)$ 是定义在开集上的实值函数, 则 $f(x)$ 的连续点集是 $G_\delta$ 集.
 \item 设 $f(x) \in C(\mathbb{R}),$ 则 $f(x)$ 的可微点集是 $F_{\sigma\delta}$ 集.
 \end{itemize}
@@ -494,6 +492,8 @@ $P_0$ 是疏朗集: $P_0$ 闭, 且 $\mathscr{C} P_0 = G_0 \cup (-\infty, 0) \cup
 
 \end{frame}
 
+%------------------------------------------------
+
 \begin{frame}{补充: Baire 纲}
 
 \begin{Def}[第一纲集与第二纲集]
@@ -508,6 +508,38 @@ $P_0$ 是疏朗集: $P_0$ 闭, 且 $\mathscr{C} P_0 = G_0 \cup (-\infty, 0) \cup
 \item 设 $f(x) = \lim\limits_{k \to \infty} f_k(x)$, 其中 $f_k \in C(\mathbb{R}),$ 则 $f$ 的不连续点集是第一纲集.
 \end{itemize}
 \end{eg}
+
+\pause
+
+\begin{thm}[Baire 纲定理]
+一个非空的完备度量空间不是可数个无处稠密集之并.
+\end{thm}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{补充: Baire 纲定理证明}
+
+\textbf{关键断言:} 非空完备度量空间 $(X, d)$ 中, 可列个稠密开集之交非空.
+
+\pause
+
+\textbf{断言的证明.} 设 $\{G_k\}$ 为稠密开集列. 由 $G_1$ 稠密、$X \neq \emptyset$ 知 $G_1 \neq \emptyset$, 取闭球 $\overline{B}(x_1, r_1) \subset G_1$, $0 < r_1 < 1$. 归纳地, 已得 $\overline{B}(x_{k-1}, r_{k-1})$ 后, 由 $G_k$ 稠密, 非空开集 $G_k \cap B(x_{k-1}, r_{k-1})$ 内可取闭球
+\[
+  \overline{B}(x_k, r_k) \subset G_k \cap B(x_{k-1}, r_{k-1}), \qquad 0 < r_k < \tfrac{1}{k},
+\]
+得嵌套闭球列, 半径 $r_k \to 0$. 当 $j \geqslant k$ 时 $x_j \in \overline{B}(x_k, r_k)$, 故 $d(x_j, x_k) \leqslant r_k$, $\{x_k\}$ 是 Cauchy 列; 由完备性 $x_k \to \xi \in X$. 固定 $k$, 令 $j \to \infty$ 并用 $\overline{B}(x_k, r_k)$ 的闭性, 得 $\xi \in \overline{B}(x_k, r_k) \subset G_k$ 对一切 $k$ 成立, 即 $\bigcap_k G_k \neq \emptyset$.
+
+\pause
+
+\textbf{定理的证明.} 反设 $X = \bigcup_{n=1}^{\infty} E_n$, 各 $E_n$ 无处稠密. 以 $\overline{E_n}$ 代替 $E_n$ (仍无处稠密), 不妨设诸 $E_n$ 闭; 则 $G_n := X \setminus E_n$ 是稠密开集, 且 $\bigcap_n G_n = X \setminus \bigcup_n E_n = \emptyset$, 与断言矛盾. \qed
+
+\pause
+
+\begin{remark}
+$\mathbb{R}$ 情形闭球即闭区间, 上述构造就是闭区间套. 它应用于 $\mathbb{Q}$ 非 $G_\delta$ 集、无理数集非 $F_\sigma$ 集的证明, 见前文「Borel 集类」帧.
+\end{remark}
 
 \end{frame}
 \normalmode
