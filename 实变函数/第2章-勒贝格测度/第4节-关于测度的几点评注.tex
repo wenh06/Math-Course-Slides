@@ -862,39 +862,6 @@ $S$ 可测但不是 Borel 集: \alert{可测集严格多于 Borel 集}.
 
 %------------------------------------------------
 
-\ifIncludeExercise
-\begin{frame}{作业}
-
-\begin{block}{教材第二章 §2.4 习题 (任选 5 题)}
-\begin{columns}[T]
-\begin{column}{0.48\textwidth}
-\begin{itemize}
-\item \textbf{24.} 设 $E$ 是一维有界集, $I_1, I_2, \ldots$ 是任意区间列 (可以相交), 其并覆盖 $E$, 试证
-$m^*(E) = \inf\limits_{\cup I_k \supset E} \sum_k mI_k$. 二维情形如何?
-\item \textbf{25.} 设 $Q$ 是 $\mathbb{R}^2$ 中的单位正方形, $\{E_n\} \subset Q$ 可测, $\{mE_n\}$ 有聚点 $1$, 证明存在子列 $\{E_{n_k}\}$ 使 $m\big(\bigcap_k E_{n_k}\big) > 0$.
-\item \textbf{27.} 设 $E \subset \mathbb{R}$ 可测, 证明 $D(E) = \{(x, y) \in \mathbb{R}^2 : x - y \in E\}$ 是 $\mathbb{R}^2$ 中的可测集.
-\item \textbf{29.} 设 $E \subset (0,1)$ 为正测度集, 且存在 $c > 0$ 使对 $(0,1)$ 中的变动区间 $I$ 有 $\lim\limits_{mI \to 0} \frac{m(E \cap I)}{mI} = c$, 证明 $mE = 1$.
-\item \textbf{30.} 设 $\{E_n\}$ 为互不相交的集列, $m^*\big(\bigcup_n E_n\big) < \sum_n m^*(E_n)$, 证明存在最小自然数 $N$ 使 $m^*\big(\bigcup_{n=1}^N E_n\big) < \sum_{n=1}^N m^*(E_n)$, 且此时 $E_N$ 不可测.
-\end{itemize}
-\end{column}
-\begin{column}{0.48\textwidth}
-\begin{itemize}
-\item \textbf{33.} (Hausdorff 测度) 对 $E \subset \mathbb{R}^n$, $\alpha > 0$, 令
-$H_\alpha(E) = \lim\limits_{\varepsilon \to 0} \inf\big\{\sum_k d(E_k)^\alpha\big\}$ (下确界对直径 $d(E_k) < \varepsilon$ 的覆盖 $\{E_k\}$ 取). 试证 $H_\alpha$ 是外测度, 且 $H_\alpha(E) < \infty$, $\beta > \alpha \implies H_\beta(E) = 0$.
-\item \textbf{34.} $\mathbb{R}^n$ 中集列 $V_1, V_2, \ldots$: 每个 $V_k$ 含半径 $ar$ 的球且直径 $d(V_k) \leqslant br$. 试证球 $B(z, r)$ 与 $\{\overline{V}_k\}$ 中元素相交的个数 $\leqslant (1+b)^n a^{-n}$.
-\item \textbf{35.} 设 $f: X \to Y$, $\mathscr{A}, \mathscr{B}$ 分别为 $X, Y$ 中的 $\sigma$-代数, 证明 $\{f^{-1}(B) : B \in \mathscr{B}\}$ 与 $\{B : f^{-1}(B) \in \mathscr{A}\}$ 分别为 $Y, X$ 中的 $\sigma$-代数.
-\item \textbf{36.} 设 $\mathscr{A}$ 为由一切满足 $mE = 0$ 或 $m\mathscr{C}E = 0$ 的可测集 $E$ 构成, 证明 $\mathscr{A}$ 是 $\mathbb{R}$ 中的 $\sigma$-代数.
-\end{itemize}
-\end{column}
-\end{columns}
-\end{block}
-
-\begin{itemize}
-\item 另请思考 (习题 37): $\mathscr{R}_\sigma\big(f^{-1}(\mathscr{E})\big) = f^{-1}\big(\mathscr{R}_\sigma(\mathscr{E})\big)$.
-\end{itemize}
-
-\end{frame}
-\fi
 
 %------------------------------------------------
 

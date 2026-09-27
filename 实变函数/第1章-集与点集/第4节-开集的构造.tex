@@ -383,7 +383,7 @@ a_k \in \{0, 2\} \right\}.
 \item \textbf{有界完全集 (闭集)}: $P_0 \subset [0,1];$
 $P_0 = \bigcap_{n=1}^\infty F_n$ 为闭集; $P_0$ 无孤立点 ($P_0' = P_0$).
 \item \textbf{无处稠密 (无内点)}: $P_0$ 不含任何开区间, $\mathring{P}_0 = \emptyset.$
-\item \textbf{测度为零} (预告): 被移除的开集 $G_0$ 的总长度
+\item \textbf{测度为零} (长度意义): 被移除的开集 $G_0$ 的总长度
 \[
 m G_0 = \sum_{n=1}^{\infty} \frac{2^{n-1}}{3^n} = \frac{1/3}{1 - 2/3} = 1, \quad \text{故 } m P_0 = 0.
 \]
@@ -784,27 +784,13 @@ $d(a, \overline{B}(a, \delta) \cap A) = d(a, A).$
 \end{cor}
 
 \begin{remark}
-提示: 不妨设 $A$ 有界, 对连续函数 $x \mapsto d(x, B)$ 在有界闭集 $A$ 上用最值定理, 再对点 $a_0$ 与闭集 $B$ 用上述定理. 详细论证作为\alert{作业习题 23}.
+提示: 不妨设 $A$ 有界, 对连续函数 $x \mapsto d(x, B)$ 在有界闭集 $A$ 上用最值定理, 再对点 $a_0$ 与闭集 $B$ 用上述定理. 详细论证留作练习.
 \end{remark}
 
 \end{frame}
 
 %------------------------------------------------
 
-\ifIncludeExercise
-\begin{frame}{作业}
-
-\begin{block}{教材第一章 §4 习题}
-\begin{itemize}
-\item \textbf{22.} 设 $F_1, F_2$ 是 $\mathbb{R}^n$ 中的闭集且 $F_1 \cap F_2 = \emptyset,$ 试证存在开集 $G_1, G_2$: $G_1 \cap G_2 = \emptyset,$ $G_i \supset F_i.$ (提示: 考虑函数 $x \mapsto d(x, F_1) - d(x, F_2)$ 的原像.)
-\item \textbf{23.} 设 $F_1, F_2$ 为非空闭集, 其中之一有界, 试证存在 $a_1 \in F_1,$ $a_2 \in F_2$ 使 $d(a_1, a_2) = d(F_1, F_2).$ (即上页推论.)
-\item \textbf{25.} 试证 $\mathbb{R}^n$ 中每个闭集可表为可列个开集之交, 每个开集可表为可列个闭集之并 (即闭集是 $G_\delta$ 集, 开集是 $F_\sigma$ 集).
-\item \textbf{27.} (见教材.)
-\end{itemize}
-\end{block}
-
-\end{frame}
-\fi
 
 %------------------------------------------------
 
