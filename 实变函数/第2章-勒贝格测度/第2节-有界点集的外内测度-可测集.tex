@@ -98,6 +98,7 @@ Lebesgue 的想法是反过来: \alert{不分割定义域 (区间), 而是分割
 \[
 E_i = \{x \in [a,b]:\ y_{i-1} \leqslant f(x) < y_i\}, \qquad i = 1, 2, \ldots, n.
 \]
+(末段取 $\leqslant M$, 使 $\{f = M\}$ 也被覆盖; 记号从简.)
 
 \pause
 
@@ -130,7 +131,11 @@ $\big|E_i\big|$ 应当是 $E_i$ 的``长度''. 那么, \alert{$m(E_i)$ 如何定
 \pause
 
 \begin{attnblock}
-满足 (1)--(4) 全部的 $m$ \textbf{不存在}; 满足 (1)--(3) 的 $m$ 存在性也成问题. \alert{最终选择: 放弃 (1), 保留 (2)--(4)}: 只有满足特定条件的点集才``可测''.
+\begin{itemize}[<+->]
+\item 满足 (1)--(4) 全部的 $m$ \textbf{不存在}: (1) 与 (2)(3)(4) 不相容, 证明见 \S 2.4 不可测集的构造.
+\item 满足 (1)--(3) 的 $m$ 是否存在, 是集合论深层的独立性问题 (在连续统假设下可以证明不存在), 本课程不作讨论.
+\item \alert{最终选择: 放弃 (1), 保留 (2)--(4)}: 测度不再定义在一切子集上, 只有满足特定条件的点集才``可测''.
+\end{itemize}
 \end{attnblock}
 
 \end{frame}
@@ -210,17 +215,15 @@ m F = b - a - m G.
 \pause
 
 \begin{remark}
-可以证明 $m F$ 的定义与包含它的开区间 $(a,b)$ 的选取无关 (待后面建立 $m(G \setminus F) = mG - mF$ 之后即明).
-\end{remark}
-
+\begin{itemize}
+\item 可以证明 $m F$ 的定义与包含它的开区间 $(a,b)$ 的选取无关;
 \pause
-
-\begin{remark}[注]
-由内、外测度 (稍后定义) 还不能直接看出开集、闭集的可测性, 这将在 §2.3 中证明. 但\alert{开区间的可测性很容易验证}: 例如
+\item 由内、外测度 (稍后定义) 还不能直接看出开集、闭集的可测性, 这将在 §2.3 中证明 (闭区间等特例本节末先行验证). 但\alert{开区间的可测性很容易验证}: 例如
 \[
 \left[a + \frac{\varepsilon}{2},\ b - \frac{\varepsilon}{2}\right] \subset (a, b)
 \quad \Longrightarrow \quad m_* (a,b) \geqslant b - a - \varepsilon.
 \]
+\end{itemize}
 \end{remark}
 
 \end{frame}
@@ -244,9 +247,11 @@ m G_0 = \sum_{n \geqslant 1} \sum_{k=1}^{2^{n-1}} \frac{1}{3^n}
 
 \pause
 
-取包含区间 $[0,1]$:
+取开区间 $(-\delta,\, 1+\delta) \supset P_0$ ($\delta > 0$ 任意). 此时
+$(-\delta, 1+\delta) \setminus P_0 = (-\delta, 0) \cup G_0 \cup (1, 1+\delta)$
+为三段互不相交的开集之并, 其开集测度为 $2\delta + m G_0$; 代入闭集测度的定义:
 \[
-m P_0 = m\big([0,1] \setminus G_0\big) = 1 - m G_0 = 0.
+m P_0 = (1 + 2\delta) - (2\delta + m G_0) = 1 - m G_0 = 0.
 \]
 
 \begin{attnblock}
@@ -286,7 +291,7 @@ $m G \leqslant \sum_k m G_k$;
 
 \begin{frame}{单调性的证明}
 
-\startproof[bg=yellow, fg=red](1) 的证明
+% \startproof[bg=yellow, fg=red]((1) 单调性的证明)
 设 $G_1, G_2$ 的构成区间分别为 $\{I_k^{(1)}\}_{k \in \mathbb{N}}$ 与 $\{I_k^{(2)}\}_{k \in \mathbb{N}}$ (可列情形; 有限情形更简单), 于是
 \[
 m G_1 = \sum_{k \geqslant 1} m I_k^{(1)}, \qquad m G_2 = \sum_{k \geqslant 1} m I_k^{(2)}.
@@ -309,10 +314,12 @@ m G_1 < \sum_{i=1}^m m I_{r_i}^{(2)} + \varepsilon \leqslant m G_2 + \varepsilon
 
 %------------------------------------------------
 
-\begin{frame}{半可加性的证明 (一): 归并到构成区间}
+\begin{frame}{(半) 可加性的证明 (Part I): 归并到构成区间}
 
-\startproof[bg=yellow, fg=red](2) 的证明
-不妨设 $\sum_k m G_k < +\infty$ (否则不等式平凡成立). 记 $G_k$ 的构成区间为
+% \startproof[bg=yellow, fg=red]((2) 半可加性的证明)
+不妨设 $\sum_k m G_k < +\infty$ (否则不等式平凡成立).
+
+记 $G_k$ 的构成区间为
 $I_i^{(k)} = (\alpha_i^{(k)}, \beta_i^{(k)})$ ($k, i \in \mathbb{N}$), $G$ 的构成区间为 $J_j = (\alpha_j, \beta_j)$ ($j \in \mathbb{N}$).
 
 \pause
@@ -335,7 +342,7 @@ S(j) = \big\{(k, i) : I_i^{(k)} \subset J_j\big\}.
 
 %------------------------------------------------
 
-\begin{frame}{半可加性的证明 (二): 有限覆盖与取等}
+\begin{frame}{(半) 可加性的证明 (Part II): 有限覆盖与取等}
 
 $\forall\, 0 < \varepsilon < \frac{\beta_j - \alpha_j}{2}$, 闭区间
 $\left[\alpha_j + \varepsilon,\ \beta_j - \varepsilon\right]
@@ -370,7 +377,7 @@ $J_j = \bigcup_{(k,i) \in S(j)} I_i^{(k)}$ 中至多一个成员 (开区间不�
 
 %------------------------------------------------
 
-\begin{frame}{引理: 分离闭集的测度可加性}
+\begin{frame}{分离闭集的测度可加性}
 
 \begin{lem}[分离闭集的有限可加性]
 设 $F_1, F_2$ 为闭集, 分别含于开区间 $(\alpha_1, \beta_1)$ 与 $(\alpha_2, \beta_2)$ 之中, 且
@@ -382,36 +389,101 @@ m (F_1 \cup F_2) = m F_1 + m F_2 .
 
 \pause
 
+\begin{center}
+\begin{tikzpicture}[line cap=round]
+  \draw[thick] (0.1,0) -- (0.73,0);
+  \draw[very thick, blue!70!black] (0.87,0) -- (4.43,0);
+  \draw[line width=3pt] (1.35,0) -- (1.95,0);
+  \draw[line width=3pt] (2.25,0) -- (2.85,0);
+  \draw[line width=3pt] (3.15,0) -- (4.1,0);
+  \node[above=2pt, font=\small] at (2.7,0.08) {$F_1$};
+  \node[blue!70!black, inner sep=0pt] at (0.8,0) {$($};
+  \node[blue!70!black, inner sep=0pt] at (4.5,0) {$)$};
+  \node at (5.25,0) {$\cdots$};
+  \draw[thick] (9.87,0) -- (10.65,0);
+  \draw[very thick, red!70!black] (6.12,0) -- (9.73,0);
+  \draw[line width=3pt] (6.75,0) -- (7.35,0);
+  \draw[line width=3pt] (7.65,0) -- (8.3,0);
+  \draw[line width=3pt] (8.6,0) -- (9.4,0);
+  \node[above=2pt, font=\small] at (8.05,0.08) {$F_2$};
+  \node[red!70!black, inner sep=0pt] at (6.05,0) {$($};
+  \node[red!70!black, inner sep=0pt] at (9.8,0) {$)$};
+  \foreach \x/\t in {0.8/{\alpha_1}, 4.5/{\beta_1}, 6.05/{\alpha_2}, 9.8/{\beta_2}} {
+    \node[below=2pt] at (\x,0) {$\t$};
+  }
+\end{tikzpicture}
+\end{center}
+
+\pause
+
 \startproof[bg=yellow, fg=red](证明)
-记 $(a, b) = (\alpha_1, \beta_2)$, $G = (a,b) \setminus (F_1 \cup F_2)$, $G_i = (\alpha_i, \beta_i) \setminus F_i$ ($i = 1, 2$). 由闭集测度的定义:
+\textbf{记号与公共估计} ~ 记 $(a, b) = (\alpha_1, \beta_2)$, $G = (a,b) \setminus (F_1 \cup F_2)$, $G_i = (\alpha_i, \beta_i) \setminus F_i$ ($i = 1, 2$). 由闭集测度的定义:
 \[
 m F_1 = \beta_1 - \alpha_1 - m G_1, \quad
 m F_2 = \beta_2 - \alpha_2 - m G_2, \quad
 m (F_1 \cup F_2) = \beta_2 - \alpha_1 - m G.
 \]
+此时 $G = G_1 \cup G_2 \cup [\beta_1, \alpha_2]$, 且 $G \supset G_1 \cup G_2$, 右端两个开集互不相交, 由完全可加性
+\[
+m G \geqslant m G_1 + m G_2 .
+\]
+\end{frame}
 
-\pause
+%------------------------------------------------
 
-``$\geqslant$'': $G \subset G_1 \cup G_2 \cup (\beta_1 - \varepsilon,\ \alpha_2 + \varepsilon)$ (缝隙中的点被 $\varepsilon$-区间吸收), 由半可加性
-$m G \leqslant m G_1 + m G_2 + (\alpha_2 - \beta_1 + 2\varepsilon)$, 整理得
-$m (F_1 \cup F_2) \geqslant m F_1 + m F_2 - 2\varepsilon$.
+\begin{frame}{分离闭集的测度可加性 (续)}
 
-\pause
+\startproof[bg=yellow, fg=red](情形 1° $\beta_1 = \alpha_2$ 首尾相接)
+沿用上页的记号. 此时中段 $[\beta_1, \alpha_2] = \{\beta_1\}$ 退化为一点. 任取 $\varepsilon > 0$:
+\[
+G \subset G_1 \cup G_2 \cup (\beta_1 - \tfrac{\varepsilon}{2},\ \beta_1 + \tfrac{\varepsilon}{2})
+\;\Longrightarrow\;
+m G \leqslant m G_1 + m G_2 + \varepsilon
+\]
+(半可加性). 令 $\varepsilon \to 0^+$, 与上页的下界 $m G \geqslant m G_1 + m G_2$ 结合得
+\[
+m G = m G_1 + m G_2 .
+\]
+代入三条定义式 (注意 $\alpha_2 = \beta_1$):
+\[
+m (F_1 \cup F_2) = \beta_2 - \alpha_1 - m G_1 - m G_2 = m F_1 + m F_2 .
+\]
 
-``$\leqslant$'': $G \supset G_1 \cup G_2 \cup (\beta_1 + \frac{\varepsilon}{2},\ \alpha_2 - \frac{\varepsilon}{2})$, 右端三个开集\textbf{两两不交}, 由完全可加性与单调性
-$m G \geqslant m G_1 + m G_2 + (\alpha_2 - \beta_1 - \varepsilon)$, 整理得
-$m (F_1 \cup F_2) \leqslant m F_1 + m F_2 + \varepsilon$.
+\end{frame}
 
-令 $\varepsilon \to 0^+$ 即得结论. ($n$ 个闭集的情形用归纳法.)
+%------------------------------------------------
+
+\begin{frame}{分离闭集的测度可加性 (续二)}
+
+\startproof[bg=yellow, fg=red](情形 2° $\beta_1 < \alpha_2$ 有缝隙)
+沿用前面的记号, 此时中段 $[\beta_1, \alpha_2]$ 是长度 $\alpha_2 - \beta_1 > 0$ 的闭区间. 任取 $0 < \varepsilon < \alpha_2 - \beta_1$:
+\[
+G \subset G_1 \cup G_2 \cup (\beta_1 - \tfrac{\varepsilon}{2},\ \alpha_2 + \tfrac{\varepsilon}{2})
+\;\Longrightarrow\;
+m G \leqslant m G_1 + m G_2 + (\alpha_2 - \beta_1) + \varepsilon
+\]
+(半可加性, 缝隙被 $\frac{\varepsilon}{2}$-邻域吸收); 另一方面
+\[
+G \supset G_1 \cup G_2 \cup (\beta_1 + \tfrac{\varepsilon}{2},\ \alpha_2 - \tfrac{\varepsilon}{2}),
+\]
+右端三个开集\textbf{两两不交}, 由完全可加性
+\[
+m G \geqslant m G_1 + m G_2 + (\alpha_2 - \beta_1) - \varepsilon .
+\]
+由 $\varepsilon$ 的任意性得 $m G = m G_1 + m G_2 + (\alpha_2 - \beta_1)$, 代入前面的定义式:
+\[
+m (F_1 \cup F_2) = \beta_2 - \alpha_1 - m G_1 - m G_2 - (\alpha_2 - \beta_1) = m F_1 + m F_2 .
+\]
+($n$ 个闭集的情形用归纳法.)
 \qed
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{开集减闭集与闭集的有限可加性}
+\begin{frame}{开集与闭集的差集的测度 \texorpdfstring{$|$}{|} 闭集的有限可加性}
 
-\begin{thm}[开集减闭集]
+\begin{thm}[开集与闭集的差集的测度]
 设 $F$ 为有界闭集, $G$ 为有界开集, 且 $F \subset G$, 那么
 \[
 m (G \setminus F) = m G - m F .
@@ -421,7 +493,7 @@ m (G \setminus F) = m G - m F .
 \pause
 
 \startproof[bg=yellow, fg=red](证明)
-设 $G = \bigcup_{k \in \mathbb{N}} I_k$ 为结构表示. $\{I_k\}$ 是紧集 $F$ 的开覆盖, 取有限子覆盖 $I_1, \ldots, I_N$ (重新编号). 令 $F_k = F \cap I_k = F \cap [\alpha_k, \beta_k]$ (因 $F$ 闭且端点 $\alpha_k, \beta_k \notin G \supset F$), 则 $F_k$ 是含于 $I_k$ 的闭集, 且两两不交, $F = F_1 \cup \cdots \cup F_N$.
+设 $G = \bigcup_{k \in \mathbb{N}} I_k$ 为结构表示. $\{I_k\}$ 是紧集 $F$ 的开覆盖, 取有限子覆盖 $I_1, \ldots, I_N$ (重新编号, 不妨设为前 $N$ 个). 令 $F_k = F \cap I_k = F \cap [\alpha_k, \beta_k]$ (因 $F$ 闭且端点 $\alpha_k, \beta_k \notin G \supset F$), 则 $F_k$ 是含于 $I_k$ 的闭集, 且两两不交, $F = F_1 \cup \cdots \cup F_N$.
 
 \pause
 
@@ -432,7 +504,8 @@ m (G \setminus F)
 = \sum_{k \geqslant 1} m I_k - \sum_{k=1}^N m F_k
 = m G - m F ,
 \]
-最后一步用引理 (有限可加性): $\sum_{k=1}^N m F_k = m\left(\bigcup_{k=1}^N F_k\right) = m F$.
+最后一步用\textbf{前面的引理} (分离闭集的有限可加性): 各 $F_k$ 分别含于互不相交的开区间 $I_k$, 故
+$\sum_{k=1}^N m F_k = m\left(\bigcup_{k=1}^N F_k\right) = m F$.
 \qed
 
 \end{frame}
@@ -462,6 +535,10 @@ m (F_1 \cup F_2) = m I - m\big(I \setminus (F_1 \cup F_2)\big) = m I - m(I \setm
 \]
 $n$ 个的情形对 $n$ 归纳.
 \qed
+
+\begin{remark}[意义]
+分离闭集引理要求各闭集分别装进互不相交的开区间, 即处于``完全分离''的状态; 本推论不再有此要求, 只要闭集\alert{两两不交}即可, 它们可以相互紧贴、交错, 处于一般位置, 适用范围比引理大得多.
+\end{remark}
 
 \end{frame}
 
@@ -508,12 +585,13 @@ m_* E := \sup_{\substack{F \subset E \\ F \text{闭集}}} m F
 \begin{enumerate}
 \item $m_* E \leqslant m^* E$;
 \item \textbf{单调性}: 设 $E_1 \subset E_2$, 则 $m_* E_1 \leqslant m_* E_2$, $m^* E_1 \leqslant m^* E_2$;
-\item \textbf{半可加性}: 设 $E = \bigcup_{k \geqslant 1} E_k$, 则 $m^* E \leqslant \sum_{k \geqslant 1} m^* E_k$; 若 $E_k$ 两两不相交, 则 $m_* E \geqslant \sum_{k \geqslant 1} m_* E_k$.
+\item \textbf{半可加性}: 设 $E = \bigcup_{k \geqslant 1} E_k$, 则 $m^* E \leqslant \sum_{k \geqslant 1} m^* E_k$;
+\item \textbf{超可加性}: 若 $E_k$ 两两不相交, 则 $m_* E \geqslant \sum_{k \geqslant 1} m_* E_k$.
 \end{enumerate}
 \end{thm}
 
 \begin{attnblock}[注意]
-$m_*$ \textbf{没有}完全可加性 (习题 2.2 第 15 题): 这正是只能用 $m^*$ (而不能用 $m_*$) 来展开测度理论的原因之一.
+$m^*$ \textbf{没有}完全可加性 (习题 2.2 第 15 题给出反例): 这一点从上面的性质还看不出来. 到 §2.3 引入``可测集''后, $m^*$ 在可测集上将恢复完全可加性.
 \end{attnblock}
 
 \pause
@@ -570,11 +648,11 @@ m^* E \leqslant m G \leqslant \sum_k m G_k < \sum_k \left(m^* E_k + \frac{\varep
 
 \pause
 
-\textbf{不交时的下可加性}: 由 $m_* E_k = \sup_{F \subset E_k} m F$, 可作闭集 $F_k \subset E_k$ 使得 $m F_k > m_* E_k - \dfrac{\varepsilon}{2^k}$. 由于 $E_k$ 两两不交, $F_k$ 也两两不交.
+\textbf{超可加性}: 由 $m_* E_k = \sup_{F \subset E_k} m F$, 可作闭集 $F_k \subset E_k$ 使得 $m F_k > m_* E_k - \dfrac{\varepsilon}{2^k}$. 由于 $E_k$ 两两不交, $F_k$ 也两两不交.
 
 \pause
 
-对任一固定的 $n \in \mathbb{N}$, 令 $F = \bigcup_{k=1}^n F_k$, 由闭集的有限可加性 (推论):
+对任一固定的 $n \in \mathbb{N}$, 令 $F = \bigcup_{k=1}^n F_k$, 由闭集的有限可加性:
 \[
 m F = \sum_{k=1}^n m F_k > \sum_{k=1}^n \left(m_* E_k - \frac{\varepsilon}{2^k}\right) > \sum_{k=1}^n m_* E_k - \varepsilon .
 \]
@@ -703,7 +781,7 @@ m_* (a,b) \geqslant m\left(\left[a + \tfrac{\varepsilon}{2},\ b - \tfrac{\vareps
 \begin{itemize}
 \item 可测集关于\textbf{并、交、差、补}及\textbf{可列并}是否封闭? 测度是否可列可加? (是, 见 §2.3.)
 \item 开集是否可测? Borel 集呢? (是, 见 §2.3.)
-\item 是否存在\textbf{不可测集}? (是, 见补充材料.)
+\item 是否存在\textbf{不可测集}? (是, \S 2.4 选讲将构造.)
 \end{itemize}
 \end{question}
 
