@@ -207,6 +207,8 @@ build/*
 
 /*.pdf
 
+.zcodeignore
+
 # nbgrader
 gradebook.db
 submitted/
