@@ -138,7 +138,7 @@ m(E_1 \cup E_2) = m E_1 + m E_2 \qquad \text{(\alert{有限可加性})}.
 \begin{itemize}
 \item 可加性\textbf{要求 $E_1, E_2$ 可测}: 对一般的 (未必可测的) $E_1, E_2$, 即使 $E_1 \cap E_2 = \emptyset$, 也可能
 $m^*(E_1 \cup E_2) < m^* E_1 + m^* E_2$ (习题 2.3 第 15 题);
-\item 这说明可测集类对\alert{有限}次并、交、差、补封闭 (构成一个\alert{环}); 稍后再补上\alert{可数}并封闭性, 便得到 \alert{$\sigma$-环} (术语与推广见 §2.4).
+\item 这说明可测集类对\alert{有限}次并、交、差、补封闭 (构成一个\alert{环}); 稍后再补上\alert{可数}并封闭性, 便得到 \alert{$\sigma$-环} (相关概念见 §2.4).
 \end{itemize}
 \end{remark}
 
@@ -157,7 +157,8 @@ m_* (\mathscr{C}E) = (b - a) - m^* E .
 \]
 \end{lem}
 
-\startproof[bg=yellow, fg=red](证明: 只需证 $m^*\mathscr{C}E + m_*E = b - a$)
+\startproof[bg=yellow, fg=red](证明)
+只需证 $m^*\mathscr{C}E + m_*E = b - a.$
 第一式由 $\mathscr{C}E$ 代 $E$ (注意 $\mathscr{C}(\mathscr{C}E) = E$) 即得; $\mathscr{C}E = \emptyset$ 时显然.
 
 \pause
@@ -174,7 +175,7 @@ m_* E + m^* \mathscr{C}E < mF + \varepsilon + mG = (b - a) + \varepsilon .
 
 \begin{frame}{对偶公式的证明 (续) 与补集可测}
 
-\startproof[bg=yellow, fg=red](2$^\circ$)
+2$^\circ$
 另一方面, 由 $m^* \mathscr{C}E = \inf_{G \supset \mathscr{C}E} mG$, 可取开集 $G \supset \mathscr{C}E$ (不妨 $G \subset (a,b)$, 否则以 $G \cap (a,b)$ 代之) 使得 $mG < m^* \mathscr{C}E + \dfrac{\varepsilon}{2}$. 令 $F = \big[ a + \tfrac{\varepsilon}{4},\ b - \tfrac{\varepsilon}{4} \big] \setminus G$, 则 $F$ 为闭集, 且 $F \subset (a,b) \setminus G \subset (a,b) \setminus \mathscr{C}E = E$. 注意 $(a,b) \setminus F = \big(a, a + \tfrac{\varepsilon}{4}\big) \cup \big(b - \tfrac{\varepsilon}{4},\ b\big) \cup G$, 于是
 \begin{align*}
 m_* E \;\geqslant\; mF
@@ -190,21 +191,19 @@ m^* \mathscr{C}E + m_* E = b - a .
 
 \pause
 
-\begin{cor}[补集可测, 定理 1 的证明]
+\begin{cor}[补集可测]
 $E$ 可测时, $m^* (\mathscr{C}E) = (b - a) - m_* E = (b - a) - m^* E = m_* (\mathscr{C}E)$, 故 $\mathscr{C}E$ 可测, 且
 \[
 m(\mathscr{C}E) = (b - a) - mE .
 \]
-\qed
 \end{cor}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{并的封闭性 (定理 2, 1$^\circ$)}
+\begin{frame}{并的封闭性}
 
-\startproof[bg=yellow, fg=red](1$^\circ$) 的证明
 设 $E_1, E_2$ 可测. 由充要条件, $\forall\, \varepsilon > 0$, 存在 (闭集、开集)
 \[
 F_1 \subset E_1 \subset G_1, \qquad F_2 \subset E_2 \subset G_2,
@@ -235,20 +234,19 @@ m(G \setminus F) \leqslant m(G_1 \setminus F_1) + m(G_2 \setminus F_2) < \vareps
 
 %------------------------------------------------
 
-\begin{frame}{交、差与有限可加性 (定理 2, 2$^\circ$--4$^\circ$)}
+\begin{frame}{交、差与有限可加性}
 
-\startproof[bg=yellow, fg=red](2$^\circ$, 3$^\circ$)
 由 De Morgan 律与补集可测 (1)、并的可测性 (1$^\circ$):
 \[
 E_1 \cap E_2 = \mathscr{C}\big(\mathscr{C}E_1 \cup \mathscr{C}E_2\big), \qquad
 E_1 \setminus E_2 = E_1 \cap \mathscr{C}E_2 ,
 \]
-右端均可测, 故 $E_1 \cap E_2$ 与 $E_1 \setminus E_2$ 可测.
-\qed
+右端均可测, 故交集 $E_1 \cap E_2$ 与差集 $E_1 \setminus E_2$ 可测.
 
 \pause
+\vspace{1em}
 
-\startproof[bg=yellow, fg=red](4$^\circ$) 设 $E_1 \cap E_2 = \emptyset$, 取 1$^\circ$ 中的 $F_i \subset E_i \subset G_i$ ($i = 1, 2$), 则 $F_1 \cap F_2 = \emptyset$. 由内测度的单调性 ($m(E_1 \cup E_2) = m_* (E_1 \cup E_2) \geqslant m_* (F_1 \cup F_2) \geqslant m(F_1 \cup F_2)$) 与闭集测度的有限可加性 (§2.2):
+设 $E_1 \cap E_2 = \emptyset$, 取 1$^\circ$ 中的 $F_i \subset E_i \subset G_i$ ($i = 1, 2$), 则 $F_1 \cap F_2 = \emptyset$. 由内测度的单调性 ($m(E_1 \cup E_2) = m_* (E_1 \cup E_2) \geqslant m_* (F_1 \cup F_2) \geqslant m(F_1 \cup F_2)$) 与闭集测度的有限可加性 (§2.2):
 \[
 m(E_1 \cup E_2) \geqslant m(F_1 \cup F_2) = mF_1 + mF_2 > mG_1 + mG_2 - \varepsilon .
 \]
@@ -297,23 +295,23 @@ m(E_2 \setminus E_1) = m E_2 - m E_1 .
 $E_2 = E_1 \cup (E_2 \setminus E_1)$ 为\alert{不交}可测集之并, 由有限可加性即得.
 \qed
 
-\pause
+% \pause
 
-\begin{remark}
-可减性是``裂项''的基本工具, 稍后渐张集列的证明正是反复使用它.
-\end{remark}
+% \begin{remark}
+% 可减性是``裂项''的基本工具, 稍后渐张集列相关结论的证明正是反复使用它.
+% \end{remark}
 
 \end{frame}
 
 %------------------------------------------------
 
-\section[Borel 集]{可数运算与 Borel 集}
+% \section[Borel 集]{可数运算与 Borel 集}
 
 %------------------------------------------------
 
 \begin{frame}{可数并、可数交 (从有限到可数)}
 
-\begin{thm}[可数并、可数交]
+\begin{thm}[可数并、可数交可测性]
 设 $\{E_k\}_{k \geqslant 1}$ 为一列\alert{可测}集.
 \begin{enumerate}
 \item $E = \bigcup_{k=1}^\infty E_k$ 可测; 若进一步 $E_k$ 两两互不相交, 则
@@ -331,7 +329,7 @@ mE = \sum_{k=1}^\infty m E_k \qquad \text{(\alert{完全可加性})};
 \[
 E = E_1 \cup (E_2 \setminus E_1) \cup \big(E_3 \setminus (E_1 \cup E_2)\big) \cup \cdots,
 \]
-右端各项可测且\alert{两两不交}.
+右端各项可测且\alert{两两不交}. 剩下的关键就是\alert{从有限过渡到无限 (可列)}: 下面两页完成这一步.
 \end{remark}
 
 \end{frame}
@@ -383,7 +381,6 @@ m_* E \geqslant m_* F \geqslant mF > \sum_{k=1}^n m E_k - \varepsilon .
 m_* E \geqslant \sum_{k=1}^\infty m E_k .
 \qquad \cdots\, \textcircled{1}
 \]
-\qed
 
 \end{frame}
 
@@ -404,7 +401,6 @@ m^* E \leqslant m G \leqslant \sum_{k \geqslant 1} m G_k
 m^* E \leqslant \sum_{k=1}^\infty m E_k .
 \qquad \cdots\, \textcircled{2}
 \]
-\qed
 
 \pause
 
@@ -414,12 +410,10 @@ m^* E \leqslant \sum_{k=1}^\infty m E_k .
 m_* E = m^* E = \sum_{k=1}^\infty m E_k ,
 \]
 即 $E$ 可测且 $mE = \sum_k mE_k$.
-\qed
 
 \pause
 
-\startproof[bg=yellow, fg=red](定理 2) 交的情形
-$\mathscr{C}\big(\bigcap_k E_k\big) = \bigcup_k \mathscr{C}E_k$ 可测 (De Morgan 律), 再由补集可测知 $\bigcap_k E_k$ 可测.
+交的情形: $\mathscr{C}\big(\bigcap_k E_k\big) = \bigcup_k \mathscr{C}E_k$ 可测 (De Morgan 律), 再由补集可测知 $\bigcap_k E_k$ 可测.
 \qed
 
 \end{frame}
@@ -466,9 +460,9 @@ b - a = m^* (a, b) = m^* E + m^* (\mathscr{C}E)
 = m^* E + (b - a) - m_* E ,
 \]
 第二步用对偶公式. 于是 $m^* E = m_* E$, 即 $E$ 可测.
-\qed
 
 \pause
+\vspace{1em}
 
 \startproof[bg=yellow, fg=red]($\Longrightarrow$)
 设 $E$ 可测, $A$ 任取. 一方面, 由 $A = (A \cap E) \cup (A \cap \mathscr{C}E)$ 与外测度的半可加性:
@@ -523,7 +517,6 @@ m E = \lim_{k \to \infty} m E_k .
 
 \begin{frame}{渐张情形的证明: 裂项}
 
-\startproof[bg=yellow, fg=red](1) 的证明
 把 $E$ 按归属``裂项''为两两不交的可测集之并:
 \[
 E = E_1 \cup (E_2 \setminus E_1) \cup (E_3 \setminus E_2) \cup \cdots \cup (E_{k+1} \setminus E_k) \cup \cdots
@@ -539,7 +532,7 @@ mE = mE_1 + \sum_{k=1}^\infty \big(m E_{k+1} - m E_k\big)
 
 \pause
 
-裂项求和 (telescoping):
+裂项求和:
 \[
 mE = mE_1 + \lim_{n \to \infty} \big(m E_{n+1} - m E_1\big)
 = \lim_{n \to \infty} m E_{n+1} .
@@ -553,7 +546,6 @@ mE = mE_1 + \lim_{n \to \infty} \big(m E_{n+1} - m E_1\big)
 
 \begin{frame}{渐缩情形的证明: 取补}
 
-\startproof[bg=yellow, fg=red](2) 的证明
 令 $E = \bigcap_{k \geqslant 1} E_k$, 由 De Morgan 律
 \[
 \mathscr{C}E = \mathscr{C}\Big(\bigcap_{k \geqslant 1} E_k\Big) = \bigcup_{k \geqslant 1} \mathscr{C}E_k
@@ -568,9 +560,9 @@ mE = mE_1 + \lim_{n \to \infty} \big(m E_{n+1} - m E_1\big)
 
 \pause
 
-\begin{attnblock}[注意: 有限性条件]
-(1) 对 $mE_k$ 无需任何假设; 但 (2) 在一般测度空间中必须假设\alert{某个} $mE_{n_0} < +\infty$, 否则会失效: 例如 $E_k = [k, +\infty)$ (§2.4 的无界情形), $mE_k = +\infty$, 而 $\bigcap_k E_k = \emptyset$, $m\big(\bigcap_k E_k\big) = 0 \neq +\infty$. 本节一切集合含于基本集 $(a,b)$, 自动有界, 不会出问题.
-\end{attnblock}
+\begin{remark}
+一般地, (1) 对 $m E_k$ 是否有限\alert{无要求}; 但 (2) 要求\alert{某个} $m E_{n_0} < +\infty$ (无界集的情形在 §2.4 中处理).
+\end{remark}
 
 \end{frame}
 
@@ -631,18 +623,19 @@ $A$ 称为 $E$ 的\alert{等测包}, $B$ 称为 $E$ 的\alert{等测核}. 比起
 
 \begin{frame}{等测包与等测核的证明}
 
-\startproof[bg=yellow, fg=red](证明)
-$E$ 可测, $mE = m^* E$. 由外测度定义, $\forall\, n \in \mathbb{N}$, 可取开集 $G_n \supset E$ 使 $mG_n < m^* E + \dfrac{1}{n} = mE + \dfrac{1}{n}$. 令 $A = \bigcap_{n=1}^\infty G_n$, 则 $A$ 为 $G_\delta$ 集, 可测, 且 $E \subset A \subset G_n$, 由测度的单调性 $mE \leqslant mA \leqslant mG_n < mE + \dfrac{1}{n}$ ($\forall\, n$), 故
+$E$ 可测, 则有 $mE = m^* E$. 由外测度定义, $\forall\, n \in \mathbb{N}$, 可取开集 $G_n \supset E$ 使
 \[
-mE = mA .
+mG_n < m^* E + \dfrac{1}{n} = mE + \dfrac{1}{n}.
 \]
+令 $A = \bigcap_{n=1}^\infty G_n$, 则 $A$ 为 $G_\delta$ 集, 可测, 且 $E \subset A \subset G_n$, 由测度的单调性 $mE \leqslant mA \leqslant mG_n < mE + \dfrac{1}{n}$ ($\forall\, n$), 故 $mE = mA.$
 
 \pause
 
-另一方面, 由内测度定义, $\forall\, n$ 可取闭集 $F_n \subset E$ 使 $mF_n > m_* E - \dfrac{1}{n} = mE - \dfrac{1}{n}$. 令 $B = \bigcup_{n=1}^\infty F_n$, 则 $B$ 为 $F_\sigma$ 集, 可测, 且 $E \supset B \supset F_n$, 同样有 $mE \geqslant mB \geqslant mF_n > mE - \dfrac{1}{n}$ ($\forall\, n$), 故
+另一方面, 由内测度定义, $\forall\, n$ 可取闭集 $F_n \subset E$ 使
 \[
-mE = mB .
+mF_n > m_* E - \dfrac{1}{n} = mE - \dfrac{1}{n}.
 \]
+令 $B = \bigcup_{n=1}^\infty F_n$, 则 $B$ 为 $F_\sigma$ 集, 可测, 且 $E \supset B \supset F_n$, 同样有 $mE \geqslant mB \geqslant mF_n > mE - \dfrac{1}{n}$ ($\forall\, n$), 故 $mE = mB.$
 \qed
 
 \pause
@@ -689,13 +682,41 @@ d(x_0 + h,\ E) = o(h) \qquad (h \to 0),
 
 %------------------------------------------------
 
-\begin{frame}{全密点命题的证明 (一): 关键断言}
+\begin{frame}{全密点命题的证明 (Part I): 关键断言}
 
-不妨设 $h > 0$ ($h < 0$ 完全对称). 任取定 $\varepsilon > 0$, 注意
-\[
-I(x_0 + h;\, \varepsilon h) \subset I(x_0;\, h + \varepsilon h)
-\qquad (\text{长度: } 2\varepsilon h \leftarrow 2h + 2\varepsilon h).
-\]
+不妨设 $h > 0$ ($h < 0$ 完全对称). 任取定 $\varepsilon > 0$, 有
+$I(x_0 + h;\, \varepsilon h) \subset I(x_0;\, h + \varepsilon h)$:
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2, line cap=round]
+  % ===== h > 0 =====
+  \node[font=\small] at (-0.9,0) {$h>0$:};
+  \draw[thick] (-0.2,0) -- (6.6,0);
+  \draw[thick] (6.6,0) -- (7.05,0);
+  \draw[very thick, blue!70!black] (0.9,0) -- (4.7,0);
+  \node[blue!70!black, inner sep=0pt] at (0.8,0) {$($};
+  \node[blue!70!black, inner sep=0pt] at (4.8,0) {$)$};
+  \draw[very thick, red!70!black] (3.5,0) -- (4.7,0);
+  \node[red!70!black, inner sep=0pt] at (3.4,0) {$($};
+  \fill (2.6,0) circle (1.7pt) node[above=2pt] {$x_0$};
+  \fill (4.0,0) circle (1.7pt) node[above=2pt] {$x_0+h$};
+  \draw[<->] (3.55,-0.22) -- (4.7,-0.22) node[midway,below=1pt] {$\varepsilon h$};
+  \draw[<->] (0.95,-0.72) -- (4.7,-0.72) node[midway,below=1pt] {$h+\varepsilon h$};
+  % ===== h < 0 =====
+  \begin{scope}[yshift=-1.9cm]
+  \node[font=\small] at (-0.9,0) {$h<0$:};
+  \draw[thick] (-0.2,0) -- (6.6,0);
+  \draw[very thick, blue!70!black] (0.9,0) -- (5.3,0);
+  \node[blue!70!black, inner sep=0pt] at (0.8,0) {$($};
+  \draw[very thick, red!70!black] (0.9,0) -- (2.1,0);
+  \node[red!70!black, inner sep=0pt] at (2.22,0) {$)$};
+  \fill (1.5,0) circle (1.7pt) node[above=2pt] {$x_0+h$};
+  \fill (3.9,0) circle (1.7pt) node[above=2pt] {$x_0$};
+  \draw[<->] (0.95,-0.22) -- (2.1,-0.22) node[midway,below=1pt] {$-\varepsilon h$};
+  \draw[<->] (0.95,-0.72) -- (3.9,-0.72) node[midway,below=1pt] {$-h-\varepsilon h$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
 
 \startproof[bg=yellow, fg=red](断言) $h$ 充分小时 $E \cap I(x_0 + h;\, \varepsilon h) \neq \emptyset$.
 \textbf{反证}: 设 $E \cap I(x_0 + h;\, \varepsilon h) = \emptyset$, 则
@@ -708,7 +729,11 @@ $E \cap I(x_0; h + \varepsilon h) \subset I(x_0; h + \varepsilon h) \setminus I(
 \qquad \textcircled{1}
 \]
 
-\pause
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{全密点命题的证明 (Part II): 收尾}
 
 另一方面, 由全密点定义, 存在 $\delta_0 > 0$, 使 $0 < \delta < \delta_0$ 时恒有
 $\dfrac{1}{2\delta}\, m\big(E \cap I(x_0; \delta)\big) > \dfrac{1}{1 + \varepsilon}$.
@@ -716,14 +741,9 @@ $\dfrac{1}{2\delta}\, m\big(E \cap I(x_0; \delta)\big) > \dfrac{1}{1 + \varepsil
 \[
 \frac{m\big(E \cap I(x_0; h + \varepsilon h)\big)}{2(h + \varepsilon h)} > \frac{1}{1 + \varepsilon},
 \]
-与 \textcircled{1} 矛盾.
-\qed
+与 \textcircled{1} 矛盾, 断言得证.
 
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}{全密点命题的证明 (二): 收尾}
+\pause
 
 \startproof[bg=yellow, fg=red](命题的证明)
 由断言, 对任意取定的 $\varepsilon > 0$, $h$ 充分小时可取
@@ -757,27 +777,20 @@ d(x_0 + h, E) = o(h) \qquad (h \to 0).
 \begin{frame}{小结}
 
 \begin{itemize}
-\item \textbf{可测性的三个等价面貌}: $m^* E = m_* E$;\quad $\forall\, \varepsilon > 0$, $\exists\, G \supset E \supset F$ (开、闭), $m(G \setminus F) < \varepsilon$;\quad Carath\'{e}odory 条件 (任意试验集的二分可加性);
+\item \textbf{可测性的三个等价条件}:
+\begin{itemize}
+\item $m^* E = m_* E$;
+\item $\forall\, \varepsilon > 0$, $\exists$ 开集 $G \supset E \supset$ 闭集 $F$, 使 $m(G \setminus F) < \varepsilon$;
+\item Carath\'{e}odory 条件 (任意试验集的二分可加性).
+\end{itemize}
 \pause
 \item \textbf{封闭性}: 补、交、并、差 (有限与可数); 测度的有限可加、完全可加、单调、可减;
 \pause
-\item \textbf{收获}: 开集、闭集、$F_\sigma$、$G_\delta$ 及一切 Borel 集可测; 渐张列 $m\big(\bigcup_k E_k\big) = \lim_k mE_k$, 渐缩列 (有界); 等测包与等测核; 零测集``无足轻重'';
+\item \textbf{主要结论}: 开集、闭集、$F_\sigma$、$G_\delta$ 及一切 Borel 集可测; 渐张列 $m\big(\bigcup_k E_k\big) = \lim_k mE_k$, 渐缩列 (有界); 等测包与等测核; 零测集``无足轻重'';
 \pause
-\item \textbf{极限性质}把测度从``有限运算''解放到``极限运算'', 为后续逐项积分、极限交换铺路.
-\end{itemize}
-
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}{展望: 走向一般测度}
-
-\begin{itemize}
-\item 本节的许多定义与结论都带着\alert{有界}的条件: 内测度靠有界闭集逼近, 补集相对基本集 $(a, b)$ 而言;
+\item \textbf{极限性质}把测度从``有限运算''解放到``极限运算'', 为后续逐项积分、极限交换铺路;
 \pause
-\item 逻辑链条: 可测性 (Carath\'{e}odory) $\longleftarrow$ 外测度 $m^* E = \inf_G mG$ $\longleftarrow$ 开集测度 $mG = \sum_k |I_k|$ $\longleftarrow$ $\mathbb{R}$ 的构成区间结构;
-\pause
-\item §2.4 起我们\alert{以 Carath\'{e}odory 条件为定义} (只依赖外测度), 改用 \alert{开矩体覆盖}在 $\mathbb{R}^n$ 上重建 Lebesgue 测度: 允许\alert{无界集}、高维点集, 保持平移不变; 并讨论\alert{不可测集的存在性} (Vitali 构造, \S 2.4 选讲).
+\item \textbf{逻辑链条与走向一般}: $\mathbb{R}$ 的构成区间结构 $\longrightarrow$ 开集测度 $mG = \sum_k |I_k|$ $\longrightarrow$ 外测度 $m^* E = \inf_G mG$ $\longrightarrow$ 可测性 (Carath\'{e}odory 条件); 其中许多定义与结论带着\alert{有界}的条件 (内测度靠有界闭集逼近, 补集相对基本集 $(a,b)$); §2.4 起我们\alert{以 Carath\'{e}odory 条件为定义} (只依赖外测度), 改用 \alert{开矩体覆盖}在 $\mathbb{R}^n$ 上重建 Lebesgue 测度: 允许\alert{无界集}、高维点集, 保持平移不变, 并讨论\alert{不可测集的存在性}.
 \end{itemize}
 
 \end{frame}
