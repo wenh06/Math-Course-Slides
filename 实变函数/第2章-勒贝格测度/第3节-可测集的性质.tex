@@ -29,11 +29,10 @@
 
 %------------------------------------------------
 
-\section{引言}
 
 %------------------------------------------------
 
-\begin{frame}{回顾与本节的任务}
+\begin{frame}{绪言}
 
 上一节我们定义了\alert{可测集}: 有界集 $E$ 可测 $\iff$ $m^* E = m_* E$ (公共值记为 $mE$).
 
@@ -49,9 +48,9 @@
 \end{itemize}
 \end{question}
 
-\pause
+% \pause
 
-\textbf{本节路线}: 可测性的充要条件 (内外夹逼的定量化) $\longrightarrow$ 运算封闭性 $\longrightarrow$ 可数运算与 Borel 集 $\longrightarrow$ Carath\'{e}odory 条件 $\longrightarrow$ 极限定理 (渐张、渐缩集列) $\longrightarrow$ 等测包与等测核 $\longrightarrow$ 全密点 (选讲).
+% \textbf{本节路线}: 可测性的充要条件 (内外夹逼的定量化) $\longrightarrow$ 运算封闭性 $\longrightarrow$ 可数运算与 Borel 集 $\longrightarrow$ Carath\'{e}odory 条件 $\longrightarrow$ 极限定理 (渐张、渐缩集列) $\longrightarrow$ 等测包与等测核 $\longrightarrow$ 全密点 (选讲).
 
 \end{frame}
 
@@ -61,36 +60,31 @@
 
 %------------------------------------------------
 
-\begin{frame}{内外夹逼的定量化}
+\begin{frame}{可测的充要条件: 内外夹逼}
 
-\begin{thm}[充要条件]
+\begin{thm}[可测的内外夹逼刻画]
 有界集 $E \subset \mathbb{R}$ 可测的\alert{充要条件}是: $\forall\, \varepsilon > 0$, 存在开集 $G \supset E$ 与闭集 $F \subset E$, 使得
 \[
 m(G \setminus F) < \varepsilon .
 \]
 \end{thm}
 
+\vspace{2em}
 \pause
 
 \begin{remark}
-$G \setminus F = G \cap \mathscr{C}F$ 是\alert{开集}, 且 $F \subset G$, 由 §2.2 的定理,
-\[
-m(G \setminus F) = m G - m F ,
-\]
-故条件即 $mG - mF < \varepsilon$: \alert{开集从外面、闭集从里面把 $E$ 夹住}, 且两侧的误差可以任意小.
-\end{remark}
-
-\pause
-
-\begin{remark}
-这正是 ``$m^* E = m_* E$'' 的定量化表述: $m^* E = \inf_G mG$ 与 $m_* E = \sup_F mF$ 之差可以被压得任意小.
+\begin{itemize}
+\item $G \setminus F = G \cap \mathscr{C}F$ 是\alert{开集}, 且 $F \subset G$, 由 §2.2 的定理,
+$m(G \setminus F) = mG - mF$, 故条件即 $mG - mF < \varepsilon$: \alert{开集从外面、闭集从里面把 $E$ 夹住}, 且两侧的误差可以任意小;
+\item 这正是 ``$m^* E = m_* E$'' 的定量化表述: $m^* E = \inf_G mG$ 与 $m_* E = \sup_F mF$ 之差可以被压得任意小.
+\end{itemize}
 \end{remark}
 
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{充要条件的证明}
+\begin{frame}{可测的充要条件: 证明}
 
 \startproof[bg=yellow, fg=red]($\Longrightarrow$)
 设 $E$ 可测, 即 $m^* E = m_* E$. 由外测度定义 $m^* E = \inf_{G \supset E} mG$, $\forall\, \varepsilon > 0$ 可取开集 $G \supset E$ 使
@@ -102,7 +96,6 @@ mG < m^* E + \frac{\varepsilon}{2} ;
 \[
 \varepsilon > mG - mF = m(G \setminus F).
 \]
-\qed
 
 \pause
 
@@ -141,15 +134,12 @@ m(E_1 \cup E_2) = m E_1 + m E_2 \qquad \text{(\alert{有限可加性})}.
 
 \pause
 
-\begin{attnblock}[注意]
-可加性\textbf{要求 $E_1, E_2$ 可测}: 对一般的 (未必可测的) $E_1, E_2$, 即使 $E_1 \cap E_2 = \emptyset$, 也可能
-$m^*(E_1 \cup E_2) < m^* E_1 + m^* E_2$ (习题 2.3 第 15 题).
-\end{attnblock}
-
-\pause
-
 \begin{remark}
-这说明可测集类对\alert{有限}次并、交、差、补封闭 (构成一个\alert{环}); 稍后再补上\alert{可数}并封闭性, 便得到 \alert{$\sigma$-环} (术语与推广见 §2.5--2.6).
+\begin{itemize}
+\item 可加性\textbf{要求 $E_1, E_2$ 可测}: 对一般的 (未必可测的) $E_1, E_2$, 即使 $E_1 \cap E_2 = \emptyset$, 也可能
+$m^*(E_1 \cup E_2) < m^* E_1 + m^* E_2$ (习题 2.3 第 15 题);
+\item 这说明可测集类对\alert{有限}次并、交、差、补封闭 (构成一个\alert{环}); 稍后再补上\alert{可数}并封闭性, 便得到 \alert{$\sigma$-环} (术语与推广见 §2.4).
+\end{itemize}
 \end{remark}
 
 \end{frame}
@@ -360,14 +350,11 @@ E = E_1 \cup (E_2 \setminus E_1) \cup \big(E_3 \setminus (E_1 \cup E_2)\big) \cu
 
 \pause
 
-\begin{attnblock}
-§2.2 遗留的问题 (``开集、闭集是否可测?'') 至此全部解决; 可测集类 $\mathscr{M}$ 至少包含全部 Borel 集, 但它还要更大 (Borel 集加减零测集后仍可测, 而这样的集合未必是 Borel 集).
-\end{attnblock}
-
-\pause
-
 \begin{remark}
-本定理把之前的\alert{有限}结论推广到了\alert{可数}: 可测集类对可数次运算封闭, 这正是它威力所在.
+\begin{itemize}
+\item §2.2 遗留的问题 (``开集、闭集是否可测?'') 至此全部解决; 可测集类 $\mathscr{M}$ 至少包含全部 Borel 集, 但它还要更大 (Borel 集加减零测集后仍可测, 而这样的集合未必是 Borel 集, \S 2.4 选讲将构造例子);
+\item 本定理把之前的\alert{有限}结论推广到了\alert{可数}: 可测集类对可数次运算封闭, 这正是它威力所在.
+\end{itemize}
 \end{remark}
 
 \end{frame}
@@ -376,7 +363,7 @@ E = E_1 \cup (E_2 \setminus E_1) \cup \big(E_3 \setminus (E_1 \cup E_2)\big) \cu
 
 \begin{frame}{完全可加性的证明 (一): 内测度下界}
 
-以下设 $E_k$ \alert{两两不交}, $E = \bigcup_{k \geqslant 1} E_k$ (可测性已由前一页的归约得到), 往证 $mE = \sum_k m E_k$.
+以下设 $E_k$ \alert{两两不交}, $E = \bigcup_{k \geqslant 1} E_k$ (可测性已由前面的归约得到), 往证 $mE = \sum_k m E_k$.
 
 \pause
 
@@ -439,7 +426,7 @@ $\mathscr{C}\big(\bigcap_k E_k\big) = \bigcup_k \mathscr{C}E_k$ 可测 (De Morga
 
 %------------------------------------------------
 
-\section[Carath\'{e}odory]{Carath\'{e}odory 条件}
+\section[卡氏条件]{Carath\'{e}odory 条件}
 
 %------------------------------------------------
 
@@ -495,8 +482,9 @@ m^* A \leqslant m^* (A \cap E) + m^* (A \cap \mathscr{C}E) .
 \[
 m^* (A \cap E) + m^* (A \cap \mathscr{C}E)
 \leqslant m(G \cap E) + m(G \cap \mathscr{C}E)
-= m G < m^* A + \varepsilon .
+= m\big(G \cap (a,b)\big) \leqslant m G < m^* A + \varepsilon
 \]
+(最后一步用单调性: $(G \cap E) \cup (G \cap \mathscr{C}E) = G \cap (a,b) \subseteq G$).
 由 $\varepsilon$ 任意, ``$\geqslant$''也成立.
 \qed
 
@@ -749,8 +737,9 @@ d(x_0 + h, E) = \inf_{y \in E} d(x_0 + h, y)
 
 由 $\varepsilon > 0$ 的任意性:
 \[
-d(x_0 + h, E) = o(h) \qquad (h \to 0). \qquad \qed
+d(x_0 + h, E) = o(h) \qquad (h \to 0).
 \]
+\qed
 
 \pause
 
@@ -762,7 +751,6 @@ d(x_0 + h, E) = o(h) \qquad (h \to 0). \qquad \qed
 
 %------------------------------------------------
 
-\section[小结]{小结与展望}
 
 %------------------------------------------------
 
@@ -789,7 +777,7 @@ d(x_0 + h, E) = o(h) \qquad (h \to 0). \qquad \qed
 \pause
 \item 逻辑链条: 可测性 (Carath\'{e}odory) $\longleftarrow$ 外测度 $m^* E = \inf_G mG$ $\longleftarrow$ 开集测度 $mG = \sum_k |I_k|$ $\longleftarrow$ $\mathbb{R}$ 的构成区间结构;
 \pause
-\item §2.4 起我们\alert{以 Carath\'{e}odory 条件为定义} (只依赖外测度), 改用 \alert{开矩体覆盖}在 $\mathbb{R}^n$ 上重建 Lebesgue 测度: 允许\alert{无界集}、高维点集, 保持平移不变; 并讨论\alert{不可测集的存在性} (Vitali 构造, 见补充材料).
+\item §2.4 起我们\alert{以 Carath\'{e}odory 条件为定义} (只依赖外测度), 改用 \alert{开矩体覆盖}在 $\mathbb{R}^n$ 上重建 Lebesgue 测度: 允许\alert{无界集}、高维点集, 保持平移不变; 并讨论\alert{不可测集的存在性} (Vitali 构造, \S 2.4 选讲).
 \end{itemize}
 
 \end{frame}
