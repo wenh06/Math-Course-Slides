@@ -99,7 +99,7 @@ $\infty \cdot (\pm\infty) = \pm\infty$, & $-\infty \cdot (\pm\infty) = \mp\infty
 \begin{eg}[正常凸函数]
 凸优化中允许目标函数取值 $\pm\infty$ (``罚到无穷''): $f: \mathbb{R}^n \to \overline{\mathbb{R}}$. 称 $f$ 是\alert{正常} (proper) 的, 若
 \[
-\forall\, x \in \operatorname{dom} f, \qquad f(x) \neq -\infty \ \text{且}\ f(x) \neq +\infty
+\forall\, x \in \operatorname{dom} f, \qquad f(x) \neq -\infty \ \text{且}\ f(x) \neq +\infty; \qquad \operatorname{dom} f \neq \emptyset
 \]
 (进一步要求闭图像与凸性, 即 $ccp$ 函数: closed, convex, proper).
 
@@ -126,7 +126,7 @@ mE := \lim_{a \to +\infty} m\big(( -a, a) \cap E\big).
 
 \pause
 
-极限的存在性: $\{(-a, a) \cap E\}_a$ 是\alert{渐张可测集列}, 由 §2.3 极限定理, 极限总存在 (可为 $+\infty$).
+极限的存在性: $a \mapsto m\big((-a, a) \cap E\big)$ 随 $a$ \alert{单调递增} (测度的单调性), 故极限总存在 (可为 $+\infty$).
 
 \pause
 
@@ -191,14 +191,14 @@ m^* A = m^* (A \cap E) + m^* (A \cap \mathscr{C}_{\mathbb{R}^n} E).
 
 \begin{remark}
 \begin{itemize}
-\item 由外测度的次可加性, ``$\leqslant$''方向总成立, 故验证时\alert{只需证 ``$\geqslant$''};
+\item 由外测度的半可加性, ``$\leqslant$''方向总成立, 故验证时\alert{只需证 ``$\geqslant$''};
 \item 该定义\alert{只涉及外测度}, 有界、无界、低维、高维一律适用;
-\item 有界一维情形, 它与 §2.3 的定义 ($m^*E = m_*E$) \alert{等价} (§2.3 已证).
+\item 有界一维情形, 它与 §2.3 的定义 ($m^*E = m_*E$) \alert{等价} (§2.3 对\alert{有界}试验集已证; 无界试验集经 L-覆盖归结到有界情形).
 \end{itemize}
 \end{remark}
 
 \begin{eg}
-$E = \bigcup_{n \geqslant 1} \left(n, n + 2^{-n}\right)$ 与 $E = (a, +\infty)$ 都可测 (与前一页的无界集定义相容).
+$E = \bigcup_{n \geqslant 1} \left(n, n + 2^{-n}\right)$ 与 $E = (a, +\infty)$ 都可测.
 \end{eg}
 
 \end{frame}
@@ -211,19 +211,18 @@ $E = \bigcup_{n \geqslant 1} \left(n, n + 2^{-n}\right)$ 与 $E = (a, +\infty)$ 
 \begin{enumerate}
 \item \textbf{非负性}: $m^* E \geqslant 0$, $m^* \emptyset = 0$;
 \item \textbf{单调性}: 若 $E_1 \subset E_2$, 则 $m^* E_1 \leqslant m^* E_2$;
-\item \textbf{次可加性}: $m^*\Big(\bigcup_{k \geqslant 1} E_k\Big) \leqslant \sum_{k \geqslant 1} m^* E_k$;
+\item \textbf{半可加性}: $m^*\Big(\bigcup_{k \geqslant 1} E_k\Big) \leqslant \sum_{k \geqslant 1} m^* E_k$;
 \item \textbf{平移不变性}: $m^*(T_h E) = m^* E$, 其中 $T_h: x \mapsto x + h$ 为平移变换.
 \end{enumerate}
 \end{thm}
 
 \pause
 
-\begin{remark}[(3) 的证明: 唯一非平凡处]
-$\forall\, \varepsilon > 0$, 对每个 $k$ 取 L-覆盖 $\{I_{k,n}\}_{n}$ 使 $\sum_n |I_{k,n}| < m^* E_k + \varepsilon/2^k$. 全体 $\{I_{k,n}\}$ 覆盖 $\bigcup_k E_k$, 故 $m^*\big(\bigcup_k E_k\big) \leqslant \sum_{k,n} |I_{k,n}| < \sum_k m^* E_k + \varepsilon$. ((1)(2) 直接由定义可得.)
-\end{remark}
-
-\begin{remark}[(4) 的证明]
-$I + h$ 仍为矩体且 $|I + h| = |I|$, 故 $m^*(T_h E) \leqslant m^* E$; 用 $T_{-h}$ 得反向不等式.
+\begin{remark}[(3) 与 (4) 的证明]
+\begin{itemize}
+\item (3) 是唯一非平凡处: $\forall\, \varepsilon > 0$, 对每个 $k$ 取 L-覆盖 $\{I_{k,n}\}_{n}$ 使 $\sum_n |I_{k,n}| < m^* E_k + \varepsilon/2^k$. 全体 $\{I_{k,n}\}$ 覆盖 $\bigcup_k E_k$, 故 $m^*\big(\bigcup_k E_k\big) \leqslant \sum_{k,n} |I_{k,n}| < \sum_k m^* E_k + \varepsilon$. ((1)(2) 直接由定义可得.)
+\item (4): $I + h$ 仍为矩体且 $|I + h| = |I|$, 故 $m^*(T_h E) \leqslant m^* E$; 用 $T_{-h}$ 得反向不等式. 且平移\alert{保持可测性} ($E$ 可测 $\implies$ $T_h E$ 可测: 在 Carath\'{e}odory 条件中以 $T_{-h} A$ 为试验集, 用平移不变性即得).
+\end{itemize}
 \end{remark}
 
 \end{frame}
@@ -247,7 +246,7 @@ m^*\Big(\bigcup_{k} E_k\Big) = \sum_{k=1}^{\infty} m^* E_k .
 \pause
 
 \begin{remark}
-即: $\mathscr{M}$ 对\alert{可数}并、交、差、补封闭 (``$\sigma$-代数'', 稍后定义), 测度在其上\alert{可列可加}, 这正是 §2.3 在有界情形建立的理论在新框架下的重述, 但证明路线改为\alert{直接使用 Carath\'{e}odory 条件}.
+即: $\mathscr{M}$ 对\alert{可数}并、交、差、补封闭 (``$\sigma$-代数'', §1.4 已定义), 测度在其上\alert{可列可加}, 这正是 §2.3 在有界情形建立的理论在新框架下的重述, 但证明路线改为\alert{直接使用 Carath\'{e}odory 条件}.
 \end{remark}
 
 \end{frame}
@@ -306,7 +305,7 @@ m^* (A \cap \mathscr{C}E_1) = \text{\textcircled{1}} + \text{\textcircled{2}} .
 m^* A = \text{\textcircled{1}} + \text{\textcircled{2}} + \text{\textcircled{3}} + \text{\textcircled{4}}
 \geqslant m^*\big(A \cap \mathscr{C}(E_1 \cup E_2)\big) + m^*\big(A \cap (E_1 \cup E_2)\big),
 \]
-其中 \textcircled{1} $= A \cap \mathscr{C}(E_1 \cup E_2)$, \textcircled{2}$\cup$\textcircled{3}$\cup$\textcircled{4} $= A \cap (E_1 \cup E_2)$, 不等号用次可加性. 结合``$\leqslant$''方向 (也由次可加性) 得等号, 即 $E_1 \cup E_2 \in \mathscr{M}$.
+其中 \textcircled{1} $= A \cap \mathscr{C}(E_1 \cup E_2)$, \textcircled{2}$\cup$\textcircled{3}$\cup$\textcircled{4} $= A \cap (E_1 \cup E_2)$, 不等号用半可加性. 结合``$\leqslant$''方向 (也由半可加性) 得等号, 即 $E_1 \cup E_2 \in \mathscr{M}$.
 
 $E_1 \cap E_2$ 与 $E_1 \setminus E_2$ 由 De Morgan 律与 (2) 即得.
 \qed
@@ -354,11 +353,11 @@ m^* A \;\geqslant\; \sum_{k=1}^n m^* (A \cap E_k) + m^* (A \cap \mathscr{C} S).
 m^* A \;\geqslant\; \sum_{k=1}^\infty m^* (A \cap E_k) + m^* (A \cap \mathscr{C} S)
 \;\geqslant\; m^* (A \cap S) + m^* (A \cap \mathscr{C} S),
 \]
-最后一步由 $A \cap S = \bigcup_k (A \cap E_k)$ 与次可加性.
+最后一步由 $A \cap S = \bigcup_k (A \cap E_k)$ 与半可加性.
 
 \pause
 
-结合``$\leqslant$''方向 (次可加性), 等号成立, 即 $S = \bigcup_k E_k \in \mathscr{M}$.
+结合``$\leqslant$''方向 (半可加性), 等号成立, 即 $S = \bigcup_k E_k \in \mathscr{M}$.
 
 \pause
 
@@ -382,7 +381,7 @@ m^* S = \sum_{k=1}^\infty m^* E_k . \qquad \text{(两两不交时的可列可加
 
 \begin{frame}{定义: 环、$\sigma$-环、$\sigma$-代数}
 
-设 $X$ 为基本集, $\mathscr{R}$ 是 $X$ 的一些子集构成的集类.
+设 $X$ 为基本集, $\mathscr{R}$ 是 $X$ 的一些子集构成的集类. $\sigma$-代数已由 §1.4 引入 (回忆); 这里把它与更弱的两个概念放在一起, 从弱到强叙述.
 
 \begin{Def}
 \begin{itemize}
@@ -469,7 +468,7 @@ $\mathbb{R}$ 的子集类
 \item $\mu(\emptyset) = 0$;
 \item \alert{(可列) 可加性}: 对 $\mathscr{R}$ 中两两不交、并仍在 $\mathscr{R}$ 中的集列 $\{E_k\}$, $\mu\big(\bigcup_k E_k\big) = \sum_k \mu E_k$,
 \end{enumerate}
-则称 $\mu$ 为 $\mathscr{R}$ 上的\alert{测度}. 若不要求非负性, 则称\alert{广义测度} (有符号; Hahn--Jordan 分解留待后续课程).
+则称 $\mu$ 为 $\mathscr{R}$ 上的\alert{测度}. 若允许取负值 ($\mathbb{R} \cup \{\pm\infty\}$ 值, 放弃非负性), 则称\alert{广义测度} (有符号; Hahn--Jordan 分解留待后续课程).
 \end{Def}
 
 \begin{remark}
@@ -494,7 +493,7 @@ $\mathbb{R}$ 的子集类
 \pause
 
 \startproof[bg=yellow, fg=red](证明要点)
-(1)(2) 与 §2.4 外测度情形相同. (3) 渐张: 不交化 $E = E_1 \cup (E_2 \setminus E_1) \cup (E_3 \setminus E_2) \cup \cdots$ (差仍在 $\mathscr{R}$ 中), 由可列可加性与裂项
+(1)(2) 与本节前面外测度情形相同. (3) 渐张: 若某 $\mu E_k = +\infty$, 则 $\mu E = +\infty = \lim_k \mu E_k$, 结论平凡; 故不妨设诸 $\mu E_k < +\infty$. 不交化 $E = E_1 \cup (E_2 \setminus E_1) \cup (E_3 \setminus E_2) \cup \cdots$ (差仍在 $\mathscr{R}$ 中), 由可列可加性与裂项
 \[
 \mu E = \mu E_1 + \sum_{k \geqslant 1} \mu(E_{k+1} \setminus E_k) = \mu E_1 + \lim_{n} \sum_{k=1}^{n} (\mu E_{k+1} - \mu E_k) = \lim_n \mu E_{n+1};
 \]
@@ -514,13 +513,13 @@ $\mathbb{R}$ 的子集类
 \item \textbf{单调性}: $E_1 \subset E_2$, $E_i \in \mathscr{S} \implies \lambda E_1 \leqslant \lambda E_2$;
 \item \textbf{半可加性}: $E_k \in \mathscr{S}$ 且 $\bigcup_k E_k \in \mathscr{S} \implies \lambda\big(\bigcup_k E_k\big) \leqslant \sum_k \lambda E_k$.
 \end{enumerate}
-若 $\mathscr{S} = \mathscr{P}(X)$, 称 $\lambda$ 为 $X$ 上的外测度. \alert{外测度没有可列可加性}, 这正是它与测度的差别.
+若 $\mathscr{S} = \mathscr{P}(X)$, 称 $\lambda$ 为 $X$ 上的外测度. 外测度的定义中\alert{不要求}可列可加性——这正是它与测度的差别.
 \end{Def}
 
 \pause
 
 \begin{remark}
-§2.4 的矩体 L-覆盖外测度 $m^*$ 就是 $\mathscr{P}(\mathbb{R}^n)$ 上的外测度. 当时的覆盖材料是矩体, 现在的问题是: \alert{能否从环 $\mathscr{R}$ 上的测度 $\mu$ 出发, 造出一个外测度?}
+本节前面的矩体 L-覆盖外测度 $m^*$ 就是 $\mathscr{P}(\mathbb{R}^n)$ 上的外测度. 当时的覆盖材料是矩体, 现在的问题是: \alert{能否从环 $\mathscr{R}$ 上的测度 $\mu$ 出发, 造出一个外测度?}
 \end{remark}
 
 \end{frame}
@@ -545,7 +544,7 @@ $\mathbb{R}$ 的子集类
 \pause
 
 \begin{remark}
-$\mu^*$ 外测度三性质的验证与 §2.4 的 $\varepsilon/2^n$ 论证同型. 取 $\mathscr{R}$ = 半开矩体有限并的环, $\mu$ = 体积: $\mu^*$ 恰是勒贝格外测度 $m^*$, 此时 $\mathscr{S}(\mathscr{R}) = \mathscr{P}(\mathbb{R}^n)$.
+$\mu^*$ 外测度三性质的验证与本节前面的 $\varepsilon/2^n$ 论证同型. 取 $\mathscr{R}$ = 半开矩体有限并的环, $\mu$ = 体积: $\mu^*$ 恰是勒贝格外测度 $m^*$, 此时 $\mathscr{S}(\mathscr{R}) = \mathscr{P}(\mathbb{R}^n)$.
 \end{remark}
 
 \end{frame}
@@ -570,9 +569,9 @@ $\lambda$-可测集全体记为 $\mathscr{M}$.
 \[
 \mathscr{R} \ \subset\ \mathscr{R}_\sigma(\mathscr{R}) \ \subset\ \mathscr{M} \ \subset\ \mathscr{S}(\mathscr{R}),
 \qquad
-\mu^*\big|_{\mathscr{R}_\sigma(\mathscr{R})} = \mu :
+\mu^*\big|_{\mathscr{R}} = \mu :
 \]
-$\mu$ 被扩张为 $\mathscr{R}_\sigma(\mathscr{R})$ (进而 $\mathscr{M}$) 上的测度.
+$\mu^*$ 在 $\mathscr{R}_\sigma(\mathscr{R})$ 上的限制是 $\mu$ 的扩张, 即 $\mu$ 被扩张为 $\mathscr{R}_\sigma(\mathscr{R})$ (进而 $\mathscr{M}$) 上的测度.
 \end{thm}
 
 \end{frame}
@@ -582,11 +581,11 @@ $\mu$ 被扩张为 $\mathscr{R}_\sigma(\mathscr{R})$ (进而 $\mathscr{M}$) 上�
 \begin{frame}{扩张定理的证明要点}
 
 \begin{itemize}
-\item \textbf{$\mathscr{M}$ 是 $\sigma$-环、$\mu^*\big|_{\mathscr{M}}$ 可列可加}: 与 §2.4 性质 (2)--(4) 的证明\alert{逐字同型} (对称性、四块分解、互斥分解逐块展开), 只是试验集限制在 $\mathscr{S}(\mathscr{R})$ 内;
+\item \textbf{$\mathscr{M}$ 是 $\sigma$-环、$\mu^*\big|_{\mathscr{M}}$ 可列可加}: 与本节前面性质 (2)--(4) 的证明\alert{逐字同型} (对称性、四块分解、互斥分解逐块展开), 只是试验集限制在 $\mathscr{S}(\mathscr{R})$ 内;
 \pause
 \item \textbf{$\mu^*\big|_{\mathscr{R}} = \mu$}: 见前一页 (半可加性 $+$ 自身覆盖);
 \pause
-\item \textbf{$\mathscr{R}_\sigma(\mathscr{R}) \subset \mathscr{M}$} (实质性的一步): 由 $\mu^*$ 的定义, $\forall\, \varepsilon > 0$ 可取 $\mathscr{R}$ 中覆盖列 $\{A_n\}$ 使 $\sum_n \mu A_n \leqslant \mu^* A + \varepsilon$ (\alert{任意精度的覆盖逼近}), 用它验证 Carath\'{e}odory 条件 (与 L-覆盖版的论证相同, 细节见教材).
+\item \textbf{$\mathscr{R} \subset \mathscr{M}$} (实质性的一步): 由 $\mu^*$ 的定义, $\forall\, \varepsilon > 0$ 可取 $\mathscr{R}$ 中覆盖列 $\{A_n\}$ 使 $\sum_n \mu A_n \leqslant \mu^* A + \varepsilon$ (\alert{任意精度的覆盖逼近}), 用它验证 $A \in \mathscr{R}$ 的 Carath\'{e}odory 条件 (与 L-覆盖版的论证相同, 细节见教材); 再由第 1 条 ($\mathscr{M}$ 是 $\sigma$-环) 得 $\mathscr{R}_\sigma(\mathscr{R}) \subset \mathscr{M}$.
 \end{itemize}
 
 \end{frame}
@@ -630,7 +629,7 @@ m(E \cap I) > \alpha \cdot mI
 \end{lem}
 
 \startproof[bg=yellow, fg=red](证明)
-由可测性, 可取开集 $G \supset E$ 使 $mG < \dfrac{mE}{\alpha}$. 设 $G = \bigcup_k I_k$ (构成区间, 两两不交).
+不妨设 $mE < +\infty$ ($mE = +\infty$ 时, 先取有界可测子集 $E' \subset E$ 使 $0 < mE' < +\infty$, 对 $E'$ 证得 $m(E' \cap I) > \alpha\, mI$ 后, 由 $E \cap I \supset E' \cap I$ 即得结论). 由可测性, 可取开集 $G \supset E$ 使 $mG < \dfrac{mE}{\alpha}$. 设 $G = \bigcup_k I_k$ (构成区间, 两两不交).
 
 \pause
 
@@ -831,7 +830,7 @@ $S$ 可测但不是 Borel 集: \alert{可测集严格多于 Borel 集}.
 \begin{itemize}
 \item \textbf{扩充实数} $\overline{\mathbb{R}}$: 约定 $0 \cdot \infty = 0$, 只留 $\infty - \infty$ 未定义; $\sup\emptyset = -\infty$, $\inf\emptyset = +\infty$;
 \pause
-\item \textbf{$\mathbb{R}^n$ 外测度}: 矩体 L-覆盖取下确界 $m^*E = \inf \sum_k |I_k|$; 非负、单调、次可加、平移不变;
+\item \textbf{$\mathbb{R}^n$ 外测度}: 矩体 L-覆盖取下确界 $m^*E = \inf \sum_k |I_k|$; 非负、单调、半可加、平移不变;
 \pause
 \item \textbf{Carath\'{e}odory 条件}定义可测集: 只用外测度, 一维有界情形与 §2.3 定义等价; $\mathscr{M}$ 是 $\sigma$-代数, $m$ 在其上可列可加; 对称性使``补集可测''免费;
 \pause
@@ -851,7 +850,7 @@ $S$ 可测但不是 Borel 集: \alert{可测集严格多于 Borel 集}.
 \begin{itemize}
 \item 测度论就绪: $(\mathbb{R}^n, \mathscr{M}, m)$ 已由``体积 $+$ Carath\'{e}odory 机器''建成; 一般测度空间 $(X, \mathscr{R}, \mu)$ (概率测度、L-S 测度) 的理论与之完全平行;
 \pause
-\item \textbf{第三章 可测函数}: 定义在可测集上、``原像保可测''的函数; Weierstrass 式的逼近 (简单函数逼近、Luzin 定理) 与各种收敛性 (Egorov、Riesz);
+\item \textbf{第三章 可测函数}: 定义在可测集上、``原像保可测''的函数; 逐层逼近 (简单函数逼近、Luzin 定理) 与各种收敛性 (Egorov、Riesz);
 \pause
 \item \textbf{第四章 勒贝格积分}: 对简单函数按``测度加权''定义积分, 再逼近一般函数; 单调收敛、Fatou、控制收敛与 Fubini 定理都在这台测度机器上运转.
 \end{itemize}
