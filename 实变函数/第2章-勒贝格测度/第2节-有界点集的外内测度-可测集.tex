@@ -205,7 +205,7 @@ $G$ 有界时 $m G < +\infty$; 由非负项级数的可交换性, 定义与求�
 \begin{frame}{闭集的测度}
 
 \begin{Def}[闭集的测度]
-设 $F$ 为非空有界闭集. 任取包含 $F$ 的开区间 $(a,b)$, 令 $G = (a,b) \setminus F$, 则 $G$ 为开集. 定义\alert{闭集的测度}为
+设 $F$ 为非空有界闭集. 任取包含 $F$ 的\alert{开区间} $(a,b)$ (不是一般的开集), 令 $G = (a,b) \setminus F$, 则 $G$ 为开集. 定义\alert{闭集的测度}为
 \[
 m F = b - a - m G.
 \]
@@ -214,15 +214,7 @@ m F = b - a - m G.
 \pause
 
 \begin{remark}
-\begin{itemize}
-\item 可以证明 $m F$ 的定义与包含它的开区间 $(a,b)$ 的选取无关;
-\pause
-\item 由内、外测度 (稍后定义) 还不能直接看出开集、闭集的可测性, 这将在 §2.3 中证明 (闭区间等特例本节末先行验证). 但\alert{开区间的可测性很容易验证}: 例如
-\[
-\left[a + \frac{\varepsilon}{2},\ b - \frac{\varepsilon}{2}\right] \subset (a, b)
-\quad \Longrightarrow \quad m_* (a,b) \geqslant b - a - \varepsilon.
-\]
-\end{itemize}
+可以证明 $m F$ 的定义与包含它的开区间 $(a,b)$ 的选取无关.
 \end{remark}
 
 \end{frame}
@@ -506,6 +498,22 @@ m (G \setminus F)
 最后一步用\textbf{前面的引理} (分离闭集的有限可加性): 各 $F_k$ 分别含于互不相交的开区间 $I_k$, 故
 $\sum_{k=1}^N m F_k = m\left(\bigcup_{k=1}^N F_k\right) = m F$.
 \qed
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{注记: 关于闭集测度定义中的开区间}
+
+{
+\larger[1]
+
+\begin{itemize}[<+->]
+\item 本定理表明, 闭集测度定义中的\alert{开区间其实可以换成任何有界开集}: 对有界开集 $G \supset F$, 定理给出 $m G - m (G \setminus F) = m F$, 与开区间的选取无关 (这也顺带重新给出了定义的\alert{良定义性});
+\vspace{1em}
+\item 之所以定义时用开区间而不用一般开集: \alert{良定义性} (与包集的选取无关) 对一般开集\alert{不便直接验证}——两个开集之差不再是开集, 开集测度的可加性使不上.
+\end{itemize}
+}
 
 \end{frame}
 
