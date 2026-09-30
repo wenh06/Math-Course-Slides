@@ -246,27 +246,13 @@ E_1 \setminus E_2 = E_1 \cap \mathscr{C}E_2 ,
 \pause
 \vspace{1em}
 
-设 $E_1 \cap E_2 = \emptyset$, 取 1$^\circ$ 中的 $F_i \subset E_i \subset G_i$ ($i = 1, 2$), 则 $F_1 \cap F_2 = \emptyset$. 由内测度的单调性 ($m(E_1 \cup E_2) = m_* (E_1 \cup E_2) \geqslant m_* (F_1 \cup F_2) \geqslant m(F_1 \cup F_2)$) 与闭集测度的有限可加性 (§2.2):
-\[
-m(E_1 \cup E_2) \geqslant m(F_1 \cup F_2) = mF_1 + mF_2 > mG_1 + mG_2 - \varepsilon .
-\]
-
-\pause
-
-令 $\varepsilon \to 0^+$, 并注意 $m^* E_i \leqslant mG_i$:
-\[
-m(E_1 \cup E_2) \geqslant m^* E_1 + m^* E_2 = m E_1 + m E_2 ;
-\]
-另一方面, 由 $E_1 \cup E_2$ 可测 (1$^\circ$) 及外测度的半可加性,
-\[
-m(E_1 \cup E_2) = m^* (E_1 \cup E_2) \leqslant m^* E_1 + m^* E_2 = m E_1 + m E_2 .
-\]
-故 $m(E_1 \cup E_2) = mE_1 + mE_2$.
+下证有限可加性. 设 $E_1 \cap E_2 = \emptyset$. 由 1$^\circ$, $E_1 \cup E_2$ 可测, 故 $m(E_1 \cup E_2)$ 同时等于其外、内测度. 于是 (\S 2.2 已证的) 外测度的\alert{半可加性}与内测度的\alert{超可加性} ($E_1, E_2$ 不交) 给出
+\begin{align*}
+m(E_1 \cup E_2) &= m^* (E_1 \cup E_2) \leqslant m^* E_1 + m^* E_2 = m E_1 + m E_2, \\
+m(E_1 \cup E_2) &= m_* (E_1 \cup E_2) \geqslant m_* E_1 + m_* E_2 = m E_1 + m E_2.
+\end{align*}
+夹逼即得 $m(E_1 \cup E_2) = m E_1 + m E_2$.
 \qed
-
-\begin{remark}
-也可以改用内测度从``内部''作同样的论证; 但内测度对一般集合的相应性质可能失效 (习题 2.2 第 15 题), 走外测度途径更稳妥.
-\end{remark}
 
 \end{frame}
 

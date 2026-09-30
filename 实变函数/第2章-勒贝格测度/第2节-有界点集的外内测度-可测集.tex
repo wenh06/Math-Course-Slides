@@ -614,7 +614,7 @@ $m^*$ \textbf{没有}完全可加性 (习题 2.2 第 15 题给出反例): 这一
 
 \begin{frame}{性质 (1) 与 (2) 的证明}
 
-\startproof[bg=yellow, fg=red](1) 的证明
+\startproof[bg=yellow, fg=red](1. $m_* E \leqslant m^* E$)
 任取开集 $G$ 与闭集 $F$, 满足 $G \supset E \supset F$. 那么
 \[
 m G - m F = m (G \setminus F) \geqslant 0
@@ -628,7 +628,7 @@ m^* E = \inf_{G \supset E} m G \geqslant \sup_{F \subset E} m F = m_* E .
 
 \pause
 
-\startproof[bg=yellow, fg=red](2) 的证明
+\startproof[bg=yellow, fg=red](2. 单调性)
 由 $E_1 \subset E_2$:
 \[
 \{F \subset E_1,\ F \text{闭}\} \subset \{F \subset E_2,\ F \text{闭}\}
@@ -644,10 +644,10 @@ m^* E = \inf_{G \supset E} m G \geqslant \sup_{F \subset E} m F = m_* E .
 
 %------------------------------------------------
 
-\begin{frame}{性质 (3) 的证明}
+\begin{frame}{性质 (3) 与 (4) 的证明}
 
-\startproof[bg=yellow, fg=red](3) 的证明
-\textbf{半可加性}: 由 $m^* E_k = \inf_{G \supset E_k} m G$, $\forall\, \varepsilon > 0$, 可作开集 $G_k \supset E_k$ 使得 $m G_k < m^* E_k + \dfrac{\varepsilon}{2^k}$. 令 $G = \bigcup_k G_k$, 则 $G$ 为开集且 $G \supset E$, 于是
+\startproof[bg=yellow, fg=red](3. 半可加性)
+由 $m^* E_k = \inf_{G \supset E_k} m G$, $\forall\, \varepsilon > 0$, 可作开集 $G_k \supset E_k$ 使得 $m G_k < m^* E_k + \dfrac{\varepsilon}{2^k}$. 令 $G = \bigcup_k G_k$, 则 $G$ 为开集且 $G \supset E$, 于是
 \[
 m^* E \leqslant m G \leqslant \sum_k m G_k < \sum_k \left(m^* E_k + \frac{\varepsilon}{2^k}\right) = \sum_k m^* E_k + \varepsilon .
 \]
@@ -655,7 +655,8 @@ m^* E \leqslant m G \leqslant \sum_k m G_k < \sum_k \left(m^* E_k + \frac{\varep
 
 \pause
 
-\textbf{超可加性}: 由 $m_* E_k = \sup_{F \subset E_k} m F$, 可作闭集 $F_k \subset E_k$ 使得 $m F_k > m_* E_k - \dfrac{\varepsilon}{2^k}$. 由于 $E_k$ 两两不交, $F_k$ 也两两不交.
+\startproof[bg=yellow, fg=red](4. 超可加性)
+由 $m_* E_k = \sup_{F \subset E_k} m F$, 可作闭集 $F_k \subset E_k$ 使得 $m F_k > m_* E_k - \dfrac{\varepsilon}{2^k}$. 由于 $E_k$ 两两不交, $F_k$ 也两两不交.
 
 \pause
 
