@@ -57,39 +57,63 @@
 
 %------------------------------------------------
 
-\begin{frame}{$\mathbb{R}$ 中开集的结构定理}
+\begin{frame}{构成区间与结构定理}
+
+\begin{Def}[构成区间]
+设 $G \subset \mathbb{R}$ 为开集. 若开区间 $(\alpha, \beta)$ 满足
+(1) $(\alpha, \beta) \subset G$; \quad (2) $\alpha, \beta \notin G$,
+则称 $(\alpha, \beta)$ 为 $G$ 的一个\alert{构成区间} (端点允许取 $\pm\infty$).
+\end{Def}
+
+\pause
 
 \begin{thm}[$\mathbb{R}$ 中的开集结构定理]
-$\mathbb{R}$ 中任一非空开集 $G$ 均可唯一地表示为至多可列个互不相交的开区间之并:
+$\mathbb{R}$ 中任一非空开集 $G$ 均可\alert{唯一}地表示为至多可列个互不相交的构成区间之并:
 \[
-G = \bigcup_{k} (a_k, b_k), \quad (a_k, b_k) \cap (a_j, b_j) = \emptyset\ (k \neq j),
+G = \bigcup_{k} (\alpha_k, \beta_k), \quad (\alpha_k, \beta_k) \cap (\alpha_j, \beta_j) = \emptyset\ (k \neq j).
 \]
-其中 $a_k, b_k \in \mathbb{R} \cup \{-\infty, +\infty\},$ 称 $(a_k, b_k)$ 为 $G$ 的\alert{构成区间}.\end{thm}
+\end{thm}
 
 \pause
 
-\startproof[bg=yellow, fg=red]
-对每个 $x \in G,$ 令 $I_x = \bigcup\{(a, b) : x \in (a, b) \subset G\}.$ 由 $G$ 开知 $x$ 是 $G$ 的内点, 故 $\{x\}$ 本身可嵌入某开区间 $\subset G,$ 即 $I_x$ 非空. $I_x$ 是包含 $x$ 且含于 $G$ 的最大开区间.
+\startproof[bg=yellow, fg=red](存在性)
+对每个 $x \in G,$ 令 $I_x = \bigcup\{(a, b) : x \in (a, b) \subset G\}.$ 由 $G$ 开知 $x$ 是 $G$ 的内点, 故 $\{x\}$ 本身可嵌入某开区间 $\subset G,$ 即 $I_x$ 非空. $I_x$ 是包含 $x$ 且含于 $G$ 的\alert{最大}开区间.
 
-\pause
-
-\textbf{互不相交}: 若 $I_x \cap I_y \neq \emptyset,$ 则 $I_x \cup I_y$ 也是含于 $G$ 的开区间 (两开区间有交则并仍是开区间), 由极大性 $I_x = I_y.$
-
-\pause
-
-\textbf{至多可列}: 各 $I_x$ 互不相交, 每个含至少一个有理数, 不同的含不同的有理数, 故个数至多可列.
-\qed
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}{唯一性与注记}
+\begin{frame}{构成区间存在性: 互不相交与至多可列}
+
+$I_x$ 的端点必不属于 $G$: 以右端点 $\beta = \sup I_x$ 为例, 反设 $\beta \in G$, 则可取开区间 $(c, e)$ 使 $\beta \in (c, e) \subset G$; 于是 $I_x \cup (c, e)$ 是含 $x$ 且含于 $G$ 的开区间, 并含有 $(\beta, e)$ 中的点, 严格更大, 与极大性矛盾. 左端点同理 (端点为 $\pm\infty$ 时自动满足).
+
+\pause
+
+故每个 $I_x$ 都是过 $x$ 的构成区间, 且 $G = \bigcup_{x \in G} I_x$.
+
+\pause
+\vspace{1em}
+
+\startproof[bg=yellow, fg=red](断言)
+相交的两个构成区间必相等. 设构成区间 $(\alpha_1, \beta_1) \neq (\alpha_2, \beta_2)$ 且相交, 不妨 $\alpha_1 < \alpha_2$ (相等时转而比较 $\beta$): 由相交得 $\beta_1 > \alpha_2$; 若 $\beta_1 \leqslant \beta_2$, 则 $\alpha_2 \in (\alpha_1, \beta_1) \subset G$; 若 $\beta_1 > \beta_2$, 则 $(\alpha_2, \beta_2) \subsetneq (\alpha_1, \beta_1)$, 仍有 $\alpha_2 \in (\alpha_1, \beta_1) \subset G$, 均与 $\alpha_2 \notin G$ 矛盾.
+
+\pause
+\vspace{1em}
+
+于是诸 $I_x$ \alert{两两不交} (相交则由 \alert{断言} 可知相等); 每段含一个有理数, 不同段含不同的有理数, 故\alert{至多可列}. 存在性得证.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{构成区间唯一性}
 
 \startproof[bg=yellow, fg=red](唯一性)
-若 $G = \bigcup_k (a_k, b_k)$ 是另一个至多可列互不相交开区间分解, 则对每个 $x \in G,$ $x$ 所在的区间 $(a_k, b_k)$ 是一个包含 $x$ 的开区间且 $\subset G,$ 故 $(a_k, b_k) \subset I_x.$ 反之 $I_x \subset (a_k, b_k)$ 由极大性. 故两种分解的构成区间相同.
+设 $G = \bigcup_k (a_k, b_k)$ 是任一互不相交的开区间分解, 则每块的端点都不属于 $G$: 否则不妨 $b_k \in G$, 它属于某块 $(a_j, b_j)$, $a_j < b_k < b_j$, 于是充分接近 $b_k$ 的点同时落在 $(a_k, b_k)$ 与 $(a_j, b_j)$ 中, 与不交性矛盾. 故每块都是构成区间; 取其一点 $x$, 它与 $I_x$ 是都含 $x$ 的构成区间, 由 \alert{断言} 必相等: $(a_k, b_k) = I_x$. 故任何分解的块恰为 $\{I_x : x \in G\}$ (去重), 分解唯一.
 \qed
+
 \pause
-\vspace{0.5em}
+\vspace{1em}
 
 \begin{remark}
 此定理是 $\mathbb{R}$ 的特殊性质 (依赖于 $\mathbb{R}$ 的全序结构); 在高维欧氏空间 $\mathbb{R}^n$ ($n \geqslant 2$) 中, 开集不一定能表示为互不相交开球之并.
@@ -572,7 +596,7 @@ $\Phi$ 在每个构成区间 $(c, d) \subset G_0$ 上取常值 $\phi(c) = \phi(d
 \begin{itemize}
 \item $\Phi$ 单调递增, 连续; $\Phi(0) = 0,$ $\Phi(1) = 1.$
 \item $\Phi' = 0$ 几乎处处 (在测度为 $1$ 的集 $G_0$ 上导数为 $0$), 但 $\Phi$ 非常数. (\alert{奇异函数})
-\item $\Phi$ 连续, 但\alert{不是绝对连续的} (概念见第四章 §6): Newton--Leibniz 公式适用范围的关键反例.
+\item $\Phi$ 连续, 但\alert{不是绝对连续的} (概念见第四章 §6): Newton-Leibniz 公式适用范围的关键反例.
 \end{itemize}
 \end{prop}
 
