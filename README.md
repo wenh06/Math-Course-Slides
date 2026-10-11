@@ -21,7 +21,7 @@
 
 在 [Overleaf](https://www.overleaf.com/) 中打开本项目, 选择 `XeLaTeX` 编译器, 编译 `main.tex` 即可得到完整 PDF。通过 `main.tex` 中的 `\input{...}` 注释/反注释来切换要编译的内容。
 
-### 方法二: 本地 — 编译单个 section（推荐）
+### 方法二: 本地  编译单个 section（推荐）
 
 直接使用 [compile.py](compile.py) 的 `--target` / `-t` 参数, 编译指定文件或整个目录:
 
@@ -38,7 +38,7 @@ python compile.py -t 教学比赛-数学分析/级数的切萨罗求和
 
 编译输出位于 `build/` 目录下, 保持与原目录相同的层级结构。如果该节在 `main.tex` 中标记为「未完成」或「待更新」等, 输出文件名会自动添加 `-Incomplete` 后缀。
 
-### 方法三: 本地 — 编译整个 main.tex
+### 方法三: 本地  编译整个 main.tex
 
 ```bash
 python compile.py                          # 编译 main.tex, 输出到 build/
@@ -98,6 +98,6 @@ python compile.py custom_main.tex          # 用自定义 entry file 编译
 
 ## Misc
 
-- [.vscode](.vscode) — VSCode LaTeX Workshop 插件配置文件
+- [.vscode](.vscode)  VSCode LaTeX Workshop 插件配置文件
 - 编译需要 XeLaTeX + latexmk, 以及 `simhei.ttf` 等中文字体（存放于 `fonts/`）
 - `common_preamble.tex` 中 `\ifHighContrast` / `\ifShowTocEverySec` / `\ifSiZheng` 等开关可在 `main.tex` 中调整

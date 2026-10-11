@@ -1,4 +1,4 @@
-# 数学分析编程习题 — 评分环境说明
+# 数学分析编程习题  评分环境说明
 
 本目录基于 [nbgrader](https://nbgrader.readthedocs.io/) 管理和批改编程作业。
 为隔离学生代码的任意执行，所有自动批改均在 Docker 容器内完成。
@@ -179,7 +179,7 @@ assert np.allclose(composite_trapezoid(p3_f2, 0, np.pi, 8), p3_true_val_2, atol=
 ```
 
 它不在乎 `composite_trapezoid` 是学生写的 Python 函数，还是从 C 编译出来再用
-`ctypes` 包装的函数——只要 **Python 命名空间里存在这个名字、签名一致**，断言就能运行。
+`ctypes` 包装的函数，只要 **Python 命名空间里存在这个名字、签名一致**，断言就能运行。
 
 因此，C 版作业 notebook 的结构与 Python 版几乎完全一致：
 

@@ -45,7 +45,7 @@ Levi 定理 & 渐升非负, 点态收敛 & \S 4.1 已提前引入并使用 \\
 逐项积分 & 非负级数 & 本节 (Levi 的级数形式) \\
 Fatou 引理 & 非负列, 无单调性 & 本节 (弱形式, 与 Levi 等价) \\
 \alert{Lebesgue 控制收敛} & $|f_n| \leqslant g \in L_E$ & 本节 (最重要) \\
-Lebesgue--Vitali & 依测度收敛 $+$ 等度绝对连续 & 本节 (深化) \\
+Lebesgue-Vitali & 依测度收敛 $+$ 等度绝对连续 & 本节 (深化) \\
 \end{tabular}
 \end{center}
 
@@ -623,13 +623,13 @@ $E(|f_{n_i} - f_{n_j}| < \varepsilon)$ 与 $A$ 分割:
 
 %------------------------------------------------
 
-\section[Vitali]{Lebesgue--Vitali 定理}
+\section[Vitali]{Lebesgue-Vitali 定理}
 
 %------------------------------------------------
 
-\begin{frame}{Lebesgue--Vitali 定理}
+\begin{frame}{Lebesgue-Vitali 定理}
 
-\begin{thm}[Lebesgue--Vitali]
+\begin{thm}[Lebesgue-Vitali]
 设 $mE < \infty$, $E$ 上可积函数列 $\{f_n\}$ \alert{依测度}收敛于 $f$, 那么
 \[
 \lim_{n \to \infty} \int_E |f_n - f| ~ \mathrm{d} m = 0
@@ -658,7 +658,7 @@ $A = E(|f_n - f| \geqslant \varepsilon)$ 满足 $mA < \delta(\varepsilon)$ (等�
 
 %------------------------------------------------
 
-\begin{frame}{Lebesgue--Vitali 定理证明 (续)}
+\begin{frame}{Lebesgue-Vitali 定理证明 (续)}
 
 \startproof[bg=yellow, fg=red](证明 ``$\Rightarrow$'' 续)
 设 $\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$. 先看 $f$: 取定一个 $n$,
@@ -749,7 +749,7 @@ $E = (0, \infty)$, $f_n = \dfrac{1}{n} \chi_{(0, n)}$, $f = 0$.
 \startproof[bg=yellow, fg=red](证明 1\textdegree: $mE < \infty$)
 由 $|f_n| \leqslant g$ 及 $g$ 的积分绝对连续性: $\exists\, \delta(\varepsilon)$,
 $mA < \delta$ 时 $\int_A |f_n| ~ \mathrm{d} m \leqslant \int_A g ~ \mathrm{d} m < \varepsilon$
-($\forall n$), $\{f_n\}$ 有等度绝对连续积分. 由 Lebesgue--Vitali 定理:
+($\forall n$), $\{f_n\}$ 有等度绝对连续积分. 由 Lebesgue-Vitali 定理:
 \[
 \lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0 .
 \qquad \text{……(*)}
@@ -814,7 +814,7 @@ $\lim_n \int_E |f_n - f| ~ \mathrm{d} m = 0$,
 \item \textbf{级数版}: $\sum_n \int_E |f_n| ~ \mathrm{d} m < \infty \Rightarrow$
   逐项积分 (绝对收敛换非负性);
 \pause
-\item \textbf{深化}: 等度绝对连续积分 (一致化 \S 4.2); Lebesgue--Vitali:
+\item \textbf{深化}: 等度绝对连续积分 (一致化 \S 4.2); Lebesgue-Vitali:
   依测度收敛下 $L^1$ 收敛 $\iff$ 等度绝对连续 ($mE < \infty$);
   依测度型控制收敛 ($mE = \infty$ 用截断);
 \pause
