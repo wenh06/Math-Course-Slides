@@ -98,7 +98,7 @@ a.e.\ 收敛比一致收敛弱得多, 二者相差多远? 能否找到一个\ale
 \section{Egorov 定理}
 
 %------------------------------------------------
-% 引理: a.e. 收敛的测度刻画 (Egorov 定理的引擎)
+% 引理: a.e. 收敛的测度刻画 (Egorov 定理的关键引理)
 
 %------------------------------------------------
 
@@ -865,7 +865,7 @@ $\max(f_k, g_k) \xrightarrow{m} \max(f, g)$; $\min$ 同理 (改变末项符号).
 \begin{itemize}
 \item \textbf{集列语言}: $\varlimsup A_n$ = ``属于无穷多次'', $\varliminf A_n$ = ``最终恒属于''; 函数列不收敛点集用坏集合列的上极限控制;
 \pause
-\item \textbf{引理} (a.e.\ 收敛的测度刻画): $m(\bigcup_{k \geqslant n} E_k(\varepsilon)) \to 0$: 证明靠\alert{渐缩集列}的连续性 ($mE_1 < \infty$!), 它是 Egorov 与 Riesz ($\Longleftarrow$) 的共同引擎;
+\item \textbf{引理} (a.e.\ 收敛的测度刻画): $m(\bigcup_{k \geqslant n} E_k(\varepsilon)) \to 0$: 证明靠\alert{渐缩集列}的连续性 ($mE_1 < \infty$!), 它是 Egorov 与 Riesz ($\Longleftarrow$) 证明的共同基础;
 \pause
 \item \textbf{Egorov 定理}: $mE < \infty$ 时 a.e.\ 收敛 $\iff$ 近一致收敛; 但近一致 $\neq$ 一致 ($x^k$); \alert{各 $f_k$ 连续时 $f\big|_{E_\delta}$ 连续} ($\varepsilon/3$, Luzin 定理雏形);
 \pause
