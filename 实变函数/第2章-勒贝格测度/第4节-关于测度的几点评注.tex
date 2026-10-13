@@ -99,8 +99,9 @@ $\infty \cdot (\pm\infty) = \pm\infty$, & $-\infty \cdot (\pm\infty) = \mp\infty
 \begin{eg}[正常凸函数]
 凸优化中允许目标函数取值 $\pm\infty$ (``罚到无穷''): $f: \mathbb{R}^n \to \overline{\mathbb{R}}$. 称 $f$ 是\alert{正常} (proper) 的, 若
 \[
-\forall\, x \in \operatorname{dom} f, \qquad f(x) \neq -\infty \ \text{且}\ f(x) \neq +\infty; \qquad \operatorname{dom} f \neq \emptyset
+f \not\equiv +\infty \quad \text{且} \quad f(x) \neq -\infty \ \ (\forall\, x);
 \]
+等价地说: \alert{有效域} $\operatorname{dom} f := \{x:\ f(x) < +\infty\}$ 非空, 且 $f(x) > -\infty$ 恒成立.
 (进一步要求闭图像与凸性, 即 $ccp$ 函数: closed, convex, proper).
 
 扩充实数在别的数学分支中同样有用, 这不是测度论的``私人约定''.
@@ -458,7 +459,7 @@ $\mathbb{R}$ 的子集类
 
 \begin{frame}{从``体积''到一般测度}
 
-回看本节的机器: \alert{外测度} (覆盖取下确界) $+$ \alert{Carath\'{e}odory 条件} $\Longrightarrow$ 可测集类 $\mathscr{M}$ 与其上的可列可加函数. 整套流程没有用到``矩体体积''的特殊性质: \alert{换上任何环上的测度都照常运转}.
+回顾本节的构造: \alert{外测度} (覆盖取下确界) $+$ \alert{Carath\'{e}odory 条件} $\Longrightarrow$ 可测集类 $\mathscr{M}$ 与其上的可列可加函数. 整套流程没有用到``矩体体积''的特殊性质: \alert{换上任何环上的测度都照常运转}.
 
 \pause
 
@@ -599,7 +600,7 @@ $\mu^*$ 在 $\mathscr{R}_\sigma(\mathscr{R})$ 上的限制是 $\mu$ 的扩张, �
 \[
 \mathscr{R} \ \subset\ \mathscr{B}(\mathbb{R}^n) = \sigma(\mathscr{R}) \ \subset\ \mathscr{M} \ \subset\ \mathscr{P}(\mathbb{R}^n),
 \]
-且 $\mu^*\big|_{\mathscr{B}(\mathbb{R}^n)}$ 就是通常的勒贝格测度 $m$; $\mu^*$-可测集类 (自动完备: 零测集的子集可测) 恰是 \alert{Lebesgue 可测集类}, §2.2--2.4 的理论正是这台机器的产出.
+且 $\mu^*\big|_{\mathscr{B}(\mathbb{R}^n)}$ 就是通常的勒贝格测度 $m$; $\mu^*$-可测集类 (自动完备: 零测集的子集可测) 恰是 \alert{Lebesgue 可测集类}, §2.2--2.4 的理论正是由这条路线建成.
 \end{thm}
 
 \pause
@@ -848,11 +849,11 @@ $S$ 可测但不是 Borel 集: \alert{可测集严格多于 Borel 集}.
 \begin{frame}{展望: 通往第三章}
 
 \begin{itemize}
-\item 测度论就绪: $(\mathbb{R}^n, \mathscr{M}, m)$ 已由``体积 $+$ Carath\'{e}odory 机器''建成; 一般测度空间 $(X, \mathscr{R}, \mu)$ (概率测度、L-S 测度) 的理论与之完全平行;
+\item 测度论就绪: $(\mathbb{R}^n, \mathscr{M}, m)$ 已由``体积 $+$ Carath\'{e}odory 条件''建成; 一般测度空间 $(X, \mathscr{R}, \mu)$ (概率测度、L-S 测度) 的理论与之完全平行;
 \pause
 \item \textbf{第三章 可测函数}: 定义在可测集上、``原像保可测''的函数; 逐层逼近 (简单函数逼近、Luzin 定理) 与各种收敛性 (Egorov、Riesz);
 \pause
-\item \textbf{第四章 勒贝格积分}: 对简单函数按``测度加权''定义积分, 再逼近一般函数; 单调收敛、Fatou、控制收敛与 Fubini 定理都在这台测度机器上运转.
+\item \textbf{第四章 勒贝格积分}: 对简单函数按``测度加权''定义积分, 再逼近一般函数; 单调收敛、Fatou、控制收敛与 Fubini 定理都建立在这套测度论之上.
 \end{itemize}
 
 \end{frame}

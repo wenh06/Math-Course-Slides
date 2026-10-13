@@ -40,6 +40,7 @@
 \qquad
 E_k = \{x:\ y_{k-1} \leqslant f(x) < y_k\},
 \]
+(末段取 $\leqslant M$, 使 $\{f = M\}$ 也被覆盖; 记号从简.)
 令 $\lambda(\Delta) \to 0$,
 \[
 \int_{[a,b]} f(x)\,\mathrm{d}x \ ``=" \lim \sum_{k=1}^{n} y_{k-1}\, m E_k .
@@ -114,7 +115,7 @@ $D$ 在\alert{每一点都不连续}, Riemann 意义下不可积; 但它是可�
 \pause
 
 \begin{remark}
-直观: ``$f$ 可测'' $\iff$ 定义域 $E$ 被诸水平集 $E(f>\alpha)$ \alert{不搞得乱七八糟} (每个都测得到), 值域的分割片 $E_k = E(y_{k-1} \leqslant f < y_k)$ 都可测, 积分公式才有意义.
+直观: ``$f$ 可测'' $\iff$ 定义域 $E$ 不被诸水平集 $E(f>\alpha)$ 搞得乱七八糟 (每个都测得到), 值域的分割片 $E_k = E(y_{k-1} \leqslant f < y_k)$ (末段取 $\leqslant M$) 都可测, 积分公式才有意义.
 \end{remark}
 
 \end{frame}
@@ -282,7 +283,9 @@ E(f + g > \alpha) = \bigcup_{r \in \mathbb{Q}} \big(E(f > r) \cap E(g > \alpha -
 
 \textbf{平方}: $E(f^2 > \alpha) = E\ ( \alpha < 0)$, $E(f^2 > \alpha) = E(f > \sqrt{\alpha}) \cup E(f < -\sqrt{\alpha})\ (\alpha \geqslant 0)$, 故 $f^2$ 可测.
 
-\textbf{积与差}: $f \cdot g = \dfrac{(f+g)^2 - (f-g)^2}{4}$, 于是积、差可测; 商: $f/g = f \cdot (1/g)$, 而 $1/g$ 的水平集可写为 $g$ 的水平集的可测组合.
+\textbf{差}: $E(-g > \alpha) = E(g < -\alpha)$, 故 $-g$ 可测, 于是 $f - g = f + (-g)$ 可测.
+
+\textbf{积与商}: 由差与平方, $f \cdot g = \dfrac{(f+g)^2 - (f-g)^2}{4}$ 可测; 商: $f/g = f \cdot (1/g)$, 而 $1/g$ 的水平集可写为 $g$ 的水平集的可测组合.
 
 \pause
 
@@ -445,8 +448,7 @@ n, & \text{若 } f(x) \geqslant n.
 \]
 若 $f(x) \geqslant n = \frac{2^k \cdot n}{2^k}$, 则 $\varphi_k(x) \geqslant \frac{2^k \cdot n}{2^k} = n = \varphi_n(x)$.
 
-所以 $\varphi_n(x) \leqslant \varphi_k(x) \leqslant f(x)$, $\forall\, k > n$.
-\qed
+所以 $\varphi_n(x) \leqslant \varphi_k(x) \leqslant f(x)$, $\forall\, k > n$. 单调性证毕; 收敛性见下帧.
 
 \end{frame}
 
@@ -469,7 +471,7 @@ n, & \text{若 } f(x) \geqslant n.
 \pause
 
 \begin{attnblock}
-``可测函数 = 递增简单函数列的极限''. 这是连接函数与集合 (测度) 的桥梁: 第四章的积分将\alert{先对简单函数定义}, 再沿这条定理推广.
+``可测函数 = 递增简单函数列的极限''. 这是连接函数与集合 (测度) 的桥梁: 第四章的积分将\alert{先对简单函数定义}, 再借这条定理推广.
 \end{attnblock}
 
 \end{frame}

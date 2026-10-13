@@ -347,7 +347,11 @@ E = E_1 \cup (E_2 \setminus E_1) \cup \big(E_3 \setminus (E_1 \cup E_2)\big) \cu
 
 \begin{frame}{完全可加性的证明 (一): 内测度下界}
 
-以下设 $E_k$ \alert{两两不交}, $E = \bigcup_{k \geqslant 1} E_k$ (可测性已由前面的归约得到), 往证 $mE = \sum_k m E_k$.
+以下设 $E_k$ \alert{两两不交} (诸 $E_k$ 可测是假设: 一般情形经前面的归约恰好化成这种情形), $E = \bigcup_{k \geqslant 1} E_k$. 往证
+\[
+\sum_k m E_k \;\leqslant\; m_* E \;\leqslant\; m^* E \;\leqslant\; \sum_k m E_k,
+\]
+夹逼即得 $E$ 可测, 且 $mE = \sum_k m E_k$ (完全可加性).
 
 \pause
 
